@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "CEE WebApp",
+    "welcome": "Welcome to CEE WebApp"
+  },
+  "nav": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "emailPlaceholder": "you{'@'}example.com",
+      "passwordPlaceholder": "••••••••",
+      "signInButton": "Sign in with Email",
+      "signUpButton": "Sign up with Email",
+      "googleButton": "Sign in with Google",
+      "googleSignUpButton": "Sign up with Google",
+      "orContinueWith": "Or continue with",
+      "noAccount": "Don't have an account?",
+      "hasAccount": "Already have an account?",
+      "signUpLink": "Sign up",
+      "signInLink": "Sign in"
+    },
+    "signup": {
+      "title": "Create your account",
+      "successMessage": "Account created successfully! Please check your email to verify your account."
+    },
+    "callback": {
+      "completing": "Completing sign in..."
+    },
+    "errors": {
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters long",
+      "signInError": "An error occurred during sign in",
+      "signUpError": "An error occurred during sign up",
+      "googleSignInError": "An error occurred during Google sign in",
+      "googleSignUpError": "An error occurred during Google sign up"
+    }
+  },
+  "home": {
+    "welcome": "Welcome to CEE WebApp",
+    "signedInAs": "You are signed in as {email}",
+    "pleaseSignIn": "Please sign in to continue",
+    "userInfo": {
+      "title": "User Information",
+      "email": "Email",
+      "userId": "User ID",
+      "createdAt": "Created At"
+    }
+  }
+}
