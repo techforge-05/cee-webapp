@@ -178,6 +178,78 @@ const errorMsg = t('auth.errors.signInError')
 </script>
 ```
 
+## Dynamic Content Architecture
+
+This app uses a hybrid approach for content management:
+- **Static translations** (UI labels, buttons) → JSON files in `locales/`
+- **Dynamic content** (school info, images, editable text) → Supabase database
+
+### Database Schema
+
+Two main tables for school personnel to edit content:
+
+1. **`dynamic_content`**: Translatable text content
+   - `key`: Content identifier (e.g., 'school.name', 'home.hero.title')
+   - `locale`: Language code ('es' or 'en')
+   - `value`: The actual content
+   - `category`: Optional grouping (e.g., 'school_info', 'homepage')
+
+2. **`media`**: Images and other media
+   - `key`: Media identifier (e.g., 'school.logo', 'home.hero.image')
+   - `url`: Supabase Storage URL or external URL
+   - `alt_text_es`/`alt_text_en`: Alt text for accessibility
+   - `category`: Optional grouping (e.g., 'logos', 'banners')
+
+### Using Dynamic Content
+
+```vue
+<template>
+  <!-- Dynamic text with fallback to static i18n -->
+  <h1>{{ getContent('school.name', 'app.name') }}</h1>
+
+  <!-- Dynamic text without fallback -->
+  <p>{{ getContent('school.description') }}</p>
+
+  <!-- Dynamic image -->
+  <img
+    v-if="getMediaUrl('school.logo')"
+    :src="getMediaUrl('school.logo') || ''"
+    :alt="getMediaAlt('school.logo')"
+  />
+</template>
+
+<script setup>
+const { getContent, getMediaUrl, getMediaAlt } = useDynamicContent()
+</script>
+```
+
+### Content Management Workflow
+
+1. **Setup**: Run migration to create tables:
+   ```bash
+   npx supabase db push
+   ```
+
+2. **Edit Content**: School personnel can update via:
+   - Direct database access (Supabase dashboard)
+   - Admin panel (to be built)
+   - API endpoints with proper authentication
+
+3. **Content Updates**: Use the content store:
+   ```typescript
+   const contentStore = useContentStore()
+
+   // Update text content
+   await contentStore.updateContent('school.name', 'es', 'Nuevo Nombre', 'school_info')
+
+   // Update media
+   await contentStore.updateMedia('school.logo', '/images/new-logo.png', 'Logo', 'Logo', 'logos')
+   ```
+
+4. **Permissions**: RLS policies ensure:
+   - Anyone can read content (public access)
+   - Only authenticated users can edit (school personnel)
+
 ## Environment Setup
 
 Required environment variables in `.env`:

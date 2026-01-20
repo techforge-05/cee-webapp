@@ -5,7 +5,9 @@ const { locale } = useI18n()
 </script>
 
 <template>
-  <UApp :locale="locales[locale as keyof typeof locales]">
-    <NuxtPage />
+  <UApp :locale="locales[locale as keyof typeof locales]" class="w-full">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>

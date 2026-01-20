@@ -1,15 +1,12 @@
 <template>
-  <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8"
-  >
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2
-          class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
-        >
-          {{ $t('auth.login.title') }}
-        </h2>
-      </div>
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2
+        class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white"
+      >
+        {{ $t('auth.login.title') }}
+      </h2>
+    </div>
 
       <UCard>
         <form class="space-y-6" @submit.prevent="handleEmailLogin">
@@ -109,11 +106,14 @@
           </p>
         </div>
       </UCard>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'auth',
+})
+
   const supabase = useSupabaseClient();
   const user = useSupabaseUser();
   const localePath = useLocalePath();

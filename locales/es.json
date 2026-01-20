@@ -43,14 +43,91 @@
     }
   },
   "home": {
-    "welcome": "Bienvenido a CEE WebApp",
-    "signedInAs": "Has iniciado sesión como {email}",
-    "pleaseSignIn": "Por favor inicia sesión para continuar",
-    "userInfo": {
-      "title": "Información del Usuario",
-      "email": "Correo Electrónico",
-      "userId": "ID de Usuario",
-      "createdAt": "Creado el"
+    "hero": {
+      "videoAlt": "Video de presentación del centro educativo"
+    },
+    "welcome": {
+      "title": "Bienvenidos a Nuestro Centro Educativo",
+      "subtitle": "Educación de calidad para el futuro de nuestros estudiantes",
+      "description": "En nuestro centro educativo nos dedicamos a formar estudiantes integrales, preparados para los desafíos del futuro. Con más de 20 años de experiencia, ofrecemos un ambiente seguro y estimulante para el aprendizaje."
+    },
+    "values": {
+      "title": "Valores y Principios",
+      "subtitle": "Los pilares que guían nuestra comunidad educativa",
+      "items": [
+        {
+          "title": "Excelencia Académica",
+          "description": "Promovemos el logro académico y el desarrollo intelectual de cada estudiante."
+        },
+        {
+          "title": "Respeto y Tolerancia",
+          "description": "Fomentamos un ambiente inclusivo donde todos son valorados y respetados."
+        },
+        {
+          "title": "Responsabilidad",
+          "description": "Enseñamos la importancia del compromiso y la responsabilidad personal."
+        },
+        {
+          "title": "Innovación",
+          "description": "Incorporamos metodologías modernas para el aprendizaje del siglo XXI."
+        }
+      ]
+    },
+    "enrollment": {
+      "title": "Inscripciones Abiertas",
+      "subtitle": "Únete a nuestra comunidad educativa",
+      "description": "Estamos aceptando nuevos estudiantes para el próximo año escolar. Contamos con programas desde preescolar hasta secundaria.",
+      "cta": "Más Información",
+      "features": [
+        "Educación bilingüe",
+        "Instalaciones modernas",
+        "Actividades extracurriculares",
+        "Atención personalizada"
+      ]
+    },
+    "activities": {
+      "title": "Actividades Escolares",
+      "subtitle": "Desarrollo integral más allá del aula",
+      "items": [
+        {
+          "title": "Deportes",
+          "description": "Fútbol, baloncesto, voleibol y más"
+        },
+        {
+          "title": "Arte y Cultura",
+          "description": "Música, teatro y artes plásticas"
+        },
+        {
+          "title": "Ciencia y Tecnología",
+          "description": "Robótica, programación y experimentos"
+        },
+        {
+          "title": "Talleres",
+          "description": "Manualidades, cocina y emprendimiento"
+        }
+      ]
+    },
+    "news": {
+      "title": "Noticias y Anuncios",
+      "subtitle": "Mantente informado sobre lo que sucede en nuestra escuela",
+      "viewAll": "Ver todas las noticias",
+      "items": [
+        {
+          "title": "Inicio del Nuevo Año Escolar",
+          "date": "15 de Enero, 2025",
+          "excerpt": "Damos la bienvenida a todos nuestros estudiantes para este nuevo ciclo escolar lleno de oportunidades..."
+        },
+        {
+          "title": "Feria de Ciencias 2025",
+          "date": "10 de Enero, 2025",
+          "excerpt": "Nuestros estudiantes presentarán sus proyectos científicos más innovadores..."
+        },
+        {
+          "title": "Nuevo Programa de Becas",
+          "date": "5 de Enero, 2025",
+          "excerpt": "Anunciamos la apertura de nuestro programa de becas para estudiantes destacados..."
+        }
+      ]
     }
   }
 }
