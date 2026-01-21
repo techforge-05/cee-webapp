@@ -69,55 +69,7 @@
       </div>
     </section>
 
-    <!-- Section 3: Values and Principles -->
-    <section class="py-32 bg-gray-100">
-      <div class="max-w-[80%] mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-yellow-600 mb-4">
-            {{ $t('home.values.title').toUpperCase() }}
-          </h2>
-          <p class="text-xl text-gray-600">
-            {{ $t('home.values.subtitle') }}
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- First box: Passion for God (always visible, no rotation) -->
-          <div
-            class="h-80 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
-          >
-            <h3 class="text-xl font-semibold text-white mb-4">
-              {{ $rt($tm('home.values.items')[0].title) }}
-            </h3>
-            <p class="text-white/90">
-              {{ $rt($tm('home.values.items')[0].description) }}
-            </p>
-          </div>
-
-          <!-- Rotating boxes (positions 2-4) -->
-          <div
-            v-for="(value, index) in displayedValues"
-            :key="index"
-            class="relative h-80"
-          >
-            <Transition name="value-fade" mode="out-in">
-              <div
-                :key="value.key"
-                class="absolute inset-0 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
-              >
-                <h3 class="text-xl font-semibold text-white mb-4">
-                  {{ $rt(value.data.title) }}
-                </h3>
-                <p class="text-white/90">
-                  {{ $rt(value.data.description) }}
-                </p>
-              </div>
-            </Transition>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Enrollment -->
+    <!-- Section 3: Offered Grades and Programs -->
     <section class="py-20">
       <div class="max-w-7xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -161,6 +113,54 @@
               class="rounded-lg shadow-lg w-full"
             />
             -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Values and Principles -->
+    <section class="py-32 bg-yellow-500/50">
+      <div class="max-w-[80%] mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-yellow-600 mb-4">
+            {{ $t('home.values.title').toUpperCase() }}
+          </h2>
+          <p class="text-xl text-gray-600">
+            {{ $t('home.values.subtitle') }}
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- First box: Passion for God (always visible, no rotation) -->
+          <div
+            class="h-80 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center border-18 border-yellow-800/50"
+          >
+            <h3 class="text-xl font-semibold text-white mb-4">
+              {{ $rt($tm('home.values.items')[0].title) }}
+            </h3>
+            <p class="text-white/90">
+              {{ $rt($tm('home.values.items')[0].description) }}
+            </p>
+          </div>
+
+          <!-- Rotating boxes (positions 2-4) -->
+          <div
+            v-for="(value, index) in displayedValues"
+            :key="index"
+            class="relative h-80"
+          >
+            <Transition name="value-fade" mode="out-in">
+              <div
+                :key="value.key"
+                class="absolute inset-0 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
+              >
+                <h3 class="text-xl font-semibold text-white mb-4">
+                  {{ $rt(value.data.title) }}
+                </h3>
+                <p class="text-white/90">
+                  {{ $rt(value.data.description) }}
+                </p>
+              </div>
+            </Transition>
           </div>
         </div>
       </div>
