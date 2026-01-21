@@ -146,10 +146,13 @@
         <div
           v-for="(value, index) in valuesWithIcons"
           :key="index"
-          class="bg-purple-700/80 rounded-lg p-6 shadow-2xl"
+          class="bg-violet-700/80 rounded-lg p-6 shadow-2xl"
         >
           <div class="flex items-start space-x-4">
-            <UIcon :name="value.icon" class="w-10 h-10 text-white flex-shrink-0 mt-1" />
+            <UIcon
+              :name="value.icon"
+              class="w-10 h-10 text-white flex-shrink-0 mt-1"
+            />
             <div class="flex-1">
               <h3 class="text-lg font-bold text-white mb-2">
                 {{ $rt(value.title) }}
@@ -170,7 +173,7 @@
         :style="getRandomPosition(index)"
       >
         <div
-          class="bg-purple-700/80 rounded-full p-8 shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer w-64 h-64 flex flex-col items-center justify-center text-center"
+          class="bg-violet-700/80 rounded-full p-8 shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer w-64 h-64 flex flex-col items-center justify-center text-center"
         >
           <UIcon :name="value.icon" class="w-16 h-16 text-white mb-3" />
           <h3 class="text-lg font-bold text-white mb-2">
