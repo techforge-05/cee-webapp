@@ -48,8 +48,8 @@
         ></div>
       </div>
 
-      <div class="max-w-4xl ml-[15%] px-4 relative z-10">
-        <div class="text-left">
+      <div class="max-w-4xl mx-auto md:ml-[15%] md:mr-0 px-4 relative z-10">
+        <div class="text-center md:text-left">
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
           >
@@ -61,7 +61,7 @@
             {{ $t('home.welcome.titlePartTwo') }}
           </h1>
           <p
-            class="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl"
+            class="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto md:mx-0"
           >
             {{ $t('home.welcome.description') }}
           </p>
@@ -120,7 +120,7 @@
 
     <!-- Section 4: Values and Principles -->
     <section class="py-20 bg-amber-300/50">
-      <div class="max-w-[95%] mx-auto px-4">
+      <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-4xl md:text-5xl font-bold text-yellow-600 mb-4">
             {{ $t('home.values.title').toUpperCase() }}
@@ -130,180 +130,159 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 items-start">
-          <!-- Left: Image placeholder -->
-          <div>
-            <div
-              class="bg-gray-200 rounded-lg shadow-lg w-full h-[700px] flex items-center justify-center sticky top-8"
-            >
-              <p class="text-gray-400 text-lg">
-                {{ $t('home.values.title') }}
-              </p>
+        <div class="bg-yellow-600 rounded-lg shadow-xl p-8 md:p-12">
+          <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+            <!-- Passion for God -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-heart-solid"
+                    class="w-6 h-6 text-white"
+                  />
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[0].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[0].description) }}
+                </p>
+              </div>
             </div>
-            <!-- Replace with actual image when available:
-            <img
-              src="/images/values.jpg"
-              alt="Values"
-              class="rounded-lg shadow-lg w-full sticky top-8"
-            />
-            -->
-          </div>
 
-          <!-- Right: Values list with yellow background -->
-          <div class="bg-yellow-600 rounded-lg shadow-xl p-8 md:p-10 lg:p-12">
-            <div class="space-y-6">
-              <!-- Passion for God -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-heart-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[0].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[0].description) }}
-                  </p>
+            <!-- Academic Excellence -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-academic-cap-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[1].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[1].description) }}
+                </p>
+              </div>
+            </div>
 
-              <!-- Academic Excellence -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-academic-cap-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[1].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[1].description) }}
-                  </p>
+            <!-- Respect -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-hand-raised-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[2].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[2].description) }}
+                </p>
+              </div>
+            </div>
 
-              <!-- Respect -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-hand-raised-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[2].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[2].description) }}
-                  </p>
+            <!-- Integrity -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-shield-check-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[3].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[3].description) }}
+                </p>
+              </div>
+            </div>
 
-              <!-- Integrity -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-shield-check-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[3].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[3].description) }}
-                  </p>
+            <!-- Responsibility -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-clipboard-document-check-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[4].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[4].description) }}
+                </p>
+              </div>
+            </div>
 
-              <!-- Responsibility -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-clipboard-document-check-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[4].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[4].description) }}
-                  </p>
+            <!-- Service -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-hand-thumb-up-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[5].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[5].description) }}
+                </p>
+              </div>
+            </div>
 
-              <!-- Service -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-hand-thumb-up-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[5].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[5].description) }}
-                  </p>
+            <!-- Innovation -->
+            <div class="flex gap-4">
+              <div class="flex-shrink-0">
+                <div
+                  class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <UIcon
+                    name="i-heroicons-light-bulb-solid"
+                    class="w-6 h-6 text-white"
+                  />
                 </div>
               </div>
-
-              <!-- Innovation -->
-              <div class="flex gap-4">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
-                  >
-                    <UIcon
-                      name="i-heroicons-light-bulb-solid"
-                      class="w-7 h-7 text-white"
-                    />
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    {{ $rt($tm('home.values.items')[6].title) }}
-                  </h3>
-                  <p class="text-white/90 leading-relaxed">
-                    {{ $rt($tm('home.values.items')[6].description) }}
-                  </p>
-                </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ $rt($tm('home.values.items')[6].title) }}
+                </h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  {{ $rt($tm('home.values.items')[6].description) }}
+                </p>
               </div>
             </div>
           </div>
