@@ -70,28 +70,48 @@
     </section>
 
     <!-- Section 3: Values and Principles -->
-    <section class="py-20 bg-gray-100">
+    <section class="py-32 bg-gray-100">
       <div class="max-w-[80%] mx-auto px-4">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
-            {{ $t('home.values.title') }}
+          <h2 class="text-4xl md:text-5xl font-bold text-yellow-600 mb-4">
+            {{ $t('home.values.title').toUpperCase() }}
           </h2>
           <p class="text-xl text-gray-600">
             {{ $t('home.values.subtitle') }}
           </p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- First box: Passion for God (always visible, no rotation) -->
           <div
-            v-for="(value, index) in $tm('home.values.items')"
-            :key="index"
-            class="text-center bg-yellow-600 rounded-lg p-10 shadow-xl"
+            class="h-80 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
           >
             <h3 class="text-xl font-semibold text-white mb-4">
-              {{ $rt(value.title) }}
+              {{ $rt($tm('home.values.items')[0].title) }}
             </h3>
             <p class="text-white/90">
-              {{ $rt(value.description) }}
+              {{ $rt($tm('home.values.items')[0].description) }}
             </p>
+          </div>
+
+          <!-- Rotating boxes (positions 2-4) -->
+          <div
+            v-for="(value, index) in displayedValues"
+            :key="index"
+            class="relative h-80"
+          >
+            <Transition name="value-fade" mode="out-in">
+              <div
+                :key="value.key"
+                class="absolute inset-0 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
+              >
+                <h3 class="text-xl font-semibold text-white mb-4">
+                  {{ $rt(value.data.title) }}
+                </h3>
+                <p class="text-white/90">
+                  {{ $rt(value.data.description) }}
+                </p>
+              </div>
+            </Transition>
           </div>
         </div>
       </div>
@@ -215,8 +235,122 @@
 </template>
 
 <script setup lang="ts">
+  import { ref, onMounted, onUnmounted } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
   // Remove default layout styling since we want full-width sections
   definePageMeta({
     layout: 'default',
   });
+
+  interface ValueItem {
+    key: string;
+    data: any;
+    originalIndex: number;
+  }
+
+  const { tm } = useI18n();
+  const displayedValues = ref<ValueItem[]>([]);
+  const rotationIntervals: NodeJS.Timeout[] = [];
+  const usedIndices = new Set<number>();
+
+  // Get all values from i18n (excluding first one - Passion for God)
+  const getAllValues = () => {
+    const values = tm('home.values.items') as any[];
+    return values
+      .slice(1) // Skip first value (Passion for God)
+      .map((value: any, index: number) => ({
+        key: `value-${index + 1}-${Date.now()}`,
+        data: value,
+        originalIndex: index + 1,
+      }));
+  };
+
+  // Get a random unused value
+  const getRandomUnusedValue = (): ValueItem => {
+    const allValues = getAllValues();
+    const availableValues = allValues.filter(
+      (v) => !usedIndices.has(v.originalIndex),
+    );
+
+    if (availableValues.length === 0) {
+      // If all values are used, reset and pick any
+      usedIndices.clear();
+    }
+
+    const pool = availableValues.length > 0 ? availableValues : allValues;
+    const randomValue = pool[Math.floor(Math.random() * pool.length)];
+
+    // Fallback to first value if somehow undefined
+    return randomValue || allValues[0];
+  };
+
+  // Initialize with 3 different random values (excluding Passion for God)
+  const initializeValues = () => {
+    const allValues = getAllValues();
+    const shuffled = [...allValues].sort(() => Math.random() - 0.5);
+    displayedValues.value = shuffled.slice(0, 3);
+
+    // Track used indices
+    usedIndices.clear();
+    displayedValues.value.forEach((v) => usedIndices.add(v.originalIndex));
+  };
+
+  // Rotate a single value at a specific index
+  const rotateSingleValue = (index: number) => {
+    const currentValue = displayedValues.value[index];
+    if (!currentValue) return;
+
+    // Remove current value from used set
+    usedIndices.delete(currentValue.originalIndex);
+
+    // Get new random value
+    const newValue = getRandomUnusedValue();
+
+    // Add new value to used set
+    usedIndices.add(newValue.originalIndex);
+
+    // Update the value
+    displayedValues.value[index] = newValue;
+  };
+
+  onMounted(() => {
+    // Initialize with 3 random values (excluding Passion for God)
+    initializeValues();
+
+    // Set up individual rotation intervals for each rotating card (3 cards)
+    // Each card rotates every 30 seconds, but staggered by 10 seconds
+    [0, 1, 2].forEach((index) => {
+      setTimeout(() => {
+        // First rotation after initial delay
+        rotateSingleValue(index);
+
+        // Then rotate every 30 seconds
+        const interval = setInterval(() => {
+          rotateSingleValue(index);
+        }, 30000);
+
+        rotationIntervals.push(interval);
+      }, index * 10000); // Stagger by 10 seconds
+    });
+  });
+
+  onUnmounted(() => {
+    rotationIntervals.forEach((interval) => clearInterval(interval));
+  });
 </script>
+
+<style scoped>
+  .value-fade-enter-active,
+  .value-fade-leave-active {
+    transition: opacity 1.2s ease;
+  }
+
+  .value-fade-enter-from {
+    opacity: 0;
+  }
+
+  .value-fade-leave-to {
+    opacity: 0;
+  }
+</style>
