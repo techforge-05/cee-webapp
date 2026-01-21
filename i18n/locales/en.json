@@ -43,14 +43,104 @@
     }
   },
   "home": {
-    "welcome": "Welcome to CEE WebApp",
-    "signedInAs": "You are signed in as {email}",
-    "pleaseSignIn": "Please sign in to continue",
-    "userInfo": {
-      "title": "User Information",
-      "email": "Email",
-      "userId": "User ID",
-      "createdAt": "Created At"
+    "hero": {
+      "videoAlt": "Educational center presentation video"
+    },
+    "welcome": {
+      "titlePartOne": "A Warm Welcome to",
+      "titlePartTwo": "Comunidad Educativa Evangélica",
+      "subtitle": "Quality education for our students' future",
+      "description": "Situated in Siguatepeque, Honduras. CEE is an Educational institution whose mission is to facilitate the formative processes, involving family, church, and the teachers, that allow for the transmission of information, morals, and values through an education founded in the Word of God. We provide Christ-centered education that shapes knowledge, character, and values through God's Word."
+    },
+    "values": {
+      "title": "Values and Principles",
+      "subtitle": "The pillars that guide our educational community",
+      "items": [
+        {
+          "title": "Passion for God",
+          "description": "We cultivate a deep love for God, placing Him at the center of all we do and inspiring students to grow in their faith."
+        },
+        {
+          "title": "Academic Excellence",
+          "description": "We promote academic achievement and intellectual development of each student."
+        },
+        {
+          "title": "Respect",
+          "description": "We foster an environment where everyone is valued and respected."
+        },
+        {
+          "title": "Integrity",
+          "description": "We uphold honesty, transparency, and moral principles in all our actions, teaching students to live with authenticity and ethical conviction."
+        },
+        {
+          "title": "Responsibility",
+          "description": "We teach the importance of commitment and personal responsibility."
+        },
+        {
+          "title": "Service",
+          "description": "We encourage students to serve others with compassion and humility, following Christ's example of selfless love and dedication to community."
+        },
+        {
+          "title": "Innovation",
+          "description": "We incorporate modern methodologies for 21st century learning."
+        }
+      ]
+    },
+    "enrollment": {
+      "title": "Enrollment Open",
+      "subtitle": "Join our educational community",
+      "description": "We are accepting new students for the upcoming school year. We have programs from preschool through high school.",
+      "cta": "More Information",
+      "features": [
+        "Bilingual education",
+        "Modern facilities",
+        "Extracurricular activities",
+        "Personalized attention"
+      ]
+    },
+    "activities": {
+      "title": "School Activities",
+      "subtitle": "Comprehensive development beyond the classroom",
+      "items": [
+        {
+          "title": "Sports",
+          "description": "Soccer, basketball, volleyball and more"
+        },
+        {
+          "title": "Art and Culture",
+          "description": "Music, theater and visual arts"
+        },
+        {
+          "title": "Science and Technology",
+          "description": "Robotics, programming and experiments"
+        },
+        {
+          "title": "Workshops",
+          "description": "Crafts, cooking and entrepreneurship"
+        }
+      ]
+    },
+    "news": {
+      "title": "News and Announcements",
+      "subtitle": "Stay informed about what's happening at our school",
+      "viewAll": "View all news",
+      "items": [
+        {
+          "title": "New School Year Begins",
+          "date": "January 15, 2025",
+          "excerpt": "We welcome all our students for this new school year full of opportunities..."
+        },
+        {
+          "title": "Science Fair 2025",
+          "date": "January 10, 2025",
+          "excerpt": "Our students will present their most innovative scientific projects..."
+        },
+        {
+          "title": "New Scholarship Program",
+          "date": "January 5, 2025",
+          "excerpt": "We announce the opening of our scholarship program for outstanding students..."
+        }
+      ]
     }
   }
 }

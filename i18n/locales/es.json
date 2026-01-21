@@ -43,14 +43,104 @@
     }
   },
   "home": {
-    "welcome": "Bienvenido a CEE WebApp",
-    "signedInAs": "Has iniciado sesión como {email}",
-    "pleaseSignIn": "Por favor inicia sesión para continuar",
-    "userInfo": {
-      "title": "Información del Usuario",
-      "email": "Correo Electrónico",
-      "userId": "ID de Usuario",
-      "createdAt": "Creado el"
+    "hero": {
+      "videoAlt": "Video de presentación del centro educativo"
+    },
+    "welcome": {
+      "titlePartOne": "Una Cálida Bienvenida a",
+      "titlePartTwo": "Comunidad Educativa Evangélica",
+      "subtitle": "Educación de calidad para el futuro de nuestros estudiantes",
+      "description": "Situada en Siguatepeque, Honduras. CEE es una institución educativa cuya misión es facilitar los procesos formativos, involucrando a la familia, la iglesia y los maestros, que permitan la transmisión de información, moral y valores a través de una educación fundamentada en la Palabra de Dios. Proveemos educación centrada en Cristo que forma el conocimiento, el carácter y los valores a través de la Palabra de Dios."
+    },
+    "values": {
+      "title": "Valores y Principios",
+      "subtitle": "Los pilares que guían nuestra comunidad educativa",
+      "items": [
+        {
+          "title": "Pasión por Dios",
+          "description": "Cultivamos un amor profundo por Dios, colocándolo en el centro de todo lo que hacemos e inspirando a los estudiantes a crecer en su fe."
+        },
+        {
+          "title": "Excelencia Académica",
+          "description": "Promovemos el logro académico y el desarrollo intelectual de cada estudiante."
+        },
+        {
+          "title": "Respeto",
+          "description": "Fomentamos un ambiente donde todos son valorados y respetados."
+        },
+        {
+          "title": "Integridad",
+          "description": "Mantenemos honestidad, transparencia y principios morales en todas nuestras acciones, enseñando a los estudiantes a vivir con autenticidad y convicción ética."
+        },
+        {
+          "title": "Responsabilidad",
+          "description": "Enseñamos la importancia del compromiso y la responsabilidad personal."
+        },
+        {
+          "title": "Servicio",
+          "description": "Animamos a los estudiantes a servir a otros con compasión y humildad, siguiendo el ejemplo de Cristo de amor desinteresado y dedicación a la comunidad."
+        },
+        {
+          "title": "Innovación",
+          "description": "Incorporamos metodologías modernas para el aprendizaje del siglo XXI."
+        }
+      ]
+    },
+    "enrollment": {
+      "title": "Inscripciones Abiertas",
+      "subtitle": "Únete a nuestra comunidad educativa",
+      "description": "Estamos aceptando nuevos estudiantes para el próximo año escolar. Contamos con programas desde preescolar hasta secundaria.",
+      "cta": "Más Información",
+      "features": [
+        "Educación bilingüe",
+        "Instalaciones modernas",
+        "Actividades extracurriculares",
+        "Atención personalizada"
+      ]
+    },
+    "activities": {
+      "title": "Actividades Escolares",
+      "subtitle": "Desarrollo integral más allá del aula",
+      "items": [
+        {
+          "title": "Deportes",
+          "description": "Fútbol, baloncesto, voleibol y más"
+        },
+        {
+          "title": "Arte y Cultura",
+          "description": "Música, teatro y artes plásticas"
+        },
+        {
+          "title": "Ciencia y Tecnología",
+          "description": "Robótica, programación y experimentos"
+        },
+        {
+          "title": "Talleres",
+          "description": "Manualidades, cocina y emprendimiento"
+        }
+      ]
+    },
+    "news": {
+      "title": "Noticias y Anuncios",
+      "subtitle": "Mantente informado sobre lo que sucede en nuestra escuela",
+      "viewAll": "Ver todas las noticias",
+      "items": [
+        {
+          "title": "Inicio del Nuevo Año Escolar",
+          "date": "15 de Enero, 2025",
+          "excerpt": "Damos la bienvenida a todos nuestros estudiantes para este nuevo ciclo escolar lleno de oportunidades..."
+        },
+        {
+          "title": "Feria de Ciencias 2025",
+          "date": "10 de Enero, 2025",
+          "excerpt": "Nuestros estudiantes presentarán sus proyectos científicos más innovadores..."
+        },
+        {
+          "title": "Nuevo Programa de Becas",
+          "date": "5 de Enero, 2025",
+          "excerpt": "Anunciamos la apertura de nuestro programa de becas para estudiantes destacados..."
+        }
+      ]
     }
   }
 }
