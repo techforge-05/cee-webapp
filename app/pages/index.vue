@@ -119,9 +119,9 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section class="py-32 bg-yellow-500/50">
-      <div class="max-w-[80%] mx-auto px-4">
-        <div class="text-center mb-16">
+    <section class="py-20 bg-amber-300/50">
+      <div class="max-w-[95%] mx-auto px-4">
+        <div class="text-center mb-12">
           <h2 class="text-4xl md:text-5xl font-bold text-yellow-600 mb-4">
             {{ $t('home.values.title').toUpperCase() }}
           </h2>
@@ -129,38 +129,183 @@
             {{ $t('home.values.subtitle') }}
           </p>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- First box: Passion for God (always visible, no rotation) -->
-          <div
-            class="h-80 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center border-18 border-yellow-800/50"
-          >
-            <h3 class="text-xl font-semibold text-white mb-4">
-              {{ $rt($tm('home.values.items')[0].title) }}
-            </h3>
-            <p class="text-white/90">
-              {{ $rt($tm('home.values.items')[0].description) }}
-            </p>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Left: Image placeholder -->
+          <div>
+            <div
+              class="bg-gray-200 rounded-lg shadow-lg w-full h-[700px] flex items-center justify-center sticky top-8"
+            >
+              <p class="text-gray-400 text-lg">
+                {{ $t('home.values.title') }}
+              </p>
+            </div>
+            <!-- Replace with actual image when available:
+            <img
+              src="/images/values.jpg"
+              alt="Values"
+              class="rounded-lg shadow-lg w-full sticky top-8"
+            />
+            -->
           </div>
 
-          <!-- Rotating boxes (positions 2-4) -->
-          <div
-            v-for="(value, index) in displayedValues"
-            :key="index"
-            class="relative h-80"
-          >
-            <Transition name="value-fade" mode="out-in">
-              <div
-                :key="value.key"
-                class="absolute inset-0 text-center bg-yellow-600 rounded-lg p-10 shadow-xl flex flex-col items-center justify-center"
-              >
-                <h3 class="text-xl font-semibold text-white mb-4">
-                  {{ $rt(value.data.title) }}
-                </h3>
-                <p class="text-white/90">
-                  {{ $rt(value.data.description) }}
-                </p>
+          <!-- Right: Values list with yellow background -->
+          <div class="bg-yellow-600 rounded-lg shadow-xl p-8 md:p-10 lg:p-12">
+            <div class="space-y-6">
+              <!-- Passion for God -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-heart-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[0].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[0].description) }}
+                  </p>
+                </div>
               </div>
-            </Transition>
+
+              <!-- Academic Excellence -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-academic-cap-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[1].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[1].description) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Respect -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-hand-raised-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[2].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[2].description) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Integrity -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-shield-check-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[3].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[3].description) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Responsibility -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-clipboard-document-check-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[4].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[4].description) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Service -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-hand-thumb-up-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[5].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[5].description) }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Innovation -->
+              <div class="flex gap-4">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center"
+                  >
+                    <UIcon
+                      name="i-heroicons-light-bulb-solid"
+                      class="w-7 h-7 text-white"
+                    />
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold text-white mb-2">
+                    {{ $rt($tm('home.values.items')[6].title) }}
+                  </h3>
+                  <p class="text-white/90 leading-relaxed">
+                    {{ $rt($tm('home.values.items')[6].description) }}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -235,7 +380,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, onUnmounted } from 'vue';
+  import { ref, computed, onMounted, onUnmounted } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   // Remove default layout styling since we want full-width sections
@@ -250,89 +395,45 @@
   }
 
   const { tm } = useI18n();
-  const displayedValues = ref<ValueItem[]>([]);
+
+  // Simple refs for each position
+  const value1 = ref<ValueItem | null>(null);
+  const value2 = ref<ValueItem | null>(null);
+  const value3 = ref<ValueItem | null>(null);
+
+  const displayedValues = computed(() => {
+    return [value1.value, value2.value, value3.value].filter(
+      (v) => v !== null,
+    ) as ValueItem[];
+  });
+
   const rotationIntervals: NodeJS.Timeout[] = [];
-  const usedIndices = new Set<number>();
 
-  // Get all values from i18n (excluding first one - Passion for God)
-  const getAllValues = () => {
+  // All values excluding Passion for God
+  const allValues = computed(() => {
     const values = tm('home.values.items') as any[];
-    return values
-      .slice(1) // Skip first value (Passion for God)
-      .map((value: any, index: number) => ({
-        key: `value-${index + 1}-${Date.now()}`,
-        data: value,
-        originalIndex: index + 1,
-      }));
-  };
-
-  // Get a random unused value
-  const getRandomUnusedValue = (): ValueItem => {
-    const allValues = getAllValues();
-    const availableValues = allValues.filter(
-      (v) => !usedIndices.has(v.originalIndex),
-    );
-
-    if (availableValues.length === 0) {
-      // If all values are used, reset and pick any
-      usedIndices.clear();
-    }
-
-    const pool = availableValues.length > 0 ? availableValues : allValues;
-    const randomValue = pool[Math.floor(Math.random() * pool.length)];
-
-    // Fallback to first value if somehow undefined
-    return randomValue || allValues[0];
-  };
-
-  // Initialize with 3 different random values (excluding Passion for God)
-  const initializeValues = () => {
-    const allValues = getAllValues();
-    const shuffled = [...allValues].sort(() => Math.random() - 0.5);
-    displayedValues.value = shuffled.slice(0, 3);
-
-    // Track used indices
-    usedIndices.clear();
-    displayedValues.value.forEach((v) => usedIndices.add(v.originalIndex));
-  };
-
-  // Rotate a single value at a specific index
-  const rotateSingleValue = (index: number) => {
-    const currentValue = displayedValues.value[index];
-    if (!currentValue) return;
-
-    // Remove current value from used set
-    usedIndices.delete(currentValue.originalIndex);
-
-    // Get new random value
-    const newValue = getRandomUnusedValue();
-
-    // Add new value to used set
-    usedIndices.add(newValue.originalIndex);
-
-    // Update the value
-    displayedValues.value[index] = newValue;
-  };
+    return values.slice(1).map((value: any, index: number) => ({
+      key: `value-${index + 1}`,
+      data: value,
+      originalIndex: index + 1,
+    }));
+  });
 
   onMounted(() => {
-    // Initialize with 3 random values (excluding Passion for God)
-    initializeValues();
+    // Initialize with 3 random values
+    const shuffled = [...allValues.value].sort(() => Math.random() - 0.5);
+    if (shuffled[0]) {
+      value1.value = { ...shuffled[0], key: `${shuffled[0].key}-0` };
+    }
+    if (shuffled[1]) {
+      value2.value = { ...shuffled[1], key: `${shuffled[1].key}-1` };
+    }
+    if (shuffled[2]) {
+      value3.value = { ...shuffled[2], key: `${shuffled[2].key}-2` };
+    }
 
-    // Set up individual rotation intervals for each rotating card (3 cards)
-    // Each card rotates every 30 seconds, but staggered by 10 seconds
-    [0, 1, 2].forEach((index) => {
-      setTimeout(() => {
-        // First rotation after initial delay
-        rotateSingleValue(index);
-
-        // Then rotate every 30 seconds
-        const interval = setInterval(() => {
-          rotateSingleValue(index);
-        }, 30000);
-
-        rotationIntervals.push(interval);
-      }, index * 10000); // Stagger by 10 seconds
-    });
+    // Rotation disabled for now to prevent crashes
+    // TODO: Re-enable after finding the cause of crashes
   });
 
   onUnmounted(() => {
