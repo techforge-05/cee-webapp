@@ -28,8 +28,8 @@
             @mouseleave="scheduleClose"
           >
             <button
-              @mouseenter="clearCloseTimeout(); activeDropdown = 'about'"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
+              @mouseenter="handleDropdownChange('about')"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
               {{ $t('nav.about') }}
               <Transition name="indicator">
@@ -40,8 +40,8 @@
               </Transition>
             </button>
             <button
-              @mouseenter="clearCloseTimeout(); activeDropdown = 'academics'"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
+              @mouseenter="handleDropdownChange('academics')"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
               {{ $t('nav.academics') }}
               <Transition name="indicator">
@@ -52,8 +52,8 @@
               </Transition>
             </button>
             <button
-              @mouseenter="clearCloseTimeout(); activeDropdown = 'studentLife'"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
+              @mouseenter="handleDropdownChange('studentLife')"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
               {{ $t('nav.studentLife') }}
               <Transition name="indicator">
@@ -64,8 +64,8 @@
               </Transition>
             </button>
             <button
-              @mouseenter="clearCloseTimeout(); activeDropdown = 'parents'"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
+              @mouseenter="handleDropdownChange('parents')"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
               {{ $t('nav.parents') }}
               <Transition name="indicator">
@@ -76,8 +76,8 @@
               </Transition>
             </button>
             <button
-              @mouseenter="clearCloseTimeout(); activeDropdown = 'contact'"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
+              @mouseenter="handleDropdownChange('contact')"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
               {{ $t('nav.contact') }}
               <Transition name="indicator">
@@ -387,6 +387,7 @@
   const mobileMenuOpen = ref(false);
   const activeDropdown = ref<string | null>(null);
   let closeTimeout: NodeJS.Timeout | null = null;
+  let switchTimeout: NodeJS.Timeout | null = null;
 
   // Dropdown menu items for each section
   const dropdownItems: Record<string, { path: string; label: string }[]> = {
@@ -422,10 +423,32 @@
     ],
   };
 
+  const handleDropdownChange = (section: string) => {
+    clearCloseTimeout();
+
+    // If switching from one dropdown to another, briefly close to show transition
+    if (activeDropdown.value && activeDropdown.value !== section) {
+      activeDropdown.value = null;
+
+      // Clear any pending switch timeout
+      if (switchTimeout) {
+        clearTimeout(switchTimeout);
+      }
+
+      // After a brief delay, open the new dropdown
+      switchTimeout = setTimeout(() => {
+        activeDropdown.value = section;
+      }, 200); // 200ms delay to show the close/open transition
+    } else {
+      // If no dropdown is open, open immediately
+      activeDropdown.value = section;
+    }
+  };
+
   const scheduleClose = () => {
     closeTimeout = setTimeout(() => {
       activeDropdown.value = null;
-    }, 200); // 200ms delay before closing
+    }, 300); // Increased to 300ms delay before closing
   };
 
   const clearCloseTimeout = () => {
@@ -442,32 +465,32 @@
 </script>
 
 <style scoped>
-  /* Dropdown slide down animation */
+  /* Dropdown slide down animation - slower */
   .dropdown-enter-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.5s ease-out;
   }
 
   .dropdown-leave-active {
-    transition: all 0.25s ease-in;
+    transition: all 0.4s ease-in;
   }
 
   .dropdown-enter-from {
-    transform: translateY(-20px);
+    transform: translateY(-30px);
     opacity: 0;
   }
 
   .dropdown-leave-to {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
     opacity: 0;
   }
 
-  /* Fade animation for overlay */
+  /* Fade animation for overlay - slower */
   .fade-enter-active {
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.5s ease-out;
   }
 
   .fade-leave-active {
-    transition: opacity 0.25s ease-in;
+    transition: opacity 0.4s ease-in;
   }
 
   .fade-enter-from,
@@ -475,22 +498,22 @@
     opacity: 0;
   }
 
-  /* Indicator ball animation - slides up from bottom */
+  /* Indicator ball animation - slower and slides up from bottom */
   .indicator-enter-active {
-    transition: all 0.3s ease-out;
+    transition: all 0.4s ease-out;
   }
 
   .indicator-leave-active {
-    transition: all 0.25s ease-in;
+    transition: all 0.3s ease-in;
   }
 
   .indicator-enter-from {
-    transform: translate(-50%, 10px);
+    transform: translate(-50%, 15px);
     opacity: 0;
   }
 
   .indicator-leave-to {
-    transform: translate(-50%, 10px);
+    transform: translate(-50%, 15px);
     opacity: 0;
   }
 </style>
