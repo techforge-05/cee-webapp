@@ -119,52 +119,56 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section class="py-20 md:py-28 bg-white">
-      <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {{ $t('home.values.title') }}
-          </h2>
-          <p class="text-xl text-gray-600">
-            {{ $t('home.values.subtitle') }}
-          </p>
+    <section class="grid md:grid-cols-2 min-h-[80%]">
+      <!-- Left: Full Image -->
+      <div class="relative flex items-center justify-center overflow-hidden">
+        <div
+          class="bg-gray-300 w-full h-full min-h-[400px] md:min-h-[60%] flex items-center justify-center"
+        >
+          <p class="text-gray-400 text-xl md:text-2xl">Values Image</p>
         </div>
-        <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
-          <!-- Left: Image -->
-          <div class="order-2 md:order-1">
-            <div
-              class="bg-gray-200 rounded-lg shadow-2xl w-full h-96 md:h-[500px] flex items-center justify-center"
-            >
-              <p class="text-gray-400 text-xl md:text-2xl">
-                Values Image
-              </p>
-            </div>
-            <!-- Replace with actual image when available:
-            <img
-              src="/images/values.jpg"
-              alt="Values"
-              class="rounded-lg shadow-2xl w-full h-96 md:h-[500px] object-cover"
-            />
-            -->
-          </div>
+        <!-- Replace with actual image when available:
+        <img
+          src="/images/values.jpg"
+          alt="Values"
+          class="w-full h-full min-h-[400px] md:min-h-screen object-cover"
+        />
+        -->
+      </div>
 
-          <!-- Right: Values List -->
-          <div class="order-1 md:order-2">
-            <ul class="space-y-6">
-              <li
-                v-for="(value, index) in $tm('home.values.items')"
-                :key="index"
-                class="border-l-4 border-blue-600 pl-4"
-              >
-                <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+      <!-- Right: Title and Values List with yellow background -->
+      <div class="bg-yellow-600/50 flex items-center py-20 px-8">
+        <div class="w-full flex flex-col items-center">
+          <div class="mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">
+              {{ $t('home.values.title') }}
+            </h2>
+            <p class="text-xl text-gray-600">
+              {{ $t('home.values.subtitle') }}
+            </p>
+          </div>
+          <ul class="space-y-6">
+            <li
+              v-for="(value, index) in valuesWithIcons"
+              :key="index"
+              class="flex items-start gap-4"
+            >
+              <div class="flex gap-2">
+                <UIcon
+                  :name="value.icon"
+                  class="w-8 h-8 text-fuchsia-800 flex-shrink-0 mt-1"
+                />
+                <h3
+                  class="text-xl md:text-2xl font-bold text-fuchsia-900 mb-2 shadow-lg rounded-md px-2"
+                >
                   {{ $rt(value.title) }}
                 </h3>
-                <p class="text-lg text-gray-700">
-                  {{ $rt(value.description) }}
-                </p>
-              </li>
-            </ul>
-          </div>
+              </div>
+              <p class="text-lg text-gray-700">
+                {{ $rt(value.description) }}
+              </p>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -238,8 +242,33 @@
 </template>
 
 <script setup lang="ts">
+  import { computed } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
   // Remove default layout styling since we want full-width sections
   definePageMeta({
     layout: 'default',
+  });
+
+  const { tm } = useI18n();
+
+  // Icon mapping for each value
+  const valueIcons = [
+    'i-heroicons-heart-solid', // Passion for God
+    'i-heroicons-shield-check-solid', // Integrity
+    'i-heroicons-light-bulb-solid', // Creativity
+    'i-heroicons-hand-raised-solid', // Respect
+    'i-heroicons-hand-thumb-up-solid', // Service
+    'i-heroicons-star-solid', // Excellence
+    'i-heroicons-clipboard-document-check-solid', // Responsibility
+  ];
+
+  // Values with icons
+  const valuesWithIcons = computed(() => {
+    const values = tm('home.values.items') as any[];
+    return values.map((value: any, index: number) => ({
+      ...value,
+      icon: valueIcons[index],
+    }));
   });
 </script>

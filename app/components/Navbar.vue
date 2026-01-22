@@ -2,76 +2,91 @@
   <nav class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <div class="flex items-center">
-          <NuxtLink :to="localePath('/')" class="block py-2">
-            <div class="flex items-center gap-1">
-              <img
-                src="/images/logo.png"
-                alt="Logo"
-                class="h-20 md:h-25 w-auto object-contain mt-6"
-              />
-              <div
-                class="text-black font-bold text-xs md:text-base leading-tight"
-              >
-                <p>COMUNIDAD EDUCATIVA</p>
-                <p>EVANGÉLICA</p>
+        <div class="flex gap-10">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <NuxtLink :to="localePath('/')" class="block py-2">
+              <div class="flex items-center gap-1">
+                <img
+                  src="/images/logo.png"
+                  alt="Logo"
+                  class="h-20 md:h-25 w-auto object-contain mt-6"
+                />
+                <div
+                  class="text-black font-bold text-xs md:text-base leading-tight"
+                >
+                  <p>COMUNIDAD EDUCATIVA</p>
+                  <p>EVANGÉLICA</p>
+                </div>
               </div>
-            </div>
-          </NuxtLink>
-        </div>
+            </NuxtLink>
+          </div>
 
-        <!-- Navigation Links - Hidden on mobile -->
-        <div class="hidden lg:flex items-center space-x-6">
-          <NuxtLink
-            :to="localePath('/about')"
-            class="text-gray-700 hover:text-gray-900 font-medium"
+          <!-- Navigation Buttons - Hidden on mobile -->
+          <div
+            class="hidden lg:flex items-center space-x-6"
+            @mouseleave="scheduleClose"
           >
-            {{ $t('nav.about') }}
-          </NuxtLink>
-          <NuxtLink
-            :to="localePath('/academics')"
-            class="text-gray-700 hover:text-gray-900 font-medium"
-          >
-            {{ $t('nav.academics') }}
-          </NuxtLink>
-          <NuxtLink
-            :to="localePath('/student-life')"
-            class="text-gray-700 hover:text-gray-900 font-medium"
-          >
-            {{ $t('nav.studentLife') }}
-          </NuxtLink>
-          <NuxtLink
-            :to="localePath('/parents')"
-            class="text-gray-700 hover:text-gray-900 font-medium"
-          >
-            {{ $t('nav.parents') }}
-          </NuxtLink>
-          <NuxtLink
-            :to="localePath('/contact')"
-            class="text-gray-700 hover:text-gray-900 font-medium"
-          >
-            {{ $t('nav.contact') }}
-          </NuxtLink>
+            <button
+              @mouseenter="clearCloseTimeout(); activeDropdown = 'about'"
+              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              {{ $t('nav.about') }}
+            </button>
+            <button
+              @mouseenter="clearCloseTimeout(); activeDropdown = 'academics'"
+              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              {{ $t('nav.academics') }}
+            </button>
+            <button
+              @mouseenter="clearCloseTimeout(); activeDropdown = 'studentLife'"
+              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              {{ $t('nav.studentLife') }}
+            </button>
+            <button
+              @mouseenter="clearCloseTimeout(); activeDropdown = 'parents'"
+              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              {{ $t('nav.parents') }}
+            </button>
+            <button
+              @mouseenter="clearCloseTimeout(); activeDropdown = 'contact'"
+              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              {{ $t('nav.contact') }}
+            </button>
+          </div>
         </div>
-
         <!-- Right Side Actions -->
         <div class="flex items-center space-x-3">
-          <LanguageSwitcher />
-
           <!-- Special Badge Buttons - Hidden on mobile -->
           <div class="hidden md:flex items-center space-x-2">
-            <UBadge color="primary" variant="solid" size="lg">
+            <UBadge
+              color="primary"
+              variant="solid"
+              size="lg"
+              class="rounded-full"
+            >
               <NuxtLink :to="localePath('/admissions')" class="px-2 py-1">
                 {{ $t('nav.admissions') }}
               </NuxtLink>
             </UBadge>
-            <UBadge color="green" variant="solid" size="lg">
+            <UBadge
+              color="secondary"
+              variant="solid"
+              size="lg"
+              class="rounded-full text-black font-bold"
+            >
               <NuxtLink :to="localePath('/get-involved')" class="px-2 py-1">
                 {{ $t('nav.getInvolved') }}
               </NuxtLink>
             </UBadge>
           </div>
+
+          <!-- Language Switcher -->
+          <LanguageSwitcher />
 
           <!-- Auth Buttons -->
           <template v-if="user">
@@ -109,42 +124,129 @@
       </div>
 
       <!-- Mobile Menu -->
-      <div v-if="mobileMenuOpen" class="lg:hidden py-4 space-y-3">
-        <NuxtLink
-          :to="localePath('/about')"
-          class="block text-gray-700 hover:text-gray-900 font-medium py-2"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('nav.about') }}
-        </NuxtLink>
-        <NuxtLink
-          :to="localePath('/academics')"
-          class="block text-gray-700 hover:text-gray-900 font-medium py-2"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('nav.academics') }}
-        </NuxtLink>
-        <NuxtLink
-          :to="localePath('/student-life')"
-          class="block text-gray-700 hover:text-gray-900 font-medium py-2"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('nav.studentLife') }}
-        </NuxtLink>
-        <NuxtLink
-          :to="localePath('/parents')"
-          class="block text-gray-700 hover:text-gray-900 font-medium py-2"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('nav.parents') }}
-        </NuxtLink>
-        <NuxtLink
-          :to="localePath('/contact')"
-          class="block text-gray-700 hover:text-gray-900 font-medium py-2"
-          @click="mobileMenuOpen = false"
-        >
-          {{ $t('nav.contact') }}
-        </NuxtLink>
+      <div v-if="mobileMenuOpen" class="lg:hidden py-4 space-y-6">
+        <!-- About Section -->
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {{ $t('nav.about') }}
+          </h3>
+          <div class="pl-4 space-y-2">
+            <NuxtLink
+              :to="localePath('/about/mission')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Mission & Vision
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/about/history')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              History
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/about/staff')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Staff
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Academics Section -->
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {{ $t('nav.academics') }}
+          </h3>
+          <div class="pl-4 space-y-2">
+            <NuxtLink
+              :to="localePath('/academics/curriculum')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Curriculum
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/academics/programs')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Programs
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Student Life Section -->
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {{ $t('nav.studentLife') }}
+          </h3>
+          <div class="pl-4 space-y-2">
+            <NuxtLink
+              :to="localePath('/student-life/activities')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Activities
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/student-life/clubs')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Clubs
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Parents Section -->
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {{ $t('nav.parents') }}
+          </h3>
+          <div class="pl-4 space-y-2">
+            <NuxtLink
+              :to="localePath('/parents/resources')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Resources
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/parents/calendar')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Calendar
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">
+            {{ $t('nav.contact') }}
+          </h3>
+          <div class="pl-4 space-y-2">
+            <NuxtLink
+              :to="localePath('/contact/info')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Contact Info
+            </NuxtLink>
+            <NuxtLink
+              :to="localePath('/contact/directions')"
+              class="block text-gray-700 hover:text-gray-900 py-1"
+              @click="mobileMenuOpen = false"
+            >
+              Directions
+            </NuxtLink>
+          </div>
+        </div>
+
         <div class="pt-3 border-t border-gray-200 space-y-3">
           <NuxtLink
             :to="localePath('/admissions')"
@@ -164,14 +266,20 @@
         <template v-if="!user">
           <div class="pt-3 border-t border-gray-200 space-y-2">
             <UButton
-              @click="navigateTo(localePath('/auth/login')); mobileMenuOpen = false"
+              @click="
+                navigateTo(localePath('/auth/login'));
+                mobileMenuOpen = false;
+              "
               variant="outline"
               block
             >
               {{ $t('nav.signIn') }}
             </UButton>
             <UButton
-              @click="navigateTo(localePath('/auth/signup')); mobileMenuOpen = false"
+              @click="
+                navigateTo(localePath('/auth/signup'));
+                mobileMenuOpen = false;
+              "
               block
             >
               {{ $t('nav.signUp') }}
@@ -180,6 +288,63 @@
         </template>
       </div>
     </div>
+
+    <!-- Full-Width Desktop Dropdown -->
+    <Transition name="dropdown">
+      <div
+        v-if="activeDropdown && !mobileMenuOpen"
+        @mouseenter="clearCloseTimeout"
+        @mouseleave="scheduleClose"
+        class="hidden lg:block absolute left-0 right-0 bg-white shadow-lg overflow-hidden"
+        style="height: 60vh; top: 64px"
+      >
+        <div class="grid grid-cols-12 h-full">
+          <!-- Left: Title (3 columns) -->
+          <div class="col-span-3 bg-gray-50 flex items-center justify-center p-8">
+            <h2 class="text-5xl font-bold text-gray-900">
+              {{ $t(`nav.${activeDropdown}`) }}
+            </h2>
+          </div>
+
+          <!-- Middle: Links (6 columns) -->
+          <div class="col-span-6 flex items-center justify-center p-8">
+            <ul class="space-y-4">
+              <li v-for="item in dropdownItems[activeDropdown]" :key="item.path">
+                <NuxtLink
+                  :to="localePath(item.path)"
+                  class="text-2xl text-gray-700 hover:text-gray-900 font-medium block transition-colors duration-200"
+                  @click="activeDropdown = null"
+                >
+                  {{ item.label }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Image (3 columns) -->
+          <div class="col-span-3 bg-gray-200 flex items-center justify-center">
+            <p class="text-gray-400 text-xl">Image</p>
+            <!-- Replace with actual image:
+            <img
+              :src="`/images/${activeDropdown}.jpg`"
+              :alt="$t(`nav.${activeDropdown}`)"
+              class="w-full h-full object-cover"
+            />
+            -->
+          </div>
+        </div>
+      </div>
+    </Transition>
+
+    <!-- Overlay to close dropdown -->
+    <Transition name="fade">
+      <div
+        v-if="activeDropdown"
+        class="fixed inset-0 bg-black bg-opacity-20 z-40"
+        style="top: calc(64px + 60vh)"
+        @mouseenter="scheduleClose"
+      ></div>
+    </Transition>
   </nav>
 </template>
 
@@ -190,9 +355,93 @@
   const user = useSupabaseUser();
   const localePath = useLocalePath();
   const mobileMenuOpen = ref(false);
+  const activeDropdown = ref<string | null>(null);
+  let closeTimeout: NodeJS.Timeout | null = null;
+
+  // Dropdown menu items for each section
+  const dropdownItems: Record<string, { path: string; label: string }[]> = {
+    about: [
+      { path: '/about/mission', label: 'Mission & Vision' },
+      { path: '/about/history', label: 'History' },
+      { path: '/about/staff', label: 'Staff' },
+      { path: '/about/facilities', label: 'Facilities' },
+    ],
+    academics: [
+      { path: '/academics/curriculum', label: 'Curriculum' },
+      { path: '/academics/programs', label: 'Programs' },
+      { path: '/academics/calendar', label: 'Academic Calendar' },
+      { path: '/academics/grades', label: 'Grades & Levels' },
+    ],
+    studentLife: [
+      { path: '/student-life/activities', label: 'Activities' },
+      { path: '/student-life/clubs', label: 'Clubs & Organizations' },
+      { path: '/student-life/sports', label: 'Sports' },
+      { path: '/student-life/events', label: 'Events' },
+    ],
+    parents: [
+      { path: '/parents/resources', label: 'Resources' },
+      { path: '/parents/calendar', label: 'Calendar' },
+      { path: '/parents/handbook', label: 'Parent Handbook' },
+      { path: '/parents/involvement', label: 'Get Involved' },
+    ],
+    contact: [
+      { path: '/contact/info', label: 'Contact Information' },
+      { path: '/contact/directions', label: 'Directions' },
+      { path: '/contact/form', label: 'Contact Form' },
+      { path: '/contact/faq', label: 'FAQ' },
+    ],
+  };
+
+  const scheduleClose = () => {
+    closeTimeout = setTimeout(() => {
+      activeDropdown.value = null;
+    }, 200); // 200ms delay before closing
+  };
+
+  const clearCloseTimeout = () => {
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      closeTimeout = null;
+    }
+  };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     await navigateTo(localePath('/auth/login'));
   };
 </script>
+
+<style scoped>
+  /* Dropdown slide down animation */
+  .dropdown-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .dropdown-leave-active {
+    transition: all 0.25s ease-in;
+  }
+
+  .dropdown-enter-from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  .dropdown-leave-to {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  /* Fade animation for overlay */
+  .fade-enter-active {
+    transition: opacity 0.3s ease-out;
+  }
+
+  .fade-leave-active {
+    transition: opacity 0.25s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+</style>
