@@ -78,6 +78,7 @@ Visit [http://localhost:3000](http://localhost:3000)
 ## Development
 
 The app uses:
+
 - Auto-imported composables from @nuxtjs/supabase:
   - `useSupabaseClient()` - Access Supabase client
   - `useSupabaseUser()` - Get current user
@@ -92,6 +93,7 @@ The app uses:
 ### Adding Translations
 
 To add new translations, edit the JSON files in the `locales/` directory:
+
 - `locales/en.json` - English translations
 - `locales/es.json` - Spanish translations
 
@@ -121,3 +123,5 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 2. Configure Row Level Security (RLS) policies
 3. Add protected routes using middleware
 4. Customize the UI theme in `nuxt.config.ts`
+
+https://www.imagine.art/image

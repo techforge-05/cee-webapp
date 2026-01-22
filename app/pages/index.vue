@@ -32,14 +32,14 @@
     <section
       class="relative py-20 overflow-hidden"
       style="
-        background-image: url('/images/welcome3.jpeg');
+        background-image: url('/images/main-3.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
       "
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-black/30"></div>
+      <div class="absolute inset-0 bg-black/20"></div>
 
       <div class="max-w-4xl mx-auto md:ml-[15%] md:mr-0 px-4 relative z-10">
         <div class="text-center md:text-left">
@@ -137,8 +137,16 @@
       </div>
 
       <!-- Right: Title and Values List with yellow background -->
-      <div class="bg-yellow-600/50 flex items-center py-20 px-8">
-        <div class="w-full flex flex-col items-center">
+      <div
+        class="flex items-center py-20 px-8"
+        style="
+          background-image: url('/images/main-yellow.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        "
+      >
+        <div class="w-full flex flex-col items-center bg-black/10">
           <div class="mb-12">
             <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">
               {{ $t('home.values.title') }}

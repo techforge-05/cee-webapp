@@ -330,7 +330,7 @@
       >
         <div class="grid grid-cols-12 h-full">
           <!-- Left: Title (3 columns) -->
-          <div class="col-span-3 bg-gray-50 flex items-center justify-center p-8">
+          <div class="col-span-3 bg-gray-50 flex justify-center p-8 pt-15">
             <h2 class="text-5xl font-bold text-gray-900">
               {{ $t(`nav.${activeDropdown}`) }}
             </h2>
@@ -339,7 +339,10 @@
           <!-- Middle: Links (6 columns) -->
           <div class="col-span-6 flex items-center justify-center p-8">
             <ul class="space-y-4">
-              <li v-for="item in dropdownItems[activeDropdown]" :key="item.path">
+              <li
+                v-for="item in dropdownItems[activeDropdown]"
+                :key="item.path"
+              >
                 <NuxtLink
                   :to="localePath(item.path)"
                   class="text-2xl text-gray-700 hover:text-gray-900 font-medium block transition-colors duration-200"
