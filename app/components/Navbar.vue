@@ -29,33 +29,63 @@
           >
             <button
               @mouseenter="clearCloseTimeout(); activeDropdown = 'about'"
-              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
             >
               {{ $t('nav.about') }}
+              <Transition name="indicator">
+                <div
+                  v-if="activeDropdown === 'about'"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                ></div>
+              </Transition>
             </button>
             <button
               @mouseenter="clearCloseTimeout(); activeDropdown = 'academics'"
-              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
             >
               {{ $t('nav.academics') }}
+              <Transition name="indicator">
+                <div
+                  v-if="activeDropdown === 'academics'"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                ></div>
+              </Transition>
             </button>
             <button
               @mouseenter="clearCloseTimeout(); activeDropdown = 'studentLife'"
-              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
             >
               {{ $t('nav.studentLife') }}
+              <Transition name="indicator">
+                <div
+                  v-if="activeDropdown === 'studentLife'"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                ></div>
+              </Transition>
             </button>
             <button
               @mouseenter="clearCloseTimeout(); activeDropdown = 'parents'"
-              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
             >
               {{ $t('nav.parents') }}
+              <Transition name="indicator">
+                <div
+                  v-if="activeDropdown === 'parents'"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                ></div>
+              </Transition>
             </button>
             <button
               @mouseenter="clearCloseTimeout(); activeDropdown = 'contact'"
-              class="text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2"
             >
               {{ $t('nav.contact') }}
+              <Transition name="indicator">
+                <div
+                  v-if="activeDropdown === 'contact'"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                ></div>
+              </Transition>
             </button>
           </div>
         </div>
@@ -442,6 +472,25 @@
 
   .fade-enter-from,
   .fade-leave-to {
+    opacity: 0;
+  }
+
+  /* Indicator ball animation - slides up from bottom */
+  .indicator-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .indicator-leave-active {
+    transition: all 0.25s ease-in;
+  }
+
+  .indicator-enter-from {
+    transform: translate(-50%, 10px);
+    opacity: 0;
+  }
+
+  .indicator-leave-to {
+    transform: translate(-50%, 10px);
     opacity: 0;
   }
 </style>
