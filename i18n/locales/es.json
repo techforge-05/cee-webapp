@@ -6,7 +6,14 @@
   "nav": {
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
-    "signOut": "Cerrar Sesión"
+    "signOut": "Cerrar Sesión",
+    "about": "Acerca de",
+    "academics": "Académicos",
+    "studentLife": "Vida Estudiantil",
+    "parents": "Padres",
+    "contact": "Contacto",
+    "admissions": "Admisiones",
+    "getInvolved": "Involúcrate"
   },
   "auth": {
     "login": {
@@ -58,31 +65,31 @@
       "items": [
         {
           "title": "Pasión por Dios",
-          "description": "Cultivamos un amor profundo por Dios, colocándolo en el centro de todo lo que hacemos e inspirando a los estudiantes a crecer en su fe."
-        },
-        {
-          "title": "Excelencia Académica",
-          "description": "Promovemos el logro académico y el desarrollo intelectual de cada estudiante."
-        },
-        {
-          "title": "Respeto",
-          "description": "Fomentamos un ambiente donde todos son valorados y respetados."
+          "description": "¡Ama a Dios sobre todas las cosas!"
         },
         {
           "title": "Integridad",
-          "description": "Mantenemos honestidad, transparencia y principios morales en todas nuestras acciones, enseñando a los estudiantes a vivir con autenticidad y convicción ética."
+          "description": "¡Vive lo que predicas!"
         },
         {
-          "title": "Responsabilidad",
-          "description": "Enseñamos la importancia del compromiso y la responsabilidad personal."
+          "title": "Creatividad",
+          "description": "¡Transforma lo que sabes en algo diferente!"
+        },
+        {
+          "title": "Respeto",
+          "description": "¿Quieres respeto? ¡Respeta a los demás primero!"
         },
         {
           "title": "Servicio",
-          "description": "Animamos a los estudiantes a servir a otros con compasión y humildad, siguiendo el ejemplo de Cristo de amor desinteresado y dedicación a la comunidad."
+          "description": "¡Sirve a otros sin importar quiénes sean!"
         },
         {
-          "title": "Innovación",
-          "description": "Incorporamos metodologías modernas para el aprendizaje del siglo XXI."
+          "title": "Excelencia",
+          "description": "¡Haz lo mejor en todo lo que hagas!"
+        },
+        {
+          "title": "Responsabilidad",
+          "description": "¡Haz lo que tiene que hacerse!"
         }
       ]
     },

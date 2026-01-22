@@ -30,16 +30,16 @@
 
     <!-- Section 2: Welcome -->
     <section
-      class="relative py-32 overflow-hidden"
+      class="relative py-20 overflow-hidden"
       style="
-        background-image: url('/images/main-green.png');
+        background-image: url('/images/welcome3.jpeg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
       "
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="absolute inset-0 bg-black/30"></div>
 
       <div class="max-w-4xl mx-auto md:ml-[15%] md:mr-0 px-4 relative z-10">
         <div class="text-center md:text-left">
@@ -54,7 +54,7 @@
             {{ $t('home.welcome.titlePartTwo') }}
           </h1>
           <p
-            class="text-xl md:text-2xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
+            class="text-xl md:text-xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
           >
             {{ $t('home.welcome.description') }}
           </p>
@@ -119,69 +119,52 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section
-      class="relative py-12 md:py-32 md:min-h-screen flex flex-col md:items-center md:justify-center overflow-hidden"
-      style="
-        background-image: url('/images/main-yellow.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      "
-    >
-      <!-- Title and Description (centered) -->
-      <div
-        class="relative z-10 text-center mb-8 md:mb-20 px-4 bg-white/20 rounded-lg"
-      >
-        <h2 class="text-4xl md:text-6xl font-bold text-pink-600 mb-4">
-          {{ $t('home.values.title').toUpperCase() }}
-        </h2>
-        <p class="text-xl md:text-2xl text-pink-600 font-bold">
-          {{ $t('home.values.subtitle') }}
-        </p>
-      </div>
-
-      <!-- Mobile: Stacked rectangles / Desktop: Positioned balls -->
-      <div class="md:hidden w-full px-4 space-y-4">
-        <!-- Mobile stacked rectangles -->
-        <div
-          v-for="(value, index) in valuesWithIcons"
-          :key="index"
-          class="bg-violet-700/80 rounded-lg p-6 shadow-2xl"
-        >
-          <div class="flex items-start space-x-4">
-            <UIcon
-              :name="value.icon"
-              class="w-10 h-10 text-white flex-shrink-0 mt-1"
-            />
-            <div class="flex-1">
-              <h3 class="text-lg font-bold text-white mb-2">
-                {{ $rt(value.title) }}
-              </h3>
-              <p class="text-sm text-white/90 leading-relaxed">
-                {{ $rt(value.description) }}
+    <section class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            {{ $t('home.values.title') }}
+          </h2>
+          <p class="text-xl text-gray-600">
+            {{ $t('home.values.subtitle') }}
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+          <!-- Left: Image -->
+          <div class="order-2 md:order-1">
+            <div
+              class="bg-gray-200 rounded-lg shadow-2xl w-full h-96 md:h-[500px] flex items-center justify-center"
+            >
+              <p class="text-gray-400 text-xl md:text-2xl">
+                Values Image
               </p>
             </div>
+            <!-- Replace with actual image when available:
+            <img
+              src="/images/values.jpg"
+              alt="Values"
+              class="rounded-lg shadow-2xl w-full h-96 md:h-[500px] object-cover"
+            />
+            -->
           </div>
-        </div>
-      </div>
 
-      <!-- Desktop: Positioned balls -->
-      <div
-        v-for="(value, index) in valuesWithIcons"
-        :key="`ball-${index}`"
-        class="hidden md:block absolute value-ball"
-        :style="getRandomPosition(index)"
-      >
-        <div
-          class="bg-violet-700/80 rounded-full p-8 shadow-2xl hover:scale-110 transition-transform duration-300 cursor-pointer w-64 h-64 flex flex-col items-center justify-center text-center"
-        >
-          <UIcon :name="value.icon" class="w-16 h-16 text-white mb-3" />
-          <h3 class="text-lg font-bold text-white mb-2">
-            {{ $rt(value.title) }}
-          </h3>
-          <p class="text-sm text-white/90 leading-relaxed line-clamp-4">
-            {{ $rt(value.description) }}
-          </p>
+          <!-- Right: Values List -->
+          <div class="order-1 md:order-2">
+            <ul class="space-y-6">
+              <li
+                v-for="(value, index) in $tm('home.values.items')"
+                :key="index"
+                class="border-l-4 border-blue-600 pl-4"
+              >
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                  {{ $rt(value.title) }}
+                </h3>
+                <p class="text-lg text-gray-700">
+                  {{ $rt(value.description) }}
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -255,66 +238,8 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
-  import { useI18n } from 'vue-i18n';
-
   // Remove default layout styling since we want full-width sections
   definePageMeta({
     layout: 'default',
   });
-
-  const { tm } = useI18n();
-
-  // Icon mapping for each value
-  const valueIcons = [
-    'i-heroicons-heart-solid',
-    'i-heroicons-academic-cap-solid',
-    'i-heroicons-hand-raised-solid',
-    'i-heroicons-shield-check-solid',
-    'i-heroicons-clipboard-document-check-solid',
-    'i-heroicons-hand-thumb-up-solid',
-    'i-heroicons-light-bulb-solid',
-  ];
-
-  // Values with icons
-  const valuesWithIcons = computed(() => {
-    const values = tm('home.values.items') as any[];
-    return values.map((value: any, index: number) => ({
-      ...value,
-      icon: valueIcons[index],
-    }));
-  });
-
-  // Positions for the balls in a symmetrical bow pattern
-  // Index 0: Passion for God (center, below title)
-  // Indexes 1-3: Left side (top to bottom)
-  // Indexes 4-6: Right side (top to bottom)
-  const positions = [
-    { top: '25%', left: '50%', transform: 'translate(-50%, -50%)' }, // Passion for God - Center
-    { top: '15%', left: '6%' }, // Academic Excellence - Left top
-    { top: '56%', left: '35%' }, // Respect - Left middle
-    { top: '73%', left: '8%' }, // Integrity - Left bottom
-    { top: '5%', right: '3%' }, // Responsibility - Right top
-    { top: '52%', right: '22%' }, // Service - Right middle
-    { top: '70%', right: '4%' }, // Innovation - Right bottom
-  ];
-
-  const getRandomPosition = (index: number) => {
-    return positions[index] || { top: '50%', left: '50%' };
-  };
 </script>
-
-<style scoped>
-  .value-fade-enter-active,
-  .value-fade-leave-active {
-    transition: opacity 1.2s ease;
-  }
-
-  .value-fade-enter-from {
-    opacity: 0;
-  }
-
-  .value-fade-leave-to {
-    opacity: 0;
-  }
-</style>

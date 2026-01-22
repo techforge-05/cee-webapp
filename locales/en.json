@@ -6,7 +6,14 @@
   "nav": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "about": "About",
+    "academics": "Academics",
+    "studentLife": "Student Life",
+    "parents": "Parents",
+    "contact": "Contact",
+    "admissions": "Admissions",
+    "getInvolved": "Get Involved"
   },
   "auth": {
     "login": {

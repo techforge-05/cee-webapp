@@ -6,7 +6,14 @@
   "nav": {
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
-    "signOut": "Cerrar Sesión"
+    "signOut": "Cerrar Sesión",
+    "about": "Acerca de",
+    "academics": "Académicos",
+    "studentLife": "Vida Estudiantil",
+    "parents": "Padres",
+    "contact": "Contacto",
+    "admissions": "Admisiones",
+    "getInvolved": "Involúcrate"
   },
   "auth": {
     "login": {

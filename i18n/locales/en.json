@@ -6,7 +6,14 @@
   "nav": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "about": "About",
+    "academics": "Academics",
+    "studentLife": "Student Life",
+    "parents": "Parents",
+    "contact": "Contact",
+    "admissions": "Admissions",
+    "getInvolved": "Get Involved"
   },
   "auth": {
     "login": {
@@ -58,31 +65,31 @@
       "items": [
         {
           "title": "Passion for God",
-          "description": "We cultivate a deep love for God, placing Him at the center of all we do and inspiring students to grow in their faith."
-        },
-        {
-          "title": "Academic Excellence",
-          "description": "We promote academic achievement and intellectual development of each student."
-        },
-        {
-          "title": "Respect",
-          "description": "We foster an environment where everyone is valued and respected."
+          "description": "Love God above all things!"
         },
         {
           "title": "Integrity",
-          "description": "We uphold honesty, transparency, and moral principles in all our actions, teaching students to live with authenticity and ethical conviction."
+          "description": "Live what you preach!"
         },
         {
-          "title": "Responsibility",
-          "description": "We teach the importance of commitment and personal responsibility."
+          "title": "Creativity",
+          "description": "Transform what you know into something different!"
+        },
+        {
+          "title": "Respect",
+          "description": "Want respect? Respect others first!"
         },
         {
           "title": "Service",
-          "description": "We encourage students to serve others with compassion and humility, following Christ's example of selfless love and dedication to community."
+          "description": "Serve others no matter who they are!"
         },
         {
-          "title": "Innovation",
-          "description": "We incorporate modern methodologies for 21st century learning."
+          "title": "Excellence",
+          "description": "Do your best in all you do!"
+        },
+        {
+          "title": "Responsibility",
+          "description": "Do what has to be done!"
         }
       ]
     },
