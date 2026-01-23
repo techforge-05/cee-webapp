@@ -10,7 +10,7 @@
                 <img
                   src="/images/logo.png"
                   alt="Logo"
-                  class="h-20 md:h-25 w-auto object-contain mt-6"
+                  class="h-20 md:h-25 w-auto object-contain mt-6 z-300"
                 />
                 <div
                   class="text-black font-bold text-xs md:text-base leading-tight"
@@ -133,13 +133,6 @@
               class="hidden md:inline-flex"
             >
               {{ $t('nav.signIn') }}
-            </UButton>
-            <UButton
-              @click="navigateTo(localePath('/auth/signup'))"
-              size="sm"
-              class="hidden md:inline-flex"
-            >
-              {{ $t('nav.signUp') }}
             </UButton>
           </template>
 
@@ -294,7 +287,7 @@
           </NuxtLink>
         </div>
         <template v-if="!user">
-          <div class="pt-3 border-t border-gray-200 space-y-2">
+          <div class="pt-3 border-t border-gray-200">
             <UButton
               @click="
                 navigateTo(localePath('/auth/login'));
@@ -304,15 +297,6 @@
               block
             >
               {{ $t('nav.signIn') }}
-            </UButton>
-            <UButton
-              @click="
-                navigateTo(localePath('/auth/signup'));
-                mobileMenuOpen = false;
-              "
-              block
-            >
-              {{ $t('nav.signUp') }}
             </UButton>
           </div>
         </template>
@@ -325,19 +309,20 @@
         v-if="activeDropdown && !mobileMenuOpen"
         @mouseenter="clearCloseTimeout"
         @mouseleave="scheduleClose"
-        class="hidden lg:block absolute left-0 right-0 bg-white shadow-lg overflow-hidden"
+        class="hidden lg:block absolute left-0 right-0 shadow-lg overflow-hidden"
+        :class="[backgroundColor]"
         style="height: 60vh; top: 64px"
       >
         <div class="grid grid-cols-12 h-full">
           <!-- Left: Title (3 columns) -->
-          <div class="col-span-3 bg-gray-50 flex justify-center p-8 pt-15">
-            <h2 class="text-5xl font-bold text-gray-900">
-              {{ $t(`nav.${activeDropdown}`) }}
+          <div class="col-span-3 flex justify-center p-8 pt-15">
+            <h2 class="text-5xl font-bold text-green-600">
+              {{ $t(`nav.${activeDropdown}`).toUpperCase() }}
             </h2>
           </div>
 
           <!-- Middle: Links (6 columns) -->
-          <div class="col-span-6 flex items-center justify-center p-8">
+          <div class="col-span-5 p-8 pt-20">
             <ul class="space-y-4">
               <li
                 v-for="item in dropdownItems[activeDropdown]"
@@ -345,7 +330,7 @@
               >
                 <NuxtLink
                   :to="localePath(item.path)"
-                  class="text-2xl text-gray-700 hover:text-gray-900 font-medium block transition-colors duration-200"
+                  class="text-2xl text-gray-700 hover:text-gray-900 hover:font-semibold font-medium block transition-colors duration-200"
                   @click="activeDropdown = null"
                 >
                   {{ item.label }}
@@ -355,15 +340,18 @@
           </div>
 
           <!-- Right: Image (3 columns) -->
-          <div class="col-span-3 bg-gray-200 flex items-center justify-center">
-            <p class="text-gray-400 text-xl">Image</p>
-            <!-- Replace with actual image:
+          <div class="col-span-4 flex items-center justify-center p-10">
+            <div
+              class="bg-gray-200 flex justify-center items-center w-full h-full"
+            >
+              <p class="text-gray-400 text-xl">Image</p>
+              <!-- Replace with actual image:
             <img
               :src="`/images/${activeDropdown}.jpg`"
               :alt="$t(`nav.${activeDropdown}`)"
               class="w-full h-full object-cover"
             />
-            -->
+            --></div>
           </div>
         </div>
       </div>
@@ -373,7 +361,7 @@
     <Transition name="fade">
       <div
         v-if="activeDropdown"
-        class="fixed inset-0 bg-black bg-opacity-20 z-40"
+        class="fixed inset-0 bg-transparent z-40"
         style="top: calc(64px + 60vh)"
         @mouseenter="scheduleClose"
       ></div>
@@ -425,6 +413,23 @@
       { path: '/contact/faq', label: 'FAQ' },
     ],
   };
+
+  const backgroundColor = computed(() => {
+    switch (activeDropdown.value) {
+      case 'about':
+        return 'bg-yellow-50';
+      case 'academics':
+        return 'bg-blue-50';
+      case 'studentLife':
+        return 'bg-green-50';
+      case 'parents':
+        return 'bg-purple-50';
+      case 'contact':
+        return 'bg-pink-50';
+      default:
+        return 'bg-white';
+    }
+  });
 
   const handleDropdownChange = (section: string) => {
     clearCloseTimeout();
