@@ -30,7 +30,7 @@
 
     <!-- Section 2: Welcome -->
     <section
-      class="relative py-20 overflow-hidden"
+      class="relative py-10 md:py-20 overflow-hidden"
       style="
         background-image: url('/images/main-3.png');
         background-size: cover;
@@ -68,17 +68,17 @@
     </section>
 
     <!-- Section 3: Offered Grades and Programs -->
-    <section class="py-20 md:py-28">
+    <section class="py-15 md:py-28">
       <div class="max-w-7xl mx-auto px-2 md:px-6">
         <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
           <div>
             <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-600 mb-5 md:mb-6"
+              class="text-center md:text-left text-4xl md:text-5xl lg:text-6xl font-bold text-teal-600 mb-5 md:mb-6"
             >
               {{ $t('home.enrollment.title') }}
             </h2>
             <p
-              class="text-xl md:text-2xl text-gray-600 mb-6 md:mb-8 leading-relaxed"
+              class="text-center md:text-left text-xl md:text-2xl text-gray-600 mb-6 md:mb-8 leading-relaxed"
             >
               {{ $t('home.enrollment.description') }}
             </p>
@@ -95,12 +95,14 @@
                 {{ $rt(feature) }}
               </li>
             </ul>
-            <UButton
-              size="lg"
-              class="text-lg md:text-xl px-6 md:px-8 py-3 md:py-4"
-            >
-              {{ $t('home.enrollment.cta') }}
-            </UButton>
+            <div class="text-center md:text-left">
+              <UButton
+                size="lg"
+                class="text-lg md:text-xl px-6 md:px-8 py-3 md:py-4"
+              >
+                {{ $t('home.enrollment.cta') }}
+              </UButton>
+            </div>
           </div>
           <div>
             <!-- Placeholder for enrollment image -->
@@ -126,7 +128,9 @@
     <!-- Section 4: Values and Principles -->
     <section class="grid md:grid-cols-2 min-h-[80%]">
       <!-- Left: Full Image -->
-      <div class="relative flex items-center justify-center overflow-hidden">
+      <div
+        class="hidden md:flex relative items-center justify-center overflow-hidden"
+      >
         <div
           class="bg-gray-300 w-full h-full min-h-[400px] md:min-h-[60%] flex items-center justify-center"
         >
@@ -151,13 +155,15 @@
           background-repeat: no-repeat;
         "
       >
-        <div class="bg-black/15 w-full h-full py-20 px-8">
+        <div class="bg-black/15 w-full h-full py-15 md:py-20 px-8">
           <div class="w-full flex flex-col items-center">
             <div class="mb-12">
-              <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">
+              <h2
+                class="text-4xl md:text-5xl font-bold text-pink-700 mb-4 text-center"
+              >
                 {{ $t('home.values.title') }}
               </h2>
-              <p class="text-xl text-gray-600">
+              <p class="text-xl text-gray-700 font-semibold text-center">
                 {{ $t('home.values.subtitle') }}
               </p>
             </div>
@@ -165,20 +171,22 @@
               <li
                 v-for="(value, index) in valuesWithIcons"
                 :key="index"
-                class="flex items-start gap-4"
+                class="flex flex-col items-center md:flex-row md:items-start gap-1 md:gap-4"
               >
-                <div class="flex gap-2">
+                <div class="flex gap-2 items-center">
                   <UIcon
                     :name="value.icon"
-                    class="w-8 h-8 text-fuchsia-800 flex-shrink-0 mt-1"
+                    class="w-8 h-8 text-fuchsia-800 shrink-0 mt-1"
                   />
                   <h3
-                    class="text-xl md:text-2xl font-bold text-fuchsia-900 mb-2 shadow-lg rounded-md px-2"
+                    class="flex items-center text-xl md:text-2xl font-bold text-fuchsia-900 shadow-lg rounded-md px-2"
                   >
                     {{ $rt(value.title) }}
                   </h3>
                 </div>
-                <p class="text-lg text-gray-700">
+                <p
+                  class="text-lg text-gray-700 text-center md:text-left md:pt-2 font-semibold"
+                >
                   {{ $rt(value.description) }}
                 </p>
               </li>

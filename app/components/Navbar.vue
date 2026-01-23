@@ -104,167 +104,278 @@
           <!-- Mobile Menu Button -->
           <UButton
             @click="mobileMenuOpen = !mobileMenuOpen"
-            variant="ghost"
+            variant="outline"
+            size="lg"
             icon="i-heroicons-bars-3"
-            class="lg:hidden"
+            class="lg:hidden text-lime-600 outline-black ring-lime-700 ring-2"
           />
         </div>
       </div>
 
       <!-- Mobile Menu -->
-      <div v-if="mobileMenuOpen" class="lg:hidden py-4 space-y-6">
-        <!-- About Section -->
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">
-            {{ $t('nav.about') }}
-          </h3>
-          <div class="pl-4 space-y-2">
-            <NuxtLink
-              :to="localePath('/about/mission')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Mission & Vision
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/about/history')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              History
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/about/staff')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Staff
-            </NuxtLink>
+      <div
+        v-if="mobileMenuOpen"
+        class="lg:hidden fixed top-16 left-0 right-0 bottom-0 bg-white flex flex-col z-50"
+      >
+        <!-- Scrollable Content Area -->
+        <div class="flex-1 overflow-y-auto py-6 pr-4 pl-10 space-y-6">
+          <!-- About Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-pink-600 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-pink-300"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.about') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/about/mission')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-eye"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>Mission & Vision</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/about/history')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-book-open"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>History</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/about/staff')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-user-group"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>Staff</span>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Academics Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-yellow-500 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-yellow-200"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.academics') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/academics/curriculum')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-academic-cap"
+                  class="w-5 h-5 text-yellow-600 shrink-0"
+                />
+                <span>Curriculum</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/academics/programs')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-clipboard-document-list"
+                  class="w-5 h-5 text-yellow-600 shrink-0"
+                />
+                <span>Programs</span>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Student Life Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-green-600 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-green-300"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.studentLife') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/student-life/activities')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-sparkles"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>Activities</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/clubs')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-user-group"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>Clubs</span>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Parents Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-blue-300"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.parents') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/parents/resources')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-folder-open"
+                  class="w-5 h-5 text-blue-600 shrink-0"
+                />
+                <span>Resources</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/parents/calendar')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-calendar-days"
+                  class="w-5 h-5 text-blue-600 shrink-0"
+                />
+                <span>Calendar</span>
+              </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Contact Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-orange-300"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.contact') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/contact/info')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-phone"
+                  class="w-5 h-5 text-orange-600 shrink-0"
+                />
+                <span>Contact Info</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/contact/directions')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-map-pin"
+                  class="w-5 h-5 text-orange-600 shrink-0"
+                />
+                <span>Directions</span>
+              </NuxtLink>
+            </div>
           </div>
         </div>
 
-        <!-- Academics Section -->
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">
-            {{ $t('nav.academics') }}
-          </h3>
-          <div class="pl-4 space-y-2">
-            <NuxtLink
-              :to="localePath('/academics/curriculum')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Curriculum
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/academics/programs')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Programs
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Student Life Section -->
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">
-            {{ $t('nav.studentLife') }}
-          </h3>
-          <div class="pl-4 space-y-2">
-            <NuxtLink
-              :to="localePath('/student-life/activities')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Activities
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/student-life/clubs')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Clubs
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Parents Section -->
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">
-            {{ $t('nav.parents') }}
-          </h3>
-          <div class="pl-4 space-y-2">
-            <NuxtLink
-              :to="localePath('/parents/resources')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Resources
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/parents/calendar')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Calendar
-            </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">
-            {{ $t('nav.contact') }}
-          </h3>
-          <div class="pl-4 space-y-2">
-            <NuxtLink
-              :to="localePath('/contact/info')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Contact Info
-            </NuxtLink>
-            <NuxtLink
-              :to="localePath('/contact/directions')"
-              class="block text-gray-700 hover:text-gray-900 py-1"
-              @click="mobileMenuOpen = false"
-            >
-              Directions
-            </NuxtLink>
-          </div>
-        </div>
-
-        <div class="pt-3 border-t border-gray-200 space-y-3">
-          <NuxtLink
+        <!-- Fixed Bottom Buttons -->
+        <!-- style="
+            background-image: url('/images/main-3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+          " -->
+        <div
+          class="border-t border-gray-200 bg-white p-4 pt-6 space-y-4 flex flex-col items-center"
+        >
+          <UButton
             :to="localePath('/admissions')"
-            class="block text-blue-600 font-bold py-2"
-            @click="mobileMenuOpen = false"
+            class="rounded-full font-semibold w-[70%] justify-center text-green-700"
+            variant="subtle"
           >
             {{ $t('nav.admissions') }}
-          </NuxtLink>
-          <NuxtLink
+          </UButton>
+          <UButton
             :to="localePath('/get-involved')"
-            class="block text-green-600 font-bold py-2"
-            @click="mobileMenuOpen = false"
+            color="warning"
+            class="rounded-full font-semibold w-[70%] justify-center"
           >
             {{ $t('nav.getInvolved') }}
-          </NuxtLink>
-        </div>
-        <template v-if="!user">
-          <div class="pt-3 border-t border-gray-200">
+          </UButton>
+
+          <template v-if="!user">
             <UButton
               @click="
                 navigateTo(localePath('/auth/login'));
                 mobileMenuOpen = false;
               "
-              variant="outline"
+              variant="solid"
               block
+              color="error"
+              class="text-white bg-blue-500/70"
             >
               {{ $t('nav.signIn') }}
             </UButton>
-          </div>
-        </template>
+          </template>
+          <template v-else>
+            <div class="space-y-2">
+              <span class="block text-gray-700 text-center">{{
+                user.email
+              }}</span>
+              <UButton
+                @click="handleSignOut"
+                variant="outline"
+                block
+                class="text-white bg-red-500/60"
+              >
+                {{ $t('nav.signOut') }}
+              </UButton>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
 

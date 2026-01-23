@@ -5,7 +5,7 @@
       :label="currentLocale?.name"
       variant="ghost"
       trailing-icon="i-heroicons-chevron-down-20-solid"
-      class="text-purple-700 cursor-pointer"
+      class="text-gray-600 md:text-purple-700 cursor-pointer"
     />
     <template #item="{ item }">
       <div class="flex justify-between cursor-pointer">
