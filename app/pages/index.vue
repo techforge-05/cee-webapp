@@ -49,10 +49,15 @@
             {{ $t('home.welcome.titlePartOne') }}
           </h2>
           <h1
-            class="text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight"
+            class="text-5xl md:text-7xl font-black text-white mb-5 uppercase tracking-tight"
           >
             {{ $t('home.welcome.titlePartTwo') }}
           </h1>
+          <h3
+            class="text-xl md:text-3xl font-black text-white mb-8 tracking-tight"
+          >
+            "Escuela Bilingüe Siguatepeque"
+          </h3>
           <p
             class="text-xl md:text-xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
           >

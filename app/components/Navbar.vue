@@ -10,13 +10,18 @@
                 <img
                   src="/images/logo.png"
                   alt="Logo"
-                  class="h-20 md:h-25 w-auto object-contain mt-6 z-300"
+                  class="h-23 md:h-26 w-auto object-contain mt-4 md:mt-6 z-300 fixed -left-2 md:left-6"
                 />
                 <div
-                  class="text-black font-bold text-xs md:text-base leading-tight"
+                  class="text-black hidden md:flex flex-col font-bold text-xs md:text-base leading-tight pl-14 md:pl-22"
                 >
                   <p>COMUNIDAD EDUCATIVA</p>
                   <p>EVANGÉLICA</p>
+                </div>
+                <div
+                  class="text-green-800 font-bold text-4xl md:hidden leading-tight pl-14"
+                >
+                  <p>CEE</p>
                 </div>
               </div>
             </NuxtLink>
@@ -75,7 +80,12 @@
           <!-- Auth Buttons -->
           <template v-if="user">
             <span class="hidden md:inline text-gray-700">{{ user.email }}</span>
-            <UButton @click="handleSignOut" variant="outline" size="sm">
+            <UButton
+              @click="handleSignOut"
+              variant="outline"
+              size="sm"
+              color="error"
+            >
               {{ $t('nav.signOut') }}
             </UButton>
           </template>
@@ -84,7 +94,8 @@
               @click="navigateTo(localePath('/auth/login'))"
               variant="outline"
               size="sm"
-              class="hidden md:inline-flex"
+              color="secondary"
+              class="hidden md:inline-flex cursor-pointer"
             >
               {{ $t('nav.signIn') }}
             </UButton>
