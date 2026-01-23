@@ -131,7 +131,7 @@
             />
             <h3 class="text-lg font-bold mb-4 text-center">
               <p>CEE</p>
-              <p class="text-xs">Proverbios 8:10-11</p>
+              <p class="text-xs">{{ $t('footer.bibleVerse') }}</p>
             </h3>
           </div>
         </div>
