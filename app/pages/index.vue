@@ -29,17 +29,17 @@
     </section>
 
     <!-- Section 2: Welcome -->
+    <!-- background-size: cover; -->
     <section
       class="relative py-10 md:py-20 overflow-hidden"
       style="
         background-image: url('/images/main-3.png');
-        background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat;
       "
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 bg-green-400/30"></div>
 
       <div class="max-w-4xl mx-auto md:ml-[15%] md:mr-0 px-4 relative z-10">
         <div class="text-center md:text-left">
@@ -146,20 +146,20 @@
       </div>
 
       <!-- Right: Title and Values List with yellow background -->
+      <!-- background-size: cover; -->
       <div
         class="flex items-center"
         style="
           background-image: url('/images/main-yellow.png');
-          background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
         "
       >
-        <div class="bg-black/15 w-full h-full py-15 md:py-20 px-8">
+        <div class="bg-yellow-600/30 w-full h-full py-15 md:py-20 px-8">
           <div class="w-full flex flex-col items-center">
             <div class="mb-12">
               <h2
-                class="text-4xl md:text-5xl font-bold text-pink-700 mb-4 text-center"
+                class="text-4xl md:text-5xl font-bold text-purple-900 mb-4 text-center"
               >
                 {{ $t('home.values.title') }}
               </h2>
@@ -226,7 +226,7 @@
     </section>
 
     <!-- Section 6: News -->
-    <section class="py-20">
+    <section class="py-5 md:py-20">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-900 mb-4">

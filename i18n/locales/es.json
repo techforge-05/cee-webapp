@@ -15,6 +15,11 @@
     "admissions": "Admisiones",
     "getInvolved": "Involúcrate"
   },
+  "footer": {
+    "quickLinks": "Enlaces Rápidos",
+    "followUs": "Síguenos",
+    "allRightsReserved": "Todos los derechos reservados."
+  },
   "auth": {
     "login": {
       "title": "Inicia sesión en tu cuenta",

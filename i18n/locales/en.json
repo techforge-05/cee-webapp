@@ -15,6 +15,11 @@
     "admissions": "Admissions",
     "getInvolved": "Get Involved"
   },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved."
+  },
   "auth": {
     "login": {
       "title": "Sign in to your account",
