@@ -138,7 +138,7 @@
 
       <!-- Right: Title and Values List with yellow background -->
       <div
-        class="flex items-center py-20 px-8"
+        class="flex items-center"
         style="
           background-image: url('/images/main-yellow.png');
           background-size: cover;
@@ -146,37 +146,39 @@
           background-repeat: no-repeat;
         "
       >
-        <div class="w-full flex flex-col items-center bg-black/10">
-          <div class="mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">
-              {{ $t('home.values.title') }}
-            </h2>
-            <p class="text-xl text-gray-600">
-              {{ $t('home.values.subtitle') }}
-            </p>
-          </div>
-          <ul class="space-y-6">
-            <li
-              v-for="(value, index) in valuesWithIcons"
-              :key="index"
-              class="flex items-start gap-4"
-            >
-              <div class="flex gap-2">
-                <UIcon
-                  :name="value.icon"
-                  class="w-8 h-8 text-fuchsia-800 flex-shrink-0 mt-1"
-                />
-                <h3
-                  class="text-xl md:text-2xl font-bold text-fuchsia-900 mb-2 shadow-lg rounded-md px-2"
-                >
-                  {{ $rt(value.title) }}
-                </h3>
-              </div>
-              <p class="text-lg text-gray-700">
-                {{ $rt(value.description) }}
+        <div class="bg-black/15 w-full h-full py-20 px-8">
+          <div class="w-full flex flex-col items-center">
+            <div class="mb-12">
+              <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">
+                {{ $t('home.values.title') }}
+              </h2>
+              <p class="text-xl text-gray-600">
+                {{ $t('home.values.subtitle') }}
               </p>
-            </li>
-          </ul>
+            </div>
+            <ul class="space-y-6">
+              <li
+                v-for="(value, index) in valuesWithIcons"
+                :key="index"
+                class="flex items-start gap-4"
+              >
+                <div class="flex gap-2">
+                  <UIcon
+                    :name="value.icon"
+                    class="w-8 h-8 text-fuchsia-800 flex-shrink-0 mt-1"
+                  />
+                  <h3
+                    class="text-xl md:text-2xl font-bold text-fuchsia-900 mb-2 shadow-lg rounded-md px-2"
+                  >
+                    {{ $rt(value.title) }}
+                  </h3>
+                </div>
+                <p class="text-lg text-gray-700">
+                  {{ $rt(value.description) }}
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
