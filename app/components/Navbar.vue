@@ -282,6 +282,77 @@
             </div>
           </div>
 
+          <!-- Support Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center shrink-0"
+              >
+                <div class="w-4 h-4 rounded-full bg-red-300"></div>
+              </div>
+              <h3 class="text-lg font-bold text-purple-900">
+                {{ $t('nav.support') }}
+              </h3>
+            </div>
+            <div class="pl-14 space-y-2">
+              <NuxtLink
+                :to="localePath('/support/why-support')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-heart"
+                  class="w-5 h-5 text-red-600 shrink-0"
+                />
+                <span>Why Support Our School</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/support/scholarships')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-academic-cap"
+                  class="w-5 h-5 text-red-600 shrink-0"
+                />
+                <span>Scholarships Impact</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/support/donate')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-currency-dollar"
+                  class="w-5 h-5 text-red-600 shrink-0"
+                />
+                <span>Donate</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/support/projects')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-wrench-screwdriver"
+                  class="w-5 h-5 text-red-600 shrink-0"
+                />
+                <span>Projects</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/support/partnerships')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-hand-raised"
+                  class="w-5 h-5 text-red-600 shrink-0"
+                />
+                <span>Church & Community Partnerships</span>
+              </NuxtLink>
+            </div>
+          </div>
+
           <!-- Contact Section -->
           <div>
             <div class="flex items-center gap-3 mb-2">
@@ -462,6 +533,7 @@
     { key: 'academics' },
     { key: 'studentLife' },
     { key: 'parents' },
+    { key: 'support' },
     { key: 'contact' },
   ];
 
@@ -491,6 +563,13 @@
       { path: '/parents/handbook', label: 'Parent Handbook' },
       { path: '/parents/involvement', label: 'Get Involved' },
     ],
+    support: [
+      { path: '/support/why-support', label: 'Why Support Our School' },
+      { path: '/support/scholarships', label: 'Scholarships Impact' },
+      { path: '/support/donate', label: 'Donate' },
+      { path: '/support/projects', label: 'Projects' },
+      { path: '/support/partnerships', label: 'Church & Community Partnerships' },
+    ],
     contact: [
       { path: '/contact/info', label: 'Contact Information' },
       { path: '/contact/directions', label: 'Directions' },
@@ -509,6 +588,8 @@
         return 'bg-green-50';
       case 'parents':
         return 'bg-purple-50';
+      case 'support':
+        return 'bg-orange-50';
       case 'contact':
         return 'bg-pink-50';
       default:

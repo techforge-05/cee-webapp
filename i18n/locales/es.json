@@ -11,6 +11,7 @@
     "academics": "Académicos",
     "studentLife": "Vida Estudiantil",
     "parents": "Padres",
+    "support": "Apoya Nuestra Escuela",
     "contact": "Contacto",
     "admissions": "Admisiones",
     "getInvolved": "Involúcrate"
@@ -18,6 +19,8 @@
   "footer": {
     "quickLinks": "Enlaces Rápidos",
     "followUs": "Síguenos",
+    "contactInfo": "Información de Contacto",
+    "donate": "Donar",
     "allRightsReserved": "Todos los derechos reservados."
   },
   "auth": {
