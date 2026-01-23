@@ -28,61 +28,15 @@
             @mouseleave="scheduleClose"
           >
             <button
-              @mouseenter="handleDropdownChange('about')"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
+              v-for="navItem in navigationItems"
+              :key="navItem.key"
+              @mouseenter="handleDropdownChange(navItem.key)"
+              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
             >
-              {{ $t('nav.about') }}
+              {{ $t(`nav.${navItem.key}`) }}
               <Transition name="indicator">
                 <div
-                  v-if="activeDropdown === 'about'"
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
-                ></div>
-              </Transition>
-            </button>
-            <button
-              @mouseenter="handleDropdownChange('academics')"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
-            >
-              {{ $t('nav.academics') }}
-              <Transition name="indicator">
-                <div
-                  v-if="activeDropdown === 'academics'"
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
-                ></div>
-              </Transition>
-            </button>
-            <button
-              @mouseenter="handleDropdownChange('studentLife')"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
-            >
-              {{ $t('nav.studentLife') }}
-              <Transition name="indicator">
-                <div
-                  v-if="activeDropdown === 'studentLife'"
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
-                ></div>
-              </Transition>
-            </button>
-            <button
-              @mouseenter="handleDropdownChange('parents')"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
-            >
-              {{ $t('nav.parents') }}
-              <Transition name="indicator">
-                <div
-                  v-if="activeDropdown === 'parents'"
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
-                ></div>
-              </Transition>
-            </button>
-            <button
-              @mouseenter="handleDropdownChange('contact')"
-              class="relative text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
-            >
-              {{ $t('nav.contact') }}
-              <Transition name="indicator">
-                <div
-                  v-if="activeDropdown === 'contact'"
+                  v-if="activeDropdown === navItem.key"
                   class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
                 ></div>
               </Transition>
@@ -379,6 +333,15 @@
   const activeDropdown = ref<string | null>(null);
   let closeTimeout: NodeJS.Timeout | null = null;
   let switchTimeout: NodeJS.Timeout | null = null;
+
+  // Navigation items
+  const navigationItems = [
+    { key: 'about' },
+    { key: 'academics' },
+    { key: 'studentLife' },
+    { key: 'parents' },
+    { key: 'contact' },
+  ];
 
   // Dropdown menu items for each section
   const dropdownItems: Record<string, { path: string; label: string }[]> = {
