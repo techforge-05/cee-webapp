@@ -7,7 +7,7 @@
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
     "signOut": "Cerrar Sesión",
-    "about": "Acerca de",
+    "about": "Sobre Nosotros",
     "academics": "Académicos",
     "studentLife": "Vida Estudiantil",
     "parents": "Padres",
@@ -23,6 +23,113 @@
     "donate": "Donar",
     "bibleVerse": "Proverbios 8:10-11",
     "allRightsReserved": "Todos los derechos reservados."
+  },
+  "about": {
+    "missionVisionValues": {
+      "title": "Misión, Visión y Valores",
+      "subtitle": "El fundamento de nuestra educación cristiana",
+      "intro": {
+        "title": "Quiénes Somos",
+        "paragraph1": "Somos un grupo de cristianos que creemos que la iglesia, el hogar y la escuela son los pilares de una educación integral para nuestros niños.",
+        "paragraph2": "Somos una escuela sin fines de lucro, ubicada en la ciudad de Siguatepeque, Comayagua."
+      },
+      "mission": {
+        "title": "Nuestra Misión",
+        "statement": "Facilitar los procesos formativos, involucrando a la familia, la iglesia y los maestros, que permitan la transmisión de información, moral y valores a través de una educación fundamentada en la Palabra de Dios."
+      },
+      "vision": {
+        "title": "Nuestra Visión",
+        "statement": "Construir un estándar de educación cristiana que transforme las vidas de los involucrados y afecte positivamente a la comunidad."
+      },
+      "values": {
+        "title": "Valores Fundamentales",
+        "subtitle": "Los principios que guían todo lo que hacemos",
+        "items": [
+          {
+            "title": "Pasión por Dios",
+            "description": "¡Ama a Dios sobre todas las cosas!"
+          },
+          {
+            "title": "Integridad",
+            "description": "¡Vive lo que predicas!"
+          },
+          {
+            "title": "Creatividad",
+            "description": "¡Transforma lo que sabes en algo diferente!"
+          },
+          {
+            "title": "Respeto",
+            "description": "¿Quieres respeto? ¡Respeta a los demás primero!"
+          },
+          {
+            "title": "Servicio",
+            "description": "¡Sirve a otros sin importar quiénes sean!"
+          },
+          {
+            "title": "Excelencia",
+            "description": "¡Haz lo mejor en todo lo que hagas!"
+          },
+          {
+            "title": "Responsabilidad",
+            "description": "¡Haz lo que tiene que hacerse!"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Únete a Nuestra Comunidad",
+        "description": "Descubre cómo CEE puede proporcionar una educación centrada en Cristo para tu hijo.",
+        "learnMore": "Más Información Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "statementOfFaith": {
+      "title": "Declaración de Fe",
+      "subtitle": "Nuestro fundamento teológico y creencias",
+      "intro": "Estas son las creencias teológicas fundamentales que guían nuestra escuela y forman nuestro enfoque educativo. Representan nuestra comprensión de Dios, la humanidad, la salvación y nuestro llamado como comunidad educativa cristiana.",
+      "beliefs": [
+        {
+          "title": "El Dios Trino",
+          "content": "Sostenemos que el Señor nuestro Dios es uno – Padre, Hijo y Espíritu Santo. Este es el Dios que debemos Adorar, Servir, Obedecer y Dar Gracias – en Espíritu y Verdad, con todo nuestro corazón, con toda nuestra alma, con toda nuestra mente y con todas nuestras fuerzas."
+        },
+        {
+          "title": "La Naturaleza Caída de la Humanidad",
+          "content": "Afirmamos que nosotros, como seres humanos, somos pecadores, muertos en pecado, incapaces de salvarnos a nosotros mismos. Merecemos la muerte y la separación de Dios por nuestra rebelión y desobediencia."
+        },
+        {
+          "title": "La Gracia y Redención de Dios",
+          "content": "Creemos que Dios, por gracia, no imputa el pecado a aquellos que creen en Su Hijo, Jesucristo. En cambio, a través del sacrificio de Cristo, Él nos reconcilia consigo mismo, perdonando nuestros pecados, liberándonos de la muerte eterna y otorgándonos vida eterna."
+        },
+        {
+          "title": "Jesucristo Nuestro Salvador",
+          "content": "Confiamos en que Jesucristo, el Hijo de Dios, es nuestro único Salvador. A través de Su vida perfecta, muerte sacrificial y gloriosa resurrección, Él ha logrado todo lo necesario para nuestra salvación. No podemos añadir nada a Su obra consumada."
+        },
+        {
+          "title": "El Espíritu Santo",
+          "content": "Reconocemos al Espíritu Santo como Dios, quien mora en los creyentes, capacitándolos para vivir vidas piadosas, entender las Escrituras y dar testimonio de Cristo. El Espíritu convence de pecado, regenera corazones y guía a los creyentes a toda verdad."
+        },
+        {
+          "title": "La Autoridad de las Escrituras",
+          "content": "Sostenemos que el Antiguo y Nuevo Testamento son la Palabra de Dios inspirada, infalible y autoritativa. Las Escrituras son nuestra autoridad final para todos los asuntos de fe, doctrina y vida cristiana."
+        },
+        {
+          "title": "La Iglesia",
+          "content": "Creemos en la Iglesia universal, el cuerpo de Cristo, compuesta por todos los verdaderos creyentes. La iglesia local está llamada a adorar a Dios, edificar a los creyentes, administrar las ordenanzas del bautismo y la comunión, y proclamar el Evangelio al mundo."
+        },
+        {
+          "title": "La Gran Comisión",
+          "content": "Estamos comprometidos a cumplir el mandato de Cristo de hacer discípulos de todas las naciones, enseñándoles a observar todo lo que Él mandó. Esto incluye el evangelismo, el discipulado y la educación cristiana como expresiones vitales de nuestra fe."
+        },
+        {
+          "title": "Amor y Servicio al Prójimo",
+          "content": "Estamos llamados a amar a nuestro prójimo como a nosotros mismos, demostrando el amor de Cristo a través de actos de servicio, compasión y justicia. Nuestra fe debe expresarse en amor práctico y buenas obras, reflejando el carácter de nuestro Salvador."
+        }
+      ],
+      "closing": "Estas creencias forman el fundamento de todo lo que hacemos en CEE, guiando nuestra enseñanza, nuestras relaciones y nuestro servicio a los estudiantes, familias y la comunidad.",
+      "cta": {
+        "learnMore": "Conoce Más Sobre Nuestra Misión",
+        "contactUs": "Contáctanos"
+      }
+    }
   },
   "auth": {
     "login": {

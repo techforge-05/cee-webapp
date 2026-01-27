@@ -133,18 +133,18 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
-                :to="localePath('/about/mission')"
+                :to="localePath('/about/mission-vision-values')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
                 <UIcon
-                  name="i-heroicons-eye"
+                  name="i-heroicons-star"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Mission & Vision</span>
+                <span>Mission, Vision & Values</span>
               </NuxtLink>
               <NuxtLink
-                :to="localePath('/about/history')"
+                :to="localePath('/about/statement-of-faith')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
@@ -152,10 +152,43 @@
                   name="i-heroicons-book-open"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>History</span>
+                <span>Statement of Faith</span>
               </NuxtLink>
               <NuxtLink
-                :to="localePath('/about/staff')"
+                :to="localePath('/about/philosophy')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-light-bulb"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>Our Philosophy</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/about/history')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-clock"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>History of the School</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/about/town')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-map"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>Our Town</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/about/leadership')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
@@ -163,7 +196,7 @@
                   name="i-heroicons-user-group"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Staff</span>
+                <span>Leadership & Board</span>
               </NuxtLink>
             </div>
           </div>
@@ -540,10 +573,12 @@
   // Dropdown menu items for each section
   const dropdownItems: Record<string, { path: string; label: string }[]> = {
     about: [
-      { path: '/about/mission', label: 'Mission & Vision' },
-      { path: '/about/history', label: 'History' },
-      { path: '/about/staff', label: 'Staff' },
-      { path: '/about/facilities', label: 'Facilities' },
+      { path: '/about/mission-vision-values', label: 'Mission, Vision & Values' },
+      { path: '/about/statement-of-faith', label: 'Statement of Faith' },
+      { path: '/about/philosophy', label: 'Our Philosophy' },
+      { path: '/about/history', label: 'History of the School' },
+      { path: '/about/town', label: 'Our Town' },
+      { path: '/about/leadership', label: 'Leadership & Board' },
     ],
     academics: [
       { path: '/academics/curriculum', label: 'Curriculum' },

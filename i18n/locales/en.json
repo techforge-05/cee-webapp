@@ -7,7 +7,7 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "signOut": "Sign Out",
-    "about": "About",
+    "about": "About Us",
     "academics": "Academics",
     "studentLife": "Student Life",
     "parents": "Parents",
@@ -23,6 +23,113 @@
     "donate": "Donate",
     "bibleVerse": "Proverbs 8:10-11",
     "allRightsReserved": "All rights reserved."
+  },
+  "about": {
+    "missionVisionValues": {
+      "title": "Mission, Vision & Values",
+      "subtitle": "The foundation of our Christian education",
+      "intro": {
+        "title": "Who We Are",
+        "paragraph1": "We are a group of Christians that believe that the church, the home, and the school are the pillars of a well-rounded education for our children.",
+        "paragraph2": "We are a nonprofit school, based in the city of Siguatepeque, Comayagua."
+      },
+      "mission": {
+        "title": "Our Mission",
+        "statement": "To facilitate the formative processes, involving family, church, and the teachers, that allow for the transmission of information, morals, and values through an education founded in the Word of God."
+      },
+      "vision": {
+        "title": "Our Vision",
+        "statement": "Build a Christian education standard that transforms the lives of those involved and positively affects the community."
+      },
+      "values": {
+        "title": "Core Values",
+        "subtitle": "The principles that guide everything we do",
+        "items": [
+          {
+            "title": "Passion for God",
+            "description": "Love God above all things!"
+          },
+          {
+            "title": "Integrity",
+            "description": "Live what you preach!"
+          },
+          {
+            "title": "Creativity",
+            "description": "Transform what you know into something different!"
+          },
+          {
+            "title": "Respect",
+            "description": "Want respect? Respect others first!"
+          },
+          {
+            "title": "Service",
+            "description": "Serve others no matter who they are!"
+          },
+          {
+            "title": "Excellence",
+            "description": "Do your best in all you do!"
+          },
+          {
+            "title": "Responsibility",
+            "description": "Do what has to be done!"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Join Our Community",
+        "description": "Discover how CEE can provide a Christ-centered education for your child.",
+        "learnMore": "Learn More About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "statementOfFaith": {
+      "title": "Statement of Faith",
+      "subtitle": "Our theological foundation and beliefs",
+      "intro": "These are the core theological beliefs that guide our school and shape our educational approach. They represent our understanding of God, humanity, salvation, and our calling as a Christian educational community.",
+      "beliefs": [
+        {
+          "title": "The Triune God",
+          "content": "We uphold that the Lord Our God is one – Father, Son, and Holy Spirit. This is the God we must Worship, Serve, Obey, and Give Thanks – in Spirit and Truth, with all our heart, with all our soul, with all our mind, and with all our strength."
+        },
+        {
+          "title": "Humanity's Fallen Nature",
+          "content": "We affirm that we, as human beings, are sinful, dead in sin, incapable of self-salvation. We deserve death and separation from God for our rebellion and disobedience."
+        },
+        {
+          "title": "God's Grace and Redemption",
+          "content": "We believe that God, by grace, does not impute sin to those who believe in His Son, Jesus Christ. Instead, through Christ's sacrifice, He reconciles us to Himself, forgiving our sins, delivering us from eternal death, and granting us eternal life."
+        },
+        {
+          "title": "Jesus Christ Our Savior",
+          "content": "We trust that Jesus Christ, the Son of God, is our only Savior. Through His perfect life, sacrificial death, and glorious resurrection, He has accomplished everything necessary for our salvation. We can add nothing to His finished work."
+        },
+        {
+          "title": "The Holy Spirit",
+          "content": "We recognize the Holy Spirit as God, who dwells in believers, empowering them to live godly lives, understand Scripture, and bear witness to Christ. The Spirit convicts of sin, regenerates hearts, and guides believers into all truth."
+        },
+        {
+          "title": "The Authority of Scripture",
+          "content": "We uphold that the Old and New Testaments are the inspired, infallible, and authoritative Word of God. Scripture is our final authority for all matters of faith, doctrine, and Christian living."
+        },
+        {
+          "title": "The Church",
+          "content": "We believe in the universal Church, the body of Christ, composed of all true believers. The local church is called to worship God, edify believers, administer the ordinances of baptism and communion, and proclaim the Gospel to the world."
+        },
+        {
+          "title": "The Great Commission",
+          "content": "We are committed to fulfilling Christ's command to make disciples of all nations, teaching them to observe all that He commanded. This includes evangelism, discipleship, and Christian education as vital expressions of our faith."
+        },
+        {
+          "title": "Love and Service to Our Neighbor",
+          "content": "We are called to love our neighbors as ourselves, demonstrating Christ's love through acts of service, compassion, and justice. Our faith must be expressed in practical love and good works, reflecting the character of our Savior."
+        }
+      ],
+      "closing": "These beliefs form the foundation of everything we do at CEE, guiding our teaching, our relationships, and our service to students, families, and the community.",
+      "cta": {
+        "learnMore": "Learn More About Our Mission",
+        "contactUs": "Contact Us"
+      }
+    }
   },
   "auth": {
     "login": {
