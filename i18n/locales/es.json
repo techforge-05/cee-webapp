@@ -679,6 +679,63 @@
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }
+    },
+    "calendar": {
+      "title": "Calendario Académico",
+      "subtitle": "Fechas importantes y eventos durante el año escolar",
+      "intro": "Mantente informado sobre todas las fechas importantes, feriados, exámenes y eventos especiales durante el año académico. Nuestro calendario ayuda a las familias a planificar con anticipación y asegura que los estudiantes no se pierdan ninguna actividad o fecha límite importante.",
+      "monthView": "Vista Mensual",
+      "listView": "Vista de Lista",
+      "date": "Fecha",
+      "location": "Ubicación",
+      "description": "Descripción",
+      "close": "Cerrar",
+      "noEvents": "No se encontraron eventos",
+      "days": {
+        "sun": "Dom",
+        "mon": "Lun",
+        "tue": "Mar",
+        "wed": "Mié",
+        "thu": "Jue",
+        "fri": "Vie",
+        "sat": "Sáb"
+      },
+      "eventTypes": {
+        "holiday": "Feriado",
+        "exam": "Examen",
+        "event": "Evento",
+        "no_school": "Sin Clases",
+        "parent_meeting": "Reunión de Padres"
+      },
+      "importantDates": {
+        "title": "Períodos Académicos Clave",
+        "items": [
+          {
+            "title": "Primer Semestre",
+            "description": "Febrero - Junio: Primera mitad del año académico con exámenes parciales y finales"
+          },
+          {
+            "title": "Segundo Semestre",
+            "description": "Julio - Noviembre: Segunda mitad del año académico que concluye con exámenes finales y graduación"
+          },
+          {
+            "title": "Período de Matrícula",
+            "description": "Noviembre - Enero: Período de inscripción para el próximo año escolar"
+          }
+        ]
+      },
+      "download": {
+        "title": "Descargar Calendario",
+        "description": "Obtén una versión imprimible del calendario académico completo para tener en casa o compartir con la familia.",
+        "pdf": "Descargar PDF",
+        "print": "Imprimir Calendario"
+      },
+      "cta": {
+        "title": "¿Listo para Unirte a CEE?",
+        "description": "Inscribe a tu hijo en nuestro programa de educación bilingüe centrada en Cristo y forma parte de nuestra comunidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
     }
   },
   "auth": {

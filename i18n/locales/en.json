@@ -679,6 +679,63 @@
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }
+    },
+    "calendar": {
+      "title": "Academic Calendar",
+      "subtitle": "Important dates and events throughout the school year",
+      "intro": "Stay informed about all important dates, holidays, exams, and special events throughout the academic year. Our calendar helps families plan ahead and ensures students don't miss any important activities or deadlines.",
+      "monthView": "Month View",
+      "listView": "List View",
+      "date": "Date",
+      "location": "Location",
+      "description": "Description",
+      "close": "Close",
+      "noEvents": "No events found",
+      "days": {
+        "sun": "Sun",
+        "mon": "Mon",
+        "tue": "Tue",
+        "wed": "Wed",
+        "thu": "Thu",
+        "fri": "Fri",
+        "sat": "Sat"
+      },
+      "eventTypes": {
+        "holiday": "Holiday",
+        "exam": "Exam",
+        "event": "Event",
+        "no_school": "No School",
+        "parent_meeting": "Parent Meeting"
+      },
+      "importantDates": {
+        "title": "Key Academic Periods",
+        "items": [
+          {
+            "title": "First Semester",
+            "description": "February - June: First half of the academic year with mid-term and final exams"
+          },
+          {
+            "title": "Second Semester",
+            "description": "July - November: Second half of the academic year concluding with final exams and graduation"
+          },
+          {
+            "title": "Registration Period",
+            "description": "November - January: Enrollment period for the upcoming school year"
+          }
+        ]
+      },
+      "download": {
+        "title": "Download Calendar",
+        "description": "Get a printable version of the full academic calendar to keep at home or share with family.",
+        "pdf": "Download PDF",
+        "print": "Print Calendar"
+      },
+      "cta": {
+        "title": "Ready to Join CEE?",
+        "description": "Enroll your child in our Christ-centered bilingual education program and become part of our community.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
     }
   },
   "auth": {
