@@ -5,16 +5,16 @@
       <div class="flex items-center justify-between mb-4">
         <UButton
           icon="i-heroicons-chevron-left"
-          color="gray"
+          color="neutral"
           variant="ghost"
           @click="previousMonth"
         />
-        <h2 class="text-2xl font-bold text-gray-900">
+        <h2 class="text-2xl font-bold text-gray-900 capitalize">
           {{ currentMonthName }} {{ currentYear }}
         </h2>
         <UButton
           icon="i-heroicons-chevron-right"
-          color="gray"
+          color="neutral"
           variant="ghost"
           @click="nextMonth"
         />
@@ -24,19 +24,19 @@
       <div class="flex justify-center gap-2 mb-4">
         <UButton
           :variant="viewMode === 'month' ? 'solid' : 'outline'"
-          color="blue"
+          color="secondary"
           size="sm"
           @click="viewMode = 'month'"
         >
-          {{ $t('calendar.monthView') }}
+          {{ $t('academics.calendar.monthView') }}
         </UButton>
         <UButton
           :variant="viewMode === 'list' ? 'solid' : 'outline'"
-          color="blue"
+          color="secondary"
           size="sm"
           @click="viewMode = 'list'"
         >
-          {{ $t('calendar.listView') }}
+          {{ $t('academics.calendar.listView') }}
         </UButton>
       </div>
 
@@ -45,19 +45,24 @@
         <UButton
           v-for="type in eventTypes"
           :key="type.value"
-          :variant="selectedEventTypes.includes(type.value) ? 'solid' : 'outline'"
+          :variant="
+            selectedEventTypes.includes(type.value) ? 'solid' : 'outline'
+          "
           :color="type.color"
           size="xs"
           @click="toggleEventType(type.value)"
         >
           <UIcon :name="type.icon" class="w-4 h-4 mr-1" />
-          {{ $t(`calendar.eventTypes.${type.value}`) }}
+          {{ $t(`academics.calendar.eventTypes.${type.value}`) }}
         </UButton>
       </div>
     </div>
 
     <!-- Month View -->
-    <div v-if="viewMode === 'month'" class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div
+      v-if="viewMode === 'month'"
+      class="bg-white rounded-lg shadow-lg overflow-hidden"
+    >
       <!-- Weekday Headers -->
       <div class="grid grid-cols-7 bg-gray-100 border-b">
         <div
@@ -65,7 +70,7 @@
           :key="day"
           class="p-2 md:p-4 text-center font-semibold text-gray-700 text-sm md:text-base"
         >
-          {{ $t(`calendar.days.${day}`) }}
+          {{ $t(`academics.calendar.days.${day}`) }}
         </div>
       </div>
 
@@ -128,13 +133,22 @@
           </div>
           <div class="flex-1">
             <div class="flex items-center gap-2 mb-2">
-              <UIcon :name="getEventIcon(event.event_type)" class="w-5 h-5" :class="getEventIconColor(event.event_type)" />
+              <UIcon
+                :name="getEventIcon(event.event_type)"
+                class="w-5 h-5"
+                :class="getEventIconColor(event.event_type)"
+              />
               <h3 class="text-xl font-bold text-gray-900">
                 {{ locale === 'es' ? event.title_es : event.title_en }}
               </h3>
             </div>
-            <p v-if="event.description_en || event.description_es" class="text-gray-700 mb-2">
-              {{ locale === 'es' ? event.description_es : event.description_en }}
+            <p
+              v-if="event.description_en || event.description_es"
+              class="text-gray-700 mb-2"
+            >
+              {{
+                locale === 'es' ? event.description_es : event.description_en
+              }}
             </p>
             <div class="flex flex-wrap gap-3 text-sm text-gray-600">
               <div class="flex items-center gap-1">
@@ -154,8 +168,13 @@
       </div>
 
       <div v-if="filteredUpcomingEvents.length === 0" class="text-center py-12">
-        <UIcon name="i-heroicons-calendar-days" class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-        <p class="text-xl text-gray-600">{{ $t('calendar.noEvents') }}</p>
+        <UIcon
+          name="i-heroicons-calendar-days"
+          class="w-16 h-16 text-gray-400 mx-auto mb-4"
+        />
+        <p class="text-xl text-gray-600">
+          {{ $t('academics.calendar.noEvents') }}
+        </p>
       </div>
     </div>
 
@@ -167,47 +186,92 @@
             class="shrink-0 w-16 h-16 rounded-lg flex items-center justify-center"
             :class="getEventBgClass(selectedEventData.event_type)"
           >
-            <UIcon :name="getEventIcon(selectedEventData.event_type)" class="w-8 h-8 text-white" />
+            <UIcon
+              :name="getEventIcon(selectedEventData.event_type)"
+              class="w-8 h-8 text-white"
+            />
           </div>
           <div class="flex-1">
             <h2 class="text-2xl font-bold text-gray-900 mb-2">
-              {{ locale === 'es' ? selectedEventData.title_es : selectedEventData.title_en }}
+              {{
+                locale === 'es'
+                  ? selectedEventData.title_es
+                  : selectedEventData.title_en
+              }}
             </h2>
             <UBadge :color="getEventTypeColor(selectedEventData.event_type)">
-              {{ $t(`calendar.eventTypes.${selectedEventData.event_type}`) }}
+              {{
+                $t(
+                  `academics.calendar.eventTypes.${selectedEventData.event_type}`,
+                )
+              }}
             </UBadge>
           </div>
         </div>
 
         <div class="space-y-3">
           <div class="flex items-start gap-3">
-            <UIcon name="i-heroicons-calendar" class="w-5 h-5 text-gray-500 mt-0.5" />
+            <UIcon
+              name="i-heroicons-calendar"
+              class="w-5 h-5 text-gray-500 mt-0.5"
+            />
             <div>
-              <p class="font-semibold text-gray-900">{{ $t('calendar.date') }}</p>
-              <p class="text-gray-700">{{ formatDateRange(selectedEventData.start_date, selectedEventData.end_date) }}</p>
+              <p class="font-semibold text-gray-900">
+                {{ $t('academics.calendar.date') }}
+              </p>
+              <p class="text-gray-700">
+                {{
+                  formatDateRange(
+                    selectedEventData.start_date,
+                    selectedEventData.end_date,
+                  )
+                }}
+              </p>
             </div>
           </div>
 
           <div v-if="selectedEventData.location" class="flex items-start gap-3">
-            <UIcon name="i-heroicons-map-pin" class="w-5 h-5 text-gray-500 mt-0.5" />
+            <UIcon
+              name="i-heroicons-map-pin"
+              class="w-5 h-5 text-gray-500 mt-0.5"
+            />
             <div>
-              <p class="font-semibold text-gray-900">{{ $t('calendar.location') }}</p>
+              <p class="font-semibold text-gray-900">
+                {{ $t('academics.calendar.location') }}
+              </p>
               <p class="text-gray-700">{{ selectedEventData.location }}</p>
             </div>
           </div>
 
-          <div v-if="selectedEventData.description_en || selectedEventData.description_es" class="flex items-start gap-3">
-            <UIcon name="i-heroicons-document-text" class="w-5 h-5 text-gray-500 mt-0.5" />
+          <div
+            v-if="
+              selectedEventData.description_en ||
+              selectedEventData.description_es
+            "
+            class="flex items-start gap-3"
+          >
+            <UIcon
+              name="i-heroicons-document-text"
+              class="w-5 h-5 text-gray-500 mt-0.5"
+            />
             <div>
-              <p class="font-semibold text-gray-900">{{ $t('calendar.description') }}</p>
-              <p class="text-gray-700">{{ locale === 'es' ? selectedEventData.description_es : selectedEventData.description_en }}</p>
+              <p class="font-semibold text-gray-900">
+                {{ $t('academics.calendar.description') }}
+              </p>
+              <p class="text-gray-700">
+                {{
+                  locale === 'es'
+                    ? selectedEventData.description_es
+                    : selectedEventData.description_en
+                }}
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-6 flex justify-end">
           <UButton @click="showEventModal = false">
-            {{ $t('calendar.close') }}
+            {{ $t('academics.calendar.close') }}
           </UButton>
         </div>
       </div>
@@ -222,17 +286,27 @@
   // Calendar state
   const currentDate = ref(new Date());
   const viewMode = ref<'month' | 'list'>('month');
-  const selectedEventTypes = ref<string[]>(['holiday', 'exam', 'event', 'no_school', 'parent_meeting']);
+  const selectedEventTypes = ref<string[]>([
+    'holiday',
+    'exam',
+    'event',
+    'no_school',
+    'parent_meeting',
+  ]);
   const showEventModal = ref(false);
   const selectedEventData = ref<any>(null);
 
   // Event types configuration
   const eventTypes = [
-    { value: 'holiday', color: 'red', icon: 'i-heroicons-sparkles' },
-    { value: 'exam', color: 'purple', icon: 'i-heroicons-pencil-square' },
-    { value: 'event', color: 'blue', icon: 'i-heroicons-calendar-days' },
-    { value: 'no_school', color: 'orange', icon: 'i-heroicons-x-circle' },
-    { value: 'parent_meeting', color: 'green', icon: 'i-heroicons-user-group' },
+    { value: 'holiday', color: 'primary', icon: 'i-heroicons-sparkles' },
+    { value: 'exam', color: 'warning', icon: 'i-heroicons-pencil-square' },
+    { value: 'event', color: 'secondary', icon: 'i-heroicons-calendar-days' },
+    { value: 'no_school', color: 'error', icon: 'i-heroicons-x-circle' },
+    {
+      value: 'parent_meeting',
+      color: 'primary',
+      icon: 'i-heroicons-user-group',
+    },
   ];
 
   const weekDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -241,10 +315,13 @@
   const currentMonth = computed(() => currentDate.value.getMonth());
   const currentYear = computed(() => currentDate.value.getFullYear());
   const currentMonthName = computed(() => {
-    return new Date(currentYear.value, currentMonth.value, 1).toLocaleDateString(
-      locale.value === 'es' ? 'es-HN' : 'en-US',
-      { month: 'long' }
-    );
+    return new Date(
+      currentYear.value,
+      currentMonth.value,
+      1,
+    ).toLocaleDateString(locale.value === 'es' ? 'es-HN' : 'en-US', {
+      month: 'long',
+    });
   });
 
   // Fetch events from database
@@ -435,7 +512,9 @@
 
   function formatMonth(dateStr: string): string {
     const date = new Date(dateStr);
-    return date.toLocaleDateString(locale.value === 'es' ? 'es-HN' : 'en-US', { month: 'short' });
+    return date.toLocaleDateString(locale.value === 'es' ? 'es-HN' : 'en-US', {
+      month: 'short',
+    });
   }
 
   function formatDateRange(startStr: string, endStr: string | null): string {
@@ -447,7 +526,7 @@
         weekday: 'long',
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       });
     }
 

@@ -84,7 +84,7 @@
               <UButton
                 size="lg"
                 icon="i-heroicons-document-arrow-down"
-                color="blue"
+                color="secondary"
               >
                 {{ $t('academics.calendar.download.pdf') }}
               </UButton>
@@ -92,7 +92,7 @@
                 size="lg"
                 icon="i-heroicons-printer"
                 variant="outline"
-                color="blue"
+                color="secondary"
               >
                 {{ $t('academics.calendar.download.print') }}
               </UButton>
