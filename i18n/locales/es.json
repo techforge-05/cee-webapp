@@ -14,7 +14,48 @@
     "support": "Apoya Nuestra Escuela",
     "contact": "Contacto",
     "admissions": "Admisiones",
-    "getInvolved": "Involúcrate"
+    "getInvolved": "Involúcrate",
+    "dropdowns": {
+      "about": {
+        "missionVisionValues": "Misión, Visión y Valores",
+        "statementOfFaith": "Declaración de Fe",
+        "philosophy": "Nuestra Filosofía",
+        "history": "Historia de la Escuela",
+        "town": "Nuestro Pueblo",
+        "leadership": "Liderazgo y Junta Directiva"
+      },
+      "academics": {
+        "curriculum": "Currículo",
+        "programs": "Programas",
+        "calendar": "Calendario Académico",
+        "grades": "Grados y Niveles"
+      },
+      "studentLife": {
+        "activities": "Actividades",
+        "clubs": "Clubes y Organizaciones",
+        "sports": "Deportes",
+        "events": "Eventos"
+      },
+      "parents": {
+        "resources": "Recursos",
+        "calendar": "Calendario",
+        "handbook": "Manual para Padres",
+        "involvement": "Involúcrate"
+      },
+      "support": {
+        "whySupport": "Por Qué Apoyar Nuestra Escuela",
+        "scholarships": "Impacto de Becas",
+        "donate": "Donar",
+        "projects": "Proyectos",
+        "partnerships": "Alianzas con Iglesias y Comunidad"
+      },
+      "contact": {
+        "info": "Información de Contacto",
+        "directions": "Direcciones",
+        "form": "Formulario de Contacto",
+        "faq": "Preguntas Frecuentes"
+      }
+    }
   },
   "footer": {
     "quickLinks": "Enlaces Rápidos",
@@ -410,6 +451,137 @@
       "cta": {
         "title": "Descubre el Poder de la Educación Bilingüe",
         "description": "Únete a CEE y dale a tu hijo la ventaja de una educación bilingüe centrada en Cristo que los prepara para un futuro brillante.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "programs": {
+      "title": "Programas",
+      "subtitle": "Programas educativos integrales para el desarrollo completo del estudiante",
+      "intro": "En CEE, ofrecemos una amplia gama de programas académicos, especiales y extracurriculares diseñados para desarrollar a los estudiantes espiritual, académica, física y socialmente. Nuestros programas brindan oportunidades para que cada estudiante descubra sus dones y crezca en excelencia.",
+      "academic": {
+        "title": "Programas Académicos",
+        "highlights": "Aspectos Destacados del Programa:",
+        "items": [
+          {
+            "title": "Educación Infantil Temprana",
+            "grades": "Edades 4-5 (Pre-K y Jardín de Infantes)",
+            "description": "Nuestro programa de educación infantil temprana proporciona un ambiente enriquecedor de aprendizaje basado en el juego donde los niños pequeños desarrollan habilidades fundamentales en alfabetización, aritmética, interacción social y formación espiritual. A través de la instrucción bilingüe, los niños comienzan su viaje tanto en español como en inglés.",
+            "highlights": [
+              "Aprendizaje bilingüe basado en el juego",
+              "Desarrollo socioemocional",
+              "Formación de carácter bíblico",
+              "Desarrollo de habilidades motoras finas y gruesas",
+              "Alfabetización y aritmética temprana"
+            ]
+          },
+          {
+            "title": "Educación Primaria",
+            "grades": "Grados 1-6",
+            "description": "Nuestro programa de primaria construye una base académica sólida a través de la instrucción bilingüe inmersiva. Los estudiantes participan en materias fundamentales que incluyen lengua y literatura, matemáticas, ciencias, estudios sociales y Biblia, mientras desarrollan habilidades de pensamiento crítico y resolución de problemas.",
+            "highlights": [
+              "Instrucción de inmersión bilingüe",
+              "Aprendizaje enfocado en STEAM",
+              "Desarrollo de carácter a través de principios bíblicos",
+              "Oportunidades de aprendizaje basado en proyectos",
+              "Integración tecnológica"
+            ]
+          },
+          {
+            "title": "Escuela Media",
+            "grades": "Grados 7-9",
+            "description": "Nuestro programa de escuela media prepara a los estudiantes para el rigor académico de la escuela secundaria mientras los apoya durante años de desarrollo importantes. Los estudiantes exploran materias con mayor profundidad y comienzan a descubrir sus dones e intereses únicos.",
+            "highlights": [
+              "Cursos bilingües avanzados",
+              "Oportunidades de desarrollo de liderazgo",
+              "Cursos electivos y especializaciones",
+              "Proyectos de aprendizaje-servicio",
+              "Preparación para la universidad y la carrera"
+            ]
+          },
+          {
+            "title": "Escuela Secundaria",
+            "grades": "Grados 10-11",
+            "description": "Nuestro programa de escuela secundaria ofrece educación preparatoria universitaria rigurosa con una cosmovisión bíblica. Los estudiantes toman cursos avanzados en ciencias, matemáticas, humanidades y materias electivas mientras son equipados para el éxito universitario y el aprendizaje de por vida.",
+            "highlights": [
+              "Currículo preparatorio universitario",
+              "Ciencias y matemáticas avanzadas",
+              "Integración de cosmovisión bíblica",
+              "Preparación y orientación universitaria",
+              "Requisitos de graduación alineados con estándares nacionales"
+            ]
+          }
+        ]
+      },
+      "special": {
+        "title": "Programas Especiales",
+        "items": [
+          {
+            "title": "Apoyo ESL",
+            "description": "Apoyo adicional en idioma inglés para estudiantes que desarrollan competencia en inglés"
+          },
+          {
+            "title": "Ciencias de la Computación",
+            "description": "Educación tecnológica incluyendo programación, alfabetización digital y habilidades informáticas"
+          },
+          {
+            "title": "Formación Espiritual",
+            "description": "Clases diarias de Biblia, servicios de capilla y programas de desarrollo del carácter"
+          },
+          {
+            "title": "Bellas Artes",
+            "description": "Instrucción en artes visuales incluyendo dibujo, pintura y expresión creativa"
+          },
+          {
+            "title": "Educación Musical",
+            "description": "Teoría musical, coro e instrucción instrumental para todos los niveles de grado"
+          },
+          {
+            "title": "Educación Física",
+            "description": "Programa integral de educación en acondicionamiento físico y deportes"
+          }
+        ]
+      },
+      "extracurricular": {
+        "title": "Programas Extracurriculares",
+        "items": [
+          {
+            "title": "Equipos Deportivos",
+            "description": "Fútbol, baloncesto, voleibol y otros deportes competitivos"
+          },
+          {
+            "title": "Música y Coro",
+            "description": "Coro escolar, equipos de alabanza y presentaciones musicales"
+          },
+          {
+            "title": "Drama y Teatro",
+            "description": "Producciones teatrales y presentaciones de artes dramáticas"
+          },
+          {
+            "title": "Club de Ciencias",
+            "description": "Actividades STEM, experimentos y preparación para feria de ciencias"
+          },
+          {
+            "title": "Escritura Creativa",
+            "description": "Talleres de escritura y publicación de revista literaria"
+          },
+          {
+            "title": "Gobierno Estudiantil",
+            "description": "Oportunidades de liderazgo y representación estudiantil"
+          },
+          {
+            "title": "Competencias Académicas",
+            "description": "Olimpiadas de matemáticas, concursos de ortografía y torneos académicos"
+          },
+          {
+            "title": "Servicio Comunitario",
+            "description": "Proyectos de servicio y alcance a la comunidad local"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Encuentra el Programa Adecuado para Tu Hijo",
+        "description": "Explora nuestros programas y descubre cómo CEE puede ayudar a tu hijo a desarrollar su potencial dado por Dios.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }

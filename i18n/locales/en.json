@@ -14,7 +14,48 @@
     "support": "Support Our School",
     "contact": "Contact",
     "admissions": "Admissions",
-    "getInvolved": "Get Involved"
+    "getInvolved": "Get Involved",
+    "dropdowns": {
+      "about": {
+        "missionVisionValues": "Mission, Vision & Values",
+        "statementOfFaith": "Statement of Faith",
+        "philosophy": "Our Philosophy",
+        "history": "History of the School",
+        "town": "Our Town",
+        "leadership": "Leadership & Board"
+      },
+      "academics": {
+        "curriculum": "Curriculum",
+        "programs": "Programs",
+        "calendar": "Academic Calendar",
+        "grades": "Grades & Levels"
+      },
+      "studentLife": {
+        "activities": "Activities",
+        "clubs": "Clubs & Organizations",
+        "sports": "Sports",
+        "events": "Events"
+      },
+      "parents": {
+        "resources": "Resources",
+        "calendar": "Calendar",
+        "handbook": "Parent Handbook",
+        "involvement": "Get Involved"
+      },
+      "support": {
+        "whySupport": "Why Support Our School",
+        "scholarships": "Scholarships Impact",
+        "donate": "Donate",
+        "projects": "Projects",
+        "partnerships": "Church & Community Partnerships"
+      },
+      "contact": {
+        "info": "Contact Information",
+        "directions": "Directions",
+        "form": "Contact Form",
+        "faq": "FAQ"
+      }
+    }
   },
   "footer": {
     "quickLinks": "Quick Links",
@@ -410,6 +451,137 @@
       "cta": {
         "title": "Discover the Power of Bilingual Education",
         "description": "Join CEE and give your child the advantage of a Christ-centered bilingual education that prepares them for a bright future.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "programs": {
+      "title": "Programs",
+      "subtitle": "Comprehensive educational programs for whole-child development",
+      "intro": "At CEE, we offer a wide range of academic, special, and extracurricular programs designed to develop students spiritually, academically, physically, and socially. Our programs provide opportunities for every student to discover their gifts and grow in excellence.",
+      "academic": {
+        "title": "Academic Programs",
+        "highlights": "Program Highlights:",
+        "items": [
+          {
+            "title": "Early Childhood Education",
+            "grades": "Ages 4-5 (Pre-K & Kindergarten)",
+            "description": "Our early childhood program provides a nurturing, play-based learning environment where young children develop foundational skills in literacy, numeracy, social interaction, and spiritual formation. Through bilingual instruction, children begin their journey in both Spanish and English.",
+            "highlights": [
+              "Play-based bilingual learning",
+              "Social-emotional development",
+              "Biblical character training",
+              "Fine and gross motor skill development",
+              "Early literacy and numeracy"
+            ]
+          },
+          {
+            "title": "Elementary Education",
+            "grades": "Grades 1-6",
+            "description": "Our elementary program builds a strong academic foundation through immersive bilingual instruction. Students engage in core subjects including language arts, mathematics, science, social studies, and Bible, while developing critical thinking and problem-solving skills.",
+            "highlights": [
+              "Bilingual immersion instruction",
+              "STEAM-focused learning",
+              "Character development through biblical principles",
+              "Project-based learning opportunities",
+              "Technology integration"
+            ]
+          },
+          {
+            "title": "Middle School",
+            "grades": "Grades 7-9",
+            "description": "Our middle school program prepares students for the academic rigor of high school while supporting them through important developmental years. Students explore subjects in greater depth and begin to discover their unique gifts and interests.",
+            "highlights": [
+              "Advanced bilingual coursework",
+              "Leadership development opportunities",
+              "Elective courses and specializations",
+              "Service learning projects",
+              "College and career readiness preparation"
+            ]
+          },
+          {
+            "title": "High School",
+            "grades": "Grades 10-11",
+            "description": "Our high school program offers rigorous college-preparatory education with a biblical worldview. Students take advanced courses in sciences, mathematics, humanities, and electives while being equipped for university success and lifelong learning.",
+            "highlights": [
+              "College-preparatory curriculum",
+              "Advanced sciences and mathematics",
+              "Biblical worldview integration",
+              "University preparation and guidance",
+              "Graduation requirements aligned with national standards"
+            ]
+          }
+        ]
+      },
+      "special": {
+        "title": "Special Programs",
+        "items": [
+          {
+            "title": "ESL Support",
+            "description": "Additional English language support for students developing English proficiency"
+          },
+          {
+            "title": "Computer Science",
+            "description": "Technology education including coding, digital literacy, and computer skills"
+          },
+          {
+            "title": "Spiritual Formation",
+            "description": "Daily Bible classes, chapel services, and character development programs"
+          },
+          {
+            "title": "Fine Arts",
+            "description": "Visual arts instruction including drawing, painting, and creative expression"
+          },
+          {
+            "title": "Music Education",
+            "description": "Music theory, choir, and instrumental instruction for all grade levels"
+          },
+          {
+            "title": "Physical Education",
+            "description": "Comprehensive physical fitness and sports education program"
+          }
+        ]
+      },
+      "extracurricular": {
+        "title": "Extracurricular Programs",
+        "items": [
+          {
+            "title": "Sports Teams",
+            "description": "Soccer, basketball, volleyball, and other competitive sports"
+          },
+          {
+            "title": "Music & Choir",
+            "description": "School choir, worship teams, and musical performances"
+          },
+          {
+            "title": "Drama & Theater",
+            "description": "Theater productions and dramatic arts performances"
+          },
+          {
+            "title": "Science Club",
+            "description": "STEM activities, experiments, and science fair preparation"
+          },
+          {
+            "title": "Creative Writing",
+            "description": "Writing workshops and literary magazine publication"
+          },
+          {
+            "title": "Student Government",
+            "description": "Leadership opportunities and student representation"
+          },
+          {
+            "title": "Academic Competitions",
+            "description": "Math olympiads, spelling bees, and academic tournaments"
+          },
+          {
+            "title": "Community Service",
+            "description": "Service projects and outreach to the local community"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Find the Right Program for Your Child",
+        "description": "Explore our programs and discover how CEE can help your child develop their God-given potential.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }

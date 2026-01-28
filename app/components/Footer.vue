@@ -41,7 +41,9 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="flex flex-col items-center md:items-start">
+        <div
+          class="flex flex-col items-center text-center md:text-left md:items-start"
+        >
           <h4 class="text-lg font-bold mb-4">{{ $t('footer.quickLinks') }}</h4>
           <ul class="space-y-2">
             <li>

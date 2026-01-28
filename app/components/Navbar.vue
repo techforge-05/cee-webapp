@@ -141,7 +141,7 @@
                   name="i-heroicons-star"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Mission, Vision & Values</span>
+                <span>{{ $t('nav.dropdowns.about.missionVisionValues') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/about/statement-of-faith')"
@@ -152,7 +152,7 @@
                   name="i-heroicons-book-open"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Statement of Faith</span>
+                <span>{{ $t('nav.dropdowns.about.statementOfFaith') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/about/philosophy')"
@@ -163,7 +163,7 @@
                   name="i-heroicons-light-bulb"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Our Philosophy</span>
+                <span>{{ $t('nav.dropdowns.about.philosophy') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/about/history')"
@@ -174,7 +174,7 @@
                   name="i-heroicons-clock"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>History of the School</span>
+                <span>{{ $t('nav.dropdowns.about.history') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/about/town')"
@@ -185,7 +185,7 @@
                   name="i-heroicons-map"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Our Town</span>
+                <span>{{ $t('nav.dropdowns.about.town') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/about/leadership')"
@@ -196,7 +196,7 @@
                   name="i-heroicons-user-group"
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
-                <span>Leadership & Board</span>
+                <span>{{ $t('nav.dropdowns.about.leadership') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -223,7 +223,7 @@
                   name="i-heroicons-academic-cap"
                   class="w-5 h-5 text-yellow-600 shrink-0"
                 />
-                <span>Curriculum</span>
+                <span>{{ $t('nav.dropdowns.academics.curriculum') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/academics/programs')"
@@ -234,7 +234,7 @@
                   name="i-heroicons-clipboard-document-list"
                   class="w-5 h-5 text-yellow-600 shrink-0"
                 />
-                <span>Programs</span>
+                <span>{{ $t('nav.dropdowns.academics.programs') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -261,7 +261,7 @@
                   name="i-heroicons-sparkles"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>Activities</span>
+                <span>{{ $t('nav.dropdowns.studentLife.activities') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/student-life/clubs')"
@@ -272,7 +272,7 @@
                   name="i-heroicons-user-group"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>Clubs</span>
+                <span>{{ $t('nav.dropdowns.studentLife.clubs') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -299,7 +299,7 @@
                   name="i-heroicons-folder-open"
                   class="w-5 h-5 text-blue-600 shrink-0"
                 />
-                <span>Resources</span>
+                <span>{{ $t('nav.dropdowns.parents.resources') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/parents/calendar')"
@@ -310,7 +310,7 @@
                   name="i-heroicons-calendar-days"
                   class="w-5 h-5 text-blue-600 shrink-0"
                 />
-                <span>Calendar</span>
+                <span>{{ $t('nav.dropdowns.parents.calendar') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -337,7 +337,7 @@
                   name="i-heroicons-heart"
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
-                <span>Why Support Our School</span>
+                <span>{{ $t('nav.dropdowns.support.whySupport') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/support/scholarships')"
@@ -348,7 +348,7 @@
                   name="i-heroicons-academic-cap"
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
-                <span>Scholarships Impact</span>
+                <span>{{ $t('nav.dropdowns.support.scholarships') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/support/donate')"
@@ -359,7 +359,7 @@
                   name="i-heroicons-currency-dollar"
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
-                <span>Donate</span>
+                <span>{{ $t('nav.dropdowns.support.donate') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/support/projects')"
@@ -370,7 +370,7 @@
                   name="i-heroicons-wrench-screwdriver"
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
-                <span>Projects</span>
+                <span>{{ $t('nav.dropdowns.support.projects') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/support/partnerships')"
@@ -381,7 +381,7 @@
                   name="i-heroicons-hand-raised"
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
-                <span>Church & Community Partnerships</span>
+                <span>{{ $t('nav.dropdowns.support.partnerships') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -408,7 +408,7 @@
                   name="i-heroicons-phone"
                   class="w-5 h-5 text-orange-600 shrink-0"
                 />
-                <span>Contact Info</span>
+                <span>{{ $t('nav.dropdowns.contact.info') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/contact/directions')"
@@ -419,7 +419,7 @@
                   name="i-heroicons-map-pin"
                   class="w-5 h-5 text-orange-600 shrink-0"
                 />
-                <span>Directions</span>
+                <span>{{ $t('nav.dropdowns.contact.directions') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -570,48 +570,50 @@
     { key: 'contact' },
   ];
 
+  const { t } = useI18n();
+
   // Dropdown menu items for each section
-  const dropdownItems: Record<string, { path: string; label: string }[]> = {
+  const dropdownItems = computed(() => ({
     about: [
-      { path: '/about/mission-vision-values', label: 'Mission, Vision & Values' },
-      { path: '/about/statement-of-faith', label: 'Statement of Faith' },
-      { path: '/about/philosophy', label: 'Our Philosophy' },
-      { path: '/about/history', label: 'History of the School' },
-      { path: '/about/town', label: 'Our Town' },
-      { path: '/about/leadership', label: 'Leadership & Board' },
+      { path: '/about/mission-vision-values', label: t('nav.dropdowns.about.missionVisionValues') },
+      { path: '/about/statement-of-faith', label: t('nav.dropdowns.about.statementOfFaith') },
+      { path: '/about/philosophy', label: t('nav.dropdowns.about.philosophy') },
+      { path: '/about/history', label: t('nav.dropdowns.about.history') },
+      { path: '/about/town', label: t('nav.dropdowns.about.town') },
+      { path: '/about/leadership', label: t('nav.dropdowns.about.leadership') },
     ],
     academics: [
-      { path: '/academics/curriculum', label: 'Curriculum' },
-      { path: '/academics/programs', label: 'Programs' },
-      { path: '/academics/calendar', label: 'Academic Calendar' },
-      { path: '/academics/grades', label: 'Grades & Levels' },
+      { path: '/academics/curriculum', label: t('nav.dropdowns.academics.curriculum') },
+      { path: '/academics/programs', label: t('nav.dropdowns.academics.programs') },
+      { path: '/academics/calendar', label: t('nav.dropdowns.academics.calendar') },
+      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
     ],
     studentLife: [
-      { path: '/student-life/activities', label: 'Activities' },
-      { path: '/student-life/clubs', label: 'Clubs & Organizations' },
-      { path: '/student-life/sports', label: 'Sports' },
-      { path: '/student-life/events', label: 'Events' },
+      { path: '/student-life/activities', label: t('nav.dropdowns.studentLife.activities') },
+      { path: '/student-life/clubs', label: t('nav.dropdowns.studentLife.clubs') },
+      { path: '/student-life/sports', label: t('nav.dropdowns.studentLife.sports') },
+      { path: '/student-life/events', label: t('nav.dropdowns.studentLife.events') },
     ],
     parents: [
-      { path: '/parents/resources', label: 'Resources' },
-      { path: '/parents/calendar', label: 'Calendar' },
-      { path: '/parents/handbook', label: 'Parent Handbook' },
-      { path: '/parents/involvement', label: 'Get Involved' },
+      { path: '/parents/resources', label: t('nav.dropdowns.parents.resources') },
+      { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar') },
+      { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook') },
+      { path: '/parents/involvement', label: t('nav.dropdowns.parents.involvement') },
     ],
     support: [
-      { path: '/support/why-support', label: 'Why Support Our School' },
-      { path: '/support/scholarships', label: 'Scholarships Impact' },
-      { path: '/support/donate', label: 'Donate' },
-      { path: '/support/projects', label: 'Projects' },
-      { path: '/support/partnerships', label: 'Church & Community Partnerships' },
+      { path: '/support/why-support', label: t('nav.dropdowns.support.whySupport') },
+      { path: '/support/scholarships', label: t('nav.dropdowns.support.scholarships') },
+      { path: '/support/donate', label: t('nav.dropdowns.support.donate') },
+      { path: '/support/projects', label: t('nav.dropdowns.support.projects') },
+      { path: '/support/partnerships', label: t('nav.dropdowns.support.partnerships') },
     ],
     contact: [
-      { path: '/contact/info', label: 'Contact Information' },
-      { path: '/contact/directions', label: 'Directions' },
-      { path: '/contact/form', label: 'Contact Form' },
-      { path: '/contact/faq', label: 'FAQ' },
+      { path: '/contact/info', label: t('nav.dropdowns.contact.info') },
+      { path: '/contact/directions', label: t('nav.dropdowns.contact.directions') },
+      { path: '/contact/form', label: t('nav.dropdowns.contact.form') },
+      { path: '/contact/faq', label: t('nav.dropdowns.contact.faq') },
     ],
-  };
+  }));
 
   const backgroundColor = computed(() => {
     switch (activeDropdown.value) {
