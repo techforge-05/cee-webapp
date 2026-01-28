@@ -585,6 +585,100 @@
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }
+    },
+    "grades": {
+      "title": "Grados y Niveles",
+      "subtitle": "Excelencia educativa desde Pre-K hasta 11° grado",
+      "intro": "En CEE, proporcionamos educación bilingüe apropiada para la edad que crece con tu hijo. Nuestro programa abarca desde la primera infancia hasta la escuela secundaria, con cada nivel diseñado para construir sobre el anterior mientras satisface las necesidades de desarrollo únicas de los estudiantes en cada etapa.",
+      "keyFocus": "Áreas de Enfoque Clave",
+      "typicalAge": "Edad Típica",
+      "levels": [
+        {
+          "title": "Primera Infancia",
+          "grades": "Pre-K y Jardín de Infantes (Edades 4-5)",
+          "description": "Nuestro programa de primera infancia sienta las bases para el aprendizaje de por vida en un ambiente enriquecedor basado en el juego. Los niños comienzan su viaje bilingüe a través de actividades atractivas que desarrollan habilidades sociales, emocionales, cognitivas y espirituales.",
+          "focus": [
+            "Introducción al español e inglés",
+            "Desarrollo socioemocional",
+            "Habilidades motoras finas y gruesas",
+            "Conceptos básicos de alfabetización y aritmética",
+            "Formación de carácter bíblico",
+            "Aprendizaje basado en el juego"
+          ],
+          "ageRange": "4-5 años"
+        },
+        {
+          "title": "Escuela Primaria",
+          "grades": "Grados 1-6",
+          "description": "La educación primaria en CEE construye una base académica sólida a través de la inmersión bilingüe. Los estudiantes desarrollan habilidades de pensamiento crítico, exploran su creatividad y crecen en su comprensión de la Palabra de Dios mientras dominan materias fundamentales en ambos idiomas.",
+          "focus": [
+            "Desarrollo de alfabetización bilingüe",
+            "Razonamiento matemático",
+            "Indagación y exploración científica",
+            "Estudios sociales y conciencia cultural",
+            "Integración tecnológica",
+            "Desarrollo del carácter a través de las Escrituras",
+            "Educación física y bienestar",
+            "Artes y música"
+          ],
+          "ageRange": "6-11 años"
+        },
+        {
+          "title": "Escuela Media",
+          "grades": "Grados 7-9",
+          "description": "Nuestro programa de escuela media apoya a los estudiantes a través de años de desarrollo críticos con académicos rigurosos y orientación espiritual. Los estudiantes profundizan su competencia bilingüe mientras exploran materias con mayor profundidad y descubren sus dones únicos y llamado.",
+          "focus": [
+            "Cursos bilingües avanzados",
+            "Razonamiento abstracto y resolución de problemas",
+            "Ciencias de laboratorio",
+            "Historia mundial y geografía",
+            "Desarrollo de liderazgo",
+            "Alfabetización digital e informática",
+            "Oportunidades de aprendizaje-servicio",
+            "Integración de cosmovisión bíblica"
+          ],
+          "ageRange": "12-14 años"
+        },
+        {
+          "title": "Escuela Secundaria",
+          "grades": "Grados 10-11",
+          "description": "El programa de escuela secundaria de CEE prepara a los estudiantes para el éxito universitario y la vida después de la graduación. A través de cursos preparatorios universitarios, los estudiantes desarrollan excelencia académica, habilidades de liderazgo y una cosmovisión bíblica que los equipa para tener un impacto positivo en sus comunidades y el mundo.",
+          "focus": [
+            "Currículo preparatorio universitario",
+            "Ciencias avanzadas (Biología, Química, Física)",
+            "Matemáticas superiores (Álgebra II, Geometría)",
+            "Literatura y composición",
+            "Preparación para aplicación universitaria",
+            "Exploración y orientación profesional",
+            "Apologética y teología cristiana",
+            "Servicio comunitario y alcance"
+          ],
+          "ageRange": "15-16 años"
+        }
+      ],
+      "approach": {
+        "title": "Nuestro Enfoque Educativo",
+        "items": [
+          {
+            "title": "Inmersión Bilingüe",
+            "description": "Los estudiantes aprenden a través del español e inglés desde el jardín de infantes hasta la graduación, desarrollando competencia a nivel nativo en ambos idiomas."
+          },
+          {
+            "title": "Aprendizaje Centrado en Cristo",
+            "description": "Los principios bíblicos se entrelazan en cada materia, ayudando a los estudiantes a desarrollar una cosmovisión cristiana y un carácter moral sólido."
+          },
+          {
+            "title": "Apoyo Individualizado",
+            "description": "Clases pequeñas y maestros dedicados aseguran que cada estudiante reciba la atención y el apoyo que necesita para alcanzar su máximo potencial."
+          }
+        ]
+      },
+      "cta": {
+        "title": "¿Listo para Aprender Más?",
+        "description": "Descubre cómo los programas de nivel de grado de CEE pueden proporcionar a tu hijo una excelente educación bilingüe y centrada en Cristo.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
     }
   },
   "auth": {

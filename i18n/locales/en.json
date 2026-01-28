@@ -585,6 +585,100 @@
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }
+    },
+    "grades": {
+      "title": "Grades & Levels",
+      "subtitle": "Educational excellence from Pre-K through Grade 11",
+      "intro": "At CEE, we provide age-appropriate, bilingual education that grows with your child. Our program spans from early childhood through high school, with each level designed to build upon the previous one while meeting the unique developmental needs of students at each stage.",
+      "keyFocus": "Key Focus Areas",
+      "typicalAge": "Typical Age",
+      "levels": [
+        {
+          "title": "Early Childhood",
+          "grades": "Pre-K & Kindergarten (Ages 4-5)",
+          "description": "Our early childhood program lays the foundation for lifelong learning in a nurturing, play-based environment. Children begin their bilingual journey through engaging activities that develop social, emotional, cognitive, and spiritual skills.",
+          "focus": [
+            "Introduction to Spanish and English",
+            "Social-emotional development",
+            "Fine and gross motor skills",
+            "Basic literacy and numeracy concepts",
+            "Biblical character training",
+            "Play-based learning"
+          ],
+          "ageRange": "4-5 years"
+        },
+        {
+          "title": "Elementary School",
+          "grades": "Grades 1-6",
+          "description": "Elementary education at CEE builds a strong academic foundation through bilingual immersion. Students develop critical thinking skills, explore their creativity, and grow in their understanding of God's Word while mastering core subjects in both languages.",
+          "focus": [
+            "Bilingual literacy development",
+            "Mathematical reasoning",
+            "Scientific inquiry and exploration",
+            "Social studies and cultural awareness",
+            "Technology integration",
+            "Character development through Scripture",
+            "Physical education and wellness",
+            "Arts and music"
+          ],
+          "ageRange": "6-11 years"
+        },
+        {
+          "title": "Middle School",
+          "grades": "Grades 7-9",
+          "description": "Our middle school program supports students through critical developmental years with rigorous academics and spiritual guidance. Students deepen their bilingual proficiency while exploring subjects in greater depth and discovering their unique gifts and calling.",
+          "focus": [
+            "Advanced bilingual coursework",
+            "Abstract reasoning and problem-solving",
+            "Laboratory sciences",
+            "World history and geography",
+            "Leadership development",
+            "Digital literacy and computer science",
+            "Service learning opportunities",
+            "Biblical worldview integration"
+          ],
+          "ageRange": "12-14 years"
+        },
+        {
+          "title": "High School",
+          "grades": "Grades 10-11",
+          "description": "CEE's high school program prepares students for university success and life beyond graduation. Through college-preparatory coursework, students develop academic excellence, leadership skills, and a biblical worldview that equips them to make a positive impact in their communities and the world.",
+          "focus": [
+            "College-preparatory curriculum",
+            "Advanced sciences (Biology, Chemistry, Physics)",
+            "Higher mathematics (Algebra II, Geometry)",
+            "Literature and composition",
+            "University application preparation",
+            "Career exploration and guidance",
+            "Christian apologetics and theology",
+            "Community service and outreach"
+          ],
+          "ageRange": "15-16 years"
+        }
+      ],
+      "approach": {
+        "title": "Our Educational Approach",
+        "items": [
+          {
+            "title": "Bilingual Immersion",
+            "description": "Students learn through both Spanish and English from kindergarten through graduation, developing native-level proficiency in both languages."
+          },
+          {
+            "title": "Christ-Centered Learning",
+            "description": "Biblical principles are woven throughout every subject, helping students develop a Christian worldview and strong moral character."
+          },
+          {
+            "title": "Individualized Support",
+            "description": "Small class sizes and dedicated teachers ensure each student receives the attention and support they need to reach their full potential."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Learn More?",
+        "description": "Discover how CEE's grade-level programs can provide your child with an excellent bilingual, Christ-centered education.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
     }
   },
   "auth": {
