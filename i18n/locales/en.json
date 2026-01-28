@@ -129,6 +129,290 @@
         "learnMore": "Learn More About Our Mission",
         "contactUs": "Contact Us"
       }
+    },
+    "philosophy": {
+      "title": "Our Philosophy",
+      "subtitle": "The guiding principles of our educational approach",
+      "intro": "Our educational philosophy is built on the foundation that all wisdom and knowledge originate from God, revealed through His Word.",
+      "biblical": {
+        "title": "Biblical Foundation",
+        "content": "We are convicted that all wisdom and knowledge have their origin in God, who reveals himself in His Word. The Bible is our pillar and authority for every principal integrated into our curriculum."
+      },
+      "dignity": {
+        "title": "Human Dignity and Cultural Identity",
+        "content": "It is our belief that in order for human beings to keep their dignity, they have to hold their manners, language, and belonging to their country in high esteem."
+      },
+      "bilingual": {
+        "title": "Bilingual Excellence",
+        "content": "We believe that teaching a second language is a necessary tool, useful for the development of a child's future where they can be involved, in their own country as well as internationally, in search of a better future for themselves, society, and their country."
+      },
+      "principles": {
+        "title": "Core Educational Principles",
+        "items": [
+          {
+            "title": "God-Centered Learning",
+            "description": "Every subject is taught through the lens of biblical truth and God's revelation"
+          },
+          {
+            "title": "Character Development",
+            "description": "Building dignity through respect for language, culture, and national identity"
+          },
+          {
+            "title": "Global Preparation",
+            "description": "Equipping students with bilingual skills for local and international opportunities"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Experience Our Philosophy in Action",
+        "description": "See how our biblical foundation and commitment to excellence shapes the education we provide.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "history": {
+      "title": "History of the School",
+      "subtitle": "Our journey from a dream to reality",
+      "intro": "From humble beginnings in 1990, CEE has grown to become a cornerstone of Christian bilingual education in Siguatepeque.",
+      "timeline": {
+        "title": "Our Journey Through Time",
+        "late1980s": {
+          "title": "Late 1980s - A Dream is Born",
+          "content": "At the end of the 1980s, a group of parents in Siguatepeque identified the need for an educational institution that, in addition to upholding evangelical principles, would offer quality education with English language proficiency as a cultural and technical tool that would open doors of opportunity for the children and youth of our community.",
+          "founders": "Founding Board Members:",
+          "foundersList": [
+            "Enrique Martínez Reyna",
+            "Esteban Mark",
+            "Dixy Barahona",
+            "Franklin Castañeda",
+            "María Elena Umaña"
+          ]
+        },
+        "early1990": {
+          "title": "Early 1990 - Building Support",
+          "content": "At the beginning of the last decade of the 20th century, this aspiration was shared with a select group of parents, whose support was fundamental. After making the necessary contacts with an American teacher of extensive professional and spiritual merits, Professor Carol Livingston de Bardales, the decision was made to start Escuela Bilingüe Siguatepeque in August 1990."
+        },
+        "august1990": {
+          "title": "August 1990 - Opening Day",
+          "content": "The institution began its work with thirteen students in first and second grade. Professor Bardales assumed the direction and teaching of English, while the Spanish area was initially taught by Professor Rosita de Flores."
+        },
+        "firstYears": {
+          "title": "First Years - Rented Facilities",
+          "content": "For a time, the school operated in rented classrooms in the building currently occupied by the Central American Biblical Seminary (SEBCAH)."
+        },
+        "mid1992": {
+          "title": "Mid-1992 - Our Permanent Home",
+          "content": "In mid-1992, we were able to acquire a house and the hangars of what had until then been the base of the venerable Wings of Mercy Mission."
+        },
+        "present": {
+          "title": "Present Day - Serving Our Community",
+          "content": "In this location, our educational institution currently operates, providing services at the preschool, elementary, and secondary education levels."
+        }
+      },
+      "legacy": {
+        "title": "A Legacy of Excellence",
+        "content": "From thirteen students to a thriving institution serving hundreds of families, CEE continues to fulfill the vision of its founders: providing Christ-centered, bilingual education that opens doors of opportunity for the children and youth of Siguatepeque."
+      },
+      "cta": {
+        "title": "Be Part of Our Story",
+        "description": "Join the legacy of excellence and continue the tradition of quality Christian education.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "town": {
+      "title": "Our Town",
+      "subtitle": "Siguatepeque - The Heart of Honduras",
+      "intro": {
+        "title": "Welcome to Siguatepeque",
+        "paragraph1": "The school is located in the city of Siguatepeque in the heart of Honduras. The city is approximately 1200m (4000ft) above sea level and surrounded by lush, green mountains.",
+        "paragraph2": "Siguatepeque has a population of approximately 110,000 and it is located two hours away from the two main cities in Honduras."
+      },
+      "location": {
+        "title": "Location",
+        "heartOfHonduras": "Located in the heart of Honduras",
+        "altitude": "1200m (4000ft) above sea level",
+        "population": "Approximately 110,000 residents",
+        "proximity": "Two hours from Honduras' main cities"
+      },
+      "climate": {
+        "title": "Climate",
+        "description": "Siguatepeque enjoys an excellent climate year-round:",
+        "sunnyDays": "Mostly sunny days",
+        "coolNights": "Cool, comfortable nights",
+        "mountains": "Surrounded by lush, green mountains"
+      },
+      "activities": {
+        "title": "Activities and Entertainment",
+        "subtitle": "Siguatepeque offers a vibrant community with diverse activities and entertainment options for families.",
+        "items": [
+          {
+            "title": "Churches & Community",
+            "description": "Various evangelical churches with Bible studies available"
+          },
+          {
+            "title": "Sports",
+            "description": "Both organized and recreational sports activities"
+          },
+          {
+            "title": "Dining",
+            "description": "Restaurants offering Mexican, Chinese, fast food, Italian, and local cuisine"
+          },
+          {
+            "title": "Movie Theatre",
+            "description": "Modern cinema for entertainment"
+          },
+          {
+            "title": "Cultural Events",
+            "description": "Concerts, festivals, holiday celebrations, parades, and more"
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Explore Siguatepeque"
+      },
+      "cta": {
+        "title": "Come Visit Us in Siguatepeque",
+        "description": "Experience the beauty and community of our mountain city while providing your child with quality Christian education.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "leadership": {
+      "title": "Leadership & Board",
+      "subtitle": "Dedicated leaders committed to excellence in Christian education",
+      "intro": "Our leadership team and board of directors bring decades of experience in education, ministry, and community service, guiding CEE with wisdom and dedication.",
+      "board": {
+        "title": "Board of Directors",
+        "description": "Our board provides strategic oversight and governance to ensure CEE fulfills its mission of providing quality Christian education.",
+        "members": [
+          {
+            "name": "Board Member Name",
+            "position": "Position Title",
+            "bio": ""
+          }
+        ]
+      },
+      "directors": {
+        "title": "School Directors",
+        "description": "Our directors oversee the day-to-day operations and academic excellence of our institution.",
+        "members": [
+          {
+            "name": "Director Name",
+            "position": "Position Title",
+            "bio": ""
+          }
+        ]
+      },
+      "contact": {
+        "title": "Have Questions for Our Leadership?",
+        "description": "We welcome your inquiries and are here to serve our school community.",
+        "button": "Contact Us"
+      },
+      "cta": {
+        "title": "Join Our School Community",
+        "description": "Experience the difference that dedicated leadership and Christ-centered education can make in your child's life.",
+        "learnMore": "Learn About Admissions",
+        "ourMission": "Our Mission & Values"
+      }
+    }
+  },
+  "academics": {
+    "curriculum": {
+      "title": "Curriculum",
+      "subtitle": "Bilingual Education Through Partial Immersion",
+      "intro": {
+        "title": "Early Partial Immersion Program",
+        "paragraph1": "CEE is an early partial immersion program, which means that students learn through two languages (Spanish and English) from the time they begin kindergarten until the time they graduate from high school in the 11th grade.",
+        "paragraph2": "Approximately half of the students' classes are in Spanish and the other half of their classes are taught in English."
+      },
+      "programs": {
+        "title": "Our Academic Programs",
+        "kindergarten": {
+          "title": "Kindergarten",
+          "name": "Jardín Bilingüe Siguatepeque",
+          "description": "Our kindergarten program serves students ages 4-5, providing a nurturing environment where young learners begin their journey in bilingual education. Through play-based learning and structured activities, children develop foundational skills in both languages.",
+          "details": "We focus on social-emotional development, early literacy, numeracy skills, and building a love for learning in both Spanish and English."
+        },
+        "elementary": {
+          "title": "Elementary School",
+          "name": "Escuela Bilingüe Siguatepeque",
+          "description": "Our elementary program (grades 1-6) builds a strong academic foundation through immersive bilingual instruction. Students engage in a comprehensive curriculum that develops critical thinking, problem-solving, and communication skills.",
+          "englishProgram": "English Program Subjects:",
+          "subjects": [
+            "English Language Arts",
+            "Mathematics",
+            "Science",
+            "Social Studies",
+            "Bible",
+            "Computer Science"
+          ]
+        },
+        "secondary": {
+          "title": "Secondary School",
+          "name": "Instituto Bilingüe Siguatepeque",
+          "description": "Our secondary program (grades 7-11) prepares students for higher education and professional success through rigorous academic coursework and continued bilingual development.",
+          "grades78": {
+            "title": "Grades 7-8",
+            "subjects": [
+              "English Language Arts",
+              "Mathematics",
+              "Science",
+              "Social Studies",
+              "Physical Education",
+              "Spanish Language Arts",
+              "Bible"
+            ]
+          },
+          "grade9": {
+            "title": "Grade 9",
+            "subjects": [
+              "English Language Arts",
+              "Algebra I",
+              "General Science",
+              "Physical Education",
+              "Spanish Language Arts",
+              "Honduran History",
+              "Bible"
+            ]
+          },
+          "grades1011": {
+            "title": "Grades 10-11",
+            "subjects": [
+              "English Language Arts",
+              "Geometry/Algebra II",
+              "Biology/Chemistry",
+              "Physical Education",
+              "Spanish Language Arts",
+              "Physics",
+              "Bible"
+            ]
+          }
+        }
+      },
+      "benefits": {
+        "title": "Benefits of Bilingual Education",
+        "items": [
+          {
+            "title": "Cognitive Advantages",
+            "description": "Bilingual students develop enhanced problem-solving skills, improved memory, and greater mental flexibility."
+          },
+          {
+            "title": "Global Opportunities",
+            "description": "Proficiency in two languages opens doors to international education, career opportunities, and cultural experiences."
+          },
+          {
+            "title": "Academic Excellence",
+            "description": "Our rigorous bilingual curriculum prepares students for success in higher education and professional life."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Discover the Power of Bilingual Education",
+        "description": "Join CEE and give your child the advantage of a Christ-centered bilingual education that prepares them for a bright future.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
     }
   },
   "auth": {

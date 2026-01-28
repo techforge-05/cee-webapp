@@ -129,6 +129,290 @@
         "learnMore": "Conoce Más Sobre Nuestra Misión",
         "contactUs": "Contáctanos"
       }
+    },
+    "philosophy": {
+      "title": "Nuestra Filosofía",
+      "subtitle": "Los principios rectores de nuestro enfoque educativo",
+      "intro": "Nuestra filosofía educativa está construida sobre el fundamento de que toda sabiduría y conocimiento se originan en Dios, revelados a través de Su Palabra.",
+      "biblical": {
+        "title": "Fundamento Bíblico",
+        "content": "Estamos convencidos de que toda sabiduría y conocimiento tienen su origen en Dios, quien se revela en Su Palabra. La Biblia es nuestro pilar y autoridad para cada principio integrado en nuestro currículo."
+      },
+      "dignity": {
+        "title": "Dignidad Humana e Identidad Cultural",
+        "content": "Es nuestra creencia que para que los seres humanos mantengan su dignidad, deben tener en alta estima sus modales, su idioma y su pertenencia a su país."
+      },
+      "bilingual": {
+        "title": "Excelencia Bilingüe",
+        "content": "Creemos que enseñar un segundo idioma es una herramienta necesaria, útil para el desarrollo del futuro de un niño donde pueden involucrarse, tanto en su propio país como internacionalmente, en busca de un mejor futuro para ellos mismos, la sociedad y su país."
+      },
+      "principles": {
+        "title": "Principios Educativos Fundamentales",
+        "items": [
+          {
+            "title": "Aprendizaje Centrado en Dios",
+            "description": "Cada materia se enseña a través de la lente de la verdad bíblica y la revelación de Dios"
+          },
+          {
+            "title": "Desarrollo del Carácter",
+            "description": "Construyendo dignidad a través del respeto por el idioma, la cultura y la identidad nacional"
+          },
+          {
+            "title": "Preparación Global",
+            "description": "Equipando a los estudiantes con habilidades bilingües para oportunidades locales e internacionales"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Experimenta Nuestra Filosofía en Acción",
+        "description": "Descubre cómo nuestro fundamento bíblico y compromiso con la excelencia moldea la educación que proporcionamos.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "history": {
+      "title": "Historia de la Escuela",
+      "subtitle": "Nuestro viaje de un sueño a la realidad",
+      "intro": "Desde humildes comienzos en 1990, CEE ha crecido hasta convertirse en un pilar de la educación cristiana bilingüe en Siguatepeque.",
+      "timeline": {
+        "title": "Nuestro Recorrido a Través del Tiempo",
+        "late1980s": {
+          "title": "Finales de los 80 - Nace un Sueño",
+          "content": "Al finalizar la década de los años 80, un grupo de padres de familia de Siguatepeque identificó la necesidad de contar con una institución educativa que, además de sustentar principios evangélicos, ofreciera una educación de calidad con el dominio del idioma inglés como una herramienta cultural y técnica que abriera puertas de oportunidad a la niñez y juventud de nuestra comunidad.",
+          "founders": "Junta Directiva Fundadora:",
+          "foundersList": [
+            "Enrique Martínez Reyna",
+            "Esteban Mark",
+            "Dixy Barahona",
+            "Franklin Castañeda",
+            "María Elena Umaña"
+          ]
+        },
+        "early1990": {
+          "title": "Inicio de 1990 - Construyendo Apoyo",
+          "content": "Al iniciar la última década del siglo XX, este anhelo fue compartido con un selecto grupo de padres de familia, cuyo apoyo fue fundamental. Tras realizar los contactos necesarios con una maestra estadounidense de amplios méritos profesionales y espirituales, la profesora Carol Livingston de Bardales, se tomó la decisión de dar inicio a la Escuela Bilingüe Siguatepeque en agosto de 1990."
+        },
+        "august1990": {
+          "title": "Agosto 1990 - Día de Apertura",
+          "content": "La institución comenzó sus labores con trece alumnos en primero y segundo grado. La profesora Bardales asumió la dirección y la enseñanza del idioma inglés, mientras que el área de español fue atendida, en sus inicios, por la profesora Rosita de Flores."
+        },
+        "firstYears": {
+          "title": "Primeros Años - Instalaciones Alquiladas",
+          "content": "Durante un tiempo, la escuela funcionó en aulas alquiladas en el local que actualmente ocupa el Seminario Bíblico Centroamericano (SEBCAH)."
+        },
+        "mid1992": {
+          "title": "Mediados de 1992 - Nuestro Hogar Permanente",
+          "content": "A mediados de 1992, se logró adquirir una casa de habitación y los hangares de lo que hasta entonces había sido la base de la benemérita Misión Alas de Socorro."
+        },
+        "present": {
+          "title": "Actualidad - Sirviendo a Nuestra Comunidad",
+          "content": "En este lugar, funciona actualmente nuestra institución educativa, brindando atención en los niveles de enseñanza: preescolar, primaria y secundaria."
+        }
+      },
+      "legacy": {
+        "title": "Un Legado de Excelencia",
+        "content": "De trece estudiantes a una institución próspera que sirve a cientos de familias, CEE continúa cumpliendo la visión de sus fundadores: proporcionar educación bilingüe centrada en Cristo que abre puertas de oportunidad para los niños y jóvenes de Siguatepeque."
+      },
+      "cta": {
+        "title": "Sé Parte de Nuestra Historia",
+        "description": "Únete al legado de excelencia y continúa la tradición de educación cristiana de calidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "town": {
+      "title": "Nuestro Pueblo",
+      "subtitle": "Siguatepeque - El Corazón de Honduras",
+      "intro": {
+        "title": "Bienvenido a Siguatepeque",
+        "paragraph1": "La escuela está ubicada en la ciudad de Siguatepeque en el corazón de Honduras. La ciudad está aproximadamente a 1200m (4000 pies) sobre el nivel del mar y rodeada de montañas verdes y exuberantes.",
+        "paragraph2": "Siguatepeque tiene una población de aproximadamente 110,000 habitantes y está ubicada a dos horas de las dos ciudades principales de Honduras."
+      },
+      "location": {
+        "title": "Ubicación",
+        "heartOfHonduras": "Ubicada en el corazón de Honduras",
+        "altitude": "1200m (4000 pies) sobre el nivel del mar",
+        "population": "Aproximadamente 110,000 habitantes",
+        "proximity": "A dos horas de las principales ciudades de Honduras"
+      },
+      "climate": {
+        "title": "Clima",
+        "description": "Siguatepeque disfruta de un excelente clima durante todo el año:",
+        "sunnyDays": "Días mayormente soleados",
+        "coolNights": "Noches frescas y cómodas",
+        "mountains": "Rodeada de montañas verdes y exuberantes"
+      },
+      "activities": {
+        "title": "Actividades y Entretenimiento",
+        "subtitle": "Siguatepeque ofrece una comunidad vibrante con diversas actividades y opciones de entretenimiento para familias.",
+        "items": [
+          {
+            "title": "Iglesias y Comunidad",
+            "description": "Varias iglesias evangélicas con estudios bíblicos disponibles"
+          },
+          {
+            "title": "Deportes",
+            "description": "Actividades deportivas tanto organizadas como recreativas"
+          },
+          {
+            "title": "Gastronomía",
+            "description": "Restaurantes que ofrecen comida mexicana, china, rápida, italiana y local"
+          },
+          {
+            "title": "Cine",
+            "description": "Cine moderno para entretenimiento"
+          },
+          {
+            "title": "Eventos Culturales",
+            "description": "Conciertos, festivales, celebraciones, desfiles y más"
+          }
+        ]
+      },
+      "gallery": {
+        "title": "Explora Siguatepeque"
+      },
+      "cta": {
+        "title": "Ven a Visitarnos en Siguatepeque",
+        "description": "Experimenta la belleza y comunidad de nuestra ciudad montañosa mientras proporcionas a tu hijo una educación cristiana de calidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "leadership": {
+      "title": "Liderazgo y Junta Directiva",
+      "subtitle": "Líderes dedicados comprometidos con la excelencia en la educación cristiana",
+      "intro": "Nuestro equipo de liderazgo y junta directiva aportan décadas de experiencia en educación, ministerio y servicio comunitario, guiando a CEE con sabiduría y dedicación.",
+      "board": {
+        "title": "Junta Directiva",
+        "description": "Nuestra junta proporciona supervisión estratégica y gobernanza para asegurar que CEE cumpla su misión de proporcionar educación cristiana de calidad.",
+        "members": [
+          {
+            "name": "Nombre del Miembro",
+            "position": "Título del Puesto",
+            "bio": ""
+          }
+        ]
+      },
+      "directors": {
+        "title": "Directores de la Escuela",
+        "description": "Nuestros directores supervisan las operaciones diarias y la excelencia académica de nuestra institución.",
+        "members": [
+          {
+            "name": "Nombre del Director",
+            "position": "Título del Puesto",
+            "bio": ""
+          }
+        ]
+      },
+      "contact": {
+        "title": "¿Tienes Preguntas para Nuestro Liderazgo?",
+        "description": "Damos la bienvenida a tus consultas y estamos aquí para servir a nuestra comunidad escolar.",
+        "button": "Contáctanos"
+      },
+      "cta": {
+        "title": "Únete a Nuestra Comunidad Escolar",
+        "description": "Experimenta la diferencia que el liderazgo dedicado y la educación centrada en Cristo pueden hacer en la vida de tu hijo.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "ourMission": "Nuestra Misión y Valores"
+      }
+    }
+  },
+  "academics": {
+    "curriculum": {
+      "title": "Currículo",
+      "subtitle": "Educación Bilingüe a Través de Inmersión Parcial",
+      "intro": {
+        "title": "Programa de Inmersión Parcial Temprana",
+        "paragraph1": "CEE es un programa de inmersión parcial temprana, lo que significa que los estudiantes aprenden a través de dos idiomas (español e inglés) desde el momento en que comienzan el jardín de infantes hasta el momento en que se gradúan de la escuela secundaria en el grado 11.",
+        "paragraph2": "Aproximadamente la mitad de las clases de los estudiantes son en español y la otra mitad de sus clases se enseñan en inglés."
+      },
+      "programs": {
+        "title": "Nuestros Programas Académicos",
+        "kindergarten": {
+          "title": "Jardín de Infantes",
+          "name": "Jardín Bilingüe Siguatepeque",
+          "description": "Nuestro programa de jardín de infantes atiende a estudiantes de 4 a 5 años, proporcionando un ambiente enriquecedor donde los jóvenes aprendices comienzan su viaje en la educación bilingüe. A través del aprendizaje basado en el juego y actividades estructuradas, los niños desarrollan habilidades fundamentales en ambos idiomas.",
+          "details": "Nos enfocamos en el desarrollo socioemocional, alfabetización temprana, habilidades numéricas y en construir el amor por el aprendizaje tanto en español como en inglés."
+        },
+        "elementary": {
+          "title": "Escuela Primaria",
+          "name": "Escuela Bilingüe Siguatepeque",
+          "description": "Nuestro programa de primaria (grados 1-6) construye una base académica sólida a través de la instrucción bilingüe inmersiva. Los estudiantes participan en un currículo integral que desarrolla el pensamiento crítico, la resolución de problemas y las habilidades de comunicación.",
+          "englishProgram": "Materias del Programa en Inglés:",
+          "subjects": [
+            "Lengua y Literatura en Inglés",
+            "Matemáticas",
+            "Ciencias",
+            "Estudios Sociales",
+            "Biblia",
+            "Informática"
+          ]
+        },
+        "secondary": {
+          "title": "Escuela Secundaria",
+          "name": "Instituto Bilingüe Siguatepeque",
+          "description": "Nuestro programa secundario (grados 7-11) prepara a los estudiantes para la educación superior y el éxito profesional a través de cursos académicos rigurosos y desarrollo bilingüe continuo.",
+          "grades78": {
+            "title": "Grados 7-8",
+            "subjects": [
+              "Lengua y Literatura en Inglés",
+              "Matemáticas",
+              "Ciencias",
+              "Estudios Sociales",
+              "Educación Física",
+              "Lengua y Literatura en Español",
+              "Biblia"
+            ]
+          },
+          "grade9": {
+            "title": "Grado 9",
+            "subjects": [
+              "Lengua y Literatura en Inglés",
+              "Álgebra I",
+              "Ciencias Generales",
+              "Educación Física",
+              "Lengua y Literatura en Español",
+              "Historia de Honduras",
+              "Biblia"
+            ]
+          },
+          "grades1011": {
+            "title": "Grados 10-11",
+            "subjects": [
+              "Lengua y Literatura en Inglés",
+              "Geometría/Álgebra II",
+              "Biología/Química",
+              "Educación Física",
+              "Lengua y Literatura en Español",
+              "Física",
+              "Biblia"
+            ]
+          }
+        }
+      },
+      "benefits": {
+        "title": "Beneficios de la Educación Bilingüe",
+        "items": [
+          {
+            "title": "Ventajas Cognitivas",
+            "description": "Los estudiantes bilingües desarrollan habilidades mejoradas de resolución de problemas, mejor memoria y mayor flexibilidad mental."
+          },
+          {
+            "title": "Oportunidades Globales",
+            "description": "El dominio de dos idiomas abre puertas a la educación internacional, oportunidades de carrera y experiencias culturales."
+          },
+          {
+            "title": "Excelencia Académica",
+            "description": "Nuestro riguroso currículo bilingüe prepara a los estudiantes para el éxito en la educación superior y la vida profesional."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Descubre el Poder de la Educación Bilingüe",
+        "description": "Únete a CEE y dale a tu hijo la ventaja de una educación bilingüe centrada en Cristo que los prepara para un futuro brillante.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
     }
   },
   "auth": {
