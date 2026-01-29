@@ -15,7 +15,7 @@
     </section>
 
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
+    <section class="pb-0 pt-16 md:py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
           <UIcon
@@ -36,10 +36,11 @@
           <div
             v-for="(belief, index) in beliefs"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-l-4"
+            class="bg-white rounded-lg shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300 border-l-4"
             :class="getBorderColor(index)"
           >
-            <div class="flex items-start gap-6">
+            <!-- Desktop Layout: Icon and content side by side -->
+            <div class="hidden md:flex items-start gap-6">
               <div class="shrink-0">
                 <div
                   class="w-12 h-12 rounded-full flex items-center justify-center"
@@ -56,6 +57,26 @@
                   {{ $rt(belief.content) }}
                 </p>
               </div>
+            </div>
+
+            <!-- Mobile Layout: Icon and title together, description below -->
+            <div class="md:hidden">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-10 h-10 rounded-full flex items-center justify-center"
+                    :class="getIconBgColor(index)"
+                  >
+                    <UIcon :name="belief.icon" class="w-5 h-5 text-white" />
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">
+                  {{ $rt(belief.title) }}
+                </h3>
+              </div>
+              <p class="text-base text-gray-700 leading-relaxed">
+                {{ $rt(belief.content) }}
+              </p>
             </div>
           </div>
         </div>

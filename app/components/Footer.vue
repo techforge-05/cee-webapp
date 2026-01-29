@@ -22,10 +22,10 @@
             <li class="flex items-center gap-2">
               <UIcon name="i-heroicons-phone" class="w-5 h-5 shrink-0" />
               <a
-                href="tel:+50427730140"
+                href="tel:+50493268998"
                 class="hover:text-white transition-colors"
               >
-                +504 2773 0140
+                +504 9326-8998
               </a>
             </li>
             <li class="flex items-center gap-2">
