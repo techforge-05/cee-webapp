@@ -38,16 +38,26 @@
         <div class="space-y-12">
           <!-- Late 1980s -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold"
                 >
                   <UIcon name="i-heroicons-light-bulb" class="w-8 h-8" />
                 </div>
               </div>
-              <div class="flex-1 bg-blue-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-blue-900 mb-4">
+              <div class="flex-1 bg-blue-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold shrink-0"
+                  >
+                    <UIcon name="i-heroicons-light-bulb" class="w-6 h-6" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-blue-900">
+                    {{ $t('about.history.timeline.late1980s.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.late1980s.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed mb-4">
@@ -73,16 +83,26 @@
 
           <!-- Early 1990 -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
                 >
                   <UIcon name="i-heroicons-users" class="w-8 h-8" />
                 </div>
               </div>
-              <div class="flex-1 bg-purple-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-purple-900 mb-4">
+              <div class="flex-1 bg-purple-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold shrink-0"
+                  >
+                    <UIcon name="i-heroicons-users" class="w-6 h-6" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-purple-900">
+                    {{ $t('about.history.timeline.early1990.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-purple-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.early1990.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -94,16 +114,26 @@
 
           <!-- August 1990 -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg"
                 >
                   1990
                 </div>
               </div>
-              <div class="flex-1 bg-indigo-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-indigo-900 mb-4">
+              <div class="flex-1 bg-indigo-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-base shrink-0"
+                  >
+                    1990
+                  </div>
+                  <h3 class="text-2xl font-bold text-indigo-900">
+                    {{ $t('about.history.timeline.august1990.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-indigo-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.august1990.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -115,16 +145,26 @@
 
           <!-- First Years -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold"
                 >
                   <UIcon name="i-heroicons-academic-cap" class="w-8 h-8" />
                 </div>
               </div>
-              <div class="flex-1 bg-violet-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-violet-900 mb-4">
+              <div class="flex-1 bg-violet-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold shrink-0"
+                  >
+                    <UIcon name="i-heroicons-academic-cap" class="w-6 h-6" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-violet-900">
+                    {{ $t('about.history.timeline.firstYears.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-violet-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.firstYears.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -136,16 +176,26 @@
 
           <!-- Mid 1992 -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-fuchsia-500 flex items-center justify-center text-white font-bold text-lg"
                 >
                   1992
                 </div>
               </div>
-              <div class="flex-1 bg-fuchsia-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-fuchsia-900 mb-4">
+              <div class="flex-1 bg-fuchsia-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-fuchsia-500 flex items-center justify-center text-white font-bold text-base shrink-0"
+                  >
+                    1992
+                  </div>
+                  <h3 class="text-2xl font-bold text-fuchsia-900">
+                    {{ $t('about.history.timeline.mid1992.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-fuchsia-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.mid1992.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -157,16 +207,26 @@
 
           <!-- Present Day -->
           <div class="relative">
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
+            <div class="flex flex-col md:flex-row items-start gap-6">
+              <div class="shrink-0 md:block hidden">
                 <div
                   class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
                 >
                   <UIcon name="i-heroicons-building-office-2" class="w-8 h-8" />
                 </div>
               </div>
-              <div class="flex-1 bg-green-50 rounded-lg p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-green-900 mb-4">
+              <div class="flex-1 bg-green-50 rounded-lg p-6 md:p-8 w-full">
+                <div class="flex items-start gap-3 mb-4 md:hidden">
+                  <div
+                    class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold shrink-0"
+                  >
+                    <UIcon name="i-heroicons-building-office-2" class="w-6 h-6" />
+                  </div>
+                  <h3 class="text-2xl font-bold text-green-900">
+                    {{ $t('about.history.timeline.present.title') }}
+                  </h3>
+                </div>
+                <h3 class="text-2xl font-bold text-green-900 mb-4 hidden md:block">
                   {{ $t('about.history.timeline.present.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
