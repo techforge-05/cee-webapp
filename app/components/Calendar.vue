@@ -2,22 +2,43 @@
   <div class="calendar-container">
     <!-- Calendar Header -->
     <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6">
-      <div class="flex items-center justify-between mb-4">
-        <UButton
-          icon="i-heroicons-chevron-left"
-          color="neutral"
-          variant="ghost"
-          @click="previousMonth"
-        />
-        <h2 class="text-2xl font-bold text-gray-900 capitalize">
-          {{ currentMonthName }} {{ currentYear }}
-        </h2>
-        <UButton
-          icon="i-heroicons-chevron-right"
-          color="neutral"
-          variant="ghost"
-          @click="nextMonth"
-        />
+      <div
+        class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4"
+      >
+        <!-- Navigation Arrows and Current Month (Mobile & Desktop) -->
+        <div class="flex items-center gap-2 md:gap-4 w-full md:w-auto">
+          <UButton
+            icon="i-heroicons-chevron-left"
+            color="neutral"
+            variant="ghost"
+            @click="previousMonth"
+            class="bg-revert text-black cursor-pointer hover:bg-gray-300 active:bg-gray-400"
+          />
+          <h2
+            class="text-xl md:text-2xl font-bold text-gray-900 capitalize text-center flex-1 md:flex-none"
+          >
+            {{ currentMonthName }} {{ currentYear }}
+          </h2>
+          <UButton
+            icon="i-heroicons-chevron-right"
+            color="neutral"
+            variant="ghost"
+            @click="nextMonth"
+            class="bg-revert text-black cursor-pointer hover:bg-gray-300 active:bg-gray-400"
+          />
+        </div>
+
+        <!-- Month Dropdown
+        <div class="w-full md:w-auto">
+          <USelectMenu
+            v-model="selectedMonthYear"
+            :items="schoolYearMonths"
+            value-attribute="value"
+            option-attribute="label"
+            @update:model-value="goToSelectedMonth"
+            class="w-full md:w-64"
+          />
+        </div> -->
       </div>
 
       <!-- View Toggle -->
@@ -295,6 +316,7 @@
   ]);
   const showEventModal = ref(false);
   const selectedEventData = ref<any>(null);
+  const selectedMonthYear = ref('');
 
   // Event types configuration
   const eventTypes = [
@@ -322,6 +344,50 @@
     ).toLocaleDateString(locale.value === 'es' ? 'es-HN' : 'en-US', {
       month: 'long',
     });
+  });
+
+  // Generate school year months (July to June)
+  const schoolYearMonths = computed(() => {
+    const months = [];
+    const currentSchoolYear =
+      new Date().getMonth() >= 6
+        ? new Date().getFullYear()
+        : new Date().getFullYear() - 1;
+    const startYear = currentSchoolYear;
+    const endYear = currentSchoolYear + 1;
+
+    // July to December of start year
+    for (let month = 6; month < 12; month++) {
+      const date = new Date(startYear, month, 1);
+      const monthName = date.toLocaleDateString(
+        locale.value === 'es' ? 'es-HN' : 'en-US',
+        { month: 'long' },
+      );
+      months.push({
+        value: `${startYear}-${month}`,
+        label: `${monthName} ${startYear}`,
+      });
+    }
+
+    // January to July of end year
+    for (let month = 0; month <= 6; month++) {
+      const date = new Date(endYear, month, 1);
+      const monthName = date.toLocaleDateString(
+        locale.value === 'es' ? 'es-HN' : 'en-US',
+        { month: 'long' },
+      );
+      months.push({
+        value: `${endYear}-${month}`,
+        label: `${monthName} ${endYear}`,
+      });
+    }
+
+    return months;
+  });
+
+  // Initialize selected month/year
+  watchEffect(() => {
+    selectedMonthYear.value = `${currentYear.value}-${currentMonth.value}`;
   });
 
   // Fetch events from database
@@ -435,6 +501,11 @@
 
   function nextMonth() {
     currentDate.value = new Date(currentYear.value, currentMonth.value + 1, 1);
+  }
+
+  function goToSelectedMonth(value: string) {
+    const [year, month] = value.split('-').map(Number);
+    currentDate.value = new Date(year, month, 1);
   }
 
   function toggleEventType(type: string) {
