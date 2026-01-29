@@ -236,6 +236,28 @@
                 />
                 <span>{{ $t('nav.dropdowns.academics.programs') }}</span>
               </NuxtLink>
+              <NuxtLink
+                :to="localePath('/academics/calendar')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-calendar-days"
+                  class="w-5 h-5 text-yellow-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.academics.calendar') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/academics/grades')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-chart-bar"
+                  class="w-5 h-5 text-yellow-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.academics.grades') }}</span>
+              </NuxtLink>
             </div>
           </div>
 
@@ -274,6 +296,28 @@
                 />
                 <span>{{ $t('nav.dropdowns.studentLife.clubs') }}</span>
               </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/sports')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-trophy"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.sports') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/events')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-calendar"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.events') }}</span>
+              </NuxtLink>
             </div>
           </div>
 
@@ -311,6 +355,28 @@
                   class="w-5 h-5 text-blue-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.parents.calendar') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/parents/handbook')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-book-open"
+                  class="w-5 h-5 text-blue-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.parents.handbook') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/parents/involvement')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-hand-raised"
+                  class="w-5 h-5 text-blue-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.parents.involvement') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -420,6 +486,28 @@
                   class="w-5 h-5 text-orange-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.contact.directions') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/contact/form')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-envelope"
+                  class="w-5 h-5 text-orange-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.contact.form') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/contact/faq')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-question-mark-circle"
+                  class="w-5 h-5 text-orange-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.contact.faq') }}</span>
               </NuxtLink>
             </div>
           </div>
