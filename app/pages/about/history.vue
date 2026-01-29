@@ -30,7 +30,7 @@
     </section>
 
     <!-- Timeline Section -->
-    <section class="py-16">
+    <section class="pt-16 pb-0 md:py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('about.history.timeline.title') }}
@@ -57,7 +57,9 @@
                     {{ $t('about.history.timeline.late1980s.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-blue-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-blue-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.late1980s.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed mb-4">
@@ -102,7 +104,9 @@
                     {{ $t('about.history.timeline.early1990.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-purple-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-purple-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.early1990.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -133,7 +137,9 @@
                     {{ $t('about.history.timeline.august1990.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-indigo-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-indigo-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.august1990.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -164,7 +170,9 @@
                     {{ $t('about.history.timeline.firstYears.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-violet-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-violet-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.firstYears.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -195,7 +203,9 @@
                     {{ $t('about.history.timeline.mid1992.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-fuchsia-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-fuchsia-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.mid1992.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">
@@ -220,13 +230,18 @@
                   <div
                     class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold shrink-0"
                   >
-                    <UIcon name="i-heroicons-building-office-2" class="w-6 h-6" />
+                    <UIcon
+                      name="i-heroicons-building-office-2"
+                      class="w-6 h-6"
+                    />
                   </div>
                   <h3 class="text-2xl font-bold text-green-900">
                     {{ $t('about.history.timeline.present.title') }}
                   </h3>
                 </div>
-                <h3 class="text-2xl font-bold text-green-900 mb-4 hidden md:block">
+                <h3
+                  class="text-2xl font-bold text-green-900 mb-4 hidden md:block"
+                >
                   {{ $t('about.history.timeline.present.title') }}
                 </h3>
                 <p class="text-lg text-gray-800 leading-relaxed">

@@ -85,7 +85,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="outline"
-              class="border-white text-white hover:bg-white hover:text-purple-700"
+              class="border-2 border-white text-white hover:bg-white hover:text-purple-700"
             >
               {{ $t('about.statementOfFaith.cta.contactUs') }}
             </UButton>
