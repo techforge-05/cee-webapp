@@ -1054,6 +1054,282 @@
       "googleSignUpError": "An error occurred during Google sign up"
     }
   },
+  "support": {
+    "whySupport": {
+      "title": "Why Support Our School",
+      "subtitle": "A nonprofit school committed to Christian education",
+      "intro": {
+        "title": "Our Financial Reality",
+        "paragraph1": "As we are primarily a tuition-based private school, many of our students are from middle to upper-income families and form the financial base for our school to remain self-sustainable.",
+        "paragraph2": "While we do receive donations from individuals, churches and organizations outside of Honduras for various special projects, all of the funds for our day-to-day operating costs come from tuition paid by our families that can afford to pay."
+      },
+      "nonprofit": {
+        "title": "We Are a Nonprofit Organization",
+        "description": "CEE operates as a nonprofit educational institution, meaning all resources are reinvested in providing quality Christian education to our students."
+      },
+      "impact": {
+        "title": "Your Support Makes a Difference",
+        "items": [
+          {
+            "title": "Student Scholarships",
+            "description": "Help provide quality education to students who otherwise couldn't afford it."
+          },
+          {
+            "title": "Facility Improvements",
+            "description": "Contribute to projects that enhance our learning environment."
+          },
+          {
+            "title": "Educational Resources",
+            "description": "Support the purchase of materials, technology, and books for our students."
+          },
+          {
+            "title": "Special Programs",
+            "description": "Make extracurricular activities and enrichment programs possible."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Join Our Mission",
+        "description": "Your support helps ensure that we can continue providing excellent Christian education to the next generation.",
+        "donate": "Donate Now",
+        "learnMore": "Learn About Scholarships"
+      }
+    },
+    "scholarships": {
+      "title": "Scholarships Impact",
+      "subtitle": "Transforming lives through educational opportunities",
+      "intro": "Our scholarship program makes it possible for talented and dedicated students to receive quality Christian education, regardless of their family's financial circumstances.",
+      "purpose": {
+        "title": "Purpose of Our Scholarships",
+        "description": "We believe that no student should be denied a quality education due to financial limitations. Our scholarship program seeks to identify and support students with academic potential, good character, and demonstrated financial need."
+      },
+      "types": {
+        "title": "Types of Financial Aid",
+        "items": [
+          {
+            "title": "Academic Merit Scholarships",
+            "description": "For students who demonstrate outstanding academic excellence."
+          },
+          {
+            "title": "Need-Based Scholarships",
+            "description": "For families demonstrating genuine financial need."
+          },
+          {
+            "title": "Partial Scholarships",
+            "description": "Partial tuition discounts based on individual assessment."
+          },
+          {
+            "title": "Payment Plans",
+            "description": "Flexible payment options for qualifying families."
+          }
+        ]
+      },
+      "impact": {
+        "title": "The Impact of Your Generosity",
+        "description": "Each scholarship represents a transformed life, a supported family, and a strengthened community.",
+        "stats": [
+          {
+            "label": "Students Benefited Annually",
+            "description": "Students receive some form of financial aid each year"
+          },
+          {
+            "label": "Years of Impact",
+            "description": "Over three decades providing educational opportunities"
+          },
+          {
+            "label": "Successful Graduates",
+            "description": "Many scholarship graduates are now professionals contributing to society"
+          }
+        ]
+      },
+      "testimonial": {
+        "title": "Success Stories",
+        "description": "CEE scholarship students have gone on to study at prestigious universities and now serve as professionals in various fields, living testimonies to the impact of quality Christian education."
+      },
+      "cta": {
+        "title": "Support a Scholarship",
+        "description": "Your donation can change a student's life forever.",
+        "donate": "Donate to Scholarships",
+        "contactUs": "Contact Us"
+      }
+    },
+    "donate": {
+      "title": "Donate",
+      "subtitle": "Invest in the future of Christian education",
+      "intro": "Your generosity makes our mission possible. Every donation, regardless of size, contributes to providing quality Christian education to students in Siguatepeque.",
+      "ways": {
+        "title": "Ways to Donate",
+        "items": [
+          {
+            "title": "Monetary Donation",
+            "description": "Direct financial contributions to support operations, scholarships, or specific projects."
+          },
+          {
+            "title": "In-Kind Donation",
+            "description": "Educational materials, equipment, supplies, or resources that benefit our students."
+          },
+          {
+            "title": "Student Sponsorship",
+            "description": "Directly support a specific student's education through our scholarship program."
+          },
+          {
+            "title": "Project Donation",
+            "description": "Contribute to specific facility improvement projects or special programs."
+          }
+        ]
+      },
+      "wishLists": {
+        "title": "Amazon Wish Lists",
+        "description": "You can support us by purchasing items directly from our Amazon wish lists:",
+        "items": [
+          {
+            "title": "Library Wish List",
+            "description": "Books and reading resources for our school library",
+            "url": "https://www.amazon.com/hz/wishlist/ls/1GXXD5448PK4A?ref_=wl_share"
+          },
+          {
+            "title": "Teacher Wish List",
+            "description": "Materials and supplies for our educators",
+            "url": "https://www.amazon.com/hz/wishlist/ls/2ZGEXCX383LYT?ref_=wl_share"
+          },
+          {
+            "title": "School Wish List",
+            "description": "General supplies and equipment for the school",
+            "url": "https://www.amazon.com/hz/wishlist/ls/1SAAB5KWFS1PW?ref_=wl_share"
+          }
+        ]
+      },
+      "spanishBooks": {
+        "title": "Spanish Books for the Library",
+        "description": "Our library always needs Spanish books to support our students' bilingual education. If you would like to donate Spanish books, please contact us to coordinate delivery."
+      },
+      "contact": {
+        "title": "Donation Contact Information",
+        "description": "For monetary donations, bank transfers, or to coordinate in-kind donations, please contact us:",
+        "email": "donations{'@'}cee.edu.hn",
+        "phone": "+504 2773-0123"
+      },
+      "cta": {
+        "title": "Thank You for Your Generosity",
+        "description": "Every donation makes a difference in our students' lives.",
+        "viewProjects": "View Current Projects",
+        "contactUs": "Contact Us"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Current initiatives to improve our school",
+      "intro": "Learn about the projects we are working on to improve the facilities and educational experience for our students. Your support can help make these projects a reality.",
+      "current": {
+        "title": "Current Projects",
+        "items": [
+          {
+            "title": "Multipurpose Center",
+            "slug": "multipurpose-center",
+            "description": "A new space for events, indoor sports, and community gatherings.",
+            "status": "In planning",
+            "goal": "Create a versatile space serving multiple educational and community purposes."
+          },
+          {
+            "title": "Water Cistern",
+            "slug": "water-cistern",
+            "description": "Water storage system to ensure continuous supply during the dry season.",
+            "status": "Fundraising",
+            "goal": "Ensure reliable water access for the entire school community."
+          },
+          {
+            "title": "Ceilings",
+            "slug": "ceilings",
+            "description": "Installation of ceilings in classrooms to improve the learning environment.",
+            "status": "In progress",
+            "goal": "Improve acoustics and thermal comfort in classrooms."
+          },
+          {
+            "title": "Library Floor",
+            "slug": "library-floor",
+            "description": "Renovation of the library floor to create a more welcoming and durable space.",
+            "status": "Fundraising",
+            "goal": "Provide a comfortable and safe reading environment for our students."
+          }
+        ]
+      },
+      "howToHelp": {
+        "title": "How You Can Help",
+        "description": "There are many ways to contribute to our projects:",
+        "ways": [
+          "Monetary donations designated to specific projects",
+          "Donations of construction materials",
+          "Volunteering with construction or technical skills",
+          "Spreading the word about our needs"
+        ]
+      },
+      "cta": {
+        "title": "Support a Project",
+        "description": "Your contribution helps create better learning spaces for our students.",
+        "donate": "Donate to Projects",
+        "contactUs": "Contact Us"
+      }
+    },
+    "projectDetails": {
+      "multipurposeCenter": {
+        "title": "Multipurpose Center",
+        "subtitle": "A versatile space for our school community",
+        "description": "The Multipurpose Center will be a large, covered space serving multiple purposes for our school community. This project represents one of our institution's greatest needs.",
+        "needs": [
+          "Space for school events and graduations",
+          "Covered area for sports during rainy season",
+          "Venue for parent and community meetings",
+          "Space for extracurricular activities"
+        ],
+        "status": "In planning",
+        "goal": "Construction of a multipurpose building of approximately 500 square meters"
+      },
+      "waterCistern": {
+        "title": "Water Cistern",
+        "subtitle": "Ensuring water supply year-round",
+        "description": "During the dry season, water supply in Siguatepeque can be irregular. A water cistern will ensure our students and staff always have access to clean water.",
+        "needs": [
+          "Storage for periods of scarcity",
+          "Water for bathrooms and hygiene",
+          "Irrigation for campus green areas",
+          "Emergency reserve"
+        ],
+        "status": "Fundraising",
+        "goal": "Construction of a cistern with 20,000 liter capacity"
+      },
+      "ceilings": {
+        "title": "Ceilings",
+        "subtitle": "Improving the learning environment",
+        "description": "Installing ceilings in our classrooms will significantly improve the learning environment by reducing outside noise, improving temperature, and creating a more professional space.",
+        "needs": [
+          "Better temperature control",
+          "Noise and echo reduction",
+          "More professional appearance",
+          "Protection from dust and dirt"
+        ],
+        "status": "In progress",
+        "goal": "Installation of ceilings in all classrooms on campus"
+      },
+      "libraryFloor": {
+        "title": "Library Floor",
+        "subtitle": "A welcoming space for readers",
+        "description": "The current library floor needs renovation to create a more comfortable and safe environment for our students. A new floor will transform this space into an even more welcoming place for reading and study.",
+        "needs": [
+          "Safe and level surface",
+          "Durable, easy-to-clean material",
+          "More welcoming environment",
+          "Better space aesthetics"
+        ],
+        "status": "Fundraising",
+        "goal": "Installation of high-quality ceramic flooring throughout the library area"
+      },
+      "backToProjects": "Back to Projects",
+      "donateToProject": "Donate to This Project",
+      "currentStatus": "Current Status",
+      "projectGoal": "Project Goal",
+      "whyNeeded": "Why This Is Needed"
+    }
+  },
   "home": {
     "hero": {
       "videoAlt": "Educational center presentation video"

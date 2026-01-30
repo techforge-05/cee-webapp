@@ -1,0 +1,248 @@
+<template>
+  <div class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section
+      class="relative bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-20"
+    >
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          {{ $t('support.donate.title') }}
+        </h1>
+        <p class="text-xl md:text-2xl text-teal-100">
+          {{ $t('support.donate.subtitle') }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-4xl mx-auto text-center">
+          <UIcon
+            name="i-heroicons-gift"
+            class="w-16 h-16 text-red-600 mx-auto mb-6"
+          />
+          <p class="text-xl text-gray-700 leading-relaxed">
+            {{ $t('support.donate.intro') }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ways to Donate Section -->
+    <section class="py-16">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+          {{ $t('support.donate.ways.title') }}
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            v-for="(item, index) in waysWithIcons"
+            :key="index"
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center shrink-0"
+              >
+                <UIcon :name="item.icon" class="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">
+                  {{ $rt(item.title) }}
+                </h3>
+                <p class="text-gray-700">
+                  {{ $rt(item.description) }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amazon Wish Lists Section -->
+    <section class="py-16 bg-orange-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="text-center mb-12">
+          <UIcon
+            name="i-heroicons-shopping-cart"
+            class="w-16 h-16 text-orange-600 mx-auto mb-6"
+          />
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ $t('support.donate.wishLists.title') }}
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            {{ $t('support.donate.wishLists.description') }}
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <a
+            v-for="(wishList, index) in wishLists"
+            :key="index"
+            :href="$rt(wishList.url)"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mb-4"
+              >
+                <UIcon :name="wishListIcons[index]" class="w-8 h-8 text-white" />
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                {{ $rt(wishList.title) }}
+              </h3>
+              <p class="text-gray-600 mb-4">
+                {{ $rt(wishList.description) }}
+              </p>
+              <span
+                class="inline-flex items-center gap-2 text-orange-600 font-semibold"
+              >
+                <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-5 h-5" />
+                Amazon
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spanish Books Section -->
+    <section class="py-16">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="bg-red-50 rounded-2xl p-8 md:p-12">
+          <div class="flex flex-col md:flex-row items-start gap-6">
+            <div
+              class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shrink-0"
+            >
+              <UIcon name="i-heroicons-book-open" class="w-8 h-8 text-red-600" />
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-red-900 mb-4">
+                {{ $t('support.donate.spanishBooks.title') }}
+              </h2>
+              <p class="text-lg text-gray-800 leading-relaxed">
+                {{ $t('support.donate.spanishBooks.description') }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-2xl mx-auto text-center">
+          <UIcon
+            name="i-heroicons-envelope"
+            class="w-16 h-16 text-red-600 mx-auto mb-6"
+          />
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ $t('support.donate.contact.title') }}
+          </h2>
+          <p class="text-lg text-gray-700 mb-8">
+            {{ $t('support.donate.contact.description') }}
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-3">
+              <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
+              <a
+                href="mailto:donaciones@cee.edu.hn"
+                class="text-lg text-gray-800 hover:text-red-600 transition-colors"
+              >
+                {{ $t('support.donate.contact.email') }}
+              </a>
+            </div>
+            <div class="flex items-center justify-center gap-3">
+              <UIcon name="i-heroicons-phone" class="w-6 h-6 text-red-600" />
+              <a
+                href="tel:+50427730123"
+                class="text-lg text-gray-800 hover:text-red-600 transition-colors"
+              >
+                {{ $t('support.donate.contact.phone') }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section
+      class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
+    >
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          {{ $t('support.donate.cta.title') }}
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          {{ $t('support.donate.cta.description') }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <UButton
+            :to="localePath('/support/projects')"
+            size="lg"
+            variant="solid"
+            class="bg-white text-teal-700 hover:bg-gray-100"
+          >
+            {{ $t('support.donate.cta.viewProjects') }}
+          </UButton>
+          <UButton
+            :to="localePath('/contact/info')"
+            size="lg"
+            variant="outline"
+            class="border-2 border-white text-white hover:bg-white hover:text-teal-600"
+          >
+            {{ $t('support.donate.cta.contactUs') }}
+          </UButton>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup lang="ts">
+const localePath = useLocalePath();
+const { tm, rt: $rt } = useI18n();
+
+const waysIcons = [
+  'i-heroicons-currency-dollar',
+  'i-heroicons-cube',
+  'i-heroicons-user-plus',
+  'i-heroicons-wrench-screwdriver',
+];
+
+const wishListIcons = [
+  'i-heroicons-book-open',
+  'i-heroicons-academic-cap',
+  'i-heroicons-building-library',
+];
+
+const waysWithIcons = computed(() => {
+  const items = tm('support.donate.ways.items') as any[];
+  return items.map((item: any, index: number) => ({
+    ...item,
+    icon: waysIcons[index],
+  }));
+});
+
+const wishLists = computed(() => {
+  return tm('support.donate.wishLists.items') as any[];
+});
+
+useHead({
+  title: 'Donate - CEE',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Support CEE through donations. Learn about different ways to give, including Amazon wish lists, monetary donations, and in-kind contributions.',
+    },
+  ],
+});
+</script>

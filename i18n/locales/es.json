@@ -1054,6 +1054,282 @@
       "googleSignUpError": "Ocurrió un error durante el registro con Google"
     }
   },
+  "support": {
+    "whySupport": {
+      "title": "Por Qué Apoyar Nuestra Escuela",
+      "subtitle": "Una escuela sin fines de lucro comprometida con la educación cristiana",
+      "intro": {
+        "title": "Nuestra Realidad Financiera",
+        "paragraph1": "Como somos principalmente una escuela privada basada en la matrícula, muchos de nuestros estudiantes provienen de familias de ingresos medios a altos y forman la base financiera para que nuestra escuela siga siendo autosostenible.",
+        "paragraph2": "Aunque recibimos donaciones de individuos, iglesias y organizaciones fuera de Honduras para varios proyectos especiales, todos los fondos para nuestros costos operativos diarios provienen de la matrícula pagada por nuestras familias que pueden pagar."
+      },
+      "nonprofit": {
+        "title": "Somos Una Organización Sin Fines de Lucro",
+        "description": "CEE opera como una institución educativa sin fines de lucro, lo que significa que todos los recursos se reinvierten en proporcionar educación cristiana de calidad a nuestros estudiantes."
+      },
+      "impact": {
+        "title": "Su Apoyo Marca la Diferencia",
+        "items": [
+          {
+            "title": "Becas para Estudiantes",
+            "description": "Ayude a proporcionar educación de calidad a estudiantes que de otro modo no podrían pagarla."
+          },
+          {
+            "title": "Mejoras a las Instalaciones",
+            "description": "Contribuya a proyectos que mejoran nuestro ambiente de aprendizaje."
+          },
+          {
+            "title": "Recursos Educativos",
+            "description": "Apoye la compra de materiales, tecnología y libros para nuestros estudiantes."
+          },
+          {
+            "title": "Programas Especiales",
+            "description": "Haga posibles actividades extracurriculares y programas enriquecedores."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Únase a Nuestra Misión",
+        "description": "Su apoyo ayuda a asegurar que podamos continuar proporcionando educación cristiana de excelencia a la próxima generación.",
+        "donate": "Donar Ahora",
+        "learnMore": "Conozca Sobre Becas"
+      }
+    },
+    "scholarships": {
+      "title": "Impacto de Becas",
+      "subtitle": "Transformando vidas a través de oportunidades educativas",
+      "intro": "Nuestro programa de becas hace posible que estudiantes talentosos y dedicados reciban una educación cristiana de calidad, independientemente de las circunstancias financieras de sus familias.",
+      "purpose": {
+        "title": "Propósito de Nuestras Becas",
+        "description": "Creemos que ningún estudiante debería ser privado de una educación de calidad debido a limitaciones financieras. Nuestro programa de becas busca identificar y apoyar a estudiantes con potencial académico, buen carácter y necesidad económica demostrada."
+      },
+      "types": {
+        "title": "Tipos de Ayuda Financiera",
+        "items": [
+          {
+            "title": "Becas por Mérito Académico",
+            "description": "Para estudiantes que demuestran excelencia académica sobresaliente."
+          },
+          {
+            "title": "Becas por Necesidad",
+            "description": "Para familias que demuestran necesidad financiera genuina."
+          },
+          {
+            "title": "Becas Parciales",
+            "description": "Descuentos parciales en la matrícula basados en evaluación individual."
+          },
+          {
+            "title": "Planes de Pago",
+            "description": "Opciones de pago flexibles para familias que califican."
+          }
+        ]
+      },
+      "impact": {
+        "title": "El Impacto de Su Generosidad",
+        "description": "Cada beca representa una vida transformada, una familia apoyada y una comunidad fortalecida.",
+        "stats": [
+          {
+            "label": "Estudiantes Beneficiados Anualmente",
+            "description": "Estudiantes reciben algún tipo de ayuda financiera cada año"
+          },
+          {
+            "label": "Años de Impacto",
+            "description": "Más de tres décadas proporcionando oportunidades educativas"
+          },
+          {
+            "label": "Graduados Exitosos",
+            "description": "Muchos graduados becados ahora son profesionales contribuyendo a la sociedad"
+          }
+        ]
+      },
+      "testimonial": {
+        "title": "Historias de Éxito",
+        "description": "Los estudiantes becados de CEE han continuado sus estudios en universidades prestigiosas y ahora sirven como profesionales en diversas áreas, siendo testimonios vivos del impacto de una educación cristiana de calidad."
+      },
+      "cta": {
+        "title": "Apoye una Beca",
+        "description": "Su donación puede cambiar la vida de un estudiante para siempre.",
+        "donate": "Donar a Becas",
+        "contactUs": "Contáctenos"
+      }
+    },
+    "donate": {
+      "title": "Donar",
+      "subtitle": "Invierta en el futuro de la educación cristiana",
+      "intro": "Su generosidad hace posible nuestra misión. Cada donación, sin importar el tamaño, contribuye a proporcionar educación cristiana de calidad a los estudiantes de Siguatepeque.",
+      "ways": {
+        "title": "Formas de Donar",
+        "items": [
+          {
+            "title": "Donación Monetaria",
+            "description": "Contribuciones financieras directas para apoyar operaciones, becas o proyectos específicos."
+          },
+          {
+            "title": "Donación en Especie",
+            "description": "Materiales educativos, equipos, suministros o recursos que beneficien a nuestros estudiantes."
+          },
+          {
+            "title": "Patrocinio de Estudiante",
+            "description": "Apoye directamente la educación de un estudiante específico a través de nuestro programa de becas."
+          },
+          {
+            "title": "Donación para Proyectos",
+            "description": "Contribuya a proyectos específicos de mejora de instalaciones o programas especiales."
+          }
+        ]
+      },
+      "wishLists": {
+        "title": "Listas de Deseos de Amazon",
+        "description": "Puede apoyarnos comprando artículos directamente de nuestras listas de deseos de Amazon:",
+        "items": [
+          {
+            "title": "Lista de Deseos de la Biblioteca",
+            "description": "Libros y recursos de lectura para nuestra biblioteca escolar",
+            "url": "https://www.amazon.com/hz/wishlist/ls/1GXXD5448PK4A?ref_=wl_share"
+          },
+          {
+            "title": "Lista de Deseos de Maestros",
+            "description": "Materiales y suministros para nuestros educadores",
+            "url": "https://www.amazon.com/hz/wishlist/ls/2ZGEXCX383LYT?ref_=wl_share"
+          },
+          {
+            "title": "Lista de Deseos de la Escuela",
+            "description": "Suministros generales y equipos para la escuela",
+            "url": "https://www.amazon.com/hz/wishlist/ls/1SAAB5KWFS1PW?ref_=wl_share"
+          }
+        ]
+      },
+      "spanishBooks": {
+        "title": "Libros en Español para la Biblioteca",
+        "description": "Nuestra biblioteca siempre necesita libros en español para apoyar la educación bilingüe de nuestros estudiantes. Si desea donar libros en español, contáctenos para coordinar la entrega."
+      },
+      "contact": {
+        "title": "Información de Contacto para Donaciones",
+        "description": "Para donaciones monetarias, transferencias bancarias o coordinar donaciones en especie, por favor contáctenos:",
+        "email": "donaciones{'@'}cee.edu.hn",
+        "phone": "+504 2773-0123"
+      },
+      "cta": {
+        "title": "Gracias por Su Generosidad",
+        "description": "Cada donación marca una diferencia en la vida de nuestros estudiantes.",
+        "viewProjects": "Ver Proyectos Actuales",
+        "contactUs": "Contáctenos"
+      }
+    },
+    "projects": {
+      "title": "Proyectos",
+      "subtitle": "Iniciativas actuales para mejorar nuestra escuela",
+      "intro": "Conozca los proyectos en los que estamos trabajando para mejorar las instalaciones y la experiencia educativa de nuestros estudiantes. Su apoyo puede hacer que estos proyectos se hagan realidad.",
+      "current": {
+        "title": "Proyectos Actuales",
+        "items": [
+          {
+            "title": "Centro Multiusos",
+            "slug": "multipurpose-center",
+            "description": "Un nuevo espacio para eventos, deportes bajo techo y reuniones comunitarias.",
+            "status": "En planificación",
+            "goal": "Crear un espacio versátil que sirva múltiples propósitos educativos y comunitarios."
+          },
+          {
+            "title": "Cisterna de Agua",
+            "slug": "water-cistern",
+            "description": "Sistema de almacenamiento de agua para garantizar suministro continuo durante la temporada seca.",
+            "status": "En recaudación",
+            "goal": "Asegurar acceso confiable al agua para toda la comunidad escolar."
+          },
+          {
+            "title": "Cielos Rasos",
+            "slug": "ceilings",
+            "description": "Instalación de cielos rasos en las aulas para mejorar el ambiente de aprendizaje.",
+            "status": "En progreso",
+            "goal": "Mejorar la acústica y el confort térmico en las aulas."
+          },
+          {
+            "title": "Piso de la Biblioteca",
+            "slug": "library-floor",
+            "description": "Renovación del piso de la biblioteca para crear un espacio más acogedor y duradero.",
+            "status": "En recaudación",
+            "goal": "Proporcionar un ambiente de lectura cómodo y seguro para nuestros estudiantes."
+          }
+        ]
+      },
+      "howToHelp": {
+        "title": "Cómo Puede Ayudar",
+        "description": "Hay muchas formas de contribuir a nuestros proyectos:",
+        "ways": [
+          "Donaciones monetarias designadas a proyectos específicos",
+          "Donaciones de materiales de construcción",
+          "Voluntariado con habilidades de construcción o técnicas",
+          "Difundir información sobre nuestras necesidades"
+        ]
+      },
+      "cta": {
+        "title": "Apoye un Proyecto",
+        "description": "Su contribución ayuda a crear mejores espacios de aprendizaje para nuestros estudiantes.",
+        "donate": "Donar a Proyectos",
+        "contactUs": "Contáctenos"
+      }
+    },
+    "projectDetails": {
+      "multipurposeCenter": {
+        "title": "Centro Multiusos",
+        "subtitle": "Un espacio versátil para nuestra comunidad escolar",
+        "description": "El Centro Multiusos será un espacio grande y cubierto que servirá múltiples propósitos para nuestra comunidad escolar. Este proyecto representa una de las mayores necesidades de nuestra institución.",
+        "needs": [
+          "Espacio para eventos escolares y graduaciones",
+          "Área cubierta para deportes en época de lluvia",
+          "Lugar para reuniones de padres y comunidad",
+          "Espacio para actividades extracurriculares"
+        ],
+        "status": "En planificación",
+        "goal": "Construcción de un edificio multiusos de aproximadamente 500 metros cuadrados"
+      },
+      "waterCistern": {
+        "title": "Cisterna de Agua",
+        "subtitle": "Garantizando el suministro de agua todo el año",
+        "description": "Durante la temporada seca, el suministro de agua en Siguatepeque puede ser irregular. Una cisterna de agua asegurará que nuestros estudiantes y personal siempre tengan acceso a agua limpia.",
+        "needs": [
+          "Almacenamiento para períodos de escasez",
+          "Agua para baños e higiene",
+          "Riego para áreas verdes del campus",
+          "Reserva para emergencias"
+        ],
+        "status": "En recaudación de fondos",
+        "goal": "Construcción de una cisterna con capacidad de 20,000 litros"
+      },
+      "ceilings": {
+        "title": "Cielos Rasos",
+        "subtitle": "Mejorando el ambiente de aprendizaje",
+        "description": "La instalación de cielos rasos en nuestras aulas mejorará significativamente el ambiente de aprendizaje, reduciendo el ruido exterior, mejorando la temperatura y creando un espacio más profesional.",
+        "needs": [
+          "Mejor control de temperatura",
+          "Reducción de ruido y eco",
+          "Apariencia más profesional",
+          "Protección contra polvo y suciedad"
+        ],
+        "status": "En progreso",
+        "goal": "Instalación de cielos rasos en todas las aulas del campus"
+      },
+      "libraryFloor": {
+        "title": "Piso de la Biblioteca",
+        "subtitle": "Un espacio acogedor para lectores",
+        "description": "El piso actual de la biblioteca necesita renovación para crear un ambiente más cómodo y seguro para nuestros estudiantes. Un nuevo piso transformará este espacio en un lugar aún más acogedor para la lectura y el estudio.",
+        "needs": [
+          "Superficie segura y nivelada",
+          "Material duradero y fácil de limpiar",
+          "Ambiente más acogedor",
+          "Mejor estética del espacio"
+        ],
+        "status": "En recaudación de fondos",
+        "goal": "Instalación de piso de cerámica de alta calidad en toda el área de la biblioteca"
+      },
+      "backToProjects": "Volver a Proyectos",
+      "donateToProject": "Donar a Este Proyecto",
+      "currentStatus": "Estado Actual",
+      "projectGoal": "Objetivo del Proyecto",
+      "whyNeeded": "Por Qué Es Necesario"
+    }
+  },
   "home": {
     "hero": {
       "videoAlt": "Video de presentación del centro educativo"
