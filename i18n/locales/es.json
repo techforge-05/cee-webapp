@@ -1330,6 +1330,204 @@
       "whyNeeded": "Por Qué Es Necesario"
     }
   },
+  "contact": {
+    "info": {
+      "title": "Información de Contacto",
+      "subtitle": "Estamos aquí para ayudarle",
+      "intro": "¿Tiene preguntas sobre nuestra escuela? Nos encantaría saber de usted. Aquí le mostramos cómo puede contactarnos.",
+      "phone": {
+        "title": "Teléfono / WhatsApp",
+        "number": "+504 9326-8998",
+        "description": "Llámenos o envíenos un mensaje de WhatsApp"
+      },
+      "email": {
+        "title": "Correo Electrónico",
+        "address": "info{'@'}cee.edu.hn",
+        "description": "Envíenos un correo y le responderemos lo antes posible"
+      },
+      "hours": {
+        "title": "Horario de Atención",
+        "schedule": "Lunes - Viernes",
+        "time": "7:15 AM - 3:00 PM",
+        "description": "Estamos disponibles durante este horario para atenderle"
+      },
+      "address": {
+        "title": "Dirección",
+        "line1": "Comunidad Educativa Evangélica",
+        "line2": "Siguatepeque, Comayagua",
+        "line3": "Honduras"
+      },
+      "cta": {
+        "title": "¿Necesita Más Información?",
+        "description": "No dude en contactarnos. Estamos encantados de responder cualquier pregunta que tenga sobre nuestra escuela.",
+        "contactForm": "Enviar un Mensaje",
+        "directions": "Cómo Llegar"
+      }
+    },
+    "directions": {
+      "title": "Direcciones",
+      "subtitle": "Cómo encontrarnos",
+      "intro": "Nuestra escuela está convenientemente ubicada en el corazón de Siguatepeque. Aquí le mostramos cómo encontrarnos.",
+      "address": {
+        "title": "Nuestra Ubicación",
+        "full": "Comunidad Educativa Evangélica, Siguatepeque, Comayagua, Honduras"
+      },
+      "fromTegucigalpa": {
+        "title": "Desde Tegucigalpa",
+        "description": "Tome la carretera CA-5 norte hacia San Pedro Sula. Siguatepeque está aproximadamente a 2 horas de Tegucigalpa. Tome la salida hacia el centro de Siguatepeque."
+      },
+      "fromSanPedro": {
+        "title": "Desde San Pedro Sula",
+        "description": "Tome la carretera CA-5 sur hacia Tegucigalpa. Siguatepeque está aproximadamente a 2 horas de San Pedro Sula. Tome la salida hacia el centro de Siguatepeque."
+      },
+      "landmarks": {
+        "title": "Puntos de Referencia Cercanos",
+        "items": [
+          "Cerca de la antigua base de la Misión Alas de Socorro",
+          "Cerca del centro de Siguatepeque",
+          "Cerca del Seminario Bíblico Centroamericano (SEBCAH)"
+        ]
+      },
+      "parking": {
+        "title": "Estacionamiento",
+        "description": "Hay estacionamiento limitado disponible en las instalaciones de la escuela. Por favor siga la señalización al llegar."
+      },
+      "cta": {
+        "title": "¿Necesita Ayuda para Encontrarnos?",
+        "description": "Si necesita direcciones adicionales o asistencia, no dude en contactarnos.",
+        "contactUs": "Contáctenos",
+        "callUs": "Llámenos"
+      }
+    },
+    "form": {
+      "title": "Formulario de Contacto",
+      "subtitle": "Envíenos un mensaje",
+      "intro": "Complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible.",
+      "fields": {
+        "name": {
+          "label": "Nombre Completo",
+          "placeholder": "Ingrese su nombre completo"
+        },
+        "email": {
+          "label": "Correo Electrónico",
+          "placeholder": "usted{'@'}ejemplo.com"
+        },
+        "phone": {
+          "label": "Número de Teléfono (Opcional)",
+          "placeholder": "+504 0000-0000"
+        },
+        "subject": {
+          "label": "Asunto",
+          "placeholder": "¿Sobre qué es su consulta?",
+          "options": [
+            "Información General",
+            "Admisiones",
+            "Becas",
+            "Donaciones",
+            "Empleo",
+            "Otro"
+          ]
+        },
+        "message": {
+          "label": "Mensaje",
+          "placeholder": "Escriba su mensaje aquí..."
+        }
+      },
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": {
+        "title": "¡Mensaje Enviado!",
+        "description": "Gracias por contactarnos. Le responderemos lo antes posible."
+      },
+      "error": {
+        "title": "Error al Enviar Mensaje",
+        "description": "Hubo un error al enviar su mensaje. Por favor intente de nuevo o contáctenos directamente."
+      },
+      "validation": {
+        "nameRequired": "El nombre es requerido",
+        "emailRequired": "El correo electrónico es requerido",
+        "emailInvalid": "Por favor ingrese una dirección de correo electrónico válida",
+        "subjectRequired": "Por favor seleccione un asunto",
+        "messageRequired": "El mensaje es requerido",
+        "messageTooShort": "El mensaje debe tener al menos 10 caracteres"
+      },
+      "cta": {
+        "title": "¿Prefiere Hablar Directamente?",
+        "description": "Si prefiere hablar con alguien directamente, no dude en llamarnos o visitarnos durante el horario de oficina.",
+        "viewInfo": "Ver Información de Contacto",
+        "callUs": "Llámenos"
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Encuentre respuestas a preguntas comunes",
+      "intro": "Aquí encontrará respuestas a las preguntas que escuchamos con más frecuencia. Si no encuentra lo que busca, no dude en contactarnos.",
+      "categories": {
+        "admissions": "Admisiones",
+        "academics": "Académicos",
+        "financialAid": "Ayuda Financiera",
+        "general": "General"
+      },
+      "questions": [
+        {
+          "category": "admissions",
+          "question": "¿Qué grados ofrece CEE?",
+          "answer": "CEE ofrece educación desde Pre-Kinder hasta 11° grado (Bachillerato). Nuestros programas incluyen educación infantil temprana, escuela primaria, escuela media y escuela secundaria."
+        },
+        {
+          "category": "admissions",
+          "question": "¿Cuál es el proceso de inscripción?",
+          "answer": "El proceso de inscripción incluye completar una solicitud, presentar los documentos requeridos, una entrevista con la familia y una evaluación del estudiante. Contacte nuestra oficina de admisiones para detalles específicos y fechas límite."
+        },
+        {
+          "category": "admissions",
+          "question": "¿Cuándo es el período de matrícula?",
+          "answer": "El período principal de matrícula es típicamente de noviembre a enero para el próximo año escolar. Sin embargo, podemos aceptar estudiantes en otros momentos dependiendo de la disponibilidad."
+        },
+        {
+          "category": "academics",
+          "question": "¿CEE es una escuela bilingüe?",
+          "answer": "Sí, CEE es una escuela bilingüe de inmersión parcial temprana. Los estudiantes aprenden a través del español e inglés desde jardín de infantes hasta la graduación, con aproximadamente la mitad de sus clases en cada idioma."
+        },
+        {
+          "category": "academics",
+          "question": "¿Cuál es el enfoque educativo de la escuela?",
+          "answer": "Ofrecemos educación centrada en Cristo donde los principios bíblicos se integran en todas las materias. Nuestro objetivo es desarrollar a los estudiantes académica, espiritual, social y físicamente."
+        },
+        {
+          "category": "academics",
+          "question": "¿Qué actividades extracurriculares hay disponibles?",
+          "answer": "Ofrecemos deportes (fútbol, baloncesto, voleibol), clubes (lectura, arte, música, teatro), proyectos de servicio y varias actividades culturales y académicas durante el año escolar."
+        },
+        {
+          "category": "financialAid",
+          "question": "¿CEE ofrece becas?",
+          "answer": "Sí, ofrecemos varios tipos de ayuda financiera incluyendo becas por mérito académico, becas por necesidad económica y planes de pago flexibles para familias que califiquen."
+        },
+        {
+          "category": "financialAid",
+          "question": "¿Cómo puedo solicitar ayuda financiera?",
+          "answer": "Contacte nuestra oficina administrativa para conocer las opciones de ayuda financiera disponibles y el proceso de solicitud. Cada caso se evalúa individualmente basándose en el mérito académico y la necesidad económica demostrada."
+        },
+        {
+          "category": "general",
+          "question": "¿Cuál es el horario de la escuela?",
+          "answer": "El horario escolar es de lunes a viernes. El horario de oficina es de 7:15 AM a 3:00 PM. Los horarios específicos de clases varían según el nivel de grado."
+        },
+        {
+          "category": "general",
+          "question": "¿Cómo puedo apoyar a CEE?",
+          "answer": "Puede apoyar nuestra escuela a través de donaciones monetarias, contribuciones en especie, voluntariado o comprando artículos de nuestras listas de deseos de Amazon. Visite nuestra página de Apoyo para más información."
+        }
+      ],
+      "stillHaveQuestions": {
+        "title": "¿Aún Tiene Preguntas?",
+        "description": "Si no encontró la respuesta que buscaba, estamos aquí para ayudarle.",
+        "contactUs": "Contáctenos",
+        "callUs": "Llámenos"
+      }
+    }
+  },
   "home": {
     "hero": {
       "videoAlt": "Video de presentación del centro educativo"

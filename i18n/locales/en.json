@@ -1271,6 +1271,11 @@
       }
     },
     "projectDetails": {
+      "backToProjects": "Back to Projects",
+      "donateToProject": "Donate to This Project",
+      "currentStatus": "Current Status",
+      "projectGoal": "Project Goal",
+      "whyNeeded": "Why This Is Needed",
       "multipurposeCenter": {
         "title": "Multipurpose Center",
         "subtitle": "A versatile space for our school community",
@@ -1322,12 +1327,205 @@
         ],
         "status": "Fundraising",
         "goal": "Installation of high-quality ceramic flooring throughout the library area"
+      }
+    }
+  },
+  "contact": {
+    "info": {
+      "title": "Contact Information",
+      "subtitle": "We're here to help you",
+      "intro": "Have questions about our school? We'd love to hear from you. Here's how you can reach us.",
+      "phone": {
+        "title": "Phone / WhatsApp",
+        "number": "+504 9326-8998",
+        "description": "Call or send us a WhatsApp message"
       },
-      "backToProjects": "Back to Projects",
-      "donateToProject": "Donate to This Project",
-      "currentStatus": "Current Status",
-      "projectGoal": "Project Goal",
-      "whyNeeded": "Why This Is Needed"
+      "email": {
+        "title": "Email",
+        "address": "info{'@'}cee.edu.hn",
+        "description": "Send us an email and we'll respond as soon as possible"
+      },
+      "hours": {
+        "title": "Office Hours",
+        "schedule": "Monday - Friday",
+        "time": "7:15 AM - 3:00 PM",
+        "description": "We're available during these hours to assist you"
+      },
+      "address": {
+        "title": "Address",
+        "line1": "Comunidad Educativa Evangélica",
+        "line2": "Siguatepeque, Comayagua",
+        "line3": "Honduras"
+      },
+      "cta": {
+        "title": "Need More Information?",
+        "description": "Don't hesitate to reach out. We're happy to answer any questions you may have about our school.",
+        "contactForm": "Send a Message",
+        "directions": "Get Directions"
+      }
+    },
+    "directions": {
+      "title": "Directions",
+      "subtitle": "How to find us",
+      "intro": "Our school is conveniently located in the heart of Siguatepeque. Here's how to find us.",
+      "address": {
+        "title": "Our Location",
+        "full": "Comunidad Educativa Evangélica, Siguatepeque, Comayagua, Honduras"
+      },
+      "fromTegucigalpa": {
+        "title": "From Tegucigalpa",
+        "description": "Take the CA-5 highway north towards San Pedro Sula. Siguatepeque is approximately 2 hours from Tegucigalpa. Take the exit towards downtown Siguatepeque."
+      },
+      "fromSanPedro": {
+        "title": "From San Pedro Sula",
+        "description": "Take the CA-5 highway south towards Tegucigalpa. Siguatepeque is approximately 2 hours from San Pedro Sula. Take the exit towards downtown Siguatepeque."
+      },
+      "landmarks": {
+        "title": "Nearby Landmarks",
+        "items": [
+          "Near the former Wings of Mercy Mission base",
+          "Close to downtown Siguatepeque",
+          "Near the Central American Biblical Seminary (SEBCAH)"
+        ]
+      },
+      "parking": {
+        "title": "Parking",
+        "description": "Limited parking is available on the school grounds. Please follow signage upon arrival."
+      },
+      "cta": {
+        "title": "Need Help Finding Us?",
+        "description": "If you need additional directions or assistance, please don't hesitate to contact us.",
+        "contactUs": "Contact Us",
+        "callUs": "Call Us"
+      }
+    },
+    "form": {
+      "title": "Contact Form",
+      "subtitle": "Send us a message",
+      "intro": "Fill out the form below and we'll get back to you as soon as possible.",
+      "fields": {
+        "name": {
+          "label": "Full Name",
+          "placeholder": "Enter your full name"
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "you{'@'}example.com"
+        },
+        "phone": {
+          "label": "Phone Number (Optional)",
+          "placeholder": "+504 0000-0000"
+        },
+        "subject": {
+          "label": "Subject",
+          "placeholder": "What is your inquiry about?",
+          "options": [
+            "General Information",
+            "Admissions",
+            "Scholarships",
+            "Donations",
+            "Employment",
+            "Other"
+          ]
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Write your message here..."
+        }
+      },
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": {
+        "title": "Message Sent!",
+        "description": "Thank you for contacting us. We'll respond to your message as soon as possible."
+      },
+      "error": {
+        "title": "Error Sending Message",
+        "description": "There was an error sending your message. Please try again or contact us directly."
+      },
+      "validation": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "subjectRequired": "Please select a subject",
+        "messageRequired": "Message is required",
+        "messageTooShort": "Message must be at least 10 characters"
+      },
+      "cta": {
+        "title": "Prefer to Talk Directly?",
+        "description": "If you prefer to speak with someone directly, feel free to call us or visit during office hours.",
+        "viewInfo": "View Contact Information",
+        "callUs": "Call Us"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions",
+      "intro": "Here you'll find answers to the questions we hear most frequently. If you don't find what you're looking for, please don't hesitate to contact us.",
+      "categories": {
+        "admissions": "Admissions",
+        "academics": "Academics",
+        "financialAid": "Financial Aid",
+        "general": "General"
+      },
+      "questions": [
+        {
+          "category": "admissions",
+          "question": "What grades does CEE offer?",
+          "answer": "CEE offers education from Pre-Kindergarten through Grade 11 (Bachillerato). Our programs include early childhood education, elementary school, middle school, and high school."
+        },
+        {
+          "category": "admissions",
+          "question": "What is the enrollment process?",
+          "answer": "The enrollment process includes completing an application, submitting required documents, an interview with the family, and an assessment of the student. Contact our admissions office for specific details and deadlines."
+        },
+        {
+          "category": "admissions",
+          "question": "When is the enrollment period?",
+          "answer": "The main enrollment period is typically from November to January for the upcoming school year. However, we may accept students at other times depending on availability."
+        },
+        {
+          "category": "academics",
+          "question": "Is CEE a bilingual school?",
+          "answer": "Yes, CEE is an early partial immersion bilingual school. Students learn through both Spanish and English from kindergarten through graduation, with approximately half of their classes in each language."
+        },
+        {
+          "category": "academics",
+          "question": "What is the school's educational approach?",
+          "answer": "We offer Christ-centered education where biblical principles are integrated throughout all subjects. Our goal is to develop students academically, spiritually, socially, and physically."
+        },
+        {
+          "category": "academics",
+          "question": "What extracurricular activities are available?",
+          "answer": "We offer sports (soccer, basketball, volleyball), clubs (reading, art, music, theater), service projects, and various cultural and academic activities throughout the school year."
+        },
+        {
+          "category": "financialAid",
+          "question": "Does CEE offer scholarships?",
+          "answer": "Yes, we offer various types of financial aid including merit-based scholarships, need-based scholarships, and flexible payment plans for qualifying families."
+        },
+        {
+          "category": "financialAid",
+          "question": "How can I apply for financial aid?",
+          "answer": "Contact our administrative office to learn about available financial aid options and the application process. Each case is evaluated individually based on academic merit and demonstrated financial need."
+        },
+        {
+          "category": "general",
+          "question": "What are the school hours?",
+          "answer": "School hours are Monday through Friday. Office hours are from 7:15 AM to 3:00 PM. Specific class schedules vary by grade level."
+        },
+        {
+          "category": "general",
+          "question": "How can I support CEE?",
+          "answer": "You can support our school through monetary donations, in-kind contributions, volunteering, or purchasing items from our Amazon wish lists. Visit our Support page for more information."
+        }
+      ],
+      "stillHaveQuestions": {
+        "title": "Still Have Questions?",
+        "description": "If you didn't find the answer you were looking for, we're here to help.",
+        "contactUs": "Contact Us",
+        "callUs": "Call Us"
+      }
     }
   },
   "home": {
