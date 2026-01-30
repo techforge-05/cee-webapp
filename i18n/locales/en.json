@@ -31,10 +31,11 @@
         "grades": "Grades & Levels"
       },
       "studentLife": {
-        "activities": "Activities",
-        "clubs": "Clubs & Organizations",
-        "sports": "Sports",
-        "events": "Events"
+        "sportsClubs": "Sports & Clubs",
+        "serviceProjects": "Service Projects",
+        "library": "Library",
+        "upcomingEvents": "Upcoming Events",
+        "gallery": "Pictures Gallery"
       },
       "parents": {
         "resources": "Resources",
@@ -733,6 +734,287 @@
       "cta": {
         "title": "Ready to Join CEE?",
         "description": "Enroll your child in our Christ-centered bilingual education program and become part of our community.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    }
+  },
+  "studentLife": {
+    "sportsClubs": {
+      "title": "Sports & Clubs",
+      "subtitle": "Building character through teamwork and creativity",
+      "intro": "At CEE, we believe in developing the whole student. Our sports and clubs programs provide opportunities for physical fitness, creative expression, teamwork, and personal growth outside the classroom.",
+      "sports": {
+        "title": "Sports Programs",
+        "description": "Our athletic programs promote physical fitness, teamwork, discipline, and sportsmanship. Students learn valuable life lessons through competition and collaboration.",
+        "items": [
+          {
+            "title": "Soccer",
+            "description": "Our most popular sport, with teams for various age groups competing in local and regional tournaments."
+          },
+          {
+            "title": "Volleyball",
+            "description": "A favorite among students, promoting teamwork and coordination through competitive and recreational play."
+          },
+          {
+            "title": "Basketball",
+            "description": "Indoor court action that develops agility, strategy, and team cooperation."
+          },
+          {
+            "title": "Dodgeball",
+            "description": "A fun, high-energy activity that builds quick reflexes and encourages active participation."
+          }
+        ]
+      },
+      "clubs": {
+        "title": "Clubs & Activities",
+        "description": "Our clubs offer students the chance to explore their interests, develop new skills, and connect with like-minded peers in a supportive environment.",
+        "items": [
+          {
+            "title": "Reading Club",
+            "description": "Fostering a love for literature through book discussions, reading challenges, and author studies."
+          },
+          {
+            "title": "Painting & Art Club",
+            "description": "Exploring visual arts through various mediums including watercolors, acrylics, and mixed media."
+          },
+          {
+            "title": "Music Club",
+            "description": "Learning instruments, vocal training, and music appreciation in a fun, collaborative setting."
+          },
+          {
+            "title": "Theater Club",
+            "description": "Developing confidence and creativity through drama, acting workshops, and school productions."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Get Involved in Student Life",
+        "description": "Encourage your child to explore their interests and develop new skills through our sports and clubs programs.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "serviceProjects": {
+      "title": "Service Projects",
+      "subtitle": "Learning to serve others with Christ's love",
+      "intro": "Service is at the heart of our Christian education. Through various service projects, our students learn to put their faith into action by serving their community and those in need.",
+      "whyService": {
+        "title": "Why Service Matters",
+        "description": "Service learning connects academic content with meaningful community service. Students develop empathy, leadership skills, and a deeper understanding of their responsibility to others.",
+        "benefits": [
+          {
+            "title": "Character Development",
+            "description": "Students build compassion, empathy, and a servant's heart through hands-on service experiences."
+          },
+          {
+            "title": "Leadership Skills",
+            "description": "Taking initiative in service projects develops confidence and leadership abilities."
+          },
+          {
+            "title": "Community Connection",
+            "description": "Students become active, engaged members of their local community."
+          },
+          {
+            "title": "Faith in Action",
+            "description": "Service provides opportunities to live out biblical principles of love and care for others."
+          }
+        ]
+      },
+      "projects": {
+        "title": "Our Service Initiatives",
+        "items": [
+          {
+            "title": "Community Outreach",
+            "description": "Regular visits to local nursing homes, orphanages, and community centers to share God's love."
+          },
+          {
+            "title": "Environmental Stewardship",
+            "description": "Campus beautification, tree planting, and environmental awareness campaigns."
+          },
+          {
+            "title": "Food Drives",
+            "description": "Collecting and distributing food to families in need throughout the year."
+          },
+          {
+            "title": "Tutoring Programs",
+            "description": "Older students mentoring younger students in academic subjects."
+          }
+        ]
+      },
+      "getInvolved": {
+        "title": "How to Get Involved",
+        "description": "Parents and community members are welcome to partner with us in service projects. Contact us to learn about upcoming opportunities."
+      },
+      "cta": {
+        "title": "Join Us in Making a Difference",
+        "description": "Discover how your family can participate in our service learning programs and make a positive impact in our community.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "library": {
+      "title": "School Library",
+      "subtitle": "A gateway to knowledge and imagination",
+      "intro": "Our school library is a vibrant learning hub that supports academic success and fosters a lifelong love of reading. With resources in both English and Spanish, we serve our bilingual community with excellence.",
+      "purpose": {
+        "title": "Purpose of the Library",
+        "description": "The CEE library exists to support the educational mission of our school by providing students, teachers, and staff with access to quality resources that enhance learning, encourage reading, and develop research skills. We believe that a well-resourced library is essential to academic excellence and spiritual growth.",
+        "goals": [
+          "Support curriculum and classroom instruction",
+          "Promote reading for pleasure and information",
+          "Develop information literacy skills",
+          "Provide a quiet space for study and reflection",
+          "Offer resources in both English and Spanish"
+        ]
+      },
+      "hours": {
+        "title": "Library Hours",
+        "description": "The library is open during school hours to serve our students and staff.",
+        "schedule": [
+          {
+            "day": "Monday - Friday",
+            "hours": "7:30 AM - 3:00 PM"
+          },
+          {
+            "day": "During Lunch",
+            "hours": "Open for reading and study"
+          },
+          {
+            "day": "After School",
+            "hours": "By appointment only"
+          }
+        ]
+      },
+      "gradeSupport": {
+        "title": "Grade-Level Reading Support",
+        "description": "Our library provides age-appropriate resources and programs tailored to each grade level.",
+        "levels": [
+          {
+            "title": "Early Childhood (Pre-K - K)",
+            "description": "Picture books, read-aloud sessions, and early literacy activities to build foundational reading skills."
+          },
+          {
+            "title": "Elementary (Grades 1-6)",
+            "description": "Chapter books, reading challenges, and research projects that grow with students' abilities."
+          },
+          {
+            "title": "Secondary (Grades 7-11)",
+            "description": "Young adult literature, academic resources, and research databases for advanced learning."
+          }
+        ]
+      },
+      "borrowing": {
+        "title": "Borrowing Rules",
+        "description": "To ensure fair access for all students, please follow these borrowing guidelines:",
+        "rules": [
+          "Students may borrow up to 2 books at a time",
+          "Loan period is 2 weeks with one renewal allowed",
+          "Reference materials must be used in the library",
+          "Lost or damaged books must be replaced or paid for",
+          "Return books on time so others can enjoy them"
+        ]
+      },
+      "contact": {
+        "title": "Contact the Library",
+        "description": "Have questions about our library services or need help finding resources?",
+        "librarian": "School Librarian",
+        "email": "library{'@'}cee.edu.hn",
+        "location": "Main Building, First Floor"
+      },
+      "cta": {
+        "title": "Discover the Joy of Reading",
+        "description": "Our library is ready to support your child's educational journey with resources that inspire curiosity and learning.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "upcomingEvents": {
+      "title": "Upcoming Events",
+      "subtitle": "Stay connected with what's happening at CEE",
+      "intro": "Don't miss out on the exciting events happening at our school. From academic showcases to cultural celebrations, there's always something special to look forward to at CEE.",
+      "featured": {
+        "title": "Featured Event",
+        "noEvent": "No upcoming events at this time",
+        "checkBack": "Check back soon for new events!"
+      },
+      "carousel": {
+        "title": "More Upcoming Events",
+        "viewCalendar": "View Full Calendar",
+        "noDate": "Date TBA"
+      },
+      "stayInformed": {
+        "title": "Stay Informed",
+        "description": "Never miss an important event! Check our academic calendar regularly and follow our announcements for the latest updates on school events and activities."
+      },
+      "annualEvents": {
+        "title": "Annual Events",
+        "description": "Every year, our school community comes together for these special events that have become beloved traditions at CEE.",
+        "events": [
+          {
+            "title": "Sports Day",
+            "description": "A day of athletic competitions, team spirit, and healthy fun for all grade levels.",
+            "timing": "Every April",
+            "image_url": ""
+          },
+          {
+            "title": "Science Fair",
+            "description": "Students showcase their scientific discoveries, experiments, and research projects.",
+            "timing": "Every March",
+            "image_url": ""
+          },
+          {
+            "title": "Christmas Fair",
+            "description": "A festive celebration with performances, crafts, food, and holiday cheer for the whole family.",
+            "timing": "Every December",
+            "image_url": ""
+          },
+          {
+            "title": "Talent Show",
+            "description": "Students display their unique talents in music, dance, drama, and other performing arts.",
+            "timing": "Every May",
+            "image_url": ""
+          },
+          {
+            "title": "Graduation Ceremony",
+            "description": "Celebrating the achievements of our graduating students as they move on to the next chapter.",
+            "timing": "Every June",
+            "image_url": ""
+          },
+          {
+            "title": "Cultural Week",
+            "description": "Celebrating Honduran heritage and the rich diversity of our school community.",
+            "timing": "Every September",
+            "image_url": ""
+          }
+        ]
+      },
+      "cta": {
+        "title": "Be Part of Our Community",
+        "description": "Join us at our events and become part of the CEE family. There's a place for everyone in our community.",
+        "learnMore": "Learn About Admissions",
+        "contactUs": "Contact Us"
+      }
+    },
+    "gallery": {
+      "title": "Yearly Pictures Gallery",
+      "subtitle": "Capturing memories throughout the school years",
+      "intro": "Browse through our collection of photos from various school events, activities, and memorable moments throughout the years.",
+      "selectYear": "Select Year",
+      "allYears": "All Years",
+      "categories": {
+        "all": "All Photos",
+        "events": "Events",
+        "sports": "Sports",
+        "arts": "Arts",
+        "community": "Community",
+        "academics": "Academics",
+        "celebrations": "Celebrations"
+      },
+      "noPhotos": "No photos available for this selection",
+      "cta": {
+        "title": "Create Memories With Us",
+        "description": "Join our school community and be part of these wonderful moments.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }

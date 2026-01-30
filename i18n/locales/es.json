@@ -31,10 +31,11 @@
         "grades": "Grados y Niveles"
       },
       "studentLife": {
-        "activities": "Actividades",
-        "clubs": "Clubes y Organizaciones",
-        "sports": "Deportes",
-        "events": "Eventos"
+        "sportsClubs": "Deportes y Clubes",
+        "serviceProjects": "Proyectos de Servicio",
+        "library": "Biblioteca",
+        "upcomingEvents": "Próximos Eventos",
+        "gallery": "Galería de Fotos"
       },
       "parents": {
         "resources": "Recursos",
@@ -733,6 +734,287 @@
       "cta": {
         "title": "¿Listo para Unirte a CEE?",
         "description": "Inscribe a tu hijo en nuestro programa de educación bilingüe centrada en Cristo y forma parte de nuestra comunidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    }
+  },
+  "studentLife": {
+    "sportsClubs": {
+      "title": "Deportes y Clubes",
+      "subtitle": "Formando carácter a través del trabajo en equipo y la creatividad",
+      "intro": "En CEE, creemos en el desarrollo integral del estudiante. Nuestros programas de deportes y clubes brindan oportunidades para el acondicionamiento físico, la expresión creativa, el trabajo en equipo y el crecimiento personal fuera del aula.",
+      "sports": {
+        "title": "Programas Deportivos",
+        "description": "Nuestros programas atléticos promueven el acondicionamiento físico, el trabajo en equipo, la disciplina y el espíritu deportivo. Los estudiantes aprenden valiosas lecciones de vida a través de la competencia y la colaboración.",
+        "items": [
+          {
+            "title": "Fútbol",
+            "description": "Nuestro deporte más popular, con equipos para varios grupos de edad que compiten en torneos locales y regionales."
+          },
+          {
+            "title": "Voleibol",
+            "description": "Un favorito entre los estudiantes, promoviendo el trabajo en equipo y la coordinación a través del juego competitivo y recreativo."
+          },
+          {
+            "title": "Baloncesto",
+            "description": "Acción en cancha cubierta que desarrolla agilidad, estrategia y cooperación en equipo."
+          },
+          {
+            "title": "Quemados",
+            "description": "Una actividad divertida y llena de energía que desarrolla reflejos rápidos y fomenta la participación activa."
+          }
+        ]
+      },
+      "clubs": {
+        "title": "Clubes y Actividades",
+        "description": "Nuestros clubes ofrecen a los estudiantes la oportunidad de explorar sus intereses, desarrollar nuevas habilidades y conectarse con compañeros de ideas afines en un ambiente de apoyo.",
+        "items": [
+          {
+            "title": "Club de Lectura",
+            "description": "Fomentando el amor por la literatura a través de discusiones de libros, desafíos de lectura y estudios de autores."
+          },
+          {
+            "title": "Club de Pintura y Arte",
+            "description": "Explorando las artes visuales a través de varios medios incluyendo acuarelas, acrílicos y técnicas mixtas."
+          },
+          {
+            "title": "Club de Música",
+            "description": "Aprendiendo instrumentos, entrenamiento vocal y apreciación musical en un ambiente divertido y colaborativo."
+          },
+          {
+            "title": "Club de Teatro",
+            "description": "Desarrollando confianza y creatividad a través del drama, talleres de actuación y producciones escolares."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Involúcrate en la Vida Estudiantil",
+        "description": "Anima a tu hijo a explorar sus intereses y desarrollar nuevas habilidades a través de nuestros programas de deportes y clubes.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "serviceProjects": {
+      "title": "Proyectos de Servicio",
+      "subtitle": "Aprendiendo a servir a otros con el amor de Cristo",
+      "intro": "El servicio está en el corazón de nuestra educación cristiana. A través de varios proyectos de servicio, nuestros estudiantes aprenden a poner su fe en acción sirviendo a su comunidad y a los necesitados.",
+      "whyService": {
+        "title": "Por Qué el Servicio es Importante",
+        "description": "El aprendizaje-servicio conecta el contenido académico con el servicio comunitario significativo. Los estudiantes desarrollan empatía, habilidades de liderazgo y una comprensión más profunda de su responsabilidad hacia los demás.",
+        "benefits": [
+          {
+            "title": "Desarrollo del Carácter",
+            "description": "Los estudiantes construyen compasión, empatía y un corazón de servicio a través de experiencias prácticas."
+          },
+          {
+            "title": "Habilidades de Liderazgo",
+            "description": "Tomar iniciativa en proyectos de servicio desarrolla confianza y habilidades de liderazgo."
+          },
+          {
+            "title": "Conexión Comunitaria",
+            "description": "Los estudiantes se convierten en miembros activos y comprometidos de su comunidad local."
+          },
+          {
+            "title": "Fe en Acción",
+            "description": "El servicio brinda oportunidades para vivir los principios bíblicos de amor y cuidado por los demás."
+          }
+        ]
+      },
+      "projects": {
+        "title": "Nuestras Iniciativas de Servicio",
+        "items": [
+          {
+            "title": "Alcance Comunitario",
+            "description": "Visitas regulares a hogares de ancianos, orfanatos y centros comunitarios para compartir el amor de Dios."
+          },
+          {
+            "title": "Cuidado del Medio Ambiente",
+            "description": "Embellecimiento del campus, plantación de árboles y campañas de concientización ambiental."
+          },
+          {
+            "title": "Colectas de Alimentos",
+            "description": "Recolección y distribución de alimentos a familias necesitadas durante todo el año."
+          },
+          {
+            "title": "Programas de Tutoría",
+            "description": "Estudiantes mayores mentoreando a estudiantes más jóvenes en materias académicas."
+          }
+        ]
+      },
+      "getInvolved": {
+        "title": "Cómo Participar",
+        "description": "Los padres y miembros de la comunidad son bienvenidos a asociarse con nosotros en proyectos de servicio. Contáctanos para conocer las próximas oportunidades."
+      },
+      "cta": {
+        "title": "Únete a Nosotros para Hacer la Diferencia",
+        "description": "Descubre cómo tu familia puede participar en nuestros programas de aprendizaje-servicio y hacer un impacto positivo en nuestra comunidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "library": {
+      "title": "Biblioteca Escolar",
+      "subtitle": "Una puerta al conocimiento y la imaginación",
+      "intro": "Nuestra biblioteca escolar es un centro de aprendizaje vibrante que apoya el éxito académico y fomenta el amor por la lectura de por vida. Con recursos en inglés y español, servimos a nuestra comunidad bilingüe con excelencia.",
+      "purpose": {
+        "title": "Propósito de la Biblioteca",
+        "description": "La biblioteca de CEE existe para apoyar la misión educativa de nuestra escuela proporcionando a estudiantes, maestros y personal acceso a recursos de calidad que mejoran el aprendizaje, fomentan la lectura y desarrollan habilidades de investigación. Creemos que una biblioteca bien equipada es esencial para la excelencia académica y el crecimiento espiritual.",
+        "goals": [
+          "Apoyar el currículo y la instrucción en el aula",
+          "Promover la lectura por placer e información",
+          "Desarrollar habilidades de alfabetización informacional",
+          "Proporcionar un espacio tranquilo para el estudio y la reflexión",
+          "Ofrecer recursos en inglés y español"
+        ]
+      },
+      "hours": {
+        "title": "Horario de la Biblioteca",
+        "description": "La biblioteca está abierta durante el horario escolar para servir a nuestros estudiantes y personal.",
+        "schedule": [
+          {
+            "day": "Lunes - Viernes",
+            "hours": "7:30 AM - 3:00 PM"
+          },
+          {
+            "day": "Durante el Almuerzo",
+            "hours": "Abierta para lectura y estudio"
+          },
+          {
+            "day": "Después de Clases",
+            "hours": "Solo con cita previa"
+          }
+        ]
+      },
+      "gradeSupport": {
+        "title": "Apoyo de Lectura por Nivel",
+        "description": "Nuestra biblioteca proporciona recursos y programas apropiados para cada nivel de grado.",
+        "levels": [
+          {
+            "title": "Primera Infancia (Pre-K - K)",
+            "description": "Libros ilustrados, sesiones de lectura en voz alta y actividades de alfabetización temprana para construir habilidades fundamentales de lectura."
+          },
+          {
+            "title": "Primaria (Grados 1-6)",
+            "description": "Libros por capítulos, desafíos de lectura y proyectos de investigación que crecen con las habilidades de los estudiantes."
+          },
+          {
+            "title": "Secundaria (Grados 7-11)",
+            "description": "Literatura juvenil, recursos académicos y bases de datos de investigación para el aprendizaje avanzado."
+          }
+        ]
+      },
+      "borrowing": {
+        "title": "Reglas de Préstamo",
+        "description": "Para garantizar el acceso justo para todos los estudiantes, por favor sigue estas pautas de préstamo:",
+        "rules": [
+          "Los estudiantes pueden tomar prestados hasta 2 libros a la vez",
+          "El período de préstamo es de 2 semanas con una renovación permitida",
+          "Los materiales de referencia deben usarse en la biblioteca",
+          "Los libros perdidos o dañados deben ser reemplazados o pagados",
+          "Devuelve los libros a tiempo para que otros puedan disfrutarlos"
+        ]
+      },
+      "contact": {
+        "title": "Contacta la Biblioteca",
+        "description": "¿Tienes preguntas sobre nuestros servicios de biblioteca o necesitas ayuda para encontrar recursos?",
+        "librarian": "Bibliotecaria Escolar",
+        "email": "biblioteca{'@'}cee.edu.hn",
+        "location": "Edificio Principal, Primer Piso"
+      },
+      "cta": {
+        "title": "Descubre el Placer de la Lectura",
+        "description": "Nuestra biblioteca está lista para apoyar el viaje educativo de tu hijo con recursos que inspiran curiosidad y aprendizaje.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "upcomingEvents": {
+      "title": "Próximos Eventos",
+      "subtitle": "Mantente conectado con lo que sucede en CEE",
+      "intro": "No te pierdas los emocionantes eventos que suceden en nuestra escuela. Desde exhibiciones académicas hasta celebraciones culturales, siempre hay algo especial que esperar en CEE.",
+      "featured": {
+        "title": "Evento Destacado",
+        "noEvent": "No hay eventos próximos en este momento",
+        "checkBack": "¡Vuelve pronto para nuevos eventos!"
+      },
+      "carousel": {
+        "title": "Más Eventos Próximos",
+        "viewCalendar": "Ver Calendario Completo",
+        "noDate": "Fecha por confirmar"
+      },
+      "stayInformed": {
+        "title": "Mantente Informado",
+        "description": "¡No te pierdas ningún evento importante! Revisa nuestro calendario académico regularmente y sigue nuestros anuncios para las últimas actualizaciones sobre eventos y actividades escolares."
+      },
+      "annualEvents": {
+        "title": "Eventos Anuales",
+        "description": "Cada año, nuestra comunidad escolar se reúne para estos eventos especiales que se han convertido en tradiciones queridas en CEE.",
+        "events": [
+          {
+            "title": "Día Deportivo",
+            "description": "Un día de competencias atléticas, espíritu de equipo y diversión saludable para todos los niveles.",
+            "timing": "Cada Abril",
+            "image_url": ""
+          },
+          {
+            "title": "Feria de Ciencias",
+            "description": "Los estudiantes exhiben sus descubrimientos científicos, experimentos y proyectos de investigación.",
+            "timing": "Cada Marzo",
+            "image_url": ""
+          },
+          {
+            "title": "Feria Navideña",
+            "description": "Una celebración festiva con presentaciones, manualidades, comida y alegría navideña para toda la familia.",
+            "timing": "Cada Diciembre",
+            "image_url": ""
+          },
+          {
+            "title": "Show de Talentos",
+            "description": "Los estudiantes muestran sus talentos únicos en música, danza, drama y otras artes escénicas.",
+            "timing": "Cada Mayo",
+            "image_url": ""
+          },
+          {
+            "title": "Ceremonia de Graduación",
+            "description": "Celebrando los logros de nuestros estudiantes graduados mientras avanzan al siguiente capítulo.",
+            "timing": "Cada Junio",
+            "image_url": ""
+          },
+          {
+            "title": "Semana Cultural",
+            "description": "Celebrando la herencia hondureña y la rica diversidad de nuestra comunidad escolar.",
+            "timing": "Cada Septiembre",
+            "image_url": ""
+          }
+        ]
+      },
+      "cta": {
+        "title": "Sé Parte de Nuestra Comunidad",
+        "description": "Únete a nosotros en nuestros eventos y forma parte de la familia CEE. Hay un lugar para todos en nuestra comunidad.",
+        "learnMore": "Conoce Sobre Admisiones",
+        "contactUs": "Contáctanos"
+      }
+    },
+    "gallery": {
+      "title": "Galería de Fotos Anuales",
+      "subtitle": "Capturando recuerdos a través de los años escolares",
+      "intro": "Navega por nuestra colección de fotos de varios eventos escolares, actividades y momentos memorables a lo largo de los años.",
+      "selectYear": "Seleccionar Año",
+      "allYears": "Todos los Años",
+      "categories": {
+        "all": "Todas las Fotos",
+        "events": "Eventos",
+        "sports": "Deportes",
+        "arts": "Artes",
+        "community": "Comunidad",
+        "academics": "Académicos",
+        "celebrations": "Celebraciones"
+      },
+      "noPhotos": "No hay fotos disponibles para esta selección",
+      "cta": {
+        "title": "Crea Recuerdos Con Nosotros",
+        "description": "Únete a nuestra comunidad escolar y sé parte de estos maravillosos momentos.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }

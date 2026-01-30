@@ -2,6 +2,16 @@
   <div class="calendar-container">
     <!-- Calendar Header -->
     <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 mb-6">
+      <!-- Month Dropdown -->
+      <div class="w-full hidden md:flex justify-end md:w-auto">
+        <USelect
+          v-model="selectedMonthYear"
+          :items="schoolYearMonths"
+          value-key="value"
+          @update:model-value="goToSelectedMonth"
+          class="w-full md:w-64"
+        />
+      </div>
       <div
         class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4"
       >
@@ -27,18 +37,6 @@
             class="bg-revert text-black cursor-pointer hover:bg-gray-300 active:bg-gray-400"
           />
         </div>
-
-        <!-- Month Dropdown
-        <div class="w-full md:w-auto">
-          <USelectMenu
-            v-model="selectedMonthYear"
-            :items="schoolYearMonths"
-            value-attribute="value"
-            option-attribute="label"
-            @update:model-value="goToSelectedMonth"
-            class="w-full md:w-64"
-          />
-        </div> -->
       </div>
 
       <!-- View Toggle -->
@@ -96,7 +94,7 @@
       </div>
 
       <!-- Calendar Grid -->
-      <div class="grid grid-cols-7 divide-x divide-y">
+      <div class="grid grid-cols-7 divide-x divide-y divide-gray-200">
         <div
           v-for="(day, index) in calendarDays"
           :key="index"
@@ -183,7 +181,7 @@
             </div>
           </div>
           <UBadge :color="getEventTypeColor(event.event_type)" size="lg">
-            {{ $t(`calendar.eventTypes.${event.event_type}`) }}
+            {{ $t(`academics.calendar.eventTypes.${event.event_type}`) }}
           </UBadge>
         </div>
       </div>
@@ -200,102 +198,111 @@
     </div>
 
     <!-- Event Detail Modal -->
-    <UModal v-model="showEventModal">
-      <div v-if="selectedEventData" class="p-6">
-        <div class="flex items-start gap-4 mb-4">
-          <div
-            class="shrink-0 w-16 h-16 rounded-lg flex items-center justify-center"
-            :class="getEventBgClass(selectedEventData.event_type)"
-          >
-            <UIcon
-              :name="getEventIcon(selectedEventData.event_type)"
-              class="w-8 h-8 text-white"
-            />
-          </div>
-          <div class="flex-1">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">
-              {{
-                locale === 'es'
-                  ? selectedEventData.title_es
-                  : selectedEventData.title_en
-              }}
-            </h2>
-            <UBadge :color="getEventTypeColor(selectedEventData.event_type)">
-              {{
-                $t(
-                  `academics.calendar.eventTypes.${selectedEventData.event_type}`,
-                )
-              }}
-            </UBadge>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <div class="flex items-start gap-3">
-            <UIcon
-              name="i-heroicons-calendar"
-              class="w-5 h-5 text-gray-500 mt-0.5"
-            />
-            <div>
-              <p class="font-semibold text-gray-900">
-                {{ $t('academics.calendar.date') }}
-              </p>
-              <p class="text-gray-700">
-                {{
-                  formatDateRange(
-                    selectedEventData.start_date,
-                    selectedEventData.end_date,
-                  )
-                }}
-              </p>
+    <UModal v-model:open="showEventModal">
+      <template #content>
+        <div v-if="selectedEventData" class="p-6">
+          <div class="flex items-start gap-4 mb-4">
+            <div
+              class="shrink-0 w-16 h-16 rounded-lg flex items-center justify-center"
+              :class="getEventBgClass(selectedEventData.event_type)"
+            >
+              <UIcon
+                :name="getEventIcon(selectedEventData.event_type)"
+                class="w-8 h-8 text-white"
+              />
             </div>
-          </div>
-
-          <div v-if="selectedEventData.location" class="flex items-start gap-3">
-            <UIcon
-              name="i-heroicons-map-pin"
-              class="w-5 h-5 text-gray-500 mt-0.5"
-            />
-            <div>
-              <p class="font-semibold text-gray-900">
-                {{ $t('academics.calendar.location') }}
-              </p>
-              <p class="text-gray-700">{{ selectedEventData.location }}</p>
-            </div>
-          </div>
-
-          <div
-            v-if="
-              selectedEventData.description_en ||
-              selectedEventData.description_es
-            "
-            class="flex items-start gap-3"
-          >
-            <UIcon
-              name="i-heroicons-document-text"
-              class="w-5 h-5 text-gray-500 mt-0.5"
-            />
-            <div>
-              <p class="font-semibold text-gray-900">
-                {{ $t('academics.calendar.description') }}
-              </p>
-              <p class="text-gray-700">
+            <div class="flex-1">
+              <h2
+                class="text-2xl font-bold text-gray-900 mb-2 dark:text-gray-50"
+              >
                 {{
                   locale === 'es'
-                    ? selectedEventData.description_es
-                    : selectedEventData.description_en
+                    ? selectedEventData.title_es
+                    : selectedEventData.title_en
                 }}
-              </p>
+              </h2>
+              <UBadge :color="getEventTypeColor(selectedEventData.event_type)">
+                {{
+                  $t(
+                    `academics.calendar.eventTypes.${selectedEventData.event_type}`,
+                  )
+                }}
+              </UBadge>
             </div>
           </div>
-        </div>
 
-        <div class="mt-6 flex justify-end">
-          <UButton @click="showEventModal = false">
-            {{ $t('academics.calendar.close') }}
-          </UButton>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <UIcon
+                name="i-heroicons-calendar"
+                class="w-5 h-5 text-gray-500 mt-0.5 dark:text-gray-50"
+              />
+              <div>
+                <p class="font-semibold text-gray-900 dark:text-gray-50">
+                  {{ $t('academics.calendar.date') }}
+                </p>
+                <p class="text-gray-700 dark:text-gray-50">
+                  {{
+                    formatDateRange(
+                      selectedEventData.start_date,
+                      selectedEventData.end_date,
+                    )
+                  }}
+                </p>
+              </div>
+            </div>
+
+            <div
+              v-if="selectedEventData.location"
+              class="flex items-start gap-3"
+            >
+              <UIcon
+                name="i-heroicons-map-pin"
+                class="w-5 h-5 text-gray-500 mt-0.5 dark:text-gray-50"
+              />
+              <div>
+                <p class="font-semibold text-gray-900 dark:text-gray-50">
+                  {{ $t('academics.calendar.location') }}
+                </p>
+                <p class="text-gray-700 dark:text-gray-50">
+                  {{ selectedEventData.location }}
+                </p>
+              </div>
+            </div>
+
+            <div
+              v-if="
+                selectedEventData.description_en ||
+                selectedEventData.description_es
+              "
+              class="flex items-start gap-3"
+            >
+              <UIcon
+                name="i-heroicons-document-text"
+                class="w-5 h-5 text-gray-500 mt-0.5 dark:text-gray-50"
+              />
+              <div>
+                <p class="font-semibold text-gray-900 dark:text-gray-50">
+                  {{ $t('academics.calendar.description') }}
+                </p>
+                <p class="text-gray-700 dark:text-gray-50">
+                  {{
+                    locale === 'es'
+                      ? selectedEventData.description_es
+                      : selectedEventData.description_en
+                  }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex justify-end">
+            <UButton @click="showEventModal = false">
+              {{ $t('academics.calendar.close') }}
+            </UButton>
+          </div>
         </div>
-      </div>
+      </template>
     </UModal>
   </div>
 </template>
@@ -477,7 +484,6 @@
       })
       .slice(0, 50); // Limit to 50 upcoming events
   });
-
   // Methods
   function getEventsForDate(date: Date): any[] {
     if (!events.value) return [];

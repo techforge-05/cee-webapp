@@ -275,29 +275,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
-                :to="localePath('/student-life/activities')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-sparkles"
-                  class="w-5 h-5 text-green-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.studentLife.activities') }}</span>
-              </NuxtLink>
-              <NuxtLink
-                :to="localePath('/student-life/clubs')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-user-group"
-                  class="w-5 h-5 text-green-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.studentLife.clubs') }}</span>
-              </NuxtLink>
-              <NuxtLink
-                :to="localePath('/student-life/sports')"
+                :to="localePath('/student-life/sports-clubs')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
@@ -305,10 +283,32 @@
                   name="i-heroicons-trophy"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.studentLife.sports') }}</span>
+                <span>{{ $t('nav.dropdowns.studentLife.sportsClubs') }}</span>
               </NuxtLink>
               <NuxtLink
-                :to="localePath('/student-life/events')"
+                :to="localePath('/student-life/service-projects')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-heart"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.serviceProjects') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/library')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-book-open"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.library') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/upcoming-events')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
@@ -316,7 +316,18 @@
                   name="i-heroicons-calendar"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.studentLife.events') }}</span>
+                <span>{{ $t('nav.dropdowns.studentLife.upcomingEvents') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                :to="localePath('/student-life/gallery')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-photo"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.gallery') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -677,10 +688,11 @@
       { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
     ],
     studentLife: [
-      { path: '/student-life/activities', label: t('nav.dropdowns.studentLife.activities') },
-      { path: '/student-life/clubs', label: t('nav.dropdowns.studentLife.clubs') },
-      { path: '/student-life/sports', label: t('nav.dropdowns.studentLife.sports') },
-      { path: '/student-life/events', label: t('nav.dropdowns.studentLife.events') },
+      { path: '/student-life/sports-clubs', label: t('nav.dropdowns.studentLife.sportsClubs') },
+      { path: '/student-life/service-projects', label: t('nav.dropdowns.studentLife.serviceProjects') },
+      { path: '/student-life/library', label: t('nav.dropdowns.studentLife.library') },
+      { path: '/student-life/upcoming-events', label: t('nav.dropdowns.studentLife.upcomingEvents') },
+      { path: '/student-life/gallery', label: t('nav.dropdowns.studentLife.gallery') },
     ],
     parents: [
       { path: '/parents/resources', label: t('nav.dropdowns.parents.resources') },
