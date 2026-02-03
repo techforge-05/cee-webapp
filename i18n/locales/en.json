@@ -58,7 +58,8 @@
       },
       "admissions": {
         "whoCanApply": "Who Can Apply (Grades)",
-        "howToApply": "How to Apply (Step-by-Step)"
+        "howToApply": "How to Apply (Step-by-Step)",
+        "calendar": "Admissions Calendar"
       },
       "getInvolved": {
         "teachers": "Potential Teachers",
@@ -714,7 +715,8 @@
         "exam": "Exam",
         "event": "Event",
         "no_school": "No School",
-        "parent_meeting": "Parent Meeting"
+        "parent_meeting": "Parent Meeting",
+        "admissions": "Admissions"
       },
       "importantDates": {
         "title": "Key Academic Periods",
@@ -1670,39 +1672,55 @@
     },
     "howToApply": {
       "title": "How to Apply",
-      "subtitle": "Step-by-step guide to joining our school community",
-      "intro": "Follow these simple steps to begin your journey with CEE.",
+      "subtitle": "Admissions process to join our school community",
+      "intro": "Follow these steps to begin the admissions process at CEE.",
       "steps": [
         {
-          "title": "Submit Application Form",
-          "description": "Complete and submit the online or printed application form with all required information."
+          "title": "Initial Contact",
+          "description": "Contact the school's official mobile phone number to receive general information about the admissions process."
         },
         {
-          "title": "Provide Documentation",
-          "description": "Submit birth certificate, previous academic records, and any other required documents."
+          "title": "Interview with the Area Director",
+          "description": "A meeting to get to know the applicant and their family."
         },
         {
-          "title": "Schedule Interview",
-          "description": "Arrange an interview with our admissions team and a tour of our facilities."
+          "title": "Admission Exam Scheduling",
+          "description": "A date and time will be assigned for the admission assessment."
         },
         {
-          "title": "Receive Decision",
-          "description": "Our admissions committee will review your application and notify you of the decision."
+          "title": "Interview with DOBE",
+          "description": "A meeting with the Student Guidance and Wellbeing Department (DOBE) focused on the applicant's academic, social, and emotional development."
         },
         {
-          "title": "Complete Enrollment",
-          "description": "Upon acceptance, complete the enrollment process and payment arrangements."
+          "title": "Notification of Results",
+          "description": "Admission results will be sent via email."
+        },
+        {
+          "title": "Tuition Payment and Document Submission",
+          "description": "If admitted, tuition payment must be completed and all required documentation submitted to the Administration Department."
         }
       ],
       "dates": {
         "title": "Important Dates",
-        "description": "Applications are accepted year-round, but we recommend applying early to secure your spot. Contact us for specific enrollment periods."
+        "description": "Check our Admissions Calendar for application deadlines and enrollment periods."
       },
       "cta": {
         "title": "Have Questions?",
         "description": "Our admissions team is here to help you through the process.",
         "contact": "Contact Us",
         "requirements": "View Requirements"
+      }
+    },
+    "calendar": {
+      "title": "Admissions Calendar",
+      "subtitle": "Important admissions dates and deadlines",
+      "intro": "Stay informed about all important admissions dates, application deadlines, and enrollment periods. Plan ahead to ensure you don't miss any important dates in the admissions process.",
+      "noEventsNote": "Don't see any upcoming admissions events? Contact us directly for the most current information about application deadlines and enrollment periods.",
+      "cta": {
+        "title": "Ready to Start Your Application?",
+        "description": "Learn about our step-by-step admissions process and requirements.",
+        "howToApply": "How to Apply",
+        "contactUs": "Contact Us"
       }
     }
   },
@@ -1711,14 +1729,18 @@
       "title": "Potential Teachers",
       "subtitle": "Join our team of dedicated Christian educators",
       "intro": "We are always looking for passionate educators who share our commitment to Christ-centered education and academic excellence.",
+      "requirements": {
+        "title": "Teacher Requirements",
+        "description": "All English teachers must have a growing, personal relationship with Jesus Christ and be native English speakers (or demonstrate native fluency). Preference will be given to university graduates with teaching credentials."
+      },
       "qualifications": {
         "title": "What We Look For",
         "items": [
           "Strong Christian faith and testimony",
-          "Relevant teaching certification or degree",
-          "Experience in education (preferred)",
+          "Native English speaker or native fluency",
+          "University degree (teaching credentials preferred)",
           "Commitment to our mission and values",
-          "Bilingual proficiency (Spanish/English)",
+          "Bilingual proficiency (Spanish/English) is a plus",
           "Passion for student development"
         ]
       },
@@ -1732,20 +1754,30 @@
           "Making a lasting impact on students' lives"
         ]
       },
-      "cta": {
-        "title": "Interested in Teaching?",
-        "description": "Send us your resume and tell us about your calling to Christian education.",
-        "button": "Contact Us"
+      "applicationForms": {
+        "title": "Job Application Forms",
+        "international": "International Teachers",
+        "honduran": "Honduran Teachers",
+        "applyNow": "Apply Now"
+      },
+      "contact": {
+        "title": "More Information",
+        "description": "Have questions about teaching opportunities? Contact us for more details."
       }
     },
     "volunteer": {
       "title": "Volunteer Opportunities",
       "subtitle": "Make a difference in students' lives",
       "intro": "Volunteers play a vital role in our school community. Whether you can give an hour or a day, your contribution matters.",
+      "shortTerm": {
+        "title": "Short-Term Volunteer Opportunities",
+        "description": "We have opportunities for short-term volunteers, including teaching placements. Whether you're visiting Honduras or looking for a meaningful way to serve, we welcome your participation in our school community."
+      },
       "opportunities": {
         "title": "Ways to Volunteer",
         "items": [
           "Classroom assistance and tutoring",
+          "Short-term teaching placements",
           "Library and administrative support",
           "Special events and fundraising",
           "Sports coaching and activities",
@@ -1758,10 +1790,9 @@
         "title": "How to Get Started",
         "description": "Contact us to learn about current volunteer needs and how you can contribute your time and talents to our school community."
       },
-      "cta": {
-        "title": "Ready to Volunteer?",
-        "description": "We'd love to hear from you and find the perfect opportunity for your skills.",
-        "button": "Get in Touch"
+      "contact": {
+        "title": "Get In Touch",
+        "description": "Interested in volunteering? Reach out to us for more information about available opportunities."
       }
     }
   }

@@ -28,6 +28,16 @@
             </p>
           </div>
 
+          <!-- Requirements Box -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 mb-8 border border-amber-200">
+            <h2 class="text-2xl font-bold text-amber-800 mb-4">
+              {{ $t('getInvolved.teachers.requirements.title') }}
+            </h2>
+            <p class="text-gray-700 leading-relaxed">
+              {{ $t('getInvolved.teachers.requirements.description') }}
+            </p>
+          </div>
+
           <!-- What We Look For -->
           <div class="bg-amber-50 rounded-xl p-8 mb-8">
             <h2 class="text-2xl font-bold text-amber-800 mb-4">
@@ -49,7 +59,7 @@
           </div>
 
           <!-- Benefits -->
-          <div class="bg-gray-50 rounded-xl p-8">
+          <div class="bg-gray-50 rounded-xl p-8 mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">
               {{ $t('getInvolved.teachers.benefits.title') }}
             </h2>
@@ -67,34 +77,80 @@
               </li>
             </ul>
           </div>
+
+          <!-- Application Forms -->
+          <div class="bg-white rounded-xl p-8 mb-8 border-2 border-amber-300 shadow-lg">
+            <h2 class="text-2xl font-bold text-amber-800 mb-6 text-center">
+              {{ $t('getInvolved.teachers.applicationForms.title') }}
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- International Teachers -->
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd5FCf2MujHWiGfmuPuOukzb1xplNKG08pMvIl5ZES6Ol6iQA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl hover:shadow-md transition-shadow border border-blue-200"
+              >
+                <UIcon
+                  name="i-heroicons-globe-alt"
+                  class="w-12 h-12 text-blue-600 mb-3"
+                />
+                <h3 class="text-lg font-semibold text-blue-800 mb-2">
+                  {{ $t('getInvolved.teachers.applicationForms.international') }}
+                </h3>
+                <span class="text-blue-600 text-sm flex items-center gap-1">
+                  {{ $t('getInvolved.teachers.applicationForms.applyNow') }}
+                  <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
+                </span>
+              </a>
+
+              <!-- Honduran Teachers -->
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfF2FG694ecpMNhbZIW3tPJ7u1EPaTIXrVE3tuagusuR33XZw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex flex-col items-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl hover:shadow-md transition-shadow border border-green-200"
+              >
+                <UIcon
+                  name="i-heroicons-home-modern"
+                  class="w-12 h-12 text-green-600 mb-3"
+                />
+                <h3 class="text-lg font-semibold text-green-800 mb-2">
+                  {{ $t('getInvolved.teachers.applicationForms.honduran') }}
+                </h3>
+                <span class="text-green-600 text-sm flex items-center gap-1">
+                  {{ $t('getInvolved.teachers.applicationForms.applyNow') }}
+                  <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Contact Section -->
     <section class="py-12 bg-amber-500 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-2xl font-bold mb-4">
-          {{ $t('getInvolved.teachers.cta.title') }}
+          {{ $t('getInvolved.teachers.contact.title') }}
         </h2>
         <p class="text-lg text-amber-100 mb-6">
-          {{ $t('getInvolved.teachers.cta.description') }}
+          {{ $t('getInvolved.teachers.contact.description') }}
         </p>
-        <UButton
-          :to="localePath('/contact/form')"
-          size="lg"
-          variant="solid"
-          class="bg-white text-amber-700 hover:bg-gray-100"
+        <a
+          href="mailto:teach@ceehonduras.org"
+          class="inline-flex items-center gap-2 bg-white text-amber-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
         >
-          {{ $t('getInvolved.teachers.cta.button') }}
-        </UButton>
+          <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
+          teach@ceehonduras.org
+        </a>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
 const { tm } = useI18n();
 
 const qualifications = computed(() => tm('getInvolved.teachers.qualifications.items') as any[]);

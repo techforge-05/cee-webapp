@@ -60,7 +60,7 @@
       </div>
 
       <!-- Event Type Filter -->
-      <div class="flex flex-wrap gap-2 justify-center">
+      <div v-if="!hideEventTypeFilter" class="flex flex-wrap gap-2 justify-center">
         <UButton
           v-for="type in eventTypes"
           :key="type.value"
@@ -308,19 +308,33 @@
 </template>
 
 <script setup lang="ts">
+  const props = defineProps<{
+    defaultEventTypes?: string[];
+    hideEventTypeFilter?: boolean;
+  }>();
+
   const { locale } = useI18n();
   const supabase = useSupabaseClient();
 
-  // Calendar state
-  const currentDate = ref(new Date());
-  const viewMode = ref<'month' | 'list'>('month');
-  const selectedEventTypes = ref<string[]>([
+  // Destructure props for template use
+  const hideEventTypeFilter = computed(() => props.hideEventTypeFilter ?? false);
+
+  // Default event types (all types if no prop provided)
+  const allEventTypes = [
     'holiday',
     'exam',
     'event',
     'no_school',
     'parent_meeting',
-  ]);
+    'admissions',
+  ];
+
+  // Calendar state
+  const currentDate = ref(new Date());
+  const viewMode = ref<'month' | 'list'>('month');
+  const selectedEventTypes = ref<string[]>(
+    props.defaultEventTypes || allEventTypes
+  );
   const showEventModal = ref(false);
   const selectedEventData = ref<any>(null);
   const selectedMonthYear = ref('');
@@ -335,6 +349,11 @@
       value: 'parent_meeting',
       color: 'primary',
       icon: 'i-heroicons-user-group',
+    },
+    {
+      value: 'admissions',
+      color: 'success',
+      icon: 'i-heroicons-document-text',
     },
   ];
 
@@ -535,6 +554,7 @@
       event: 'bg-blue-100 text-blue-800 border border-blue-200',
       no_school: 'bg-orange-100 text-orange-800 border border-orange-200',
       parent_meeting: 'bg-green-100 text-green-800 border border-green-200',
+      admissions: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
     };
     return classes[type] || 'bg-gray-100 text-gray-800';
   }
@@ -546,6 +566,7 @@
       event: 'bg-blue-500',
       no_school: 'bg-orange-500',
       parent_meeting: 'bg-green-500',
+      admissions: 'bg-emerald-500',
     };
     return classes[type] || 'bg-gray-500';
   }
@@ -557,6 +578,7 @@
       event: 'i-heroicons-calendar-days',
       no_school: 'i-heroicons-x-circle',
       parent_meeting: 'i-heroicons-user-group',
+      admissions: 'i-heroicons-document-text',
     };
     return icons[type] || 'i-heroicons-calendar';
   }
@@ -568,6 +590,7 @@
       event: 'text-blue-600',
       no_school: 'text-orange-600',
       parent_meeting: 'text-green-600',
+      admissions: 'text-emerald-600',
     };
     return colors[type] || 'text-gray-600';
   }
@@ -579,6 +602,7 @@
       event: 'blue',
       no_school: 'orange',
       parent_meeting: 'green',
+      admissions: 'emerald',
     };
     return colors[type] || 'gray';
   }

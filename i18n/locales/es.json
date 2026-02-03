@@ -58,7 +58,8 @@
       },
       "admissions": {
         "whoCanApply": "Quién Puede Aplicar (Grados)",
-        "howToApply": "Cómo Aplicar (Paso a Paso)"
+        "howToApply": "Cómo Aplicar (Paso a Paso)",
+        "calendar": "Calendario de Admisiones"
       },
       "getInvolved": {
         "teachers": "Maestros Potenciales",
@@ -714,7 +715,8 @@
         "exam": "Examen",
         "event": "Evento",
         "no_school": "Sin Clases",
-        "parent_meeting": "Reunión de Padres"
+        "parent_meeting": "Reunión de Padres",
+        "admissions": "Admisiones"
       },
       "importantDates": {
         "title": "Períodos Académicos Clave",
@@ -1670,39 +1672,55 @@
     },
     "howToApply": {
       "title": "Cómo Aplicar",
-      "subtitle": "Guía paso a paso para unirte a nuestra comunidad escolar",
-      "intro": "Sigue estos sencillos pasos para comenzar tu camino con CEE.",
+      "subtitle": "Proceso de admisión para unirte a nuestra comunidad escolar",
+      "intro": "Sigue estos pasos para comenzar el proceso de admisión en CEE.",
       "steps": [
         {
-          "title": "Enviar Formulario de Solicitud",
-          "description": "Completa y envía el formulario de solicitud en línea o impreso con toda la información requerida."
+          "title": "Contacto Inicial",
+          "description": "Comunicarse al celular institucional: +504 9326-8998 para recibir información general sobre el proceso de admisión."
         },
         {
-          "title": "Proporcionar Documentación",
-          "description": "Presenta certificado de nacimiento, registros académicos previos y otros documentos requeridos."
+          "title": "Entrevista con la Dirección de Área",
+          "description": "Reunión para conocer a la familia y al aspirante."
         },
         {
-          "title": "Programar Entrevista",
-          "description": "Coordina una entrevista con nuestro equipo de admisiones y un recorrido por nuestras instalaciones."
+          "title": "Programación del Examen de Admisión",
+          "description": "Se asignará fecha y horario para la evaluación."
         },
         {
-          "title": "Recibir Decisión",
-          "description": "Nuestro comité de admisiones revisará tu solicitud y te notificará la decisión."
+          "title": "Entrevista con el DOBE",
+          "description": "Entrevista con el Departamento de Orientación y Bienestar Estudiantil (DOBE) enfocada en el desarrollo académico, social y emocional del aspirante."
         },
         {
-          "title": "Completar Inscripción",
-          "description": "Al ser aceptado, completa el proceso de inscripción y los arreglos de pago."
+          "title": "Comunicación de Resultados",
+          "description": "Los resultados del proceso de admisión serán enviados vía correo electrónico."
+        },
+        {
+          "title": "Pago de Matrícula y Entrega de Documentación",
+          "description": "En caso de ser admitido, se realizará el pago de matrícula y la entrega de la documentación requerida en el departamento de Administración."
         }
       ],
       "dates": {
         "title": "Fechas Importantes",
-        "description": "Las solicitudes se aceptan durante todo el año, pero recomendamos aplicar temprano para asegurar tu lugar. Contáctanos para períodos específicos de inscripción."
+        "description": "Consulta nuestro Calendario de Admisiones para conocer los plazos de solicitud y períodos de inscripción."
       },
       "cta": {
         "title": "¿Tienes Preguntas?",
         "description": "Nuestro equipo de admisiones está aquí para ayudarte en el proceso.",
         "contact": "Contáctanos",
         "requirements": "Ver Requisitos"
+      }
+    },
+    "calendar": {
+      "title": "Calendario de Admisiones",
+      "subtitle": "Fechas y plazos importantes de admisiones",
+      "intro": "Mantente informado sobre todas las fechas importantes de admisiones, plazos de solicitud y períodos de inscripción. Planifica con anticipación para no perderte ninguna fecha importante del proceso de admisión.",
+      "noEventsNote": "¿No ves eventos de admisiones próximos? Contáctanos directamente para obtener la información más actualizada sobre plazos de solicitud y períodos de inscripción.",
+      "cta": {
+        "title": "¿Listo para Iniciar tu Solicitud?",
+        "description": "Conoce nuestro proceso de admisión paso a paso y los requisitos.",
+        "howToApply": "Cómo Aplicar",
+        "contactUs": "Contáctanos"
       }
     }
   },
@@ -1711,14 +1729,18 @@
       "title": "Maestros Potenciales",
       "subtitle": "Únete a nuestro equipo de educadores cristianos dedicados",
       "intro": "Siempre estamos buscando educadores apasionados que compartan nuestro compromiso con la educación centrada en Cristo y la excelencia académica.",
+      "requirements": {
+        "title": "Requisitos para Maestros",
+        "description": "Todos los maestros de inglés deben tener una relación personal y creciente con Jesucristo y ser hablantes nativos de inglés (o demostrar fluidez nativa). Se dará preferencia a graduados universitarios con credenciales de enseñanza."
+      },
       "qualifications": {
         "title": "Lo Que Buscamos",
         "items": [
           "Fe cristiana sólida y testimonio",
-          "Certificación docente o título relevante",
-          "Experiencia en educación (preferible)",
+          "Hablante nativo de inglés o fluidez nativa",
+          "Título universitario (credenciales de enseñanza preferidas)",
           "Compromiso con nuestra misión y valores",
-          "Competencia bilingüe (español/inglés)",
+          "Competencia bilingüe (español/inglés) es un plus",
           "Pasión por el desarrollo estudiantil"
         ]
       },
@@ -1732,20 +1754,30 @@
           "Impacto duradero en la vida de los estudiantes"
         ]
       },
-      "cta": {
-        "title": "¿Interesado en Enseñar?",
-        "description": "Envíanos tu currículum y cuéntanos sobre tu llamado a la educación cristiana.",
-        "button": "Contáctanos"
+      "applicationForms": {
+        "title": "Formularios de Solicitud de Empleo",
+        "international": "Maestros Internacionales",
+        "honduran": "Maestros Hondureños",
+        "applyNow": "Aplicar Ahora"
+      },
+      "contact": {
+        "title": "Más Información",
+        "description": "¿Tienes preguntas sobre oportunidades de enseñanza? Contáctanos para más detalles."
       }
     },
     "volunteer": {
       "title": "Oportunidades de Voluntariado",
       "subtitle": "Marca la diferencia en la vida de los estudiantes",
       "intro": "Los voluntarios juegan un papel vital en nuestra comunidad escolar. Ya sea que puedas dar una hora o un día, tu contribución importa.",
+      "shortTerm": {
+        "title": "Oportunidades de Voluntariado a Corto Plazo",
+        "description": "Tenemos oportunidades para voluntarios a corto plazo, incluyendo posiciones de enseñanza. Ya sea que estés visitando Honduras o buscando una forma significativa de servir, damos la bienvenida a tu participación en nuestra comunidad escolar."
+      },
       "opportunities": {
         "title": "Formas de Ser Voluntario",
         "items": [
           "Asistencia en el aula y tutoría",
+          "Posiciones de enseñanza a corto plazo",
           "Apoyo en biblioteca y administración",
           "Eventos especiales y recaudación de fondos",
           "Entrenamiento deportivo y actividades",
@@ -1758,10 +1790,9 @@
         "title": "Cómo Comenzar",
         "description": "Contáctanos para conocer las necesidades actuales de voluntarios y cómo puedes contribuir con tu tiempo y talentos a nuestra comunidad escolar."
       },
-      "cta": {
-        "title": "¿Listo para Ser Voluntario?",
-        "description": "Nos encantaría saber de ti y encontrar la oportunidad perfecta para tus habilidades.",
-        "button": "Ponte en Contacto"
+      "contact": {
+        "title": "Ponte en Contacto",
+        "description": "¿Interesado en ser voluntario? Comunícate con nosotros para obtener más información sobre las oportunidades disponibles."
       }
     }
   }

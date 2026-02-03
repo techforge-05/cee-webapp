@@ -28,6 +28,24 @@
             </p>
           </div>
 
+          <!-- Short-term Opportunities -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 mb-8 border border-amber-200">
+            <div class="flex items-start gap-4">
+              <UIcon
+                name="i-heroicons-clock"
+                class="w-10 h-10 text-amber-600 shrink-0"
+              />
+              <div>
+                <h2 class="text-2xl font-bold text-amber-800 mb-3">
+                  {{ $t('getInvolved.volunteer.shortTerm.title') }}
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                  {{ $t('getInvolved.volunteer.shortTerm.description') }}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <!-- Opportunities -->
           <div class="bg-amber-50 rounded-xl p-8 mb-8">
             <h2 class="text-2xl font-bold text-amber-800 mb-4">
@@ -61,30 +79,28 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Contact Section -->
     <section class="py-12 bg-amber-500 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-2xl font-bold mb-4">
-          {{ $t('getInvolved.volunteer.cta.title') }}
+          {{ $t('getInvolved.volunteer.contact.title') }}
         </h2>
         <p class="text-lg text-amber-100 mb-6">
-          {{ $t('getInvolved.volunteer.cta.description') }}
+          {{ $t('getInvolved.volunteer.contact.description') }}
         </p>
-        <UButton
-          :to="localePath('/contact/form')"
-          size="lg"
-          variant="solid"
-          class="bg-white text-amber-700 hover:bg-gray-100"
+        <a
+          href="mailto:volunteer@ceehonduras.org"
+          class="inline-flex items-center gap-2 bg-white text-amber-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
         >
-          {{ $t('getInvolved.volunteer.cta.button') }}
-        </UButton>
+          <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
+          volunteer@ceehonduras.org
+        </a>
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
 const { tm } = useI18n();
 
 const opportunities = computed(() => tm('getInvolved.volunteer.opportunities.items') as any[]);

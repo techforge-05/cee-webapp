@@ -52,6 +52,7 @@
         <div class="flex items-center space-x-1 xl:space-x-2 2xl:space-x-3">
           <!-- Special Badge Buttons - Hidden on mobile, compact on medium desktops -->
           <div
+            :key="locale"
             class="hidden lg:flex items-center space-x-1 2xl:space-x-2"
             @mouseleave="scheduleClose"
           >
@@ -564,6 +565,13 @@
                 >
                   {{ $t('nav.dropdowns.admissions.howToApply') }}
                 </NuxtLink>
+                <NuxtLink
+                  :to="localePath('/admissions/calendar')"
+                  class="block text-gray-700 hover:text-green-700 py-1"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t('nav.dropdowns.admissions.calendar') }}
+                </NuxtLink>
               </div>
             </Transition>
           </div>
@@ -736,7 +744,7 @@
     { key: 'contact' },
   ];
 
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
 
   // Dropdown menu items for each section
   const dropdownItems = computed(() => ({
@@ -836,6 +844,10 @@
       {
         path: '/admissions/how-to-apply',
         label: t('nav.dropdowns.admissions.howToApply'),
+      },
+      {
+        path: '/admissions/calendar',
+        label: t('nav.dropdowns.admissions.calendar'),
       },
     ],
     getInvolved: [
