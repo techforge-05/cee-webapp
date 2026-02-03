@@ -55,6 +55,14 @@
         "directions": "Directions",
         "form": "Contact Form",
         "faq": "FAQ"
+      },
+      "admissions": {
+        "whoCanApply": "Who Can Apply (Grades)",
+        "howToApply": "How to Apply (Step-by-Step)"
+      },
+      "getInvolved": {
+        "teachers": "Potential Teachers",
+        "volunteer": "Volunteer Opportunities"
       }
     }
   },
@@ -1627,6 +1635,134 @@
           "excerpt": "We announce the opening of our scholarship program for outstanding students..."
         }
       ]
+    }
+  },
+  "admissions": {
+    "whoCanApply": {
+      "title": "Who Can Apply",
+      "subtitle": "Learn about our grades and admission requirements",
+      "intro": "CEE welcomes students from diverse backgrounds who are committed to academic excellence and personal growth in a Christ-centered environment.",
+      "grades": {
+        "title": "Grades We Offer",
+        "items": [
+          "Pre-Kindergarten (ages 4-5)",
+          "Kindergarten (ages 5-6)",
+          "Elementary School (Grades 1-6)",
+          "Middle School (Grades 7-9)",
+          "High School (Grades 10-12)"
+        ]
+      },
+      "requirements": {
+        "title": "Basic Requirements",
+        "items": [
+          "Age-appropriate for the grade level",
+          "Previous academic records (if applicable)",
+          "Parent/Guardian commitment to school values",
+          "Completed application form",
+          "Interview with school administration"
+        ]
+      },
+      "cta": {
+        "title": "Ready to Apply?",
+        "description": "Learn about our step-by-step application process.",
+        "button": "How to Apply"
+      }
+    },
+    "howToApply": {
+      "title": "How to Apply",
+      "subtitle": "Step-by-step guide to joining our school community",
+      "intro": "Follow these simple steps to begin your journey with CEE.",
+      "steps": [
+        {
+          "title": "Submit Application Form",
+          "description": "Complete and submit the online or printed application form with all required information."
+        },
+        {
+          "title": "Provide Documentation",
+          "description": "Submit birth certificate, previous academic records, and any other required documents."
+        },
+        {
+          "title": "Schedule Interview",
+          "description": "Arrange an interview with our admissions team and a tour of our facilities."
+        },
+        {
+          "title": "Receive Decision",
+          "description": "Our admissions committee will review your application and notify you of the decision."
+        },
+        {
+          "title": "Complete Enrollment",
+          "description": "Upon acceptance, complete the enrollment process and payment arrangements."
+        }
+      ],
+      "dates": {
+        "title": "Important Dates",
+        "description": "Applications are accepted year-round, but we recommend applying early to secure your spot. Contact us for specific enrollment periods."
+      },
+      "cta": {
+        "title": "Have Questions?",
+        "description": "Our admissions team is here to help you through the process.",
+        "contact": "Contact Us",
+        "requirements": "View Requirements"
+      }
+    }
+  },
+  "getInvolved": {
+    "teachers": {
+      "title": "Potential Teachers",
+      "subtitle": "Join our team of dedicated Christian educators",
+      "intro": "We are always looking for passionate educators who share our commitment to Christ-centered education and academic excellence.",
+      "qualifications": {
+        "title": "What We Look For",
+        "items": [
+          "Strong Christian faith and testimony",
+          "Relevant teaching certification or degree",
+          "Experience in education (preferred)",
+          "Commitment to our mission and values",
+          "Bilingual proficiency (Spanish/English)",
+          "Passion for student development"
+        ]
+      },
+      "benefits": {
+        "title": "Benefits of Joining CEE",
+        "items": [
+          "Meaningful work in a Christ-centered environment",
+          "Supportive and collaborative team",
+          "Professional development opportunities",
+          "Competitive compensation",
+          "Making a lasting impact on students' lives"
+        ]
+      },
+      "cta": {
+        "title": "Interested in Teaching?",
+        "description": "Send us your resume and tell us about your calling to Christian education.",
+        "button": "Contact Us"
+      }
+    },
+    "volunteer": {
+      "title": "Volunteer Opportunities",
+      "subtitle": "Make a difference in students' lives",
+      "intro": "Volunteers play a vital role in our school community. Whether you can give an hour or a day, your contribution matters.",
+      "opportunities": {
+        "title": "Ways to Volunteer",
+        "items": [
+          "Classroom assistance and tutoring",
+          "Library and administrative support",
+          "Special events and fundraising",
+          "Sports coaching and activities",
+          "Campus maintenance projects",
+          "Chapel and worship team",
+          "Guest speaking and career talks"
+        ]
+      },
+      "howTo": {
+        "title": "How to Get Started",
+        "description": "Contact us to learn about current volunteer needs and how you can contribute your time and talents to our school community."
+      },
+      "cta": {
+        "title": "Ready to Volunteer?",
+        "description": "We'd love to hear from you and find the perfect opportunity for your skills.",
+        "button": "Get in Touch"
+      }
     }
   }
 }

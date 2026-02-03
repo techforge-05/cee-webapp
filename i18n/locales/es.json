@@ -55,6 +55,14 @@
         "directions": "Direcciones",
         "form": "Formulario de Contacto",
         "faq": "Preguntas Frecuentes"
+      },
+      "admissions": {
+        "whoCanApply": "Quién Puede Aplicar (Grados)",
+        "howToApply": "Cómo Aplicar (Paso a Paso)"
+      },
+      "getInvolved": {
+        "teachers": "Maestros Potenciales",
+        "volunteer": "Oportunidades de Voluntariado"
       }
     }
   },
@@ -1627,6 +1635,134 @@
           "excerpt": "Anunciamos la apertura de nuestro programa de becas para estudiantes destacados..."
         }
       ]
+    }
+  },
+  "admissions": {
+    "whoCanApply": {
+      "title": "Quién Puede Aplicar",
+      "subtitle": "Conoce nuestros grados y requisitos de admisión",
+      "intro": "CEE da la bienvenida a estudiantes de diversos orígenes comprometidos con la excelencia académica y el crecimiento personal en un ambiente centrado en Cristo.",
+      "grades": {
+        "title": "Grados que Ofrecemos",
+        "items": [
+          "Pre-Kinder (4-5 años)",
+          "Kinder (5-6 años)",
+          "Primaria (1ro - 6to grado)",
+          "Secundaria (7mo - 9no grado)",
+          "Bachillerato (10mo - 12vo grado)"
+        ]
+      },
+      "requirements": {
+        "title": "Requisitos Básicos",
+        "items": [
+          "Edad apropiada para el nivel de grado",
+          "Registros académicos previos (si aplica)",
+          "Compromiso de padres/tutores con los valores escolares",
+          "Formulario de solicitud completado",
+          "Entrevista con la administración escolar"
+        ]
+      },
+      "cta": {
+        "title": "¿Listo para Aplicar?",
+        "description": "Conoce nuestro proceso de aplicación paso a paso.",
+        "button": "Cómo Aplicar"
+      }
+    },
+    "howToApply": {
+      "title": "Cómo Aplicar",
+      "subtitle": "Guía paso a paso para unirte a nuestra comunidad escolar",
+      "intro": "Sigue estos sencillos pasos para comenzar tu camino con CEE.",
+      "steps": [
+        {
+          "title": "Enviar Formulario de Solicitud",
+          "description": "Completa y envía el formulario de solicitud en línea o impreso con toda la información requerida."
+        },
+        {
+          "title": "Proporcionar Documentación",
+          "description": "Presenta certificado de nacimiento, registros académicos previos y otros documentos requeridos."
+        },
+        {
+          "title": "Programar Entrevista",
+          "description": "Coordina una entrevista con nuestro equipo de admisiones y un recorrido por nuestras instalaciones."
+        },
+        {
+          "title": "Recibir Decisión",
+          "description": "Nuestro comité de admisiones revisará tu solicitud y te notificará la decisión."
+        },
+        {
+          "title": "Completar Inscripción",
+          "description": "Al ser aceptado, completa el proceso de inscripción y los arreglos de pago."
+        }
+      ],
+      "dates": {
+        "title": "Fechas Importantes",
+        "description": "Las solicitudes se aceptan durante todo el año, pero recomendamos aplicar temprano para asegurar tu lugar. Contáctanos para períodos específicos de inscripción."
+      },
+      "cta": {
+        "title": "¿Tienes Preguntas?",
+        "description": "Nuestro equipo de admisiones está aquí para ayudarte en el proceso.",
+        "contact": "Contáctanos",
+        "requirements": "Ver Requisitos"
+      }
+    }
+  },
+  "getInvolved": {
+    "teachers": {
+      "title": "Maestros Potenciales",
+      "subtitle": "Únete a nuestro equipo de educadores cristianos dedicados",
+      "intro": "Siempre estamos buscando educadores apasionados que compartan nuestro compromiso con la educación centrada en Cristo y la excelencia académica.",
+      "qualifications": {
+        "title": "Lo Que Buscamos",
+        "items": [
+          "Fe cristiana sólida y testimonio",
+          "Certificación docente o título relevante",
+          "Experiencia en educación (preferible)",
+          "Compromiso con nuestra misión y valores",
+          "Competencia bilingüe (español/inglés)",
+          "Pasión por el desarrollo estudiantil"
+        ]
+      },
+      "benefits": {
+        "title": "Beneficios de Unirse a CEE",
+        "items": [
+          "Trabajo significativo en un ambiente centrado en Cristo",
+          "Equipo de apoyo y colaboración",
+          "Oportunidades de desarrollo profesional",
+          "Compensación competitiva",
+          "Impacto duradero en la vida de los estudiantes"
+        ]
+      },
+      "cta": {
+        "title": "¿Interesado en Enseñar?",
+        "description": "Envíanos tu currículum y cuéntanos sobre tu llamado a la educación cristiana.",
+        "button": "Contáctanos"
+      }
+    },
+    "volunteer": {
+      "title": "Oportunidades de Voluntariado",
+      "subtitle": "Marca la diferencia en la vida de los estudiantes",
+      "intro": "Los voluntarios juegan un papel vital en nuestra comunidad escolar. Ya sea que puedas dar una hora o un día, tu contribución importa.",
+      "opportunities": {
+        "title": "Formas de Ser Voluntario",
+        "items": [
+          "Asistencia en el aula y tutoría",
+          "Apoyo en biblioteca y administración",
+          "Eventos especiales y recaudación de fondos",
+          "Entrenamiento deportivo y actividades",
+          "Proyectos de mantenimiento del campus",
+          "Capilla y equipo de alabanza",
+          "Charlas como invitado y orientación vocacional"
+        ]
+      },
+      "howTo": {
+        "title": "Cómo Comenzar",
+        "description": "Contáctanos para conocer las necesidades actuales de voluntarios y cómo puedes contribuir con tu tiempo y talentos a nuestra comunidad escolar."
+      },
+      "cta": {
+        "title": "¿Listo para Ser Voluntario?",
+        "description": "Nos encantaría saber de ti y encontrar la oportunidad perfecta para tus habilidades.",
+        "button": "Ponte en Contacto"
+      }
     }
   }
 }

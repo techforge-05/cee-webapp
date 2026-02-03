@@ -51,27 +51,22 @@
         <!-- Right Side Actions -->
         <div class="flex items-center space-x-1 xl:space-x-2 2xl:space-x-3">
           <!-- Special Badge Buttons - Hidden on mobile, compact on medium desktops -->
-          <div class="hidden lg:flex items-center space-x-1 2xl:space-x-2">
-            <UBadge
-              color="primary"
-              variant="solid"
-              size="sm"
-              class="rounded-full"
+          <div
+            class="hidden lg:flex items-center space-x-1 2xl:space-x-2"
+            @mouseleave="scheduleClose"
+          >
+            <span
+              class="rounded-full cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium px-2 py-1 text-[10px] xl:text-xs 2xl:text-sm hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-sm"
+              @mouseenter="handleDropdownChange('admissions')"
             >
-              <NuxtLink :to="localePath('/admissions')" class="px-1 py-0.5 text-[10px] xl:text-xs 2xl:text-sm">
-                {{ $t('nav.admissions') }}
-              </NuxtLink>
-            </UBadge>
-            <UBadge
-              color="secondary"
-              variant="solid"
-              size="sm"
-              class="rounded-full text-black font-bold"
+              {{ $t('nav.admissions') }}
+            </span>
+            <span
+              class="rounded-full cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium px-2 py-1 text-[10px] xl:text-xs 2xl:text-sm hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-sm"
+              @mouseenter="handleDropdownChange('getInvolved')"
             >
-              <NuxtLink :to="localePath('/get-involved')" class="px-1 py-0.5 text-[10px] xl:text-xs 2xl:text-sm">
-                {{ $t('nav.getInvolved') }}
-              </NuxtLink>
-            </UBadge>
+              {{ $t('nav.getInvolved') }}
+            </span>
           </div>
 
           <!-- Language Switcher -->
@@ -79,7 +74,10 @@
 
           <!-- Auth Buttons -->
           <template v-if="user">
-            <span class="hidden 2xl:inline text-gray-700 text-sm truncate max-w-32">{{ user.email }}</span>
+            <span
+              class="hidden 2xl:inline text-gray-700 text-sm truncate max-w-32"
+              >{{ user.email }}</span
+            >
             <UButton
               @click="handleSignOut"
               variant="outline"
@@ -295,7 +293,9 @@
                   name="i-heroicons-heart"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.studentLife.serviceProjects') }}</span>
+                <span>{{
+                  $t('nav.dropdowns.studentLife.serviceProjects')
+                }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/student-life/library')"
@@ -317,7 +317,9 @@
                   name="i-heroicons-calendar"
                   class="w-5 h-5 text-green-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.studentLife.upcomingEvents') }}</span>
+                <span>{{
+                  $t('nav.dropdowns.studentLife.upcomingEvents')
+                }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/student-life/gallery')"
@@ -526,29 +528,82 @@
         </div>
 
         <!-- Fixed Bottom Buttons -->
-        <!-- style="
-            background-image: url('/images/main-3.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-          " -->
         <div
-          class="border-t border-gray-200 bg-white p-4 pt-6 space-y-4 flex flex-col items-center"
+          class="border-t border-gray-200 bg-white p-4 pt-6 space-y-3 flex flex-col items-center"
         >
-          <UButton
-            :to="localePath('/admissions')"
-            class="rounded-full font-semibold w-[70%] justify-center text-green-700"
-            variant="subtle"
-          >
-            {{ $t('nav.admissions') }}
-          </UButton>
-          <UButton
-            :to="localePath('/get-involved')"
-            color="warning"
-            class="rounded-full font-semibold w-[70%] justify-center"
-          >
-            {{ $t('nav.getInvolved') }}
-          </UButton>
+          <!-- Admissions Accordion -->
+          <div class="w-[70%]">
+            <UButton
+              @click="mobileAdmissionsOpen = !mobileAdmissionsOpen"
+              class="rounded-full font-semibold w-full justify-center text-green-700"
+              variant="subtle"
+            >
+              {{ $t('nav.admissions') }}
+              <UIcon
+                :name="
+                  mobileAdmissionsOpen
+                    ? 'i-heroicons-chevron-up'
+                    : 'i-heroicons-chevron-down'
+                "
+                class="w-4 h-4 ml-2"
+              />
+            </UButton>
+            <Transition name="accordion">
+              <div v-if="mobileAdmissionsOpen" class="mt-2 space-y-2 pl-4">
+                <NuxtLink
+                  :to="localePath('/admissions/who-can-apply')"
+                  class="block text-gray-700 hover:text-green-700 py-1"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t('nav.dropdowns.admissions.whoCanApply') }}
+                </NuxtLink>
+                <NuxtLink
+                  :to="localePath('/admissions/how-to-apply')"
+                  class="block text-gray-700 hover:text-green-700 py-1"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t('nav.dropdowns.admissions.howToApply') }}
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
+
+          <!-- Get Involved Accordion -->
+          <div class="w-[70%]">
+            <UButton
+              @click="mobileGetInvolvedOpen = !mobileGetInvolvedOpen"
+              color="warning"
+              class="rounded-full font-semibold w-full justify-center"
+            >
+              {{ $t('nav.getInvolved') }}
+              <UIcon
+                :name="
+                  mobileGetInvolvedOpen
+                    ? 'i-heroicons-chevron-up'
+                    : 'i-heroicons-chevron-down'
+                "
+                class="w-4 h-4 ml-2"
+              />
+            </UButton>
+            <Transition name="accordion">
+              <div v-if="mobileGetInvolvedOpen" class="mt-2 space-y-2 pl-4">
+                <NuxtLink
+                  :to="localePath('/get-involved/teachers')"
+                  class="block text-gray-700 hover:text-amber-700 py-1"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t('nav.dropdowns.getInvolved.teachers') }}
+                </NuxtLink>
+                <NuxtLink
+                  :to="localePath('/get-involved/volunteer')"
+                  class="block text-gray-700 hover:text-amber-700 py-1"
+                  @click="mobileMenuOpen = false"
+                >
+                  {{ $t('nav.dropdowns.getInvolved.volunteer') }}
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
 
           <template v-if="!user">
             <UButton
@@ -595,8 +650,13 @@
       >
         <div class="grid grid-cols-12 h-full">
           <!-- Left: Title (3 columns) -->
-          <div class="col-span-3 flex justify-center p-4 lg:p-6 xl:p-8 pt-8 lg:pt-10 xl:pt-15">
-            <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-green-600">
+          <div
+            class="col-span-3 flex justify-center p-4 lg:p-6 xl:p-8 pt-8 lg:pt-10 xl:pt-15"
+          >
+            <h2
+              class="text-3xl lg:text-4xl xl:text-5xl font-bold"
+              :class="[titleColor]"
+            >
               {{ $t(`nav.${activeDropdown}`).toUpperCase() }}
             </h2>
           </div>
@@ -605,7 +665,9 @@
           <div class="col-span-5 p-4 lg:p-6 xl:p-8 pt-10 lg:pt-14 xl:pt-20">
             <ul class="space-y-2 lg:space-y-3 xl:space-y-4">
               <li
-                v-for="item in dropdownItems[activeDropdown as keyof typeof dropdownItems]"
+                v-for="item in dropdownItems[
+                  activeDropdown as keyof typeof dropdownItems
+                ]"
                 :key="item.path"
               >
                 <NuxtLink
@@ -620,7 +682,9 @@
           </div>
 
           <!-- Right: Image (3 columns) -->
-          <div class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10">
+          <div
+            class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10"
+          >
             <div
               class="bg-gray-200 flex justify-center items-center w-full h-full"
             >
@@ -657,6 +721,8 @@
   const localePath = useLocalePath();
   const mobileMenuOpen = ref(false);
   const activeDropdown = ref<string | null>(null);
+  const mobileAdmissionsOpen = ref(false);
+  const mobileGetInvolvedOpen = ref(false);
   let closeTimeout: NodeJS.Timeout | null = null;
   let switchTimeout: NodeJS.Timeout | null = null;
 
@@ -675,44 +741,112 @@
   // Dropdown menu items for each section
   const dropdownItems = computed(() => ({
     about: [
-      { path: '/about/mission-vision-values', label: t('nav.dropdowns.about.missionVisionValues') },
-      { path: '/about/statement-of-faith', label: t('nav.dropdowns.about.statementOfFaith') },
+      {
+        path: '/about/mission-vision-values',
+        label: t('nav.dropdowns.about.missionVisionValues'),
+      },
+      {
+        path: '/about/statement-of-faith',
+        label: t('nav.dropdowns.about.statementOfFaith'),
+      },
       { path: '/about/philosophy', label: t('nav.dropdowns.about.philosophy') },
       { path: '/about/history', label: t('nav.dropdowns.about.history') },
       { path: '/about/town', label: t('nav.dropdowns.about.town') },
       { path: '/about/leadership', label: t('nav.dropdowns.about.leadership') },
     ],
     academics: [
-      { path: '/academics/curriculum', label: t('nav.dropdowns.academics.curriculum') },
-      { path: '/academics/programs', label: t('nav.dropdowns.academics.programs') },
-      { path: '/academics/calendar', label: t('nav.dropdowns.academics.calendar') },
+      {
+        path: '/academics/curriculum',
+        label: t('nav.dropdowns.academics.curriculum'),
+      },
+      {
+        path: '/academics/programs',
+        label: t('nav.dropdowns.academics.programs'),
+      },
+      {
+        path: '/academics/calendar',
+        label: t('nav.dropdowns.academics.calendar'),
+      },
       { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
     ],
     studentLife: [
-      { path: '/student-life/sports-clubs', label: t('nav.dropdowns.studentLife.sportsClubs') },
-      { path: '/student-life/service-projects', label: t('nav.dropdowns.studentLife.serviceProjects') },
-      { path: '/student-life/library', label: t('nav.dropdowns.studentLife.library') },
-      { path: '/student-life/upcoming-events', label: t('nav.dropdowns.studentLife.upcomingEvents') },
-      { path: '/student-life/gallery', label: t('nav.dropdowns.studentLife.gallery') },
+      {
+        path: '/student-life/sports-clubs',
+        label: t('nav.dropdowns.studentLife.sportsClubs'),
+      },
+      {
+        path: '/student-life/service-projects',
+        label: t('nav.dropdowns.studentLife.serviceProjects'),
+      },
+      {
+        path: '/student-life/library',
+        label: t('nav.dropdowns.studentLife.library'),
+      },
+      {
+        path: '/student-life/upcoming-events',
+        label: t('nav.dropdowns.studentLife.upcomingEvents'),
+      },
+      {
+        path: '/student-life/gallery',
+        label: t('nav.dropdowns.studentLife.gallery'),
+      },
     ],
     parents: [
-      { path: '/parents/resources', label: t('nav.dropdowns.parents.resources') },
+      {
+        path: '/parents/resources',
+        label: t('nav.dropdowns.parents.resources'),
+      },
       { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar') },
       { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook') },
-      { path: '/parents/involvement', label: t('nav.dropdowns.parents.involvement') },
+      {
+        path: '/parents/involvement',
+        label: t('nav.dropdowns.parents.involvement'),
+      },
     ],
     support: [
-      { path: '/support/why-support', label: t('nav.dropdowns.support.whySupport') },
-      { path: '/support/scholarships', label: t('nav.dropdowns.support.scholarships') },
+      {
+        path: '/support/why-support',
+        label: t('nav.dropdowns.support.whySupport'),
+      },
+      {
+        path: '/support/scholarships',
+        label: t('nav.dropdowns.support.scholarships'),
+      },
       { path: '/support/donate', label: t('nav.dropdowns.support.donate') },
       { path: '/support/projects', label: t('nav.dropdowns.support.projects') },
-      { path: '/support/partnerships', label: t('nav.dropdowns.support.partnerships') },
+      {
+        path: '/support/partnerships',
+        label: t('nav.dropdowns.support.partnerships'),
+      },
     ],
     contact: [
       { path: '/contact/info', label: t('nav.dropdowns.contact.info') },
-      { path: '/contact/directions', label: t('nav.dropdowns.contact.directions') },
+      {
+        path: '/contact/directions',
+        label: t('nav.dropdowns.contact.directions'),
+      },
       { path: '/contact/form', label: t('nav.dropdowns.contact.form') },
       { path: '/contact/faq', label: t('nav.dropdowns.contact.faq') },
+    ],
+    admissions: [
+      {
+        path: '/admissions/who-can-apply',
+        label: t('nav.dropdowns.admissions.whoCanApply'),
+      },
+      {
+        path: '/admissions/how-to-apply',
+        label: t('nav.dropdowns.admissions.howToApply'),
+      },
+    ],
+    getInvolved: [
+      {
+        path: '/get-involved/teachers',
+        label: t('nav.dropdowns.getInvolved.teachers'),
+      },
+      {
+        path: '/get-involved/volunteer',
+        label: t('nav.dropdowns.getInvolved.volunteer'),
+      },
     ],
   }));
 
@@ -730,8 +864,23 @@
         return 'bg-orange-50';
       case 'contact':
         return 'bg-pink-50';
+      case 'admissions':
+        return 'bg-gradient-to-br from-emerald-100 via-green-50 to-teal-100';
+      case 'getInvolved':
+        return 'bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-100';
       default:
         return 'bg-white';
+    }
+  });
+
+  const titleColor = computed(() => {
+    switch (activeDropdown.value) {
+      case 'admissions':
+        return 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-700';
+      case 'getInvolved':
+        return 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700';
+      default:
+        return 'text-green-600';
     }
   });
 
@@ -827,5 +976,28 @@
   .indicator-leave-to {
     transform: translate(-50%, 15px);
     opacity: 0;
+  }
+
+  /* Accordion animation for mobile menu */
+  .accordion-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .accordion-leave-active {
+    transition: all 0.2s ease-in;
+  }
+
+  .accordion-enter-from,
+  .accordion-leave-to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+
+  .accordion-enter-to,
+  .accordion-leave-from {
+    opacity: 1;
+    max-height: 100px;
+    transform: translateY(0);
   }
 </style>
