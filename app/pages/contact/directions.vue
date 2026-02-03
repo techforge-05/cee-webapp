@@ -35,7 +35,7 @@
         <div class="grid lg:grid-cols-2 gap-12 items-start">
           <!-- Google Map Embed -->
           <div class="order-2 lg:order-1">
-            <div class="bg-gray-200 rounded-2xl overflow-hidden shadow-lg h-96 lg:h-[500px]">
+            <div class="bg-gray-200 rounded-2xl overflow-hidden shadow-lg h-72 md:h-80 lg:h-96">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.1234567890123!2d-87.8333333!3d14.6166667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSiguatepeque%2C%20Honduras!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
                 width="100%"

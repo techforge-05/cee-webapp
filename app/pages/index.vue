@@ -2,7 +2,7 @@
   <div class="bg-white">
     <!-- Section 1: Hero Video (Full viewport) -->
     <section
-      class="relative h-screen bg-linear-to-br from-blue-600 to-blue-800"
+      class="relative min-h-[500px] h-screen max-h-[800px] lg:max-h-none bg-linear-to-br from-blue-600 to-blue-800"
     >
       <!-- Video will go here when available -->
       <!-- <video
@@ -68,7 +68,7 @@
     </section>
 
     <!-- Section 3: Offered Grades and Programs -->
-    <section class="py-15 md:py-28">
+    <section class="py-10 md:py-16 lg:py-28">
       <div class="max-w-7xl mx-auto px-2 md:px-6">
         <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
           <div>
@@ -107,7 +107,7 @@
           <div>
             <!-- Placeholder for enrollment image -->
             <div
-              class="bg-gray-200 rounded-lg shadow-2xl w-full h-80 md:h-[450px] lg:h-[500px] flex items-center justify-center"
+              class="bg-gray-200 rounded-lg shadow-2xl w-full h-64 md:h-80 lg:h-96 xl:h-112.5 flex items-center justify-center"
             >
               <p class="text-gray-400 text-xl md:text-2xl">
                 {{ $t('home.enrollment.title') }}
@@ -126,13 +126,13 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section class="grid md:grid-cols-2 min-h-[80%]">
+    <section class="grid md:grid-cols-2">
       <!-- Left: Full Image -->
       <div
         class="hidden md:flex relative items-center justify-center overflow-hidden"
       >
         <div
-          class="bg-gray-300 w-full h-full min-h-[400px] md:min-h-[60%] flex items-center justify-center"
+          class="bg-gray-300 w-full h-full min-h-80 md:min-h-96 lg:min-h-100 flex items-center justify-center"
         >
           <p class="text-gray-400 text-xl md:text-2xl">Values Image</p>
         </div>
@@ -140,7 +140,7 @@
         <img
           src="/images/values.jpg"
           alt="Values"
-          class="w-full h-full min-h-[400px] md:min-h-screen object-cover"
+          class="w-full h-full min-h-80 md:min-h-96 lg:min-h-100 object-cover"
         />
         -->
       </div>
@@ -155,7 +155,7 @@
           background-repeat: no-repeat;
         "
       >
-        <div class="bg-yellow-600/30 w-full h-full py-15 md:py-20 px-8">
+        <div class="bg-yellow-600/30 w-full h-full py-10 md:py-14 lg:py-20 px-8">
           <div class="w-full flex flex-col items-center">
             <div class="mb-12">
               <h2
@@ -197,7 +197,7 @@
     </section>
 
     <!-- Section 5: School Activities -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-10 md:py-14 lg:py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-900 mb-4">

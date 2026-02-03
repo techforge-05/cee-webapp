@@ -194,12 +194,13 @@
           </button>
 
           <!-- Photo Container -->
-          <div class="max-w-5xl max-h-[85vh] mx-4">
+          <div class="max-w-5xl mx-4" style="max-height: min(85vh, 700px)">
             <img
               v-if="currentPhoto?.url"
               :src="currentPhoto.url"
               :alt="currentPhoto.title"
-              class="max-w-full max-h-[75vh] object-contain rounded-lg"
+              class="max-w-full object-contain rounded-lg"
+              style="max-height: min(75vh, 600px)"
             />
             <div
               v-else

@@ -2,7 +2,7 @@
   <nav class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex gap-10">
+        <div class="flex gap-4 2xl:gap-10">
           <!-- Logo -->
           <div class="flex items-center">
             <NuxtLink :to="localePath('/')" class="block py-2">
@@ -10,16 +10,16 @@
                 <img
                   src="/images/logo.png"
                   alt="Logo"
-                  class="h-23 md:h-26 w-auto object-contain mt-4 md:mt-6 z-300 fixed -left-2 md:left-6"
+                  class="h-20 lg:h-24 2xl:h-26 w-auto object-contain mt-4 lg:mt-5 2xl:mt-6 z-300 fixed left-1 lg:left-4 2xl:left-6"
                 />
                 <div
-                  class="text-black hidden md:flex flex-col font-bold text-xs md:text-base leading-tight pl-14 md:pl-22"
+                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-base leading-tight pl-16 lg:pl-20 2xl:pl-24"
                 >
                   <p>COMUNIDAD EDUCATIVA</p>
                   <p>EVANGÉLICA</p>
                 </div>
                 <div
-                  class="text-green-800 font-bold text-4xl md:hidden leading-tight pl-14"
+                  class="text-green-800 font-bold text-4xl lg:hidden leading-tight pl-14"
                 >
                   <p>CEE</p>
                 </div>
@@ -29,14 +29,14 @@
 
           <!-- Navigation Buttons - Hidden on mobile -->
           <div
-            class="hidden lg:flex items-center space-x-6"
+            class="hidden lg:flex items-center space-x-1 xl:space-x-2 2xl:space-x-5"
             @mouseleave="scheduleClose"
           >
             <button
               v-for="navItem in navigationItems"
               :key="navItem.key"
               @mouseenter="handleDropdownChange(navItem.key)"
-              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer"
+              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer text-xs xl:text-sm 2xl:text-base whitespace-nowrap"
             >
               {{ $t(`nav.${navItem.key}`) }}
               <Transition name="indicator">
@@ -49,26 +49,26 @@
           </div>
         </div>
         <!-- Right Side Actions -->
-        <div class="flex items-center space-x-3">
-          <!-- Special Badge Buttons - Hidden on mobile -->
-          <div class="hidden md:flex items-center space-x-2">
+        <div class="flex items-center space-x-1 xl:space-x-2 2xl:space-x-3">
+          <!-- Special Badge Buttons - Hidden on mobile, compact on medium desktops -->
+          <div class="hidden lg:flex items-center space-x-1 2xl:space-x-2">
             <UBadge
               color="primary"
               variant="solid"
-              size="lg"
+              size="sm"
               class="rounded-full"
             >
-              <NuxtLink :to="localePath('/admissions')" class="px-2 py-1">
+              <NuxtLink :to="localePath('/admissions')" class="px-1 py-0.5 text-[10px] xl:text-xs 2xl:text-sm">
                 {{ $t('nav.admissions') }}
               </NuxtLink>
             </UBadge>
             <UBadge
               color="secondary"
               variant="solid"
-              size="lg"
+              size="sm"
               class="rounded-full text-black font-bold"
             >
-              <NuxtLink :to="localePath('/get-involved')" class="px-2 py-1">
+              <NuxtLink :to="localePath('/get-involved')" class="px-1 py-0.5 text-[10px] xl:text-xs 2xl:text-sm">
                 {{ $t('nav.getInvolved') }}
               </NuxtLink>
             </UBadge>
@@ -79,12 +79,13 @@
 
           <!-- Auth Buttons -->
           <template v-if="user">
-            <span class="hidden md:inline text-gray-700">{{ user.email }}</span>
+            <span class="hidden 2xl:inline text-gray-700 text-sm truncate max-w-32">{{ user.email }}</span>
             <UButton
               @click="handleSignOut"
               variant="outline"
-              size="sm"
+              size="xs"
               color="error"
+              class="text-xs"
             >
               {{ $t('nav.signOut') }}
             </UButton>
@@ -93,9 +94,9 @@
             <UButton
               @click="navigateTo(localePath('/auth/login'))"
               variant="outline"
-              size="sm"
+              size="xs"
               color="secondary"
-              class="hidden md:inline-flex cursor-pointer"
+              class="hidden lg:inline-flex cursor-pointer text-xs"
             >
               {{ $t('nav.signIn') }}
             </UButton>
@@ -590,26 +591,26 @@
         @mouseleave="scheduleClose"
         class="hidden lg:block absolute left-0 right-0 shadow-lg overflow-hidden"
         :class="[backgroundColor]"
-        style="height: 60vh; top: 64px"
+        style="height: min(60vh, 450px); top: 64px"
       >
         <div class="grid grid-cols-12 h-full">
           <!-- Left: Title (3 columns) -->
-          <div class="col-span-3 flex justify-center p-8 pt-15">
-            <h2 class="text-5xl font-bold text-green-600">
+          <div class="col-span-3 flex justify-center p-4 lg:p-6 xl:p-8 pt-8 lg:pt-10 xl:pt-15">
+            <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-green-600">
               {{ $t(`nav.${activeDropdown}`).toUpperCase() }}
             </h2>
           </div>
 
           <!-- Middle: Links (6 columns) -->
-          <div class="col-span-5 p-8 pt-20">
-            <ul class="space-y-4">
+          <div class="col-span-5 p-4 lg:p-6 xl:p-8 pt-10 lg:pt-14 xl:pt-20">
+            <ul class="space-y-2 lg:space-y-3 xl:space-y-4">
               <li
-                v-for="item in dropdownItems[activeDropdown]"
+                v-for="item in dropdownItems[activeDropdown as keyof typeof dropdownItems]"
                 :key="item.path"
               >
                 <NuxtLink
                   :to="localePath(item.path)"
-                  class="text-2xl text-gray-700 hover:text-gray-900 hover:font-semibold font-medium block transition-colors duration-200"
+                  class="text-lg lg:text-xl xl:text-2xl text-gray-700 hover:text-gray-900 hover:font-semibold font-medium block transition-colors duration-200"
                   @click="activeDropdown = null"
                 >
                   {{ item.label }}
@@ -619,7 +620,7 @@
           </div>
 
           <!-- Right: Image (3 columns) -->
-          <div class="col-span-4 flex items-center justify-center p-10">
+          <div class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10">
             <div
               class="bg-gray-200 flex justify-center items-center w-full h-full"
             >
@@ -641,7 +642,7 @@
       <div
         v-if="activeDropdown"
         class="fixed inset-0 bg-transparent z-40"
-        style="top: calc(64px + 60vh)"
+        style="top: calc(64px + min(60vh, 450px))"
         @mouseenter="scheduleClose"
       ></div>
     </Transition>
