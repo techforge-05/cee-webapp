@@ -2,7 +2,7 @@
   <nav class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex gap-4 2xl:gap-10">
+        <div class="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-10">
           <!-- Logo -->
           <div class="flex items-center">
             <NuxtLink :to="localePath('/')" class="block py-2">
@@ -13,7 +13,7 @@
                   class="h-20 lg:h-24 2xl:h-26 w-auto object-contain mt-4 lg:mt-5 2xl:mt-6 z-300 fixed left-1 lg:left-4 2xl:left-6"
                 />
                 <div
-                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-base leading-tight pl-16 lg:pl-20 2xl:pl-24"
+                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-sm leading-tight pl-16 lg:pl-18 xl:pl-20 2xl:pl-24"
                 >
                   <p>COMUNIDAD EDUCATIVA</p>
                   <p>EVANGÉLICA</p>
@@ -29,7 +29,7 @@
 
           <!-- Navigation Buttons - Hidden on mobile -->
           <div
-            class="hidden lg:flex items-center space-x-1 xl:space-x-2 2xl:space-x-5"
+            class="hidden lg:flex items-center space-x-1.5 xl:space-x-2.5 2xl:space-x-5"
             @mouseleave="scheduleClose"
           >
             <button
@@ -49,21 +49,21 @@
           </div>
         </div>
         <!-- Right Side Actions -->
-        <div class="flex items-center space-x-1 xl:space-x-2 2xl:space-x-3">
+        <div class="flex items-center space-x-2 xl:space-x-3 2xl:space-x-4">
           <!-- Special Badge Buttons - Hidden on mobile, compact on medium desktops -->
           <div
             :key="locale"
-            class="hidden lg:flex items-center space-x-1 2xl:space-x-2"
+            class="hidden lg:flex items-center space-x-1 xl:space-x-2 2xl:space-x-3"
             @mouseleave="scheduleClose"
           >
             <span
-              class="rounded-full cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium px-2 py-1 text-[10px] xl:text-xs 2xl:text-sm hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-sm"
+              class="rounded-full cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium px-2 lg:px-3 py-1 text-xs xl:text-sm 2xl:text-base hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-sm"
               @mouseenter="handleDropdownChange('admissions')"
             >
               {{ $t('nav.admissions') }}
             </span>
             <span
-              class="rounded-full cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium px-2 py-1 text-[10px] xl:text-xs 2xl:text-sm hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-sm"
+              class="rounded-full cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium px-2 lg:px-3 py-1 text-xs xl:text-sm 2xl:text-base hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-sm"
               @mouseenter="handleDropdownChange('getInvolved')"
             >
               {{ $t('nav.getInvolved') }}
