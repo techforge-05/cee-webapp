@@ -64,47 +64,6 @@
       </div>
     </section>
 
-    <!-- Clubs Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.sportsClubs.clubs.title') }}
-          </h2>
-          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-            {{ $t('studentLife.sportsClubs.clubs.description') }}
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <div
-            v-for="(club, index) in clubs"
-            :key="index"
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
-          >
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
-                <div
-                  class="w-14 h-14 rounded-full flex items-center justify-center"
-                  :class="getClubBgColor(index)"
-                >
-                  <UIcon :name="clubIcons[index]" class="w-7 h-7 text-white" />
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ $rt(club.title) }}
-                </h3>
-                <p class="text-gray-700 leading-relaxed">
-                  {{ $rt(club.description) }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Call to Action -->
     <section
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
@@ -152,30 +111,13 @@
     'i-heroicons-bolt',
   ];
 
-  const clubIcons = [
-    'i-heroicons-book-open',
-    'i-heroicons-paint-brush',
-    'i-heroicons-musical-note',
-    'i-heroicons-film',
-  ];
-
   const sports = computed(() => {
     const items = tm('studentLife.sportsClubs.sports.items') as any[];
     return Array.isArray(items) ? items : [];
   });
 
-  const clubs = computed(() => {
-    const items = tm('studentLife.sportsClubs.clubs.items') as any[];
-    return Array.isArray(items) ? items : [];
-  });
-
   const getSportBgColor = (index: number) => {
     const colors = ['bg-green-500', 'bg-teal-500', 'bg-emerald-500', 'bg-cyan-500'];
-    return colors[index % colors.length];
-  };
-
-  const getClubBgColor = (index: number) => {
-    const colors = ['bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-violet-500'];
     return colors[index % colors.length];
   };
 

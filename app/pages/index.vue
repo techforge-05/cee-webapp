@@ -56,7 +56,7 @@
           <h3
             class="text-xl md:text-3xl font-black text-white mb-8 tracking-tight"
           >
-            "Escuela Bilingüe Siguatepeque"
+            "Jardín, Escuela e Instituto Bilingüe Siguatepeque"
           </h3>
           <p
             class="text-xl md:text-xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
@@ -155,7 +155,9 @@
           background-repeat: no-repeat;
         "
       >
-        <div class="bg-yellow-600/30 w-full h-full py-10 md:py-14 lg:py-20 px-8">
+        <div
+          class="bg-yellow-600/30 w-full h-full py-10 md:py-14 lg:py-20 px-8"
+        >
           <div class="w-full flex flex-col items-center">
             <div class="mb-12">
               <h2

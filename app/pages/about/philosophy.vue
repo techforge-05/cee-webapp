@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
-      class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20"
+      class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
@@ -115,7 +115,7 @@
 
     <!-- Call to Action -->
     <section
-      class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+      class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
@@ -130,7 +130,7 @@
               :to="localePath('/admissions')"
               size="lg"
               variant="solid"
-              class="bg-white text-blue-700 hover:bg-gray-100"
+              class="bg-white text-green-700 hover:bg-gray-100"
             >
               {{ $t('about.philosophy.cta.learnMore') }}
             </UButton>
@@ -138,7 +138,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-blue-700"
+              class="border-2 border-white text-white hover:bg-white hover:text-green-700"
             >
               {{ $t('about.philosophy.cta.contactUs') }}
             </UButton>

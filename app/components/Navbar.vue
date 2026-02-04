@@ -226,15 +226,15 @@
                 <span>{{ $t('nav.dropdowns.academics.curriculum') }}</span>
               </NuxtLink>
               <NuxtLink
-                :to="localePath('/academics/programs')"
+                :to="localePath('/academics/grades')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
               >
                 <UIcon
-                  name="i-heroicons-clipboard-document-list"
+                  name="i-heroicons-chart-bar"
                   class="w-5 h-5 text-yellow-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.academics.programs') }}</span>
+                <span>{{ $t('nav.dropdowns.academics.grades') }}</span>
               </NuxtLink>
               <NuxtLink
                 :to="localePath('/academics/calendar')"
@@ -246,17 +246,6 @@
                   class="w-5 h-5 text-yellow-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.academics.calendar') }}</span>
-              </NuxtLink>
-              <NuxtLink
-                :to="localePath('/academics/grades')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-chart-bar"
-                  class="w-5 h-5 text-yellow-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.academics.grades') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -349,6 +338,7 @@
               </h3>
             </div>
             <div class="pl-14 space-y-2">
+              <!-- Resources link - temporarily hidden
               <NuxtLink
                 :to="localePath('/parents/resources')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
@@ -360,6 +350,7 @@
                 />
                 <span>{{ $t('nav.dropdowns.parents.resources') }}</span>
               </NuxtLink>
+              -->
               <NuxtLink
                 :to="localePath('/parents/calendar')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
@@ -381,17 +372,6 @@
                   class="w-5 h-5 text-blue-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.parents.handbook') }}</span>
-              </NuxtLink>
-              <NuxtLink
-                :to="localePath('/parents/involvement')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-hand-raised"
-                  class="w-5 h-5 text-blue-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.parents.involvement') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -452,17 +432,6 @@
                   class="w-5 h-5 text-red-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.support.projects') }}</span>
-              </NuxtLink>
-              <NuxtLink
-                :to="localePath('/support/partnerships')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-hand-raised"
-                  class="w-5 h-5 text-red-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.support.partnerships') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -767,15 +736,11 @@
         path: '/academics/curriculum',
         label: t('nav.dropdowns.academics.curriculum'),
       },
-      {
-        path: '/academics/programs',
-        label: t('nav.dropdowns.academics.programs'),
-      },
+      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
       {
         path: '/academics/calendar',
         label: t('nav.dropdowns.academics.calendar'),
       },
-      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
     ],
     studentLife: [
       {
@@ -800,16 +765,13 @@
       },
     ],
     parents: [
-      {
-        path: '/parents/resources',
-        label: t('nav.dropdowns.parents.resources'),
-      },
+      // Resources - temporarily hidden
+      // {
+      //   path: '/parents/resources',
+      //   label: t('nav.dropdowns.parents.resources'),
+      // },
       { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar') },
       { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook') },
-      {
-        path: '/parents/involvement',
-        label: t('nav.dropdowns.parents.involvement'),
-      },
     ],
     support: [
       {
@@ -822,10 +784,6 @@
       },
       { path: '/support/donate', label: t('nav.dropdowns.support.donate') },
       { path: '/support/projects', label: t('nav.dropdowns.support.projects') },
-      {
-        path: '/support/partnerships',
-        label: t('nav.dropdowns.support.partnerships'),
-      },
     ],
     contact: [
       { path: '/contact/info', label: t('nav.dropdowns.contact.info') },

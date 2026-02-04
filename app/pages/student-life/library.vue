@@ -20,8 +20,11 @@
         <div class="max-w-4xl mx-auto text-center">
           <UIcon
             name="i-heroicons-book-open"
-            class="w-16 h-16 text-amber-600 mx-auto mb-6"
+            class="w-16 h-16 text-amber-600 mx-auto mb-4"
           />
+          <h2 class="text-2xl md:text-3xl font-bold text-amber-700 mb-6">
+            Beulah B. Burgess Library
+          </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
             {{ $t('studentLife.library.intro') }}
           </p>
@@ -60,6 +63,29 @@
             >
               <p class="text-gray-400 text-lg">Library Image</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading Corner Image Section -->
+    <section class="py-16">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="bg-amber-50 rounded-2xl p-8">
+            <div
+              class="bg-gray-200 rounded-lg h-64 flex items-center justify-center"
+            >
+              <UIcon name="i-heroicons-book-open" class="w-16 h-16 text-gray-400" />
+            </div>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+              {{ $t('studentLife.library.readingCorner.title') }}
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              {{ $t('studentLife.library.readingCorner.description') }}
+            </p>
           </div>
         </div>
       </div>
@@ -120,21 +146,24 @@
           <div
             v-for="(level, index) in levels"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-t-4"
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4"
             :class="getLevelBorderColor(index)"
           >
+            <!-- Image placeholder -->
             <div
-              class="w-14 h-14 rounded-full mb-6 flex items-center justify-center"
-              :class="getLevelBgColor(index)"
+              class="h-48 flex items-center justify-center"
+              :class="getLevelLightBgColor(index)"
             >
-              <UIcon :name="levelIcons[index]" class="w-7 h-7 text-white" />
+              <UIcon :name="levelIcons[index]" class="w-16 h-16" :class="getLevelIconColor(index)" />
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(level.title) }}
-            </h3>
-            <p class="text-gray-700 leading-relaxed">
-              {{ $rt(level.description) }}
-            </p>
+            <div class="p-8">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                {{ $rt(level.title) }}
+              </h3>
+              <p class="text-gray-700 leading-relaxed">
+                {{ $rt(level.description) }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -175,12 +204,58 @@
       </div>
     </section>
 
-    <!-- Contact Person -->
+    <!-- Bilingual Collection Section -->
+    <section class="py-16">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+              {{ $t('studentLife.library.bilingualCollection.title') }}
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              {{ $t('studentLife.library.bilingualCollection.description') }}
+            </p>
+          </div>
+          <div class="bg-blue-50 rounded-2xl p-8">
+            <div
+              class="bg-gray-200 rounded-lg h-64 flex items-center justify-center"
+            >
+              <UIcon name="i-heroicons-language" class="w-16 h-16 text-gray-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study Space Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="bg-green-50 rounded-2xl p-8 order-2 lg:order-1">
+            <div
+              class="bg-gray-200 rounded-lg h-64 flex items-center justify-center"
+            >
+              <UIcon name="i-heroicons-users" class="w-16 h-16 text-gray-400" />
+            </div>
+          </div>
+          <div class="order-1 lg:order-2">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+              {{ $t('studentLife.library.studySpace.title') }}
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              {{ $t('studentLife.library.studySpace.description') }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact the Library -->
     <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-2xl mx-auto text-center bg-amber-50 rounded-2xl p-10">
           <UIcon
-            name="i-heroicons-user-circle"
+            name="i-heroicons-envelope"
             class="w-16 h-16 text-amber-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
@@ -189,32 +264,13 @@
           <p class="text-lg text-gray-700 mb-6">
             {{ $t('studentLife.library.contact.description') }}
           </p>
-          <div class="space-y-3">
-            <div class="flex items-center justify-center gap-3">
-              <UIcon name="i-heroicons-user" class="w-5 h-5 text-amber-600" />
-              <span class="text-gray-700">{{
-                $t('studentLife.library.contact.librarian')
-              }}</span>
-            </div>
-            <div class="flex items-center justify-center gap-3">
-              <UIcon
-                name="i-heroicons-envelope"
-                class="w-5 h-5 text-amber-600"
-              />
-              <span class="text-gray-700">{{
-                $t('studentLife.library.contact.email')
-              }}</span>
-            </div>
-            <div class="flex items-center justify-center gap-3">
-              <UIcon
-                name="i-heroicons-map-pin"
-                class="w-5 h-5 text-amber-600"
-              />
-              <span class="text-gray-700">{{
-                $t('studentLife.library.contact.location')
-              }}</span>
-            </div>
-          </div>
+          <a
+            href="mailto:library@ceehonduras.org"
+            class="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold text-lg"
+          >
+            <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
+            library@ceehonduras.org
+          </a>
         </div>
       </div>
     </section>
@@ -290,8 +346,13 @@
     return colors[index % colors.length];
   };
 
-  const getLevelBgColor = (index: number) => {
-    const colors = ['bg-pink-500', 'bg-amber-500', 'bg-blue-500'];
+  const getLevelLightBgColor = (index: number) => {
+    const colors = ['bg-pink-100', 'bg-amber-100', 'bg-blue-100'];
+    return colors[index % colors.length];
+  };
+
+  const getLevelIconColor = (index: number) => {
+    const colors = ['text-pink-500', 'text-amber-500', 'text-blue-500'];
     return colors[index % colors.length];
   };
 

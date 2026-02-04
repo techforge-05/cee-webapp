@@ -2,13 +2,13 @@
   <div class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
-      class="relative bg-gradient-to-r from-amber-500 to-orange-500 text-white py-16 lg:py-20"
+      class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 lg:py-20"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('getInvolved.volunteer.title') }}
         </h1>
-        <p class="text-xl md:text-2xl text-amber-100">
+        <p class="text-xl md:text-2xl text-blue-100">
           {{ $t('getInvolved.volunteer.subtitle') }}
         </p>
       </div>
@@ -80,17 +80,17 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-12 bg-amber-500 text-white">
+    <section class="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-2xl font-bold mb-4">
           {{ $t('getInvolved.volunteer.contact.title') }}
         </h2>
-        <p class="text-lg text-amber-100 mb-6">
+        <p class="text-lg text-blue-100 mb-6">
           {{ $t('getInvolved.volunteer.contact.description') }}
         </p>
         <a
           href="mailto:volunteer@ceehonduras.org"
-          class="inline-flex items-center gap-2 bg-white text-amber-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
+          class="inline-flex items-center gap-2 bg-white text-purple-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
         >
           <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
           volunteer@ceehonduras.org

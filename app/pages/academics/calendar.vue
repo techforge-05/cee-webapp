@@ -80,21 +80,13 @@
             <p class="text-xl text-gray-800 mb-6">
               {{ $t('academics.calendar.download.description') }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex justify-center">
               <UButton
                 size="lg"
                 icon="i-heroicons-document-arrow-down"
                 color="secondary"
               >
                 {{ $t('academics.calendar.download.pdf') }}
-              </UButton>
-              <UButton
-                size="lg"
-                icon="i-heroicons-printer"
-                variant="outline"
-                color="secondary"
-              >
-                {{ $t('academics.calendar.download.print') }}
               </UButton>
             </div>
           </div>

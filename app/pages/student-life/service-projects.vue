@@ -103,24 +103,6 @@
       </div>
     </section>
 
-    <!-- Get Involved Section -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center bg-rose-50 rounded-2xl p-10">
-          <UIcon
-            name="i-heroicons-hand-raised"
-            class="w-12 h-12 text-rose-600 mx-auto mb-4"
-          />
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.serviceProjects.getInvolved.title') }}
-          </h2>
-          <p class="text-lg text-gray-700">
-            {{ $t('studentLife.serviceProjects.getInvolved.description') }}
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- Call to Action -->
     <section
       class="py-16 bg-gradient-to-r from-rose-600 to-pink-600 text-white"
@@ -172,7 +154,6 @@
     'i-heroicons-home',
     'i-heroicons-globe-americas',
     'i-heroicons-shopping-bag',
-    'i-heroicons-academic-cap',
   ];
 
   const benefits = computed(() => {

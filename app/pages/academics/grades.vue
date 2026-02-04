@@ -105,8 +105,38 @@
       </div>
     </section>
 
-    <!-- Educational Approach Section -->
+    <!-- Special Programs Section -->
     <section class="py-16 bg-gray-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+          {{ $t('academics.programs.special.title') }}
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            v-for="(program, index) in specialPrograms"
+            :key="index"
+            class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
+          >
+            <div
+              class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
+              :class="getSpecialProgramBgColor(index)"
+            >
+              <UIcon :name="program.icon" class="w-8 h-8 text-white" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              {{ $rt(program.title) }}
+            </h3>
+            <p class="text-gray-700">
+              {{ $rt(program.description) }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educational Approach Section -->
+    <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('academics.grades.approach.title') }}
@@ -189,6 +219,24 @@
     }));
   });
 
+  const specialProgramIcons = [
+    'i-heroicons-language',
+    'i-heroicons-computer-desktop',
+    'i-heroicons-heart',
+    'i-heroicons-paint-brush',
+    'i-heroicons-musical-note',
+    'i-heroicons-trophy',
+  ];
+
+  const specialPrograms = computed(() => {
+    const items = tm('academics.programs.special.items') as any[];
+    return items.map((program: any, index: number) => ({
+      title: program.title,
+      description: program.description,
+      icon: specialProgramIcons[index % specialProgramIcons.length],
+    }));
+  });
+
   const approachIcons = [
     'i-heroicons-language',
     'i-heroicons-heart',
@@ -250,6 +298,18 @@
       'text-blue-600',
       'text-purple-600',
       'text-indigo-600',
+    ];
+    return colors[index % colors.length];
+  };
+
+  const getSpecialProgramBgColor = (index: number) => {
+    const colors = [
+      'bg-blue-500',
+      'bg-purple-500',
+      'bg-indigo-500',
+      'bg-violet-500',
+      'bg-fuchsia-500',
+      'bg-pink-500',
     ];
     return colors[index % colors.length];
   };

@@ -26,7 +26,6 @@
       },
       "academics": {
         "curriculum": "Curriculum",
-        "programs": "Programs",
         "calendar": "Academic Calendar",
         "grades": "Grades & Levels"
       },
@@ -224,7 +223,7 @@
     "history": {
       "title": "History of the School",
       "subtitle": "Our journey from a dream to reality",
-      "intro": "From humble beginnings in 1990, CEE has grown to become a cornerstone of Christian bilingual education in Siguatepeque.",
+      "intro": "From its beginnings in 1990, CEE has grown to become a cornerstone of Christian bilingual education in Siguatepeque.",
       "timeline": {
         "title": "Our Journey Through Time",
         "late1980s": {
@@ -347,13 +346,8 @@
       "directors": {
         "title": "School Directors",
         "description": "Our directors oversee the day-to-day operations and academic excellence of our institution.",
-        "members": [
-          {
-            "name": "Director Name",
-            "position": "Position Title",
-            "bio": ""
-          }
-        ]
+        "preschoolElementary": "Preschool and Elementary Principal",
+        "highSchool": "High School Principal"
       },
       "contact": {
         "title": "Have Questions for Our Leadership?",
@@ -536,7 +530,7 @@
           },
           {
             "title": "Spiritual Formation",
-            "description": "Daily Bible classes, chapel services, and character development programs"
+            "description": "Weekly Devotionals and Spiritual Emphasis Weeks throughout the year"
           },
           {
             "title": "Fine Arts",
@@ -722,12 +716,20 @@
         "title": "Key Academic Periods",
         "items": [
           {
-            "title": "First Semester",
-            "description": "February - June: First half of the academic year with mid-term and final exams"
+            "title": "First Quarter",
+            "description": "August - October"
           },
           {
-            "title": "Second Semester",
-            "description": "July - November: Second half of the academic year concluding with final exams and graduation"
+            "title": "Second Quarter",
+            "description": "October - December"
+          },
+          {
+            "title": "Third Quarter",
+            "description": "January - March"
+          },
+          {
+            "title": "Fourth Quarter",
+            "description": "March - May"
           },
           {
             "title": "Registration Period",
@@ -738,8 +740,7 @@
       "download": {
         "title": "Download Calendar",
         "description": "Get a printable version of the full academic calendar to keep at home or share with family.",
-        "pdf": "Download PDF",
-        "print": "Print Calendar"
+        "pdf": "Download PDF"
       },
       "cta": {
         "title": "Ready to Join CEE?",
@@ -773,28 +774,6 @@
           {
             "title": "Dodgeball",
             "description": "A fun, high-energy activity that builds quick reflexes and encourages active participation."
-          }
-        ]
-      },
-      "clubs": {
-        "title": "Clubs & Activities",
-        "description": "Our clubs offer students the chance to explore their interests, develop new skills, and connect with like-minded peers in a supportive environment.",
-        "items": [
-          {
-            "title": "Reading Club",
-            "description": "Fostering a love for literature through book discussions, reading challenges, and author studies."
-          },
-          {
-            "title": "Painting & Art Club",
-            "description": "Exploring visual arts through various mediums including watercolors, acrylics, and mixed media."
-          },
-          {
-            "title": "Music Club",
-            "description": "Learning instruments, vocal training, and music appreciation in a fun, collaborative setting."
-          },
-          {
-            "title": "Theater Club",
-            "description": "Developing confidence and creativity through drama, acting workshops, and school productions."
           }
         ]
       },
@@ -845,20 +824,12 @@
           {
             "title": "Food Drives",
             "description": "Collecting and distributing food to families in need throughout the year."
-          },
-          {
-            "title": "Tutoring Programs",
-            "description": "Older students mentoring younger students in academic subjects."
           }
         ]
       },
-      "getInvolved": {
-        "title": "How to Get Involved",
-        "description": "Parents and community members are welcome to partner with us in service projects. Contact us to learn about upcoming opportunities."
-      },
       "cta": {
-        "title": "Join Us in Making a Difference",
-        "description": "Discover how your family can participate in our service learning programs and make a positive impact in our community.",
+        "title": "Building Character Through Service",
+        "description": "Our students learn the value of compassion and community involvement through meaningful service experiences.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }
@@ -889,10 +860,6 @@
           {
             "day": "During Lunch",
             "hours": "Open for reading and study"
-          },
-          {
-            "day": "After School",
-            "hours": "By appointment only"
           }
         ]
       },
@@ -927,10 +894,19 @@
       },
       "contact": {
         "title": "Contact the Library",
-        "description": "Have questions about our library services or need help finding resources?",
-        "librarian": "School Librarian",
-        "email": "library{'@'}cee.edu.hn",
-        "location": "Main Building, First Floor"
+        "description": "Have questions about our library services or need help finding resources?"
+      },
+      "readingCorner": {
+        "title": "A Cozy Reading Corner",
+        "description": "Our library features comfortable reading areas where students can immerse themselves in their favorite books. Whether it's a quiet corner for independent reading or group spaces for book discussions, we've created an environment that nurtures a love for reading."
+      },
+      "bilingualCollection": {
+        "title": "Bilingual Book Collection",
+        "description": "Our extensive collection includes books in both English and Spanish, supporting our bilingual curriculum and helping students develop strong literacy skills in both languages. From classic literature to contemporary favorites, there's something for every reader."
+      },
+      "studySpace": {
+        "title": "Quiet Study Spaces",
+        "description": "Students can find peaceful areas for focused study, research projects, and homework. Our library provides a conducive learning environment with tables, comfortable seating, and access to reference materials for academic success."
       },
       "cta": {
         "title": "Discover the Joy of Reading",
@@ -962,13 +938,13 @@
         "description": "Every year, our school community comes together for these special events that have become beloved traditions at CEE.",
         "events": [
           {
-            "title": "Sports Day",
-            "description": "A day of athletic competitions, team spirit, and healthy fun for all grade levels.",
+            "title": "Sports Days",
+            "description": "Days of athletic competitions, team spirit, and healthy fun for all grade levels.",
             "timing": "Every April",
             "image_url": ""
           },
           {
-            "title": "Science Fair",
+            "title": "Science Week",
             "description": "Students showcase their scientific discoveries, experiments, and research projects.",
             "timing": "Every March",
             "image_url": ""
@@ -992,9 +968,27 @@
             "image_url": ""
           },
           {
-            "title": "Cultural Week",
+            "title": "Cultural Days",
             "description": "Celebrating Honduran heritage and the rich diversity of our school community.",
             "timing": "Every September",
+            "image_url": ""
+          },
+          {
+            "title": "Language Week",
+            "description": "A celebration of bilingual education with activities, presentations, and competitions in both English and Spanish.",
+            "timing": "Every October",
+            "image_url": ""
+          },
+          {
+            "title": "Family Day",
+            "description": "A special day dedicated to celebrating families with games, activities, and quality time together on campus.",
+            "timing": "Every August",
+            "image_url": ""
+          },
+          {
+            "title": "Easter Celebration",
+            "description": "Commemorating the resurrection of Christ with worship, activities, and reflection on the true meaning of Easter.",
+            "timing": "Every Spring",
             "image_url": ""
           }
         ]
@@ -1352,7 +1346,7 @@
       },
       "email": {
         "title": "Email",
-        "address": "info{'@'}cee.edu.hn",
+        "address": "administracion{'@'}ceehonduras.org",
         "description": "Send us an email and we'll respond as soon as possible"
       },
       "hours": {
@@ -1363,7 +1357,7 @@
       },
       "address": {
         "title": "Address",
-        "line1": "Comunidad Educativa Evangélica",
+        "line1": "Barrio El Carmen 1ra Calle S.O., 10-11 Av.",
         "line2": "Siguatepeque, Comayagua",
         "line3": "Honduras"
       },
@@ -1380,7 +1374,7 @@
       "intro": "Our school is conveniently located in the heart of Siguatepeque. Here's how to find us.",
       "address": {
         "title": "Our Location",
-        "full": "Comunidad Educativa Evangélica, Siguatepeque, Comayagua, Honduras"
+        "full": "Barrio El Carmen 1ra Calle S.O., 10-11 Av. Siguatepeque, Comayagua, Honduras"
       },
       "fromTegucigalpa": {
         "title": "From Tegucigalpa",
@@ -1543,10 +1537,10 @@
       "videoAlt": "Educational center presentation video"
     },
     "welcome": {
-      "titlePartOne": "A Warm Welcome to",
+      "titlePartOne": "Welcome to",
       "titlePartTwo": "Comunidad Educativa Evangélica",
       "subtitle": "Quality education for our students' future",
-      "description": "Situated in Siguatepeque, Honduras. CEE is an Educational institution whose mission is to facilitate the formative processes, involving family, church, and the teachers, that allow for the transmission of information, morals, and values through an education founded in the Word of God. We provide Christ-centered education that shapes knowledge, character, and values through God's Word."
+      "description": "Situated in Siguatepeque, Honduras. CEE is an Educational institution whose mission is to facilitate the transmission of knowledge, values, and attitudes through a transforming education based on the Word of God."
     },
     "values": {
       "title": "Values and Principles",
@@ -1589,7 +1583,7 @@
       "cta": "More Information",
       "features": [
         "Bilingual education",
-        "Spacious and well-equipped facilities",
+        "Facilities well-suited for learning",
         "Extracurricular activities",
         "Professional and dedicated personnel"
       ]
@@ -1750,14 +1744,13 @@
           "Meaningful work in a Christ-centered environment",
           "Supportive and collaborative team",
           "Professional development opportunities",
-          "Competitive compensation",
           "Making a lasting impact on students' lives"
         ]
       },
       "applicationForms": {
         "title": "Job Application Forms",
-        "international": "International Teachers",
-        "honduran": "Honduran Teachers",
+        "international": "International English Teachers",
+        "honduran": "Honduran English Teachers",
         "applyNow": "Apply Now"
       },
       "contact": {

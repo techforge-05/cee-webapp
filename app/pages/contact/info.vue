@@ -34,8 +34,12 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <!-- Phone/WhatsApp Card -->
-          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-4">
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-4"
+            >
               <UIcon name="i-heroicons-phone" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
@@ -55,16 +59,20 @@
           </div>
 
           <!-- Email Card -->
-          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mx-auto mb-4">
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mx-auto mb-4"
+            >
               <UIcon name="i-heroicons-envelope" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
               {{ $t('contact.info.email.title') }}
             </h3>
             <a
-              href="mailto:info@cee.edu.hn"
-              class="text-lg text-red-600 font-semibold hover:text-red-700 transition-colors"
+              href="mailto:administracion@ceehonduras.org"
+              class="text-sm text-red-600 font-semibold hover:text-red-700 transition-colors"
             >
               {{ $t('contact.info.email.address') }}
             </a>
@@ -74,8 +82,12 @@
           </div>
 
           <!-- Office Hours Card -->
-          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-4">
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-4"
+            >
               <UIcon name="i-heroicons-clock" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
@@ -93,8 +105,12 @@
           </div>
 
           <!-- Address Card -->
-          <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mx-auto mb-4">
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mx-auto mb-4"
+            >
               <UIcon name="i-heroicons-map-pin" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
@@ -179,16 +195,16 @@
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
+  const localePath = useLocalePath();
 
-useHead({
-  title: 'Contact Information - CEE',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Contact CEE - Phone, email, office hours, and address information for Comunidad Educativa Evangélica in Siguatepeque, Honduras.',
-    },
-  ],
-});
+  useHead({
+    title: 'Contact Information - CEE',
+    meta: [
+      {
+        name: 'description',
+        content:
+          'Contact CEE - Phone, email, office hours, and address information for Comunidad Educativa Evangélica in Siguatepeque, Honduras.',
+      },
+    ],
+  });
 </script>

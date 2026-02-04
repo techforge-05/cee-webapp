@@ -21,12 +21,11 @@
         "statementOfFaith": "Declaración de Fe",
         "philosophy": "Nuestra Filosofía",
         "history": "Historia de la Escuela",
-        "town": "Nuestro Pueblo",
+        "town": "Nuestra Ciudad",
         "leadership": "Liderazgo y Junta Directiva"
       },
       "academics": {
         "curriculum": "Currículo",
-        "programs": "Programas",
         "calendar": "Calendario Académico",
         "grades": "Grados y Niveles"
       },
@@ -224,7 +223,7 @@
     "history": {
       "title": "Historia de la Escuela",
       "subtitle": "Nuestro viaje de un sueño a la realidad",
-      "intro": "Desde humildes comienzos en 1990, CEE ha crecido hasta convertirse en un pilar de la educación cristiana bilingüe en Siguatepeque.",
+      "intro": "Desde sus comienzos en 1990, CEE ha crecido hasta convertirse en un pilar de la educación cristiana bilingüe en Siguatepeque.",
       "timeline": {
         "title": "Nuestro Recorrido a Través del Tiempo",
         "late1980s": {
@@ -272,7 +271,7 @@
       }
     },
     "town": {
-      "title": "Nuestro Pueblo",
+      "title": "Nuestra Ciudad",
       "subtitle": "Siguatepeque - El Corazón de Honduras",
       "intro": {
         "title": "Bienvenido a Siguatepeque",
@@ -347,13 +346,8 @@
       "directors": {
         "title": "Directores de la Escuela",
         "description": "Nuestros directores supervisan las operaciones diarias y la excelencia académica de nuestra institución.",
-        "members": [
-          {
-            "name": "Nombre del Director",
-            "position": "Título del Puesto",
-            "bio": ""
-          }
-        ]
+        "preschoolElementary": "Directora de Preescolar y Primaria",
+        "highSchool": "Directora de Secundaria"
       },
       "contact": {
         "title": "¿Tienes Preguntas para Nuestro Liderazgo?",
@@ -475,7 +469,7 @@
         "items": [
           {
             "title": "Educación Infantil Temprana",
-            "grades": "Edades 4-5 (Pre-K y Jardín de Infantes)",
+            "grades": "Edades 4-5 (Kinder y Preparatoria)",
             "description": "Nuestro programa de educación infantil temprana proporciona un ambiente enriquecedor de aprendizaje basado en el juego donde los niños pequeños desarrollan habilidades fundamentales en alfabetización, aritmética, interacción social y formación espiritual. A través de la instrucción bilingüe, los niños comienzan su viaje tanto en español como en inglés.",
             "highlights": [
               "Aprendizaje bilingüe basado en el juego",
@@ -536,7 +530,7 @@
           },
           {
             "title": "Formación Espiritual",
-            "description": "Clases diarias de Biblia, servicios de capilla y programas de desarrollo del carácter"
+            "description": "Devocionales semanales y Semanas de Énfasis Espiritual durante todo el año"
           },
           {
             "title": "Bellas Artes",
@@ -598,14 +592,14 @@
     },
     "grades": {
       "title": "Grados y Niveles",
-      "subtitle": "Excelencia educativa desde Pre-K hasta 11° grado",
+      "subtitle": "Excelencia educativa desde Kinder hasta 11° grado",
       "intro": "En CEE, proporcionamos educación bilingüe apropiada para la edad que crece con tu hijo. Nuestro programa abarca desde la primera infancia hasta la escuela secundaria, con cada nivel diseñado para construir sobre el anterior mientras satisface las necesidades de desarrollo únicas de los estudiantes en cada etapa.",
       "keyFocus": "Áreas de Enfoque Clave",
       "typicalAge": "Edad Típica",
       "levels": [
         {
           "title": "Primera Infancia",
-          "grades": "Pre-K y Jardín de Infantes (Edades 4-5)",
+          "grades": "Kinder y Preparatoria (Edades 4-5)",
           "description": "Nuestro programa de primera infancia sienta las bases para el aprendizaje de por vida en un ambiente enriquecedor basado en el juego. Los niños comienzan su viaje bilingüe a través de actividades atractivas que desarrollan habilidades sociales, emocionales, cognitivas y espirituales.",
           "focus": [
             "Introducción al español e inglés",
@@ -722,12 +716,20 @@
         "title": "Períodos Académicos Clave",
         "items": [
           {
-            "title": "Primer Semestre",
-            "description": "Febrero - Junio: Primera mitad del año académico con exámenes parciales y finales"
+            "title": "Primer Trimestre",
+            "description": "Agosto - Octubre"
           },
           {
-            "title": "Segundo Semestre",
-            "description": "Julio - Noviembre: Segunda mitad del año académico que concluye con exámenes finales y graduación"
+            "title": "Segundo Trimestre",
+            "description": "Octubre - Diciembre"
+          },
+          {
+            "title": "Tercer Trimestre",
+            "description": "Enero - Marzo"
+          },
+          {
+            "title": "Cuarto Trimestre",
+            "description": "Marzo - Mayo"
           },
           {
             "title": "Período de Matrícula",
@@ -738,8 +740,7 @@
       "download": {
         "title": "Descargar Calendario",
         "description": "Obtén una versión imprimible del calendario académico completo para tener en casa o compartir con la familia.",
-        "pdf": "Descargar PDF",
-        "print": "Imprimir Calendario"
+        "pdf": "Descargar PDF"
       },
       "cta": {
         "title": "¿Listo para Unirte a CEE?",
@@ -773,28 +774,6 @@
           {
             "title": "Quemados",
             "description": "Una actividad divertida y llena de energía que desarrolla reflejos rápidos y fomenta la participación activa."
-          }
-        ]
-      },
-      "clubs": {
-        "title": "Clubes y Actividades",
-        "description": "Nuestros clubes ofrecen a los estudiantes la oportunidad de explorar sus intereses, desarrollar nuevas habilidades y conectarse con compañeros de ideas afines en un ambiente de apoyo.",
-        "items": [
-          {
-            "title": "Club de Lectura",
-            "description": "Fomentando el amor por la literatura a través de discusiones de libros, desafíos de lectura y estudios de autores."
-          },
-          {
-            "title": "Club de Pintura y Arte",
-            "description": "Explorando las artes visuales a través de varios medios incluyendo acuarelas, acrílicos y técnicas mixtas."
-          },
-          {
-            "title": "Club de Música",
-            "description": "Aprendiendo instrumentos, entrenamiento vocal y apreciación musical en un ambiente divertido y colaborativo."
-          },
-          {
-            "title": "Club de Teatro",
-            "description": "Desarrollando confianza y creatividad a través del drama, talleres de actuación y producciones escolares."
           }
         ]
       },
@@ -845,20 +824,12 @@
           {
             "title": "Colectas de Alimentos",
             "description": "Recolección y distribución de alimentos a familias necesitadas durante todo el año."
-          },
-          {
-            "title": "Programas de Tutoría",
-            "description": "Estudiantes mayores mentoreando a estudiantes más jóvenes en materias académicas."
           }
         ]
       },
-      "getInvolved": {
-        "title": "Cómo Participar",
-        "description": "Los padres y miembros de la comunidad son bienvenidos a asociarse con nosotros en proyectos de servicio. Contáctanos para conocer las próximas oportunidades."
-      },
       "cta": {
-        "title": "Únete a Nosotros para Hacer la Diferencia",
-        "description": "Descubre cómo tu familia puede participar en nuestros programas de aprendizaje-servicio y hacer un impacto positivo en nuestra comunidad.",
+        "title": "Formando Carácter a Través del Servicio",
+        "description": "Nuestros estudiantes aprenden el valor de la compasión y la participación comunitaria a través de experiencias de servicio significativas.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }
@@ -889,10 +860,6 @@
           {
             "day": "Durante el Almuerzo",
             "hours": "Abierta para lectura y estudio"
-          },
-          {
-            "day": "Después de Clases",
-            "hours": "Solo con cita previa"
           }
         ]
       },
@@ -901,7 +868,7 @@
         "description": "Nuestra biblioteca proporciona recursos y programas apropiados para cada nivel de grado.",
         "levels": [
           {
-            "title": "Primera Infancia (Pre-K - K)",
+            "title": "Primera Infancia (Kinder - Preparatoria)",
             "description": "Libros ilustrados, sesiones de lectura en voz alta y actividades de alfabetización temprana para construir habilidades fundamentales de lectura."
           },
           {
@@ -927,10 +894,19 @@
       },
       "contact": {
         "title": "Contacta la Biblioteca",
-        "description": "¿Tienes preguntas sobre nuestros servicios de biblioteca o necesitas ayuda para encontrar recursos?",
-        "librarian": "Bibliotecaria Escolar",
-        "email": "biblioteca{'@'}cee.edu.hn",
-        "location": "Edificio Principal, Primer Piso"
+        "description": "¿Tienes preguntas sobre nuestros servicios de biblioteca o necesitas ayuda para encontrar recursos?"
+      },
+      "readingCorner": {
+        "title": "Un Acogedor Rincón de Lectura",
+        "description": "Nuestra biblioteca cuenta con cómodas áreas de lectura donde los estudiantes pueden sumergirse en sus libros favoritos. Ya sea un rincón tranquilo para la lectura independiente o espacios grupales para discusiones de libros, hemos creado un ambiente que fomenta el amor por la lectura."
+      },
+      "bilingualCollection": {
+        "title": "Colección de Libros Bilingüe",
+        "description": "Nuestra extensa colección incluye libros en inglés y español, apoyando nuestro currículo bilingüe y ayudando a los estudiantes a desarrollar fuertes habilidades de lectoescritura en ambos idiomas. Desde literatura clásica hasta favoritos contemporáneos, hay algo para cada lector."
+      },
+      "studySpace": {
+        "title": "Espacios de Estudio Tranquilos",
+        "description": "Los estudiantes pueden encontrar áreas tranquilas para el estudio concentrado, proyectos de investigación y tareas. Nuestra biblioteca proporciona un ambiente propicio para el aprendizaje con mesas, asientos cómodos y acceso a materiales de referencia para el éxito académico."
       },
       "cta": {
         "title": "Descubre el Placer de la Lectura",
@@ -962,13 +938,13 @@
         "description": "Cada año, nuestra comunidad escolar se reúne para estos eventos especiales que se han convertido en tradiciones queridas en CEE.",
         "events": [
           {
-            "title": "Día Deportivo",
-            "description": "Un día de competencias atléticas, espíritu de equipo y diversión saludable para todos los niveles.",
+            "title": "Días Deportivos",
+            "description": "Días de competencias atléticas, espíritu de equipo y diversión saludable para todos los niveles.",
             "timing": "Cada Abril",
             "image_url": ""
           },
           {
-            "title": "Feria de Ciencias",
+            "title": "Semana de Ciencias",
             "description": "Los estudiantes exhiben sus descubrimientos científicos, experimentos y proyectos de investigación.",
             "timing": "Cada Marzo",
             "image_url": ""
@@ -992,9 +968,27 @@
             "image_url": ""
           },
           {
-            "title": "Semana Cultural",
+            "title": "Días Culturales",
             "description": "Celebrando la herencia hondureña y la rica diversidad de nuestra comunidad escolar.",
             "timing": "Cada Septiembre",
+            "image_url": ""
+          },
+          {
+            "title": "Semana del Idioma",
+            "description": "Una celebración de la educación bilingüe con actividades, presentaciones y competencias en inglés y español.",
+            "timing": "Cada Octubre",
+            "image_url": ""
+          },
+          {
+            "title": "Día de la Familia",
+            "description": "Un día especial dedicado a celebrar a las familias con juegos, actividades y tiempo de calidad juntos en el campus.",
+            "timing": "Cada Agosto",
+            "image_url": ""
+          },
+          {
+            "title": "Celebración de Semana Santa",
+            "description": "Conmemorando la resurrección de Cristo con adoración, actividades y reflexión sobre el verdadero significado de la Pascua.",
+            "timing": "Cada Primavera",
             "image_url": ""
           }
         ]
@@ -1352,7 +1346,7 @@
       },
       "email": {
         "title": "Correo Electrónico",
-        "address": "info{'@'}cee.edu.hn",
+        "address": "administracion{'@'}ceehonduras.org",
         "description": "Envíenos un correo y le responderemos lo antes posible"
       },
       "hours": {
@@ -1363,7 +1357,7 @@
       },
       "address": {
         "title": "Dirección",
-        "line1": "Comunidad Educativa Evangélica",
+        "line1": "Barrio El Carmen 1ra Calle S.O., 10-11 Av.",
         "line2": "Siguatepeque, Comayagua",
         "line3": "Honduras"
       },
@@ -1380,7 +1374,7 @@
       "intro": "Nuestra escuela está convenientemente ubicada en el corazón de Siguatepeque. Aquí le mostramos cómo encontrarnos.",
       "address": {
         "title": "Nuestra Ubicación",
-        "full": "Comunidad Educativa Evangélica, Siguatepeque, Comayagua, Honduras"
+        "full": "Barrio El Carmen 1ra Calle S.O., 10-11 Av. Siguatepeque, Comayagua, Honduras"
       },
       "fromTegucigalpa": {
         "title": "Desde Tegucigalpa",
@@ -1482,7 +1476,7 @@
         {
           "category": "admissions",
           "question": "¿Qué grados ofrece CEE?",
-          "answer": "CEE ofrece educación desde Pre-Kinder hasta 11° grado (Bachillerato). Nuestros programas incluyen educación infantil temprana, escuela primaria, escuela media y escuela secundaria."
+          "answer": "CEE ofrece educación desde Kinder hasta 11° grado (Bachillerato). Nuestros programas incluyen educación infantil temprana, escuela primaria, escuela media y escuela secundaria."
         },
         {
           "category": "admissions",
@@ -1543,10 +1537,10 @@
       "videoAlt": "Video de presentación del centro educativo"
     },
     "welcome": {
-      "titlePartOne": "Una Cálida Bienvenida a",
+      "titlePartOne": "Bienvenidos a",
       "titlePartTwo": "Comunidad Educativa Evangélica",
       "subtitle": "Educación de calidad para el futuro de nuestros estudiantes",
-      "description": "Situada en Siguatepeque, Honduras. CEE es una institución educativa cuya misión es facilitar los procesos formativos, involucrando a la familia, la iglesia y los maestros, que permitan la transmisión de información, moral y valores a través de una educación fundamentada en la Palabra de Dios. Proveemos educación centrada en Cristo que forma el conocimiento, el carácter y los valores a través de la Palabra de Dios."
+      "description": "Situada en Siguatepeque, Honduras. CEE es una institución educativa cuya misión es facilitar la transmisión de conocimientos, valores y actitudes a través de una educación transformadora basada en la Palabra de Dios."
     },
     "values": {
       "title": "Valores y Principios",
@@ -1584,12 +1578,12 @@
     },
     "enrollment": {
       "title": "Grados y Programas Ofrecidos",
-      "subtitle": "Educación integral desde Pre-Kinder hasta 11° grado",
-      "description": "Comunidad Educativa Evangélica ofrece educación cristiana de calidad para estudiantes desde Pre-Kinder hasta 11° grado, proporcionando una base sólida para la excelencia académica y el crecimiento espiritual.",
+      "subtitle": "Educación integral desde Kinder hasta 11° grado",
+      "description": "Comunidad Educativa Evangélica ofrece educación cristiana de calidad para estudiantes desde Kinder hasta 11° grado, proporcionando una base sólida para la excelencia académica y el crecimiento espiritual.",
       "cta": "Más Información",
       "features": [
         "Educación bilingüe",
-        "Instalaciones amplias y bien equipadas",
+        "Instalaciones adecuadas para el aprendizaje",
         "Actividades extracurriculares",
         "Personal profesional y dedicado"
       ]
@@ -1647,8 +1641,8 @@
       "grades": {
         "title": "Grados que Ofrecemos",
         "items": [
-          "Pre-Kinder (4-5 años)",
-          "Kinder (5-6 años)",
+          "Kinder (4-5 años)",
+          "Preparatoria (5-6 años)",
           "Primaria (1ro - 6to grado)",
           "Secundaria (7mo - 9no grado)",
           "Bachillerato (10mo - 12vo grado)"
@@ -1750,14 +1744,13 @@
           "Trabajo significativo en un ambiente centrado en Cristo",
           "Equipo de apoyo y colaboración",
           "Oportunidades de desarrollo profesional",
-          "Compensación competitiva",
           "Impacto duradero en la vida de los estudiantes"
         ]
       },
       "applicationForms": {
         "title": "Formularios de Solicitud de Empleo",
-        "international": "Maestros Internacionales",
-        "honduran": "Maestros Hondureños",
+        "international": "Maestros de Inglés Internacionales",
+        "honduran": "Maestros de Inglés Hondureños",
         "applyNow": "Aplicar Ahora"
       },
       "contact": {
