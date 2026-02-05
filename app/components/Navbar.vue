@@ -2,7 +2,7 @@
   <nav class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-10">
+        <div class="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-6">
           <!-- Logo -->
           <div class="flex items-center">
             <NuxtLink :to="localePath('/')" class="block py-2">
@@ -13,7 +13,7 @@
                   class="h-20 lg:h-24 2xl:h-26 w-auto object-contain mt-4 lg:mt-5 2xl:mt-6 z-300 fixed left-1 lg:left-4 2xl:left-6"
                 />
                 <div
-                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-sm leading-tight pl-16 lg:pl-18 xl:pl-20 2xl:pl-24"
+                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-sm leading-tight pl-16 lg:pl-18 xl:pl-20 2xl:pl-20"
                 >
                   <p>COMUNIDAD EDUCATIVA</p>
                   <p>EVANGÉLICA</p>
@@ -36,13 +36,13 @@
               v-for="navItem in navigationItems"
               :key="navItem.key"
               @mouseenter="handleDropdownChange(navItem.key)"
-              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-2 cursor-pointer text-xs xl:text-sm 2xl:text-base whitespace-nowrap"
+              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-1 cursor-pointer text-xs xl:text-sm 2xl:text-[15px] whitespace-nowrap"
             >
               {{ $t(`nav.${navItem.key}`) }}
               <Transition name="indicator">
                 <div
                   v-if="activeDropdown === navItem.key"
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
+                  class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-green-600 rounded-full"
                 ></div>
               </Transition>
             </button>

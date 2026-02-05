@@ -335,6 +335,7 @@
       "board": {
         "title": "Board of Directors",
         "description": "Our board provides strategic oversight and governance to ensure CEE fulfills its mission of providing quality Christian education.",
+        "membersLabel": "From left to right:",
         "members": [
           {
             "name": "Board Member Name",
@@ -733,7 +734,7 @@
           },
           {
             "title": "Registration Period",
-            "description": "November - January: Enrollment period for the upcoming school year"
+            "description": "July: Contact the Administration office in advance, as spaces are limited."
           }
         ]
       },
@@ -1584,7 +1585,6 @@
       "features": [
         "Bilingual education",
         "Facilities well-suited for learning",
-        "Extracurricular activities",
         "Professional and dedicated personnel"
       ]
     },

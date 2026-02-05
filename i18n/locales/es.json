@@ -335,6 +335,7 @@
       "board": {
         "title": "Junta Directiva",
         "description": "Nuestra junta proporciona supervisión estratégica y gobernanza para asegurar que CEE cumpla su misión de proporcionar educación cristiana de calidad.",
+        "membersLabel": "De izquierda a derecha:",
         "members": [
           {
             "name": "Nombre del Miembro",
@@ -733,7 +734,7 @@
           },
           {
             "title": "Período de Matrícula",
-            "description": "Noviembre - Enero: Período de inscripción para el próximo año escolar"
+            "description": "Julio: Comuníquese con la oficina de Administración con anticipación, ya que los espacios son limitados."
           }
         ]
       },
@@ -1584,7 +1585,6 @@
       "features": [
         "Educación bilingüe",
         "Instalaciones adecuadas para el aprendizaje",
-        "Actividades extracurriculares",
         "Personal profesional y dedicado"
       ]
     },

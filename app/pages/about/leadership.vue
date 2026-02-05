@@ -54,6 +54,23 @@
               class="w-full h-auto object-cover"
             />
           </div>
+          <!-- Board Member Names -->
+          <div class="mt-6 text-center">
+            <p class="text-gray-600 text-sm mb-2">{{ $t('about.leadership.board.membersLabel') }}</p>
+            <p class="text-gray-800 text-sm lg:text-base">
+              <span class="font-medium">Sergio Portillo</span>
+              <span class="text-gray-400 mx-2">•</span>
+              <span class="font-medium">Hector Estrada</span>
+              <span class="text-gray-400 mx-2">•</span>
+              <span class="font-medium">Edith Melgar</span>
+              <span class="text-gray-400 mx-2">•</span>
+              <span class="font-medium">Iris Martinez</span>
+              <span class="text-gray-400 mx-2">•</span>
+              <span class="font-medium">Enrique Martinez</span>
+              <span class="text-gray-400 mx-2">•</span>
+              <span class="font-medium">Peter Simpson</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -81,7 +98,7 @@
           >
             <div class="flex flex-col items-center text-center">
               <img
-                src="/images/Yasmin.jpg"
+                src="/images/Osiris.jpg"
                 alt="Yasmín Guevara"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
               />
@@ -108,7 +125,7 @@
           >
             <div class="flex flex-col items-center text-center">
               <img
-                src="/images/Osiris.jpg"
+                src="/images/Yasmin.jpg"
                 alt="Osiris Murillo"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
               />
