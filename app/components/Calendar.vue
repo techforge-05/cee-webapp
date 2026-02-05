@@ -416,8 +416,8 @@
     selectedMonthYear.value = `${currentYear.value}-${currentMonth.value}`;
   });
 
-  // Fetch events from database
-  const { data: events } = await useAsyncData('calendar-events', async () => {
+  // Fetch events from database (lazy to avoid blocking page load)
+  const { data: events } = useAsyncData('calendar-events', async () => {
     const { data, error } = await supabase
       .from('calendar_events')
       .select('*')
@@ -428,7 +428,7 @@
       return [];
     }
     return data || [];
-  });
+  }, { lazy: true });
 
   const calendarDays = computed(() => {
     const year = currentYear.value;
