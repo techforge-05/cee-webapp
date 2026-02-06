@@ -250,8 +250,34 @@
       </div>
     </section>
 
-    <!-- Contact the Library -->
+    <!-- Support the Library -->
     <section class="py-16">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-2xl mx-auto text-center bg-green-50 rounded-2xl p-10">
+          <UIcon
+            name="i-heroicons-gift"
+            class="w-16 h-16 text-green-600 mx-auto mb-4"
+          />
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+            {{ $t('studentLife.library.donate.title') }}
+          </h2>
+          <p class="text-lg text-gray-700 mb-6">
+            {{ $t('studentLife.library.donate.description') }}
+          </p>
+          <UButton
+            :to="localePath('/support/donate')"
+            size="lg"
+            variant="solid"
+            class="bg-green-600 text-white hover:bg-green-700"
+          >
+            {{ $t('studentLife.library.donate.button') }}
+          </UButton>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact the Library -->
+    <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-2xl mx-auto text-center bg-amber-50 rounded-2xl p-10">
           <UIcon

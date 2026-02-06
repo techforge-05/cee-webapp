@@ -60,13 +60,13 @@
             <p class="text-gray-800 text-sm lg:text-base">
               <span class="font-medium">Sergio Portillo</span>
               <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Hector Estrada</span>
+              <span class="font-medium">Héctor Estrada</span>
               <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Edith Melgar</span>
+              <span class="font-medium">Edith Aguilar</span>
               <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Iris Martinez</span>
+              <span class="font-medium">Iris Martínez</span>
               <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Enrique Martinez</span>
+              <span class="font-medium">Enrique Martínez</span>
               <span class="text-gray-400 mx-2">•</span>
               <span class="font-medium">Peter Simpson</span>
             </p>

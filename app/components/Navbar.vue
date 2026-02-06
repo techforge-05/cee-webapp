@@ -13,7 +13,7 @@
                   class="h-20 lg:h-24 2xl:h-26 w-auto object-contain mt-4 lg:mt-5 2xl:mt-6 z-300 fixed left-1 lg:left-4 2xl:left-6"
                 />
                 <div
-                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-sm leading-tight pl-16 lg:pl-18 xl:pl-20 2xl:pl-20"
+                  class="text-black hidden lg:flex flex-col font-bold text-[10px] xl:text-xs 2xl:text-base leading-tight pl-16 lg:pl-18 xl:pl-20 2xl:pl-20"
                 >
                   <p>COMUNIDAD EDUCATIVA</p>
                   <p>EVANGÉLICA</p>
@@ -36,7 +36,7 @@
               v-for="navItem in navigationItems"
               :key="navItem.key"
               @mouseenter="handleDropdownChange(navItem.key)"
-              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-1 cursor-pointer text-xs xl:text-sm 2xl:text-[15px] whitespace-nowrap"
+              class="relative text-green-700 hover:text-gray-900 font-medium transition-colors duration-200 pb-1 cursor-pointer text-xs xl:text-sm 2xl:text-base whitespace-nowrap"
             >
               {{ $t(`nav.${navItem.key}`) }}
               <Transition name="indicator">
@@ -325,7 +325,7 @@
             </div>
           </div>
 
-          <!-- Parents Section -->
+          <!-- Parents Section - temporarily hidden
           <div>
             <div class="flex items-center gap-3 mb-2">
               <div
@@ -338,19 +338,6 @@
               </h3>
             </div>
             <div class="pl-14 space-y-2">
-              <!-- Resources link - temporarily hidden
-              <NuxtLink
-                :to="localePath('/parents/resources')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-folder-open"
-                  class="w-5 h-5 text-blue-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.parents.resources') }}</span>
-              </NuxtLink>
-              -->
               <NuxtLink
                 :to="localePath('/parents/calendar')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
@@ -375,6 +362,7 @@
               </NuxtLink>
             </div>
           </div>
+          -->
 
           <!-- Support Section -->
           <div>
@@ -708,7 +696,7 @@
     { key: 'about' },
     { key: 'academics' },
     { key: 'studentLife' },
-    { key: 'parents' },
+    // { key: 'parents' },
     { key: 'support' },
     { key: 'contact' },
   ];

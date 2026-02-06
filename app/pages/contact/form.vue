@@ -39,7 +39,10 @@
             class="bg-green-50 border border-green-200 rounded-xl p-6 mb-8"
           >
             <div class="flex items-center gap-3">
-              <UIcon name="i-heroicons-check-circle" class="w-8 h-8 text-green-600" />
+              <UIcon
+                name="i-heroicons-check-circle"
+                class="w-8 h-8 text-green-600"
+              />
               <div>
                 <h3 class="text-lg font-bold text-green-800">
                   {{ $t('contact.form.success.title') }}
@@ -57,7 +60,10 @@
             class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8"
           >
             <div class="flex items-center gap-3">
-              <UIcon name="i-heroicons-exclamation-circle" class="w-8 h-8 text-red-600" />
+              <UIcon
+                name="i-heroicons-exclamation-circle"
+                class="w-8 h-8 text-red-600"
+              />
               <div>
                 <h3 class="text-lg font-bold text-red-800">
                   {{ $t('contact.form.error.title') }}
@@ -77,7 +83,10 @@
           >
             <!-- Name Field -->
             <div class="mb-6">
-              <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                for="name"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 {{ $t('contact.form.fields.name.label') }} *
               </label>
               <UInput
@@ -86,6 +95,7 @@
                 type="text"
                 :placeholder="$t('contact.form.fields.name.placeholder')"
                 size="lg"
+                class="w-full"
                 :color="errors.name ? 'error' : 'primary'"
               />
               <p v-if="errors.name" class="mt-1 text-sm text-red-600">
@@ -95,7 +105,10 @@
 
             <!-- Email Field -->
             <div class="mb-6">
-              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                for="email"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 {{ $t('contact.form.fields.email.label') }} *
               </label>
               <UInput
@@ -104,6 +117,7 @@
                 type="email"
                 :placeholder="$t('contact.form.fields.email.placeholder')"
                 size="lg"
+                class="w-full"
                 :color="errors.email ? 'error' : 'primary'"
               />
               <p v-if="errors.email" class="mt-1 text-sm text-red-600">
@@ -113,7 +127,10 @@
 
             <!-- Phone Field (Optional) -->
             <div class="mb-6">
-              <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                for="phone"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 {{ $t('contact.form.fields.phone.label') }}
               </label>
               <UInput
@@ -122,20 +139,25 @@
                 type="tel"
                 :placeholder="$t('contact.form.fields.phone.placeholder')"
                 size="lg"
+                class="w-full"
               />
             </div>
 
             <!-- Subject Field -->
             <div class="mb-6">
-              <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                for="subject"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 {{ $t('contact.form.fields.subject.label') }} *
               </label>
               <USelect
                 id="subject"
                 v-model="formData.subject"
-                :options="subjectOptions"
+                :items="subjectOptions"
                 :placeholder="$t('contact.form.fields.subject.placeholder')"
                 size="lg"
+                class="w-full"
                 :color="errors.subject ? 'error' : 'primary'"
               />
               <p v-if="errors.subject" class="mt-1 text-sm text-red-600">
@@ -145,7 +167,10 @@
 
             <!-- Message Field -->
             <div class="mb-8">
-              <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                for="message"
+                class="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 {{ $t('contact.form.fields.message.label') }} *
               </label>
               <UTextarea
@@ -154,6 +179,7 @@
                 :placeholder="$t('contact.form.fields.message.placeholder')"
                 :rows="6"
                 size="lg"
+                class="w-full"
                 :color="errors.message ? 'error' : 'primary'"
               />
               <p v-if="errors.message" class="mt-1 text-sm text-red-600">
@@ -170,8 +196,16 @@
               :loading="isSubmitting"
               :disabled="isSubmitting"
             >
-              <UIcon v-if="!isSubmitting" name="i-heroicons-paper-airplane" class="w-5 h-5 mr-2" />
-              {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.submit') }}
+              <UIcon
+                v-if="!isSubmitting"
+                name="i-heroicons-paper-airplane"
+                class="w-5 h-5 mr-2"
+              />
+              {{
+                isSubmitting
+                  ? $t('contact.form.sending')
+                  : $t('contact.form.submit')
+              }}
             </UButton>
           </form>
 
@@ -207,7 +241,10 @@
               color="primary"
               class="bg-red-600 hover:bg-red-700"
             >
-              <UIcon name="i-heroicons-information-circle" class="w-5 h-5 mr-2" />
+              <UIcon
+                name="i-heroicons-information-circle"
+                class="w-5 h-5 mr-2"
+              />
               {{ $t('contact.form.cta.viewInfo') }}
             </UButton>
             <UButton
@@ -260,120 +297,120 @@
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
-const { t, tm, rt } = useI18n();
+  const localePath = useLocalePath();
+  const { t, tm, rt } = useI18n();
 
-const formData = reactive({
-  name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  message: '',
-});
+  const formData = reactive({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
 
-const errors = reactive({
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-});
+  const errors = reactive({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
 
-const isSubmitting = ref(false);
-const formStatus = ref<'idle' | 'success' | 'error'>('idle');
+  const isSubmitting = ref(false);
+  const formStatus = ref<'idle' | 'success' | 'error'>('idle');
 
-const subjectOptions = computed(() => {
-  const options = tm('contact.form.fields.subject.options') as any[];
-  return options.map((option) => ({
-    label: rt(option),
-    value: rt(option),
-  }));
-});
+  const subjectOptions = computed(() => {
+    const options = tm('contact.form.fields.subject.options') as any[];
+    return options.map((option) => ({
+      label: rt(option),
+      value: rt(option),
+    }));
+  });
 
-const validateForm = () => {
-  let isValid = true;
+  const validateForm = () => {
+    let isValid = true;
 
-  // Reset errors
-  errors.name = '';
-  errors.email = '';
-  errors.subject = '';
-  errors.message = '';
+    // Reset errors
+    errors.name = '';
+    errors.email = '';
+    errors.subject = '';
+    errors.message = '';
 
-  // Name validation
-  if (!formData.name.trim()) {
-    errors.name = t('contact.form.validation.nameRequired');
-    isValid = false;
-  }
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.name = t('contact.form.validation.nameRequired');
+      isValid = false;
+    }
 
-  // Email validation
-  if (!formData.email.trim()) {
-    errors.email = t('contact.form.validation.emailRequired');
-    isValid = false;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    errors.email = t('contact.form.validation.emailInvalid');
-    isValid = false;
-  }
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = t('contact.form.validation.emailRequired');
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = t('contact.form.validation.emailInvalid');
+      isValid = false;
+    }
 
-  // Subject validation
-  if (!formData.subject) {
-    errors.subject = t('contact.form.validation.subjectRequired');
-    isValid = false;
-  }
+    // Subject validation
+    if (!formData.subject) {
+      errors.subject = t('contact.form.validation.subjectRequired');
+      isValid = false;
+    }
 
-  // Message validation
-  if (!formData.message.trim()) {
-    errors.message = t('contact.form.validation.messageRequired');
-    isValid = false;
-  } else if (formData.message.trim().length < 10) {
-    errors.message = t('contact.form.validation.messageTooShort');
-    isValid = false;
-  }
+    // Message validation
+    if (!formData.message.trim()) {
+      errors.message = t('contact.form.validation.messageRequired');
+      isValid = false;
+    } else if (formData.message.trim().length < 10) {
+      errors.message = t('contact.form.validation.messageTooShort');
+      isValid = false;
+    }
 
-  return isValid;
-};
+    return isValid;
+  };
 
-const handleSubmit = async () => {
-  if (!validateForm()) {
-    return;
-  }
+  const handleSubmit = async () => {
+    if (!validateForm()) {
+      return;
+    }
 
-  isSubmitting.value = true;
-  formStatus.value = 'idle';
+    isSubmitting.value = true;
+    formStatus.value = 'idle';
 
-  try {
-    // Simulate form submission (replace with actual API call)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Simulate form submission (replace with actual API call)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // In a real implementation, you would send the data to your backend
-    // const response = await $fetch('/api/contact', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
+      // In a real implementation, you would send the data to your backend
+      // const response = await $fetch('/api/contact', {
+      //   method: 'POST',
+      //   body: formData,
+      // });
 
-    formStatus.value = 'success';
-  } catch (error) {
-    formStatus.value = 'error';
-  } finally {
-    isSubmitting.value = false;
-  }
-};
+      formStatus.value = 'success';
+    } catch (error) {
+      formStatus.value = 'error';
+    } finally {
+      isSubmitting.value = false;
+    }
+  };
 
-const resetForm = () => {
-  formData.name = '';
-  formData.email = '';
-  formData.phone = '';
-  formData.subject = '';
-  formData.message = '';
-  formStatus.value = 'idle';
-};
+  const resetForm = () => {
+    formData.name = '';
+    formData.email = '';
+    formData.phone = '';
+    formData.subject = '';
+    formData.message = '';
+    formStatus.value = 'idle';
+  };
 
-useHead({
-  title: 'Contact Form - CEE',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Send us a message. Contact CEE with questions about admissions, scholarships, donations, or general inquiries.',
-    },
-  ],
-});
+  useHead({
+    title: 'Contact Form - CEE',
+    meta: [
+      {
+        name: 'description',
+        content:
+          'Send us a message. Contact CEE with questions about admissions, scholarships, donations, or general inquiries.',
+      },
+    ],
+  });
 </script>

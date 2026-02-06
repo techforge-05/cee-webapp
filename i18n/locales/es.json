@@ -30,7 +30,7 @@
         "grades": "Grados y Niveles"
       },
       "studentLife": {
-        "sportsClubs": "Deportes y Clubes",
+        "sportsClubs": "Deportes",
         "serviceProjects": "Proyectos de Servicio",
         "library": "Biblioteca",
         "upcomingEvents": "Próximos Eventos",
@@ -61,7 +61,7 @@
         "calendar": "Calendario de Admisiones"
       },
       "getInvolved": {
-        "teachers": "Maestros Potenciales",
+        "teachers": "Únete a nuestro equipo",
         "volunteer": "Oportunidades de Voluntariado"
       }
     }
@@ -97,31 +97,31 @@
         "items": [
           {
             "title": "Pasión por Dios",
-            "description": "¡Ama a Dios sobre todas las cosas!"
+            "description": "¡Mi amor por Dios es lo primero!"
           },
           {
             "title": "Integridad",
-            "description": "¡Vive lo que predicas!"
+            "description": "Cada día más parecido a Jesús."
           },
           {
             "title": "Creatividad",
-            "description": "¡Transforma lo que sabes en algo diferente!"
+            "description": "Dame un elemento y... ¡Lo transformaré en algo útil!"
           },
           {
             "title": "Respeto",
-            "description": "¿Quieres respeto? ¡Respeta a los demás primero!"
+            "description": "¡Cada persona merece mi aprecio por su valor!"
           },
           {
             "title": "Servicio",
-            "description": "¡Sirve a otros sin importar quiénes sean!"
+            "description": "¿Necesitas algo? ¡Estoy para servirte!"
           },
           {
             "title": "Excelencia",
-            "description": "¡Haz lo mejor en todo lo que hagas!"
+            "description": "¡Mi objetivo es siempre lo extraordinario!"
           },
           {
             "title": "Responsabilidad",
-            "description": "¡Haz lo que tiene que hacerse!"
+            "description": "¡Es un placer cumplir siempre con mi deber!"
           }
         ]
       },
@@ -139,39 +139,43 @@
       "beliefs": [
         {
           "title": "El Dios Trino",
-          "content": "Sostenemos que el Señor nuestro Dios es uno – Padre, Hijo y Espíritu Santo. Este es el Dios que debemos Adorar, Servir, Obedecer y Dar Gracias – en Espíritu y Verdad, con todo nuestro corazón, con toda nuestra alma, con toda nuestra mente y con todas nuestras fuerzas."
+          "content": "Sostenemos que el Señor Nuestro Dios es uno; Padre, Hijo y Espíritu Santo y que El cumple sus propósitos soberanos en la creación, revelación, redención, el juicio y la venida de su Reino."
         },
         {
           "title": "La Naturaleza Caída de la Humanidad",
-          "content": "Afirmamos que nosotros, como seres humanos, somos pecadores, muertos en pecado, incapaces de salvarnos a nosotros mismos. Merecemos la muerte y la separación de Dios por nuestra rebelión y desobediencia."
+          "content": "Reconocemos que aunque Dios nos hizo a su propia imagen y semejanza, otorgándonos dignidad y valor, capacitándonos para responder a Él, somos miembros de una raza caída, hemos pecado y estamos fuera de su gloria."
         },
         {
           "title": "La Gracia y Redención de Dios",
-          "content": "Creemos que Dios, por gracia, no imputa el pecado a aquellos que creen en Su Hijo, Jesucristo. En cambio, a través del sacrificio de Cristo, Él nos reconcilia consigo mismo, perdonando nuestros pecados, liberándonos de la muerte eterna y otorgándonos vida eterna."
+          "content": "Creemos que el Padre nos ha mostrado su santo amor al dar a Jesucristo su propio hijo por nosotros, cuando por causa de nuestra pecaminosidad y culpa, estábamos sujetos a su ira y condenación. Nos ha mostrado su gracia al reconciliar a los pecadores consigo mismo, cuando ellos ponen su confianza en el Hijo de Dios."
         },
         {
-          "title": "Jesucristo Nuestro Salvador",
-          "content": "Confiamos en que Jesucristo, el Hijo de Dios, es nuestro único Salvador. A través de Su vida perfecta, muerte sacrificial y gloriosa resurrección, Él ha logrado todo lo necesario para nuestra salvación. No podemos añadir nada a Su obra consumada."
+          "title": "Jesucristo Nuestro Señor y Salvador",
+          "content": "Confesamos a Jesucristo como Señor y Dios como verdaderamente humano, nacido de la Virgen María, como siervo sin pecado, lleno de gracia y verdad, como único mediador y Salvador que murió en la Cruz en lugar de nosotros, representándonos ante Dios, redimiéndonos del domino, la culpa y el castigo por el pecado, como victorioso sobre Satanás y sus fuerzas, que se levantó de los muertos con un cuerpo glorioso, fue llevado a lo alto a estar con su padre y volverá un día personalmente en gloria y juicio para establecer su Reino."
         },
         {
           "title": "El Espíritu Santo",
-          "content": "Reconocemos al Espíritu Santo como Dios, quien mora en los creyentes, capacitándolos para vivir vidas piadosas, entender las Escrituras y dar testimonio de Cristo. El Espíritu convence de pecado, regenera corazones y guía a los creyentes a toda verdad."
+          "content": "Creemos en el Espíritu Santo, quien convence al mundo de culpa respecto al pecado, la justicia y el juicio, quien hace que la muerte de Cristo sea efectiva para los pecadores, declarando que éstos deben volverse a Cristo en arrepentimiento y dirigiendo su confianza hacia el Señor Jesucristo, quien por medio del nuevo nacimiento nos hace participar en la vida del Cristo resucitado y quien está presente en todos los creyentes, iluminando sus mentes para que comprendan la verdad de la Escritura, produciendo su fruto en ellos, otorgándoles sus dones e invistiéndolos de poder para testificar en el mundo."
         },
         {
           "title": "La Autoridad de las Escrituras",
-          "content": "Sostenemos que el Antiguo y Nuevo Testamento son la Palabra de Dios inspirada, infalible y autoritativa. Las Escrituras son nuestra autoridad final para todos los asuntos de fe, doctrina y vida cristiana."
+          "content": "Creemos que las Escrituras del Antiguo y Nuevo Testamento son inspiradas por Dios, ya que sus autores hablaron de parte de Dios al ser impulsados por el Espíritu Santo, de allí que sean completamente dignas de confianza en todo lo que afirman y así son nuestra autoridad suprema en asuntos de fe y vida."
         },
         {
           "title": "La Iglesia",
-          "content": "Creemos en la Iglesia universal, el cuerpo de Cristo, compuesta por todos los verdaderos creyentes. La iglesia local está llamada a adorar a Dios, edificar a los creyentes, administrar las ordenanzas del bautismo y la comunión, y proclamar el Evangelio al mundo."
+          "content": "Reconocemos a la iglesia como el cuerpo de Cristo que se mantiene unido y crece en Él, al mismo tiempo como una comunidad total esparcida por todo el mundo y como la congregación local en la cual los creyentes se reúnen."
         },
         {
           "title": "La Gran Comisión",
-          "content": "Estamos comprometidos a cumplir el mandato de Cristo de hacer discípulos de todas las naciones, enseñándoles a observar todo lo que Él mandó. Esto incluye el evangelismo, el discipulado y la educación cristiana como expresiones vitales de nuestra fe."
+          "content": "Reconocemos la comisión de Cristo de proclamar las buenas nuevas a todos los pueblos haciendo discípulos y enseñándoles a obedecer."
         },
         {
           "title": "Amor y Servicio al Prójimo",
-          "content": "Estamos llamados a amar a nuestro prójimo como a nosotros mismos, demostrando el amor de Cristo a través de actos de servicio, compasión y justicia. Nuestra fe debe expresarse en amor práctico y buenas obras, reflejando el carácter de nuestro Salvador."
+          "content": "Reconocemos el mandato de Cristo de amar a nuestro prójimo, lo cual dé como resultado el servicio a la iglesia y la sociedad; la búsqueda de reconciliación para todos, con Dios y con su prójimo, la proclamación de libertad frente a todo tipo de opresión, la extensión de la justicia de Cristo en un mundo injusto, hasta que él vuelva otra vez."
+        },
+        {
+          "title": "La Unidad de la Trinidad",
+          "content": "Sostenemos que el Señor nuestro Dios es uno solo en tres personas: Padre, Hijo y Espíritu Santo."
         }
       ],
       "closing": "Estas creencias forman el fundamento de todo lo que hacemos en CEE, guiando nuestra enseñanza, nuestras relaciones y nuestro servicio a los estudiantes, familias y la comunidad.",
@@ -183,18 +187,18 @@
     "philosophy": {
       "title": "Nuestra Filosofía",
       "subtitle": "Los principios rectores de nuestro enfoque educativo",
-      "intro": "Nuestra filosofía educativa está construida sobre el fundamento de que toda sabiduría y conocimiento se originan en Dios, revelados a través de Su Palabra.",
+      "intro": "Entendemos por educación integral un crecimiento espiritual, físico, moral e intelectual, imposible de alcanzar sin considerar a la Biblia como nuestra base de introducción a todo aspecto de enseñanza.",
       "biblical": {
         "title": "Fundamento Bíblico",
-        "content": "Estamos convencidos de que toda sabiduría y conocimiento tienen su origen en Dios, quien se revela en Su Palabra. La Biblia es nuestro pilar y autoridad para cada principio integrado en nuestro currículo."
+        "content": "Tenemos la firme convicción que toda sabiduría y conocimiento tienen su origen en Dios, quien se revela a través de su Palabra. Por esta razón, la Biblia es nuestra base y autoridad para cada materia y sus principios están integrados en el plan de estudios."
       },
       "dignity": {
         "title": "Dignidad Humana e Identidad Cultural",
-        "content": "Es nuestra creencia que para que los seres humanos mantengan su dignidad, deben tener en alta estima sus modales, su idioma y su pertenencia a su país."
+        "content": "Es nuestra convicción que el ser humano, para fortalecer su dignidad, debe tener en alta estima sus costumbres, su idioma y mantener el adecuado sentimiento de pertenencia a su propia patria."
       },
       "bilingual": {
         "title": "Excelencia Bilingüe",
-        "content": "Creemos que enseñar un segundo idioma es una herramienta necesaria, útil para el desarrollo del futuro de un niño donde pueden involucrarse, tanto en su propio país como internacionalmente, en busca de un mejor futuro para ellos mismos, la sociedad y su país."
+        "content": "Estamos convencidos que la enseñanza de un segundo idioma no es un fin en sí, sino sólo una herramienta necesaria y útil para el desarrollo del niño hacia un futuro involucramiento a nivel nacional e internacional en busca del bien propio, de la sociedad y de su patria."
       },
       "principles": {
         "title": "Principios Educativos Fundamentales",
@@ -369,7 +373,7 @@
       "subtitle": "Educación Bilingüe a Través de Inmersión Parcial",
       "intro": {
         "title": "Programa de Inmersión Parcial Temprana",
-        "paragraph1": "CEE es un programa de inmersión parcial temprana, lo que significa que los estudiantes aprenden a través de dos idiomas (español e inglés) desde el momento en que comienzan el jardín de infantes hasta el momento en que se gradúan de la escuela secundaria en el grado 11.",
+        "paragraph1": "CEE es un programa de inmersión parcial temprana, lo que significa que los estudiantes aprenden a través de dos idiomas (español e inglés) desde el momento en que comienzan el jardín de niños hasta el momento en que se gradúan de la escuela secundaria en el grado 11.",
         "paragraph2": "Aproximadamente la mitad de las clases de los estudiantes son en español y la otra mitad de sus clases se enseñan en inglés."
       },
       "programs": {
@@ -377,7 +381,7 @@
         "kindergarten": {
           "title": "Jardín de Infantes",
           "name": "Jardín Bilingüe Siguatepeque",
-          "description": "Nuestro programa de jardín de infantes atiende a estudiantes de 4 a 5 años, proporcionando un ambiente enriquecedor donde los jóvenes aprendices comienzan su viaje en la educación bilingüe. A través del aprendizaje basado en el juego y actividades estructuradas, los niños desarrollan habilidades fundamentales en ambos idiomas.",
+          "description": "Nuestro programa de jardín de niños atiende a estudiantes de 4 a 5 años, proporcionando un ambiente enriquecedor donde los jóvenes aprendices comienzan su viaje en la educación bilingüe. A través del aprendizaje basado en el juego y actividades estructuradas, los niños desarrollan habilidades fundamentales en ambos idiomas.",
           "details": "Nos enfocamos en el desarrollo socioemocional, alfabetización temprana, habilidades numéricas y en construir el amor por el aprendizaje tanto en español como en inglés."
         },
         "elementary": {
@@ -390,7 +394,6 @@
             "Matemáticas",
             "Ciencias",
             "Estudios Sociales",
-            "Biblia",
             "Informática"
           ]
         },
@@ -406,32 +409,29 @@
               "Ciencias",
               "Estudios Sociales",
               "Educación Física",
-              "Lengua y Literatura en Español",
-              "Biblia"
+              "Lengua y Literatura en Español"
             ]
           },
           "grade9": {
             "title": "Grado 9",
             "subjects": [
               "Lengua y Literatura en Inglés",
-              "Álgebra I",
-              "Ciencias Generales",
+              "Matemáticas",
+              "Ciencias",
               "Educación Física",
               "Lengua y Literatura en Español",
-              "Historia de Honduras",
-              "Biblia"
+              "Historia de Honduras"
             ]
           },
           "grades1011": {
             "title": "Grados 10-11",
             "subjects": [
               "Lengua y Literatura en Inglés",
-              "Geometría/Álgebra II",
+              "Matemáticas",
               "Biología/Química",
               "Educación Física",
               "Lengua y Literatura en Español",
-              "Física",
-              "Biblia"
+              "Física"
             ]
           }
         }
@@ -521,11 +521,7 @@
       "special": {
         "title": "Programas Especiales",
         "items": [
-          {
-            "title": "Apoyo ESL",
-            "description": "Apoyo adicional en idioma inglés para estudiantes que desarrollan competencia en inglés"
-          },
-          {
+{
             "title": "Ciencias de la Computación",
             "description": "Educación tecnológica incluyendo programación, alfabetización digital y habilidades informáticas"
           },
@@ -596,10 +592,10 @@
       "subtitle": "Excelencia educativa desde Kinder hasta 11° grado",
       "intro": "En CEE, proporcionamos educación bilingüe apropiada para la edad que crece con tu hijo. Nuestro programa abarca desde la primera infancia hasta la escuela secundaria, con cada nivel diseñado para construir sobre el anterior mientras satisface las necesidades de desarrollo únicas de los estudiantes en cada etapa.",
       "keyFocus": "Áreas de Enfoque Clave",
-      "typicalAge": "Edad Típica",
+      "typicalAge": "Rango de Edad",
       "levels": [
         {
-          "title": "Primera Infancia",
+          "title": "Educación Preescolar",
           "grades": "Kinder y Preparatoria (Edades 4-5)",
           "description": "Nuestro programa de primera infancia sienta las bases para el aprendizaje de por vida en un ambiente enriquecedor basado en el juego. Los niños comienzan su viaje bilingüe a través de actividades atractivas que desarrollan habilidades sociales, emocionales, cognitivas y espirituales.",
           "focus": [
@@ -651,9 +647,8 @@
           "focus": [
             "Currículo preparatorio universitario",
             "Ciencias avanzadas (Biología, Química, Física)",
-            "Matemáticas superiores (Álgebra II, Geometría)",
+            "Matemáticas superiores",
             "Literatura y composición",
-            "Preparación para aplicación universitaria",
             "Exploración y orientación profesional",
             "Apologética y teología cristiana",
             "Servicio comunitario y alcance"
@@ -666,7 +661,7 @@
         "items": [
           {
             "title": "Inmersión Bilingüe",
-            "description": "Los estudiantes aprenden a través del español e inglés desde el jardín de infantes hasta la graduación, desarrollando competencia a nivel nativo en ambos idiomas."
+            "description": "Los estudiantes aprenden a través del español e inglés desde el jardín de niños hasta la graduación, desarrollando competencia a nivel nativo en ambos idiomas."
           },
           {
             "title": "Aprendizaje Centrado en Cristo",
@@ -753,34 +748,39 @@
   },
   "studentLife": {
     "sportsClubs": {
-      "title": "Deportes y Clubes",
-      "subtitle": "Formando carácter a través del trabajo en equipo y la creatividad",
-      "intro": "En CEE, creemos en el desarrollo integral del estudiante. Nuestros programas de deportes y clubes brindan oportunidades para el acondicionamiento físico, la expresión creativa, el trabajo en equipo y el crecimiento personal fuera del aula.",
+      "title": "Deportes",
+      "subtitle": "Formando carácter a través del trabajo en equipo y la disciplina",
+      "intro": "En CEE, creemos en el desarrollo integral del estudiante. Nuestros programas deportivos brindan oportunidades para el acondicionamiento físico, el trabajo en equipo y el crecimiento personal fuera del aula.",
       "sports": {
         "title": "Programas Deportivos",
         "description": "Nuestros programas atléticos promueven el acondicionamiento físico, el trabajo en equipo, la disciplina y el espíritu deportivo. Los estudiantes aprenden valiosas lecciones de vida a través de la competencia y la colaboración.",
         "items": [
           {
             "title": "Fútbol",
-            "description": "Nuestro deporte más popular, con equipos para varios grupos de edad que compiten en torneos locales y regionales."
+            "description": "Nuestro deporte más popular, con equipos para varios grupos de edad que compiten en torneos locales y regionales.",
+            "image": "/images/sports/soccer.jpg"
           },
           {
             "title": "Voleibol",
-            "description": "Un favorito entre los estudiantes, promoviendo el trabajo en equipo y la coordinación a través del juego competitivo y recreativo."
+            "description": "Un favorito entre los estudiantes, promoviendo el trabajo en equipo y la coordinación a través del juego competitivo y recreativo.",
+            "image": "/images/sports/volleyball.jpg"
           },
           {
             "title": "Baloncesto",
-            "description": "Acción en cancha cubierta que desarrolla agilidad, estrategia y cooperación en equipo."
+            "description": "Acción en cancha cubierta que desarrolla agilidad, estrategia y cooperación en equipo.",
+            "image": "/images/sports/basketball.jpg"
           },
           {
-            "title": "Quemados",
-            "description": "Una actividad divertida y llena de energía que desarrolla reflejos rápidos y fomenta la participación activa."
+            "title": "Dodgeball",
+            "description": "Una actividad divertida y llena de energía que desarrolla reflejos rápidos y fomenta la participación activa.",
+            "image": "/images/sports/dodgeball.jpg"
           }
-        ]
+        ],
+        "otherSports": "Además de nuestros cuatro deportes principales, los estudiantes de CEE también disfrutan de otras actividades atléticas como kickball, handball, fútbol americano y atletismo. Estas actividades brindan aún más oportunidades para que los estudiantes se mantengan activos, descubran nuevos intereses y desarrollen sus habilidades físicas."
       },
       "cta": {
         "title": "Involúcrate en la Vida Estudiantil",
-        "description": "Anima a tu hijo a explorar sus intereses y desarrollar nuevas habilidades a través de nuestros programas de deportes y clubes.",
+        "description": "Anima a tu hijo a explorar sus intereses y desarrollar nuevas habilidades a través de nuestros programas deportivos.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }
@@ -816,7 +816,7 @@
         "items": [
           {
             "title": "Alcance Comunitario",
-            "description": "Visitas regulares a hogares de ancianos, orfanatos y centros comunitarios para compartir el amor de Dios."
+            "description": "Visitamos familias, comunidades u otras escuelas para compartir el amor de Dios."
           },
           {
             "title": "Cuidado del Medio Ambiente",
@@ -856,7 +856,7 @@
         "schedule": [
           {
             "day": "Lunes - Viernes",
-            "hours": "7:30 AM - 3:00 PM"
+            "hours": "7:15 AM - 3:00 PM"
           },
           {
             "day": "Durante el Almuerzo",
@@ -886,12 +886,17 @@
         "title": "Reglas de Préstamo",
         "description": "Para garantizar el acceso justo para todos los estudiantes, por favor sigue estas pautas de préstamo:",
         "rules": [
-          "Los estudiantes pueden tomar prestados hasta 2 libros a la vez",
-          "El período de préstamo es de 2 semanas con una renovación permitida",
+          "Los estudiantes pueden tomar prestados hasta 2-3 libros a la vez",
+          "El período de préstamo es de 1-2 semanas con una renovación permitida",
           "Los materiales de referencia deben usarse en la biblioteca",
           "Los libros perdidos o dañados deben ser reemplazados o pagados",
           "Devuelve los libros a tiempo para que otros puedan disfrutarlos"
         ]
+      },
+      "donate": {
+        "title": "Apoya Nuestra Biblioteca",
+        "description": "¡Ayúdanos a hacer crecer nuestra colección! Puedes donar libros o comprar artículos de nuestra Lista de Deseos de la Biblioteca en Amazon.",
+        "button": "Ver Lista de Deseos de la Biblioteca"
       },
       "contact": {
         "title": "Contacta la Biblioteca",
@@ -1388,9 +1393,9 @@
       "landmarks": {
         "title": "Puntos de Referencia Cercanos",
         "items": [
-          "Cerca de la antigua base de la Misión Alas de Socorro",
+          "Cerca de Casa de la Cultura",
           "Cerca del centro de Siguatepeque",
-          "Cerca del Seminario Bíblico Centroamericano (SEBCAH)"
+          "Antiguo local de la misión Alas de Socorro"
         ]
       },
       "parking": {
@@ -1468,6 +1473,7 @@
       "subtitle": "Encuentre respuestas a preguntas comunes",
       "intro": "Aquí encontrará respuestas a las preguntas que escuchamos con más frecuencia. Si no encuentra lo que busca, no dude en contactarnos.",
       "categories": {
+        "all": "Todas las Preguntas",
         "admissions": "Admisiones",
         "academics": "Académicos",
         "financialAid": "Ayuda Financiera",
@@ -1482,17 +1488,21 @@
         {
           "category": "admissions",
           "question": "¿Cuál es el proceso de inscripción?",
-          "answer": "El proceso de inscripción incluye completar una solicitud, presentar los documentos requeridos, una entrevista con la familia y una evaluación del estudiante. Contacte nuestra oficina de admisiones para detalles específicos y fechas límite."
+          "answer": "El proceso de inscripción incluye una entrevista con el director del área, exámenes de admisión, una entrevista con el departamento de orientación, pago de matrícula y entrega de documentos si es admitido."
         },
         {
           "category": "admissions",
           "question": "¿Cuándo es el período de matrícula?",
-          "answer": "El período principal de matrícula es típicamente de noviembre a enero para el próximo año escolar. Sin embargo, podemos aceptar estudiantes en otros momentos dependiendo de la disponibilidad."
+          "answer": "El período principal de matrícula es típicamente en julio para el próximo año escolar. Sin embargo, podemos aceptar estudiantes en otros momentos dependiendo de la disponibilidad. Contacte la oficina de Administración con anticipación, ya que los espacios son limitados.",
+          "link": {
+            "text": "Información de Contacto",
+            "path": "/contact/info"
+          }
         },
         {
           "category": "academics",
           "question": "¿CEE es una escuela bilingüe?",
-          "answer": "Sí, CEE es una escuela bilingüe de inmersión parcial temprana. Los estudiantes aprenden a través del español e inglés desde jardín de infantes hasta la graduación, con aproximadamente la mitad de sus clases en cada idioma."
+          "answer": "Sí, CEE es una escuela bilingüe de inmersión parcial temprana. Los estudiantes aprenden a través del español e inglés desde jardín de niños hasta la graduación, con aproximadamente la mitad de sus clases en cada idioma."
         },
         {
           "category": "academics",
@@ -1502,27 +1512,31 @@
         {
           "category": "academics",
           "question": "¿Qué actividades extracurriculares hay disponibles?",
-          "answer": "Ofrecemos deportes (fútbol, baloncesto, voleibol), clubes (lectura, arte, música, teatro), proyectos de servicio y varias actividades culturales y académicas durante el año escolar."
+          "answer": "Aunque CEE no cuenta con programas extracurriculares tradicionales, nuestros estudiantes se mantienen activos y comprometidos a través de una variedad de experiencias enriquecedoras. Durante el año escolar, los estudiantes participan en torneos deportivos, proyectos de servicio comunitario y diversas actividades académicas que complementan su aprendizaje en el aula y fomentan su crecimiento personal."
         },
         {
           "category": "financialAid",
           "question": "¿CEE ofrece becas?",
-          "answer": "Sí, ofrecemos varios tipos de ayuda financiera incluyendo becas por mérito académico, becas por necesidad económica y planes de pago flexibles para familias que califiquen."
+          "answer": "CEE ofrece ayuda financiera para familias que califiquen."
         },
         {
           "category": "financialAid",
           "question": "¿Cómo puedo solicitar ayuda financiera?",
-          "answer": "Contacte nuestra oficina administrativa para conocer las opciones de ayuda financiera disponibles y el proceso de solicitud. Cada caso se evalúa individualmente basándose en el mérito académico y la necesidad económica demostrada."
+          "answer": "Contacte nuestra oficina administrativa para conocer las opciones de ayuda financiera disponibles y el proceso de solicitud. Cada caso se evalúa individualmente."
         },
         {
           "category": "general",
           "question": "¿Cuál es el horario de la escuela?",
-          "answer": "El horario escolar es de lunes a viernes. El horario de oficina es de 7:15 AM a 3:00 PM. Los horarios específicos de clases varían según el nivel de grado."
+          "answer": "Los horarios específicos de clases varían según el nivel."
         },
         {
           "category": "general",
           "question": "¿Cómo puedo apoyar a CEE?",
-          "answer": "Puede apoyar nuestra escuela a través de donaciones monetarias, contribuciones en especie, voluntariado o comprando artículos de nuestras listas de deseos de Amazon. Visite nuestra página de Apoyo para más información."
+          "answer": "Puede apoyar nuestra escuela a través de donaciones monetarias, voluntariado o comprando artículos de nuestras listas de deseos de Amazon. Visite nuestra página de Apoyo para más información.",
+          "link": {
+            "text": "Donar",
+            "path": "/support/donate"
+          }
         }
       ],
       "stillHaveQuestions": {
@@ -1645,7 +1659,7 @@
           "Preparatoria (5-6 años)",
           "Primaria (1ro - 6to grado)",
           "Secundaria (7mo - 9no grado)",
-          "Bachillerato (10mo - 12vo grado)"
+          "Bachillerato (10mo - 11vo grado)"
         ]
       },
       "requirements": {
@@ -1720,9 +1734,9 @@
   },
   "getInvolved": {
     "teachers": {
-      "title": "Maestros Potenciales",
-      "subtitle": "Únete a nuestro equipo de educadores cristianos dedicados",
-      "intro": "Siempre estamos buscando educadores apasionados que compartan nuestro compromiso con la educación centrada en Cristo y la excelencia académica.",
+      "title": "Únete a nuestro equipo",
+      "subtitle": "Únete a nuestro equipo del programa de inglés",
+      "intro": "Estamos buscando educadores apasionados que compartan nuestro compromiso con la educación centrada en Cristo y la excelencia académica.",
       "requirements": {
         "title": "Requisitos para Maestros",
         "description": "Todos los maestros de inglés deben tener una relación personal y creciente con Jesucristo y ser hablantes nativos de inglés (o demostrar fluidez nativa). Se dará preferencia a graduados universitarios con credenciales de enseñanza."
@@ -1775,7 +1789,7 @@
           "Eventos especiales y recaudación de fondos",
           "Entrenamiento deportivo y actividades",
           "Proyectos de mantenimiento del campus",
-          "Capilla y equipo de alabanza",
+          "Devocionales y equipo de alabanza",
           "Charlas como invitado y orientación vocacional"
         ]
       },

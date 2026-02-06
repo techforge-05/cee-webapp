@@ -30,7 +30,7 @@
         "grades": "Grades & Levels"
       },
       "studentLife": {
-        "sportsClubs": "Sports & Clubs",
+        "sportsClubs": "Sports",
         "serviceProjects": "Service Projects",
         "library": "Library",
         "upcomingEvents": "Upcoming Events",
@@ -61,7 +61,7 @@
         "calendar": "Admissions Calendar"
       },
       "getInvolved": {
-        "teachers": "Potential Teachers",
+        "teachers": "Teach at CEE",
         "volunteer": "Volunteer Opportunities"
       }
     }
@@ -97,31 +97,31 @@
         "items": [
           {
             "title": "Passion for God",
-            "description": "Love God above all things!"
+            "description": "My love for God comes first!"
           },
           {
             "title": "Integrity",
-            "description": "Live what you preach!"
+            "description": "Each day more like Jesus."
           },
           {
             "title": "Creativity",
-            "description": "Transform what you know into something different!"
+            "description": "Give me one element and... I'll transform it into something useful!"
           },
           {
             "title": "Respect",
-            "description": "Want respect? Respect others first!"
+            "description": "Every person deserves my appreciation for their worth!"
           },
           {
             "title": "Service",
-            "description": "Serve others no matter who they are!"
+            "description": "Need something? I'm here to serve you!"
           },
           {
             "title": "Excellence",
-            "description": "Do your best in all you do!"
+            "description": "My goal is always the extraordinary!"
           },
           {
             "title": "Responsibility",
-            "description": "Do what has to be done!"
+            "description": "It's a pleasure to always fulfill my duty!"
           }
         ]
       },
@@ -139,39 +139,43 @@
       "beliefs": [
         {
           "title": "The Triune God",
-          "content": "We uphold that the Lord Our God is one – Father, Son, and Holy Spirit. This is the God we must Worship, Serve, Obey, and Give Thanks – in Spirit and Truth, with all our heart, with all our soul, with all our mind, and with all our strength."
+          "content": "We uphold that the Lord our God is one; Father, Son, and Holy Spirit, and that He fulfills His sovereign purposes in creation, revelation, redemption, judgment, and the coming of His Kingdom."
         },
         {
           "title": "Humanity's Fallen Nature",
-          "content": "We affirm that we, as human beings, are sinful, dead in sin, incapable of self-salvation. We deserve death and separation from God for our rebellion and disobedience."
+          "content": "We recognize that although God made us in His own image and likeness, granting us dignity and worth, enabling us to respond to Him, we are members of a fallen race, we have sinned and fall short of His glory."
         },
         {
           "title": "God's Grace and Redemption",
-          "content": "We believe that God, by grace, does not impute sin to those who believe in His Son, Jesus Christ. Instead, through Christ's sacrifice, He reconciles us to Himself, forgiving our sins, delivering us from eternal death, and granting us eternal life."
+          "content": "We believe that the Father has shown us His holy love by giving Jesus Christ, His own Son, for us, when because of our sinfulness and guilt, we were subject to His wrath and condemnation. He has shown us His grace by reconciling sinners to Himself, when they place their trust in the Son of God."
         },
         {
-          "title": "Jesus Christ Our Savior",
-          "content": "We trust that Jesus Christ, the Son of God, is our only Savior. Through His perfect life, sacrificial death, and glorious resurrection, He has accomplished everything necessary for our salvation. We can add nothing to His finished work."
+          "title": "Jesus Christ Our Lord and Savior",
+          "content": "We confess Jesus Christ as Lord and God, as truly human, born of the Virgin Mary, as a sinless servant, full of grace and truth, as the only mediator and Savior who died on the Cross in our place, representing us before God, redeeming us from the dominion, guilt, and punishment of sin, as victorious over Satan and his forces, who rose from the dead with a glorious body, was taken up on high to be with His Father, and will return one day personally in glory and judgment to establish His Kingdom."
         },
         {
           "title": "The Holy Spirit",
-          "content": "We recognize the Holy Spirit as God, who dwells in believers, empowering them to live godly lives, understand Scripture, and bear witness to Christ. The Spirit convicts of sin, regenerates hearts, and guides believers into all truth."
+          "content": "We believe in the Holy Spirit, who convicts the world of guilt regarding sin, righteousness, and judgment, who makes the death of Christ effective for sinners, declaring that they must turn to Christ in repentance and directing their trust toward the Lord Jesus Christ, who through the new birth makes us partakers in the life of the risen Christ, and who is present in all believers, illuminating their minds to understand the truth of Scripture, producing His fruit in them, granting them His gifts, and empowering them to witness in the world."
         },
         {
           "title": "The Authority of Scripture",
-          "content": "We uphold that the Old and New Testaments are the inspired, infallible, and authoritative Word of God. Scripture is our final authority for all matters of faith, doctrine, and Christian living."
+          "content": "We believe that the Scriptures of the Old and New Testaments are inspired by God, as their authors spoke on behalf of God, being moved by the Holy Spirit, and are therefore completely trustworthy in all they affirm, and thus are our supreme authority in matters of faith and life."
         },
         {
           "title": "The Church",
-          "content": "We believe in the universal Church, the body of Christ, composed of all true believers. The local church is called to worship God, edify believers, administer the ordinances of baptism and communion, and proclaim the Gospel to the world."
+          "content": "We recognize the church as the body of Christ that remains united and grows in Him, both as a universal community spread throughout the world and as the local congregation in which believers gather."
         },
         {
           "title": "The Great Commission",
-          "content": "We are committed to fulfilling Christ's command to make disciples of all nations, teaching them to observe all that He commanded. This includes evangelism, discipleship, and Christian education as vital expressions of our faith."
+          "content": "We recognize Christ's commission to proclaim the good news to all peoples, making disciples and teaching them to obey."
         },
         {
           "title": "Love and Service to Our Neighbor",
-          "content": "We are called to love our neighbors as ourselves, demonstrating Christ's love through acts of service, compassion, and justice. Our faith must be expressed in practical love and good works, reflecting the character of our Savior."
+          "content": "We recognize Christ's command to love our neighbor, which results in service to the church and society; the pursuit of reconciliation for all, with God and with their neighbor, the proclamation of freedom from all forms of oppression, the extension of Christ's justice in an unjust world, until He comes again."
+        },
+        {
+          "title": "The Unity of the Trinity",
+          "content": "We uphold that the Lord our God is one alone in three persons: Father, Son, and Holy Spirit."
         }
       ],
       "closing": "These beliefs form the foundation of everything we do at CEE, guiding our teaching, our relationships, and our service to students, families, and the community.",
@@ -183,18 +187,18 @@
     "philosophy": {
       "title": "Our Philosophy",
       "subtitle": "The guiding principles of our educational approach",
-      "intro": "Our educational philosophy is built on the foundation that all wisdom and knowledge originate from God, revealed through His Word.",
+      "intro": "We understand holistic education as spiritual, physical, moral, and intellectual growth, impossible to achieve without considering the Bible as our foundation for introducing every aspect of teaching.",
       "biblical": {
         "title": "Biblical Foundation",
-        "content": "We are convicted that all wisdom and knowledge have their origin in God, who reveals himself in His Word. The Bible is our pillar and authority for every principal integrated into our curriculum."
+        "content": "We hold the firm conviction that all wisdom and knowledge have their origin in God, who reveals Himself through His Word. For this reason, the Bible is our foundation and authority for every subject, and its principles are integrated into the curriculum."
       },
       "dignity": {
         "title": "Human Dignity and Cultural Identity",
-        "content": "It is our belief that in order for human beings to keep their dignity, they have to hold their manners, language, and belonging to their country in high esteem."
+        "content": "It is our conviction that for human beings to strengthen their dignity, they must hold their customs, their language, and the proper sense of belonging to their own homeland in high esteem."
       },
       "bilingual": {
         "title": "Bilingual Excellence",
-        "content": "We believe that teaching a second language is a necessary tool, useful for the development of a child's future where they can be involved, in their own country as well as internationally, in search of a better future for themselves, society, and their country."
+        "content": "We are convinced that teaching a second language is not an end in itself, but only a necessary and useful tool for the child's development toward future involvement at the national and international level in pursuit of their own well-being, that of society, and of their homeland."
       },
       "principles": {
         "title": "Core Educational Principles",
@@ -390,7 +394,6 @@
             "Mathematics",
             "Science",
             "Social Studies",
-            "Bible",
             "Computer Science"
           ]
         },
@@ -406,32 +409,29 @@
               "Science",
               "Social Studies",
               "Physical Education",
-              "Spanish Language Arts",
-              "Bible"
+              "Spanish Language Arts"
             ]
           },
           "grade9": {
             "title": "Grade 9",
             "subjects": [
               "English Language Arts",
-              "Algebra I",
-              "General Science",
+              "Mathematics",
+              "Science",
               "Physical Education",
               "Spanish Language Arts",
-              "Honduran History",
-              "Bible"
+              "Honduran History"
             ]
           },
           "grades1011": {
             "title": "Grades 10-11",
             "subjects": [
               "English Language Arts",
-              "Geometry/Algebra II",
+              "Mathematics",
               "Biology/Chemistry",
               "Physical Education",
               "Spanish Language Arts",
-              "Physics",
-              "Bible"
+              "Physics"
             ]
           }
         }
@@ -521,11 +521,7 @@
       "special": {
         "title": "Special Programs",
         "items": [
-          {
-            "title": "ESL Support",
-            "description": "Additional English language support for students developing English proficiency"
-          },
-          {
+{
             "title": "Computer Science",
             "description": "Technology education including coding, digital literacy, and computer skills"
           },
@@ -596,7 +592,7 @@
       "subtitle": "Educational excellence from Pre-K through Grade 11",
       "intro": "At CEE, we provide age-appropriate, bilingual education that grows with your child. Our program spans from early childhood through high school, with each level designed to build upon the previous one while meeting the unique developmental needs of students at each stage.",
       "keyFocus": "Key Focus Areas",
-      "typicalAge": "Typical Age",
+      "typicalAge": "Age Range",
       "levels": [
         {
           "title": "Early Childhood",
@@ -651,9 +647,8 @@
           "focus": [
             "College-preparatory curriculum",
             "Advanced sciences (Biology, Chemistry, Physics)",
-            "Higher mathematics (Algebra II, Geometry)",
+            "Higher mathematics",
             "Literature and composition",
-            "University application preparation",
             "Career exploration and guidance",
             "Christian apologetics and theology",
             "Community service and outreach"
@@ -753,34 +748,39 @@
   },
   "studentLife": {
     "sportsClubs": {
-      "title": "Sports & Clubs",
-      "subtitle": "Building character through teamwork and creativity",
-      "intro": "At CEE, we believe in developing the whole student. Our sports and clubs programs provide opportunities for physical fitness, creative expression, teamwork, and personal growth outside the classroom.",
+      "title": "Sports",
+      "subtitle": "Building character through teamwork and discipline",
+      "intro": "At CEE, we believe in developing the whole student. Our sports programs provide opportunities for physical fitness, teamwork, and personal growth outside the classroom.",
       "sports": {
         "title": "Sports Programs",
         "description": "Our athletic programs promote physical fitness, teamwork, discipline, and sportsmanship. Students learn valuable life lessons through competition and collaboration.",
         "items": [
           {
             "title": "Soccer",
-            "description": "Our most popular sport, with teams for various age groups competing in local and regional tournaments."
+            "description": "Our most popular sport, with teams for various age groups competing in local and regional tournaments.",
+            "image": "/images/sports/soccer.jpg"
           },
           {
             "title": "Volleyball",
-            "description": "A favorite among students, promoting teamwork and coordination through competitive and recreational play."
+            "description": "A favorite among students, promoting teamwork and coordination through competitive and recreational play.",
+            "image": "/images/sports/volleyball.jpg"
           },
           {
             "title": "Basketball",
-            "description": "Indoor court action that develops agility, strategy, and team cooperation."
+            "description": "Indoor court action that develops agility, strategy, and team cooperation.",
+            "image": "/images/sports/basketball.jpg"
           },
           {
             "title": "Dodgeball",
-            "description": "A fun, high-energy activity that builds quick reflexes and encourages active participation."
+            "description": "A fun, high-energy activity that builds quick reflexes and encourages active participation.",
+            "image": "/images/sports/dodgeball.jpg"
           }
-        ]
+        ],
+        "otherSports": "In addition to our four main sports, students at CEE also enjoy other athletic activities such as kickball, handball, American football, and athletics. These activities provide even more opportunities for students to stay active, discover new interests, and develop their physical abilities."
       },
       "cta": {
         "title": "Get Involved in Student Life",
-        "description": "Encourage your child to explore their interests and develop new skills through our sports and clubs programs.",
+        "description": "Encourage your child to explore their interests and develop new skills through our sports programs.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }
@@ -816,7 +816,7 @@
         "items": [
           {
             "title": "Community Outreach",
-            "description": "Regular visits to local nursing homes, orphanages, and community centers to share God's love."
+            "description": "We visit families, communities, or other schools to share God's love."
           },
           {
             "title": "Environmental Stewardship",
@@ -856,7 +856,7 @@
         "schedule": [
           {
             "day": "Monday - Friday",
-            "hours": "7:30 AM - 3:00 PM"
+            "hours": "7:15 AM - 3:00 PM"
           },
           {
             "day": "During Lunch",
@@ -886,12 +886,17 @@
         "title": "Borrowing Rules",
         "description": "To ensure fair access for all students, please follow these borrowing guidelines:",
         "rules": [
-          "Students may borrow up to 2 books at a time",
-          "Loan period is 2 weeks with one renewal allowed",
+          "Students may borrow up to 2-3 books at a time",
+          "Loan period is 1-2 weeks with one renewal allowed",
           "Reference materials must be used in the library",
           "Lost or damaged books must be replaced or paid for",
           "Return books on time so others can enjoy them"
         ]
+      },
+      "donate": {
+        "title": "Support Our Library",
+        "description": "Help us grow our collection! You can donate books or purchase items from our Library Wish List on Amazon.",
+        "button": "View Library Wish List"
       },
       "contact": {
         "title": "Contact the Library",
@@ -1388,9 +1393,9 @@
       "landmarks": {
         "title": "Nearby Landmarks",
         "items": [
-          "Near the former Alas de Socorro Mission base",
+          "Near Casa de la Cultura",
           "Close to downtown Siguatepeque",
-          "Near the Central American Biblical Seminary (SEBCAH)"
+          "Former location of the Alas de Socorro mission"
         ]
       },
       "parking": {
@@ -1468,6 +1473,7 @@
       "subtitle": "Find answers to common questions",
       "intro": "Here you'll find answers to the questions we hear most frequently. If you don't find what you're looking for, please don't hesitate to contact us.",
       "categories": {
+        "all": "All Questions",
         "admissions": "Admissions",
         "academics": "Academics",
         "financialAid": "Financial Aid",
@@ -1482,12 +1488,16 @@
         {
           "category": "admissions",
           "question": "What is the enrollment process?",
-          "answer": "The enrollment process includes completing an application, submitting required documents, an interview with the family, and an assessment of the student. Contact our admissions office for specific details and deadlines."
+          "answer": "The enrollment process includes an interview with the area director, admission exams, an interview with the guidance counseling department, tuition payment, and document submission if admitted."
         },
         {
           "category": "admissions",
           "question": "When is the enrollment period?",
-          "answer": "The main enrollment period is typically from November to January for the upcoming school year. However, we may accept students at other times depending on availability."
+          "answer": "The main enrollment period is typically in July for the upcoming school year. However, we may accept students at other times depending on availability. Contact the Administration office in advance, as spaces are limited.",
+          "link": {
+            "text": "Contact Information",
+            "path": "/contact/info"
+          }
         },
         {
           "category": "academics",
@@ -1502,27 +1512,31 @@
         {
           "category": "academics",
           "question": "What extracurricular activities are available?",
-          "answer": "We offer sports (soccer, basketball, volleyball), clubs (reading, art, music, theater), service projects, and various cultural and academic activities throughout the school year."
+          "answer": "While CEE does not offer traditional extracurricular programs, our students stay active and engaged through a variety of enriching experiences. Throughout the school year, students participate in sports tournaments, community service projects, and diverse academic activities that complement their classroom learning and foster personal growth."
         },
         {
           "category": "financialAid",
           "question": "Does CEE offer scholarships?",
-          "answer": "Yes, we offer various types of financial aid including merit-based scholarships, need-based scholarships, and flexible payment plans for qualifying families."
+          "answer": "CEE offers financial aid for qualifying families."
         },
         {
           "category": "financialAid",
           "question": "How can I apply for financial aid?",
-          "answer": "Contact our administrative office to learn about available financial aid options and the application process. Each case is evaluated individually based on academic merit and demonstrated financial need."
+          "answer": "Contact our administrative office to learn about available financial aid options and the application process. Each case is evaluated individually."
         },
         {
           "category": "general",
           "question": "What are the school hours?",
-          "answer": "School hours are Monday through Friday. Office hours are from 7:15 AM to 3:00 PM. Specific class schedules vary by grade level."
+          "answer": "Specific class schedules vary by level."
         },
         {
           "category": "general",
           "question": "How can I support CEE?",
-          "answer": "You can support our school through monetary donations, in-kind contributions, volunteering, or purchasing items from our Amazon wish lists. Visit our Support page for more information."
+          "answer": "You can support our school through monetary donations, volunteering, or purchasing items from our Amazon wish lists. Visit our Support page for more information.",
+          "link": {
+            "text": "Donate",
+            "path": "/support/donate"
+          }
         }
       ],
       "stillHaveQuestions": {
@@ -1720,9 +1734,9 @@
   },
   "getInvolved": {
     "teachers": {
-      "title": "Potential Teachers",
-      "subtitle": "Join our team of dedicated Christian educators",
-      "intro": "We are always looking for passionate educators who share our commitment to Christ-centered education and academic excellence.",
+      "title": "Teach at CEE",
+      "subtitle": "Join our English program team",
+      "intro": "We are looking for passionate educators who share our commitment to Christ-centered education and academic excellence.",
       "requirements": {
         "title": "Teacher Requirements",
         "description": "All English teachers must have a growing, personal relationship with Jesus Christ and be native English speakers (or demonstrate native fluency). Preference will be given to university graduates with teaching credentials."
@@ -1775,7 +1789,7 @@
           "Special events and fundraising",
           "Sports coaching and activities",
           "Campus maintenance projects",
-          "Chapel and worship team",
+          "Devotionals and worship team",
           "Guest speaking and career talks"
         ]
       },

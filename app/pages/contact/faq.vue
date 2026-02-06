@@ -84,6 +84,14 @@
               class="px-6 pb-5 text-gray-700 border-t border-gray-100 pt-4"
             >
               {{ $rt(faq.answer) }}
+              <NuxtLink
+                v-if="faq.link"
+                :to="localePath($rt(faq.link.path))"
+                class="inline-flex items-center gap-1 text-teal-600 hover:text-teal-800 font-medium ml-1"
+              >
+                {{ $rt(faq.link.text) }}
+                <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -186,7 +194,7 @@ const questions = computed(() => {
 
 const categories = computed(() => {
   return [
-    { value: 'all', label: t('studentLife.gallery.categories.all') },
+    { value: 'all', label: t('contact.faq.categories.all') },
     { value: 'admissions', label: t('contact.faq.categories.admissions') },
     { value: 'academics', label: t('contact.faq.categories.academics') },
     { value: 'financialAid', label: t('contact.faq.categories.financialAid') },

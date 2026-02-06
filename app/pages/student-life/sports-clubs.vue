@@ -45,21 +45,36 @@
           <div
             v-for="(sport, index) in sports"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500"
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500"
           >
-            <div
-              class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
-              :class="getSportBgColor(index)"
-            >
-              <UIcon :name="sportIcons[index]" class="w-8 h-8 text-white" />
+            <div class="h-48 bg-gray-200 flex items-center justify-center">
+              <img
+                v-if="sport.image"
+                :src="$rt(sport.image)"
+                :alt="$rt(sport.title)"
+                class="w-full h-full object-cover"
+              />
+              <div v-else class="text-center text-gray-400">
+                <UIcon :name="sportIcons[index]" class="w-12 h-12 mb-2" />
+                <p class="text-sm">{{ $rt(sport.title) }}</p>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(sport.title) }}
-            </h3>
-            <p class="text-gray-700">
-              {{ $rt(sport.description) }}
-            </p>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold text-gray-900 mb-3">
+                {{ $rt(sport.title) }}
+              </h3>
+              <p class="text-gray-700">
+                {{ $rt(sport.description) }}
+              </p>
+            </div>
           </div>
+        </div>
+
+        <!-- Other Sports -->
+        <div class="mt-12 bg-green-50 rounded-lg p-8 text-center">
+          <p class="text-lg text-gray-700 leading-relaxed">
+            {{ $t('studentLife.sportsClubs.sports.otherSports') }}
+          </p>
         </div>
       </div>
     </section>
@@ -116,13 +131,8 @@
     return Array.isArray(items) ? items : [];
   });
 
-  const getSportBgColor = (index: number) => {
-    const colors = ['bg-green-500', 'bg-teal-500', 'bg-emerald-500', 'bg-cyan-500'];
-    return colors[index % colors.length];
-  };
-
   useHead({
-    title: 'Sports & Clubs - CEE',
+    title: 'Sports - CEE',
     meta: [
       {
         name: 'description',
