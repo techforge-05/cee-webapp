@@ -41,6 +41,12 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    gmailUser: process.env.GMAIL_USER || '',
+    gmailAppPassword: process.env.GMAIL_APP_PASSWORD || '',
+    supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY || '',
+  },
+
   i18n: {
     defaultLocale: 'es',
     langDir: 'locales',

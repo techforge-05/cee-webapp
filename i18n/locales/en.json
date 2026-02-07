@@ -15,6 +15,13 @@
     "contact": "Contact",
     "admissions": "Admissions",
     "getInvolved": "Get Involved",
+    "home": "Home",
+    "admin": {
+      "users": "Users",
+      "manageNav": "Manage Nav",
+      "calendar": "Calendar",
+      "announcements": "Announcements"
+    },
     "dropdowns": {
       "about": {
         "missionVisionValues": "Mission, Vision & Values",
@@ -1046,7 +1053,8 @@
       "noAccount": "Don't have an account?",
       "hasAccount": "Already have an account?",
       "signUpLink": "Sign up",
-      "signInLink": "Sign in"
+      "signInLink": "Sign in",
+      "forgotPasswordLink": "Forgot your password?"
     },
     "signup": {
       "title": "Create your account",
@@ -1055,13 +1063,154 @@
     "callback": {
       "completing": "Completing sign in..."
     },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email address",
+      "emailPlaceholder": "you{'@'}example.com",
+      "sendButton": "Send reset link",
+      "sending": "Sending...",
+      "successTitle": "Check your email",
+      "successMessage": "We've sent a password reset link to your email address. Please check your inbox.",
+      "backToLogin": "Back to sign in"
+    },
+    "resetPassword": {
+      "title": "Set new password",
+      "description": "Enter your new password below.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "passwordPlaceholder": "Enter new password",
+      "confirmPlaceholder": "Confirm new password",
+      "resetButton": "Update password",
+      "resetting": "Updating...",
+      "successTitle": "Password updated",
+      "successMessage": "Your password has been updated successfully. You can now sign in with your new password.",
+      "goToLogin": "Go to sign in"
+    },
+    "acceptInvite": {
+      "title": "Accept invitation",
+      "description": "You've been invited to join the CEE Admin Panel. Complete your registration below.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Enter your full name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "passwordPlaceholder": "Choose a password",
+      "confirmPlaceholder": "Confirm your password",
+      "acceptButton": "Create account",
+      "accepting": "Creating account...",
+      "successTitle": "Welcome!",
+      "successMessage": "Your account has been created successfully. You can now sign in.",
+      "goToLogin": "Go to sign in",
+      "invalidToken": "This invitation link is invalid or has expired.",
+      "expiredToken": "This invitation has expired. Please ask the administrator to send a new invitation.",
+      "alreadyAccepted": "This invitation has already been accepted."
+    },
     "errors": {
       "passwordMismatch": "Passwords do not match",
       "passwordTooShort": "Password must be at least 6 characters long",
       "signInError": "An error occurred during sign in",
       "signUpError": "An error occurred during sign up",
       "googleSignInError": "An error occurred during Google sign in",
-      "googleSignUpError": "An error occurred during Google sign up"
+      "googleSignUpError": "An error occurred during Google sign up",
+      "resetPasswordError": "An error occurred while resetting your password",
+      "invalidResetToken": "Invalid or expired reset link. Please request a new one.",
+      "acceptInviteError": "An error occurred while creating your account"
+    }
+  },
+  "admin": {
+    "users": {
+      "title": "Users",
+      "description": "Manage admin users and their permissions.",
+      "inviteUser": "Invite User",
+      "searchPlaceholder": "Search by name or email...",
+      "table": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "roles": {
+        "super_admin": "Super Admin",
+        "admin": "Admin"
+      },
+      "statuses": {
+        "active": "Active",
+        "invited": "Invited",
+        "expired": "Expired",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "viewDetails": "View details",
+        "reInvite": "Re-invite",
+        "disable": "Disable",
+        "enable": "Enable",
+        "delete": "Delete"
+      },
+      "emptyState": "No users found",
+      "deleteConfirm": {
+        "title": "Delete user",
+        "message": "Are you sure you want to delete this user? This action cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      },
+      "disableConfirm": {
+        "title": "Disable user",
+        "message": "Are you sure you want to disable this user? They will lose access to the admin panel.",
+        "confirm": "Disable",
+        "cancel": "Cancel"
+      }
+    },
+    "userDetail": {
+      "title": "User Details",
+      "backToUsers": "Back to users",
+      "profile": "Profile",
+      "permissions": "Permissions",
+      "fullName": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "createdAt": "Created",
+      "invitedAt": "Invited",
+      "invitedBy": "Invited by",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "saved": "Changes saved successfully",
+      "saveError": "Failed to save changes"
+    },
+    "invite": {
+      "title": "Invite new user",
+      "description": "Send an invitation email to a new admin user.",
+      "email": "Email address",
+      "emailPlaceholder": "user{'@'}example.com",
+      "role": "Role",
+      "permissions": "Permissions",
+      "calendarAccess": "Calendar access",
+      "announcementAccess": "Announcement access",
+      "sendInvite": "Send invitation",
+      "sending": "Sending...",
+      "success": "Invitation sent successfully",
+      "error": "Failed to send invitation",
+      "cancel": "Cancel"
+    },
+    "permissions": {
+      "title": "Section Permissions",
+      "description": "Select which sections and pages this user can manage.",
+      "fullSection": "Full section",
+      "selectPages": "Select pages",
+      "sections": {
+        "home": "Home",
+        "about": "About",
+        "academics": "Academics",
+        "studentLife": "Student Life",
+        "support": "Support",
+        "contact": "Contact",
+        "admissions": "Admissions",
+        "getInvolved": "Get Involved"
+      },
+      "calendarAccess": "Can manage calendar events",
+      "announcementAccess": "Can manage announcements"
     }
   },
   "support": {

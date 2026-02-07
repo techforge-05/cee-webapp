@@ -38,6 +38,15 @@
             </UFormField>
           </div>
 
+          <div class="flex items-center justify-end">
+            <NuxtLink
+              :to="localePath('/auth/forgot-password')"
+              class="text-sm text-primary-600 hover:text-primary-500"
+            >
+              {{ $t('auth.login.forgotPasswordLink') }}
+            </NuxtLink>
+          </div>
+
           <div v-if="error" class="text-red-600 dark:text-red-400 text-sm">
             {{ error }}
           </div>
