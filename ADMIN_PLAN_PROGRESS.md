@@ -104,24 +104,109 @@ GMAIL_APP_PASSWORD=your-16-char-app-password
 ---
 
 ## Phase 3: Reusable Components
-**Status: NOT STARTED**
+**Status: COMPLETE**
 
 | Task | Status | Notes |
 |------|--------|-------|
-| BilingualTextField | Pending | |
-| BilingualTextarea | Pending | |
-| TranslateButton + API | Pending | Google Translate API |
-| ImageUploader | Pending | Cloudinary upload |
-| ImageManager | Pending | |
-| CarouselManager | Pending | |
-| DataListManager | Pending | |
-| DataItemEditor | Pending | |
-| ConfirmDialog | Pending | |
+| ConfirmDialog | Done | `app/components/admin/ConfirmDialog.vue` - UModal, v-model open, confirm/cancel emits |
+| BilingualTextField | Done | `app/components/admin/BilingualTextField.vue` - Side-by-side ES/EN UInput, exports `BilingualText` |
+| BilingualTextarea | Done | `app/components/admin/BilingualTextarea.vue` - Same but UTextarea |
+| TranslateButton | Done | `app/components/admin/TranslateButton.vue` - Google Translate via server API |
+| Translate server route | Done | `server/api/admin/translate.post.ts` - REST API call, admin auth |
+| useTranslation composable | Done | `app/composables/useTranslation.ts` |
+| ImageUploader | Done | `app/components/admin/ImageUploader.vue` - Drag-and-drop + click, Cloudinary upload |
+| Upload server route | Done | `server/api/admin/upload.post.ts` - Multipart form, Cloudinary upload_stream |
+| useImageUpload composable | Done | `app/composables/useImageUpload.ts` |
+| ImageManager | Done | `app/components/admin/ImageManager.vue` - ImageUploader + bilingual alt/title fields |
+| CarouselManager | Done | `app/components/admin/CarouselManager.vue` - Ordered ImageManager list with reorder |
+| DataListManager | Done | `app/components/admin/DataListManager.vue` - Generic CRUD list with scoped slots |
+| usePageContent composable | Done | `app/composables/usePageContent.ts` - CRUD for page_content table |
+| i18n translations | Done | `admin.components.*` keys in both en.json + es.json |
+| nuxt.config.ts runtimeConfig | Done | Added googleTranslateApiKey, cloudinary keys |
+| Cloudinary dependency | Done | `cloudinary` v2.9.0 installed |
+
+### Files Created in Phase 3
+```
+app/components/admin/ConfirmDialog.vue
+app/components/admin/BilingualTextField.vue
+app/components/admin/BilingualTextarea.vue
+app/components/admin/TranslateButton.vue
+app/components/admin/ImageUploader.vue
+app/components/admin/ImageManager.vue
+app/components/admin/CarouselManager.vue
+app/components/admin/DataListManager.vue
+app/composables/useTranslation.ts
+app/composables/useImageUpload.ts
+app/composables/usePageContent.ts
+server/api/admin/translate.post.ts
+server/api/admin/upload.post.ts
+```
+
+### Files Modified in Phase 3
+```
+nuxt.config.ts            (added runtimeConfig for Cloudinary + Google Translate)
+package.json              (added cloudinary dependency)
+i18n/locales/en.json      (added admin.components.* translations)
+i18n/locales/es.json      (added admin.components.* translations)
+```
+
+### Manual Steps for Phase 3
+#### 1. Google Cloud Translation API Setup
+1. Go to Google Cloud Console
+2. Enable Cloud Translation API
+3. Create an API key
+4. Add to `.env`: `GOOGLE_TRANSLATE_API_KEY=your-key`
+
+#### 2. Cloudinary Setup
+1. Create free Cloudinary account at cloudinary.com
+2. Get cloud name, API key, API secret from dashboard
+3. Add to `.env`:
+```env
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+```
 
 ---
 
 ## Phase 4: High Priority Content Management
-**Status: NOT STARTED**
+**Status: COMPLETE**
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Dynamic page editor infrastructure | Done | `[page].vue` - component map with `defineAsyncComponent`, "Coming Soon" fallback |
+| Home page editor | Done | `app/components/admin/editors/HomePageEditor.vue` - welcome, enrollment, values, activities, news sections |
+| FAQ editor | Done | `app/components/admin/editors/FaqEditor.vue` - category filter, bilingual Q&A, optional links |
+| Leadership editor | Done | `app/components/admin/editors/LeadershipEditor.vue` - board photo, members, directors with photos |
+| Gallery photo manager | Done | `app/components/admin/editors/GalleryEditor.vue` - photo grid, add/edit/delete modal, year/category filters |
+| useGallery composable | Done | `app/composables/useGallery.ts` - CRUD for gallery_photos table |
+| Calendar event management | Done | `app/pages/admin/calendar.vue` - full CRUD with modal, type filters, bilingual fields |
+| useCalendarAdmin composable | Done | `app/composables/useCalendarAdmin.ts` - CRUD for calendar_events table |
+| Announcement management | Done | `app/pages/admin/announcements.vue` - full CRUD with modal, active toggle, event linking |
+| useAnnouncements composable | Done | `app/composables/useAnnouncements.ts` - CRUD for announcements table |
+| usePageContent fix | Done | Fixed `saveAll` to fetch current items per pageKey before determining deletions |
+| i18n translations | Done | `admin.editors.*` keys in both en.json + es.json |
+
+### Files Created in Phase 4
+```
+app/components/admin/editors/HomePageEditor.vue
+app/components/admin/editors/FaqEditor.vue
+app/components/admin/editors/LeadershipEditor.vue
+app/components/admin/editors/GalleryEditor.vue
+app/composables/useGallery.ts
+app/composables/useCalendarAdmin.ts
+app/composables/useAnnouncements.ts
+```
+
+### Files Modified in Phase 4
+```
+app/pages/admin/sections/[section]/[page].vue   (dynamic editor loading via component map)
+app/pages/admin/calendar.vue                     (replaced placeholder with full implementation)
+app/pages/admin/announcements.vue                (replaced placeholder with full implementation)
+app/composables/usePageContent.ts                (fixed saveAll deletion logic)
+i18n/locales/en.json                             (added admin.editors.* translations)
+i18n/locales/es.json                             (added admin.editors.* translations)
+```
 
 ## Phase 5: Remaining Content Pages
 **Status: NOT STARTED**

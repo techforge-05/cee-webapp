@@ -9,11 +9,12 @@ export default defineEventHandler(async (event) => {
   }
 
   // Verify super admin role
+  const userId = user.id ?? (user as any).sub
   const supabase = await serverSupabaseClient(event)
   const { data: profile } = await supabase
     .from('user_profiles')
     .select('role')
-    .eq('id', user.id)
+    .eq('id', userId)
     .single()
 
   if (!profile || profile.role !== 'super_admin') {

@@ -1211,6 +1211,153 @@
       },
       "calendarAccess": "Can manage calendar events",
       "announcementAccess": "Can manage announcements"
+    },
+    "components": {
+      "bilingual": {
+        "spanish": "Spanish",
+        "english": "English",
+        "translate": "Translate",
+        "translating": "Translating...",
+        "translateError": "Translation failed"
+      },
+      "image": {
+        "upload": "Upload image",
+        "dragDrop": "Drag and drop or click to upload",
+        "maxSize": "Max size: {size}MB",
+        "uploading": "Uploading...",
+        "remove": "Remove image",
+        "altText": "Alt text",
+        "title": "Title",
+        "uploadError": "Upload failed"
+      },
+      "dataList": {
+        "addItem": "Add {item}",
+        "removeItem": "Remove",
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "empty": "No items added yet",
+        "item": "Item"
+      },
+      "carousel": {
+        "images": "Images",
+        "addImage": "Add image",
+        "noImages": "No images added yet"
+      },
+      "confirm": {
+        "defaultTitle": "Confirm action",
+        "defaultMessage": "Are you sure you want to proceed?",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      }
+    },
+    "editors": {
+      "manageContent": "Manage content for this page.",
+      "comingSoon": "Page Editor Coming Soon",
+      "comingSoonDescription": "The content editor for this page will be available in the next phase. You'll be able to manage images, text, and lists for this page.",
+      "save": "Save",
+      "saveSuccess": "Changes saved successfully",
+      "saveError": "Failed to save changes",
+      "loadError": "Failed to load content",
+      "deleteSuccess": "Deleted successfully",
+      "deleteError": "Failed to delete",
+      "home": {
+        "welcome": "Welcome Section",
+        "welcomeTitlePart1": "Welcome Title (Part 1)",
+        "welcomeTitlePart2": "Welcome Title (Part 2)",
+        "welcomeDescription": "Welcome Description",
+        "enrollment": "Enrollment Section",
+        "enrollmentTitle": "Enrollment Title",
+        "enrollmentDescription": "Enrollment Description",
+        "enrollmentFeatures": "Enrollment Features",
+        "feature": "Feature",
+        "values": "Values Section",
+        "value": "Value",
+        "valueTitle": "Value Title",
+        "valueDescription": "Value Description",
+        "activities": "Activities Section",
+        "activity": "Activity",
+        "activityTitle": "Activity Title",
+        "activityDescription": "Activity Description",
+        "news": "News Section",
+        "newsItem": "News Item",
+        "newsTitle": "News Title",
+        "newsDate": "Date",
+        "newsExcerpt": "Excerpt"
+      },
+      "faq": {
+        "question": "Question",
+        "answer": "Answer",
+        "category": "Category",
+        "linkText": "Link Text",
+        "linkPath": "Link Path"
+      },
+      "leadership": {
+        "board": "Board of Directors",
+        "boardPhoto": "Board Group Photo",
+        "boardMember": "Board Member",
+        "name": "Name",
+        "position": "Position",
+        "directors": "School Directors",
+        "director": "Director",
+        "directorTitle": "Title / Grade Range",
+        "email": "Email"
+      },
+      "gallery": {
+        "year": "Year",
+        "category": "Category",
+        "addPhoto": "Add Photo",
+        "editPhoto": "Edit Photo",
+        "noPhotos": "No photos found",
+        "allYears": "All Years",
+        "allCategories": "All Categories",
+        "photoTitle": "Photo Title",
+        "deleteTitle": "Delete Photo",
+        "deleteMessage": "Are you sure you want to delete this photo? This action cannot be undone.",
+        "uploadFirst": "Please upload an image first"
+      },
+      "calendar": {
+        "title": "Calendar Events",
+        "subtitle": "Manage school calendar events.",
+        "addEvent": "Add Event",
+        "editEvent": "Edit Event",
+        "noEvents": "No events found",
+        "eventTitle": "Event Title",
+        "eventDescription": "Event Description",
+        "eventType": "Event Type",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "allDay": "All day event",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "location": "Location",
+        "color": "Color",
+        "eventImage": "Event Image",
+        "allTypes": "All Types",
+        "deleteTitle": "Delete Event",
+        "deleteMessage": "Are you sure you want to delete this event? This action cannot be undone.",
+        "requiredFields": "Title and start date are required"
+      },
+      "announcements": {
+        "title": "Announcements",
+        "subtitle": "Manage school announcements.",
+        "addAnnouncement": "Add Announcement",
+        "editAnnouncement": "Edit Announcement",
+        "noAnnouncements": "No announcements found",
+        "announcementTitle": "Announcement Title",
+        "description": "Description",
+        "displayDate": "Display Date",
+        "image": "Image",
+        "linkedEvent": "Linked Event",
+        "noLinkedEvent": "None (standalone)",
+        "isActive": "Active",
+        "active": "Active",
+        "inactive": "Inactive",
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "deleteTitle": "Delete Announcement",
+        "deleteMessage": "Are you sure you want to delete this announcement? This action cannot be undone.",
+        "requiredFields": "Title and display date are required"
+      }
     }
   },
   "support": {

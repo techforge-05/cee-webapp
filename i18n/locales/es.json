@@ -1211,6 +1211,153 @@
       },
       "calendarAccess": "Puede gestionar eventos del calendario",
       "announcementAccess": "Puede gestionar anuncios"
+    },
+    "components": {
+      "bilingual": {
+        "spanish": "Español",
+        "english": "Inglés",
+        "translate": "Traducir",
+        "translating": "Traduciendo...",
+        "translateError": "Error de traducción"
+      },
+      "image": {
+        "upload": "Subir imagen",
+        "dragDrop": "Arrastra y suelta o haz clic para subir",
+        "maxSize": "Tamaño máximo: {size}MB",
+        "uploading": "Subiendo...",
+        "remove": "Eliminar imagen",
+        "altText": "Texto alternativo",
+        "title": "Título",
+        "uploadError": "Error al subir"
+      },
+      "dataList": {
+        "addItem": "Agregar {item}",
+        "removeItem": "Eliminar",
+        "moveUp": "Mover arriba",
+        "moveDown": "Mover abajo",
+        "empty": "No hay elementos agregados",
+        "item": "Elemento"
+      },
+      "carousel": {
+        "images": "Imágenes",
+        "addImage": "Agregar imagen",
+        "noImages": "No hay imágenes agregadas"
+      },
+      "confirm": {
+        "defaultTitle": "Confirmar acción",
+        "defaultMessage": "¿Está seguro de que desea continuar?",
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+      }
+    },
+    "editors": {
+      "manageContent": "Administrar contenido de esta página.",
+      "comingSoon": "Editor de Página Próximamente",
+      "comingSoonDescription": "El editor de contenido para esta página estará disponible en la próxima fase. Podrá administrar imágenes, texto y listas para esta página.",
+      "save": "Guardar",
+      "saveSuccess": "Cambios guardados exitosamente",
+      "saveError": "Error al guardar los cambios",
+      "loadError": "Error al cargar el contenido",
+      "deleteSuccess": "Eliminado exitosamente",
+      "deleteError": "Error al eliminar",
+      "home": {
+        "welcome": "Sección de Bienvenida",
+        "welcomeTitlePart1": "Título de Bienvenida (Parte 1)",
+        "welcomeTitlePart2": "Título de Bienvenida (Parte 2)",
+        "welcomeDescription": "Descripción de Bienvenida",
+        "enrollment": "Sección de Matrícula",
+        "enrollmentTitle": "Título de Matrícula",
+        "enrollmentDescription": "Descripción de Matrícula",
+        "enrollmentFeatures": "Características de Matrícula",
+        "feature": "Característica",
+        "values": "Sección de Valores",
+        "value": "Valor",
+        "valueTitle": "Título del Valor",
+        "valueDescription": "Descripción del Valor",
+        "activities": "Sección de Actividades",
+        "activity": "Actividad",
+        "activityTitle": "Título de Actividad",
+        "activityDescription": "Descripción de Actividad",
+        "news": "Sección de Noticias",
+        "newsItem": "Noticia",
+        "newsTitle": "Título de Noticia",
+        "newsDate": "Fecha",
+        "newsExcerpt": "Extracto"
+      },
+      "faq": {
+        "question": "Pregunta",
+        "answer": "Respuesta",
+        "category": "Categoría",
+        "linkText": "Texto del Enlace",
+        "linkPath": "Ruta del Enlace"
+      },
+      "leadership": {
+        "board": "Junta Directiva",
+        "boardPhoto": "Foto Grupal de la Junta",
+        "boardMember": "Miembro de la Junta",
+        "name": "Nombre",
+        "position": "Cargo",
+        "directors": "Directores",
+        "director": "Director",
+        "directorTitle": "Título / Rango de Grado",
+        "email": "Correo Electrónico"
+      },
+      "gallery": {
+        "year": "Año",
+        "category": "Categoría",
+        "addPhoto": "Agregar Foto",
+        "editPhoto": "Editar Foto",
+        "noPhotos": "No se encontraron fotos",
+        "allYears": "Todos los Años",
+        "allCategories": "Todas las Categorías",
+        "photoTitle": "Título de la Foto",
+        "deleteTitle": "Eliminar Foto",
+        "deleteMessage": "¿Está seguro de que desea eliminar esta foto? Esta acción no se puede deshacer.",
+        "uploadFirst": "Por favor suba una imagen primero"
+      },
+      "calendar": {
+        "title": "Eventos del Calendario",
+        "subtitle": "Administrar eventos del calendario escolar.",
+        "addEvent": "Agregar Evento",
+        "editEvent": "Editar Evento",
+        "noEvents": "No se encontraron eventos",
+        "eventTitle": "Título del Evento",
+        "eventDescription": "Descripción del Evento",
+        "eventType": "Tipo de Evento",
+        "startDate": "Fecha de Inicio",
+        "endDate": "Fecha de Fin",
+        "allDay": "Evento de todo el día",
+        "startTime": "Hora de Inicio",
+        "endTime": "Hora de Fin",
+        "location": "Ubicación",
+        "color": "Color",
+        "eventImage": "Imagen del Evento",
+        "allTypes": "Todos los Tipos",
+        "deleteTitle": "Eliminar Evento",
+        "deleteMessage": "¿Está seguro de que desea eliminar este evento? Esta acción no se puede deshacer.",
+        "requiredFields": "El título y la fecha de inicio son obligatorios"
+      },
+      "announcements": {
+        "title": "Anuncios",
+        "subtitle": "Administrar anuncios escolares.",
+        "addAnnouncement": "Agregar Anuncio",
+        "editAnnouncement": "Editar Anuncio",
+        "noAnnouncements": "No se encontraron anuncios",
+        "announcementTitle": "Título del Anuncio",
+        "description": "Descripción",
+        "displayDate": "Fecha de Publicación",
+        "image": "Imagen",
+        "linkedEvent": "Evento Vinculado",
+        "noLinkedEvent": "Ninguno (independiente)",
+        "isActive": "Activo",
+        "active": "Activo",
+        "inactive": "Inactivo",
+        "activate": "Activar",
+        "deactivate": "Desactivar",
+        "deleteTitle": "Eliminar Anuncio",
+        "deleteMessage": "¿Está seguro de que desea eliminar este anuncio? Esta acción no se puede deshacer.",
+        "requiredFields": "El título y la fecha de publicación son obligatorios"
+      }
     }
   },
   "support": {
