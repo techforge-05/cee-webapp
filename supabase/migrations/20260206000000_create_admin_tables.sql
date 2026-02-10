@@ -38,7 +38,7 @@ CREATE INDEX idx_user_permissions_section ON user_permissions(section);
 CREATE TABLE IF NOT EXISTS invitations (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   email TEXT NOT NULL,
-  token TEXT NOT NULL UNIQUE DEFAULT encode(gen_random_bytes(32), 'hex'),
+  token TEXT NOT NULL UNIQUE DEFAULT replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', ''),
   role TEXT NOT NULL DEFAULT 'admin' CHECK (role IN ('super_admin', 'admin')),
   permissions JSONB DEFAULT '[]',
   can_calendar BOOLEAN DEFAULT false,

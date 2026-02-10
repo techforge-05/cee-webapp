@@ -104,11 +104,19 @@ export const useAdminStore = defineStore('admin', {
         return
       }
 
+      // On SSR, useSupabaseUser() returns JWT payload with `sub` instead of `id`
+      const userId = user.value.id ?? user.value.sub
+
+      if (!userId) {
+        this.isProfileLoaded = true
+        return
+      }
+
       try {
         const { data: profile, error: profileError } = await supabase
           .from('user_profiles')
           .select('*')
-          .eq('id', user.value.id)
+          .eq('id', userId)
           .single()
 
         if (profileError) {
@@ -126,7 +134,7 @@ export const useAdminStore = defineStore('admin', {
         const { data: permissions, error: permError } = await supabase
           .from('user_permissions')
           .select('*')
-          .eq('user_id', user.value.id)
+          .eq('user_id', userId)
 
         if (permError) throw permError
 

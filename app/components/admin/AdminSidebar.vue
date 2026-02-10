@@ -32,35 +32,39 @@
     <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
       <!-- Super admin only items -->
       <template v-if="adminStore.isSuperAdmin">
-        <SidebarItem
-          icon="i-heroicons-users"
-          :label="$t('nav.admin.users') || 'Users'"
+        <NuxtLink
           :to="localePath('/admin/users')"
-          :active="isActive('/admin/users')"
-        />
-        <SidebarItem
-          icon="i-heroicons-cog-6-tooth"
-          :label="$t('nav.admin.manageNav') || 'Manage Nav'"
+          :class="sidebarItemClass(isActive('/admin/users'))"
+        >
+          <UIcon name="i-heroicons-users" class="w-5 h-5 shrink-0" />
+          <span>{{ $t('nav.admin.users') || 'Users' }}</span>
+        </NuxtLink>
+        <NuxtLink
           :to="localePath('/admin/manage-nav')"
-          :active="isActive('/admin/manage-nav')"
-        />
+          :class="sidebarItemClass(isActive('/admin/manage-nav'))"
+        >
+          <UIcon name="i-heroicons-cog-6-tooth" class="w-5 h-5 shrink-0" />
+          <span>{{ $t('nav.admin.manageNav') || 'Manage Nav' }}</span>
+        </NuxtLink>
       </template>
 
       <!-- Calendar & Announcements -->
-      <SidebarItem
+      <NuxtLink
         v-if="adminStore.hasCalendarAccess"
-        icon="i-heroicons-calendar-days"
-        :label="$t('nav.admin.calendar') || 'Calendar'"
         :to="localePath('/admin/calendar')"
-        :active="isActive('/admin/calendar')"
-      />
-      <SidebarItem
+        :class="sidebarItemClass(isActive('/admin/calendar'))"
+      >
+        <UIcon name="i-heroicons-calendar-days" class="w-5 h-5 shrink-0" />
+        <span>{{ $t('nav.admin.calendar') || 'Calendar' }}</span>
+      </NuxtLink>
+      <NuxtLink
         v-if="adminStore.hasAnnouncementAccess"
-        icon="i-heroicons-megaphone"
-        :label="$t('nav.admin.announcements') || 'Announcements'"
         :to="localePath('/admin/announcements')"
-        :active="isActive('/admin/announcements')"
-      />
+        :class="sidebarItemClass(isActive('/admin/announcements'))"
+      >
+        <UIcon name="i-heroicons-megaphone" class="w-5 h-5 shrink-0" />
+        <span>{{ $t('nav.admin.announcements') || 'Announcements' }}</span>
+      </NuxtLink>
 
       <!-- Divider -->
       <div
@@ -69,14 +73,15 @@
       />
 
       <!-- Section items -->
-      <SidebarItem
+      <NuxtLink
         v-for="section in visibleSections"
         :key="section.key"
-        :icon="section.icon"
-        :label="section.label"
         :to="localePath(`/admin/sections/${section.key}`)"
-        :active="isActive(`/admin/sections/${section.key}`)"
-      />
+        :class="sidebarItemClass(isActive(`/admin/sections/${section.key}`))"
+      >
+        <UIcon :name="section.icon" class="w-5 h-5 shrink-0" />
+        <span>{{ section.label }}</span>
+      </NuxtLink>
     </nav>
 
     <!-- User info at bottom -->
@@ -143,32 +148,13 @@ const initials = computed(() => {
 const isActive = (path: string) => {
   return route.path.includes(path)
 }
-</script>
 
-<script lang="ts">
-// Sub-component for sidebar items
-const SidebarItem = defineComponent({
-  props: {
-    icon: { type: String, required: true },
-    label: { type: String, required: true },
-    to: { type: String, required: true },
-    active: { type: Boolean, default: false },
-  },
-  template: `
-    <NuxtLink
-      :to="to"
-      :class="[
-        'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
-        active
-          ? 'bg-gray-700 text-white'
-          : 'text-gray-300 hover:bg-gray-800 hover:text-white',
-      ]"
-    >
-      <UIcon :name="icon" class="w-5 h-5 shrink-0" />
-      <span>{{ label }}</span>
-    </NuxtLink>
-  `,
-})
+const sidebarItemClass = (active: boolean) => [
+  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+  active
+    ? 'bg-gray-700 text-white'
+    : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+]
 </script>
 
 <style scoped>

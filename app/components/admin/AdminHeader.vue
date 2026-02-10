@@ -124,6 +124,6 @@ const formatPageName = (page: string) => {
 const handleSignOut = async () => {
   adminStore.clearProfile()
   await supabase.auth.signOut()
-  await navigateTo(localePath('/auth/login'))
+  await navigateTo(localePath('/'))
 }
 </script>
