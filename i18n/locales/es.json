@@ -1250,6 +1250,19 @@
         "cancel": "Cancelar"
       }
     },
+    "manageNav": {
+      "title": "Administrar Navegación",
+      "subtitle": "Controle qué secciones y páginas son visibles en el sitio web.",
+      "sectionVisible": "Visible",
+      "sectionHidden": "Oculta",
+      "pageVisible": "Visible",
+      "pageHidden": "Oculta",
+      "toggleSuccess": "Navegación actualizada",
+      "toggleError": "Error al actualizar la navegación",
+      "edit": "Editar",
+      "save": "Guardar",
+      "cancel": "Cancelar"
+    },
     "editors": {
       "manageContent": "Administrar contenido de esta página.",
       "comingSoon": "Editor de Página Próximamente",

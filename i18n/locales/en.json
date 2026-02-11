@@ -1250,6 +1250,19 @@
         "cancel": "Cancel"
       }
     },
+    "manageNav": {
+      "title": "Manage Navigation",
+      "subtitle": "Control which sections and pages are visible on the website.",
+      "sectionVisible": "Visible",
+      "sectionHidden": "Hidden",
+      "pageVisible": "Visible",
+      "pageHidden": "Hidden",
+      "toggleSuccess": "Navigation updated",
+      "toggleError": "Failed to update navigation",
+      "edit": "Edit",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
     "editors": {
       "manageContent": "Manage content for this page.",
       "comingSoon": "Page Editor Coming Soon",

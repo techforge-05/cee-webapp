@@ -250,7 +250,29 @@ i18n/locales/es.json                             (added ~120 admin.editors.* tra
 ```
 
 ## Phase 6: Nav Management & Polish
-**Status: NOT STARTED**
+**Status: COMPLETE**
+
+| Task | Status | Notes |
+|------|--------|-------|
+| useNavVisibility composable | Done | `app/composables/useNavVisibility.ts` - load/toggle/isVisible with useState caching |
+| Manage Nav admin page | Done | `app/pages/admin/manage-nav.vue` - section+page toggles, instant save, super_admin only |
+| Navbar visibility integration | Done | `app/components/Navbar.vue` - desktop nav filtered, badge buttons, mobile menu sections+pages all use `isVisible()` |
+| AdminHeader section labels fix | Done | `app/components/admin/AdminHeader.vue` - uses `getSectionConfig()` from sectionRegistry instead of hardcoded map |
+| i18n translations | Done | `admin.manageNav.*` keys in both en.json + es.json |
+
+### Files Created in Phase 6
+```
+app/composables/useNavVisibility.ts
+```
+
+### Files Modified in Phase 6
+```
+app/pages/admin/manage-nav.vue              (replaced placeholder with full implementation)
+app/components/Navbar.vue                   (added nav_visibility filtering for desktop + mobile)
+app/components/admin/AdminHeader.vue        (use sectionRegistry for breadcrumb labels)
+i18n/locales/en.json                        (added admin.manageNav.* translations)
+i18n/locales/es.json                        (added admin.manageNav.* translations)
+```
 
 ## Phase 7: Public Site Migration
 **Status: NOT STARTED**

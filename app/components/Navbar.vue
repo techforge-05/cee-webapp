@@ -57,12 +57,14 @@
             @mouseleave="scheduleClose"
           >
             <span
+              v-if="isVisible('admissions')"
               class="rounded-full cursor-pointer bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium px-2 lg:px-3 py-1 text-xs xl:text-sm 2xl:text-base hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-sm"
               @mouseenter="handleDropdownChange('admissions')"
             >
               {{ $t('nav.admissions') }}
             </span>
             <span
+              v-if="isVisible('getInvolved')"
               class="rounded-full cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium px-2 lg:px-3 py-1 text-xs xl:text-sm 2xl:text-base hover:from-blue-600 hover:to-cyan-700 transition-all duration-200 shadow-sm"
               @mouseenter="handleDropdownChange('getInvolved')"
             >
@@ -120,7 +122,7 @@
         <!-- Scrollable Content Area -->
         <div class="flex-1 overflow-y-auto py-6 pr-4 pl-10 space-y-6">
           <!-- About Section -->
-          <div>
+          <div v-if="isVisible('about')">
             <div class="flex items-center gap-3 mb-2">
               <div
                 class="w-7 h-7 rounded-full bg-pink-600 flex items-center justify-center shrink-0"
@@ -133,6 +135,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
+                v-if="isVisible('about', 'mission-vision-values')"
                 :to="localePath('/about/mission-vision-values')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -144,6 +147,7 @@
                 <span>{{ $t('nav.dropdowns.about.missionVisionValues') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('about', 'statement-of-faith')"
                 :to="localePath('/about/statement-of-faith')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -155,6 +159,7 @@
                 <span>{{ $t('nav.dropdowns.about.statementOfFaith') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('about', 'philosophy')"
                 :to="localePath('/about/philosophy')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -166,6 +171,7 @@
                 <span>{{ $t('nav.dropdowns.about.philosophy') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('about', 'history')"
                 :to="localePath('/about/history')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -177,6 +183,7 @@
                 <span>{{ $t('nav.dropdowns.about.history') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('about', 'town')"
                 :to="localePath('/about/town')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -188,6 +195,7 @@
                 <span>{{ $t('nav.dropdowns.about.town') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('about', 'leadership')"
                 :to="localePath('/about/leadership')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -202,7 +210,7 @@
           </div>
 
           <!-- Academics Section -->
-          <div>
+          <div v-if="isVisible('academics')">
             <div class="flex items-center gap-3 mb-2">
               <div
                 class="w-7 h-7 rounded-full bg-yellow-500 flex items-center justify-center shrink-0"
@@ -215,6 +223,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
+                v-if="isVisible('academics', 'curriculum')"
                 :to="localePath('/academics/curriculum')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -226,6 +235,7 @@
                 <span>{{ $t('nav.dropdowns.academics.curriculum') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('academics', 'grades')"
                 :to="localePath('/academics/grades')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -237,6 +247,7 @@
                 <span>{{ $t('nav.dropdowns.academics.grades') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('academics', 'calendar')"
                 :to="localePath('/academics/calendar')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -251,7 +262,7 @@
           </div>
 
           <!-- Student Life Section -->
-          <div>
+          <div v-if="isVisible('studentLife')">
             <div class="flex items-center gap-3 mb-2">
               <div
                 class="w-7 h-7 rounded-full bg-green-600 flex items-center justify-center shrink-0"
@@ -264,6 +275,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
+                v-if="isVisible('studentLife', 'sports-clubs')"
                 :to="localePath('/student-life/sports-clubs')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -275,6 +287,7 @@
                 <span>{{ $t('nav.dropdowns.studentLife.sportsClubs') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('studentLife', 'service-projects')"
                 :to="localePath('/student-life/service-projects')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -288,6 +301,7 @@
                 }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('studentLife', 'library')"
                 :to="localePath('/student-life/library')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -299,6 +313,7 @@
                 <span>{{ $t('nav.dropdowns.studentLife.library') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('studentLife', 'upcoming-events')"
                 :to="localePath('/student-life/upcoming-events')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -312,6 +327,7 @@
                 }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('studentLife', 'gallery')"
                 :to="localePath('/student-life/gallery')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -365,7 +381,7 @@
           -->
 
           <!-- Support Section -->
-          <div>
+          <div v-if="isVisible('support')">
             <div class="flex items-center gap-3 mb-2">
               <div
                 class="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center shrink-0"
@@ -378,6 +394,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
+                v-if="isVisible('support', 'why-support')"
                 :to="localePath('/support/why-support')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -389,6 +406,7 @@
                 <span>{{ $t('nav.dropdowns.support.whySupport') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('support', 'scholarships')"
                 :to="localePath('/support/scholarships')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -400,6 +418,7 @@
                 <span>{{ $t('nav.dropdowns.support.scholarships') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('support', 'donate')"
                 :to="localePath('/support/donate')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -411,6 +430,7 @@
                 <span>{{ $t('nav.dropdowns.support.donate') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('support', 'projects')"
                 :to="localePath('/support/projects')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -425,7 +445,7 @@
           </div>
 
           <!-- Contact Section -->
-          <div>
+          <div v-if="isVisible('contact')">
             <div class="flex items-center gap-3 mb-2">
               <div
                 class="w-7 h-7 rounded-full bg-orange-600 flex items-center justify-center shrink-0"
@@ -438,6 +458,7 @@
             </div>
             <div class="pl-14 space-y-2">
               <NuxtLink
+                v-if="isVisible('contact', 'info')"
                 :to="localePath('/contact/info')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -449,6 +470,7 @@
                 <span>{{ $t('nav.dropdowns.contact.info') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('contact', 'directions')"
                 :to="localePath('/contact/directions')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -460,6 +482,7 @@
                 <span>{{ $t('nav.dropdowns.contact.directions') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('contact', 'form')"
                 :to="localePath('/contact/form')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -471,6 +494,7 @@
                 <span>{{ $t('nav.dropdowns.contact.form') }}</span>
               </NuxtLink>
               <NuxtLink
+                v-if="isVisible('contact', 'faq')"
                 :to="localePath('/contact/faq')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
                 @click="mobileMenuOpen = false"
@@ -490,7 +514,7 @@
           class="border-t border-gray-200 bg-white p-4 pt-6 space-y-3 flex flex-col items-center"
         >
           <!-- Admissions Accordion -->
-          <div class="w-[70%]">
+          <div v-if="isVisible('admissions')" class="w-[70%]">
             <UButton
               @click="mobileAdmissionsOpen = !mobileAdmissionsOpen"
               class="rounded-full font-semibold w-full justify-center text-green-700"
@@ -509,6 +533,7 @@
             <Transition name="accordion">
               <div v-if="mobileAdmissionsOpen" class="mt-2 space-y-2 pl-4">
                 <NuxtLink
+                  v-if="isVisible('admissions', 'who-can-apply')"
                   :to="localePath('/admissions/who-can-apply')"
                   class="block text-gray-700 hover:text-green-700 py-1"
                   @click="mobileMenuOpen = false"
@@ -516,6 +541,7 @@
                   {{ $t('nav.dropdowns.admissions.whoCanApply') }}
                 </NuxtLink>
                 <NuxtLink
+                  v-if="isVisible('admissions', 'how-to-apply')"
                   :to="localePath('/admissions/how-to-apply')"
                   class="block text-gray-700 hover:text-green-700 py-1"
                   @click="mobileMenuOpen = false"
@@ -523,6 +549,7 @@
                   {{ $t('nav.dropdowns.admissions.howToApply') }}
                 </NuxtLink>
                 <NuxtLink
+                  v-if="isVisible('admissions', 'calendar')"
                   :to="localePath('/admissions/calendar')"
                   class="block text-gray-700 hover:text-green-700 py-1"
                   @click="mobileMenuOpen = false"
@@ -534,7 +561,7 @@
           </div>
 
           <!-- Get Involved Accordion -->
-          <div class="w-[70%]">
+          <div v-if="isVisible('getInvolved')" class="w-[70%]">
             <UButton
               @click="mobileGetInvolvedOpen = !mobileGetInvolvedOpen"
               color="warning"
@@ -553,6 +580,7 @@
             <Transition name="accordion">
               <div v-if="mobileGetInvolvedOpen" class="mt-2 space-y-2 pl-4">
                 <NuxtLink
+                  v-if="isVisible('getInvolved', 'teachers')"
                   :to="localePath('/get-involved/teachers')"
                   class="block text-gray-700 hover:text-amber-700 py-1"
                   @click="mobileMenuOpen = false"
@@ -560,6 +588,7 @@
                   {{ $t('nav.dropdowns.getInvolved.teachers') }}
                 </NuxtLink>
                 <NuxtLink
+                  v-if="isVisible('getInvolved', 'volunteer')"
                   :to="localePath('/get-involved/volunteer')"
                   class="block text-gray-700 hover:text-amber-700 py-1"
                   @click="mobileMenuOpen = false"
@@ -691,8 +720,11 @@
   let closeTimeout: NodeJS.Timeout | null = null;
   let switchTimeout: NodeJS.Timeout | null = null;
 
+  const { isVisible, loadVisibility } = useNavVisibility();
+  onMounted(() => loadVisibility());
+
   // Navigation items
-  const navigationItems = [
+  const allNavigationItems = [
     { key: 'about' },
     { key: 'academics' },
     { key: 'studentLife' },
@@ -701,111 +733,64 @@
     { key: 'contact' },
   ];
 
+  const navigationItems = computed(() =>
+    allNavigationItems.filter(item => isVisible(item.key))
+  );
+
   const { t, locale } = useI18n();
+
+  // Helper to filter dropdown items by page visibility
+  function filterByVisibility(section: string, items: Array<{ path: string; label: string; slug: string }>) {
+    return items.filter(item => isVisible(section, item.slug));
+  }
 
   // Dropdown menu items for each section
   const dropdownItems = computed(() => ({
-    about: [
-      {
-        path: '/about/mission-vision-values',
-        label: t('nav.dropdowns.about.missionVisionValues'),
-      },
-      {
-        path: '/about/statement-of-faith',
-        label: t('nav.dropdowns.about.statementOfFaith'),
-      },
-      { path: '/about/philosophy', label: t('nav.dropdowns.about.philosophy') },
-      { path: '/about/history', label: t('nav.dropdowns.about.history') },
-      { path: '/about/town', label: t('nav.dropdowns.about.town') },
-      { path: '/about/leadership', label: t('nav.dropdowns.about.leadership') },
-    ],
-    academics: [
-      {
-        path: '/academics/curriculum',
-        label: t('nav.dropdowns.academics.curriculum'),
-      },
-      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades') },
-      {
-        path: '/academics/calendar',
-        label: t('nav.dropdowns.academics.calendar'),
-      },
-    ],
-    studentLife: [
-      {
-        path: '/student-life/sports-clubs',
-        label: t('nav.dropdowns.studentLife.sportsClubs'),
-      },
-      {
-        path: '/student-life/service-projects',
-        label: t('nav.dropdowns.studentLife.serviceProjects'),
-      },
-      {
-        path: '/student-life/library',
-        label: t('nav.dropdowns.studentLife.library'),
-      },
-      {
-        path: '/student-life/upcoming-events',
-        label: t('nav.dropdowns.studentLife.upcomingEvents'),
-      },
-      {
-        path: '/student-life/gallery',
-        label: t('nav.dropdowns.studentLife.gallery'),
-      },
-    ],
+    about: filterByVisibility('about', [
+      { path: '/about/mission-vision-values', label: t('nav.dropdowns.about.missionVisionValues'), slug: 'mission-vision-values' },
+      { path: '/about/statement-of-faith', label: t('nav.dropdowns.about.statementOfFaith'), slug: 'statement-of-faith' },
+      { path: '/about/philosophy', label: t('nav.dropdowns.about.philosophy'), slug: 'philosophy' },
+      { path: '/about/history', label: t('nav.dropdowns.about.history'), slug: 'history' },
+      { path: '/about/town', label: t('nav.dropdowns.about.town'), slug: 'town' },
+      { path: '/about/leadership', label: t('nav.dropdowns.about.leadership'), slug: 'leadership' },
+    ]),
+    academics: filterByVisibility('academics', [
+      { path: '/academics/curriculum', label: t('nav.dropdowns.academics.curriculum'), slug: 'curriculum' },
+      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades'), slug: 'grades' },
+      { path: '/academics/calendar', label: t('nav.dropdowns.academics.calendar'), slug: 'calendar' },
+    ]),
+    studentLife: filterByVisibility('studentLife', [
+      { path: '/student-life/sports-clubs', label: t('nav.dropdowns.studentLife.sportsClubs'), slug: 'sports-clubs' },
+      { path: '/student-life/service-projects', label: t('nav.dropdowns.studentLife.serviceProjects'), slug: 'service-projects' },
+      { path: '/student-life/library', label: t('nav.dropdowns.studentLife.library'), slug: 'library' },
+      { path: '/student-life/upcoming-events', label: t('nav.dropdowns.studentLife.upcomingEvents'), slug: 'upcoming-events' },
+      { path: '/student-life/gallery', label: t('nav.dropdowns.studentLife.gallery'), slug: 'gallery' },
+    ]),
     parents: [
-      // Resources - temporarily hidden
-      // {
-      //   path: '/parents/resources',
-      //   label: t('nav.dropdowns.parents.resources'),
-      // },
-      { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar') },
-      { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook') },
+      { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar'), slug: 'calendar' },
+      { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook'), slug: 'handbook' },
     ],
-    support: [
-      {
-        path: '/support/why-support',
-        label: t('nav.dropdowns.support.whySupport'),
-      },
-      {
-        path: '/support/scholarships',
-        label: t('nav.dropdowns.support.scholarships'),
-      },
-      { path: '/support/donate', label: t('nav.dropdowns.support.donate') },
-      { path: '/support/projects', label: t('nav.dropdowns.support.projects') },
-    ],
-    contact: [
-      { path: '/contact/info', label: t('nav.dropdowns.contact.info') },
-      {
-        path: '/contact/directions',
-        label: t('nav.dropdowns.contact.directions'),
-      },
-      { path: '/contact/form', label: t('nav.dropdowns.contact.form') },
-      { path: '/contact/faq', label: t('nav.dropdowns.contact.faq') },
-    ],
-    admissions: [
-      {
-        path: '/admissions/who-can-apply',
-        label: t('nav.dropdowns.admissions.whoCanApply'),
-      },
-      {
-        path: '/admissions/how-to-apply',
-        label: t('nav.dropdowns.admissions.howToApply'),
-      },
-      {
-        path: '/admissions/calendar',
-        label: t('nav.dropdowns.admissions.calendar'),
-      },
-    ],
-    getInvolved: [
-      {
-        path: '/get-involved/teachers',
-        label: t('nav.dropdowns.getInvolved.teachers'),
-      },
-      {
-        path: '/get-involved/volunteer',
-        label: t('nav.dropdowns.getInvolved.volunteer'),
-      },
-    ],
+    support: filterByVisibility('support', [
+      { path: '/support/why-support', label: t('nav.dropdowns.support.whySupport'), slug: 'why-support' },
+      { path: '/support/scholarships', label: t('nav.dropdowns.support.scholarships'), slug: 'scholarships' },
+      { path: '/support/donate', label: t('nav.dropdowns.support.donate'), slug: 'donate' },
+      { path: '/support/projects', label: t('nav.dropdowns.support.projects'), slug: 'projects' },
+    ]),
+    contact: filterByVisibility('contact', [
+      { path: '/contact/info', label: t('nav.dropdowns.contact.info'), slug: 'info' },
+      { path: '/contact/directions', label: t('nav.dropdowns.contact.directions'), slug: 'directions' },
+      { path: '/contact/form', label: t('nav.dropdowns.contact.form'), slug: 'form' },
+      { path: '/contact/faq', label: t('nav.dropdowns.contact.faq'), slug: 'faq' },
+    ]),
+    admissions: filterByVisibility('admissions', [
+      { path: '/admissions/who-can-apply', label: t('nav.dropdowns.admissions.whoCanApply'), slug: 'who-can-apply' },
+      { path: '/admissions/how-to-apply', label: t('nav.dropdowns.admissions.howToApply'), slug: 'how-to-apply' },
+      { path: '/admissions/calendar', label: t('nav.dropdowns.admissions.calendar'), slug: 'calendar' },
+    ]),
+    getInvolved: filterByVisibility('getInvolved', [
+      { path: '/get-involved/teachers', label: t('nav.dropdowns.getInvolved.teachers'), slug: 'teachers' },
+      { path: '/get-involved/volunteer', label: t('nav.dropdowns.getInvolved.volunteer'), slug: 'volunteer' },
+    ]),
   }));
 
   const backgroundColor = computed(() => {

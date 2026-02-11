@@ -69,16 +69,7 @@ const localePath = useLocalePath()
 const route = useRoute()
 const { t } = useI18n()
 
-const sectionLabels: Record<string, string> = {
-  home: 'Home',
-  about: 'About',
-  academics: 'Academics',
-  studentLife: 'Student Life',
-  support: 'Support',
-  contact: 'Contact',
-  admissions: 'Admissions',
-  getInvolved: 'Get Involved',
-}
+import { getSectionConfig } from '~/config/sectionRegistry'
 
 const breadcrumbs = computed(() => {
   const path = route.path
@@ -90,7 +81,7 @@ const breadcrumbs = computed(() => {
       crumbs.push({ label: 'User Details' })
     }
   } else if (path.includes('/admin/manage-nav')) {
-    crumbs.push({ label: 'Manage Nav' })
+    crumbs.push({ label: t('admin.manageNav.title', 'Manage Nav') })
   } else if (path.includes('/admin/calendar')) {
     crumbs.push({ label: 'Calendar' })
   } else if (path.includes('/admin/announcements')) {
@@ -98,8 +89,8 @@ const breadcrumbs = computed(() => {
   } else if (path.includes('/admin/sections/')) {
     const section = route.params.section as string
     const page = route.params.page as string
-    const sectionLabel =
-      t(`nav.${section}`, sectionLabels[section] || section)
+    const fallbackLabel = getSectionConfig(section)?.label || section
+    const sectionLabel = t(`nav.${section}`, fallbackLabel)
 
     crumbs.push({
       label: sectionLabel,
