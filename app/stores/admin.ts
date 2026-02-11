@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { getSectionKeys } from '~/config/sectionRegistry'
 
 export interface UserProfile {
   id: string
@@ -47,16 +48,7 @@ export const useAdminStore = defineStore('admin', {
 
     allowedSections: (state) => {
       if (state.profile?.role === 'super_admin') {
-        return [
-          'home',
-          'about',
-          'academics',
-          'studentLife',
-          'support',
-          'contact',
-          'admissions',
-          'getInvolved',
-        ]
+        return getSectionKeys()
       }
       const sections = new Set<string>()
       state.permissions.forEach((p) => sections.add(p.section))

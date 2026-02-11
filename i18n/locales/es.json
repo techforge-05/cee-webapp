@@ -1357,6 +1357,226 @@
         "deleteTitle": "Eliminar Anuncio",
         "deleteMessage": "¿Está seguro de que desea eliminar este anuncio? Esta acción no se puede deshacer.",
         "requiredFields": "El título y la fecha de publicación son obligatorios"
+      },
+      "generic": {
+        "title": "Título",
+        "name": "Nombre",
+        "description": "Descripción",
+        "content": "Contenido",
+        "text": "Texto",
+        "statement": "Declaración",
+        "paragraph1": "Párrafo 1",
+        "paragraph2": "Párrafo 2",
+        "details": "Detalles",
+        "subject": "Materia",
+        "benefit": "Beneficio",
+        "principle": "Principio",
+        "item": "Elemento",
+        "activity": "Actividad",
+        "project": "Proyecto",
+        "program": "Programa",
+        "approach": "Enfoque",
+        "event": "Evento",
+        "timing": "Temporada",
+        "impactArea": "Área de Impacto",
+        "goal": "Meta",
+        "slug": "Slug de URL",
+        "status": "Estado",
+        "email": "Correo Electrónico",
+        "phone": "Teléfono",
+        "url": "URL",
+        "number": "Número",
+        "emailAddress": "Dirección de Correo",
+        "schedule": "Horario",
+        "time": "Hora",
+        "day": "Día",
+        "hours": "Horas",
+        "line1": "Línea de Dirección 1",
+        "line2": "Línea de Dirección 2",
+        "line3": "Línea de Dirección 3",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "fullAddress": "Dirección Completa",
+        "directions": "Direcciones",
+        "landmark": "Punto de Referencia",
+        "option": "Opción",
+        "requirement": "Requisito",
+        "step": "Paso",
+        "qualification": "Calificación",
+        "opportunity": "Oportunidad",
+        "rule": "Regla"
+      },
+      "calendarInfo": {
+        "title": "Eventos del Calendario",
+        "message": "Esta página muestra automáticamente los eventos del calendario. Administre los eventos desde la página de Calendario.",
+        "goToCalendar": "Ir al Calendario"
+      },
+      "about": {
+        "mvv": {
+          "intro": "Introducción",
+          "mission": "Misión",
+          "vision": "Visión",
+          "values": "Valores",
+          "value": "Valor"
+        },
+        "sof": {
+          "intro": "Introducción",
+          "beliefs": "Creencias",
+          "belief": "Creencia",
+          "closing": "Declaración de Cierre"
+        },
+        "philosophy": {
+          "intro": "Introducción",
+          "biblical": "Fundamento Bíblico",
+          "dignity": "Dignidad Humana",
+          "bilingual": "Educación Bilingüe",
+          "principles": "Principios Rectores"
+        },
+        "history": {
+          "intro": "Introducción",
+          "timeline": "Línea de Tiempo",
+          "period": "Período",
+          "legacy": "Legado"
+        },
+        "town": {
+          "intro": "Introducción",
+          "location": "Detalles de Ubicación",
+          "climate": "Clima",
+          "activities": "Actividades Locales"
+        }
+      },
+      "academics": {
+        "curriculum": {
+          "intro": "Introducción",
+          "kindergarten": "Kínder",
+          "elementary": "Escuela Primaria",
+          "elementarySubjects": "Materias de Primaria",
+          "secondary": "Escuela Secundaria",
+          "subjects78": "Materias de 7.° y 8.° Grado",
+          "subjects9": "Materias de 9.° Grado",
+          "subjects1011": "Materias de 10.° y 11.° Grado",
+          "benefits": "Beneficios"
+        },
+        "grades": {
+          "intro": "Introducción",
+          "levels": "Niveles de Grado",
+          "level": "Nivel de Grado",
+          "gradeRange": "Rango de Grados",
+          "specialPrograms": "Programas Especiales",
+          "approach": "Enfoque Educativo"
+        }
+      },
+      "studentLife": {
+        "sports": {
+          "intro": "Introducción",
+          "items": "Deportes y Clubes",
+          "sport": "Deporte / Club",
+          "otherSports": "Otros Deportes"
+        },
+        "serviceProjects": {
+          "intro": "Introducción",
+          "benefits": "Beneficios",
+          "projects": "Proyectos"
+        },
+        "library": {
+          "intro": "Introducción",
+          "purpose": "Propósito",
+          "goals": "Metas",
+          "readingCorner": "Rincón de Lectura",
+          "hours": "Horario de Biblioteca",
+          "gradeSupport": "Apoyo por Grado",
+          "rules": "Reglas de Préstamo",
+          "bilingualCollection": "Colección Bilingüe",
+          "studySpace": "Espacio de Estudio",
+          "donate": "Donar Libros",
+          "contact": "Contacto"
+        },
+        "upcomingEvents": {
+          "intro": "Introducción",
+          "stayInformed": "Manténgase Informado",
+          "annualEvents": "Eventos Anuales"
+        }
+      },
+      "support": {
+        "whySupport": {
+          "intro": "Introducción",
+          "nonprofit": "Organización Sin Fines de Lucro",
+          "impact": "Áreas de Impacto"
+        },
+        "scholarships": {
+          "intro": "Introducción",
+          "purpose": "Propósito",
+          "impact": "Impacto"
+        },
+        "donate": {
+          "intro": "Introducción",
+          "ways": "Formas de Donar",
+          "method": "Método de Donación",
+          "wishLists": "Listas de Deseos",
+          "wishList": "Lista de Deseos",
+          "spanishBooks": "Libros en Español",
+          "contact": "Contacto"
+        },
+        "projects": {
+          "intro": "Introducción",
+          "items": "Proyectos",
+          "howToHelp": "Cómo Ayudar"
+        }
+      },
+      "contact": {
+        "info": {
+          "intro": "Introducción",
+          "phone": "Teléfono",
+          "email": "Correo Electrónico",
+          "hours": "Horario de Oficina",
+          "address": "Dirección"
+        },
+        "directions": {
+          "intro": "Introducción",
+          "address": "Dirección",
+          "fromTegucigalpa": "Desde Tegucigalpa",
+          "fromSanPedro": "Desde San Pedro Sula",
+          "landmarks": "Puntos de Referencia Cercanos",
+          "parking": "Estacionamiento",
+          "mapCoords": "Coordenadas del Mapa"
+        },
+        "form": {
+          "intro": "Introducción",
+          "subjectOptions": "Opciones de Asunto",
+          "success": "Mensaje de Éxito",
+          "error": "Mensaje de Error"
+        }
+      },
+      "admissions": {
+        "whoCanApply": {
+          "intro": "Introducción",
+          "grades": "Grados Disponibles",
+          "requirements": "Requisitos"
+        },
+        "howToApply": {
+          "intro": "Introducción",
+          "steps": "Pasos de Aplicación",
+          "dates": "Fechas Importantes"
+        }
+      },
+      "getInvolved": {
+        "teachers": {
+          "intro": "Introducción",
+          "requirements": "Requisitos",
+          "qualifications": "Calificaciones",
+          "benefits": "Beneficios",
+          "applicationForms": "Formularios de Aplicación",
+          "internationalFormUrl": "URL de Formulario Internacional",
+          "honduranFormUrl": "URL de Formulario Hondureño",
+          "contact": "Contacto"
+        },
+        "volunteer": {
+          "intro": "Introducción",
+          "shortTerm": "Misiones a Corto Plazo",
+          "opportunities": "Oportunidades",
+          "howTo": "Cómo Participar",
+          "contact": "Contacto"
+        }
       }
     }
   },

@@ -1357,6 +1357,226 @@
         "deleteTitle": "Delete Announcement",
         "deleteMessage": "Are you sure you want to delete this announcement? This action cannot be undone.",
         "requiredFields": "Title and display date are required"
+      },
+      "generic": {
+        "title": "Title",
+        "name": "Name",
+        "description": "Description",
+        "content": "Content",
+        "text": "Text",
+        "statement": "Statement",
+        "paragraph1": "Paragraph 1",
+        "paragraph2": "Paragraph 2",
+        "details": "Details",
+        "subject": "Subject",
+        "benefit": "Benefit",
+        "principle": "Principle",
+        "item": "Item",
+        "activity": "Activity",
+        "project": "Project",
+        "program": "Program",
+        "approach": "Approach",
+        "event": "Event",
+        "timing": "Timing",
+        "impactArea": "Impact Area",
+        "goal": "Goal",
+        "slug": "URL Slug",
+        "status": "Status",
+        "email": "Email",
+        "phone": "Phone",
+        "url": "URL",
+        "number": "Number",
+        "emailAddress": "Email Address",
+        "schedule": "Schedule",
+        "time": "Time",
+        "day": "Day",
+        "hours": "Hours",
+        "line1": "Address Line 1",
+        "line2": "Address Line 2",
+        "line3": "Address Line 3",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "fullAddress": "Full Address",
+        "directions": "Directions",
+        "landmark": "Landmark",
+        "option": "Option",
+        "requirement": "Requirement",
+        "step": "Step",
+        "qualification": "Qualification",
+        "opportunity": "Opportunity",
+        "rule": "Rule"
+      },
+      "calendarInfo": {
+        "title": "Calendar Events",
+        "message": "This page automatically displays calendar events. Manage events from the Calendar page.",
+        "goToCalendar": "Go to Calendar"
+      },
+      "about": {
+        "mvv": {
+          "intro": "Introduction",
+          "mission": "Mission",
+          "vision": "Vision",
+          "values": "Values",
+          "value": "Value"
+        },
+        "sof": {
+          "intro": "Introduction",
+          "beliefs": "Beliefs",
+          "belief": "Belief",
+          "closing": "Closing Statement"
+        },
+        "philosophy": {
+          "intro": "Introduction",
+          "biblical": "Biblical Foundation",
+          "dignity": "Human Dignity",
+          "bilingual": "Bilingual Education",
+          "principles": "Guiding Principles"
+        },
+        "history": {
+          "intro": "Introduction",
+          "timeline": "Timeline",
+          "period": "Period",
+          "legacy": "Legacy"
+        },
+        "town": {
+          "intro": "Introduction",
+          "location": "Location Details",
+          "climate": "Climate",
+          "activities": "Local Activities"
+        }
+      },
+      "academics": {
+        "curriculum": {
+          "intro": "Introduction",
+          "kindergarten": "Kindergarten",
+          "elementary": "Elementary School",
+          "elementarySubjects": "Elementary Subjects",
+          "secondary": "Secondary School",
+          "subjects78": "Grades 7-8 Subjects",
+          "subjects9": "Grade 9 Subjects",
+          "subjects1011": "Grades 10-11 Subjects",
+          "benefits": "Benefits"
+        },
+        "grades": {
+          "intro": "Introduction",
+          "levels": "Grade Levels",
+          "level": "Grade Level",
+          "gradeRange": "Grade Range",
+          "specialPrograms": "Special Programs",
+          "approach": "Educational Approach"
+        }
+      },
+      "studentLife": {
+        "sports": {
+          "intro": "Introduction",
+          "items": "Sports & Clubs",
+          "sport": "Sport / Club",
+          "otherSports": "Other Sports"
+        },
+        "serviceProjects": {
+          "intro": "Introduction",
+          "benefits": "Benefits",
+          "projects": "Projects"
+        },
+        "library": {
+          "intro": "Introduction",
+          "purpose": "Purpose",
+          "goals": "Goals",
+          "readingCorner": "Reading Corner",
+          "hours": "Library Hours",
+          "gradeSupport": "Grade-Level Support",
+          "rules": "Borrowing Rules",
+          "bilingualCollection": "Bilingual Collection",
+          "studySpace": "Study Space",
+          "donate": "Donate Books",
+          "contact": "Contact"
+        },
+        "upcomingEvents": {
+          "intro": "Introduction",
+          "stayInformed": "Stay Informed",
+          "annualEvents": "Annual Events"
+        }
+      },
+      "support": {
+        "whySupport": {
+          "intro": "Introduction",
+          "nonprofit": "Nonprofit Status",
+          "impact": "Impact Areas"
+        },
+        "scholarships": {
+          "intro": "Introduction",
+          "purpose": "Purpose",
+          "impact": "Impact"
+        },
+        "donate": {
+          "intro": "Introduction",
+          "ways": "Ways to Donate",
+          "method": "Donation Method",
+          "wishLists": "Wish Lists",
+          "wishList": "Wish List",
+          "spanishBooks": "Spanish Books",
+          "contact": "Contact"
+        },
+        "projects": {
+          "intro": "Introduction",
+          "items": "Projects",
+          "howToHelp": "How to Help"
+        }
+      },
+      "contact": {
+        "info": {
+          "intro": "Introduction",
+          "phone": "Phone",
+          "email": "Email",
+          "hours": "Office Hours",
+          "address": "Address"
+        },
+        "directions": {
+          "intro": "Introduction",
+          "address": "Address",
+          "fromTegucigalpa": "From Tegucigalpa",
+          "fromSanPedro": "From San Pedro Sula",
+          "landmarks": "Nearby Landmarks",
+          "parking": "Parking",
+          "mapCoords": "Map Coordinates"
+        },
+        "form": {
+          "intro": "Introduction",
+          "subjectOptions": "Subject Options",
+          "success": "Success Message",
+          "error": "Error Message"
+        }
+      },
+      "admissions": {
+        "whoCanApply": {
+          "intro": "Introduction",
+          "grades": "Available Grades",
+          "requirements": "Requirements"
+        },
+        "howToApply": {
+          "intro": "Introduction",
+          "steps": "Application Steps",
+          "dates": "Important Dates"
+        }
+      },
+      "getInvolved": {
+        "teachers": {
+          "intro": "Introduction",
+          "requirements": "Requirements",
+          "qualifications": "Qualifications",
+          "benefits": "Benefits",
+          "applicationForms": "Application Forms",
+          "internationalFormUrl": "International Form URL",
+          "honduranFormUrl": "Honduran Form URL",
+          "contact": "Contact"
+        },
+        "volunteer": {
+          "intro": "Introduction",
+          "shortTerm": "Short-Term Missions",
+          "opportunities": "Opportunities",
+          "howTo": "How to Get Involved",
+          "contact": "Contact"
+        }
       }
     }
   },

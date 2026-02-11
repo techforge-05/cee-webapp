@@ -209,7 +209,45 @@ i18n/locales/es.json                             (added admin.editors.* translat
 ```
 
 ## Phase 5: Remaining Content Pages
-**Status: NOT STARTED**
+**Status: COMPLETE**
+
+| Task | Status | Notes |
+|------|--------|-------|
+| GenericContentEditor component | Done | `app/components/admin/editors/GenericContentEditor.vue` - schema-driven editor with single/list section support |
+| Editor schemas configuration | Done | `app/components/admin/editors/editorSchemas.ts` - schemas for 19 pages across 7 sections |
+| CalendarInfoEditor component | Done | `app/components/admin/editors/CalendarInfoEditor.vue` - info redirect for calendar pages |
+| [page].vue schema fallback | Done | Updated with priority: specific editor > schema editor > "Coming Soon" fallback |
+| i18n translations | Done | Added `admin.editors.generic.*`, `admin.editors.calendarInfo.*`, and section-specific keys to both en.json + es.json |
+
+### Architecture
+- **GenericContentEditor**: One reusable component (~230 lines) driven by schema configs instead of 21 individual editor files
+- **EditorSchemas**: Type-safe schema definitions (~550 lines) with field shorthand helpers (`f.title()`, `f.description()`, etc.)
+- **Field types**: `text` (BilingualTextField), `textarea` (BilingualTextarea), `metadata` (plain UInput)
+- **Section types**: `single` (one item per pageKey), `list` (multiple items via DataListManager)
+- **CalendarInfoEditor**: Redirects to Calendar page for `academics/calendar` and `admissions/calendar`
+
+### Pages Covered (19 schema-driven + 2 calendar)
+- **About (5)**: mission-vision-values, statement-of-faith, philosophy, history, town
+- **Academics (2+1)**: curriculum, grades, calendar (CalendarInfoEditor)
+- **Student Life (4)**: sports-clubs, service-projects, library, upcoming-events
+- **Support (4)**: why-support, scholarships, donate, projects
+- **Contact (3)**: info, directions, form
+- **Admissions (2+1)**: who-can-apply, how-to-apply, calendar (CalendarInfoEditor)
+- **Get Involved (2)**: teachers, volunteer
+
+### Files Created in Phase 5
+```
+app/components/admin/editors/GenericContentEditor.vue
+app/components/admin/editors/editorSchemas.ts
+app/components/admin/editors/CalendarInfoEditor.vue
+```
+
+### Files Modified in Phase 5
+```
+app/pages/admin/sections/[section]/[page].vue   (added schema fallback + CalendarInfoEditor mappings)
+i18n/locales/en.json                             (added ~120 admin.editors.* translation keys)
+i18n/locales/es.json                             (added ~120 admin.editors.* translation keys)
+```
 
 ## Phase 6: Nav Management & Polish
 **Status: NOT STARTED**

@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import { getSectionConfig } from '~/config/sectionRegistry'
+
 definePageMeta({
   layout: 'admin',
   middleware: ['admin-auth', 'admin-permission'],
@@ -42,78 +44,7 @@ const { t } = useI18n()
 
 const sectionKey = computed(() => route.params.section as string)
 
-const sectionConfigs: Record<string, { bgColor: string; pages: Array<{ slug: string; icon: string; label: string; description?: string }> }> = {
-  home: {
-    bgColor: 'bg-blue-600',
-    pages: [
-      { slug: 'home', icon: 'i-heroicons-home', label: 'Home Page', description: 'Hero, welcome, values, activities, news' },
-    ],
-  },
-  about: {
-    bgColor: 'bg-pink-600',
-    pages: [
-      { slug: 'mission-vision-values', icon: 'i-heroicons-star', label: 'Mission, Vision & Values', description: 'Core values and mission statement' },
-      { slug: 'statement-of-faith', icon: 'i-heroicons-book-open', label: 'Statement of Faith', description: 'Religious beliefs and principles' },
-      { slug: 'philosophy', icon: 'i-heroicons-light-bulb', label: 'Philosophy', description: 'Educational philosophy' },
-      { slug: 'history', icon: 'i-heroicons-clock', label: 'History', description: 'Timeline and founders' },
-      { slug: 'leadership', icon: 'i-heroicons-user-group', label: 'Leadership', description: 'Board and directors' },
-      { slug: 'town', icon: 'i-heroicons-map', label: 'Town', description: 'Siguatepeque information' },
-    ],
-  },
-  academics: {
-    bgColor: 'bg-yellow-600',
-    pages: [
-      { slug: 'curriculum', icon: 'i-heroicons-academic-cap', label: 'Curriculum', description: 'Programs and subjects' },
-      { slug: 'grades', icon: 'i-heroicons-chart-bar', label: 'Grades', description: 'Grade levels and groupings' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Academic calendar and dates' },
-    ],
-  },
-  studentLife: {
-    bgColor: 'bg-green-600',
-    pages: [
-      { slug: 'sports-clubs', icon: 'i-heroicons-trophy', label: 'Sports & Clubs', description: 'Athletic programs' },
-      { slug: 'service-projects', icon: 'i-heroicons-heart', label: 'Service Projects', description: 'Community service initiatives' },
-      { slug: 'library', icon: 'i-heroicons-book-open', label: 'Library', description: 'Rules, hours, reading levels' },
-      { slug: 'upcoming-events', icon: 'i-heroicons-calendar', label: 'Upcoming Events', description: 'Annual events' },
-      { slug: 'gallery', icon: 'i-heroicons-photo', label: 'Gallery', description: 'Photo gallery management' },
-    ],
-  },
-  support: {
-    bgColor: 'bg-red-600',
-    pages: [
-      { slug: 'why-support', icon: 'i-heroicons-heart', label: 'Why Support', description: 'Impact areas' },
-      { slug: 'scholarships', icon: 'i-heroicons-academic-cap', label: 'Scholarships', description: 'Scholarship info' },
-      { slug: 'donate', icon: 'i-heroicons-currency-dollar', label: 'Donate', description: 'Donation methods and wish lists' },
-      { slug: 'projects', icon: 'i-heroicons-wrench-screwdriver', label: 'Projects', description: 'Current projects' },
-    ],
-  },
-  contact: {
-    bgColor: 'bg-orange-600',
-    pages: [
-      { slug: 'info', icon: 'i-heroicons-phone', label: 'Contact Info', description: 'Phone, email, hours' },
-      { slug: 'directions', icon: 'i-heroicons-map-pin', label: 'Directions', description: 'Maps and directions' },
-      { slug: 'form', icon: 'i-heroicons-envelope', label: 'Contact Form', description: 'Form settings' },
-      { slug: 'faq', icon: 'i-heroicons-question-mark-circle', label: 'FAQ', description: 'Questions and answers' },
-    ],
-  },
-  admissions: {
-    bgColor: 'bg-emerald-600',
-    pages: [
-      { slug: 'who-can-apply', icon: 'i-heroicons-user-plus', label: 'Who Can Apply', description: 'Eligibility and requirements' },
-      { slug: 'how-to-apply', icon: 'i-heroicons-clipboard-document-list', label: 'How to Apply', description: 'Application steps' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Admissions dates' },
-    ],
-  },
-  getInvolved: {
-    bgColor: 'bg-purple-600',
-    pages: [
-      { slug: 'teachers', icon: 'i-heroicons-user-group', label: 'Teachers', description: 'Requirements and benefits' },
-      { slug: 'volunteer', icon: 'i-heroicons-hand-raised', label: 'Volunteer', description: 'Volunteer opportunities' },
-    ],
-  },
-}
-
-const sectionConfig = computed(() => sectionConfigs[sectionKey.value])
+const sectionConfig = computed(() => getSectionConfig(sectionKey.value))
 
 const sectionLabel = computed(() =>
   t(`nav.${sectionKey.value}`, sectionKey.value),

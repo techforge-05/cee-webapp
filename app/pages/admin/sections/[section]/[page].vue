@@ -5,10 +5,18 @@
       <p class="text-gray-500">{{ $t('admin.editors.manageContent') }}</p>
     </div>
 
-    <!-- Dynamic editor component -->
+    <!-- Specific editor component -->
     <component
       :is="editorComponent"
       v-if="editorComponent"
+      :section-key="sectionKey"
+      :page-slug="pageSlug"
+    />
+
+    <!-- Generic schema-driven editor -->
+    <GenericContentEditor
+      v-else-if="editorSchema"
+      :schema="editorSchema"
       :section-key="sectionKey"
       :page-slug="pageSlug"
     />
@@ -28,6 +36,9 @@
 </template>
 
 <script setup lang="ts">
+import { getEditorSchema } from '~/components/admin/editors/editorSchemas'
+import GenericContentEditor from '~/components/admin/editors/GenericContentEditor.vue'
+
 definePageMeta({
   layout: 'admin',
   middleware: ['admin-auth', 'admin-permission'],
@@ -45,17 +56,25 @@ const pageLabel = computed(() => {
     .join(' ')
 })
 
-// Map of section/page to editor components
+// Map of section/page to specific editor components
 const editorMap: Record<string, ReturnType<typeof defineAsyncComponent>> = {
   'home/home': defineAsyncComponent(() => import('~/components/admin/editors/HomePageEditor.vue')),
   'contact/faq': defineAsyncComponent(() => import('~/components/admin/editors/FaqEditor.vue')),
   'about/leadership': defineAsyncComponent(() => import('~/components/admin/editors/LeadershipEditor.vue')),
   'studentLife/gallery': defineAsyncComponent(() => import('~/components/admin/editors/GalleryEditor.vue')),
+  'academics/calendar': defineAsyncComponent(() => import('~/components/admin/editors/CalendarInfoEditor.vue')),
+  'admissions/calendar': defineAsyncComponent(() => import('~/components/admin/editors/CalendarInfoEditor.vue')),
 }
 
 const editorComponent = computed(() => {
   const key = `${sectionKey.value}/${pageSlug.value}`
   return editorMap[key] || null
+})
+
+// Schema-driven fallback for pages without specific editors
+const editorSchema = computed(() => {
+  const key = `${sectionKey.value}/${pageSlug.value}`
+  return getEditorSchema(key)
 })
 
 useHead({

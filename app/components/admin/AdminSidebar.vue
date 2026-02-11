@@ -109,29 +109,20 @@
 </template>
 
 <script setup lang="ts">
+import { sectionRegistry } from '~/config/sectionRegistry'
+
 const adminStore = useAdminStore()
 const localePath = useLocalePath()
 const route = useRoute()
 const { t } = useI18n()
 
-const allSections = [
-  { key: 'home', icon: 'i-heroicons-home', labelKey: 'Home' },
-  { key: 'about', icon: 'i-heroicons-information-circle', labelKey: 'About' },
-  { key: 'academics', icon: 'i-heroicons-academic-cap', labelKey: 'Academics' },
-  { key: 'studentLife', icon: 'i-heroicons-face-smile', labelKey: 'Student Life' },
-  { key: 'support', icon: 'i-heroicons-heart', labelKey: 'Support' },
-  { key: 'contact', icon: 'i-heroicons-phone', labelKey: 'Contact' },
-  { key: 'admissions', icon: 'i-heroicons-clipboard-document-check', labelKey: 'Admissions' },
-  { key: 'getInvolved', icon: 'i-heroicons-hand-raised', labelKey: 'Get Involved' },
-]
-
 const visibleSections = computed(() => {
   const allowed = adminStore.allowedSections
-  return allSections
+  return sectionRegistry
     .filter((s) => allowed.includes(s.key))
     .map((s) => ({
       ...s,
-      label: t(`nav.${s.key}`, s.labelKey),
+      label: t(`nav.${s.key}`, s.label),
     }))
 })
 
