@@ -17,10 +17,12 @@
     "getInvolved": "Involúcrate",
     "home": "Inicio",
     "admin": {
+      "dashboard": "Panel",
       "users": "Usuarios",
       "manageNav": "Gestionar Nav",
       "calendar": "Calendario",
-      "announcements": "Anuncios"
+      "announcements": "Anuncios",
+      "gallery": "Galería"
     },
     "dropdowns": {
       "about": {
@@ -283,7 +285,7 @@
     },
     "town": {
       "title": "Nuestra Ciudad",
-      "subtitle": "Siguatepeque - El Corazón de Honduras",
+      "subtitle": "Siguatepeque - El corazón de Honduras",
       "intro": {
         "title": "Bienvenido a Siguatepeque",
         "paragraph1": "La escuela está ubicada en la ciudad de Siguatepeque en el corazón de Honduras. La ciudad está aproximadamente a 1200m (4000 pies) sobre el nivel del mar y rodeada de montañas verdes y exuberantes.",
@@ -377,7 +379,7 @@
   "academics": {
     "curriculum": {
       "title": "Currículo",
-      "subtitle": "Educación Bilingüe a Través de Inmersión Parcial",
+      "subtitle": "Educación Bilingüe a través de inmersión parcial",
       "intro": {
         "title": "Programa de Inmersión Parcial Temprana",
         "paragraph1": "CEE es un programa de inmersión parcial temprana, lo que significa que los estudiantes aprenden a través de dos idiomas (español e inglés) desde el momento en que comienzan el jardín de niños hasta el momento en que se gradúan de la escuela secundaria en el grado 11.",
@@ -386,7 +388,7 @@
       "programs": {
         "title": "Nuestros Programas Académicos",
         "kindergarten": {
-          "title": "Jardín de Infantes",
+          "title": "Jardín de Niños",
           "name": "Jardín Bilingüe Siguatepeque",
           "description": "Nuestro programa de jardín de niños atiende a estudiantes de 4 a 5 años, proporcionando un ambiente enriquecedor donde los jóvenes aprendices comienzan su viaje en la educación bilingüe. A través del aprendizaje basado en el juego y actividades estructuradas, los niños desarrollan habilidades fundamentales en ambos idiomas.",
           "details": "Nos enfocamos en el desarrollo socioemocional, alfabetización temprana, habilidades numéricas y en construir el amor por el aprendizaje tanto en español como en inglés."
@@ -528,7 +530,7 @@
       "special": {
         "title": "Programas Especiales",
         "items": [
-{
+          {
             "title": "Ciencias de la Computación",
             "description": "Educación tecnológica incluyendo programación, alfabetización digital y habilidades informáticas"
           },
@@ -2273,9 +2275,9 @@
       "qualifications": {
         "title": "Lo Que Buscamos",
         "items": [
-          "Fe cristiana sólida y testimonio",
+          "Sólida fe cristiana y buen testimonio",
           "Hablante nativo de inglés o fluidez nativa",
-          "Título universitario (credenciales de enseñanza preferidas)",
+          "Título universitario (credenciales de enseñanza)",
           "Compromiso con nuestra misión y valores",
           "Competencia bilingüe (español/inglés) es un plus",
           "Pasión por el desarrollo estudiantil"

@@ -12,7 +12,7 @@
         :key="page.slug"
         :icon="page.icon"
         :label="page.label"
-        :to="localePath(`/admin/sections/${sectionKey}/${page.slug}`)"
+        :to="localePath(page.to || `/admin/sections/${sectionKey}/${page.slug}`)"
         :bg-color="sectionConfig?.bgColor || 'bg-gray-600'"
         :description="page.description"
       />

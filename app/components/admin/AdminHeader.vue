@@ -83,6 +83,7 @@ const breadcrumbs = computed(() => {
   } else if (path.includes('/admin/manage-nav')) {
     crumbs.push({ label: t('admin.manageNav.title', 'Manage Nav') })
   } else if (path.includes('/admin/calendar')) {
+    crumbs.push({ label: t('nav.academics', 'Academics'), to: localePath('/admin/sections/academics') })
     crumbs.push({ label: 'Calendar' })
   } else if (path.includes('/admin/announcements')) {
     crumbs.push({ label: 'Announcements' })

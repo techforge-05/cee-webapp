@@ -17,10 +17,12 @@
     "getInvolved": "Get Involved",
     "home": "Home",
     "admin": {
+      "dashboard": "Dashboard",
       "users": "Users",
       "manageNav": "Manage Nav",
       "calendar": "Calendar",
-      "announcements": "Announcements"
+      "announcements": "Announcements",
+      "gallery": "Gallery"
     },
     "dropdowns": {
       "about": {

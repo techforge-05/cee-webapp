@@ -171,8 +171,8 @@ const { photos, loading, loadPhotos, savePhoto, deletePhoto } = useGallery()
 const toast = useToast()
 const { t } = useI18n()
 
-const filterYear = ref('')
-const filterCategory = ref('')
+const filterYear = ref('all')
+const filterCategory = ref('all')
 const showModal = ref(false)
 const showDeleteConfirm = ref(false)
 const savingPhoto = ref(false)
@@ -182,7 +182,7 @@ const deletingPhoto = ref<GalleryPhoto | null>(null)
 
 const currentYear = new Date().getFullYear()
 const yearOptions = computed(() => {
-  const years = [{ value: '', label: t('admin.editors.gallery.allYears') }]
+  const years = [{ value: 'all', label: t('admin.editors.gallery.allYears') }]
   for (let y = currentYear; y >= 2020; y--) {
     years.push({ value: String(y), label: String(y) })
   }
@@ -199,7 +199,7 @@ const categoriesOnly = [
 ]
 
 const categoryOptions = computed(() => [
-  { value: '', label: t('admin.editors.gallery.allCategories') },
+  { value: 'all', label: t('admin.editors.gallery.allCategories') },
   ...categoriesOnly,
 ])
 
@@ -310,8 +310,8 @@ async function handleDelete() {
 }
 
 async function refreshPhotos() {
-  const year = filterYear.value ? Number(filterYear.value) : undefined
-  const category = filterCategory.value || undefined
+  const year = filterYear.value !== 'all' ? Number(filterYear.value) : undefined
+  const category = filterCategory.value !== 'all' ? filterCategory.value : undefined
   await loadPhotos(year, category)
 }
 

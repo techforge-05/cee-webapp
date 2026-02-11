@@ -30,6 +30,15 @@
 
     <!-- Navigation -->
     <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+      <!-- Dashboard -->
+      <NuxtLink
+        :to="localePath('/admin')"
+        :class="sidebarItemClass(isDashboardActive)"
+      >
+        <UIcon name="i-heroicons-squares-2x2" class="w-5 h-5 shrink-0" />
+        <span>{{ $t('nav.admin.dashboard') || 'Dashboard' }}</span>
+      </NuxtLink>
+
       <!-- Super admin only items -->
       <template v-if="adminStore.isSuperAdmin">
         <NuxtLink
@@ -48,7 +57,7 @@
         </NuxtLink>
       </template>
 
-      <!-- Calendar & Announcements -->
+      <!-- Calendar & Announcements & Gallery -->
       <NuxtLink
         v-if="adminStore.hasCalendarAccess"
         :to="localePath('/admin/calendar')"
@@ -65,6 +74,13 @@
         <UIcon name="i-heroicons-megaphone" class="w-5 h-5 shrink-0" />
         <span>{{ $t('nav.admin.announcements') || 'Announcements' }}</span>
       </NuxtLink>
+      <NuxtLink
+        :to="localePath('/admin/sections/studentLife/gallery')"
+        :class="sidebarItemClass(isActive('/admin/sections/studentLife/gallery'))"
+      >
+        <UIcon name="i-heroicons-photo" class="w-5 h-5 shrink-0" />
+        <span>{{ $t('nav.admin.gallery') || 'Gallery' }}</span>
+      </NuxtLink>
 
       <!-- Divider -->
       <div
@@ -77,7 +93,7 @@
         v-for="section in visibleSections"
         :key="section.key"
         :to="localePath(`/admin/sections/${section.key}`)"
-        :class="sidebarItemClass(isActive(`/admin/sections/${section.key}`))"
+        :class="sidebarItemClass(isSectionActive(section.key))"
       >
         <UIcon :name="section.icon" class="w-5 h-5 shrink-0" />
         <span>{{ section.label }}</span>
@@ -136,8 +152,22 @@ const initials = computed(() => {
     .join('')
 })
 
+const isDashboardActive = computed(() => {
+  const adminPath = localePath('/admin')
+  return route.path === adminPath || route.path === adminPath + '/'
+})
+
 const isActive = (path: string) => {
   return route.path.includes(path)
+}
+
+// Paths with their own top-level sidebar entries — should not activate parent sections
+const topLevelShortcuts = ['/admin/sections/studentLife/gallery']
+
+const isSectionActive = (sectionKey: string) => {
+  const sectionPath = `/admin/sections/${sectionKey}`
+  if (!route.path.includes(sectionPath)) return false
+  return !topLevelShortcuts.some(p => route.path.includes(p))
 }
 
 const sidebarItemClass = (active: boolean) => [

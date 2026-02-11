@@ -9,7 +9,7 @@
 
       <!-- Quick Stats -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <NuxtLink :to="localePath('/admin/users')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
               <UIcon name="i-heroicons-users" class="w-5 h-5 text-blue-600" />
@@ -19,8 +19,8 @@
               <p class="text-xs text-gray-500">Users</p>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        </NuxtLink>
+        <NuxtLink :to="localePath('/admin/calendar')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
               <UIcon name="i-heroicons-calendar-days" class="w-5 h-5 text-green-600" />
@@ -30,8 +30,8 @@
               <p class="text-xs text-gray-500">Events</p>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        </NuxtLink>
+        <NuxtLink :to="localePath('/admin/announcements')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
               <UIcon name="i-heroicons-megaphone" class="w-5 h-5 text-purple-600" />
@@ -41,8 +41,8 @@
               <p class="text-xs text-gray-500">Announcements</p>
             </div>
           </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        </NuxtLink>
+        <NuxtLink :to="localePath('/admin/sections/studentLife/gallery')" class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
               <UIcon name="i-heroicons-photo" class="w-5 h-5 text-amber-600" />
@@ -52,7 +52,7 @@
               <p class="text-xs text-gray-500">Gallery Photos</p>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
 
       <!-- Sections Grid -->
@@ -90,7 +90,7 @@
             :key="page.slug"
             :icon="page.icon"
             :label="page.label"
-            :to="localePath(`/admin/sections/${adminSections[0].key}/${page.slug}`)"
+            :to="localePath(page.to || `/admin/sections/${adminSections[0].key}/${page.slug}`)"
             :bg-color="adminSections[0].bgColor"
           />
         </div>
@@ -161,7 +161,7 @@ const allSections = [
     pages: [
       { slug: 'curriculum', icon: 'i-heroicons-academic-cap', label: 'Curriculum' },
       { slug: 'grades', icon: 'i-heroicons-chart-bar', label: 'Grades' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar' },
+      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', to: '/admin/calendar' },
     ],
   },
   {

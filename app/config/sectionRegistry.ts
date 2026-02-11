@@ -3,6 +3,7 @@ export interface PageConfig {
   icon: string
   label: string
   description?: string
+  to?: string // Override route — links directly to this path instead of /admin/sections/{section}/{slug}
 }
 
 export interface SectionConfig {
@@ -45,7 +46,7 @@ export const sectionRegistry: SectionConfig[] = [
     pages: [
       { slug: 'curriculum', icon: 'i-heroicons-academic-cap', label: 'Curriculum', description: 'Programs and subjects' },
       { slug: 'grades', icon: 'i-heroicons-chart-bar', label: 'Grades', description: 'Grade levels and groupings' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Academic calendar and dates' },
+      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Academic calendar and dates', to: '/admin/calendar' },
     ],
   },
   {
