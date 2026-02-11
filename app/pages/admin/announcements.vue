@@ -187,7 +187,7 @@ const editForm = reactive({
   image_url: '',
   image_alt_es: '',
   image_alt_en: '',
-  event_id: '',
+  event_id: 'none',
   is_active: true,
 })
 
@@ -215,9 +215,11 @@ const editFormImage = computed<ImageData>({
 })
 
 const eventOptions = computed(() => {
-  const opts = [{ value: '', label: t('admin.editors.announcements.noLinkedEvent') }]
+  const opts = [{ value: 'none', label: t('admin.editors.announcements.noLinkedEvent') }]
   for (const event of calendarEvents.value) {
-    opts.push({ value: event.id || '', label: `${event.title_es} (${event.start_date})` })
+    if (event.id) {
+      opts.push({ value: event.id, label: `${event.title_es} (${event.start_date})` })
+    }
   }
   return opts
 })
@@ -237,7 +239,7 @@ function openAddModal() {
     description_es: '', description_en: '',
     display_date: new Date().toISOString().split('T')[0],
     image_url: '', image_alt_es: '', image_alt_en: '',
-    event_id: '',
+    event_id: 'none',
     is_active: true,
   })
   showModal.value = true
@@ -254,7 +256,7 @@ function editAnnouncement(ann: Announcement) {
     image_url: ann.image_url || '',
     image_alt_es: ann.image_alt_es || '',
     image_alt_en: ann.image_alt_en || '',
-    event_id: ann.event_id || '',
+    event_id: ann.event_id || 'none',
     is_active: ann.is_active,
   })
   showModal.value = true
@@ -291,7 +293,7 @@ async function handleSave() {
       image_url: editForm.image_url || undefined,
       image_alt_es: editForm.image_alt_es || undefined,
       image_alt_en: editForm.image_alt_en || undefined,
-      event_id: editForm.event_id || undefined,
+      event_id: editForm.event_id !== 'none' ? editForm.event_id : undefined,
       is_active: editForm.is_active,
     }
 
