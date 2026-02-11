@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('contact.form.intro') }}
+            {{ singleField('contact.form.intro', 'text') || $t('contact.form.intro') }}
           </p>
         </div>
       </div>
@@ -45,10 +45,10 @@
               />
               <div>
                 <h3 class="text-lg font-bold text-green-800">
-                  {{ $t('contact.form.success.title') }}
+                  {{ singleField('contact.form.success', 'title') || $t('contact.form.success.title') }}
                 </h3>
                 <p class="text-green-700">
-                  {{ $t('contact.form.success.description') }}
+                  {{ singleField('contact.form.success', 'description') || $t('contact.form.success.description') }}
                 </p>
               </div>
             </div>
@@ -66,10 +66,10 @@
               />
               <div>
                 <h3 class="text-lg font-bold text-red-800">
-                  {{ $t('contact.form.error.title') }}
+                  {{ singleField('contact.form.error', 'title') || $t('contact.form.error.title') }}
                 </h3>
                 <p class="text-red-700">
-                  {{ $t('contact.form.error.description') }}
+                  {{ singleField('contact.form.error', 'description') || $t('contact.form.error.description') }}
                 </p>
               </div>
             </div>
@@ -299,6 +299,14 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { t, tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'contact.form.intro',
+    'contact.form.subjectOptions',
+    'contact.form.success',
+    'contact.form.error',
+  ]));
 
   const formData = reactive({
     name: '',
@@ -319,11 +327,18 @@
   const formStatus = ref<'idle' | 'success' | 'error'>('idle');
 
   const subjectOptions = computed(() => {
+    const dbItems = getItems('contact.form.subjectOptions');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => {
+        const text = field(item, 'text');
+        return { label: text, value: text };
+      });
+    }
     const options = tm('contact.form.fields.subject.options') as any[];
-    return options.map((option) => ({
-      label: rt(option),
-      value: rt(option),
-    }));
+    return Array.isArray(options) ? options.map((option) => ({
+      label: typeof option === 'string' ? option : rt(option),
+      value: typeof option === 'string' ? option : rt(option),
+    })) : [];
   });
 
   const validateForm = () => {

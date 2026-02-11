@@ -29,6 +29,12 @@
       </div>
     </section>
 
+    <!-- Loading State -->
+    <div v-if="loading" class="flex justify-center py-20">
+      <UIcon name="i-heroicons-arrow-path" class="w-10 h-10 text-teal-400 animate-spin" />
+    </div>
+
+    <template v-else>
     <!-- Filters Section -->
     <section class="py-8 border-b sticky top-0 bg-white z-20 shadow-sm">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -272,12 +278,14 @@
         </div>
       </div>
     </section>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { t, locale } = useI18n();
+const { photos, loadPhotos, loading } = useGallery();
 
 // State
 const selectedYear = ref<number | null>(null);
@@ -285,7 +293,7 @@ const selectedCategory = ref<string>('all');
 const lightboxOpen = ref(false);
 const currentPhotoIndex = ref(0);
 
-// Categories (will use translations)
+// Categories
 const categories = computed(() => ({
   all: t('studentLife.gallery.categories.all'),
   events: t('studentLife.gallery.categories.events'),
@@ -295,36 +303,23 @@ const categories = computed(() => ({
   community: t('studentLife.gallery.categories.community'),
 }));
 
-// Available years (will be populated from database)
+// Load photos from DB
+onMounted(() => loadPhotos());
+
+// Localized photos from DB
+const allPhotos = computed(() =>
+  photos.value.map(p => ({
+    ...p,
+    title: locale.value === 'en' ? p.title_en : p.title_es,
+    altText: locale.value === 'en' ? (p.alt_text_en || p.title_en) : (p.alt_text_es || p.title_es),
+  }))
+);
+
+// Available years from DB data
 const availableYears = computed(() => {
   const years = [...new Set(allPhotos.value.map(p => p.year))];
   return years.sort((a, b) => b - a);
 });
-
-// Mock data - will be replaced with Supabase data
-const allPhotos = ref([
-  // 2024 Photos
-  { title: 'Back to School 2024', year: 2024, category: 'events', url: null },
-  { title: 'Science Fair Winners', year: 2024, category: 'academics', url: null },
-  { title: 'Soccer Tournament', year: 2024, category: 'sports', url: null },
-  { title: 'Christmas Program', year: 2024, category: 'events', url: null },
-  { title: 'Art Exhibition', year: 2024, category: 'arts', url: null },
-  { title: 'Community Service Day', year: 2024, category: 'community', url: null },
-  { title: 'Graduation Ceremony', year: 2024, category: 'events', url: null },
-  { title: 'Basketball Championship', year: 2024, category: 'sports', url: null },
-  // 2023 Photos
-  { title: 'Sports Day 2023', year: 2023, category: 'sports', url: null },
-  { title: 'Cultural Week', year: 2023, category: 'events', url: null },
-  { title: 'Reading Marathon', year: 2023, category: 'academics', url: null },
-  { title: 'Music Concert', year: 2023, category: 'arts', url: null },
-  { title: 'Thanksgiving Celebration', year: 2023, category: 'events', url: null },
-  { title: 'Volleyball Match', year: 2023, category: 'sports', url: null },
-  // 2022 Photos
-  { title: 'Founders Day 2022', year: 2022, category: 'events', url: null },
-  { title: 'Theater Production', year: 2022, category: 'arts', url: null },
-  { title: 'Math Olympiad', year: 2022, category: 'academics', url: null },
-  { title: 'Beach Cleanup', year: 2022, category: 'community', url: null },
-]);
 
 // Filtered photos based on selections
 const filteredPhotos = computed(() => {

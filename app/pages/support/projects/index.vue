@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('support.projects.intro') }}
+            {{ singleField('support.projects.intro', 'text') || $t('support.projects.intro') }}
           </p>
         </div>
       </div>
@@ -40,7 +40,7 @@
           <NuxtLink
             v-for="(project, index) in projectsWithIcons"
             :key="index"
-            :to="localePath(`/support/projects/${$rt(project.slug)}`)"
+            :to="localePath(`/support/projects/${project.slug}`)"
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block group"
           >
             <div class="h-48 bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
@@ -49,22 +49,22 @@
             <div class="p-6">
               <div class="flex items-center justify-between mb-2">
                 <h3 class="text-xl font-bold text-gray-900">
-                  {{ $rt(project.title) }}
+                  {{ project.title }}
                 </h3>
                 <UBadge
-                  :color="getStatusColor($rt(project.status))"
+                  :color="getStatusColor(project.status)"
                   variant="subtle"
                   size="sm"
                 >
-                  {{ $rt(project.status) }}
+                  {{ project.status }}
                 </UBadge>
               </div>
               <p class="text-gray-700 mb-4">
-                {{ $rt(project.description) }}
+                {{ project.description }}
               </p>
               <p class="text-sm text-gray-500">
                 <strong>{{ $t('support.projectDetails.projectGoal') }}:</strong>
-                {{ $rt(project.goal) }}
+                {{ project.goal }}
               </p>
             </div>
           </NuxtLink>
@@ -93,7 +93,7 @@
                 name="i-heroicons-check-circle"
                 class="w-6 h-6 text-green-600 shrink-0 mt-0.5"
               />
-              <span class="text-gray-700">{{ $rt(way) }}</span>
+              <span class="text-gray-700">{{ way }}</span>
             </div>
           </div>
         </div>
@@ -136,7 +136,14 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt: $rt } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+
+onMounted(() => loadContent([
+  'support.projects.intro',
+  'support.projects.items',
+  'support.projects.howToHelp',
+]));
 
 const projectIcons = [
   'i-heroicons-building-office-2',
@@ -146,15 +153,33 @@ const projectIcons = [
 ];
 
 const projectsWithIcons = computed(() => {
+  const dbItems = getItems('support.projects.items');
+  if (dbItems.length > 0) {
+    return dbItems.map((item, index) => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      slug: getMeta(item, 'slug'),
+      status: getMeta(item, 'status'),
+      goal: getMeta(item, 'goal'),
+      icon: projectIcons[index] || 'i-heroicons-star',
+    }));
+  }
   const items = tm('support.projects.current.items') as any[];
   return items.map((item: any, index: number) => ({
-    ...item,
+    title: typeof item.title === 'string' ? item.title : rt(item.title),
+    description: typeof item.description === 'string' ? item.description : rt(item.description),
+    slug: typeof item.slug === 'string' ? item.slug : rt(item.slug),
+    status: typeof item.status === 'string' ? item.status : rt(item.status),
+    goal: typeof item.goal === 'string' ? item.goal : rt(item.goal),
     icon: projectIcons[index],
   }));
 });
 
 const howToHelpWays = computed(() => {
-  return tm('support.projects.howToHelp.ways') as any[];
+  const dbItems = getItems('support.projects.howToHelp');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('support.projects.howToHelp.ways') as any[];
+  return Array.isArray(items) ? items.map((w: any) => typeof w === 'string' ? w : rt(w)) : [];
 });
 
 const getStatusColor = (status: string) => {

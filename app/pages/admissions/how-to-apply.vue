@@ -19,7 +19,7 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
           <p class="text-xl text-gray-700 leading-relaxed mb-10 text-center">
-            {{ $t('admissions.howToApply.intro') }}
+            {{ singleField('admissions.howToApply.intro', 'text') || $t('admissions.howToApply.intro') }}
           </p>
 
           <!-- Steps -->
@@ -36,10 +36,10 @@
               </div>
               <div class="flex-1 pb-6 border-b border-gray-200">
                 <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ $rt(step.title) }}
+                  {{ step.title }}
                 </h3>
                 <p class="text-gray-700">
-                  {{ $rt(step.description) }}
+                  {{ step.description }}
                 </p>
               </div>
             </div>
@@ -57,10 +57,10 @@
             class="w-12 h-12 text-emerald-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ $t('admissions.howToApply.dates.title') }}
+            {{ singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title') }}
           </h2>
           <p class="text-lg text-gray-700">
-            {{ $t('admissions.howToApply.dates.description') }}
+            {{ singleField('admissions.howToApply.dates', 'description') || $t('admissions.howToApply.dates.description') }}
           </p>
         </div>
       </div>
@@ -100,9 +100,30 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField } = usePublicContent();
 
-const steps = computed(() => tm('admissions.howToApply.steps') as any[]);
+onMounted(() => loadContent([
+  'admissions.howToApply.intro',
+  'admissions.howToApply.dates',
+  'admissions.howToApply.steps',
+]));
+
+const steps = computed(() => {
+  const dbItems = getItems('admissions.howToApply.steps');
+  if (dbItems.length > 0) {
+    return dbItems.map(item => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+    }));
+  }
+  const items = tm('admissions.howToApply.steps') as any[];
+  if (!Array.isArray(items)) return [];
+  return items.map((s: any) => ({
+    title: typeof s.title === 'string' ? s.title : rt(s.title),
+    description: typeof s.description === 'string' ? s.description : rt(s.description),
+  }));
+});
 
 useHead({
   title: 'How to Apply - Admissions - CEE',

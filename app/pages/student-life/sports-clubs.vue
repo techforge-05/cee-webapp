@@ -22,8 +22,11 @@
             name="i-heroicons-trophy"
             class="w-16 h-16 text-green-600 mx-auto mb-6"
           />
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
+          </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('studentLife.sportsClubs.intro') }}
+            {{ singleField('studentLife.sports.intro', 'description') || $t('studentLife.sportsClubs.intro.description') }}
           </p>
         </div>
       </div>
@@ -50,21 +53,21 @@
             <div class="h-48 bg-gray-200 flex items-center justify-center">
               <img
                 v-if="sport.image"
-                :src="$rt(sport.image)"
-                :alt="$rt(sport.title)"
+                :src="sport.image"
+                :alt="sport.title"
                 class="w-full h-full object-cover"
               />
               <div v-else class="text-center text-gray-400">
                 <UIcon :name="sportIcons[index]" class="w-12 h-12 mb-2" />
-                <p class="text-sm">{{ $rt(sport.title) }}</p>
+                <p class="text-sm">{{ sport.title }}</p>
               </div>
             </div>
             <div class="p-6 text-center">
               <h3 class="text-xl font-bold text-gray-900 mb-3">
-                {{ $rt(sport.title) }}
+                {{ sport.title }}
               </h3>
               <p class="text-gray-700">
-                {{ $rt(sport.description) }}
+                {{ sport.description }}
               </p>
             </div>
           </div>
@@ -73,7 +76,7 @@
         <!-- Other Sports -->
         <div class="mt-12 bg-green-50 rounded-lg p-8 text-center">
           <p class="text-lg text-gray-700 leading-relaxed">
-            {{ $t('studentLife.sportsClubs.sports.otherSports') }}
+            {{ singleField('studentLife.sports.otherSports', 'text') || $t('studentLife.sportsClubs.sports.otherSports') }}
           </p>
         </div>
       </div>
@@ -117,7 +120,14 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'studentLife.sports.intro',
+    'studentLife.sports.otherSports',
+    'studentLife.sports.items',
+  ]));
 
   const sportIcons = [
     'i-heroicons-globe-americas',
@@ -127,8 +137,21 @@
   ];
 
   const sports = computed(() => {
+    const dbItems = getItems('studentLife.sports.items');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        image: null as string | null,
+      }));
+    }
     const items = tm('studentLife.sportsClubs.sports.items') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((s: any) => ({
+      title: typeof s.title === 'string' ? s.title : rt(s.title),
+      description: typeof s.description === 'string' ? s.description : rt(s.description),
+      image: s.image ? (typeof s.image === 'string' ? s.image : rt(s.image)) : null,
+    }));
   });
 
   useHead({

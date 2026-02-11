@@ -20,7 +20,7 @@
         <div class="max-w-4xl mx-auto">
           <div class="prose prose-lg max-w-none">
             <p class="text-xl text-gray-700 leading-relaxed mb-8">
-              {{ $t('admissions.whoCanApply.intro') }}
+              {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
             </p>
 
             <!-- Grades Section -->
@@ -38,7 +38,7 @@
                     name="i-heroicons-check-circle"
                     class="w-6 h-6 text-emerald-600 shrink-0"
                   />
-                  <span class="text-gray-700">{{ $rt(grade) }}</span>
+                  <span class="text-gray-700">{{ grade }}</span>
                 </li>
               </ul>
             </div>
@@ -58,7 +58,7 @@
                     name="i-heroicons-document-check"
                     class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"
                   />
-                  <span class="text-gray-700">{{ $rt(req) }}</span>
+                  <span class="text-gray-700">{{ req }}</span>
                 </li>
               </ul>
             </div>
@@ -91,10 +91,28 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField } = usePublicContent();
 
-const grades = computed(() => tm('admissions.whoCanApply.grades.items') as any[]);
-const requirements = computed(() => tm('admissions.whoCanApply.requirements.items') as any[]);
+onMounted(() => loadContent([
+  'admissions.whoCanApply.intro',
+  'admissions.whoCanApply.grades',
+  'admissions.whoCanApply.requirements',
+]));
+
+const grades = computed(() => {
+  const dbItems = getItems('admissions.whoCanApply.grades');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('admissions.whoCanApply.grades.items') as any[];
+  return Array.isArray(items) ? items.map((g: any) => typeof g === 'string' ? g : rt(g)) : [];
+});
+
+const requirements = computed(() => {
+  const dbItems = getItems('admissions.whoCanApply.requirements');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('admissions.whoCanApply.requirements.items') as any[];
+  return Array.isArray(items) ? items.map((r: any) => typeof r === 'string' ? r : rt(r)) : [];
+});
 
 useHead({
   title: 'Who Can Apply - Admissions - CEE',

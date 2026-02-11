@@ -23,7 +23,7 @@
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('academics.grades.intro') }}
+            {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
           </p>
         </div>
       </div>
@@ -53,13 +53,13 @@
                 </div>
                 <div class="flex-1">
                   <h2 class="text-3xl font-bold mb-2" :class="getGradeLevelTextColor(index)">
-                    {{ $rt(level.title) }}
+                    {{ rt(level.title) }}
                   </h2>
                   <p class="text-lg font-semibold mb-4" :class="getGradeLevelSubtextColor(index)">
-                    {{ $rt(level.grades) }}
+                    {{ rt(level.grades) }}
                   </p>
                   <p class="text-lg text-gray-800 leading-relaxed mb-4">
-                    {{ $rt(level.description) }}
+                    {{ rt(level.description) }}
                   </p>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                     class="w-6 h-6 shrink-0 mt-1"
                     :class="getGradeLevelIconColor(index)"
                   />
-                  <span class="text-gray-700">{{ $rt(focus) }}</span>
+                  <span class="text-gray-700">{{ rt(focus) }}</span>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@
                   />
                   <div>
                     <span class="font-semibold text-gray-900">{{ $t('academics.grades.typicalAge') }}: </span>
-                    <span class="text-gray-700">{{ $rt(level.ageRange) }}</span>
+                    <span class="text-gray-700">{{ rt(level.ageRange) }}</span>
                   </div>
                 </div>
               </div>
@@ -125,10 +125,10 @@
               <UIcon :name="program.icon" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(program.title) }}
+              {{ program.title }}
             </h3>
             <p class="text-gray-700">
-              {{ $rt(program.description) }}
+              {{ program.description }}
             </p>
           </div>
         </div>
@@ -154,10 +154,10 @@
               <UIcon :name="approach.icon" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(approach.title) }}
+              {{ approach.title }}
             </h3>
             <p class="text-gray-700">
-              {{ $rt(approach.description) }}
+              {{ approach.description }}
             </p>
           </div>
         </div>
@@ -202,7 +202,14 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'academics.grades.intro',
+    'academics.grades.specialPrograms',
+    'academics.grades.approach',
+  ]));
 
   const gradeLevelIcons = [
     'i-heroicons-star',
@@ -229,10 +236,18 @@
   ];
 
   const specialPrograms = computed(() => {
+    const dbItems = getItems('academics.grades.specialPrograms');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: specialProgramIcons[index % specialProgramIcons.length],
+      }));
+    }
     const items = tm('academics.programs.special.items') as any[];
     return items.map((program: any, index: number) => ({
-      title: program.title,
-      description: program.description,
+      title: typeof program.title === 'string' ? program.title : rt(program.title),
+      description: typeof program.description === 'string' ? program.description : rt(program.description),
       icon: specialProgramIcons[index % specialProgramIcons.length],
     }));
   });
@@ -244,10 +259,18 @@
   ];
 
   const approaches = computed(() => {
+    const dbItems = getItems('academics.grades.approach');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: approachIcons[index % approachIcons.length],
+      }));
+    }
     const items = tm('academics.grades.approach.items') as any[];
     return items.map((approach: any, index: number) => ({
-      title: approach.title,
-      description: approach.description,
+      title: typeof approach.title === 'string' ? approach.title : rt(approach.title),
+      description: typeof approach.description === 'string' ? approach.description : rt(approach.description),
       icon: approachIcons[index % approachIcons.length],
     }));
   });

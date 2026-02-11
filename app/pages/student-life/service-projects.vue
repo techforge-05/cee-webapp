@@ -23,7 +23,7 @@
             class="w-16 h-16 text-rose-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('studentLife.serviceProjects.intro') }}
+            {{ singleField('studentLife.serviceProjects.intro', 'text') || $t('studentLife.serviceProjects.intro') }}
           </p>
         </div>
       </div>
@@ -54,10 +54,10 @@
               <UIcon :name="benefitIcons[index]" class="w-7 h-7 text-white" />
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">
-              {{ $rt(benefit.title) }}
+              {{ benefit.title }}
             </h3>
             <p class="text-gray-600 text-sm">
-              {{ $rt(benefit.description) }}
+              {{ benefit.description }}
             </p>
           </div>
         </div>
@@ -91,10 +91,10 @@
               </div>
               <div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ $rt(project.title) }}
+                  {{ project.title }}
                 </h3>
                 <p class="text-gray-700 leading-relaxed">
-                  {{ $rt(project.description) }}
+                  {{ project.description }}
                 </p>
               </div>
             </div>
@@ -141,7 +141,14 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'studentLife.serviceProjects.intro',
+    'studentLife.serviceProjects.benefits',
+    'studentLife.serviceProjects.items',
+  ]));
 
   const benefitIcons = [
     'i-heroicons-heart',
@@ -157,13 +164,35 @@
   ];
 
   const benefits = computed(() => {
+    const dbItems = getItems('studentLife.serviceProjects.benefits');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+      }));
+    }
     const items = tm('studentLife.serviceProjects.whyService.benefits') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((b: any) => ({
+      title: typeof b.title === 'string' ? b.title : rt(b.title),
+      description: typeof b.description === 'string' ? b.description : rt(b.description),
+    }));
   });
 
   const projects = computed(() => {
+    const dbItems = getItems('studentLife.serviceProjects.items');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+      }));
+    }
     const items = tm('studentLife.serviceProjects.projects.items') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((p: any) => ({
+      title: typeof p.title === 'string' ? p.title : rt(p.title),
+      description: typeof p.description === 'string' ? p.description : rt(p.description),
+    }));
   });
 
   const getBenefitBgColor = (index: number) => {

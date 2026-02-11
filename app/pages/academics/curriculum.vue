@@ -25,13 +25,13 @@
             />
             <div>
               <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                {{ $t('academics.curriculum.intro.title') }}
+                {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
               </h2>
               <p class="text-xl text-gray-700 leading-relaxed mb-4">
-                {{ $t('academics.curriculum.intro.paragraph1') }}
+                {{ singleField('academics.curriculum.intro', 'paragraph1') || $t('academics.curriculum.intro.paragraph1') }}
               </p>
               <p class="text-xl text-gray-700 leading-relaxed">
-                {{ $t('academics.curriculum.intro.paragraph2') }}
+                {{ singleField('academics.curriculum.intro', 'paragraph2') || $t('academics.curriculum.intro.paragraph2') }}
               </p>
             </div>
           </div>
@@ -64,14 +64,14 @@
                   {{ $t('academics.curriculum.programs.kindergarten.title') }}
                 </h3>
                 <p class="text-lg text-pink-700 font-semibold mb-4">
-                  {{ $t('academics.curriculum.programs.kindergarten.name') }}
+                  {{ singleField('academics.curriculum.kindergarten', 'name') || $t('academics.curriculum.programs.kindergarten.name') }}
                 </p>
               </div>
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
                 {{
-                  $t('academics.curriculum.programs.kindergarten.description')
+                  singleField('academics.curriculum.kindergarten', 'description') || $t('academics.curriculum.programs.kindergarten.description')
                 }}
               </p>
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -100,13 +100,13 @@
                   {{ $t('academics.curriculum.programs.elementary.title') }}
                 </h3>
                 <p class="text-lg text-blue-700 font-semibold mb-4">
-                  {{ $t('academics.curriculum.programs.elementary.name') }}
+                  {{ singleField('academics.curriculum.elementary', 'name') || $t('academics.curriculum.programs.elementary.name') }}
                 </p>
               </div>
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
-                {{ $t('academics.curriculum.programs.elementary.description') }}
+                {{ singleField('academics.curriculum.elementary', 'description') || $t('academics.curriculum.programs.elementary.description') }}
               </p>
               <div class="bg-white rounded-lg p-6 mt-4">
                 <h4 class="font-bold text-blue-900 mb-3 text-lg">
@@ -126,7 +126,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-blue-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ $rt(subject) }}</span>
+                    <span class="text-gray-700">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -150,13 +150,13 @@
                   {{ $t('academics.curriculum.programs.secondary.title') }}
                 </h3>
                 <p class="text-lg text-purple-700 font-semibold mb-4">
-                  {{ $t('academics.curriculum.programs.secondary.name') }}
+                  {{ singleField('academics.curriculum.secondary', 'name') || $t('academics.curriculum.programs.secondary.name') }}
                 </p>
               </div>
             </div>
             <div class="space-y-6">
               <p class="text-lg text-gray-800 leading-relaxed">
-                {{ $t('academics.curriculum.programs.secondary.description') }}
+                {{ singleField('academics.curriculum.secondary', 'description') || $t('academics.curriculum.programs.secondary.description') }}
               </p>
 
               <!-- Grades 7-8 -->
@@ -176,7 +176,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-purple-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ $rt(subject) }}</span>
+                    <span class="text-gray-700">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -198,7 +198,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-purple-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ $rt(subject) }}</span>
+                    <span class="text-gray-700">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -222,7 +222,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-purple-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ $rt(subject) }}</span>
+                    <span class="text-gray-700">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -251,10 +251,10 @@
               <UIcon :name="benefit.icon" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(benefit.title) }}
+              {{ benefit.title }}
             </h3>
             <p class="text-gray-700">
-              {{ $rt(benefit.description) }}
+              {{ benefit.description }}
             </p>
           </div>
         </div>
@@ -299,28 +299,47 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'academics.curriculum.intro',
+    'academics.curriculum.kindergarten',
+    'academics.curriculum.elementary',
+    'academics.curriculum.secondary',
+    'academics.curriculum.elementarySubjects',
+    'academics.curriculum.secondarySubjects78',
+    'academics.curriculum.secondarySubjects9',
+    'academics.curriculum.secondarySubjects1011',
+    'academics.curriculum.benefits',
+  ]));
 
   const elementarySubjects = computed(() => {
-    return tm('academics.curriculum.programs.elementary.subjects') as string[];
+    const dbItems = getItems('academics.curriculum.elementarySubjects');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('academics.curriculum.programs.elementary.subjects') as any[];
+    return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 
   const grades78Subjects = computed(() => {
-    return tm(
-      'academics.curriculum.programs.secondary.grades78.subjects',
-    ) as string[];
+    const dbItems = getItems('academics.curriculum.secondarySubjects78');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('academics.curriculum.programs.secondary.grades78.subjects') as any[];
+    return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 
   const grade9Subjects = computed(() => {
-    return tm(
-      'academics.curriculum.programs.secondary.grade9.subjects',
-    ) as string[];
+    const dbItems = getItems('academics.curriculum.secondarySubjects9');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('academics.curriculum.programs.secondary.grade9.subjects') as any[];
+    return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 
   const grades1011Subjects = computed(() => {
-    return tm(
-      'academics.curriculum.programs.secondary.grades1011.subjects',
-    ) as string[];
+    const dbItems = getItems('academics.curriculum.secondarySubjects1011');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('academics.curriculum.programs.secondary.grades1011.subjects') as any[];
+    return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 
   const benefitIcons = [
@@ -330,10 +349,18 @@
   ];
 
   const benefits = computed(() => {
+    const dbItems = getItems('academics.curriculum.benefits');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: benefitIcons[index % benefitIcons.length],
+      }));
+    }
     const items = tm('academics.curriculum.benefits.items') as any[];
     return items.map((benefit: any, index: number) => ({
-      title: benefit.title,
-      description: benefit.description,
+      title: typeof benefit.title === 'string' ? benefit.title : rt(benefit.title),
+      description: typeof benefit.description === 'string' ? benefit.description : rt(benefit.description),
       icon: benefitIcons[index % benefitIcons.length],
     }));
   });

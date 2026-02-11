@@ -24,7 +24,7 @@
               class="w-16 h-16 text-amber-500 mx-auto mb-4"
             />
             <p class="text-xl text-gray-700 leading-relaxed">
-              {{ $t('getInvolved.volunteer.intro') }}
+              {{ singleField('getInvolved.volunteer.intro', 'text') || $t('getInvolved.volunteer.intro') }}
             </p>
           </div>
 
@@ -37,10 +37,10 @@
               />
               <div>
                 <h2 class="text-2xl font-bold text-amber-800 mb-3">
-                  {{ $t('getInvolved.volunteer.shortTerm.title') }}
+                  {{ singleField('getInvolved.volunteer.shortTerm', 'title') || $t('getInvolved.volunteer.shortTerm.title') }}
                 </h2>
                 <p class="text-gray-700 leading-relaxed">
-                  {{ $t('getInvolved.volunteer.shortTerm.description') }}
+                  {{ singleField('getInvolved.volunteer.shortTerm', 'description') || $t('getInvolved.volunteer.shortTerm.description') }}
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   name="i-heroicons-hand-raised"
                   class="w-6 h-6 text-amber-600 shrink-0 mt-0.5"
                 />
-                <span class="text-gray-700">{{ $rt(item) }}</span>
+                <span class="text-gray-700">{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -69,10 +69,10 @@
           <!-- How to Get Started -->
           <div class="bg-gray-50 rounded-xl p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">
-              {{ $t('getInvolved.volunteer.howTo.title') }}
+              {{ singleField('getInvolved.volunteer.howTo', 'title') || $t('getInvolved.volunteer.howTo.title') }}
             </h2>
             <p class="text-gray-700">
-              {{ $t('getInvolved.volunteer.howTo.description') }}
+              {{ singleField('getInvolved.volunteer.howTo', 'description') || $t('getInvolved.volunteer.howTo.description') }}
             </p>
           </div>
         </div>
@@ -83,17 +83,17 @@
     <section class="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-2xl font-bold mb-4">
-          {{ $t('getInvolved.volunteer.contact.title') }}
+          {{ singleField('getInvolved.volunteer.contact', 'title') || $t('getInvolved.volunteer.contact.title') }}
         </h2>
         <p class="text-lg text-blue-100 mb-6">
-          {{ $t('getInvolved.volunteer.contact.description') }}
+          {{ singleField('getInvolved.volunteer.contact', 'description') || $t('getInvolved.volunteer.contact.description') }}
         </p>
         <a
-          href="mailto:volunteer@ceehonduras.org"
+          :href="`mailto:${singleMeta('getInvolved.volunteer.contact', 'email') || 'volunteer@ceehonduras.org'}`"
           class="inline-flex items-center gap-2 bg-white text-purple-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
         >
           <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-          volunteer@ceehonduras.org
+          {{ singleMeta('getInvolved.volunteer.contact', 'email') || 'volunteer@ceehonduras.org' }}
         </a>
       </div>
     </section>
@@ -101,9 +101,23 @@
 </template>
 
 <script setup lang="ts">
-const { tm } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
 
-const opportunities = computed(() => tm('getInvolved.volunteer.opportunities.items') as any[]);
+onMounted(() => loadContent([
+  'getInvolved.volunteer.intro',
+  'getInvolved.volunteer.shortTerm',
+  'getInvolved.volunteer.opportunities',
+  'getInvolved.volunteer.howTo',
+  'getInvolved.volunteer.contact',
+]));
+
+const opportunities = computed(() => {
+  const dbItems = getItems('getInvolved.volunteer.opportunities');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('getInvolved.volunteer.opportunities.items') as any[];
+  return Array.isArray(items) ? items.map((o: any) => typeof o === 'string' ? o : rt(o)) : [];
+});
 
 useHead({
   title: 'Volunteer Opportunities - Get Involved - CEE',

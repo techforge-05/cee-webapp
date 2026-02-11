@@ -23,7 +23,7 @@
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('about.statementOfFaith.intro') }}
+            {{ singleField('about.sof.intro', 'text') || $t('about.statementOfFaith.intro') }}
           </p>
         </div>
       </div>
@@ -51,10 +51,10 @@
               </div>
               <div class="flex-1">
                 <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                  {{ $rt(belief.title) }}
+                  {{ belief.title }}
                 </h3>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                  {{ $rt(belief.content) }}
+                  {{ belief.content }}
                 </p>
               </div>
             </div>
@@ -71,11 +71,11 @@
                   </div>
                 </div>
                 <h3 class="text-xl font-bold text-gray-900">
-                  {{ $rt(belief.title) }}
+                  {{ belief.title }}
                 </h3>
               </div>
               <p class="text-base text-gray-700 leading-relaxed">
-                {{ $rt(belief.content) }}
+                {{ belief.content }}
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@
         <div class="max-w-4xl mx-auto text-center">
           <UIcon name="i-heroicons-heart" class="w-16 h-16 mx-auto mb-6" />
           <p class="text-2xl font-semibold mb-8">
-            {{ $t('about.statementOfFaith.closing') }}
+            {{ singleField('about.sof.closing', 'text') || $t('about.statementOfFaith.closing') }}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <UButton
@@ -119,7 +119,14 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'about.sof.intro',
+    'about.sof.beliefs',
+    'about.sof.closing',
+  ]));
 
   const beliefIcons = [
     'i-heroicons-sparkles', // The Triune God
@@ -134,9 +141,18 @@
   ];
 
   const beliefs = computed(() => {
+    const dbItems = getItems('about.sof.beliefs');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        content: field(item, 'content'),
+        icon: beliefIcons[index] || 'i-heroicons-star',
+      }));
+    }
     const items = tm('about.statementOfFaith.beliefs') as any[];
     return items.map((belief: any, index: number) => ({
-      ...belief,
+      title: typeof belief.title === 'string' ? belief.title : rt(belief.title),
+      content: typeof belief.content === 'string' ? belief.content : rt(belief.content),
       icon: beliefIcons[index],
     }));
   });

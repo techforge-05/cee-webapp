@@ -37,42 +37,41 @@ export const usePageContent = () => {
   }
 
   const saveItem = async (item: PageContentItem): Promise<PageContentItem> => {
+    const payload = {
+      page_key: item.page_key,
+      content_es: item.content_es,
+      content_en: item.content_en,
+      sort_order: item.sort_order,
+      is_active: item.is_active,
+      metadata: item.metadata || {},
+    }
+
     if (item.id) {
-      // Update existing
+      // Try update existing
       const { data, error: saveError } = await supabase
         .from('page_content')
-        .update({
-          content_es: item.content_es,
-          content_en: item.content_en,
-          sort_order: item.sort_order,
-          is_active: item.is_active,
-          metadata: item.metadata || {},
-          updated_at: new Date().toISOString(),
-        })
+        .update({ ...payload, updated_at: new Date().toISOString() })
         .eq('id', item.id)
         .select()
-        .single()
 
       if (saveError) throw saveError
-      return data as PageContentItem
-    } else {
-      // Insert new
-      const { data, error: saveError } = await supabase
-        .from('page_content')
-        .insert({
-          page_key: item.page_key,
-          content_es: item.content_es,
-          content_en: item.content_en,
-          sort_order: item.sort_order,
-          is_active: item.is_active,
-          metadata: item.metadata || {},
-        })
-        .select()
-        .single()
 
-      if (saveError) throw saveError
-      return data as PageContentItem
+      // If update matched a row, return it
+      if (data && data.length > 0) {
+        return data[0] as PageContentItem
+      }
+      // Row not found — fall through to insert
     }
+
+    // Insert new
+    const { data, error: saveError } = await supabase
+      .from('page_content')
+      .insert(payload)
+      .select()
+
+    if (saveError) throw saveError
+    if (!data || data.length === 0) throw new Error('Insert returned no data')
+    return data[0] as PageContentItem
   }
 
   const deleteItem = async (id: string) => {

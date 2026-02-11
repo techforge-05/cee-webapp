@@ -84,7 +84,7 @@
             </p>
             <ul class="space-y-4 md:space-y-5 mb-8 md:mb-10">
               <li
-                v-for="(feature, index) in $tm('home.enrollment.features')"
+                v-for="(feature, index) in enrollmentFeatures"
                 :key="index"
                 class="flex items-center text-gray-700 text-lg md:text-xl"
               >
@@ -92,7 +92,7 @@
                   name="i-heroicons-check-circle-20-solid"
                   class="w-7 h-7 md:w-8 md:h-8 text-green-500 mr-3 md:mr-4 flex-shrink-0"
                 />
-                {{ $rt(feature) }}
+                {{ feature }}
               </li>
             </ul>
             <div class="text-center md:text-left">
@@ -183,13 +183,13 @@
                   <h3
                     class="flex items-center text-xl md:text-2xl font-bold text-fuchsia-900 shadow-lg rounded-md px-2"
                   >
-                    {{ $rt(value.title) }}
+                    {{ value.title }}
                   </h3>
                 </div>
                 <p
                   class="text-lg text-gray-700 text-center md:text-left md:pt-2 font-semibold"
                 >
-                  {{ $rt(value.description) }}
+                  {{ value.description }}
                 </p>
               </li>
             </ul>
@@ -211,16 +211,16 @@
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <UCard
-            v-for="(activity, index) in $tm('home.activities.items')"
+            v-for="(activity, index) in activities"
             :key="index"
           >
             <template #header>
               <h3 class="text-lg font-semibold text-gray-900">
-                {{ $rt(activity.title) }}
+                {{ activity.title }}
               </h3>
             </template>
             <p class="text-gray-600">
-              {{ $rt(activity.description) }}
+              {{ activity.description }}
             </p>
           </UCard>
         </div>
@@ -240,19 +240,19 @@
         </div>
         <div class="grid md:grid-cols-3 gap-8">
           <UCard
-            v-for="(newsItem, index) in $tm('home.news.items')"
+            v-for="(newsItem, index) in newsItems"
             :key="index"
           >
             <template #header>
               <h3 class="text-xl font-semibold text-gray-900">
-                {{ $rt(newsItem.title) }}
+                {{ newsItem.title }}
               </h3>
               <p class="text-sm text-gray-500 mt-1">
-                {{ $rt(newsItem.date) }}
+                {{ newsItem.date }}
               </p>
             </template>
             <p class="text-gray-600">
-              {{ $rt(newsItem.excerpt) }}
+              {{ newsItem.excerpt }}
             </p>
           </UCard>
         </div>
@@ -270,30 +270,91 @@
   import { computed } from 'vue';
   import { useI18n } from 'vue-i18n';
 
-  // Remove default layout styling since we want full-width sections
   definePageMeta({
     layout: 'default',
   });
 
-  const { tm } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field } = usePublicContent();
+
+  // Load DB content
+  onMounted(() => loadContent([
+    'home.values',
+    'home.activities',
+    'home.news',
+    'home.enrollment.features',
+  ]));
 
   // Icon mapping for each value
   const valueIcons = [
-    'i-heroicons-heart-solid', // Passion for God
-    'i-heroicons-shield-check-solid', // Integrity
-    'i-heroicons-light-bulb-solid', // Creativity
-    'i-heroicons-hand-raised-solid', // Respect
-    'i-heroicons-hand-thumb-up-solid', // Service
-    'i-heroicons-star-solid', // Excellence
-    'i-heroicons-clipboard-document-check-solid', // Responsibility
+    'i-heroicons-heart-solid',
+    'i-heroicons-shield-check-solid',
+    'i-heroicons-light-bulb-solid',
+    'i-heroicons-hand-raised-solid',
+    'i-heroicons-hand-thumb-up-solid',
+    'i-heroicons-star-solid',
+    'i-heroicons-clipboard-document-check-solid',
   ];
 
-  // Values with icons
+  // Values: prefer DB, fall back to i18n
   const valuesWithIcons = computed(() => {
+    const dbItems = getItems('home.values');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: valueIcons[index] || 'i-heroicons-star-solid',
+      }));
+    }
     const values = tm('home.values.items') as any[];
-    return values.map((value: any, index: number) => ({
-      ...value,
-      icon: valueIcons[index],
+    return values.map((v: any, i: number) => ({
+      title: typeof v.title === 'string' ? v.title : rt(v.title),
+      description: typeof v.description === 'string' ? v.description : rt(v.description),
+      icon: valueIcons[i],
     }));
+  });
+
+  // Enrollment features: prefer DB, fall back to i18n
+  const enrollmentFeatures = computed(() => {
+    const dbItems = getItems('home.enrollment.features');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => field(item, 'text'));
+    }
+    const items = tm('home.enrollment.features') as any[];
+    return Array.isArray(items) ? items.map((f: any) => typeof f === 'string' ? f : rt(f)) : [];
+  });
+
+  // Activities: prefer DB, fall back to i18n
+  const activities = computed(() => {
+    const dbItems = getItems('home.activities');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+      }));
+    }
+    const items = tm('home.activities.items') as any[];
+    return Array.isArray(items) ? items.map((a: any) => ({
+      title: typeof a.title === 'string' ? a.title : rt(a.title),
+      description: typeof a.description === 'string' ? a.description : rt(a.description),
+    })) : [];
+  });
+
+  // News: prefer DB, fall back to i18n
+  const newsItems = computed(() => {
+    const dbItems = getItems('home.news');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        date: field(item, 'date'),
+        excerpt: field(item, 'excerpt'),
+      }));
+    }
+    const items = tm('home.news.items') as any[];
+    return Array.isArray(items) ? items.map((n: any) => ({
+      title: typeof n.title === 'string' ? n.title : rt(n.title),
+      date: typeof n.date === 'string' ? n.date : rt(n.date),
+      excerpt: typeof n.excerpt === 'string' ? n.excerpt : rt(n.excerpt),
+    })) : [];
   });
 </script>

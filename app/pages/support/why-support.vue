@@ -28,15 +28,15 @@
               />
             </div>
             <h2 class="text-3xl font-bold text-gray-900">
-              {{ $t('support.whySupport.intro.title') }}
+              {{ singleField('support.whySupport.intro', 'title') || $t('support.whySupport.intro.title') }}
             </h2>
           </div>
           <div class="prose prose-lg max-w-none">
             <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              {{ $t('support.whySupport.intro.paragraph1') }}
+              {{ singleField('support.whySupport.intro', 'paragraph1') || $t('support.whySupport.intro.paragraph1') }}
             </p>
             <p class="text-lg text-gray-700 leading-relaxed">
-              {{ $t('support.whySupport.intro.paragraph2') }}
+              {{ singleField('support.whySupport.intro', 'paragraph2') || $t('support.whySupport.intro.paragraph2') }}
             </p>
           </div>
         </div>
@@ -54,10 +54,10 @@
             />
             <div>
               <h2 class="text-3xl font-bold text-orange-900 mb-4">
-                {{ $t('support.whySupport.nonprofit.title') }}
+                {{ singleField('support.whySupport.nonprofit', 'title') || $t('support.whySupport.nonprofit.title') }}
               </h2>
               <p class="text-xl text-gray-800 leading-relaxed">
-                {{ $t('support.whySupport.nonprofit.description') }}
+                {{ singleField('support.whySupport.nonprofit', 'description') || $t('support.whySupport.nonprofit.description') }}
               </p>
             </div>
           </div>
@@ -86,10 +86,10 @@
               </div>
               <div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ $rt(item.title) }}
+                  {{ item.title }}
                 </h3>
                 <p class="text-gray-700">
-                  {{ $rt(item.description) }}
+                  {{ item.description }}
                 </p>
               </div>
             </div>
@@ -134,7 +134,14 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt: $rt } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField } = usePublicContent();
+
+onMounted(() => loadContent([
+  'support.whySupport.intro',
+  'support.whySupport.nonprofit',
+  'support.whySupport.impact',
+]));
 
 const impactIcons = [
   'i-heroicons-academic-cap',
@@ -144,9 +151,18 @@ const impactIcons = [
 ];
 
 const impactItemsWithIcons = computed(() => {
+  const dbItems = getItems('support.whySupport.impact');
+  if (dbItems.length > 0) {
+    return dbItems.map((item, index) => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      icon: impactIcons[index] || 'i-heroicons-star',
+    }));
+  }
   const items = tm('support.whySupport.impact.items') as any[];
   return items.map((item: any, index: number) => ({
-    ...item,
+    title: typeof item.title === 'string' ? item.title : rt(item.title),
+    description: typeof item.description === 'string' ? item.description : rt(item.description),
     icon: impactIcons[index],
   }));
 });

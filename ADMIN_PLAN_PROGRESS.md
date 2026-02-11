@@ -275,7 +275,103 @@ i18n/locales/es.json                        (added admin.manageNav.* translation
 ```
 
 ## Phase 7: Public Site Migration
-**Status: NOT STARTED**
+**Status: COMPLETE**
+
+| Task | Status | Notes |
+|------|--------|-------|
+| usePublicContent composable | Done | `app/composables/usePublicContent.ts` - read-only, locale-aware, cached via useState, batch-loadable |
+| Migrate Gallery page | Done | `app/pages/student-life/gallery.vue` - reads from `gallery_photos` table via `useGallery` |
+| Migrate Upcoming Events page | Done | `app/pages/student-life/upcoming-events.vue` - calendar_events + page_content for annual events |
+| Migrate Home page | Done | `app/pages/index.vue` - values, activities, news, enrollment features |
+| Migrate About section (4 pages) | Done | mission-vision-values, statement-of-faith, philosophy, town (history skipped — tightly coupled template) |
+| Migrate Academics section (2 pages) | Done | curriculum (5 subject lists + benefits), grades (specialPrograms + approach; gradeLevels skipped — missing fields) |
+| Migrate Student Life (3 pages) | Done | sports-clubs, service-projects, library (4 arrays: goals, schedules, levels, rules) |
+| Migrate Support section (3 pages) | Done | why-support, donate (ways + wishLists), projects (current + howToHelp); scholarships skipped — no arrays |
+| Migrate Contact section (2 pages) | Done | directions (landmarks), form (subjectOptions); info skipped — no arrays |
+| Migrate Admissions (2 pages) | Done | who-can-apply (grades + requirements), how-to-apply (steps) |
+| Migrate Get Involved (2 pages) | Done | teachers (qualifications + benefits), volunteer (opportunities) |
+
+### Architecture
+- **usePublicContent**: Composable with `loadContent()`, `getItems()`, `getSingle()`, `field()`, `meta()` — reads `page_content` table
+- **Fallback strategy**: DB data preferred via `getItems()`, i18n used as fallback when DB is empty
+- **Pattern**: Computed properties resolve both i18n message objects and DB strings to plain strings, eliminating `$rt()` from templates
+- **Metadata fields**: Used for non-bilingual data (schedule day/hours, URLs, project status/goal/slug)
+
+### Pages Skipped (no data-driven arrays)
+- `about/history.vue` — timeline template too tightly coupled to hardcoded colors/icons per era
+- `academics/grades.vue` gradeLevels — admin editor missing focus[] and ageRange fields
+- `support/scholarships.vue` — no arrays to migrate
+- `contact/info.vue` — no arrays to migrate
+
+### Files Created in Phase 7
+```
+app/composables/usePublicContent.ts
+```
+
+### Files Modified in Phase 7 (~20 pages)
+```
+app/pages/index.vue
+app/pages/student-life/gallery.vue
+app/pages/student-life/upcoming-events.vue
+app/pages/student-life/sports-clubs.vue
+app/pages/student-life/service-projects.vue
+app/pages/student-life/library.vue
+app/pages/about/mission-vision-values.vue
+app/pages/about/statement-of-faith.vue
+app/pages/about/philosophy.vue
+app/pages/about/town.vue
+app/pages/academics/curriculum.vue
+app/pages/academics/grades.vue
+app/pages/support/why-support.vue
+app/pages/support/donate.vue
+app/pages/support/projects/index.vue
+app/pages/contact/directions.vue
+app/pages/contact/form.vue
+app/pages/admissions/who-can-apply.vue
+app/pages/admissions/how-to-apply.vue
+app/pages/get-involved/teachers.vue
+app/pages/get-involved/volunteer.vue
+```
+
+## Phase 7b: Fix Public Site Migration — SINGLE-type Content + PageKey Mismatches
+**Status: COMPLETE**
+
+### Problem
+Admin-edited content wasn't appearing on public pages because:
+1. **Missing SINGLE-type content**: Phase 7 only connected LIST-type pageKeys (arrays). ~60 single-type pageKeys (intro paragraphs, mission statements, descriptions) were never fetched.
+2. **PageKey naming mismatches** (5 support pages): Public pages used wrong keys like `support.donate.ways.items` when admin saves as `support.donate.ways`.
+
+### Solution
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Add `singleField`/`singleMeta` to usePublicContent | Done | Convenience helpers to avoid verbose `field(getSingle(...), ...)` calls |
+| Fix support pageKey mismatches (5 keys) | Done | `why-support.vue`, `donate.vue`, `projects/index.vue` |
+| Add singles to About section (4 pages) | Done | mvv(intro/mission/vision), sof(intro/closing), philosophy(intro/biblical/dignity/bilingual), town(intro/climate) |
+| Add singles to Academics (2 pages) | Done | curriculum(intro/kindergarten/elementary/secondary), grades(intro) |
+| Add singles to Student Life (4 pages) | Done | sports(intro/otherSports), service-projects(intro), library(7 singles + contact email meta), upcoming-events(intro/stayInformed) |
+| Add singles to Support (3 pages) | Done | whySupport(intro/nonprofit), donate(intro/spanishBooks/contact+email/phone meta), projects(intro) |
+| Add singles to Contact (2 pages) | Done | directions(intro/address/fromTegucigalpa/fromSanPedro/parking), form(intro/success/error) |
+| Add singles to Admissions (2 pages) | Done | whoCanApply(intro), howToApply(intro/dates) |
+| Add singles to Get Involved (2 pages) | Done | teachers(intro/requirements/applicationForms+url meta/contact+email meta), volunteer(intro/shortTerm/howTo/contact+email meta) |
+
+### Architecture
+- **`singleField(pageKey, fieldKey)`**: Gets bilingual field from a single-item pageKey (resolves to current locale)
+- **`singleMeta(pageKey, metaKey)`**: Gets metadata field (email, phone, URL) from a single-item pageKey
+- **Template pattern**: `{{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}`
+- **Metadata pattern**: `:href="mailto:${singleMeta('key', 'email') || 'fallback@email.org'}"`
+- All 19 public pages updated (same files as Phase 7)
+
+### PageKey Fixes Applied
+| File | Wrong Key | Correct Key |
+|------|-----------|-------------|
+| `support/why-support.vue` | `support.whySupport.impact.items` | `support.whySupport.impact` |
+| `support/donate.vue` | `support.donate.ways.items` | `support.donate.ways` |
+| `support/donate.vue` | `support.donate.wishLists.items` | `support.donate.wishLists` |
+| `support/projects/index.vue` | `support.projects.current.items` | `support.projects.items` |
+| `support/projects/index.vue` | `support.projects.howToHelp.ways` | `support.projects.howToHelp` |
+
+---
 
 ## Phase 8: Testing & Deploy
 **Status: NOT STARTED**

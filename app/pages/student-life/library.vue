@@ -26,7 +26,7 @@
             Beulah B. Burgess Library
           </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('studentLife.library.intro') }}
+            {{ singleField('studentLife.library.intro', 'text') || $t('studentLife.library.intro') }}
           </p>
         </div>
       </div>
@@ -38,10 +38,10 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('studentLife.library.purpose.title') }}
+              {{ singleField('studentLife.library.purpose', 'title') || $t('studentLife.library.purpose.title') }}
             </h2>
             <p class="text-lg text-gray-700 leading-relaxed mb-6">
-              {{ $t('studentLife.library.purpose.description') }}
+              {{ singleField('studentLife.library.purpose', 'description') || $t('studentLife.library.purpose.description') }}
             </p>
             <ul class="space-y-3">
               <li
@@ -53,7 +53,7 @@
                   name="i-heroicons-check-circle"
                   class="w-6 h-6 text-amber-600 shrink-0 mt-0.5"
                 />
-                <span class="text-gray-700">{{ $rt(goal) }}</span>
+                <span class="text-gray-700">{{ goal }}</span>
               </li>
             </ul>
           </div>
@@ -81,10 +81,10 @@
           </div>
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('studentLife.library.readingCorner.title') }}
+              {{ singleField('studentLife.library.readingCorner', 'title') || $t('studentLife.library.readingCorner.title') }}
             </h2>
             <p class="text-lg text-gray-700 leading-relaxed">
-              {{ $t('studentLife.library.readingCorner.description') }}
+              {{ singleField('studentLife.library.readingCorner', 'description') || $t('studentLife.library.readingCorner.description') }}
             </p>
           </div>
         </div>
@@ -120,10 +120,10 @@
                   />
                 </div>
                 <span class="font-semibold text-gray-900">{{
-                  $rt(schedule.day)
+                  schedule.day
                 }}</span>
               </div>
-              <span class="text-gray-600">{{ $rt(schedule.hours) }}</span>
+              <span class="text-gray-600">{{ schedule.hours }}</span>
             </div>
           </div>
         </div>
@@ -158,10 +158,10 @@
             </div>
             <div class="p-8">
               <h3 class="text-xl font-bold text-gray-900 mb-3">
-                {{ $rt(level.title) }}
+                {{ level.title }}
               </h3>
               <p class="text-gray-700 leading-relaxed">
-                {{ $rt(level.description) }}
+                {{ level.description }}
               </p>
             </div>
           </div>
@@ -196,7 +196,7 @@
                     index + 1
                   }}</span>
                 </div>
-                <span class="text-gray-700 pt-1">{{ $rt(rule) }}</span>
+                <span class="text-gray-700 pt-1">{{ rule }}</span>
               </li>
             </ul>
           </div>
@@ -210,10 +210,10 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('studentLife.library.bilingualCollection.title') }}
+              {{ singleField('studentLife.library.bilingualCollection', 'title') || $t('studentLife.library.bilingualCollection.title') }}
             </h2>
             <p class="text-lg text-gray-700 leading-relaxed">
-              {{ $t('studentLife.library.bilingualCollection.description') }}
+              {{ singleField('studentLife.library.bilingualCollection', 'description') || $t('studentLife.library.bilingualCollection.description') }}
             </p>
           </div>
           <div class="bg-blue-50 rounded-2xl p-8">
@@ -240,10 +240,10 @@
           </div>
           <div class="order-1 lg:order-2">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('studentLife.library.studySpace.title') }}
+              {{ singleField('studentLife.library.studySpace', 'title') || $t('studentLife.library.studySpace.title') }}
             </h2>
             <p class="text-lg text-gray-700 leading-relaxed">
-              {{ $t('studentLife.library.studySpace.description') }}
+              {{ singleField('studentLife.library.studySpace', 'description') || $t('studentLife.library.studySpace.description') }}
             </p>
           </div>
         </div>
@@ -259,10 +259,10 @@
             class="w-16 h-16 text-green-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.library.donate.title') }}
+            {{ singleField('studentLife.library.donate', 'title') || $t('studentLife.library.donate.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
-            {{ $t('studentLife.library.donate.description') }}
+            {{ singleField('studentLife.library.donate', 'description') || $t('studentLife.library.donate.description') }}
           </p>
           <UButton
             :to="localePath('/support/donate')"
@@ -285,17 +285,17 @@
             class="w-16 h-16 text-amber-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.library.contact.title') }}
+            {{ singleField('studentLife.library.contact', 'title') || $t('studentLife.library.contact.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
-            {{ $t('studentLife.library.contact.description') }}
+            {{ singleField('studentLife.library.contact', 'description') || $t('studentLife.library.contact.description') }}
           </p>
           <a
-            href="mailto:library@ceehonduras.org"
+            :href="`mailto:${singleMeta('studentLife.library.contact', 'email') || 'library@ceehonduras.org'}`"
             class="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold text-lg"
           >
             <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-            library@ceehonduras.org
+            {{ singleMeta('studentLife.library.contact', 'email') || 'library@ceehonduras.org' }}
           </a>
         </div>
       </div>
@@ -339,7 +339,22 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'studentLife.library.intro',
+    'studentLife.library.purpose',
+    'studentLife.library.goals',
+    'studentLife.library.readingCorner',
+    'studentLife.library.hours',
+    'studentLife.library.gradeSupport',
+    'studentLife.library.rules',
+    'studentLife.library.bilingualCollection',
+    'studentLife.library.studySpace',
+    'studentLife.library.donate',
+    'studentLife.library.contact',
+  ]));
 
   const levelIcons = [
     'i-heroicons-star',
@@ -348,23 +363,49 @@
   ];
 
   const goals = computed(() => {
-    const items = tm('studentLife.library.purpose.goals') as string[];
-    return Array.isArray(items) ? items : [];
+    const dbItems = getItems('studentLife.library.goals');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('studentLife.library.purpose.goals') as any[];
+    return Array.isArray(items) ? items.map((g: any) => typeof g === 'string' ? g : rt(g)) : [];
   });
 
   const schedules = computed(() => {
+    const dbItems = getItems('studentLife.library.hours');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        day: getMeta(item, 'day'),
+        hours: getMeta(item, 'hours'),
+      }));
+    }
     const items = tm('studentLife.library.hours.schedule') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((s: any) => ({
+      day: typeof s.day === 'string' ? s.day : rt(s.day),
+      hours: typeof s.hours === 'string' ? s.hours : rt(s.hours),
+    }));
   });
 
   const levels = computed(() => {
+    const dbItems = getItems('studentLife.library.gradeSupport');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+      }));
+    }
     const items = tm('studentLife.library.gradeSupport.levels') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((l: any) => ({
+      title: typeof l.title === 'string' ? l.title : rt(l.title),
+      description: typeof l.description === 'string' ? l.description : rt(l.description),
+    }));
   });
 
   const rules = computed(() => {
-    const items = tm('studentLife.library.borrowing.rules') as string[];
-    return Array.isArray(items) ? items : [];
+    const dbItems = getItems('studentLife.library.rules');
+    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+    const items = tm('studentLife.library.borrowing.rules') as any[];
+    return Array.isArray(items) ? items.map((r: any) => typeof r === 'string' ? r : rt(r)) : [];
   });
 
   const getLevelBorderColor = (index: number) => {

@@ -261,7 +261,7 @@ async function handleSave() {
         })
 
         const existingId = existingIds[section.pageKey]
-        await saveAllContent(section.pageKey, [
+        const results = await saveAllContent(section.pageKey, [
           {
             ...(existingId ? { id: existingId } : {}),
             page_key: section.pageKey,
@@ -272,6 +272,10 @@ async function handleSave() {
             is_active: true,
           },
         ])
+        // Update existingIds so subsequent saves use update instead of insert
+        if (results && results[0]?.id) {
+          existingIds[section.pageKey] = results[0].id
+        }
       } else {
         await saveAllContent(section.pageKey, listData[section.pageKey])
       }

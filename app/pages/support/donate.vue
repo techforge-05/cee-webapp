@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('support.donate.intro') }}
+            {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
           </p>
         </div>
       </div>
@@ -50,10 +50,10 @@
               </div>
               <div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ $rt(item.title) }}
+                  {{ item.title }}
                 </h3>
                 <p class="text-gray-700">
-                  {{ $rt(item.description) }}
+                  {{ item.description }}
                 </p>
               </div>
             </div>
@@ -82,7 +82,7 @@
           <a
             v-for="(wishList, index) in wishLists"
             :key="index"
-            :href="$rt(wishList.url)"
+            :href="wishList.url"
             target="_blank"
             rel="noopener noreferrer"
             class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
@@ -94,10 +94,10 @@
                 <UIcon :name="wishListIcons[index]" class="w-8 h-8 text-white" />
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
-                {{ $rt(wishList.title) }}
+                {{ wishList.title }}
               </h3>
               <p class="text-gray-600 mb-4">
-                {{ $rt(wishList.description) }}
+                {{ wishList.description }}
               </p>
               <span
                 class="inline-flex items-center gap-2 text-orange-600 font-semibold"
@@ -123,10 +123,10 @@
             </div>
             <div>
               <h2 class="text-2xl font-bold text-red-900 mb-4">
-                {{ $t('support.donate.spanishBooks.title') }}
+                {{ singleField('support.donate.spanishBooks', 'title') || $t('support.donate.spanishBooks.title') }}
               </h2>
               <p class="text-lg text-gray-800 leading-relaxed">
-                {{ $t('support.donate.spanishBooks.description') }}
+                {{ singleField('support.donate.spanishBooks', 'description') || $t('support.donate.spanishBooks.description') }}
               </p>
             </div>
           </div>
@@ -143,28 +143,28 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ $t('support.donate.contact.title') }}
+            {{ singleField('support.donate.contact', 'title') || $t('support.donate.contact.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-8">
-            {{ $t('support.donate.contact.description') }}
+            {{ singleField('support.donate.contact', 'description') || $t('support.donate.contact.description') }}
           </p>
           <div class="space-y-4">
             <div class="flex items-center justify-center gap-3">
               <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
               <a
-                href="mailto:donaciones@cee.edu.hn"
+                :href="`mailto:${singleMeta('support.donate.contact', 'email') || 'donaciones@cee.edu.hn'}`"
                 class="text-lg text-gray-800 hover:text-red-600 transition-colors"
               >
-                {{ $t('support.donate.contact.email') }}
+                {{ singleMeta('support.donate.contact', 'email') || 'donaciones@cee.edu.hn' }}
               </a>
             </div>
             <div class="flex items-center justify-center gap-3">
               <UIcon name="i-heroicons-phone" class="w-6 h-6 text-red-600" />
               <a
-                href="tel:+50427730123"
+                :href="`tel:${singleMeta('support.donate.contact', 'phone') || '+50427730123'}`"
                 class="text-lg text-gray-800 hover:text-red-600 transition-colors"
               >
-                {{ $t('support.donate.contact.phone') }}
+                {{ singleMeta('support.donate.contact', 'phone') || '+50427730123' }}
               </a>
             </div>
           </div>
@@ -208,7 +208,16 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt: $rt } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+
+onMounted(() => loadContent([
+  'support.donate.intro',
+  'support.donate.ways',
+  'support.donate.wishLists',
+  'support.donate.spanishBooks',
+  'support.donate.contact',
+]));
 
 const waysIcons = [
   'i-heroicons-currency-dollar',
@@ -224,15 +233,38 @@ const wishListIcons = [
 ];
 
 const waysWithIcons = computed(() => {
+  const dbItems = getItems('support.donate.ways');
+  if (dbItems.length > 0) {
+    return dbItems.map((item, index) => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      icon: waysIcons[index] || 'i-heroicons-star',
+    }));
+  }
   const items = tm('support.donate.ways.items') as any[];
   return items.map((item: any, index: number) => ({
-    ...item,
+    title: typeof item.title === 'string' ? item.title : rt(item.title),
+    description: typeof item.description === 'string' ? item.description : rt(item.description),
     icon: waysIcons[index],
   }));
 });
 
 const wishLists = computed(() => {
-  return tm('support.donate.wishLists.items') as any[];
+  const dbItems = getItems('support.donate.wishLists');
+  if (dbItems.length > 0) {
+    return dbItems.map(item => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      url: getMeta(item, 'url'),
+    }));
+  }
+  const items = tm('support.donate.wishLists.items') as any[];
+  if (!Array.isArray(items)) return [];
+  return items.map((w: any) => ({
+    title: typeof w.title === 'string' ? w.title : rt(w.title),
+    description: typeof w.description === 'string' ? w.description : rt(w.description),
+    url: typeof w.url === 'string' ? w.url : rt(w.url),
+  }));
 });
 
 useHead({

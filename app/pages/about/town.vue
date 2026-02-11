@@ -19,13 +19,13 @@
           <div>
             <UIcon name="i-heroicons-map-pin" class="w-12 h-12 text-purple-600 mb-6" />
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('about.town.intro.title') }}
+              {{ singleField('about.town.intro', 'title') || $t('about.town.intro.title') }}
             </h2>
             <p class="text-lg text-gray-700 mb-4">
-              {{ $t('about.town.intro.paragraph1') }}
+              {{ singleField('about.town.intro', 'paragraph1') || $t('about.town.intro.paragraph1') }}
             </p>
             <p class="text-lg text-gray-700">
-              {{ $t('about.town.intro.paragraph2') }}
+              {{ singleField('about.town.intro', 'paragraph2') || $t('about.town.intro.paragraph2') }}
             </p>
           </div>
           <div class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
@@ -48,21 +48,13 @@
               </h2>
             </div>
             <ul class="space-y-3 text-lg text-gray-800">
-              <li class="flex items-start gap-3">
+              <li
+                v-for="(item, index) in locationItems"
+                :key="index"
+                class="flex items-start gap-3"
+              >
                 <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.location.heartOfHonduras') }}</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.location.altitude') }}</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.location.population') }}</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-blue-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.location.proximity') }}</span>
+                <span>{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -72,11 +64,11 @@
             <div class="flex items-start gap-4 mb-4">
               <UIcon name="i-heroicons-sun" class="w-12 h-12 text-purple-600 shrink-0" />
               <h2 class="text-3xl font-bold text-purple-900">
-                {{ $t('about.town.climate.title') }}
+                {{ singleField('about.town.climate', 'title') || $t('about.town.climate.title') }}
               </h2>
             </div>
             <p class="text-lg text-gray-800 mb-4">
-              {{ $t('about.town.climate.description') }}
+              {{ singleField('about.town.climate', 'description') || $t('about.town.climate.description') }}
             </p>
             <ul class="space-y-3 text-lg text-gray-800">
               <li class="flex items-start gap-3">
@@ -198,7 +190,28 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt: $rt } = useI18n();
+const { t, tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField } = usePublicContent();
+
+onMounted(() => loadContent([
+  'about.town.intro',
+  'about.town.location',
+  'about.town.climate',
+  'about.town.activities',
+]));
+
+const locationItems = computed(() => {
+  const dbItems = getItems('about.town.location');
+  if (dbItems.length > 0) {
+    return dbItems.map((item) => field(item, 'text'));
+  }
+  return [
+    t('about.town.location.heartOfHonduras'),
+    t('about.town.location.altitude'),
+    t('about.town.location.population'),
+    t('about.town.location.proximity'),
+  ];
+});
 
 const activityIcons = [
   'i-heroicons-home-modern',
@@ -209,10 +222,18 @@ const activityIcons = [
 ];
 
 const activities = computed(() => {
+  const dbItems = getItems('about.town.activities');
+  if (dbItems.length > 0) {
+    return dbItems.map((item, index) => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      icon: activityIcons[index % activityIcons.length],
+    }));
+  }
   const items = tm('about.town.activities.items') as any[];
   return items.map((activity: any, index: number) => ({
-    title: $rt(activity.title),
-    description: $rt(activity.description),
+    title: typeof activity.title === 'string' ? activity.title : rt(activity.title),
+    description: typeof activity.description === 'string' ? activity.description : rt(activity.description),
     icon: activityIcons[index % activityIcons.length],
   }));
 });

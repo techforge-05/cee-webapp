@@ -23,7 +23,7 @@
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('about.philosophy.intro') }}
+            {{ singleField('about.philosophy.intro', 'text') || $t('about.philosophy.intro') }}
           </p>
         </div>
       </div>
@@ -41,11 +41,11 @@
                 class="w-12 h-12 text-blue-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-blue-900">
-                {{ $t('about.philosophy.biblical.title') }}
+                {{ singleField('about.philosophy.biblical', 'title') || $t('about.philosophy.biblical.title') }}
               </h2>
             </div>
             <p class="text-xl text-gray-800 leading-relaxed">
-              {{ $t('about.philosophy.biblical.content') }}
+              {{ singleField('about.philosophy.biblical', 'content') || $t('about.philosophy.biblical.content') }}
             </p>
           </div>
 
@@ -57,11 +57,11 @@
                 class="w-12 h-12 text-purple-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-purple-900">
-                {{ $t('about.philosophy.dignity.title') }}
+                {{ singleField('about.philosophy.dignity', 'title') || $t('about.philosophy.dignity.title') }}
               </h2>
             </div>
             <p class="text-xl text-gray-800 leading-relaxed">
-              {{ $t('about.philosophy.dignity.content') }}
+              {{ singleField('about.philosophy.dignity', 'content') || $t('about.philosophy.dignity.content') }}
             </p>
           </div>
 
@@ -73,11 +73,11 @@
                 class="w-12 h-12 text-indigo-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-indigo-900">
-                {{ $t('about.philosophy.bilingual.title') }}
+                {{ singleField('about.philosophy.bilingual', 'title') || $t('about.philosophy.bilingual.title') }}
               </h2>
             </div>
             <p class="text-xl text-gray-800 leading-relaxed">
-              {{ $t('about.philosophy.bilingual.content') }}
+              {{ singleField('about.philosophy.bilingual', 'content') || $t('about.philosophy.bilingual.content') }}
             </p>
           </div>
         </div>
@@ -103,10 +103,10 @@
               <UIcon :name="principle.icon" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(principle.title) }}
+              {{ principle.title }}
             </h3>
             <p class="text-gray-700">
-              {{ $rt(principle.description) }}
+              {{ principle.description }}
             </p>
           </div>
         </div>
@@ -151,7 +151,16 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'about.philosophy.intro',
+    'about.philosophy.biblical',
+    'about.philosophy.dignity',
+    'about.philosophy.bilingual',
+    'about.philosophy.principles',
+  ]));
 
   const principleIcons = [
     'i-heroicons-book-open-solid',
@@ -160,10 +169,18 @@
   ];
 
   const principles = computed(() => {
+    const dbItems = getItems('about.philosophy.principles');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: principleIcons[index] || 'i-heroicons-star-solid',
+      }));
+    }
     const items = tm('about.philosophy.principles.items') as any[];
     return items.map((principle: any, index: number) => ({
-      title: principle.title,
-      description: principle.description,
+      title: typeof principle.title === 'string' ? principle.title : rt(principle.title),
+      description: typeof principle.description === 'string' ? principle.description : rt(principle.description),
       icon: principleIcons[index],
     }));
   });

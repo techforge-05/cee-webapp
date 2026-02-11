@@ -23,7 +23,7 @@
             class="w-16 h-16 text-indigo-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('studentLife.upcomingEvents.intro') }}
+            {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro') }}
           </p>
         </div>
       </div>
@@ -230,10 +230,10 @@
             class="w-16 h-16 text-indigo-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.upcomingEvents.stayInformed.title') }}
+            {{ singleField('studentLife.upcomingEvents.stayInformed', 'title') || $t('studentLife.upcomingEvents.stayInformed.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
-            {{ $t('studentLife.upcomingEvents.stayInformed.description') }}
+            {{ singleField('studentLife.upcomingEvents.stayInformed', 'description') || $t('studentLife.upcomingEvents.stayInformed.description') }}
           </p>
           <UButton
             :to="localePath('/academics/calendar')"
@@ -269,8 +269,8 @@
             <div class="relative h-48 bg-gray-200">
               <img
                 v-if="event.image_url"
-                :src="$rt(event.image_url)"
-                :alt="$rt(event.title)"
+                :src="event.image_url"
+                :alt="event.title"
                 class="w-full h-full object-cover"
               />
               <div
@@ -285,14 +285,14 @@
             <!-- Event Info -->
             <div class="p-6">
               <h3 class="text-xl font-bold text-gray-900 mb-2">
-                {{ $rt(event.title) }}
+                {{ event.title }}
               </h3>
               <p class="text-gray-600 mb-3">
-                {{ $rt(event.description) }}
+                {{ event.description }}
               </p>
               <div class="flex items-center gap-2 text-sm text-indigo-600">
                 <UIcon name="i-heroicons-calendar" class="w-4 h-4" />
-                <span class="font-medium">{{ $rt(event.timing) }}</span>
+                <span class="font-medium">{{ event.timing }}</span>
               </div>
             </div>
           </div>
@@ -339,7 +339,9 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { locale, tm, rt: $rt } = useI18n();
-  // $rt is used for rendering translation message objects
+  const { events: calendarEvents, loadEvents } = useCalendarAdmin();
+  const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+
   const carouselRef = ref<HTMLElement | null>(null);
   const canScrollLeft = ref(false);
   const canScrollRight = ref(true);
@@ -354,10 +356,55 @@
     'i-heroicons-globe-americas',
   ];
 
-  // Computed array for annual events from translations
+  // Load data from DB
+  onMounted(async () => {
+    await Promise.all([
+      loadEvents(),
+      loadContent([
+        'studentLife.upcomingEvents.intro',
+        'studentLife.upcomingEvents.stayInformed',
+        'studentLife.upcomingEvents.annualEvents',
+      ]),
+    ]);
+    updateScrollButtons();
+  });
+
+  // Localized calendar events — future events sorted by date
+  const allEvents = computed(() =>
+    calendarEvents.value
+      .map(e => ({
+        ...e,
+        title: locale.value === 'en' ? e.title_en : e.title_es,
+        description: locale.value === 'en' ? (e.description_en || '') : (e.description_es || ''),
+        date: e.start_date,
+      }))
+      .filter(e => new Date(e.date) >= new Date())
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  );
+
+  // Annual events: prefer DB, fall back to i18n
+  const annualEventsFromDb = computed(() => {
+    const items = getItems('studentLife.upcomingEvents.annualEvents');
+    if (items.length === 0) return null;
+    return items.map(item => ({
+      title: field(item, 'title'),
+      description: field(item, 'description'),
+      timing: getMeta(item, 'timing'),
+      image_url: null as string | null,
+    }));
+  });
+
   const annualEvents = computed(() => {
+    if (annualEventsFromDb.value) return annualEventsFromDb.value;
     const items = tm('studentLife.upcomingEvents.annualEvents.events') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    // Resolve i18n message objects to plain strings
+    return items.map(item => ({
+      title: typeof item.title === 'string' ? item.title : $rt(item.title),
+      description: typeof item.description === 'string' ? item.description : $rt(item.description),
+      timing: typeof item.timing === 'string' ? item.timing : $rt(item.timing),
+      image_url: null as string | null,
+    }));
   });
 
   // Color helper for annual events
@@ -373,75 +420,14 @@
     return colors[index % colors.length];
   };
 
-  // Mock data - will be replaced with actual data from academic calendar/Supabase
-  const allEvents = ref([
-    {
-      title: 'Back to School Night',
-      date: '2025-02-10',
-      description: 'An evening for parents to meet teachers, learn about curriculum, and connect with other families.',
-      location: 'Main Campus',
-      image_url: null,
-    },
-    {
-      title: 'Science Fair 2025',
-      date: '2025-03-15',
-      description: 'Students showcase their scientific discoveries and experiments to the school community.',
-      location: 'School Gymnasium',
-      image_url: null,
-    },
-    {
-      title: 'Sports Day',
-      date: '2025-04-05',
-      description: 'A day of athletic competitions, team spirit, and healthy competition for all grade levels.',
-      location: 'Sports Field',
-      image_url: null,
-    },
-    {
-      title: 'Cultural Week',
-      date: '2025-05-12',
-      description: 'Celebrating Honduran heritage and the diversity of our school community.',
-      location: 'Various Locations',
-      image_url: null,
-    },
-    {
-      title: 'Parent-Teacher Conference',
-      date: '2025-05-20',
-      description: 'Meet with teachers to discuss your child\'s progress.',
-      location: 'Classrooms',
-      image_url: null,
-    },
-    {
-      title: 'End of Year Celebration',
-      date: '2025-06-15',
-      description: 'Celebrating another successful school year with performances and awards.',
-      location: 'Main Auditorium',
-      image_url: null,
-    },
-  ]);
-
-  // Featured event (first/most recent upcoming event)
-  const featuredEvent = computed(() => {
-    const now = new Date();
-    const upcoming = allEvents.value
-      .filter(event => new Date(event.date) >= now)
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    return upcoming[0] || null;
-  });
+  // Featured event (first upcoming)
+  const featuredEvent = computed(() => allEvents.value[0] || null);
 
   // Carousel events (excluding featured, min 2, max 10)
   const carouselEvents = computed(() => {
-    const now = new Date();
-    const upcoming = allEvents.value
-      .filter(event => new Date(event.date) >= now)
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-    // Skip the featured event (first one) and take the rest
-    const remaining = upcoming.slice(1);
-
-    // Return between 2-10 events, or all if less than 2
+    const remaining = allEvents.value.slice(1);
     if (remaining.length < 2) {
-      // If less than 2 remaining, include the featured event in carousel too
-      return upcoming.slice(0, 10);
+      return allEvents.value.slice(0, 10);
     }
     return remaining.slice(0, 10);
   });
@@ -488,7 +474,7 @@
   // Carousel scroll functionality
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (!carouselRef.value) return;
-    const scrollAmount = 320; // width of one card plus gap
+    const scrollAmount = 320;
     const currentScroll = carouselRef.value.scrollLeft;
     const newScroll = direction === 'left'
       ? currentScroll - scrollAmount
@@ -502,10 +488,6 @@
     canScrollLeft.value = scrollLeft > 0;
     canScrollRight.value = scrollLeft < scrollWidth - clientWidth - 10;
   };
-
-  onMounted(() => {
-    updateScrollButtons();
-  });
 
   useHead({
     title: 'Upcoming Events - CEE',

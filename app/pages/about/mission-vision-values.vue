@@ -20,13 +20,13 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ $t('about.missionVisionValues.intro.title') }}
+              {{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}
             </h2>
             <p class="text-lg text-gray-700 mb-4">
-              {{ $t('about.missionVisionValues.intro.paragraph1') }}
+              {{ singleField('about.mvv.intro', 'paragraph1') || $t('about.missionVisionValues.intro.paragraph1') }}
             </p>
             <p class="text-lg text-gray-700">
-              {{ $t('about.missionVisionValues.intro.paragraph2') }}
+              {{ singleField('about.mvv.intro', 'paragraph2') || $t('about.missionVisionValues.intro.paragraph2') }}
             </p>
           </div>
           <div
@@ -48,11 +48,11 @@
               class="w-12 h-12 text-blue-600 shrink-0"
             />
             <h2 class="text-3xl font-bold text-blue-900">
-              {{ $t('about.missionVisionValues.mission.title') }}
+              {{ singleField('about.mvv.mission', 'title') || $t('about.missionVisionValues.mission.title') }}
             </h2>
           </div>
           <p class="text-xl text-gray-800 leading-relaxed">
-            {{ $t('about.missionVisionValues.mission.statement') }}
+            {{ singleField('about.mvv.mission', 'statement') || $t('about.missionVisionValues.mission.statement') }}
           </p>
         </div>
       </div>
@@ -68,11 +68,11 @@
               class="w-12 h-12 text-purple-600 shrink-0"
             />
             <h2 class="text-3xl font-bold text-purple-900">
-              {{ $t('about.missionVisionValues.vision.title') }}
+              {{ singleField('about.mvv.vision', 'title') || $t('about.missionVisionValues.vision.title') }}
             </h2>
           </div>
           <p class="text-xl text-gray-800 leading-relaxed">
-            {{ $t('about.missionVisionValues.vision.statement') }}
+            {{ singleField('about.mvv.vision', 'statement') || $t('about.missionVisionValues.vision.statement') }}
           </p>
         </div>
       </div>
@@ -101,11 +101,11 @@
                 <UIcon :name="value.icon" class="w-6 h-6 text-white" />
               </div>
               <h3 class="text-xl font-bold text-gray-900">
-                {{ $rt(value.title) }}
+                {{ value.title }}
               </h3>
             </div>
             <p class="text-gray-700">
-              {{ $rt(value.description) }}
+              {{ value.description }}
             </p>
           </div>
         </div>
@@ -148,7 +148,15 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm, rt: $rt } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'about.mvv.intro',
+    'about.mvv.mission',
+    'about.mvv.vision',
+    'about.mvv.values',
+  ]));
 
   const valueIcons = [
     'i-heroicons-heart-solid', // Passion for God
@@ -161,10 +169,19 @@
   ];
 
   const valuesWithIcons = computed(() => {
+    const dbItems = getItems('about.mvv.values');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: valueIcons[index] || 'i-heroicons-star-solid',
+      }));
+    }
     const values = tm('about.missionVisionValues.values.items') as any[];
-    return values.map((value: any, index: number) => ({
-      ...value,
-      icon: valueIcons[index],
+    return values.map((v: any, i: number) => ({
+      title: typeof v.title === 'string' ? v.title : rt(v.title),
+      description: typeof v.description === 'string' ? v.description : rt(v.description),
+      icon: valueIcons[i],
     }));
   });
 

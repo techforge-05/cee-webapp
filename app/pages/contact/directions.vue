@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('contact.directions.intro') }}
+            {{ singleField('contact.directions.intro', 'text') || $t('contact.directions.intro') }}
           </p>
         </div>
       </div>
@@ -55,7 +55,7 @@
                 class="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-semibold transition-colors"
               >
                 <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-5 h-5" />
-                {{ $t('contact.directions.address.title') }} - Google Maps
+                {{ singleField('contact.directions.address', 'title') || $t('contact.directions.address.title') }} - Google Maps
               </a>
             </div>
           </div>
@@ -70,10 +70,10 @@
                 </div>
                 <div>
                   <h3 class="text-xl font-bold text-gray-900 mb-2">
-                    {{ $t('contact.directions.address.title') }}
+                    {{ singleField('contact.directions.address', 'title') || $t('contact.directions.address.title') }}
                   </h3>
                   <p class="text-gray-700 text-lg">
-                    {{ $t('contact.directions.address.full') }}
+                    {{ singleField('contact.directions.address', 'text') || $t('contact.directions.address.full') }}
                   </p>
                 </div>
               </div>
@@ -87,10 +87,10 @@
                 </div>
                 <div>
                   <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    {{ $t('contact.directions.fromTegucigalpa.title') }}
+                    {{ singleField('contact.directions.fromTegucigalpa', 'title') || $t('contact.directions.fromTegucigalpa.title') }}
                   </h3>
                   <p class="text-gray-700">
-                    {{ $t('contact.directions.fromTegucigalpa.description') }}
+                    {{ singleField('contact.directions.fromTegucigalpa', 'description') || $t('contact.directions.fromTegucigalpa.description') }}
                   </p>
                 </div>
               </div>
@@ -104,10 +104,10 @@
                 </div>
                 <div>
                   <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    {{ $t('contact.directions.fromSanPedro.title') }}
+                    {{ singleField('contact.directions.fromSanPedro', 'title') || $t('contact.directions.fromSanPedro.title') }}
                   </h3>
                   <p class="text-gray-700">
-                    {{ $t('contact.directions.fromSanPedro.description') }}
+                    {{ singleField('contact.directions.fromSanPedro', 'description') || $t('contact.directions.fromSanPedro.description') }}
                   </p>
                 </div>
               </div>
@@ -141,7 +141,7 @@
                   name="i-heroicons-check-circle"
                   class="w-5 h-5 text-green-600 shrink-0 mt-0.5"
                 />
-                <span class="text-gray-700">{{ $rt(landmark) }}</span>
+                <span class="text-gray-700">{{ landmark }}</span>
               </li>
             </ul>
           </div>
@@ -153,11 +153,11 @@
                 <UIcon name="i-heroicons-truck" class="w-5 h-5 text-amber-600" />
               </div>
               <h3 class="text-xl font-bold text-gray-900">
-                {{ $t('contact.directions.parking.title') }}
+                {{ singleField('contact.directions.parking', 'title') || $t('contact.directions.parking.title') }}
               </h3>
             </div>
             <p class="text-gray-700">
-              {{ $t('contact.directions.parking.description') }}
+              {{ singleField('contact.directions.parking', 'description') || $t('contact.directions.parking.description') }}
             </p>
           </div>
         </div>
@@ -235,10 +235,23 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt: $rt } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField } = usePublicContent();
+
+onMounted(() => loadContent([
+  'contact.directions.intro',
+  'contact.directions.address',
+  'contact.directions.fromTegucigalpa',
+  'contact.directions.fromSanPedro',
+  'contact.directions.parking',
+  'contact.directions.landmarks',
+]));
 
 const landmarks = computed(() => {
-  return tm('contact.directions.landmarks.items') as any[];
+  const dbItems = getItems('contact.directions.landmarks');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('contact.directions.landmarks.items') as any[];
+  return Array.isArray(items) ? items.map((l: any) => typeof l === 'string' ? l : rt(l)) : [];
 });
 
 useHead({

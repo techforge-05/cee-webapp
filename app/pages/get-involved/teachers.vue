@@ -24,17 +24,17 @@
               class="w-16 h-16 text-amber-500 mx-auto mb-4"
             />
             <p class="text-xl text-gray-700 leading-relaxed">
-              {{ $t('getInvolved.teachers.intro') }}
+              {{ singleField('getInvolved.teachers.intro', 'text') || $t('getInvolved.teachers.intro') }}
             </p>
           </div>
 
           <!-- Requirements Box -->
           <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 mb-8 border border-amber-200">
             <h2 class="text-2xl font-bold text-amber-800 mb-4">
-              {{ $t('getInvolved.teachers.requirements.title') }}
+              {{ singleField('getInvolved.teachers.requirements', 'title') || $t('getInvolved.teachers.requirements.title') }}
             </h2>
             <p class="text-gray-700 leading-relaxed">
-              {{ $t('getInvolved.teachers.requirements.description') }}
+              {{ singleField('getInvolved.teachers.requirements', 'description') || $t('getInvolved.teachers.requirements.description') }}
             </p>
           </div>
 
@@ -53,7 +53,7 @@
                   name="i-heroicons-check-circle"
                   class="w-6 h-6 text-amber-600 shrink-0 mt-0.5"
                 />
-                <span class="text-gray-700">{{ $rt(item) }}</span>
+                <span class="text-gray-700">{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -73,7 +73,7 @@
                   name="i-heroicons-star"
                   class="w-6 h-6 text-amber-500 shrink-0 mt-0.5"
                 />
-                <span class="text-gray-700">{{ $rt(item) }}</span>
+                <span class="text-gray-700">{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -81,12 +81,12 @@
           <!-- Application Forms -->
           <div class="bg-white rounded-xl p-8 mb-8 border-2 border-amber-300 shadow-lg">
             <h2 class="text-2xl font-bold text-amber-800 mb-6 text-center">
-              {{ $t('getInvolved.teachers.applicationForms.title') }}
+              {{ singleField('getInvolved.teachers.applicationForms', 'title') || $t('getInvolved.teachers.applicationForms.title') }}
             </h2>
             <div class="grid md:grid-cols-2 gap-6">
               <!-- International Teachers -->
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSd5FCf2MujHWiGfmuPuOukzb1xplNKG08pMvIl5ZES6Ol6iQA/viewform"
+                :href="singleMeta('getInvolved.teachers.applicationForms', 'internationalUrl') || 'https://docs.google.com/forms/d/e/1FAIpQLSd5FCf2MujHWiGfmuPuOukzb1xplNKG08pMvIl5ZES6Ol6iQA/viewform'"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex flex-col items-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl hover:shadow-md transition-shadow border border-blue-200"
@@ -106,7 +106,7 @@
 
               <!-- Honduran Teachers -->
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfF2FG694ecpMNhbZIW3tPJ7u1EPaTIXrVE3tuagusuR33XZw/viewform"
+                :href="singleMeta('getInvolved.teachers.applicationForms', 'honduranUrl') || 'https://docs.google.com/forms/d/e/1FAIpQLSfF2FG694ecpMNhbZIW3tPJ7u1EPaTIXrVE3tuagusuR33XZw/viewform'"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex flex-col items-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl hover:shadow-md transition-shadow border border-green-200"
@@ -133,17 +133,17 @@
     <section class="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-2xl font-bold mb-4">
-          {{ $t('getInvolved.teachers.contact.title') }}
+          {{ singleField('getInvolved.teachers.contact', 'title') || $t('getInvolved.teachers.contact.title') }}
         </h2>
         <p class="text-lg text-blue-100 mb-6">
-          {{ $t('getInvolved.teachers.contact.description') }}
+          {{ singleField('getInvolved.teachers.contact', 'description') || $t('getInvolved.teachers.contact.description') }}
         </p>
         <a
-          href="mailto:teach@ceehonduras.org"
+          :href="`mailto:${singleMeta('getInvolved.teachers.contact', 'email') || 'teach@ceehonduras.org'}`"
           class="inline-flex items-center gap-2 bg-white text-purple-700 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors"
         >
           <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-          teach@ceehonduras.org
+          {{ singleMeta('getInvolved.teachers.contact', 'email') || 'teach@ceehonduras.org' }}
         </a>
       </div>
     </section>
@@ -151,10 +151,31 @@
 </template>
 
 <script setup lang="ts">
-const { tm } = useI18n();
+const { tm, rt } = useI18n();
+const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
 
-const qualifications = computed(() => tm('getInvolved.teachers.qualifications.items') as any[]);
-const benefits = computed(() => tm('getInvolved.teachers.benefits.items') as any[]);
+onMounted(() => loadContent([
+  'getInvolved.teachers.intro',
+  'getInvolved.teachers.requirements',
+  'getInvolved.teachers.qualifications',
+  'getInvolved.teachers.benefits',
+  'getInvolved.teachers.applicationForms',
+  'getInvolved.teachers.contact',
+]));
+
+const qualifications = computed(() => {
+  const dbItems = getItems('getInvolved.teachers.qualifications');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('getInvolved.teachers.qualifications.items') as any[];
+  return Array.isArray(items) ? items.map((q: any) => typeof q === 'string' ? q : rt(q)) : [];
+});
+
+const benefits = computed(() => {
+  const dbItems = getItems('getInvolved.teachers.benefits');
+  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
+  const items = tm('getInvolved.teachers.benefits.items') as any[];
+  return Array.isArray(items) ? items.map((b: any) => typeof b === 'string' ? b : rt(b)) : [];
+});
 
 useHead({
   title: 'Potential Teachers - Get Involved - CEE',
