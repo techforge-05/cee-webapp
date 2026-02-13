@@ -36,7 +36,8 @@
       "academics": {
         "curriculum": "Currículo",
         "calendar": "Calendario Académico",
-        "grades": "Grados y Niveles"
+        "grades": "Grados y Niveles",
+        "guidanceWellbeing": "Orientación y Bienestar"
       },
       "studentLife": {
         "sportsClubs": "Deportes",
@@ -399,48 +400,59 @@
           "description": "Nuestro programa de primaria (grados 1-6) construye una base académica sólida a través de la instrucción bilingüe inmersiva. Los estudiantes participan en un currículo integral que desarrolla el pensamiento crítico, la resolución de problemas y las habilidades de comunicación.",
           "englishProgram": "Materias:",
           "subjects": [
-            "Lengua y Literatura en Inglés",
+            "Español",
             "Matemáticas",
-            "Ciencias",
-            "Estudios Sociales",
-            "Informática"
+            "Ciencias Sociales",
+            "Science",
+            "Language",
+            "Reading",
+            "Spelling",
+            "Computación",
+            "Artística",
+            "Physical Education"
           ]
         },
         "secondary": {
           "title": "Escuela Secundaria",
           "name": "Instituto Bilingüe Siguatepeque",
           "description": "Nuestro programa secundario (grados 7-11) prepara a los estudiantes para la educación superior y el éxito profesional a través de cursos académicos rigurosos y desarrollo bilingüe continuo.",
-          "grades78": {
-            "title": "Grados 7-8",
+          "grades79": {
+            "title": "Grados 7-9",
             "subjects": [
-              "Lengua y Literatura en Inglés",
+              "English (Language and Literature)",
+              "Science",
+              "Physical Education",
+              "Home Economics / Technology",
+              "Art (Grades 7-8)",
+              "Spelling",
               "Matemáticas",
-              "Ciencias",
+              "Español",
               "Estudios Sociales",
-              "Educación Física",
-              "Lengua y Literatura en Español"
-            ]
-          },
-          "grade9": {
-            "title": "Grado 9",
-            "subjects": [
-              "Lengua y Literatura en Inglés",
-              "Matemáticas",
-              "Ciencias",
-              "Educación Física",
-              "Lengua y Literatura en Español",
-              "Historia de Honduras"
+              "Cívica",
+              "Computación",
+              "Música",
+              "First Aid (Grade 9)"
             ]
           },
           "grades1011": {
             "title": "Grados 10-11",
             "subjects": [
-              "Lengua y Literatura en Inglés",
+              "English (Language and Literature)",
+              "Español",
               "Matemáticas",
-              "Biología/Química",
-              "Educación Física",
-              "Lengua y Literatura en Español",
-              "Física"
+              "Física",
+              "Biología",
+              "Química",
+              "Informática",
+              "Physical Education",
+              "Sociología (Gr. 10)",
+              "Historia de Honduras (Gr. 10)",
+              "Psychology (Gr. 10)",
+              "World History (Gr. 11)",
+              "Antropología (Gr. 11)",
+              "Economía (Gr. 11)",
+              "Philosophy (Gr. 11)",
+              "Art Appreciation (Gr. 11)"
             ]
           }
         }
@@ -467,6 +479,63 @@
         "description": "Únete a CEE y dale a tu hijo la ventaja de una educación bilingüe centrada en Cristo que los prepara para un futuro brillante.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
+      }
+    },
+    "guidance": {
+      "title": "Orientación y Bienestar Estudiantil",
+      "subtitle": "Apoyando el crecimiento y desarrollo estudiantil",
+      "intro": {
+        "title": "Departamento de Orientación y Bienestar Estudiantil",
+        "description": "Este es el Departamento de Orientación y Bienestar Estudiantil, dedicado a apoyar el desarrollo integral de cada estudiante a través de servicios de consejería, orientación y apoyo psicológico."
+      },
+      "services": {
+        "title": "Nuestros Servicios",
+        "items": [
+          {
+            "title": "Orientación",
+            "description": "Orientación académica y personal para ayudar a los estudiantes a tomar decisiones informadas sobre su educación y futuro."
+          },
+          {
+            "title": "Consejería",
+            "description": "Servicios profesionales de consejería para apoyar el bienestar emocional y social de los estudiantes."
+          },
+          {
+            "title": "Apoyo Psicológico",
+            "description": "Apoyo psicológico especializado para estudiantes que enfrentan desafíos personales o académicos."
+          },
+          {
+            "title": "Retiros",
+            "description": "Experiencias espirituales transformadoras que fortalecen la fe y construyen comunidad entre los estudiantes."
+          },
+          {
+            "title": "Devocionales",
+            "description": "Tiempos diarios de reflexión y adoración que profundizan la relación de los estudiantes con Dios."
+          },
+          {
+            "title": "Clases de Orientación",
+            "description": "Sesiones estructuradas que equipan a los estudiantes con habilidades esenciales para la vida y el desarrollo del carácter."
+          }
+        ]
+      },
+      "staff": {
+        "title": "Nuestro Equipo",
+        "description": "Contamos con orientador, consejera y psicóloga"
+      },
+      "gallery": {
+        "title": "Galería",
+        "description": "Momentos de nuestro departamento y actividades"
+      },
+      "contact": {
+        "title": "Contáctanos",
+        "description": "Comunícate con nuestro equipo de Orientación y Bienestar",
+        "emailLabel": "Correo Electrónico",
+        "hoursLabel": "Horario de Atención",
+        "locationLabel": "Ubicación"
+      },
+      "cta": {
+        "title": "¿Necesitas Más Información?",
+        "description": "Ponte en contacto con nosotros, estaremos encantados de responder tus preguntas.",
+        "contactButton": "Contáctanos"
       }
     },
     "programs": {
@@ -834,6 +903,10 @@
           {
             "title": "Colectas de Alimentos",
             "description": "Recolección y distribución de alimentos a familias necesitadas durante todo el año."
+          },
+          {
+            "title": "Trabajo Educativo Social (TES)",
+            "description": "Los alumnos de último año hacen campañas sobre el cáncer y autismo. Han hecho colectas para fundaciones."
           }
         ]
       },
@@ -1471,9 +1544,8 @@
           "elementary": "Escuela Primaria",
           "elementarySubjects": "Materias de Primaria",
           "secondary": "Escuela Secundaria",
-          "subjects78": "Materias de 7.° y 8.° Grado",
-          "subjects9": "Materias de 9.° Grado",
-          "subjects1011": "Materias de 10.° y 11.° Grado",
+          "subjects79": "Asignaturas Grados 7-9",
+          "subjects1011": "Asignaturas Grados 10-11",
           "benefits": "Beneficios"
         },
         "grades": {
@@ -1483,6 +1555,15 @@
           "gradeRange": "Rango de Grados",
           "specialPrograms": "Programas Especiales",
           "approach": "Enfoque Educativo"
+        },
+        "guidance": {
+          "intro": "Introducción",
+          "services": "Servicios",
+          "staff": "Miembros del Personal",
+          "staffMember": "Miembro del Personal",
+          "images": "Imágenes de Galería",
+          "contact": "Información de Contacto",
+          "hours": "Horario de Atención"
         }
       },
       "studentLife": {

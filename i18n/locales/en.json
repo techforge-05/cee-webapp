@@ -36,7 +36,8 @@
       "academics": {
         "curriculum": "Curriculum",
         "calendar": "Academic Calendar",
-        "grades": "Grades & Levels"
+        "grades": "Grades & Levels",
+        "guidanceWellbeing": "Guidance & Wellbeing"
       },
       "studentLife": {
         "sportsClubs": "Sports",
@@ -399,48 +400,59 @@
           "description": "Our elementary program (grades 1-6) builds a strong academic foundation through immersive bilingual instruction. Students engage in a comprehensive curriculum that develops critical thinking, problem-solving, and communication skills.",
           "englishProgram": "English Program Subjects:",
           "subjects": [
-            "English Language Arts",
-            "Mathematics",
+            "Español",
+            "Matemáticas",
+            "Ciencias Sociales",
             "Science",
-            "Social Studies",
-            "Computer Science"
+            "Language",
+            "Reading",
+            "Spelling",
+            "Computación",
+            "Artística",
+            "Physical Education"
           ]
         },
         "secondary": {
           "title": "Secondary School",
           "name": "Instituto Bilingüe Siguatepeque",
           "description": "Our secondary program (grades 7-11) prepares students for higher education and professional success through rigorous academic coursework and continued bilingual development.",
-          "grades78": {
-            "title": "Grades 7-8",
+          "grades79": {
+            "title": "Grades 7-9",
             "subjects": [
-              "English Language Arts",
-              "Mathematics",
-              "Science",
-              "Social Studies",
-              "Physical Education",
-              "Spanish Language Arts"
-            ]
-          },
-          "grade9": {
-            "title": "Grade 9",
-            "subjects": [
-              "English Language Arts",
-              "Mathematics",
+              "English (Language and Literature)",
               "Science",
               "Physical Education",
-              "Spanish Language Arts",
-              "Honduran History"
+              "Home Economics / Technology",
+              "Art (Grades 7-8)",
+              "Spelling",
+              "Matemáticas",
+              "Español",
+              "Estudios Sociales",
+              "Cívica",
+              "Computación",
+              "Música",
+              "First Aid (Grade 9)"
             ]
           },
           "grades1011": {
             "title": "Grades 10-11",
             "subjects": [
-              "English Language Arts",
-              "Mathematics",
-              "Biology/Chemistry",
+              "English (Language and Literature)",
+              "Español",
+              "Matemáticas",
+              "Física",
+              "Biología",
+              "Química",
+              "Informática",
               "Physical Education",
-              "Spanish Language Arts",
-              "Physics"
+              "Sociología (Gr. 10)",
+              "Historia de Honduras (Gr. 10)",
+              "Psychology (Gr. 10)",
+              "World History (Gr. 11)",
+              "Antropología (Gr. 11)",
+              "Economía (Gr. 11)",
+              "Philosophy (Gr. 11)",
+              "Art Appreciation (Gr. 11)"
             ]
           }
         }
@@ -467,6 +479,63 @@
         "description": "Join CEE and give your child the advantage of a Christ-centered bilingual education that prepares them for a bright future.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
+      }
+    },
+    "guidance": {
+      "title": "Student Guidance & Wellbeing",
+      "subtitle": "Supporting Student Growth and Development",
+      "intro": {
+        "title": "Guidance and Student Wellbeing Department",
+        "description": "This is the Student Guidance and Wellbeing Department, dedicated to supporting the holistic development of every student through counseling, guidance, and psychological support services."
+      },
+      "services": {
+        "title": "Our Services",
+        "items": [
+          {
+            "title": "Guidance",
+            "description": "Academic and personal guidance to help students make informed decisions about their education and future."
+          },
+          {
+            "title": "Counseling",
+            "description": "Professional counseling services to support students' emotional and social wellbeing."
+          },
+          {
+            "title": "Psychological Support",
+            "description": "Specialized psychological support for students facing personal or academic challenges."
+          },
+          {
+            "title": "Retreats",
+            "description": "Spiritual retreats and reflection activities to strengthen faith and build community among students."
+          },
+          {
+            "title": "Devotionals",
+            "description": "Daily devotional sessions that encourage spiritual growth and biblical reflection."
+          },
+          {
+            "title": "Guidance Classes",
+            "description": "Structured classes covering topics like life skills, decision-making, and personal development."
+          }
+        ]
+      },
+      "staff": {
+        "title": "Our Team",
+        "description": "We have a counselor, advisor, and psychologist"
+      },
+      "gallery": {
+        "title": "Gallery",
+        "description": "Glimpses of our department and activities"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "Get in touch with our Guidance and Wellbeing team",
+        "emailLabel": "Email",
+        "hoursLabel": "Office Hours",
+        "locationLabel": "Location"
+      },
+      "cta": {
+        "title": "Need More Information?",
+        "description": "Get in touch with us, we will be happy to answer your questions.",
+        "contactButton": "Contact Us"
       }
     },
     "programs": {
@@ -530,7 +599,7 @@
       "special": {
         "title": "Special Programs",
         "items": [
-{
+          {
             "title": "Computer Science",
             "description": "Technology education including coding, digital literacy, and computer skills"
           },
@@ -834,6 +903,10 @@
           {
             "title": "Food Drives",
             "description": "Collecting and distributing food to families in need throughout the year."
+          },
+          {
+            "title": "Social Educational Work",
+            "description": "Senior students conduct campaigns on cancer and autism awareness. They have organized collections for foundations."
           }
         ]
       },
@@ -1471,8 +1544,7 @@
           "elementary": "Elementary School",
           "elementarySubjects": "Elementary Subjects",
           "secondary": "Secondary School",
-          "subjects78": "Grades 7-8 Subjects",
-          "subjects9": "Grade 9 Subjects",
+          "subjects79": "Grades 7-9 Subjects",
           "subjects1011": "Grades 10-11 Subjects",
           "benefits": "Benefits"
         },
@@ -1483,6 +1555,15 @@
           "gradeRange": "Grade Range",
           "specialPrograms": "Special Programs",
           "approach": "Educational Approach"
+        },
+        "guidance": {
+          "intro": "Introduction",
+          "services": "Services",
+          "staff": "Staff Members",
+          "staffMember": "Staff Member",
+          "images": "Gallery Images",
+          "contact": "Contact Information",
+          "hours": "Office Hours"
         }
       },
       "studentLife": {

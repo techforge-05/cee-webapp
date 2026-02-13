@@ -258,6 +258,18 @@
                 />
                 <span>{{ $t('nav.dropdowns.academics.calendar') }}</span>
               </NuxtLink>
+              <NuxtLink
+                v-if="isVisible('academics', 'guidance-wellbeing')"
+                :to="localePath('/academics/guidance-wellbeing')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-heart"
+                  class="w-5 h-5 text-yellow-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.academics.guidanceWellbeing') }}</span>
+              </NuxtLink>
             </div>
           </div>
 
@@ -758,6 +770,7 @@
       { path: '/academics/curriculum', label: t('nav.dropdowns.academics.curriculum'), slug: 'curriculum' },
       { path: '/academics/grades', label: t('nav.dropdowns.academics.grades'), slug: 'grades' },
       { path: '/academics/calendar', label: t('nav.dropdowns.academics.calendar'), slug: 'calendar' },
+      { path: '/academics/guidance-wellbeing', label: t('nav.dropdowns.academics.guidanceWellbeing'), slug: 'guidance-wellbeing' },
     ]),
     studentLife: filterByVisibility('studentLife', [
       { path: '/student-life/sports-clubs', label: t('nav.dropdowns.studentLife.sportsClubs'), slug: 'sports-clubs' },

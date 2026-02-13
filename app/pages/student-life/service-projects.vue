@@ -161,6 +161,7 @@
     'i-heroicons-home',
     'i-heroicons-globe-americas',
     'i-heroicons-shopping-bag',
+    'i-heroicons-academic-cap',
   ];
 
   const benefits = computed(() => {

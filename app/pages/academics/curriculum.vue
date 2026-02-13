@@ -159,38 +159,16 @@
                 {{ singleField('academics.curriculum.secondary', 'description') || $t('academics.curriculum.programs.secondary.description') }}
               </p>
 
-              <!-- Grades 7-8 -->
+              <!-- Grades 7-9 -->
               <div class="bg-white rounded-lg p-6">
                 <h4 class="font-bold text-purple-900 mb-3 text-lg">
                   {{
-                    $t('academics.curriculum.programs.secondary.grades78.title')
+                    $t('academics.curriculum.programs.secondary.grades79.title')
                   }}
                 </h4>
                 <ul class="grid md:grid-cols-2 gap-3">
                   <li
-                    v-for="(subject, index) in grades78Subjects"
-                    :key="index"
-                    class="flex items-center gap-2"
-                  >
-                    <UIcon
-                      name="i-heroicons-check-circle"
-                      class="w-5 h-5 text-purple-600 shrink-0"
-                    />
-                    <span class="text-gray-700">{{ subject }}</span>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Grade 9 -->
-              <div class="bg-white rounded-lg p-6">
-                <h4 class="font-bold text-purple-900 mb-3 text-lg">
-                  {{
-                    $t('academics.curriculum.programs.secondary.grade9.title')
-                  }}
-                </h4>
-                <ul class="grid md:grid-cols-2 gap-3">
-                  <li
-                    v-for="(subject, index) in grade9Subjects"
+                    v-for="(subject, index) in grades79Subjects"
                     :key="index"
                     class="flex items-center gap-2"
                   >
@@ -308,8 +286,7 @@
     'academics.curriculum.elementary',
     'academics.curriculum.secondary',
     'academics.curriculum.elementarySubjects',
-    'academics.curriculum.secondarySubjects78',
-    'academics.curriculum.secondarySubjects9',
+    'academics.curriculum.secondarySubjects79',
     'academics.curriculum.secondarySubjects1011',
     'academics.curriculum.benefits',
   ]));
@@ -321,17 +298,10 @@
     return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 
-  const grades78Subjects = computed(() => {
-    const dbItems = getItems('academics.curriculum.secondarySubjects78');
+  const grades79Subjects = computed(() => {
+    const dbItems = getItems('academics.curriculum.secondarySubjects79');
     if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
-    const items = tm('academics.curriculum.programs.secondary.grades78.subjects') as any[];
-    return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
-  });
-
-  const grade9Subjects = computed(() => {
-    const dbItems = getItems('academics.curriculum.secondarySubjects9');
-    if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
-    const items = tm('academics.curriculum.programs.secondary.grade9.subjects') as any[];
+    const items = tm('academics.curriculum.programs.secondary.grades79.subjects') as any[];
     return Array.isArray(items) ? items.map((s: any) => typeof s === 'string' ? s : rt(s)) : [];
   });
 

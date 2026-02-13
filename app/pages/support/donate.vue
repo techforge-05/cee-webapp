@@ -152,19 +152,28 @@
             <div class="flex items-center justify-center gap-3">
               <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
               <a
-                :href="`mailto:${singleMeta('support.donate.contact', 'email') || 'donaciones@cee.edu.hn'}`"
+                href="mailto:administracion@ceehonduras.org"
                 class="text-lg text-gray-800 hover:text-red-600 transition-colors"
               >
-                {{ singleMeta('support.donate.contact', 'email') || 'donaciones@cee.edu.hn' }}
+                administracion@ceehonduras.org
               </a>
             </div>
             <div class="flex items-center justify-center gap-3">
-              <UIcon name="i-heroicons-phone" class="w-6 h-6 text-red-600" />
+              <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
               <a
-                :href="`tel:${singleMeta('support.donate.contact', 'phone') || '+50427730123'}`"
+                href="mailto:english@ceehonduras.org"
                 class="text-lg text-gray-800 hover:text-red-600 transition-colors"
               >
-                {{ singleMeta('support.donate.contact', 'phone') || '+50427730123' }}
+                english@ceehonduras.org
+              </a>
+            </div>
+            <div class="flex items-center justify-center gap-3">
+              <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
+              <a
+                href="mailto:library@ceehonduras.org"
+                class="text-lg text-gray-800 hover:text-red-600 transition-colors"
+              >
+                library@ceehonduras.org
               </a>
             </div>
           </div>
@@ -209,7 +218,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { tm, rt } = useI18n();
-const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
 
 onMounted(() => loadContent([
   'support.donate.intro',
