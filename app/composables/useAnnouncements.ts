@@ -30,6 +30,7 @@ export const useAnnouncements = () => {
         .from('announcements')
         .select('*')
         .order('display_date', { ascending: false })
+        .limit(50)
 
       if (fetchError) throw fetchError
       announcements.value = (data || []) as Announcement[]

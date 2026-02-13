@@ -1031,6 +1031,8 @@
         "celebrations": "Celebrations"
       },
       "noPhotos": "No photos available for this selection",
+      "loadMore": "Load More Photos",
+      "showing": "Showing {shown} of {total} photos",
       "cta": {
         "title": "Create Memories With Us",
         "description": "Join our school community and be part of these wonderful moments.",
@@ -1297,7 +1299,9 @@
         "newsItem": "News Item",
         "newsTitle": "News Title",
         "newsDate": "Date",
-        "newsExcerpt": "Excerpt"
+        "newsExcerpt": "Excerpt",
+        "newsFromAnnouncements": "The news section on the home page automatically displays the most recent active announcements. Manage them from the Announcements page.",
+        "goToAnnouncements": "Go to Announcements"
       },
       "faq": {
         "question": "Question",

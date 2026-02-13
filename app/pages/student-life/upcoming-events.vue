@@ -49,6 +49,7 @@
                 :src="featuredEvent.image_url"
                 :alt="featuredEvent.title"
                 class="w-full h-full object-cover"
+                loading="lazy"
               />
               <div
                 v-else
@@ -58,6 +59,7 @@
                   src="/images/logo.png"
                   alt="CEE Logo"
                   class="h-32 w-auto opacity-50"
+                  loading="lazy"
                 />
               </div>
               <!-- Date Badge -->
@@ -163,6 +165,7 @@
                     :src="event.image_url"
                     :alt="event.title"
                     class="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div
                     v-else
@@ -173,6 +176,7 @@
                       src="/images/logo.png"
                       alt="CEE Logo"
                       class="h-16 w-auto opacity-30"
+                      loading="lazy"
                     />
                   </div>
                   <!-- Date Badge -->
@@ -272,6 +276,7 @@
                 :src="event.image_url"
                 :alt="event.title"
                 class="w-full h-full object-cover"
+                loading="lazy"
               />
               <div
                 v-else

@@ -157,13 +157,22 @@
       <div v-show="openSections.activities" class="space-y-4">
         <DataListManager
           v-model="activitiesItems"
-          :max-items="6"
+          :max-items="8"
           :min-items="2"
           :item-label="$t('admin.editors.home.activity')"
           @add="addActivityItem"
         >
           <template #default="{ item, index }">
             <div class="space-y-3">
+              <ImageManager
+                :model-value="{
+                  url: item.metadata?.image_url || '',
+                  alt_es: item.metadata?.image_alt_es || '',
+                  alt_en: item.metadata?.image_alt_en || '',
+                }"
+                folder="cee-assets/pages/home"
+                @update:model-value="updateActivityImage(index, $event)"
+              />
               <BilingualTextField
                 :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
                 :label="$t('admin.editors.home.activityTitle')"
@@ -183,61 +192,23 @@
       </div>
     </UCard>
 
-    <!-- News Section -->
+    <!-- News / Announcements -->
     <UCard>
       <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection('news')"
-        >
-          <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.news') }}</h3>
-          <UIcon
-            :name="openSections.news ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
+        <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.news') }}</h3>
       </template>
-
-      <div v-show="openSections.news" class="space-y-4">
-        <DataListManager
-          v-model="newsItems"
-          :max-items="6"
-          :min-items="1"
-          :item-label="$t('admin.editors.home.newsItem')"
-          @add="addNewsItem"
+      <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
+        <UIcon name="i-heroicons-information-circle" class="w-8 h-8 text-blue-600 shrink-0 mt-0.5" />
+        <div class="flex-1">
+          <p class="text-gray-700">{{ $t('admin.editors.home.newsFromAnnouncements') }}</p>
+        </div>
+        <UButton
+          :to="localePath('/admin/announcements')"
+          variant="outline"
+          icon="i-heroicons-arrow-right"
         >
-          <template #default="{ item, index }">
-            <div class="space-y-3">
-              <BilingualTextField
-                :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
-                :label="$t('admin.editors.home.newsTitle')"
-                :max-length="100"
-                @update:model-value="updateNewsField(index, 'title', $event)"
-              />
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <UFormField :label="$t('admin.editors.home.newsDate') + ' (ES)'">
-                  <UInput
-                    :model-value="item.content_es?.date || ''"
-                    @update:model-value="updateNewsDateField(index, 'es', $event)"
-                  />
-                </UFormField>
-                <UFormField :label="$t('admin.editors.home.newsDate') + ' (EN)'">
-                  <UInput
-                    :model-value="item.content_en?.date || ''"
-                    @update:model-value="updateNewsDateField(index, 'en', $event)"
-                  />
-                </UFormField>
-              </div>
-              <BilingualTextarea
-                :model-value="{ es: item.content_es?.excerpt || '', en: item.content_en?.excerpt || '' }"
-                :label="$t('admin.editors.home.newsExcerpt')"
-                :rows="2"
-                :max-length="300"
-                @update:model-value="updateNewsField(index, 'excerpt', $event)"
-              />
-            </div>
-          </template>
-        </DataListManager>
+          {{ $t('admin.editors.home.goToAnnouncements') }}
+        </UButton>
       </div>
     </UCard>
 
@@ -270,12 +241,13 @@ const { t } = useI18n()
 const saving = ref(false)
 const loaded = ref(false)
 
+const localePath = useLocalePath()
+
 const openSections = reactive({
   welcome: true,
   enrollment: false,
   values: false,
   activities: false,
-  news: false,
 })
 
 function toggleSection(section: keyof typeof openSections) {
@@ -297,9 +269,6 @@ const valuesItems = ref<PageContentItem[]>([])
 
 // --- Activities data ---
 const activitiesItems = ref<PageContentItem[]>([])
-
-// --- News data ---
-const newsItems = ref<PageContentItem[]>([])
 
 // --- Load all data ---
 async function loadAllData() {
@@ -341,12 +310,6 @@ async function loadAllData() {
       ? items.value.map(i => ({ ...i }))
       : []
 
-    // Load news
-    await loadItems('home.news')
-    newsItems.value = items.value.length > 0
-      ? items.value.map(i => ({ ...i }))
-      : []
-
     loaded.value = true
   } catch (e: any) {
     toast.add({ title: t('admin.editors.loadError'), description: e.message, color: 'error' })
@@ -371,14 +334,7 @@ function addValueItem() {
 function addActivityItem() {
   activitiesItems.value = [
     ...activitiesItems.value,
-    { page_key: 'home.activities', content_es: { title: '', description: '' }, content_en: { title: '', description: '' }, sort_order: activitiesItems.value.length, is_active: true },
-  ]
-}
-
-function addNewsItem() {
-  newsItems.value = [
-    ...newsItems.value,
-    { page_key: 'home.news', content_es: { title: '', date: '', excerpt: '' }, content_en: { title: '', date: '', excerpt: '' }, sort_order: newsItems.value.length, is_active: true },
+    { page_key: 'home.activities', content_es: { title: '', description: '' }, content_en: { title: '', description: '' }, sort_order: activitiesItems.value.length, is_active: true, metadata: {} },
   ]
 }
 
@@ -415,25 +371,19 @@ function updateActivityField(index: number, field: string, val: BilingualText) {
   activitiesItems.value = arr
 }
 
-// --- Update functions for news ---
-function updateNewsField(index: number, field: string, val: BilingualText) {
-  const arr = [...newsItems.value]
+// --- Update functions for activity images ---
+function updateActivityImage(index: number, imageData: { url: string; alt_es: string; alt_en: string }) {
+  const arr = [...activitiesItems.value]
   arr[index] = {
     ...arr[index],
-    content_es: { ...arr[index].content_es, [field]: val.es },
-    content_en: { ...arr[index].content_en, [field]: val.en },
+    metadata: {
+      ...arr[index].metadata,
+      image_url: imageData.url,
+      image_alt_es: imageData.alt_es,
+      image_alt_en: imageData.alt_en,
+    },
   }
-  newsItems.value = arr
-}
-
-function updateNewsDateField(index: number, lang: 'es' | 'en', val: string) {
-  const arr = [...newsItems.value]
-  const key = lang === 'es' ? 'content_es' : 'content_en'
-  arr[index] = {
-    ...arr[index],
-    [key]: { ...arr[index][key], date: val },
-  }
-  newsItems.value = arr
+  activitiesItems.value = arr
 }
 
 // --- Save all ---
@@ -468,9 +418,6 @@ async function saveAll() {
 
     // Save activities
     await saveAllContent('home.activities', activitiesItems.value)
-
-    // Save news
-    await saveAllContent('home.news', newsItems.value)
 
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })
   } catch (e: any) {

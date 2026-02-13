@@ -98,7 +98,7 @@
         <!-- Results Count -->
         <div class="mb-8 flex items-center justify-between">
           <p class="text-gray-600">
-            {{ filteredPhotos.length }} {{ filteredPhotos.length === 1 ? 'photo' : 'photos' }}
+            {{ $t('studentLife.gallery.showing', { shown: filteredPhotos.length, total: totalCount }) }}
             <span v-if="selectedYear"> from {{ selectedYear }}</span>
             <span v-if="selectedCategory !== 'all'"> in {{ categories[selectedCategory] }}</span>
           </p>
@@ -122,6 +122,7 @@
                 :src="photo.url"
                 :alt="photo.title"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
               />
               <div
                 v-else
@@ -131,6 +132,7 @@
                   src="/images/logo.png"
                   alt="CEE Logo"
                   class="h-16 w-auto opacity-30"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -155,9 +157,21 @@
           </div>
         </div>
 
+        <!-- Load More Button -->
+        <div v-if="hasMore && filteredPhotos.length > 0" class="text-center mt-10">
+          <UButton
+            size="lg"
+            variant="outline"
+            :loading="loading"
+            @click="handleLoadMore"
+          >
+            {{ $t('studentLife.gallery.loadMore') }}
+          </UButton>
+        </div>
+
         <!-- No Photos Message -->
         <div
-          v-else
+          v-if="filteredPhotos.length === 0"
           class="text-center py-16"
         >
           <UIcon
@@ -207,6 +221,7 @@
               :alt="currentPhoto.title"
               class="max-w-full object-contain rounded-lg"
               style="max-height: min(75vh, 600px)"
+              loading="lazy"
             />
             <div
               v-else
@@ -216,6 +231,7 @@
                 src="/images/logo.png"
                 alt="CEE Logo"
                 class="h-32 w-auto opacity-50"
+                loading="lazy"
               />
             </div>
 
@@ -285,7 +301,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { t, locale } = useI18n();
-const { photos, loadPhotos, loading } = useGallery();
+const { photos, loadPhotos, loadMore, hasMore, totalCount, loading } = useGallery();
 
 // State
 const selectedYear = ref<number | null>(null);
@@ -303,11 +319,26 @@ const categories = computed(() => ({
   community: t('studentLife.gallery.categories.community'),
 }));
 
-// Load photos from DB
-onMounted(() => loadPhotos());
+// Load photos from DB with current filters
+function reloadPhotos() {
+  const year = selectedYear.value ?? undefined;
+  const cat = selectedCategory.value === 'all' ? undefined : selectedCategory.value;
+  loadPhotos(year, cat, 1, 24);
+}
+
+function handleLoadMore() {
+  const year = selectedYear.value ?? undefined;
+  const cat = selectedCategory.value === 'all' ? undefined : selectedCategory.value;
+  loadMore(year, cat);
+}
+
+onMounted(() => reloadPhotos());
+
+// Reload when filters change
+watch([selectedYear, selectedCategory], () => reloadPhotos());
 
 // Localized photos from DB
-const allPhotos = computed(() =>
+const filteredPhotos = computed(() =>
   photos.value.map(p => ({
     ...p,
     title: locale.value === 'en' ? p.title_en : p.title_es,
@@ -315,19 +346,11 @@ const allPhotos = computed(() =>
   }))
 );
 
-// Available years from DB data
+// Available years — we need all unique years regardless of current filter
+// This is a simple list since gallery_photos table has a year column
 const availableYears = computed(() => {
-  const years = [...new Set(allPhotos.value.map(p => p.year))];
+  const years = [...new Set(photos.value.map(p => p.year))];
   return years.sort((a, b) => b - a);
-});
-
-// Filtered photos based on selections
-const filteredPhotos = computed(() => {
-  return allPhotos.value.filter(photo => {
-    const yearMatch = selectedYear.value === null || photo.year === selectedYear.value;
-    const categoryMatch = selectedCategory.value === 'all' || photo.category === selectedCategory.value;
-    return yearMatch && categoryMatch;
-  });
 });
 
 // Current photo for lightbox

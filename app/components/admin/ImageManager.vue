@@ -1,8 +1,9 @@
 <template>
   <div class="space-y-4">
     <ImageUploader
-      v-model="model.url"
+      :model-value="model.url"
       :folder="folder"
+      @update:model-value="onUrlChange"
     />
 
     <BilingualTextField
@@ -48,19 +49,21 @@ const model = defineModel<ImageData>({
   }),
 })
 
+function onUrlChange(url: string) {
+  model.value = { ...model.value, url }
+}
+
 const altTextModel = computed<BilingualText>({
   get: () => ({ es: model.value.alt_es, en: model.value.alt_en }),
   set: (val) => {
-    model.value.alt_es = val.es
-    model.value.alt_en = val.en
+    model.value = { ...model.value, alt_es: val.es, alt_en: val.en }
   },
 })
 
 const titleModel = computed<BilingualText>({
   get: () => ({ es: model.value.title_es || '', en: model.value.title_en || '' }),
   set: (val) => {
-    model.value.title_es = val.es
-    model.value.title_en = val.en
+    model.value = { ...model.value, title_es: val.es, title_en: val.en }
   },
 })
 </script>

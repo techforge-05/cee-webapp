@@ -13,11 +13,11 @@ export default defineEventHandler(async (event) => {
   const supabase = await serverSupabaseClient(event)
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('role')
+    .select('role, status')
     .eq('id', userId)
     .single()
 
-  if (!profile) {
+  if (!profile || !['super_admin', 'admin'].includes(profile.role) || profile.status !== 'active') {
     throw createError({ statusCode: 403, message: 'Admin access required' })
   }
 

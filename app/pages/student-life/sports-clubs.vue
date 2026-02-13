@@ -56,6 +56,7 @@
                 :src="sport.image"
                 :alt="sport.title"
                 class="w-full h-full object-cover"
+                loading="lazy"
               />
               <div v-else class="text-center text-gray-400">
                 <UIcon :name="sportIcons[index]" class="w-12 h-12 mb-2" />

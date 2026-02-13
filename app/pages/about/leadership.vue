@@ -52,6 +52,7 @@
               src="/images/boardOfDirectors.jpg"
               :alt="$t('about.leadership.board.title')"
               class="w-full h-auto object-cover"
+              loading="lazy"
             />
           </div>
           <!-- Board Member Names -->
@@ -101,6 +102,7 @@
                 src="/images/Osiris.jpg"
                 alt="Yasmín Guevara"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
+                loading="lazy"
               />
               <h3 class="text-2xl font-bold text-gray-900 mb-2">
                 Yasmín Guevara
@@ -128,6 +130,7 @@
                 src="/images/Yasmin.jpg"
                 alt="Osiris Murillo"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
+                loading="lazy"
               />
               <h3 class="text-2xl font-bold text-gray-900 mb-2">
                 Osiris Murillo

@@ -33,9 +33,10 @@
     <section
       class="relative py-10 md:py-20 overflow-hidden"
       style="
-        background-image: url('/images/main-3.png');
+        background-image: url('/images/main-bg.jpg');
         background-position: center;
         background-repeat: repeat;
+        background-size: cover;
       "
     >
       <!-- Dark overlay for better text readability -->
@@ -213,8 +214,29 @@
           <UCard
             v-for="(activity, index) in activities"
             :key="index"
+            class="overflow-hidden"
           >
             <template #header>
+              <div
+                v-if="activity.image_url"
+                class="aspect-video overflow-hidden -mx-6 -mt-6 mb-3"
+              >
+                <img
+                  :src="activity.image_url"
+                  :alt="activity.image_alt || activity.title"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div
+                v-else
+                class="aspect-video bg-gray-100 -mx-6 -mt-6 mb-3 flex items-center justify-center"
+              >
+                <UIcon
+                  :name="activityIcons[index] || 'i-heroicons-academic-cap'"
+                  class="w-12 h-12 text-gray-300"
+                />
+              </div>
               <h3 class="text-lg font-semibold text-gray-900">
                 {{ activity.title }}
               </h3>
@@ -242,13 +264,25 @@
           <UCard
             v-for="(newsItem, index) in newsItems"
             :key="index"
+            class="overflow-hidden"
           >
             <template #header>
+              <div
+                v-if="newsItem.image_url"
+                class="aspect-video overflow-hidden -mx-6 -mt-6 mb-3"
+              >
+                <img
+                  :src="newsItem.image_url"
+                  :alt="newsItem.image_alt || newsItem.title"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
               <h3 class="text-xl font-semibold text-gray-900">
                 {{ newsItem.title }}
               </h3>
               <p class="text-sm text-gray-500 mt-1">
-                {{ newsItem.date }}
+                {{ formatDate(newsItem.date) }}
               </p>
             </template>
             <p class="text-gray-600">
@@ -267,23 +301,25 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
-  import { useI18n } from 'vue-i18n';
-
   definePageMeta({
     layout: 'default',
   });
 
-  const { tm, rt } = useI18n();
+  const { locale, tm, rt } = useI18n();
   const { loadContent, getItems, field } = usePublicContent();
+  const { announcements, loadAnnouncements } = useAnnouncements();
 
   // Load DB content
-  onMounted(() => loadContent([
-    'home.values',
-    'home.activities',
-    'home.news',
-    'home.enrollment.features',
-  ]));
+  onMounted(() =>
+    Promise.all([
+      loadContent([
+        'home.values',
+        'home.activities',
+        'home.enrollment.features',
+      ]),
+      loadAnnouncements(),
+    ]),
+  );
 
   // Icon mapping for each value
   const valueIcons = [
@@ -309,7 +345,8 @@
     const values = tm('home.values.items') as any[];
     return values.map((v: any, i: number) => ({
       title: typeof v.title === 'string' ? v.title : rt(v.title),
-      description: typeof v.description === 'string' ? v.description : rt(v.description),
+      description:
+        typeof v.description === 'string' ? v.description : rt(v.description),
       icon: valueIcons[i],
     }));
   });
@@ -318,43 +355,95 @@
   const enrollmentFeatures = computed(() => {
     const dbItems = getItems('home.enrollment.features');
     if (dbItems.length > 0) {
-      return dbItems.map(item => field(item, 'text'));
+      return dbItems.map((item) => field(item, 'text'));
     }
     const items = tm('home.enrollment.features') as any[];
-    return Array.isArray(items) ? items.map((f: any) => typeof f === 'string' ? f : rt(f)) : [];
+    return Array.isArray(items)
+      ? items.map((f: any) => (typeof f === 'string' ? f : rt(f)))
+      : [];
   });
+
+  // Activity icons fallback when no image
+  const activityIcons = [
+    'i-heroicons-academic-cap',
+    'i-heroicons-musical-note',
+    'i-heroicons-trophy',
+    'i-heroicons-paint-brush',
+    'i-heroicons-globe-americas',
+    'i-heroicons-beaker',
+    'i-heroicons-book-open',
+    'i-heroicons-puzzle-piece',
+  ];
 
   // Activities: prefer DB, fall back to i18n
   const activities = computed(() => {
     const dbItems = getItems('home.activities');
     if (dbItems.length > 0) {
-      return dbItems.map(item => ({
+      return dbItems.map((item) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
+        image_url: item.metadata?.image_url || '',
+        image_alt: item.metadata?.[`image_alt_${locale.value}`] || '',
       }));
     }
     const items = tm('home.activities.items') as any[];
-    return Array.isArray(items) ? items.map((a: any) => ({
-      title: typeof a.title === 'string' ? a.title : rt(a.title),
-      description: typeof a.description === 'string' ? a.description : rt(a.description),
-    })) : [];
+    return Array.isArray(items)
+      ? items.map((a: any) => ({
+          title: typeof a.title === 'string' ? a.title : rt(a.title),
+          description:
+            typeof a.description === 'string'
+              ? a.description
+              : rt(a.description),
+          image_url: '',
+          image_alt: '',
+        }))
+      : [];
   });
 
-  // News: prefer DB, fall back to i18n
+  // News: prefer announcements, fall back to i18n
   const newsItems = computed(() => {
-    const dbItems = getItems('home.news');
-    if (dbItems.length > 0) {
-      return dbItems.map(item => ({
-        title: field(item, 'title'),
-        date: field(item, 'date'),
-        excerpt: field(item, 'excerpt'),
+    const active = announcements.value.filter((a) => a.is_active).slice(0, 3);
+    if (active.length > 0) {
+      return active.map((a) => ({
+        title: locale.value === 'en' ? a.title_en : a.title_es,
+        date: a.display_date,
+        excerpt:
+          locale.value === 'en'
+            ? a.description_en || ''
+            : a.description_es || '',
+        image_url: a.image_url || '',
+        image_alt:
+          locale.value === 'en' ? a.image_alt_en || '' : a.image_alt_es || '',
       }));
     }
+    // Fallback to i18n when no announcements exist yet
     const items = tm('home.news.items') as any[];
-    return Array.isArray(items) ? items.map((n: any) => ({
-      title: typeof n.title === 'string' ? n.title : rt(n.title),
-      date: typeof n.date === 'string' ? n.date : rt(n.date),
-      excerpt: typeof n.excerpt === 'string' ? n.excerpt : rt(n.excerpt),
-    })) : [];
+    return Array.isArray(items)
+      ? items.map((n: any) => ({
+          title: typeof n.title === 'string' ? n.title : rt(n.title),
+          date: typeof n.date === 'string' ? n.date : rt(n.date),
+          excerpt: typeof n.excerpt === 'string' ? n.excerpt : rt(n.excerpt),
+          image_url: '',
+          image_alt: '',
+        }))
+      : [];
   });
+
+  // Format date for display
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    try {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString(
+        locale.value === 'es' ? 'es-HN' : 'en-US',
+        {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        },
+      );
+    } catch {
+      return dateStr;
+    }
+  };
 </script>

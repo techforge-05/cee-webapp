@@ -397,7 +397,7 @@
           "title": "Escuela Primaria",
           "name": "Escuela Bilingüe Siguatepeque",
           "description": "Nuestro programa de primaria (grados 1-6) construye una base académica sólida a través de la instrucción bilingüe inmersiva. Los estudiantes participan en un currículo integral que desarrolla el pensamiento crítico, la resolución de problemas y las habilidades de comunicación.",
-          "englishProgram": "Materias del Programa en Inglés:",
+          "englishProgram": "Materias:",
           "subjects": [
             "Lengua y Literatura en Inglés",
             "Matemáticas",
@@ -599,14 +599,14 @@
     "grades": {
       "title": "Grados y Niveles",
       "subtitle": "Excelencia educativa desde Kinder hasta 11° grado",
-      "intro": "En CEE, proporcionamos educación bilingüe apropiada para la edad que crece con tu hijo. Nuestro programa abarca desde la primera infancia hasta la escuela secundaria, con cada nivel diseñado para construir sobre el anterior mientras satisface las necesidades de desarrollo únicas de los estudiantes en cada etapa.",
+      "intro": "En CEE, proporcionamos educación bilingüe apropiada para la edad que crece con tu hijo. Nuestro programa abarca desde preescolar hasta la escuela secundaria, con cada nivel diseñado para construir sobre el anterior mientras satisface las necesidades de desarrollo únicas de los estudiantes en cada etapa.",
       "keyFocus": "Áreas de Enfoque Clave",
       "typicalAge": "Rango de Edad",
       "levels": [
         {
           "title": "Educación Preescolar",
           "grades": "Kinder y Preparatoria (Edades 4-5)",
-          "description": "Nuestro programa de primera infancia sienta las bases para el aprendizaje de por vida en un ambiente enriquecedor basado en el juego. Los niños comienzan su viaje bilingüe a través de actividades atractivas que desarrollan habilidades sociales, emocionales, cognitivas y espirituales.",
+          "description": "Nuestro programa preescolar sienta las bases para el aprendizaje de por vida en un ambiente enriquecedor basado en el juego. Los niños comienzan su viaje bilingüe a través de actividades atractivas que desarrollan habilidades sociales, emocionales, cognitivas y espirituales.",
           "focus": [
             "Introducción al español e inglés",
             "Desarrollo socioemocional",
@@ -878,7 +878,7 @@
         "description": "Nuestra biblioteca proporciona recursos y programas apropiados para cada nivel de grado.",
         "levels": [
           {
-            "title": "Primera Infancia (Kinder - Preparatoria)",
+            "title": "Preescolar (Kinder - Preparatoria)",
             "description": "Libros ilustrados, sesiones de lectura en voz alta y actividades de alfabetización temprana para construir habilidades fundamentales de lectura."
           },
           {
@@ -1031,6 +1031,8 @@
         "celebrations": "Celebraciones"
       },
       "noPhotos": "No hay fotos disponibles para esta selección",
+      "loadMore": "Cargar Más Fotos",
+      "showing": "Mostrando {shown} de {total} fotos",
       "cta": {
         "title": "Crea Recuerdos Con Nosotros",
         "description": "Únete a nuestra comunidad escolar y sé parte de estos maravillosos momentos.",
@@ -1297,7 +1299,9 @@
         "newsItem": "Noticia",
         "newsTitle": "Título de Noticia",
         "newsDate": "Fecha",
-        "newsExcerpt": "Extracto"
+        "newsExcerpt": "Extracto",
+        "newsFromAnnouncements": "La sección de noticias en la página principal muestra automáticamente los anuncios activos más recientes. Adminístrelos desde la página de Anuncios.",
+        "goToAnnouncements": "Ir a Anuncios"
       },
       "faq": {
         "question": "Pregunta",
@@ -2190,7 +2194,7 @@
           "Preparatoria (5-6 años)",
           "Primaria (1ro - 6to grado)",
           "Secundaria (7mo - 9no grado)",
-          "Bachillerato (10mo - 11vo grado)"
+          "Bachillerato (10mo - 11mo grado)"
         ]
       },
       "requirements": {
@@ -2275,7 +2279,7 @@
       "qualifications": {
         "title": "Lo Que Buscamos",
         "items": [
-          "Sólida fe cristiana y buen testimonio",
+          "Fe cristiana y testimonio sólido",
           "Hablante nativo de inglés o fluidez nativa",
           "Título universitario (credenciales de enseñanza)",
           "Compromiso con nuestra misión y valores",

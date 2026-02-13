@@ -45,7 +45,7 @@
               {{ itemLabel || $t('admin.components.dataList.item') }}
               {{ index + 1 }}
             </span>
-            <div class="flex gap-1">
+            <div class="flex gap-2">
               <UButton
                 icon="i-heroicons-chevron-up"
                 size="xs"
