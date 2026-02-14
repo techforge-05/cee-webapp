@@ -1,77 +1,55 @@
 <template>
-  <div class="space-y-6">
-    <!-- Save bar -->
-    <div class="flex justify-end">
-      <UButton
-        icon="i-heroicons-check"
-        :loading="saving"
-        @click="saveAll"
-      >
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
-
+  <div class="space-y-6 pb-24">
     <!-- Welcome Section -->
-    <UCard>
-      <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection('welcome')"
-        >
-          <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.welcome') }}</h3>
-          <UIcon
-            :name="openSections.welcome ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
-      </template>
-
-      <div v-show="openSections.welcome" class="space-y-4">
+    <SectionCard
+      v-model="openSections.welcome"
+      :title="$t('admin.editors.home.welcome')"
+      :page-key="'home.welcome'"
+      @restored="handleSectionRestored('home.welcome')"
+    >
+      <div class="space-y-4">
         <BilingualTextField
           v-model="welcomeTitle1"
           :label="$t('admin.editors.home.welcomeTitlePart1')"
           :max-length="100"
+          @update:model-value="trackChanges"
         />
         <BilingualTextField
           v-model="welcomeTitle2"
           :label="$t('admin.editors.home.welcomeTitlePart2')"
           :max-length="100"
+          @update:model-value="trackChanges"
         />
         <BilingualTextarea
           v-model="welcomeDescription"
           :label="$t('admin.editors.home.welcomeDescription')"
           :rows="3"
           :max-length="500"
+          @update:model-value="trackChanges"
         />
       </div>
-    </UCard>
+    </SectionCard>
 
     <!-- Enrollment Section -->
-    <UCard>
-      <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection('enrollment')"
-        >
-          <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.enrollment') }}</h3>
-          <UIcon
-            :name="openSections.enrollment ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
-      </template>
-
-      <div v-show="openSections.enrollment" class="space-y-4">
+    <SectionCard
+      v-model="openSections.enrollment"
+      :title="$t('admin.editors.home.enrollment')"
+      :page-key="'home.enrollment'"
+      @restored="handleSectionRestored('home.enrollment')"
+    >
+      <div class="space-y-4">
         <BilingualTextField
           v-model="enrollmentTitle"
           :label="$t('admin.editors.home.enrollmentTitle')"
           :max-length="100"
+          @update:model-value="trackChanges"
         />
         <BilingualTextarea
           v-model="enrollmentDescription"
           :label="$t('admin.editors.home.enrollmentDescription')"
           :rows="3"
           :max-length="500"
+          @update:model-value="trackChanges"
         />
 
         <div class="pt-2">
@@ -82,6 +60,7 @@
             :min-items="1"
             :item-label="$t('admin.editors.home.feature')"
             @add="addEnrollmentFeature"
+            @update:model-value="trackChanges"
           >
             <template #default="{ item, index }">
               <BilingualTextField
@@ -93,30 +72,23 @@
           </DataListManager>
         </div>
       </div>
-    </UCard>
+    </SectionCard>
 
     <!-- Values Section -->
-    <UCard>
-      <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection('values')"
-        >
-          <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.values') }}</h3>
-          <UIcon
-            :name="openSections.values ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
-      </template>
-
-      <div v-show="openSections.values" class="space-y-4">
+    <SectionCard
+      v-model="openSections.values"
+      :title="$t('admin.editors.home.values')"
+      :page-key="'home.values'"
+      @restored="handleSectionRestored('home.values')"
+    >
+      <div class="space-y-4">
         <DataListManager
           v-model="valuesItems"
           :max-items="9"
           :min-items="3"
           :item-label="$t('admin.editors.home.value')"
           @add="addValueItem"
+          @update:model-value="trackChanges"
         >
           <template #default="{ item, index }">
             <div class="space-y-3">
@@ -137,66 +109,80 @@
           </template>
         </DataListManager>
       </div>
-    </UCard>
+    </SectionCard>
 
     <!-- Activities Section -->
-    <UCard>
-      <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection('activities')"
-        >
-          <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.activities') }}</h3>
-          <UIcon
-            :name="openSections.activities ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
-      </template>
-
-      <div v-show="openSections.activities" class="space-y-4">
+    <SectionCard
+      v-model="openSections.activities"
+      :title="$t('admin.editors.home.activities')"
+      :page-key="'home.activities'"
+      @restored="handleSectionRestored('home.activities')"
+    >
+      <div class="space-y-4">
         <DataListManager
           v-model="activitiesItems"
           :max-items="8"
           :min-items="2"
           :item-label="$t('admin.editors.home.activity')"
           @add="addActivityItem"
+          @update:model-value="trackChanges"
         >
           <template #default="{ item, index }">
-            <div class="space-y-3">
-              <ImageManager
-                :model-value="{
-                  url: item.metadata?.image_url || '',
-                  alt_es: item.metadata?.image_alt_es || '',
-                  alt_en: item.metadata?.image_alt_en || '',
-                }"
-                folder="cee-assets/pages/home"
-                @update:model-value="updateActivityImage(index, $event)"
-              />
-              <BilingualTextField
-                :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
-                :label="$t('admin.editors.home.activityTitle')"
-                :max-length="50"
-                @update:model-value="updateActivityField(index, 'title', $event)"
-              />
-              <BilingualTextarea
-                :model-value="{ es: item.content_es?.description || '', en: item.content_en?.description || '' }"
-                :label="$t('admin.editors.home.activityDescription')"
-                :rows="2"
-                :max-length="200"
-                @update:model-value="updateActivityField(index, 'description', $event)"
-              />
+            <!-- 60/40 Layout: Data left, Image right -->
+            <div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
+              <!-- Left: Data fields (60%) -->
+              <div class="space-y-3">
+                <BilingualTextField
+                  :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
+                  :label="$t('admin.editors.home.activityTitle')"
+                  :max-length="50"
+                  @update:model-value="updateActivityField(index, 'title', $event)"
+                />
+                <BilingualTextarea
+                  :model-value="{ es: item.content_es?.description || '', en: item.content_en?.description || '' }"
+                  :label="$t('admin.editors.home.activityDescription')"
+                  :rows="2"
+                  :max-length="200"
+                  @update:model-value="updateActivityField(index, 'description', $event)"
+                />
+              </div>
+
+              <!-- Right: Image (40%) -->
+              <div>
+                <UFormField :label="$t('admin.components.image.upload')">
+                  <ImageUploader
+                    :model-value="item.metadata?.image_url || ''"
+                    :folder="`cee-assets/pages/home`"
+                    @update:model-value="updateActivityImageUrl(index, $event)"
+                  />
+                </UFormField>
+                <div class="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-3">
+                  <UFormField :label="$t('admin.components.image.altEs')">
+                    <UInput
+                      :model-value="item.metadata?.image_alt_es || ''"
+                      @update:model-value="updateActivityImageAlt(index, 'image_alt_es', $event)"
+                    />
+                  </UFormField>
+                  <UFormField :label="$t('admin.components.image.altEn')">
+                    <UInput
+                      :model-value="item.metadata?.image_alt_en || ''"
+                      @update:model-value="updateActivityImageAlt(index, 'image_alt_en', $event)"
+                    />
+                  </UFormField>
+                </div>
+              </div>
             </div>
           </template>
         </DataListManager>
       </div>
-    </UCard>
+    </SectionCard>
 
     <!-- News / Announcements -->
-    <UCard>
-      <template #header>
-        <h3 class="text-lg font-semibold">{{ $t('admin.editors.home.news') }}</h3>
-      </template>
+    <SectionCard
+      v-model="openSections.news"
+      :title="$t('admin.editors.home.news')"
+      :page-key="''"
+    >
       <div class="flex items-start gap-4 p-4 bg-blue-50 rounded-lg">
         <UIcon name="i-heroicons-information-circle" class="w-8 h-8 text-blue-600 shrink-0 mt-0.5" />
         <div class="flex-1">
@@ -210,18 +196,16 @@
           {{ $t('admin.editors.home.goToAnnouncements') }}
         </UButton>
       </div>
-    </UCard>
+    </SectionCard>
 
-    <!-- Bottom save bar -->
-    <div class="flex justify-end">
-      <UButton
-        icon="i-heroicons-check"
-        :loading="saving"
-        @click="saveAll"
-      >
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
+    <!-- Floating Action Buttons -->
+    <FloatingActionButtons
+      :show="true"
+      :is-dirty="dirtyState.isDirty.value"
+      :loading="saving"
+      @save="handleSave"
+      @cancel="handleCancel"
+    />
   </div>
 </template>
 
@@ -237,6 +221,7 @@ defineProps<{
 const { loadItems, saveAll: saveAllContent, items } = usePageContent()
 const toast = useToast()
 const { t } = useI18n()
+const dirtyState = useDirtyState()
 
 const saving = ref(false)
 const loaded = ref(false)
@@ -244,17 +229,14 @@ const loaded = ref(false)
 const localePath = useLocalePath()
 
 const openSections = reactive({
-  welcome: true,
+  welcome: false,
   enrollment: false,
   values: false,
   activities: false,
+  news: false,
 })
 
-function toggleSection(section: keyof typeof openSections) {
-  openSections[section] = !openSections[section]
-}
-
-// --- Welcome data (stored as dynamic_content via page_content) ---
+// --- Welcome data ---
 const welcomeTitle1 = ref<BilingualText>({ es: '', en: '' })
 const welcomeTitle2 = ref<BilingualText>({ es: '', en: '' })
 const welcomeDescription = ref<BilingualText>({ es: '', en: '' })
@@ -310,10 +292,51 @@ async function loadAllData() {
       ? items.value.map(i => ({ ...i }))
       : []
 
+    // Initialize dirty state tracking
+    initDirtyStateTracking()
+
     loaded.value = true
   } catch (e: any) {
     toast.add({ title: t('admin.editors.loadError'), description: e.message, color: 'error' })
   }
+}
+
+function initDirtyStateTracking() {
+  const allData = {
+    welcome: {
+      title1: JSON.parse(JSON.stringify(welcomeTitle1.value)),
+      title2: JSON.parse(JSON.stringify(welcomeTitle2.value)),
+      description: JSON.parse(JSON.stringify(welcomeDescription.value)),
+    },
+    enrollment: {
+      title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
+      description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
+      features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
+    },
+    values: JSON.parse(JSON.stringify(valuesItems.value)),
+    activities: JSON.parse(JSON.stringify(activitiesItems.value)),
+  }
+  dirtyState.init(allData)
+}
+
+function trackChanges() {
+  nextTick(() => {
+    const currentData = {
+      welcome: {
+        title1: JSON.parse(JSON.stringify(welcomeTitle1.value)),
+        title2: JSON.parse(JSON.stringify(welcomeTitle2.value)),
+        description: JSON.parse(JSON.stringify(welcomeDescription.value)),
+      },
+      enrollment: {
+        title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
+        description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
+        features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
+      },
+      values: JSON.parse(JSON.stringify(valuesItems.value)),
+      activities: JSON.parse(JSON.stringify(activitiesItems.value)),
+    }
+    dirtyState.update(currentData)
+  })
 }
 
 // --- Add functions ---
@@ -322,6 +345,7 @@ function addEnrollmentFeature() {
     ...enrollmentFeatures.value,
     { page_key: 'home.enrollment.features', content_es: { text: '' }, content_en: { text: '' }, sort_order: enrollmentFeatures.value.length, is_active: true },
   ]
+  trackChanges()
 }
 
 function addValueItem() {
@@ -329,6 +353,7 @@ function addValueItem() {
     ...valuesItems.value,
     { page_key: 'home.values', content_es: { title: '', description: '' }, content_en: { title: '', description: '' }, sort_order: valuesItems.value.length, is_active: true },
   ]
+  trackChanges()
 }
 
 function addActivityItem() {
@@ -336,6 +361,7 @@ function addActivityItem() {
     ...activitiesItems.value,
     { page_key: 'home.activities', content_es: { title: '', description: '' }, content_en: { title: '', description: '' }, sort_order: activitiesItems.value.length, is_active: true, metadata: {} },
   ]
+  trackChanges()
 }
 
 // --- Update functions for enrollment features ---
@@ -347,6 +373,7 @@ function updateEnrollmentFeature(index: number, val: BilingualText) {
     content_en: { text: val.en },
   }
   enrollmentFeatures.value = arr
+  trackChanges()
 }
 
 // --- Update functions for values ---
@@ -358,6 +385,7 @@ function updateValueField(index: number, field: string, val: BilingualText) {
     content_en: { ...arr[index].content_en, [field]: val.en },
   }
   valuesItems.value = arr
+  trackChanges()
 }
 
 // --- Update functions for activities ---
@@ -369,25 +397,37 @@ function updateActivityField(index: number, field: string, val: BilingualText) {
     content_en: { ...arr[index].content_en, [field]: val.en },
   }
   activitiesItems.value = arr
+  trackChanges()
 }
 
-// --- Update functions for activity images ---
-function updateActivityImage(index: number, imageData: { url: string; alt_es: string; alt_en: string }) {
+function updateActivityImageUrl(index: number, url: string) {
   const arr = [...activitiesItems.value]
   arr[index] = {
     ...arr[index],
     metadata: {
       ...arr[index].metadata,
-      image_url: imageData.url,
-      image_alt_es: imageData.alt_es,
-      image_alt_en: imageData.alt_en,
+      image_url: url,
     },
   }
   activitiesItems.value = arr
+  trackChanges()
+}
+
+function updateActivityImageAlt(index: number, field: string, val: string) {
+  const arr = [...activitiesItems.value]
+  arr[index] = {
+    ...arr[index],
+    metadata: {
+      ...arr[index].metadata,
+      [field]: val,
+    },
+  }
+  activitiesItems.value = arr
+  trackChanges()
 }
 
 // --- Save all ---
-async function saveAll() {
+async function handleSave() {
   saving.value = true
   try {
     // Save welcome (single item)
@@ -419,12 +459,41 @@ async function saveAll() {
     // Save activities
     await saveAllContent('home.activities', activitiesItems.value)
 
+    dirtyState.markClean()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })
   } catch (e: any) {
     toast.add({ title: t('admin.editors.saveError'), description: e.message, color: 'error' })
   } finally {
     saving.value = false
   }
+}
+
+function handleCancel() {
+  const resetData = dirtyState.reset()
+
+  // Restore all data from reset
+  welcomeTitle1.value = resetData.welcome.title1
+  welcomeTitle2.value = resetData.welcome.title2
+  welcomeDescription.value = resetData.welcome.description
+  enrollmentTitle.value = resetData.enrollment.title
+  enrollmentDescription.value = resetData.enrollment.description
+  enrollmentFeatures.value = resetData.enrollment.features
+  valuesItems.value = resetData.values
+  activitiesItems.value = resetData.activities
+
+  toast.add({
+    title: t('admin.messages.changesDiscarded'),
+    color: 'info',
+  })
+}
+
+async function handleSectionRestored(pageKey: string) {
+  // Reload data for all sections
+  await loadAllData()
+  toast.add({
+    title: t('admin.messages.sectionRestored'),
+    color: 'success',
+  })
 }
 
 onMounted(() => {

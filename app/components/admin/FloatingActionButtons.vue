@@ -18,7 +18,7 @@
                 color="neutral"
                 size="lg"
                 icon="i-heroicons-x-mark"
-                :disabled="loading"
+                :disabled="loading || !isDirty"
                 @click="handleCancel"
               >
                 {{ $t('admin.actions.cancel') }}
@@ -44,18 +44,14 @@
 
     <!-- Confirmation Modal for Cancel -->
     <UModal v-model:open="showCancelModal">
-      <UCard>
-        <template #header>
-          <h3 class="text-lg font-semibold">
+      <template #content>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
             {{ $t('admin.dialogs.unsavedChanges.title') }}
           </h3>
-        </template>
-
-        <p class="text-gray-600">
-          {{ $t('admin.dialogs.unsavedChanges.message') }}
-        </p>
-
-        <template #footer>
+          <p class="text-sm text-gray-500 mb-6">
+            {{ $t('admin.dialogs.unsavedChanges.message') }}
+          </p>
           <div class="flex justify-end gap-2">
             <UButton
               variant="outline"
@@ -68,8 +64,8 @@
               {{ $t('admin.actions.confirm') }}
             </UButton>
           </div>
-        </template>
-      </UCard>
+        </div>
+      </template>
     </UModal>
   </Teleport>
 </template>

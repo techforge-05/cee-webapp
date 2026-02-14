@@ -9,19 +9,20 @@
       <UFormField :label="$t('admin.components.bilingual.spanish')">
         <div class="flex gap-2">
           <UInput
-            v-model="model.es"
+            :model-value="modelEs"
             :placeholder="placeholder"
             :maxlength="maxLength"
             :required="required"
             :disabled="disabled"
             class="flex-1"
+            @update:model-value="updateEs"
           />
           <TranslateButton
-            :source-text="model.en"
+            :source-text="modelEn"
             from="en"
             to="es"
-            :disabled="disabled || !model.en"
-            @translated="(text: string) => model.es = text"
+            :disabled="disabled"
+            @translated="updateEs"
           />
         </div>
       </UFormField>
@@ -30,19 +31,20 @@
       <UFormField :label="$t('admin.components.bilingual.english')">
         <div class="flex gap-2">
           <UInput
-            v-model="model.en"
+            :model-value="modelEn"
             :placeholder="placeholder"
             :maxlength="maxLength"
             :required="required"
             :disabled="disabled"
             class="flex-1"
+            @update:model-value="updateEn"
           />
           <TranslateButton
-            :source-text="model.es"
+            :source-text="modelEs"
             from="es"
             to="en"
-            :disabled="disabled || !model.es"
-            @translated="(text: string) => model.en = text"
+            :disabled="disabled"
+            @translated="updateEn"
           />
         </div>
       </UFormField>
@@ -56,13 +58,33 @@ export interface BilingualText {
   en: string
 }
 
-defineProps<{
+const props = defineProps<{
   label?: string
   placeholder?: string
   required?: boolean
   maxLength?: number
   disabled?: boolean
+  modelValue?: BilingualText
 }>()
 
-const model = defineModel<BilingualText>({ default: () => ({ es: '', en: '' }) })
+const emit = defineEmits<{
+  'update:modelValue': [value: BilingualText]
+}>()
+
+const model = computed({
+  get: () => props.modelValue || { es: '', en: '' },
+  set: (value: BilingualText) => emit('update:modelValue', value),
+})
+
+// Explicit computed properties for es and en to ensure reactivity
+const modelEs = computed(() => model.value.es)
+const modelEn = computed(() => model.value.en)
+
+function updateEs(text: string) {
+  emit('update:modelValue', { es: text, en: model.value.en })
+}
+
+function updateEn(text: string) {
+  emit('update:modelValue', { es: model.value.es, en: text })
+}
 </script>

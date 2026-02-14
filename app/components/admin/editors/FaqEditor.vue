@@ -1,103 +1,101 @@
 <template>
-  <div class="space-y-6">
-    <!-- Save bar -->
-    <div class="flex justify-end">
-      <UButton
-        icon="i-heroicons-check"
-        :loading="saving"
-        @click="handleSave"
-      >
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
-
-    <!-- Category filter -->
-    <div class="flex flex-wrap gap-2">
-      <UButton
-        v-for="cat in categoryOptions"
-        :key="cat.value"
-        :variant="filterCategory === cat.value ? 'solid' : 'outline'"
-        size="sm"
-        @click="filterCategory = cat.value"
-      >
-        {{ cat.label }}
-      </UButton>
-    </div>
-
-    <!-- FAQ items -->
-    <DataListManager
-      v-model="filteredItems"
-      :max-items="40"
-      :min-items="1"
-      :item-label="$t('admin.editors.faq.question')"
-      @add="addFaqItem"
+  <div class="space-y-6 pb-24">
+    <!-- FAQ Section -->
+    <SectionCard
+      v-model="openFaq"
+      :title="$t('admin.editors.faq.title')"
+      :page-key="'contact.faq'"
+      @restored="handleSectionRestored"
     >
-      <template #default="{ item, index }">
-        <div class="space-y-4">
-          <!-- Category -->
-          <UFormField :label="$t('admin.editors.faq.category')">
-            <USelect
-              :model-value="item.metadata?.category || 'general'"
-              :items="categorySelectOptions"
-              @update:model-value="updateCategory(index, $event)"
-            />
-          </UFormField>
-
-          <!-- Question -->
-          <BilingualTextField
-            :model-value="{ es: item.content_es?.question || '', en: item.content_en?.question || '' }"
-            :label="$t('admin.editors.faq.question')"
-            :max-length="200"
-            @update:model-value="updateField(index, 'question', $event)"
-          />
-
-          <!-- Answer -->
-          <BilingualTextarea
-            :model-value="{ es: item.content_es?.answer || '', en: item.content_en?.answer || '' }"
-            :label="$t('admin.editors.faq.answer')"
-            :rows="3"
-            :max-length="1000"
-            @update:model-value="updateField(index, 'answer', $event)"
-          />
-
-          <!-- Optional link -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <UFormField :label="$t('admin.editors.faq.linkText')">
-              <div class="grid grid-cols-2 gap-2">
-                <UInput
-                  :model-value="item.content_es?.linkText || ''"
-                  placeholder="ES"
-                  @update:model-value="updateLinkField(index, 'linkText', 'es', $event)"
-                />
-                <UInput
-                  :model-value="item.content_en?.linkText || ''"
-                  placeholder="EN"
-                  @update:model-value="updateLinkField(index, 'linkText', 'en', $event)"
-                />
-              </div>
-            </UFormField>
-            <UFormField :label="$t('admin.editors.faq.linkPath')">
-              <UInput
-                :model-value="item.metadata?.linkPath || ''"
-                placeholder="/contact/form"
-                @update:model-value="updateMetaField(index, 'linkPath', $event)"
-              />
-            </UFormField>
-          </div>
+      <div class="space-y-6">
+        <!-- Category filter -->
+        <div class="flex flex-wrap gap-2">
+          <UButton
+            v-for="cat in categoryOptions"
+            :key="cat.value"
+            :variant="filterCategory === cat.value ? 'solid' : 'outline'"
+            size="sm"
+            @click="filterCategory = cat.value"
+          >
+            {{ cat.label }}
+          </UButton>
         </div>
-      </template>
-    </DataListManager>
 
-    <!-- Bottom save bar -->
-    <div class="flex justify-end">
-      <UButton
-        icon="i-heroicons-check"
-        :loading="saving"
-        @click="handleSave"
-      >
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
+        <!-- FAQ items -->
+        <DataListManager
+          v-model="filteredItems"
+          :max-items="40"
+          :min-items="1"
+          :item-label="$t('admin.editors.faq.question')"
+          @add="addFaqItem"
+          @update:model-value="trackChanges"
+        >
+          <template #default="{ item, index }">
+            <div class="space-y-4">
+              <!-- Category -->
+              <UFormField :label="$t('admin.editors.faq.category')">
+                <USelect
+                  :model-value="item.metadata?.category || 'general'"
+                  :items="categorySelectOptions"
+                  @update:model-value="updateCategory(index, $event)"
+                />
+              </UFormField>
+
+              <!-- Question -->
+              <BilingualTextField
+                :model-value="{ es: item.content_es?.question || '', en: item.content_en?.question || '' }"
+                :label="$t('admin.editors.faq.question')"
+                :max-length="200"
+                @update:model-value="updateField(index, 'question', $event)"
+              />
+
+              <!-- Answer -->
+              <BilingualTextarea
+                :model-value="{ es: item.content_es?.answer || '', en: item.content_en?.answer || '' }"
+                :label="$t('admin.editors.faq.answer')"
+                :rows="3"
+                :max-length="1000"
+                @update:model-value="updateField(index, 'answer', $event)"
+              />
+
+              <!-- Optional link -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <UFormField :label="$t('admin.editors.faq.linkText')">
+                  <div class="grid grid-cols-2 gap-2">
+                    <UInput
+                      :model-value="item.content_es?.linkText || ''"
+                      placeholder="ES"
+                      @update:model-value="updateLinkField(index, 'linkText', 'es', $event)"
+                    />
+                    <UInput
+                      :model-value="item.content_en?.linkText || ''"
+                      placeholder="EN"
+                      @update:model-value="updateLinkField(index, 'linkText', 'en', $event)"
+                    />
+                  </div>
+                </UFormField>
+                <UFormField :label="$t('admin.editors.faq.linkPath')">
+                  <UInput
+                    :model-value="item.metadata?.linkPath || ''"
+                    placeholder="/contact/form"
+                    @update:model-value="updateMetaField(index, 'linkPath', $event)"
+                  />
+                </UFormField>
+              </div>
+            </div>
+          </template>
+        </DataListManager>
+      </div>
+    </SectionCard>
+
+    <!-- Floating Action Buttons -->
+    <FloatingActionButtons
+      :show="true"
+      :is-dirty="dirtyState.isDirty.value"
+      :loading="saving"
+      @save="handleSave"
+      @cancel="handleCancel"
+    />
   </div>
 </template>
 
@@ -113,8 +111,10 @@ defineProps<{
 const { loadItems, saveAll, items } = usePageContent()
 const toast = useToast()
 const { t } = useI18n()
+const dirtyState = useDirtyState()
 
 const saving = ref(false)
+const openFaq = ref(false)
 const filterCategory = ref('all')
 const allItems = ref<PageContentItem[]>([])
 
@@ -147,8 +147,37 @@ const filteredItems = computed({
       const otherItems = allItems.value.filter(i => (i.metadata?.category || 'general') !== filterCategory.value)
       allItems.value = [...otherItems, ...val]
     }
+    trackChanges()
   },
 })
+
+async function loadAllData() {
+  try {
+    await loadItems('contact.faq')
+    allItems.value = items.value.map(i => ({ ...i }))
+
+    // Initialize dirty state tracking
+    initDirtyStateTracking()
+  } catch (e: any) {
+    toast.add({ title: t('admin.editors.loadError'), description: e.message, color: 'error' })
+  }
+}
+
+function initDirtyStateTracking() {
+  const allData = {
+    items: JSON.parse(JSON.stringify(allItems.value)),
+  }
+  dirtyState.init(allData)
+}
+
+function trackChanges() {
+  nextTick(() => {
+    const currentData = {
+      items: JSON.parse(JSON.stringify(allItems.value)),
+    }
+    dirtyState.update(currentData)
+  })
+}
 
 function addFaqItem() {
   allItems.value = [
@@ -162,6 +191,7 @@ function addFaqItem() {
       metadata: { category: filterCategory.value === 'all' ? 'general' : filterCategory.value, linkPath: '' },
     },
   ]
+  trackChanges()
 }
 
 function updateField(index: number, field: string, val: BilingualText) {
@@ -177,6 +207,7 @@ function updateField(index: number, field: string, val: BilingualText) {
     content_en: { ...arr[realIndex].content_en, [field]: val.en },
   }
   allItems.value = arr
+  trackChanges()
 }
 
 function updateCategory(index: number, val: string) {
@@ -191,6 +222,7 @@ function updateCategory(index: number, val: string) {
     metadata: { ...arr[realIndex].metadata, category: val },
   }
   allItems.value = arr
+  trackChanges()
 }
 
 function updateLinkField(index: number, field: string, lang: 'es' | 'en', val: string) {
@@ -206,6 +238,7 @@ function updateLinkField(index: number, field: string, lang: 'es' | 'en', val: s
     [key]: { ...arr[realIndex][key], [field]: val },
   }
   allItems.value = arr
+  trackChanges()
 }
 
 function updateMetaField(index: number, field: string, val: string) {
@@ -220,12 +253,15 @@ function updateMetaField(index: number, field: string, val: string) {
     metadata: { ...arr[realIndex].metadata, [field]: val },
   }
   allItems.value = arr
+  trackChanges()
 }
 
 async function handleSave() {
   saving.value = true
   try {
     await saveAll('contact.faq', allItems.value)
+
+    dirtyState.markClean()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })
   } catch (e: any) {
     toast.add({ title: t('admin.editors.saveError'), description: e.message, color: 'error' })
@@ -234,12 +270,28 @@ async function handleSave() {
   }
 }
 
-onMounted(async () => {
-  try {
-    await loadItems('contact.faq')
-    allItems.value = items.value.map(i => ({ ...i }))
-  } catch (e: any) {
-    toast.add({ title: t('admin.editors.loadError'), description: e.message, color: 'error' })
-  }
+function handleCancel() {
+  const resetData = dirtyState.reset()
+
+  // Restore all data from reset
+  allItems.value = resetData.items
+
+  toast.add({
+    title: t('admin.messages.changesDiscarded'),
+    color: 'info',
+  })
+}
+
+async function handleSectionRestored() {
+  // Reload all data
+  await loadAllData()
+  toast.add({
+    title: t('admin.messages.sectionRestored'),
+    color: 'success',
+  })
+}
+
+onMounted(() => {
+  loadAllData()
 })
 </script>

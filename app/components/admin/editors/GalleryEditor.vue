@@ -1,91 +1,100 @@
 <template>
-  <div class="space-y-6">
-    <!-- Filters + Add -->
-    <div class="flex flex-wrap items-center gap-4">
-      <UFormField :label="$t('admin.editors.gallery.year')">
-        <USelect
-          v-model="filterYear"
-          :items="yearOptions"
-        />
-      </UFormField>
-      <UFormField :label="$t('admin.editors.gallery.category')">
-        <USelect
-          v-model="filterCategory"
-          :items="categoryOptions"
-        />
-      </UFormField>
-      <div class="ml-auto">
-        <UButton
-          icon="i-heroicons-plus"
-          @click="openAddModal"
-        >
-          {{ $t('admin.editors.gallery.addPhoto') }}
-        </UButton>
-      </div>
-    </div>
-
-    <!-- Loading -->
-    <div v-if="loading" class="text-center py-12">
-      <UIcon name="i-heroicons-arrow-path" class="w-8 h-8 animate-spin text-gray-400 mx-auto" />
-    </div>
-
-    <!-- Empty state -->
-    <div
-      v-else-if="photos.length === 0"
-      class="text-center py-12 border border-dashed rounded-lg"
+  <div class="space-y-6 pb-24">
+    <!-- Gallery Section -->
+    <SectionCard
+      v-model="openGallery"
+      :title="$t('admin.editors.gallery.title')"
+      :page-key="''"
     >
-      <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-300 mx-auto mb-3" />
-      <p class="text-gray-500">{{ $t('admin.editors.gallery.noPhotos') }}</p>
-    </div>
+      <div class="space-y-6">
+        <!-- Filters + Add -->
+        <div class="flex flex-wrap items-center gap-4">
+          <UFormField :label="$t('admin.editors.gallery.year')">
+            <USelect
+              v-model="filterYear"
+              :items="yearOptions"
+            />
+          </UFormField>
+          <UFormField :label="$t('admin.editors.gallery.category')">
+            <USelect
+              v-model="filterCategory"
+              :items="categoryOptions"
+            />
+          </UFormField>
+          <div class="ml-auto">
+            <UButton
+              icon="i-heroicons-plus"
+              @click="openAddModal"
+            >
+              {{ $t('admin.editors.gallery.addPhoto') }}
+            </UButton>
+          </div>
+        </div>
 
-    <!-- Photo grid -->
-    <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div
-        v-for="photo in photos"
-        :key="photo.id"
-        class="relative group rounded-lg overflow-hidden border border-gray-200"
-      >
-        <img
-          v-if="photo.url"
-          :src="photo.url"
-          :alt="photo.alt_text_es || photo.title_es"
-          class="w-full h-40 object-cover"
-        />
+        <!-- Loading -->
+        <div v-if="loading" class="text-center py-12">
+          <UIcon name="i-heroicons-arrow-path" class="w-8 h-8 animate-spin text-gray-400 mx-auto" />
+        </div>
+
+        <!-- Empty state -->
         <div
-          v-else
-          class="w-full h-40 bg-gray-100 flex items-center justify-center"
+          v-else-if="photos.length === 0"
+          class="text-center py-12 border border-gray-200 rounded-lg"
         >
-          <UIcon name="i-heroicons-photo" class="w-8 h-8 text-gray-300" />
+          <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-300 mx-auto mb-3" />
+          <p class="text-gray-500">{{ $t('admin.editors.gallery.noPhotos') }}</p>
         </div>
 
-        <!-- Overlay actions -->
-        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-          <UButton
-            icon="i-heroicons-pencil"
-            size="sm"
-            variant="solid"
-            color="neutral"
-            @click="editPhoto(photo)"
-          />
-          <UButton
-            icon="i-heroicons-trash"
-            size="sm"
-            variant="solid"
-            color="error"
-            @click="confirmDelete(photo)"
-          />
-        </div>
+        <!-- Photo grid -->
+        <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div
+            v-for="photo in photos"
+            :key="photo.id"
+            class="relative group rounded-lg overflow-hidden border border-gray-200"
+          >
+            <img
+              v-if="photo.url"
+              :src="photo.url"
+              :alt="photo.alt_text_es || photo.title_es"
+              class="w-full h-40 object-cover"
+            />
+            <div
+              v-else
+              class="w-full h-40 bg-gray-100 flex items-center justify-center"
+            >
+              <UIcon name="i-heroicons-photo" class="w-8 h-8 text-gray-300" />
+            </div>
 
-        <!-- Info -->
-        <div class="p-2">
-          <p class="text-sm font-medium text-gray-900 truncate">{{ photo.title_es }}</p>
-          <div class="flex items-center gap-2 mt-1">
-            <UBadge size="xs" variant="subtle">{{ photo.year }}</UBadge>
-            <UBadge size="xs" variant="subtle" :color="getCategoryColor(photo.category)">{{ photo.category }}</UBadge>
+            <!-- Overlay actions -->
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+              <UButton
+                icon="i-heroicons-pencil"
+                size="sm"
+                variant="solid"
+                color="neutral"
+                @click="editPhoto(photo)"
+              />
+              <UButton
+                icon="i-heroicons-trash"
+                size="sm"
+                variant="solid"
+                color="error"
+                @click="confirmDelete(photo)"
+              />
+            </div>
+
+            <!-- Info -->
+            <div class="p-2">
+              <p class="text-sm font-medium text-gray-900 truncate">{{ photo.title_es }}</p>
+              <div class="flex items-center gap-2 mt-1">
+                <UBadge size="xs" variant="subtle">{{ photo.year }}</UBadge>
+                <UBadge size="xs" variant="subtle" :color="getCategoryColor(photo.category)">{{ photo.category }}</UBadge>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </SectionCard>
 
     <!-- Add/Edit Modal -->
     <UModal v-model:open="showModal">
@@ -171,6 +180,7 @@ const { photos, loading, loadPhotos, savePhoto, deletePhoto } = useGallery()
 const toast = useToast()
 const { t } = useI18n()
 
+const openGallery = ref(false)
 const filterYear = ref('all')
 const filterCategory = ref('all')
 const showModal = ref(false)

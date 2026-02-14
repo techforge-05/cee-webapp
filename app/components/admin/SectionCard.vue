@@ -8,7 +8,7 @@
     <template #header>
       <div class="flex items-center justify-between gap-4">
         <button
-          class="flex items-center gap-3 flex-1 text-left group min-w-0"
+          class="flex items-center gap-3 flex-1 text-left group min-w-0 cursor-pointer"
           @click="toggleOpen"
         >
           <!-- Vertical accent bar -->

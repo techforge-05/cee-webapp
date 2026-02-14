@@ -13,18 +13,14 @@
 
     <!-- Confirmation Modal -->
     <UModal v-model:open="showModal">
-      <UCard>
-        <template #header>
-          <h3 class="text-lg font-semibold">
+      <template #content>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
             {{ $t('admin.dialogs.useDefault.title') }}
           </h3>
-        </template>
-
-        <p class="text-gray-600">
-          {{ $t('admin.dialogs.useDefault.message') }}
-        </p>
-
-        <template #footer>
+          <p class="text-sm text-gray-500 mb-6">
+            {{ $t('admin.dialogs.useDefault.message') }}
+          </p>
           <div class="flex justify-end gap-2">
             <UButton
               variant="outline"
@@ -33,35 +29,35 @@
             >
               {{ $t('admin.actions.cancel') }}
             </UButton>
-            <UButton color="primary" class="bg-teal-600 hover:bg-teal-700" @click="confirmRestore">
+            <UButton
+              color="primary"
+              class="bg-teal-600 hover:bg-teal-700"
+              @click="confirmRestore"
+            >
               {{ $t('admin.actions.confirm') }}
             </UButton>
           </div>
-        </template>
-      </UCard>
+        </div>
+      </template>
     </UModal>
 
     <!-- No Defaults Modal -->
     <UModal v-model:open="showNoDefaultsModal">
-      <UCard>
-        <template #header>
-          <h3 class="text-lg font-semibold">
+      <template #content>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
             {{ $t('admin.dialogs.noDefaults.title') }}
           </h3>
-        </template>
-
-        <p class="text-gray-600">
-          {{ $t('admin.dialogs.noDefaults.message') }}
-        </p>
-
-        <template #footer>
+          <p class="text-sm text-gray-500 mb-6">
+            {{ $t('admin.dialogs.noDefaults.message') }}
+          </p>
           <div class="flex justify-end">
             <UButton @click="showNoDefaultsModal = false">
               {{ $t('admin.actions.ok') }}
             </UButton>
           </div>
-        </template>
-      </UCard>
+        </div>
+      </template>
     </UModal>
   </div>
 </template>
@@ -87,10 +83,12 @@ function handleClick() {
   // Check if defaults exist
   const defaults = getDefaultValues(props.pageKey)
   if (!defaults.es && !defaults.en) {
+    showModal.value = false  // Explicitly close confirmation modal
     showNoDefaultsModal.value = true
     return
   }
 
+  showNoDefaultsModal.value = false  // Explicitly close no-defaults modal
   showModal.value = true
 }
 

@@ -1,53 +1,94 @@
 <template>
-  <div class="space-y-6">
-    <!-- Save bar -->
-    <div class="flex justify-end">
-      <UButton icon="i-heroicons-check" :loading="saving" @click="handleSave">
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
-
+  <div class="space-y-6 pb-24">
     <!-- Sections -->
-    <UCard v-for="section in schema" :key="section.pageKey">
-      <template #header>
-        <button
-          class="flex items-center justify-between w-full text-left"
-          @click="toggleSection(section.pageKey)"
-        >
-          <h3 class="text-lg font-semibold">{{ $t(section.labelKey) }}</h3>
-          <UIcon
-            :name="openSections[section.pageKey] ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-            class="w-5 h-5 text-gray-400"
-          />
-        </button>
-      </template>
-
-      <div v-show="openSections[section.pageKey]" class="space-y-4">
+    <SectionCard
+      v-for="section in schema"
+      :key="section.pageKey"
+      v-model="openSections[section.pageKey]"
+      :title="$t(section.labelKey)"
+      :page-key="section.pageKey"
+      @restored="handleSectionRestored(section.pageKey)"
+    >
+      <div class="space-y-4">
         <!-- Single item section -->
         <template v-if="section.type === 'single'">
-          <template v-for="field in section.fields" :key="field.key">
-            <BilingualTextField
-              v-if="field.type === 'text' && singleData[section.pageKey]"
-              v-model="singleData[section.pageKey][field.key]"
-              :label="$t(field.labelKey)"
-              :max-length="field.maxLength"
-            />
-            <BilingualTextarea
-              v-if="field.type === 'textarea' && singleData[section.pageKey]"
-              v-model="singleData[section.pageKey][field.key]"
-              :label="$t(field.labelKey)"
-              :max-length="field.maxLength"
-              :rows="field.rows || 3"
-            />
-            <UFormField
-              v-if="field.type === 'metadata' && metaData[section.pageKey]"
-              :label="$t(field.labelKey)"
-            >
-              <UInput
-                v-model="metaData[section.pageKey][field.key]"
-                :maxlength="field.maxLength"
+          <!-- Check if section has imageUrl field -->
+          <div
+            v-if="hasImageField(section)"
+            class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6"
+          >
+            <!-- Left: Data fields (60%) -->
+            <div class="space-y-4">
+              <template v-for="field in section.fields" :key="field.key">
+                <BilingualTextField
+                  v-if="field.type === 'text' && field.key !== 'imageUrl' && singleData[section.pageKey]"
+                  v-model="singleData[section.pageKey][field.key]"
+                  :label="$t(field.labelKey)"
+                  :max-length="field.maxLength"
+                  @update:model-value="trackChanges"
+                />
+                <BilingualTextarea
+                  v-if="field.type === 'textarea' && singleData[section.pageKey]"
+                  v-model="singleData[section.pageKey][field.key]"
+                  :label="$t(field.labelKey)"
+                  :max-length="field.maxLength"
+                  :rows="field.rows || 3"
+                  @update:model-value="trackChanges"
+                />
+                <UFormField
+                  v-if="field.type === 'metadata' && field.key !== 'imageUrl' && metaData[section.pageKey]"
+                  :label="$t(field.labelKey)"
+                >
+                  <UInput
+                    v-model="metaData[section.pageKey][field.key]"
+                    :maxlength="field.maxLength"
+                    @update:model-value="trackChanges"
+                  />
+                </UFormField>
+              </template>
+            </div>
+
+            <!-- Right: Image (40%) -->
+            <div>
+              <UFormField :label="$t('admin.components.image.upload')">
+                <ImageUploader
+                  v-model="sectionImages[section.pageKey]"
+                  :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                  @update:model-value="trackChanges"
+                />
+              </UFormField>
+            </div>
+          </div>
+
+          <!-- Standard single item layout (no image) -->
+          <template v-else>
+            <template v-for="field in section.fields" :key="field.key">
+              <BilingualTextField
+                v-if="field.type === 'text' && singleData[section.pageKey]"
+                v-model="singleData[section.pageKey][field.key]"
+                :label="$t(field.labelKey)"
+                :max-length="field.maxLength"
+                @update:model-value="trackChanges"
               />
-            </UFormField>
+              <BilingualTextarea
+                v-if="field.type === 'textarea' && singleData[section.pageKey]"
+                v-model="singleData[section.pageKey][field.key]"
+                :label="$t(field.labelKey)"
+                :max-length="field.maxLength"
+                :rows="field.rows || 3"
+                @update:model-value="trackChanges"
+              />
+              <UFormField
+                v-if="field.type === 'metadata' && metaData[section.pageKey]"
+                :label="$t(field.labelKey)"
+              >
+                <UInput
+                  v-model="metaData[section.pageKey][field.key]"
+                  :maxlength="field.maxLength"
+                  @update:model-value="trackChanges"
+                />
+              </UFormField>
+            </template>
           </template>
         </template>
 
@@ -59,9 +100,59 @@
             :min-items="section.minItems"
             :item-label="section.itemLabelKey ? $t(section.itemLabelKey) : undefined"
             @add="addListItem(section)"
+            @update:model-value="trackChanges"
           >
             <template #default="{ item, index }">
-              <div class="space-y-3">
+              <!-- Check if list items have imageUrl field -->
+              <div
+                v-if="hasImageField(section)"
+                class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6"
+              >
+                <!-- Left: Data fields (60%) -->
+                <div class="space-y-3">
+                  <template v-for="field in section.fields" :key="field.key">
+                    <BilingualTextField
+                      v-if="field.type === 'text'"
+                      :model-value="getBilingualValue(item, field.key)"
+                      :label="$t(field.labelKey)"
+                      :max-length="field.maxLength"
+                      @update:model-value="updateListBilingualField(section.pageKey, index, field.key, $event)"
+                    />
+                    <BilingualTextarea
+                      v-if="field.type === 'textarea'"
+                      :model-value="getBilingualValue(item, field.key)"
+                      :label="$t(field.labelKey)"
+                      :max-length="field.maxLength"
+                      :rows="field.rows || 3"
+                      @update:model-value="updateListBilingualField(section.pageKey, index, field.key, $event)"
+                    />
+                    <UFormField
+                      v-if="field.type === 'metadata' && field.key !== 'imageUrl'"
+                      :label="$t(field.labelKey)"
+                    >
+                      <UInput
+                        :model-value="item.metadata?.[field.key] || ''"
+                        :maxlength="field.maxLength"
+                        @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
+                      />
+                    </UFormField>
+                  </template>
+                </div>
+
+                <!-- Right: Image (40%) -->
+                <div>
+                  <UFormField :label="$t('admin.components.image.upload')">
+                    <ImageUploader
+                      :model-value="item.metadata?.imageUrl || ''"
+                      :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                      @update:model-value="updateListMetadataField(section.pageKey, index, 'imageUrl', $event)"
+                    />
+                  </UFormField>
+                </div>
+              </div>
+
+              <!-- Standard list item layout (no image) -->
+              <div v-else class="space-y-3">
                 <template v-for="field in section.fields" :key="field.key">
                   <BilingualTextField
                     v-if="field.type === 'text'"
@@ -91,14 +182,16 @@
           </DataListManager>
         </template>
       </div>
-    </UCard>
+    </SectionCard>
 
-    <!-- Bottom save bar -->
-    <div class="flex justify-end">
-      <UButton icon="i-heroicons-check" :loading="saving" @click="handleSave">
-        {{ $t('admin.editors.save') }}
-      </UButton>
-    </div>
+    <!-- Floating Action Buttons -->
+    <FloatingActionButtons
+      :show="true"
+      :is-dirty="dirtyState.isDirty.value"
+      :loading="saving"
+      @save="handleSave"
+      @cancel="handleCancel"
+    />
   </div>
 </template>
 
@@ -116,6 +209,7 @@ const props = defineProps<{
 const { loadItems, saveAll: saveAllContent, items } = usePageContent()
 const toast = useToast()
 const { t } = useI18n()
+const dirtyState = useDirtyState()
 
 const saving = ref(false)
 const loaded = ref(false)
@@ -124,23 +218,34 @@ const openSections = reactive<Record<string, boolean>>({})
 const singleData = reactive<Record<string, Record<string, BilingualText>>>({})
 const metaData = reactive<Record<string, Record<string, string>>>({})
 const listData = reactive<Record<string, PageContentItem[]>>({})
+const sectionImages = reactive<Record<string, string>>({})
 const existingIds = reactive<Record<string, string | undefined>>({})
+
+// Helper to check if section has imageUrl field
+function hasImageField(section: EditorSection): boolean {
+  return section.fields.some((f) => f.type === 'metadata' && f.key === 'imageUrl')
+}
 
 function toggleSection(key: string) {
   openSections[key] = !openSections[key]
 }
 
 function initSections() {
-  props.schema.forEach((section, idx) => {
-    openSections[section.pageKey] = section.defaultOpen ?? idx === 0
+  props.schema.forEach((section) => {
+    openSections[section.pageKey] = section.defaultOpen ?? false
     if (section.type === 'single') {
       singleData[section.pageKey] = {}
       metaData[section.pageKey] = {}
+      sectionImages[section.pageKey] = ''
       section.fields.forEach((field) => {
         if (field.type === 'text' || field.type === 'textarea') {
           singleData[section.pageKey][field.key] = { es: '', en: '' }
         } else if (field.type === 'metadata') {
-          metaData[section.pageKey][field.key] = ''
+          if (field.key === 'imageUrl') {
+            sectionImages[section.pageKey] = ''
+          } else {
+            metaData[section.pageKey][field.key] = ''
+          }
         }
       })
     } else {
@@ -165,7 +270,11 @@ async function loadAllData() {
               en: item?.content_en?.[field.key] || '',
             }
           } else if (field.type === 'metadata') {
-            metaData[section.pageKey][field.key] = item?.metadata?.[field.key] || ''
+            if (field.key === 'imageUrl') {
+              sectionImages[section.pageKey] = item?.metadata?.[field.key] || ''
+            } else {
+              metaData[section.pageKey][field.key] = item?.metadata?.[field.key] || ''
+            }
           }
         })
       } else {
@@ -173,10 +282,36 @@ async function loadAllData() {
           items.value.length > 0 ? items.value.map((i) => ({ ...i })) : []
       }
     }
+
+    // Initialize dirty state tracking
+    initDirtyStateTracking()
+
     loaded.value = true
   } catch (e: any) {
     toast.add({ title: t('admin.editors.loadError'), description: e.message, color: 'error' })
   }
+}
+
+function initDirtyStateTracking() {
+  const allData = {
+    single: JSON.parse(JSON.stringify(singleData)),
+    meta: JSON.parse(JSON.stringify(metaData)),
+    list: JSON.parse(JSON.stringify(listData)),
+    images: JSON.parse(JSON.stringify(sectionImages)),
+  }
+  dirtyState.init(allData)
+}
+
+function trackChanges() {
+  nextTick(() => {
+    const currentData = {
+      single: JSON.parse(JSON.stringify(singleData)),
+      meta: JSON.parse(JSON.stringify(metaData)),
+      list: JSON.parse(JSON.stringify(listData)),
+      images: JSON.parse(JSON.stringify(sectionImages)),
+    }
+    dirtyState.update(currentData)
+  })
 }
 
 function getBilingualValue(item: PageContentItem, fieldKey: string): BilingualText {
@@ -199,20 +334,17 @@ function updateListBilingualField(
     content_en: { ...arr[index].content_en, [fieldKey]: val.en },
   }
   listData[pageKey] = arr
+  trackChanges()
 }
 
-function updateListMetadataField(
-  pageKey: string,
-  index: number,
-  fieldKey: string,
-  val: string,
-) {
+function updateListMetadataField(pageKey: string, index: number, fieldKey: string, val: string) {
   const arr = [...listData[pageKey]]
   arr[index] = {
     ...arr[index],
     metadata: { ...(arr[index].metadata || {}), [fieldKey]: val },
   }
   listData[pageKey] = arr
+  trackChanges()
 }
 
 function addListItem(section: EditorSection) {
@@ -240,6 +372,7 @@ function addListItem(section: EditorSection) {
       metadata,
     },
   ]
+  trackChanges()
 }
 
 async function handleSave() {
@@ -256,7 +389,11 @@ async function handleSave() {
             contentEs[field.key] = singleData[section.pageKey][field.key].es
             contentEn[field.key] = singleData[section.pageKey][field.key].en
           } else if (field.type === 'metadata') {
-            metadata[field.key] = metaData[section.pageKey][field.key]
+            if (field.key === 'imageUrl') {
+              metadata[field.key] = sectionImages[section.pageKey]
+            } else {
+              metadata[field.key] = metaData[section.pageKey][field.key]
+            }
           }
         })
 
@@ -272,7 +409,6 @@ async function handleSave() {
             is_active: true,
           },
         ])
-        // Update existingIds so subsequent saves use update instead of insert
         if (results && results[0]?.id) {
           existingIds[section.pageKey] = results[0].id
         }
@@ -280,6 +416,8 @@ async function handleSave() {
         await saveAllContent(section.pageKey, listData[section.pageKey])
       }
     }
+
+    dirtyState.markClean()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })
   } catch (e: any) {
     toast.add({
@@ -290,6 +428,30 @@ async function handleSave() {
   } finally {
     saving.value = false
   }
+}
+
+function handleCancel() {
+  const resetData = dirtyState.reset()
+
+  // Restore all data from reset
+  Object.assign(singleData, resetData.single)
+  Object.assign(metaData, resetData.meta)
+  Object.assign(listData, resetData.list)
+  Object.assign(sectionImages, resetData.images)
+
+  toast.add({
+    title: t('admin.messages.changesDiscarded'),
+    color: 'info',
+  })
+}
+
+async function handleSectionRestored(pageKey: string) {
+  // Reload data for this section
+  await loadAllData()
+  toast.add({
+    title: t('admin.messages.sectionRestored'),
+    color: 'success',
+  })
 }
 
 initSections()

@@ -1304,6 +1304,8 @@
         "uploading": "Subiendo...",
         "remove": "Eliminar imagen",
         "altText": "Texto alternativo",
+        "altEs": "Texto alternativo (Español)",
+        "altEn": "Texto alternativo (Inglés)",
         "title": "Título",
         "uploadError": "Error al subir"
       },
@@ -1377,6 +1379,7 @@
         "goToAnnouncements": "Ir a Anuncios"
       },
       "faq": {
+        "title": "Preguntas Frecuentes",
         "question": "Pregunta",
         "answer": "Respuesta",
         "category": "Categoría",
@@ -1395,6 +1398,7 @@
         "email": "Correo Electrónico"
       },
       "gallery": {
+        "title": "Galería de Fotos",
         "year": "Año",
         "category": "Categoría",
         "addPhoto": "Agregar Foto",

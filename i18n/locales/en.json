@@ -1304,6 +1304,8 @@
         "uploading": "Uploading...",
         "remove": "Remove image",
         "altText": "Alt text",
+        "altEs": "Alt text (Spanish)",
+        "altEn": "Alt text (English)",
         "title": "Title",
         "uploadError": "Upload failed"
       },
@@ -1377,6 +1379,7 @@
         "goToAnnouncements": "Go to Announcements"
       },
       "faq": {
+        "title": "Frequently Asked Questions",
         "question": "Question",
         "answer": "Answer",
         "category": "Category",
@@ -1395,6 +1398,7 @@
         "email": "Email"
       },
       "gallery": {
+        "title": "Photo Gallery",
         "year": "Year",
         "category": "Category",
         "addPhoto": "Add Photo",
