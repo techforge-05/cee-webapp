@@ -91,7 +91,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.mvv.intro',
       labelKey: 'admin.editors.about.mvv.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.paragraph1(), f.paragraph2()],
     },
     {
@@ -122,7 +122,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.sof.intro',
       labelKey: 'admin.editors.about.sof.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -147,7 +147,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.philosophy.intro',
       labelKey: 'admin.editors.about.philosophy.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -184,7 +184,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.history.intro',
       labelKey: 'admin.editors.about.history.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -209,7 +209,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.town.intro',
       labelKey: 'admin.editors.about.town.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.paragraph1(), f.paragraph2()],
     },
     {
@@ -245,7 +245,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'academics.curriculum.intro',
       labelKey: 'admin.editors.academics.curriculum.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.paragraph1(), f.paragraph2()],
     },
     {
@@ -313,7 +313,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'academics.grades.intro',
       labelKey: 'admin.editors.academics.grades.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -354,7 +354,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'academics.guidance.intro',
       labelKey: 'admin.editors.academics.guidance.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.description()],
     },
     {
@@ -412,7 +412,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.sports.intro',
       labelKey: 'admin.editors.studentLife.sports.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.description()],
     },
     {
@@ -437,7 +437,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.serviceProjects.intro',
       labelKey: 'admin.editors.studentLife.serviceProjects.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -465,7 +465,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.library.intro',
       labelKey: 'admin.editors.studentLife.library.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -554,7 +554,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.upcomingEvents.intro',
       labelKey: 'admin.editors.studentLife.upcomingEvents.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.description()],
     },
     {
@@ -585,7 +585,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'support.whySupport.intro',
       labelKey: 'admin.editors.support.whySupport.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.title(), f.paragraph1(), f.paragraph2()],
     },
     {
@@ -610,7 +610,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'support.scholarships.intro',
       labelKey: 'admin.editors.support.scholarships.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -632,7 +632,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'support.donate.intro',
       labelKey: 'admin.editors.support.donate.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -681,7 +681,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'support.projects.intro',
       labelKey: 'admin.editors.support.projects.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -717,7 +717,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'contact.info.intro',
       labelKey: 'admin.editors.contact.info.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -769,7 +769,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'contact.directions.intro',
       labelKey: 'admin.editors.contact.directions.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -821,7 +821,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'contact.form.intro',
       labelKey: 'admin.editors.contact.form.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -854,7 +854,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'admissions.whoCanApply.intro',
       labelKey: 'admin.editors.admissions.whoCanApply.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -882,7 +882,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'admissions.howToApply.intro',
       labelKey: 'admin.editors.admissions.howToApply.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -909,7 +909,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'getInvolved.teachers.intro',
       labelKey: 'admin.editors.getInvolved.teachers.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {
@@ -963,7 +963,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'getInvolved.volunteer.intro',
       labelKey: 'admin.editors.getInvolved.volunteer.intro',
       type: 'single',
-      defaultOpen: true,
+      defaultOpen: false,
       fields: [f.text()],
     },
     {

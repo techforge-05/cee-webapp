@@ -26,7 +26,7 @@
     <!-- Empty state -->
     <div
       v-if="model.length === 0"
-      class="text-center py-8 text-gray-400 border border-dashed rounded-lg"
+      class="text-center py-8 text-gray-400 border border-gray-200 rounded-lg"
     >
       <slot name="empty">
         <UIcon name="i-heroicons-inbox" class="w-8 h-8 mx-auto mb-2" />
@@ -69,7 +69,6 @@
                 size="xs"
                 variant="ghost"
                 color="error"
-                :disabled="model.length <= minItems"
                 :title="$t('admin.components.dataList.removeItem')"
                 @click="removeItem(index)"
               />
@@ -84,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       maxItems?: number;
       minItems?: number;
@@ -105,6 +104,9 @@
     remove: [index: number];
   }>();
 
+  const toast = useToast();
+  const { t } = useI18n();
+
   function handleAdd() {
     emit('add');
     // If parent doesn't handle add, push an empty object
@@ -112,6 +114,16 @@
   }
 
   function removeItem(index: number) {
+    // Check if removing would violate minItems constraint
+    if (model.value.length <= props.minItems) {
+      toast.add({
+        title: t('admin.validation.minItemsReached'),
+        description: t('admin.validation.cannotDeleteMinItems', { min: props.minItems }),
+        color: 'error',
+      });
+      return;
+    }
+
     emit('remove', index);
     model.value = model.value.filter((_, i) => i !== index);
   }

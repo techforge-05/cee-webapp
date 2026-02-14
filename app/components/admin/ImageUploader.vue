@@ -84,7 +84,7 @@ const props = withDefaults(defineProps<{
   accept?: string
 }>(), {
   folder: 'cee-assets/general',
-  maxSize: 5,
+  maxSize: 10,
   accept: 'image/*',
 })
 

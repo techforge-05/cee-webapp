@@ -1,2 +1,23 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+
+/* Admin panel teal/green accent colors */
+.admin-primary-btn {
+  @apply bg-teal-600 hover:bg-teal-700 text-white;
+}
+
+.admin-accent {
+  @apply text-teal-600;
+}
+
+.admin-accent-bg {
+  @apply bg-teal-50;
+}
+
+.admin-border-accent {
+  @apply border-teal-500;
+}
+
+.admin-active-sidebar {
+  @apply bg-teal-700 text-white;
+}

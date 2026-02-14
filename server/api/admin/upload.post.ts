@@ -67,6 +67,16 @@ export default defineEventHandler(async (event) => {
           folder,
           resource_type: 'image',
           transformation: [{ quality: 'auto', fetch_format: 'auto' }],
+          // Eager transformation to compress large files immediately
+          eager: [
+            {
+              quality: 'auto:good',
+              fetch_format: 'auto',
+              width: 2000, // Max width to reduce size
+              crop: 'limit', // Don't upscale
+            },
+          ],
+          eager_async: false, // Wait for transformation
         },
         (error, result) => {
           if (error) reject(error)

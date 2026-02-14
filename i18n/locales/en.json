@@ -1678,6 +1678,37 @@
           "contact": "Contact"
         }
       }
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "ok": "OK",
+      "useDefault": "Use Default"
+    },
+    "dialogs": {
+      "useDefault": {
+        "title": "Restore Default Values",
+        "message": "Are you sure you want to restore default values? All current changes for this section will be lost."
+      },
+      "noDefaults": {
+        "title": "No Defaults Available",
+        "message": "No default values are available for this section."
+      },
+      "unsavedChanges": {
+        "title": "Unsaved Changes",
+        "message": "You have unsaved changes. Are you sure you want to cancel?"
+      }
+    },
+    "messages": {
+      "defaultsRestored": "Default values restored successfully",
+      "restoreError": "Error restoring default values",
+      "changesDiscarded": "Changes discarded",
+      "sectionRestored": "Section restored to default values"
+    },
+    "validation": {
+      "minItemsReached": "Minimum items reached",
+      "cannotDeleteMinItems": "Cannot delete. At least {min} items are required."
     }
   },
   "support": {

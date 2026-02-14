@@ -173,7 +173,7 @@ const isSectionActive = (sectionKey: string) => {
 const sidebarItemClass = (active: boolean) => [
   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
   active
-    ? 'bg-gray-700 text-white'
+    ? 'bg-teal-700 text-white'
     : 'text-gray-300 hover:bg-gray-800 hover:text-white',
 ]
 </script>

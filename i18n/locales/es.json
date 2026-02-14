@@ -1678,6 +1678,37 @@
           "contact": "Contacto"
         }
       }
+    },
+    "actions": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "ok": "Aceptar",
+      "useDefault": "Usar Predeterminado"
+    },
+    "dialogs": {
+      "useDefault": {
+        "title": "Restaurar Valores Predeterminados",
+        "message": "¿Está seguro de que desea restaurar los valores predeterminados? Se perderán todos los cambios actuales para esta sección."
+      },
+      "noDefaults": {
+        "title": "Sin Valores Predeterminados",
+        "message": "No hay valores predeterminados disponibles para esta sección."
+      },
+      "unsavedChanges": {
+        "title": "Cambios No Guardados",
+        "message": "Tiene cambios sin guardar. ¿Está seguro de que desea cancelar?"
+      }
+    },
+    "messages": {
+      "defaultsRestored": "Valores predeterminados restaurados exitosamente",
+      "restoreError": "Error al restaurar valores predeterminados",
+      "changesDiscarded": "Cambios descartados",
+      "sectionRestored": "Sección restaurada a valores predeterminados"
+    },
+    "validation": {
+      "minItemsReached": "Mínimo de elementos alcanzado",
+      "cannotDeleteMinItems": "No se puede eliminar. Se requieren al menos {min} elementos."
     }
   },
   "support": {

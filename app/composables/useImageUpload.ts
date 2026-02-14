@@ -7,9 +7,9 @@ export const useImageUpload = () => {
     error.value = null
 
     try {
-      // Validate file size (default 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        throw new Error('File size exceeds 5MB limit')
+      // Validate file size (default 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error('File size exceeds 10MB limit')
       }
 
       // Validate file type
