@@ -6,7 +6,7 @@
     ]"
   >
     <template #header>
-      <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center">
         <button
           class="flex items-center gap-3 flex-1 text-left group min-w-0 cursor-pointer"
           @click="toggleOpen"
@@ -22,7 +22,7 @@
           <!-- Section title -->
           <h3
             :class="[
-              'text-lg font-semibold transition-colors truncate',
+              'text-base lg:text-lg font-semibold transition-colors truncate',
               isOpen ? 'text-teal-700' : 'text-gray-700 group-hover:text-teal-600',
             ]"
           >
@@ -40,19 +40,17 @@
             ]"
           />
         </button>
-
-        <!-- Use Default Button (only if pageKey provided) -->
-        <UseDefaultButton
-          v-if="pageKey"
-          :page-key="pageKey"
-          class="flex-shrink-0"
-          @restored="$emit('restored')"
-        />
       </div>
     </template>
 
     <!-- Content (v-show preserves form state) -->
     <div v-show="isOpen">
+      <div v-if="pageKey" class="flex justify-end mb-3">
+        <UseDefaultButton
+          :page-key="pageKey"
+          @restored="$emit('restored')"
+        />
+      </div>
       <slot />
     </div>
   </UCard>

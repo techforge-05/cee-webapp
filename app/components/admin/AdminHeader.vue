@@ -1,18 +1,22 @@
 <template>
   <header class="sticky top-0 z-30 bg-white border-b border-gray-200 h-16">
     <div class="flex items-center justify-between h-full px-4 lg:px-6">
-      <!-- Left: Hamburger + Breadcrumbs -->
-      <div class="flex items-center gap-3">
+      <!-- === MOBILE LEFT === -->
+      <div class="flex items-center gap-2 lg:hidden">
         <UButton
           icon="i-heroicons-bars-3"
-          variant="ghost"
+          variant="outline"
           color="neutral"
-          size="sm"
-          class="lg:hidden"
+          size="md"
           @click="adminStore.toggleSidebar()"
         />
+        <span class="text-sm font-bold">
+          <span class="text-teal-600 text-lg">CEE</span> admin
+        </span>
+      </div>
 
-        <!-- Breadcrumbs -->
+      <!-- === DESKTOP LEFT === -->
+      <div class="hidden lg:flex items-center gap-3">
         <nav class="flex items-center gap-1.5 text-sm">
           <NuxtLink
             :to="localePath('/admin')"
@@ -39,23 +43,40 @@
         </nav>
       </div>
 
-      <!-- Right: Language + User -->
-      <div class="flex items-center gap-3">
+      <!-- === MOBILE RIGHT === -->
+      <div class="flex items-center gap-1 lg:hidden">
+        <UButton
+          icon="i-heroicons-arrow-left"
+          variant="ghost"
+          color="neutral"
+          size="sm"
+          @click="router.back()"
+        />
+        <UDropdownMenu :items="mobileAccountItems" :modal="false">
+          <UButton
+            icon="i-heroicons-ellipsis-vertical"
+            variant="ghost"
+            color="neutral"
+            size="md"
+          />
+        </UDropdownMenu>
+      </div>
+
+      <!-- === DESKTOP RIGHT === -->
+      <div class="hidden lg:flex items-center gap-3">
         <LanguageSwitcher />
 
-        <div class="hidden sm:flex items-center gap-2 text-sm text-gray-600">
+        <div class="flex items-center gap-2 text-sm text-gray-600">
           <UIcon name="i-heroicons-user-circle" class="w-5 h-5" />
           <span class="truncate max-w-40">{{ adminStore.profile?.email }}</span>
         </div>
 
-        <UButton
-          variant="ghost"
-          color="error"
-          size="xs"
-          @click="handleSignOut"
-        >
-          <UIcon name="i-heroicons-arrow-right-start-on-rectangle" class="w-4 h-4" />
-          <span class="hidden sm:inline ml-1">{{ $t('nav.signOut') || 'Sign Out' }}</span>
+        <UButton variant="ghost" color="error" size="xs" @click="handleSignOut">
+          <UIcon
+            name="i-heroicons-arrow-right-start-on-rectangle"
+            class="w-4 h-4"
+          />
+          <span class="ml-1">{{ $t('nav.signOut') || 'Sign Out' }}</span>
         </UButton>
       </div>
     </div>
@@ -63,59 +84,93 @@
 </template>
 
 <script setup lang="ts">
-const adminStore = useAdminStore()
-const supabase = useSupabaseClient()
-const localePath = useLocalePath()
-const route = useRoute()
-const { t } = useI18n()
+  const adminStore = useAdminStore();
+  const supabase = useSupabaseClient();
+  const localePath = useLocalePath();
+  const route = useRoute();
+  const router = useRouter();
+  const { t, locale, locales } = useI18n();
+  const switchLocalePath = useSwitchLocalePath();
 
-import { getSectionConfig } from '~/config/sectionRegistry'
+  import { getSectionConfig } from '~/config/sectionRegistry';
 
-const breadcrumbs = computed(() => {
-  const path = route.path
-  const crumbs: Array<{ label: string; to?: string }> = []
+  const mobileAccountItems = computed(() => {
+    const accountGroup = [
+      {
+        label: adminStore.profile?.email || '',
+        icon: 'i-heroicons-user',
+        disabled: true,
+      },
+    ];
 
-  if (path.includes('/admin/users')) {
-    crumbs.push({ label: 'Users', to: localePath('/admin/users') })
-    if (route.params.id) {
-      crumbs.push({ label: 'User Details' })
+    const languageGroup = locales.value.map((l) => ({
+      label: l.name,
+      icon: locale.value === l.code ? 'i-heroicons-check-circle' : '',
+      onClick: async () => {
+        const path = switchLocalePath(l.code);
+        await router.push(path);
+      },
+    }));
+
+    const signOutGroup = [
+      {
+        label: t('nav.signOut') || 'Sign Out',
+        icon: 'i-heroicons-arrow-right-start-on-rectangle',
+        onClick: handleSignOut,
+      },
+    ];
+
+    return [accountGroup, languageGroup, signOutGroup];
+  });
+
+  const breadcrumbs = computed(() => {
+    const path = route.path;
+    const crumbs: Array<{ label: string; to?: string }> = [];
+
+    if (path.includes('/admin/users')) {
+      crumbs.push({ label: 'Users', to: localePath('/admin/users') });
+      if (route.params.id) {
+        crumbs.push({ label: 'User Details' });
+      }
+    } else if (path.includes('/admin/manage-nav')) {
+      crumbs.push({ label: t('admin.manageNav.title', 'Manage Nav') });
+    } else if (path.includes('/admin/calendar')) {
+      crumbs.push({
+        label: t('nav.academics', 'Academics'),
+        to: localePath('/admin/sections/academics'),
+      });
+      crumbs.push({ label: 'Calendar' });
+    } else if (path.includes('/admin/announcements')) {
+      crumbs.push({ label: 'Announcements' });
+    } else if (path.includes('/admin/sections/')) {
+      const section = route.params.section as string;
+      const page = route.params.page as string;
+      const fallbackLabel = getSectionConfig(section)?.label || section;
+      const sectionLabel = t(`nav.${section}`, fallbackLabel);
+
+      crumbs.push({
+        label: sectionLabel,
+        to: page ? localePath(`/admin/sections/${section}`) : undefined,
+      });
+
+      if (page) {
+        crumbs.push({ label: formatPageName(page) });
+      }
     }
-  } else if (path.includes('/admin/manage-nav')) {
-    crumbs.push({ label: t('admin.manageNav.title', 'Manage Nav') })
-  } else if (path.includes('/admin/calendar')) {
-    crumbs.push({ label: t('nav.academics', 'Academics'), to: localePath('/admin/sections/academics') })
-    crumbs.push({ label: 'Calendar' })
-  } else if (path.includes('/admin/announcements')) {
-    crumbs.push({ label: 'Announcements' })
-  } else if (path.includes('/admin/sections/')) {
-    const section = route.params.section as string
-    const page = route.params.page as string
-    const fallbackLabel = getSectionConfig(section)?.label || section
-    const sectionLabel = t(`nav.${section}`, fallbackLabel)
 
-    crumbs.push({
-      label: sectionLabel,
-      to: page ? localePath(`/admin/sections/${section}`) : undefined,
-    })
+    return crumbs;
+  });
 
-    if (page) {
-      crumbs.push({ label: formatPageName(page) })
-    }
-  }
+  const formatPageName = (page: string) => {
+    return page
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
 
-  return crumbs
-})
-
-const formatPageName = (page: string) => {
-  return page
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
-}
-
-const handleSignOut = async () => {
-  adminStore.clearProfile()
-  await supabase.auth.signOut()
-  await navigateTo(localePath('/'))
-}
+  const handleSignOut = async () => {
+    adminStore.clearProfile();
+    await supabase.auth.signOut();
+    await navigateTo(localePath('/'));
+  };
 </script>

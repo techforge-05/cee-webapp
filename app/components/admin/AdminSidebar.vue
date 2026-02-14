@@ -1,17 +1,17 @@
 <template>
   <aside
     :class="[
-      'fixed top-0 left-0 z-40 h-screen bg-gray-900 text-white transition-transform duration-300',
+      'fixed top-0 left-0 z-60 h-screen bg-gray-900 text-white transition-transform duration-300 flex flex-col',
       'w-64 lg:translate-x-0',
       adminStore.sidebarOpen ? 'translate-x-0' : '-translate-x-full',
     ]"
   >
     <!-- Logo / Brand -->
-    <div class="flex items-center gap-3 h-16 px-4 border-b border-gray-700">
+    <div class="flex items-center gap-3 py-3 px-4 border-b border-gray-700 shrink-0">
       <img
         src="/images/logo.png"
         alt="CEE"
-        class="h-10 w-auto"
+        class="h-12 w-auto"
       />
       <div class="flex flex-col leading-tight">
         <span class="text-sm font-bold text-white">CEE</span>
@@ -34,6 +34,7 @@
       <NuxtLink
         :to="localePath('/admin')"
         :class="sidebarItemClass(isDashboardActive)"
+        @click="adminStore.closeSidebar()"
       >
         <UIcon name="i-heroicons-squares-2x2" class="w-5 h-5 shrink-0" />
         <span>{{ $t('nav.admin.dashboard') || 'Dashboard' }}</span>
@@ -44,6 +45,7 @@
         <NuxtLink
           :to="localePath('/admin/users')"
           :class="sidebarItemClass(isActive('/admin/users'))"
+          @click="adminStore.closeSidebar()"
         >
           <UIcon name="i-heroicons-users" class="w-5 h-5 shrink-0" />
           <span>{{ $t('nav.admin.users') || 'Users' }}</span>
@@ -51,6 +53,7 @@
         <NuxtLink
           :to="localePath('/admin/manage-nav')"
           :class="sidebarItemClass(isActive('/admin/manage-nav'))"
+          @click="adminStore.closeSidebar()"
         >
           <UIcon name="i-heroicons-cog-6-tooth" class="w-5 h-5 shrink-0" />
           <span>{{ $t('nav.admin.manageNav') || 'Manage Nav' }}</span>
@@ -62,6 +65,7 @@
         v-if="adminStore.hasCalendarAccess"
         :to="localePath('/admin/calendar')"
         :class="sidebarItemClass(isActive('/admin/calendar'))"
+        @click="adminStore.closeSidebar()"
       >
         <UIcon name="i-heroicons-calendar-days" class="w-5 h-5 shrink-0" />
         <span>{{ $t('nav.admin.calendar') || 'Calendar' }}</span>
@@ -70,6 +74,7 @@
         v-if="adminStore.hasAnnouncementAccess"
         :to="localePath('/admin/announcements')"
         :class="sidebarItemClass(isActive('/admin/announcements'))"
+        @click="adminStore.closeSidebar()"
       >
         <UIcon name="i-heroicons-megaphone" class="w-5 h-5 shrink-0" />
         <span>{{ $t('nav.admin.announcements') || 'Announcements' }}</span>
@@ -77,6 +82,7 @@
       <NuxtLink
         :to="localePath('/admin/sections/studentLife/gallery')"
         :class="sidebarItemClass(isActive('/admin/sections/studentLife/gallery'))"
+        @click="adminStore.closeSidebar()"
       >
         <UIcon name="i-heroicons-photo" class="w-5 h-5 shrink-0" />
         <span>{{ $t('nav.admin.gallery') || 'Gallery' }}</span>
@@ -94,6 +100,7 @@
         :key="section.key"
         :to="localePath(`/admin/sections/${section.key}`)"
         :class="sidebarItemClass(isSectionActive(section.key))"
+        @click="adminStore.closeSidebar()"
       >
         <UIcon :name="section.icon" class="w-5 h-5 shrink-0" />
         <span>{{ section.label }}</span>
@@ -101,7 +108,7 @@
     </nav>
 
     <!-- User info at bottom -->
-    <div class="border-t border-gray-700 p-4">
+    <div class="border-t border-gray-700 p-4 shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-sm font-medium">
           {{ initials }}
@@ -118,7 +125,7 @@
   <Transition name="fade">
     <div
       v-if="adminStore.sidebarOpen"
-      class="fixed inset-0 bg-black/50 z-30 lg:hidden"
+      class="fixed inset-0 bg-black/50 z-55 lg:hidden"
       @click="adminStore.closeSidebar()"
     />
   </Transition>

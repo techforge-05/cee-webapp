@@ -2,7 +2,7 @@
   <Teleport to="body">
     <Transition name="slide-up">
       <div
-        v-if="show"
+        v-if="show && !adminStore.sidebarOpen"
         class="fixed bottom-0 left-0 right-0 z-50 pointer-events-none"
       >
         <div class="lg:ml-64 p-4">
@@ -71,6 +71,8 @@
 </template>
 
 <script setup lang="ts">
+const adminStore = useAdminStore()
+
 const props = withDefaults(
   defineProps<{
     show?: boolean
