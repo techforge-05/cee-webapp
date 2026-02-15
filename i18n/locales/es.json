@@ -828,7 +828,10 @@
     "sportsClubs": {
       "title": "Deportes",
       "subtitle": "Formando carácter a través del trabajo en equipo y la disciplina",
-      "intro": "En CEE, creemos en el desarrollo integral del estudiante. Nuestros programas deportivos brindan oportunidades para el acondicionamiento físico, el trabajo en equipo y el crecimiento personal fuera del aula.",
+      "intro": {
+        "title": "Atletismo y Desarrollo Físico",
+        "description": "En CEE, creemos en el desarrollo integral del estudiante. Nuestros programas deportivos brindan oportunidades para el acondicionamiento físico, el trabajo en equipo y el crecimiento personal fuera del aula."
+      },
       "sports": {
         "title": "Programas Deportivos",
         "description": "Nuestros programas atléticos promueven el acondicionamiento físico, el trabajo en equipo, la disciplina y el espíritu deportivo. Los estudiantes aprenden valiosas lecciones de vida a través de la competencia y la colaboración.",

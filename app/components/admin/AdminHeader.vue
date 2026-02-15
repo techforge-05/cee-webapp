@@ -59,6 +59,12 @@
             color="neutral"
             size="md"
           />
+          <template #active-language-trailing>
+            <UIcon
+              name="i-heroicons-check-circle"
+              class="w-5 h-5 text-teal-600"
+            />
+          </template>
         </UDropdownMenu>
       </div>
 
@@ -101,16 +107,45 @@
         icon: 'i-heroicons-user',
         disabled: true,
       },
+      // {
+      //   label: 'Invite users',
+      //   icon: 'i-lucide-user-plus',
+      //   children: [
+      //     {
+      //       label: 'Invite by email',
+      //       icon: 'i-lucide-send-horizontal',
+      //       kbds: ['meta', 'e'],
+      //       onSelect() {
+      //         console.log('Invite by email clicked');
+      //       },
+      //     },
+      //     {
+      //       label: 'Invite by link',
+      //       icon: 'i-lucide-link',
+      //       kbds: ['meta', 'i'],
+      //       onSelect() {
+      //         console.log('Invite by link clicked');
+      //       },
+      //     },
+      //   ],
+      // },
     ];
 
-    const languageGroup = locales.value.map((l) => ({
-      label: l.name,
-      icon: locale.value === l.code ? 'i-heroicons-check-circle' : '',
-      onClick: async () => {
-        const path = switchLocalePath(l.code);
-        await router.push(path);
+    const languageGroup = [
+      {
+        label: 'Language',
+        icon: 'i-heroicons-language',
+        children: locales.value.map((l) => ({
+          label: l.name,
+          // icon: locale.value === l.code ? 'i-heroicons-check-circle' : 'i-heroicons-language',
+          onClick: async () => {
+            const path = switchLocalePath(l.code);
+            await router.push(path);
+          },
+          slot: locale.value === l.code ? 'active-language' : undefined,
+        })),
       },
-    }));
+    ];
 
     const signOutGroup = [
       {

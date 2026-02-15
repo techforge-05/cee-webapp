@@ -828,7 +828,10 @@
     "sportsClubs": {
       "title": "Sports",
       "subtitle": "Building character through teamwork and discipline",
-      "intro": "At CEE, we believe in developing the whole student. Our sports programs provide opportunities for physical fitness, teamwork, and personal growth outside the classroom.",
+      "intro": {
+        "title": "Athletics & Physical Development",
+        "description": "At CEE, we believe in developing the whole student. Our sports programs provide opportunities for physical fitness, teamwork, and personal growth outside the classroom."
+      },
       "sports": {
         "title": "Sports Programs",
         "description": "Our athletic programs promote physical fitness, teamwork, discipline, and sportsmanship. Students learn valuable life lessons through competition and collaboration.",
