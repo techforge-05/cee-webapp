@@ -47,12 +47,12 @@
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
           >
-            {{ $t('home.welcome.titlePartOne') }}
+            {{ singleField('home.welcome', 'titlePart1') || $t('home.welcome.titlePartOne') }}
           </h2>
           <h1
             class="text-5xl md:text-7xl font-black text-white mb-5 uppercase tracking-tight"
           >
-            {{ $t('home.welcome.titlePartTwo') }}
+            {{ singleField('home.welcome', 'titlePart2') || $t('home.welcome.titlePartTwo') }}
           </h1>
           <h3
             class="text-xl md:text-3xl font-black text-white mb-8 tracking-tight"
@@ -62,7 +62,7 @@
           <p
             class="text-xl md:text-xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
           >
-            {{ $t('home.welcome.description') }}
+            {{ singleField('home.welcome', 'description') || $t('home.welcome.description') }}
           </p>
         </div>
       </div>
@@ -76,12 +76,12 @@
             <h2
               class="text-center md:text-left text-4xl md:text-5xl lg:text-6xl font-bold text-teal-600 mb-5 md:mb-6"
             >
-              {{ $t('home.enrollment.title') }}
+              {{ singleField('home.enrollment', 'title') || $t('home.enrollment.title') }}
             </h2>
             <p
               class="text-center md:text-left text-xl md:text-2xl text-gray-600 mb-6 md:mb-8 leading-relaxed"
             >
-              {{ $t('home.enrollment.description') }}
+              {{ singleField('home.enrollment', 'description') || $t('home.enrollment.description') }}
             </p>
             <ul class="space-y-4 md:space-y-5 mb-8 md:mb-10">
               <li
@@ -106,21 +106,18 @@
             </div>
           </div>
           <div>
-            <!-- Placeholder for enrollment image -->
+            <img
+              v-if="enrollmentImage"
+              :src="enrollmentImage"
+              alt=""
+              class="rounded-lg shadow-2xl w-full h-64 md:h-80 lg:h-96 xl:h-112.5 object-cover"
+            />
             <div
+              v-else
               class="bg-gray-200 rounded-lg shadow-2xl w-full h-64 md:h-80 lg:h-96 xl:h-112.5 flex items-center justify-center"
             >
-              <p class="text-gray-400 text-xl md:text-2xl">
-                {{ $t('home.enrollment.title') }}
-              </p>
+              <UIcon name="i-heroicons-photo" class="w-16 h-16 text-gray-400" />
             </div>
-            <!-- Replace with actual image when available:
-            <img
-              src="/images/enrollment.jpg"
-              alt="Enrollment"
-              class="rounded-lg shadow-2xl w-full h-80 md:h-[450px] lg:h-[500px] object-cover"
-            />
-            -->
           </div>
         </div>
       </div>
@@ -306,15 +303,17 @@
   });
 
   const { locale, tm, rt } = useI18n();
-  const { loadContent, getItems, field } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
   const { announcements, loadAnnouncements } = useAnnouncements();
 
   // Load DB content
   onMounted(() =>
     Promise.all([
       loadContent([
+        'home.welcome',
         'home.values',
         'home.activities',
+        'home.enrollment',
         'home.enrollment.features',
       ]),
       loadAnnouncements(),
@@ -350,6 +349,9 @@
       icon: valueIcons[i],
     }));
   });
+
+  // Enrollment image from DB
+  const enrollmentImage = computed(() => singleMeta('home.enrollment', 'image_url'));
 
   // Enrollment features: prefer DB, fall back to i18n
   const enrollmentFeatures = computed(() => {

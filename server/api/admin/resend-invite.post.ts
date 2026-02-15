@@ -1,5 +1,7 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import { createTransport } from 'nodemailer'
+import { randomUUID } from 'crypto'
+import { getInviteEmailSubject, getInviteEmailHtml } from '../../utils/emailTemplates'
 
 export default defineEventHandler(async (event) => {
   // Verify authenticated user
@@ -22,7 +24,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event)
-  const { invitationId } = body
+  const { invitationId, locale } = body
+  const emailLocale = locale === 'en' ? 'en' as const : 'es' as const
 
   if (!invitationId) {
     throw createError({ statusCode: 400, message: 'Invitation ID is required' })
@@ -43,10 +46,14 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'This invitation has already been accepted' })
   }
 
-  // Update the invitation with a new token and expiry
+  // Generate new token (64 chars, no dashes — matches DB default format)
+  const newToken = (randomUUID() + randomUUID()).replace(/-/g, '')
+
+  // Update the invitation with new token and expiry
   const { data: updatedInvite, error: updateError } = await supabase
     .from('invitations')
     .update({
+      token: newToken,
       expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     })
     .eq('id', invitationId)
@@ -57,7 +64,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 500, message: updateError.message })
   }
 
-  // Send the new invitation email
+  // Send the invitation email
+  let emailSent = false
   const config = useRuntimeConfig()
   const gmailUser = config.gmailUser
   const gmailAppPassword = config.gmailAppPassword
@@ -78,26 +86,19 @@ export default defineEventHandler(async (event) => {
       await transporter.sendMail({
         from: `"CEE Admin" <${gmailUser}>`,
         to: oldInvite.email,
-        subject: 'Reminder: You\'ve been invited to CEE Admin Panel',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2>Invitation Reminder</h2>
-            <p>This is a reminder that you've been invited to join the CEE Admin Panel.</p>
-            <p>Click the button below to create your account:</p>
-            <div style="margin: 30px 0;">
-              <a href="${inviteUrl}"
-                 style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block;">
-                Accept Invitation
-              </a>
-            </div>
-            <p style="color: #6b7280; font-size: 14px;">This invitation expires in 30 days.</p>
-          </div>
-        `,
+        subject: getInviteEmailSubject(emailLocale, true),
+        html: getInviteEmailHtml(emailLocale, {
+          inviteUrl,
+          role: oldInvite.role,
+          isResend: true,
+        }),
       })
+
+      emailSent = true
     } catch (emailError: any) {
       console.error('Failed to send invitation email:', emailError)
     }
   }
 
-  return { success: true }
+  return { success: true, emailSent }
 })

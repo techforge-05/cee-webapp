@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
-      class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
+      class="relative bg-linear-to-r from-green-600 to-teal-600 text-white py-20"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
@@ -23,7 +23,7 @@
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('about.history.intro') }}
+            {{ singleField('about.history.intro', 'text') || $t('about.history.intro') }}
           </p>
         </div>
       </div>
@@ -36,217 +36,90 @@
           {{ $t('about.history.timeline.title') }}
         </h2>
         <div class="space-y-12">
-          <!-- Late 1980s -->
-          <div class="relative">
+          <div
+            v-for="(item, index) in timelineItems"
+            :key="index"
+            class="relative"
+          >
             <div class="flex flex-col md:flex-row items-start gap-6">
+              <!-- Desktop icon circle -->
               <div class="shrink-0 md:block hidden">
                 <div
-                  class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold"
+                  :class="[
+                    'w-16 h-16 rounded-full flex items-center justify-center text-white font-bold',
+                    timelineStyles[index % timelineStyles.length].accent,
+                  ]"
                 >
-                  <UIcon name="i-heroicons-light-bulb" class="w-8 h-8" />
+                  <UIcon
+                    :name="timelineStyles[index % timelineStyles.length].icon"
+                    class="w-8 h-8"
+                  />
                 </div>
               </div>
-              <div class="flex-1 bg-blue-50 rounded-lg p-6 md:p-8 w-full">
+              <!-- Card -->
+              <div
+                :class="[
+                  'flex-1 rounded-lg p-6 md:p-8 w-full',
+                  timelineStyles[index % timelineStyles.length].bg,
+                ]"
+              >
+                <!-- Mobile icon + title -->
                 <div class="flex items-start gap-3 mb-4 md:hidden">
                   <div
-                    class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold shrink-0"
+                    :class="[
+                      'w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shrink-0',
+                      timelineStyles[index % timelineStyles.length].accent,
+                    ]"
                   >
-                    <UIcon name="i-heroicons-light-bulb" class="w-6 h-6" />
+                    <UIcon
+                      :name="timelineStyles[index % timelineStyles.length].icon"
+                      class="w-6 h-6"
+                    />
                   </div>
-                  <h3 class="text-2xl font-bold text-blue-900">
-                    {{ $t('about.history.timeline.late1980s.title') }}
+                  <h3
+                    :class="[
+                      'text-2xl font-bold',
+                      timelineStyles[index % timelineStyles.length].text,
+                    ]"
+                  >
+                    {{ item.title }}
                   </h3>
                 </div>
+                <!-- Desktop title -->
                 <h3
-                  class="text-2xl font-bold text-blue-900 mb-4 hidden md:block"
+                  :class="[
+                    'text-2xl font-bold mb-4 hidden md:block',
+                    timelineStyles[index % timelineStyles.length].text,
+                  ]"
                 >
-                  {{ $t('about.history.timeline.late1980s.title') }}
+                  {{ item.title }}
                 </h3>
-                <p class="text-lg text-gray-800 leading-relaxed mb-4">
-                  {{ $t('about.history.timeline.late1980s.content') }}
+                <p class="text-lg text-gray-800 leading-relaxed">
+                  {{ item.content }}
                 </p>
-                <div class="bg-white rounded-lg p-4 mt-4">
-                  <h4 class="font-bold text-blue-900 mb-2">
+                <!-- Founders sub-list (only for first i18n fallback entry) -->
+                <div
+                  v-if="!item._fromDb && item.founders && item.founders.length > 0"
+                  class="bg-white rounded-lg p-4 mt-4"
+                >
+                  <h4
+                    :class="[
+                      'font-bold mb-2',
+                      timelineStyles[index % timelineStyles.length].text,
+                    ]"
+                  >
                     {{ $t('about.history.timeline.late1980s.founders') }}
                   </h4>
                   <ul class="list-disc list-inside text-gray-700 space-y-1">
                     <li
-                      v-for="(founder, index) in founders"
-                      :key="index"
+                      v-for="(founder, fIndex) in item.founders"
+                      :key="fIndex"
                       class="ml-4"
                     >
-                      {{ $rt(founder) }}
+                      {{ founder }}
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Early 1990 -->
-          <div class="relative">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-              <div class="shrink-0 md:block hidden">
-                <div
-                  class="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
-                >
-                  <UIcon name="i-heroicons-users" class="w-8 h-8" />
-                </div>
-              </div>
-              <div class="flex-1 bg-purple-50 rounded-lg p-6 md:p-8 w-full">
-                <div class="flex items-start gap-3 mb-4 md:hidden">
-                  <div
-                    class="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold shrink-0"
-                  >
-                    <UIcon name="i-heroicons-users" class="w-6 h-6" />
-                  </div>
-                  <h3 class="text-2xl font-bold text-purple-900">
-                    {{ $t('about.history.timeline.early1990.title') }}
-                  </h3>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-purple-900 mb-4 hidden md:block"
-                >
-                  {{ $t('about.history.timeline.early1990.title') }}
-                </h3>
-                <p class="text-lg text-gray-800 leading-relaxed">
-                  {{ $t('about.history.timeline.early1990.content') }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- August 1990 -->
-          <div class="relative">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-              <div class="shrink-0 md:block hidden">
-                <div
-                  class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg"
-                >
-                  1990
-                </div>
-              </div>
-              <div class="flex-1 bg-indigo-50 rounded-lg p-6 md:p-8 w-full">
-                <div class="flex items-start gap-3 mb-4 md:hidden">
-                  <div
-                    class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-base shrink-0"
-                  >
-                    1990
-                  </div>
-                  <h3 class="text-2xl font-bold text-indigo-900">
-                    {{ $t('about.history.timeline.august1990.title') }}
-                  </h3>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-indigo-900 mb-4 hidden md:block"
-                >
-                  {{ $t('about.history.timeline.august1990.title') }}
-                </h3>
-                <p class="text-lg text-gray-800 leading-relaxed">
-                  {{ $t('about.history.timeline.august1990.content') }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- First Years -->
-          <div class="relative">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-              <div class="shrink-0 md:block hidden">
-                <div
-                  class="w-16 h-16 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold"
-                >
-                  <UIcon name="i-heroicons-academic-cap" class="w-8 h-8" />
-                </div>
-              </div>
-              <div class="flex-1 bg-violet-50 rounded-lg p-6 md:p-8 w-full">
-                <div class="flex items-start gap-3 mb-4 md:hidden">
-                  <div
-                    class="w-12 h-12 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold shrink-0"
-                  >
-                    <UIcon name="i-heroicons-academic-cap" class="w-6 h-6" />
-                  </div>
-                  <h3 class="text-2xl font-bold text-violet-900">
-                    {{ $t('about.history.timeline.firstYears.title') }}
-                  </h3>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-violet-900 mb-4 hidden md:block"
-                >
-                  {{ $t('about.history.timeline.firstYears.title') }}
-                </h3>
-                <p class="text-lg text-gray-800 leading-relaxed">
-                  {{ $t('about.history.timeline.firstYears.content') }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mid 1992 -->
-          <div class="relative">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-              <div class="shrink-0 md:block hidden">
-                <div
-                  class="w-16 h-16 rounded-full bg-fuchsia-500 flex items-center justify-center text-white font-bold text-lg"
-                >
-                  1992
-                </div>
-              </div>
-              <div class="flex-1 bg-fuchsia-50 rounded-lg p-6 md:p-8 w-full">
-                <div class="flex items-start gap-3 mb-4 md:hidden">
-                  <div
-                    class="w-12 h-12 rounded-full bg-fuchsia-500 flex items-center justify-center text-white font-bold text-base shrink-0"
-                  >
-                    1992
-                  </div>
-                  <h3 class="text-2xl font-bold text-fuchsia-900">
-                    {{ $t('about.history.timeline.mid1992.title') }}
-                  </h3>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-fuchsia-900 mb-4 hidden md:block"
-                >
-                  {{ $t('about.history.timeline.mid1992.title') }}
-                </h3>
-                <p class="text-lg text-gray-800 leading-relaxed">
-                  {{ $t('about.history.timeline.mid1992.content') }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Present Day -->
-          <div class="relative">
-            <div class="flex flex-col md:flex-row items-start gap-6">
-              <div class="shrink-0 md:block hidden">
-                <div
-                  class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
-                >
-                  <UIcon name="i-heroicons-building-office-2" class="w-8 h-8" />
-                </div>
-              </div>
-              <div class="flex-1 bg-green-50 rounded-lg p-6 md:p-8 w-full">
-                <div class="flex items-start gap-3 mb-4 md:hidden">
-                  <div
-                    class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-white font-bold shrink-0"
-                  >
-                    <UIcon
-                      name="i-heroicons-building-office-2"
-                      class="w-6 h-6"
-                    />
-                  </div>
-                  <h3 class="text-2xl font-bold text-green-900">
-                    {{ $t('about.history.timeline.present.title') }}
-                  </h3>
-                </div>
-                <h3
-                  class="text-2xl font-bold text-green-900 mb-4 hidden md:block"
-                >
-                  {{ $t('about.history.timeline.present.title') }}
-                </h3>
-                <p class="text-lg text-gray-800 leading-relaxed">
-                  {{ $t('about.history.timeline.present.content') }}
-                </p>
               </div>
             </div>
           </div>
@@ -263,10 +136,10 @@
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <h2 class="text-3xl font-bold text-gray-900 mb-6">
-            {{ $t('about.history.legacy.title') }}
+            {{ singleField('about.history.legacy', 'title') || $t('about.history.legacy.title') }}
           </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('about.history.legacy.content') }}
+            {{ singleField('about.history.legacy', 'content') || $t('about.history.legacy.content') }}
           </p>
         </div>
       </div>
@@ -274,7 +147,7 @@
 
     <!-- Call to Action -->
     <section
-      class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
+      class="py-16 bg-linear-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
@@ -310,10 +183,58 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm } = useI18n();
+  const { t, tm, rt } = useI18n();
+  const { loadContent, getItems, field, singleField } = usePublicContent();
 
-  const founders = computed(() => {
-    return tm('about.history.timeline.late1980s.foundersList') as string[];
+  onMounted(() => loadContent([
+    'about.history.intro',
+    'about.history.timeline',
+    'about.history.legacy',
+  ]));
+
+  // Color/icon styles that cycle for timeline entries
+  const timelineStyles = [
+    { bg: 'bg-blue-50', accent: 'bg-blue-500', text: 'text-blue-900', icon: 'i-heroicons-light-bulb' },
+    { bg: 'bg-purple-50', accent: 'bg-purple-500', text: 'text-purple-900', icon: 'i-heroicons-users' },
+    { bg: 'bg-indigo-50', accent: 'bg-indigo-500', text: 'text-indigo-900', icon: 'i-heroicons-calendar' },
+    { bg: 'bg-violet-50', accent: 'bg-violet-500', text: 'text-violet-900', icon: 'i-heroicons-academic-cap' },
+    { bg: 'bg-fuchsia-50', accent: 'bg-fuchsia-500', text: 'text-fuchsia-900', icon: 'i-heroicons-star' },
+    { bg: 'bg-green-50', accent: 'bg-green-500', text: 'text-green-900', icon: 'i-heroicons-building-office-2' },
+  ];
+
+  // Timeline items: DB-first, fall back to i18n
+  const timelineItems = computed(() => {
+    const dbItems = getItems('about.history.timeline');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        title: field(item, 'title'),
+        content: field(item, 'content'),
+        _fromDb: true,
+        founders: null,
+      }));
+    }
+
+    // Fallback to i18n — construct the 6 hardcoded periods
+    const foundersList = tm('about.history.timeline.late1980s.foundersList') as any[];
+    const founders = Array.isArray(foundersList)
+      ? foundersList.map((f: any) => (typeof f === 'string' ? f : rt(f)))
+      : [];
+
+    const periods = [
+      { titleKey: 'about.history.timeline.late1980s.title', contentKey: 'about.history.timeline.late1980s.content', founders },
+      { titleKey: 'about.history.timeline.early1990.title', contentKey: 'about.history.timeline.early1990.content' },
+      { titleKey: 'about.history.timeline.august1990.title', contentKey: 'about.history.timeline.august1990.content' },
+      { titleKey: 'about.history.timeline.firstYears.title', contentKey: 'about.history.timeline.firstYears.content' },
+      { titleKey: 'about.history.timeline.mid1992.title', contentKey: 'about.history.timeline.mid1992.content' },
+      { titleKey: 'about.history.timeline.present.title', contentKey: 'about.history.timeline.present.content' },
+    ];
+
+    return periods.map(p => ({
+      title: t(p.titleKey),
+      content: t(p.contentKey),
+      _fromDb: false,
+      founders: (p as any).founders || null,
+    }));
   });
 
   // Set page metadata

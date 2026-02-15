@@ -53,13 +53,13 @@
                 </div>
                 <div class="flex-1">
                   <h2 class="text-3xl font-bold mb-2" :class="getGradeLevelTextColor(index)">
-                    {{ rt(level.title) }}
+                    {{ level._fromDb ? level.title : rt(level.title) }}
                   </h2>
                   <p class="text-lg font-semibold mb-4" :class="getGradeLevelSubtextColor(index)">
-                    {{ rt(level.grades) }}
+                    {{ level._fromDb ? level.grades : rt(level.grades) }}
                   </p>
                   <p class="text-lg text-gray-800 leading-relaxed mb-4">
-                    {{ rt(level.description) }}
+                    {{ level._fromDb ? level.description : rt(level.description) }}
                   </p>
                 </div>
               </div>
@@ -81,7 +81,7 @@
                     class="w-6 h-6 shrink-0 mt-1"
                     :class="getGradeLevelIconColor(index)"
                   />
-                  <span class="text-gray-700">{{ rt(focus) }}</span>
+                  <span class="text-gray-700">{{ typeof focus === 'string' ? focus : rt(focus) }}</span>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@
                   />
                   <div>
                     <span class="font-semibold text-gray-900">{{ $t('academics.grades.typicalAge') }}: </span>
-                    <span class="text-gray-700">{{ rt(level.ageRange) }}</span>
+                    <span class="text-gray-700">{{ level._fromDb ? level.ageRange : rt(level.ageRange) }}</span>
                   </div>
                 </div>
               </div>
@@ -207,6 +207,7 @@
 
   onMounted(() => loadContent([
     'academics.grades.intro',
+    'academics.grades.levels',
     'academics.grades.specialPrograms',
     'academics.grades.approach',
   ]));
@@ -219,10 +220,23 @@
   ];
 
   const gradeLevels = computed(() => {
+    const dbItems = getItems('academics.grades.levels');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        grades: field(item, 'grades') || (item.metadata?.grades || ''),
+        description: field(item, 'description'),
+        focus: [],
+        ageRange: '',
+        icon: gradeLevelIcons[index % gradeLevelIcons.length],
+        _fromDb: true,
+      }));
+    }
     const items = tm('academics.grades.levels') as any[];
     return items.map((level: any, index: number) => ({
       ...level,
       icon: gradeLevelIcons[index % gradeLevelIcons.length],
+      _fromDb: false,
     }));
   });
 

@@ -84,13 +84,14 @@
 
     <!-- Add/Edit Modal -->
     <UModal v-model:open="showModal">
-      <template #content>
-        <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
-          <h3 class="text-lg font-semibold">
-            {{ editingAnn?.id ? $t('admin.editors.announcements.editAnnouncement') : $t('admin.editors.announcements.addAnnouncement') }}
-          </h3>
+      <template #header>
+        <h3 class="text-lg font-semibold">
+          {{ editingAnn?.id ? $t('admin.editors.announcements.editAnnouncement') : $t('admin.editors.announcements.addAnnouncement') }}
+        </h3>
+      </template>
 
-          <!-- Title -->
+      <template #body>
+        <div class="space-y-4">
           <BilingualTextField
             v-model="editFormTitle"
             :label="$t('admin.editors.announcements.announcementTitle')"
@@ -98,7 +99,6 @@
             required
           />
 
-          <!-- Description -->
           <BilingualTextarea
             v-model="editFormDescription"
             :label="$t('admin.editors.announcements.description')"
@@ -106,12 +106,10 @@
             :max-length="500"
           />
 
-          <!-- Display date -->
           <UFormField :label="$t('admin.editors.announcements.displayDate')" required>
             <UInput v-model="editForm.display_date" type="date" />
           </UFormField>
 
-          <!-- Image -->
           <div>
             <h4 class="text-sm font-medium text-gray-700 mb-2">{{ $t('admin.editors.announcements.image') }}</h4>
             <ImageManager
@@ -120,7 +118,6 @@
             />
           </div>
 
-          <!-- Link to event -->
           <UFormField :label="$t('admin.editors.announcements.linkedEvent')">
             <USelect
               v-model="editForm.event_id"
@@ -128,18 +125,18 @@
             />
           </UFormField>
 
-          <!-- Active -->
           <UCheckbox v-model="editForm.is_active" :label="$t('admin.editors.announcements.isActive')" />
+        </div>
+      </template>
 
-          <!-- Actions -->
-          <div class="flex justify-end gap-2 pt-2">
-            <UButton variant="ghost" @click="showModal = false">
-              {{ $t('admin.components.confirm.cancel') }}
-            </UButton>
-            <UButton :loading="savingAnn" @click="handleSave">
-              {{ $t('admin.editors.save') }}
-            </UButton>
-          </div>
+      <template #footer>
+        <div class="flex justify-end gap-2">
+          <UButton variant="ghost" @click="showModal = false">
+            {{ $t('admin.components.confirm.cancel') }}
+          </UButton>
+          <UButton :loading="savingAnn" @click="handleSave">
+            {{ $t('admin.editors.save') }}
+          </UButton>
         </div>
       </template>
     </UModal>

@@ -57,7 +57,7 @@
       <div class="flex items-center gap-3">
         <UCheckbox
           :model-value="modelValue.canCalendar"
-          @update:model-value="emit('update:modelValue', { ...modelValue, canCalendar: $event })"
+          @update:model-value="toggleCalendar($event)"
         />
         <UIcon name="i-heroicons-calendar-days" class="w-5 h-5 text-gray-600" />
         <span class="text-sm text-gray-900">{{ $t('admin.permissions.calendarAccess') }}</span>
@@ -98,87 +98,96 @@ const { t } = useI18n()
 
 const expandedSections = ref(new Set<string>())
 
-const sectionConfigs = [
+const sectionData = [
   {
     key: 'home',
     icon: 'i-heroicons-home',
     pages: [
-      { slug: 'home', icon: 'i-heroicons-home', label: 'Home Page' },
+      { slug: 'home', icon: 'i-heroicons-home' },
     ],
   },
   {
     key: 'about',
     icon: 'i-heroicons-information-circle',
     pages: [
-      { slug: 'mission-vision-values', icon: 'i-heroicons-star', label: 'Mission, Vision & Values' },
-      { slug: 'statement-of-faith', icon: 'i-heroicons-book-open', label: 'Statement of Faith' },
-      { slug: 'philosophy', icon: 'i-heroicons-light-bulb', label: 'Philosophy' },
-      { slug: 'history', icon: 'i-heroicons-clock', label: 'History' },
-      { slug: 'leadership', icon: 'i-heroicons-user-group', label: 'Leadership' },
-      { slug: 'town', icon: 'i-heroicons-map', label: 'Town' },
+      { slug: 'mission-vision-values', icon: 'i-heroicons-star' },
+      { slug: 'statement-of-faith', icon: 'i-heroicons-book-open' },
+      { slug: 'philosophy', icon: 'i-heroicons-light-bulb' },
+      { slug: 'history', icon: 'i-heroicons-clock' },
+      { slug: 'leadership', icon: 'i-heroicons-user-group' },
+      { slug: 'town', icon: 'i-heroicons-map' },
     ],
   },
   {
     key: 'academics',
     icon: 'i-heroicons-academic-cap',
     pages: [
-      { slug: 'curriculum', icon: 'i-heroicons-academic-cap', label: 'Curriculum' },
-      { slug: 'grades', icon: 'i-heroicons-chart-bar', label: 'Grades' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar' },
+      { slug: 'curriculum', icon: 'i-heroicons-academic-cap' },
+      { slug: 'grades', icon: 'i-heroicons-chart-bar' },
+      { slug: 'calendar', icon: 'i-heroicons-calendar-days' },
     ],
   },
   {
     key: 'studentLife',
     icon: 'i-heroicons-face-smile',
     pages: [
-      { slug: 'sports-clubs', icon: 'i-heroicons-trophy', label: 'Sports & Clubs' },
-      { slug: 'service-projects', icon: 'i-heroicons-heart', label: 'Service Projects' },
-      { slug: 'library', icon: 'i-heroicons-book-open', label: 'Library' },
-      { slug: 'upcoming-events', icon: 'i-heroicons-calendar', label: 'Upcoming Events' },
-      { slug: 'gallery', icon: 'i-heroicons-photo', label: 'Gallery' },
+      { slug: 'sports-clubs', icon: 'i-heroicons-trophy' },
+      { slug: 'service-projects', icon: 'i-heroicons-heart' },
+      { slug: 'library', icon: 'i-heroicons-book-open' },
+      { slug: 'upcoming-events', icon: 'i-heroicons-calendar' },
+      { slug: 'gallery', icon: 'i-heroicons-photo' },
     ],
   },
   {
     key: 'support',
     icon: 'i-heroicons-heart',
     pages: [
-      { slug: 'why-support', icon: 'i-heroicons-heart', label: 'Why Support' },
-      { slug: 'scholarships', icon: 'i-heroicons-academic-cap', label: 'Scholarships' },
-      { slug: 'donate', icon: 'i-heroicons-currency-dollar', label: 'Donate' },
-      { slug: 'projects', icon: 'i-heroicons-wrench-screwdriver', label: 'Projects' },
+      { slug: 'why-support', icon: 'i-heroicons-heart' },
+      { slug: 'scholarships', icon: 'i-heroicons-academic-cap' },
+      { slug: 'donate', icon: 'i-heroicons-currency-dollar' },
+      { slug: 'projects', icon: 'i-heroicons-wrench-screwdriver' },
     ],
   },
   {
     key: 'contact',
     icon: 'i-heroicons-phone',
     pages: [
-      { slug: 'info', icon: 'i-heroicons-phone', label: 'Contact Info' },
-      { slug: 'directions', icon: 'i-heroicons-map-pin', label: 'Directions' },
-      { slug: 'form', icon: 'i-heroicons-envelope', label: 'Contact Form' },
-      { slug: 'faq', icon: 'i-heroicons-question-mark-circle', label: 'FAQ' },
+      { slug: 'info', icon: 'i-heroicons-phone' },
+      { slug: 'directions', icon: 'i-heroicons-map-pin' },
+      { slug: 'form', icon: 'i-heroicons-envelope' },
+      { slug: 'faq', icon: 'i-heroicons-question-mark-circle' },
     ],
   },
   {
     key: 'admissions',
     icon: 'i-heroicons-clipboard-document-check',
     pages: [
-      { slug: 'who-can-apply', icon: 'i-heroicons-user-plus', label: 'Who Can Apply' },
-      { slug: 'how-to-apply', icon: 'i-heroicons-clipboard-document-list', label: 'How to Apply' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar' },
+      { slug: 'who-can-apply', icon: 'i-heroicons-user-plus' },
+      { slug: 'how-to-apply', icon: 'i-heroicons-clipboard-document-list' },
+      { slug: 'calendar', icon: 'i-heroicons-calendar-days' },
     ],
   },
   {
     key: 'getInvolved',
     icon: 'i-heroicons-hand-raised',
     pages: [
-      { slug: 'teachers', icon: 'i-heroicons-user-group', label: 'Teachers' },
-      { slug: 'volunteer', icon: 'i-heroicons-hand-raised', label: 'Volunteer' },
+      { slug: 'teachers', icon: 'i-heroicons-user-group' },
+      { slug: 'volunteer', icon: 'i-heroicons-hand-raised' },
     ],
   },
-].map(s => ({
-  ...s,
-  label: t(`admin.permissions.sections.${s.key}`, s.key),
-}))
+]
+
+// Computed so labels react to locale changes
+const sectionConfigs = computed(() =>
+  sectionData.map(s => ({
+    ...s,
+    label: t(`admin.permissions.sections.${s.key}`, s.key),
+    pages: s.pages.map(p => ({
+      ...p,
+      label: t(`admin.permissions.pages.${s.key}.${p.slug}`, p.slug),
+    })),
+  })),
+)
 
 function toggleExpand(sectionKey: string) {
   const newSet = new Set(expandedSections.value)
@@ -207,26 +216,79 @@ function hasPagePermission(sectionKey: string, pageSlug: string): boolean {
   )
 }
 
+function isCalendarPermission(sectionKey: string, pageSlug: string | null): boolean {
+  return sectionKey === 'academics' && (pageSlug === 'calendar' || pageSlug === null)
+}
+
+function syncCalendarFromPermissions(perms: PermissionEntry[]): boolean {
+  return perms.some(p =>
+    p.section === 'academics' && (p.page === null || p.page === 'calendar'),
+  )
+}
+
+function toggleCalendar(checked: boolean) {
+  let perms = [...props.modelValue.permissions]
+  if (checked) {
+    // Add academics/calendar page permission if not already covered
+    if (!syncCalendarFromPermissions(perms)) {
+      perms.push({ section: 'academics', page: 'calendar' })
+    }
+  } else {
+    // If full academics access, downgrade to individual pages minus calendar
+    const hasFullAcademics = perms.some(p => p.section === 'academics' && p.page === null)
+    if (hasFullAcademics) {
+      perms = perms.filter(p => p.section !== 'academics')
+      const academicsSection = sectionData.find(s => s.key === 'academics')
+      if (academicsSection) {
+        for (const page of academicsSection.pages) {
+          if (page.slug !== 'calendar') {
+            perms.push({ section: 'academics', page: page.slug })
+          }
+        }
+      }
+    } else {
+      perms = perms.filter(p => !(p.section === 'academics' && p.page === 'calendar'))
+    }
+  }
+  emit('update:modelValue', { ...props.modelValue, permissions: perms, canCalendar: checked })
+}
+
 function toggleSection(sectionKey: string, checked: boolean) {
   const filtered = props.modelValue.permissions.filter(p => p.section !== sectionKey)
   if (checked) {
     filtered.push({ section: sectionKey, page: null })
   }
-  emit('update:modelValue', { ...props.modelValue, permissions: filtered })
+  // Sync canCalendar when academics section is toggled
+  const canCalendar = isCalendarPermission(sectionKey, null) && checked
+    ? true
+    : (sectionKey === 'academics' && !checked ? false : props.modelValue.canCalendar)
+  emit('update:modelValue', { ...props.modelValue, permissions: filtered, canCalendar })
 }
 
 function togglePage(sectionKey: string, pageSlug: string, checked: boolean) {
   let perms = [...props.modelValue.permissions]
 
   // Remove full section access if toggling individual pages
-  perms = perms.filter(p => !(p.section === sectionKey && p.page === null))
+  const hadFullSection = perms.some(p => p.section === sectionKey && p.page === null)
+  if (hadFullSection) {
+    perms = perms.filter(p => !(p.section === sectionKey && p.page === null))
+    // Add all other pages when downgrading from full section
+    const section = sectionData.find(s => s.key === sectionKey)
+    if (section) {
+      for (const page of section.pages) {
+        if (page.slug !== pageSlug) {
+          perms.push({ section: sectionKey, page: page.slug })
+        }
+      }
+    }
+  }
 
   if (checked) {
     if (!perms.some(p => p.section === sectionKey && p.page === pageSlug)) {
       perms.push({ section: sectionKey, page: pageSlug })
     }
     // If all pages are now selected, upgrade to full section access
-    const section = sectionConfigs.find(s => s.key === sectionKey)
+    const section = sectionData.find(s => s.key === sectionKey)
     if (section) {
       const selectedPages = perms.filter(p => p.section === sectionKey).map(p => p.page)
       if (section.pages.every(p => selectedPages.includes(p.slug))) {
@@ -238,6 +300,11 @@ function togglePage(sectionKey: string, pageSlug: string, checked: boolean) {
     perms = perms.filter(p => !(p.section === sectionKey && p.page === pageSlug))
   }
 
-  emit('update:modelValue', { ...props.modelValue, permissions: perms })
+  // Sync canCalendar when academics/calendar page is toggled
+  const canCalendar = isCalendarPermission(sectionKey, pageSlug)
+    ? checked
+    : props.modelValue.canCalendar
+
+  emit('update:modelValue', { ...props.modelValue, permissions: perms, canCalendar })
 }
 </script>

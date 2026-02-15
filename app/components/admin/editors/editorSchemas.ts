@@ -92,7 +92,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.mvv.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.paragraph1(), f.paragraph2()],
+      fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.mvv.mission',
@@ -210,7 +210,28 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.town.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.paragraph1(), f.paragraph2()],
+      fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
+    },
+    {
+      pageKey: 'about.town.mountainImage',
+      labelKey: 'admin.editors.about.town.mountainImage',
+      type: 'single',
+      fields: [
+        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+      ],
+    },
+    {
+      pageKey: 'about.town.gallery',
+      labelKey: 'admin.editors.about.town.gallery',
+      type: 'list',
+      maxItems: 6,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.about.town.galleryItem',
+      fields: [
+        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+      ],
     },
     {
       pageKey: 'about.town.location',
@@ -422,7 +443,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 2,
       itemLabelKey: 'admin.editors.studentLife.sports.sport',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.sports.otherSports',
@@ -472,7 +493,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.library.purpose',
       labelKey: 'admin.editors.studentLife.library.purpose',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.goals',
@@ -487,7 +508,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.library.readingCorner',
       labelKey: 'admin.editors.studentLife.library.readingCorner',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.hours',
@@ -523,13 +544,13 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.library.bilingualCollection',
       labelKey: 'admin.editors.studentLife.library.bilingualCollection',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.studySpace',
       labelKey: 'admin.editors.studentLife.library.studySpace',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.donate',
@@ -676,39 +697,7 @@ const schemas: Record<string, EditorSection[]> = {
     },
   ],
 
-  'support/projects': [
-    {
-      pageKey: 'support.projects.intro',
-      labelKey: 'admin.editors.support.projects.intro',
-      type: 'single',
-      defaultOpen: false,
-      fields: [f.text()],
-    },
-    {
-      pageKey: 'support.projects.items',
-      labelKey: 'admin.editors.support.projects.items',
-      type: 'list',
-      maxItems: 8,
-      minItems: 1,
-      itemLabelKey: 'admin.editors.generic.project',
-      fields: [
-        f.title(),
-        f.description(),
-        f.meta('slug', 'admin.editors.generic.slug'),
-        f.meta('status', 'admin.editors.generic.status'),
-        f.meta('goal', 'admin.editors.generic.goal'),
-      ],
-    },
-    {
-      pageKey: 'support.projects.howToHelp',
-      labelKey: 'admin.editors.support.projects.howToHelp',
-      type: 'list',
-      maxItems: 8,
-      minItems: 2,
-      itemLabelKey: 'admin.editors.generic.item',
-      fields: [f.text()],
-    },
-  ],
+  // support/projects is handled by custom ProjectsEditor
 
   // ==================== CONTACT ====================
 

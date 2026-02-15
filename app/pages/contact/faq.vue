@@ -64,14 +64,14 @@
             >
               <div class="flex items-center gap-3">
                 <UBadge
-                  :color="getCategoryColor($rt(faq.category))"
+                  :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
                   variant="subtle"
                   size="sm"
                 >
-                  {{ getCategoryLabel($rt(faq.category)) }}
+                  {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
                 </UBadge>
                 <span class="font-semibold text-gray-900">
-                  {{ $rt(faq.question) }}
+                  {{ faq._fromDb ? faq.question : $rt(faq.question) }}
                 </span>
               </div>
               <UIcon
@@ -83,13 +83,13 @@
               v-show="openQuestions.includes(index)"
               class="px-6 pb-5 text-gray-700 border-t border-gray-100 pt-4"
             >
-              {{ $rt(faq.answer) }}
+              {{ faq._fromDb ? faq.answer : $rt(faq.answer) }}
               <NuxtLink
-                v-if="faq.link"
-                :to="localePath($rt(faq.link.path))"
+                v-if="faq._fromDb ? faq.linkPath : faq.link"
+                :to="localePath(faq._fromDb ? faq.linkPath : $rt(faq.link.path))"
                 class="inline-flex items-center gap-1 text-teal-600 hover:text-teal-800 font-medium ml-1"
               >
-                {{ $rt(faq.link.text) }}
+                {{ faq._fromDb ? faq.linkText : $rt(faq.link.text) }}
                 <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
               </NuxtLink>
             </div>
@@ -184,12 +184,31 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { t, tm, rt: $rt } = useI18n();
+const { loadContent, getItems, field, meta: getMeta } = usePublicContent();
+
+onMounted(() => loadContent(['contact.faq']));
 
 const selectedCategory = ref('all');
 const openQuestions = ref<number[]>([]);
 
 const questions = computed(() => {
-  return tm('contact.faq.questions') as any[];
+  // DB-first: if items exist in DB, use them
+  const dbItems = getItems('contact.faq');
+  if (dbItems.length > 0) {
+    return dbItems.map(item => ({
+      question: field(item, 'question'),
+      answer: field(item, 'answer'),
+      category: getMeta(item, 'category') || 'general',
+      linkText: field(item, 'linkText') || '',
+      linkPath: getMeta(item, 'linkPath') || '',
+      _fromDb: true,
+    }));
+  }
+  // Fallback to i18n
+  return (tm('contact.faq.questions') as any[]).map((q: any) => ({
+    ...q,
+    _fromDb: false,
+  }));
 });
 
 const categories = computed(() => {
@@ -206,9 +225,10 @@ const filteredQuestions = computed(() => {
   if (selectedCategory.value === 'all') {
     return questions.value;
   }
-  return questions.value.filter(
-    (q: any) => $rt(q.category) === selectedCategory.value
-  );
+  return questions.value.filter((q: any) => {
+    const cat = q._fromDb ? q.category : $rt(q.category);
+    return cat === selectedCategory.value;
+  });
 });
 
 const toggleQuestion = (index: number) => {

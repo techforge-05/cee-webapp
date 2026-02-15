@@ -1134,7 +1134,8 @@
       "hasAccount": "¿Ya tienes una cuenta?",
       "signUpLink": "Registrarse",
       "signInLink": "Iniciar sesión",
-      "forgotPasswordLink": "¿Olvidaste tu contraseña?"
+      "forgotPasswordLink": "¿Olvidaste tu contraseña?",
+      "backToHome": "Volver al inicio"
     },
     "signup": {
       "title": "Crea tu cuenta",
@@ -1226,9 +1227,26 @@
         "reInvite": "Re-invitar",
         "disable": "Deshabilitar",
         "enable": "Habilitar",
-        "delete": "Eliminar"
+        "delete": "Eliminar",
+        "copyLink": "Copiar enlace",
+        "cancel": "Cancelar invitación"
       },
       "emptyState": "No se encontraron usuarios",
+      "cancelConfirm": {
+        "title": "Cancelar invitación",
+        "message": "¿Estás seguro de que deseas cancelar esta invitación? El enlace de invitación dejará de funcionar.",
+        "confirm": "Cancelar Invitación",
+        "cancel": "Mantener Invitación"
+      },
+      "resendConfirm": {
+        "title": "Reenviar invitación",
+        "message": "Elige el idioma del correo de invitación."
+      },
+      "invitationCanceled": "Invitación cancelada exitosamente",
+      "invitationResent": "Invitación reenviada exitosamente",
+      "failedToResend": "Error al reenviar invitación",
+      "failedToCancel": "Error al cancelar invitación",
+      "pendingInvitations": "Invitaciones Pendientes",
       "deleteConfirm": {
         "title": "Eliminar usuario",
         "message": "¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.",
@@ -1268,11 +1286,19 @@
       "permissions": "Permisos",
       "calendarAccess": "Acceso al calendario",
       "announcementAccess": "Acceso a anuncios",
+      "emailLanguage": "Idioma del correo",
       "sendInvite": "Enviar invitación",
       "sending": "Enviando...",
       "success": "Invitación enviada exitosamente",
       "error": "Error al enviar invitación",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "copyLink": "Copiar Enlace",
+      "linkCopied": "Enlace de invitación copiado al portapapeles",
+      "emailWarning": "Invitación creada pero el correo no se pudo enviar",
+      "emailWarningDescription": "Copia el enlace a continuación y compártelo manualmente con el usuario.",
+      "inviteLink": "Enlace de Invitación",
+      "copyAndShare": "Copia y comparte este enlace con el usuario invitado"
     },
     "permissions": {
       "title": "Permisos por Sección",
@@ -1288,6 +1314,52 @@
         "contact": "Contacto",
         "admissions": "Admisiones",
         "getInvolved": "Involúcrate"
+      },
+      "pages": {
+        "home": {
+          "home": "Página de Inicio"
+        },
+        "about": {
+          "mission-vision-values": "Misión, Visión y Valores",
+          "statement-of-faith": "Declaración de Fe",
+          "philosophy": "Filosofía",
+          "history": "Historia",
+          "leadership": "Liderazgo",
+          "town": "Ciudad"
+        },
+        "academics": {
+          "curriculum": "Plan de Estudios",
+          "grades": "Grados",
+          "calendar": "Calendario"
+        },
+        "studentLife": {
+          "sports-clubs": "Deportes y Clubes",
+          "service-projects": "Proyectos de Servicio",
+          "library": "Biblioteca",
+          "upcoming-events": "Próximos Eventos",
+          "gallery": "Galería"
+        },
+        "support": {
+          "why-support": "Por Qué Apoyar",
+          "scholarships": "Becas",
+          "donate": "Donar",
+          "projects": "Proyectos"
+        },
+        "contact": {
+          "info": "Información de Contacto",
+          "directions": "Direcciones",
+          "form": "Formulario de Contacto",
+          "faq": "Preguntas Frecuentes"
+        },
+        "admissions": {
+          "who-can-apply": "Quién Puede Aplicar",
+          "how-to-apply": "Cómo Aplicar",
+          "calendar": "Calendario"
+        },
+        "getInvolved": {
+          "teachers": "Maestros",
+          "volunteer": "Voluntariado"
+        }
       },
       "calendarAccess": "Puede gestionar eventos del calendario",
       "announcementAccess": "Puede gestionar anuncios"
@@ -1503,7 +1575,9 @@
         "step": "Paso",
         "qualification": "Calificación",
         "opportunity": "Oportunidad",
-        "rule": "Regla"
+        "rule": "Regla",
+        "imageUrl": "Imagen",
+        "photo": "Foto"
       },
       "calendarInfo": {
         "title": "Eventos del Calendario",
@@ -1539,6 +1613,9 @@
         },
         "town": {
           "intro": "Introducción",
+          "mountainImage": "Imagen de Montaña",
+          "gallery": "Galería de Imágenes",
+          "galleryItem": "Imagen de Galería",
           "location": "Detalles de Ubicación",
           "climate": "Clima",
           "activities": "Actividades Locales"
@@ -1627,6 +1704,11 @@
         "projects": {
           "intro": "Introducción",
           "items": "Proyectos",
+          "projects": "Proyectos",
+          "project": "Proyecto",
+          "needs": "Necesidades del Proyecto",
+          "need": "Necesidad",
+          "generateSlug": "Generar Slug",
           "howToHelp": "Cómo Ayudar"
         }
       },

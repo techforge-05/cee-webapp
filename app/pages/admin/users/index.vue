@@ -80,14 +80,14 @@
                 </UBadge>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right" @click.stop>
-                <UDropdown :items="getActionItems(user)">
+                <UDropdownMenu :items="getActionItems(user)">
                   <UButton
                     icon="i-heroicons-ellipsis-vertical"
                     variant="ghost"
                     color="neutral"
                     size="sm"
                   />
-                </UDropdown>
+                </UDropdownMenu>
               </td>
             </tr>
             <tr v-if="filteredUsers.length === 0">
@@ -102,7 +102,7 @@
       <!-- Pending invitations section -->
       <div v-if="pendingInvitations.length > 0" class="border-t border-gray-200">
         <div class="px-6 py-3 bg-gray-50">
-          <h3 class="text-sm font-medium text-gray-700">Pending Invitations</h3>
+          <h3 class="text-sm font-medium text-gray-700">{{ $t('admin.users.pendingInvitations') }}</h3>
         </div>
         <table class="min-w-full divide-y divide-gray-200">
           <tbody class="bg-white divide-y divide-gray-200">
@@ -141,14 +141,31 @@
                 </UBadge>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right">
-                <UButton
-                  v-if="isExpired(inv.expires_at)"
-                  size="xs"
-                  variant="outline"
-                  @click="resendInvitation(inv)"
-                >
-                  {{ $t('admin.users.actions.reInvite') }}
-                </UButton>
+                <div class="flex items-center justify-end gap-2">
+                  <UButton
+                    size="xs"
+                    variant="outline"
+                    icon="i-heroicons-clipboard-document"
+                    @click="copyInviteLink(inv)"
+                  >
+                    {{ $t('admin.users.actions.copyLink') }}
+                  </UButton>
+                  <UButton
+                    size="xs"
+                    variant="outline"
+                    @click="openResendModal(inv)"
+                  >
+                    {{ $t('admin.users.actions.reInvite') }}
+                  </UButton>
+                  <UDropdownMenu :items="getInvitationActionItems(inv)">
+                    <UButton
+                      icon="i-heroicons-ellipsis-vertical"
+                      variant="ghost"
+                      color="neutral"
+                      size="xs"
+                    />
+                  </UDropdownMenu>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -194,6 +211,43 @@
         </div>
       </template>
     </UModal>
+
+    <!-- Cancel invitation confirmation -->
+    <ConfirmDialog
+      v-model="showCancelConfirm"
+      :title="$t('admin.users.cancelConfirm.title')"
+      :message="$t('admin.users.cancelConfirm.message')"
+      :confirm-label="$t('admin.users.cancelConfirm.confirm')"
+      :cancel-label="$t('admin.users.cancelConfirm.cancel')"
+      :loading="actionLoading"
+      confirm-color="error"
+      @confirm="cancelInvitation"
+    />
+
+    <!-- Resend invitation language picker -->
+    <UModal v-model:open="showResendModal">
+      <template #content>
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $t('admin.users.resendConfirm.title') }}</h3>
+          <p class="text-sm text-gray-500 mb-4">{{ $t('admin.users.resendConfirm.message') }}</p>
+          <UFormField :label="$t('admin.invite.emailLanguage')" class="mb-6">
+            <USelect
+              v-model="resendLocale"
+              :items="localeOptions"
+              class="w-full"
+            />
+          </UFormField>
+          <div class="flex justify-end gap-3">
+            <UButton variant="outline" @click="showResendModal = false">
+              {{ $t('admin.invite.cancel') }}
+            </UButton>
+            <UButton :loading="actionLoading" @click="resendInvitation">
+              {{ $t('admin.users.actions.reInvite') }}
+            </UButton>
+          </div>
+        </div>
+      </template>
+    </UModal>
   </div>
 </template>
 
@@ -224,8 +278,17 @@ const pendingInvitations = ref<any[]>([])
 const showInviteModal = ref(false)
 const showDeleteModal = ref(false)
 const showDisableModal = ref(false)
+const showCancelConfirm = ref(false)
+const showResendModal = ref(false)
 const selectedUser = ref<UserProfile | null>(null)
+const selectedInvitation = ref<any>(null)
+const resendLocale = ref<'es' | 'en'>('es')
 const actionLoading = ref(false)
+
+const localeOptions = [
+  { label: 'Español', value: 'es' },
+  { label: 'English', value: 'en' },
+]
 
 const filteredUsers = computed(() => {
   if (!search.value) return users.value
@@ -262,7 +325,7 @@ function isExpired(expiresAt: string): boolean {
 type DropdownItem = {
   label: string
   icon: string
-  click: () => void
+  onClick: () => void
   color?: string
 }
 
@@ -271,7 +334,7 @@ function getActionItems(user: UserProfile): DropdownItem[][] {
     {
       label: t('admin.users.actions.viewDetails'),
       icon: 'i-heroicons-eye',
-      click: () => navigateTo(localePath(`/admin/users/${user.id}`)),
+      onClick: () => navigateTo(localePath(`/admin/users/${user.id}`)),
     },
   ]
 
@@ -281,7 +344,7 @@ function getActionItems(user: UserProfile): DropdownItem[][] {
       items.push({
         label: t('admin.users.actions.disable'),
         icon: 'i-heroicons-no-symbol',
-        click: () => {
+        onClick: () => {
           selectedUser.value = user
           showDisableModal.value = true
         },
@@ -290,7 +353,7 @@ function getActionItems(user: UserProfile): DropdownItem[][] {
       items.push({
         label: t('admin.users.actions.enable'),
         icon: 'i-heroicons-check-circle',
-        click: () => enableUser(user),
+        onClick: () => enableUser(user),
       })
     }
 
@@ -298,7 +361,7 @@ function getActionItems(user: UserProfile): DropdownItem[][] {
       label: t('admin.users.actions.delete'),
       icon: 'i-heroicons-trash',
       color: 'error',
-      click: () => {
+      onClick: () => {
         selectedUser.value = user
         showDeleteModal.value = true
       },
@@ -306,6 +369,20 @@ function getActionItems(user: UserProfile): DropdownItem[][] {
   }
 
   return [items]
+}
+
+function getInvitationActionItems(inv: any): DropdownItem[][] {
+  return [[
+    {
+      label: t('admin.users.actions.cancel'),
+      icon: 'i-heroicons-x-circle',
+      color: 'error',
+      onClick: () => {
+        selectedInvitation.value = inv
+        showCancelConfirm.value = true
+      },
+    },
+  ]]
 }
 
 async function loadData() {
@@ -393,17 +470,88 @@ async function enableUser(user: UserProfile) {
   }
 }
 
-async function resendInvitation(invitation: any) {
+async function copyInviteLink(invitation: any) {
+  const baseUrl = window.location.origin
+  const inviteUrl = `${baseUrl}/auth/accept-invite?token=${invitation.token}`
+
   try {
-    await $fetch('/api/admin/resend-invite', {
+    await navigator.clipboard.writeText(inviteUrl)
+    toast.add({
+      title: t('admin.invite.linkCopied'),
+      color: 'success',
+    })
+  } catch {
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea')
+    textarea.value = inviteUrl
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textarea)
+    toast.add({
+      title: t('admin.invite.linkCopied'),
+      color: 'success',
+    })
+  }
+}
+
+function openResendModal(invitation: any) {
+  selectedInvitation.value = invitation
+  resendLocale.value = 'es'
+  showResendModal.value = true
+}
+
+async function resendInvitation() {
+  if (!selectedInvitation.value) return
+  actionLoading.value = true
+
+  try {
+    const response = await $fetch<{ success: boolean; emailSent: boolean }>('/api/admin/resend-invite', {
       method: 'POST',
-      body: { invitationId: invitation.id },
+      body: {
+        invitationId: selectedInvitation.value.id,
+        locale: resendLocale.value,
+      },
     })
 
-    toast.add({ title: 'Invitation resent', color: 'success' })
+    if (response.emailSent) {
+      toast.add({ title: t('admin.users.invitationResent'), color: 'success' })
+    } else {
+      toast.add({
+        title: t('admin.invite.emailWarning'),
+        description: t('admin.invite.emailWarningDescription'),
+        color: 'warning',
+      })
+    }
+
+    showResendModal.value = false
+    selectedInvitation.value = null
     await loadData()
   } catch (e: any) {
-    toast.add({ title: e.data?.message || 'Failed to resend invitation', color: 'error' })
+    toast.add({ title: e.data?.message || t('admin.users.failedToResend'), color: 'error' })
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+async function cancelInvitation() {
+  if (!selectedInvitation.value) return
+  actionLoading.value = true
+
+  try {
+    await $fetch('/api/admin/cancel-invite', {
+      method: 'POST',
+      body: { invitationId: selectedInvitation.value.id },
+    })
+
+    toast.add({ title: t('admin.users.invitationCanceled'), color: 'success' })
+    showCancelConfirm.value = false
+    selectedInvitation.value = null
+    await loadData()
+  } catch (e: any) {
+    toast.add({ title: e.data?.message || t('admin.users.failedToCancel'), color: 'error' })
+  } finally {
+    actionLoading.value = false
   }
 }
 

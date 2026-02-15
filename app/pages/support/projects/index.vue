@@ -43,7 +43,10 @@
             :to="localePath(`/support/projects/${project.slug}`)"
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block group"
           >
-            <div class="h-48 bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
+            <div v-if="project.imageUrl" class="h-48 overflow-hidden">
+              <img :src="project.imageUrl" :alt="project.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </div>
+            <div v-else class="h-48 bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
               <UIcon :name="project.icon" class="w-20 h-20 text-red-500 group-hover:scale-110 transition-transform" />
             </div>
             <div class="p-6">
@@ -161,6 +164,7 @@ const projectsWithIcons = computed(() => {
       slug: getMeta(item, 'slug'),
       status: getMeta(item, 'status'),
       goal: getMeta(item, 'goal'),
+      imageUrl: getMeta(item, 'imageUrl'),
       icon: projectIcons[index] || 'i-heroicons-star',
     }));
   }

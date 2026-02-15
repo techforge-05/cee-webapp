@@ -49,6 +49,14 @@
         <div class="max-w-4xl mx-auto">
           <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <img
+              v-if="boardPhotoUrl"
+              :src="boardPhotoUrl"
+              :alt="boardPhotoAlt"
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+            <img
+              v-else
               src="/images/boardOfDirectors.jpg"
               :alt="$t('about.leadership.board.title')"
               class="w-full h-auto object-cover"
@@ -56,20 +64,13 @@
             />
           </div>
           <!-- Board Member Names -->
-          <div class="mt-6 text-center">
+          <div v-if="boardMemberNames.length > 0" class="mt-6 text-center">
             <p class="text-gray-600 text-sm mb-2">{{ $t('about.leadership.board.membersLabel') }}</p>
             <p class="text-gray-800 text-sm lg:text-base">
-              <span class="font-medium">Sergio Portillo</span>
-              <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Héctor Estrada</span>
-              <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Edith Aguilar</span>
-              <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Iris Martínez</span>
-              <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Enrique Martínez</span>
-              <span class="text-gray-400 mx-2">•</span>
-              <span class="font-medium">Peter Simpson</span>
+              <template v-for="(member, index) in boardMemberNames" :key="index">
+                <span class="font-medium">{{ member }}</span>
+                <span v-if="index < boardMemberNames.length - 1" class="text-gray-400 mx-2">&bull;</span>
+              </template>
             </p>
           </div>
         </div>
@@ -93,58 +94,38 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- Yasmín Guevara -->
           <div
+            v-for="(director, index) in directorsList"
+            :key="index"
             class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
           >
             <div class="flex flex-col items-center text-center">
               <img
-                src="/images/Osiris.jpg"
-                alt="Yasmín Guevara"
+                v-if="director.photoUrl"
+                :src="director.photoUrl"
+                :alt="director.name"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
                 loading="lazy"
               />
+              <div
+                v-else
+                class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-gray-200 flex items-center justify-center mb-4"
+              >
+                <UIcon name="i-heroicons-user" class="w-16 h-16 text-gray-400" />
+              </div>
               <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                Yasmín Guevara
+                {{ director.name }}
               </h3>
               <p class="text-purple-600 font-semibold mb-1">
-                {{ $t('about.leadership.directors.preschoolElementary') }}
+                {{ director.title }}
               </p>
-              <p class="text-gray-500 text-sm mb-3">(Kindergarten - Grade 6)</p>
               <a
-                href="mailto:yasmin@ceehonduras.org"
-                class="text-blue-600 hover:text-blue-800 flex items-center gap-2"
+                v-if="director.email"
+                :href="`mailto:${director.email}`"
+                class="text-blue-600 hover:text-blue-800 flex items-center gap-2 mt-2"
               >
                 <UIcon name="i-heroicons-envelope" class="w-4 h-4" />
-                yasmin@ceehonduras.org
-              </a>
-            </div>
-          </div>
-
-          <!-- Osiris Murillo -->
-          <div
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
-          >
-            <div class="flex flex-col items-center text-center">
-              <img
-                src="/images/Yasmin.jpg"
-                alt="Osiris Murillo"
-                class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
-                loading="lazy"
-              />
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                Osiris Murillo
-              </h3>
-              <p class="text-purple-600 font-semibold mb-1">
-                {{ $t('about.leadership.directors.highSchool') }}
-              </p>
-              <p class="text-gray-500 text-sm mb-3">(Grades 7 - 11)</p>
-              <a
-                href="mailto:osiris@ceehonduras.org"
-                class="text-blue-600 hover:text-blue-800 flex items-center gap-2"
-              >
-                <UIcon name="i-heroicons-envelope" class="w-4 h-4" />
-                osiris@ceehonduras.org
+                {{ director.email }}
               </a>
             </div>
           </div>
@@ -218,6 +199,76 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
+  const { locale } = useI18n();
+  const { loadContent, getItems, field, meta: getMeta } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'about.leadership.boardPhoto',
+    'about.leadership.board',
+    'about.leadership.directors',
+  ]));
+
+  // Board photo: DB-first, fallback to static image handled in template
+  const boardPhotoUrl = computed(() => {
+    const dbItems = getItems('about.leadership.boardPhoto');
+    if (dbItems.length > 0) {
+      return field(dbItems[0], 'url') || '';
+    }
+    return '';
+  });
+
+  const boardPhotoAlt = computed(() => {
+    const dbItems = getItems('about.leadership.boardPhoto');
+    if (dbItems.length > 0) {
+      return field(dbItems[0], 'alt') || '';
+    }
+    return '';
+  });
+
+  // Board member names from DB
+  const boardMemberNames = computed(() => {
+    const dbItems = getItems('about.leadership.board');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => field(item, 'name')).filter(Boolean);
+    }
+    // Fallback: hardcoded names
+    return [
+      'Sergio Portillo',
+      'Héctor Estrada',
+      'Edith Aguilar',
+      'Iris Martínez',
+      'Enrique Martínez',
+      'Peter Simpson',
+    ];
+  });
+
+  // Directors from DB
+  const directorsList = computed(() => {
+    const dbItems = getItems('about.leadership.directors');
+    if (dbItems.length > 0) {
+      return dbItems.map(item => ({
+        name: field(item, 'name'),
+        title: field(item, 'title'),
+        email: getMeta(item, 'email') || '',
+        photoUrl: getMeta(item, 'photoUrl') || '',
+      }));
+    }
+    // Fallback: hardcoded directors
+    return [
+      {
+        name: 'Yasmín Guevara',
+        title: locale.value === 'en' ? 'Preschool & Elementary Director' : 'Directora de Preescolar y Primaria',
+        email: 'yasmin@ceehonduras.org',
+        photoUrl: '/images/Osiris.jpg',
+      },
+      {
+        name: 'Osiris Murillo',
+        title: locale.value === 'en' ? 'High School Director' : 'Director de Secundaria',
+        email: 'osiris@ceehonduras.org',
+        photoUrl: '/images/Yasmin.jpg',
+      },
+    ];
+  });
 
   // Set page metadata
   useHead({

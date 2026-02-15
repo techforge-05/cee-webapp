@@ -1,11 +1,12 @@
 <template>
   <div class="space-y-6 pb-24">
-    <!-- Gallery Section -->
-    <SectionCard
-      v-model="openGallery"
-      :title="$t('admin.editors.gallery.title')"
-      :page-key="''"
-    >
+    <!-- Gallery Section (always open) -->
+    <UCard>
+      <template #header>
+        <h3 class="text-base lg:text-lg font-semibold text-gray-700">
+          {{ $t('admin.editors.gallery.title') }}
+        </h3>
+      </template>
       <div class="space-y-6">
         <!-- Filters + Add -->
         <div class="flex flex-wrap items-center gap-4">
@@ -94,7 +95,7 @@
           </div>
         </div>
       </div>
-    </SectionCard>
+    </UCard>
 
     <!-- Add/Edit Modal -->
     <UModal v-model:open="showModal">
@@ -180,7 +181,6 @@ const { photos, loading, loadPhotos, savePhoto, deletePhoto } = useGallery()
 const toast = useToast()
 const { t } = useI18n()
 
-const openGallery = ref(false)
 const filterYear = ref('all')
 const filterCategory = ref('all')
 const showModal = ref(false)

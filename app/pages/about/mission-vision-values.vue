@@ -29,10 +29,15 @@
               {{ singleField('about.mvv.intro', 'paragraph2') || $t('about.missionVisionValues.intro.paragraph2') }}
             </p>
           </div>
-          <div
-            class="bg-gray-300 h-96 rounded-lg flex items-center justify-center"
-          >
-            <p class="text-gray-400 text-xl">Introduction Image</p>
+          <div v-if="singleMeta('about.mvv.intro', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
+            <img
+              :src="singleMeta('about.mvv.intro', 'imageUrl')"
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+            <UIcon name="i-heroicons-photo" class="w-16 h-16 text-gray-400" />
           </div>
         </div>
       </div>
@@ -149,7 +154,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
 
   onMounted(() => loadContent([
     'about.mvv.intro',

@@ -28,8 +28,15 @@
               {{ singleField('about.town.intro', 'paragraph2') || $t('about.town.intro.paragraph2') }}
             </p>
           </div>
-          <div class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
-            <p class="text-gray-400 text-xl">Siguatepeque City Image</p>
+          <div v-if="singleMeta('about.town.intro', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
+            <img
+              :src="singleMeta('about.town.intro', 'imageUrl')"
+              alt=""
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+            <UIcon name="i-heroicons-map-pin" class="w-16 h-16 text-gray-400" />
           </div>
         </div>
       </div>
@@ -92,8 +99,15 @@
     <!-- Mountain Image Section -->
     <section class="py-8">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
-          <p class="text-gray-400 text-xl">Mountain Landscape Image</p>
+        <div v-if="singleMeta('about.town.mountainImage', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
+          <img
+            :src="singleMeta('about.town.mountainImage', 'imageUrl')"
+            :alt="singleField('about.town.mountainImage', 'alt') || ''"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+          <UIcon name="i-heroicons-photo" class="w-16 h-16 text-gray-400" />
         </div>
       </div>
     </section>
@@ -141,15 +155,30 @@
           {{ $t('about.town.gallery.title') }}
         </h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-            <p class="text-gray-400 text-center">Downtown Image</p>
-          </div>
-          <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-            <p class="text-gray-400 text-center">Parks Image</p>
-          </div>
-          <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-            <p class="text-gray-400 text-center">Community Image</p>
-          </div>
+          <template v-if="galleryImages.length > 0">
+            <div
+              v-for="(img, index) in galleryImages"
+              :key="index"
+              class="h-64 rounded-lg overflow-hidden"
+            >
+              <img
+                :src="img.url"
+                :alt="img.alt"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </template>
+          <template v-else>
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+              <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
+            </div>
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+              <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
+            </div>
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+              <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -191,14 +220,26 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { t, tm, rt } = useI18n();
-const { loadContent, getItems, field, singleField } = usePublicContent();
+const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
 
 onMounted(() => loadContent([
   'about.town.intro',
   'about.town.location',
   'about.town.climate',
   'about.town.activities',
+  'about.town.mountainImage',
+  'about.town.gallery',
 ]));
+
+const galleryImages = computed(() => {
+  const dbItems = getItems('about.town.gallery');
+  return dbItems
+    .filter(item => getMeta(item, 'imageUrl'))
+    .map(item => ({
+      url: getMeta(item, 'imageUrl'),
+      alt: field(item, 'alt') || '',
+    }));
+});
 
 const locationItems = computed(() => {
   const dbItems = getItems('about.town.location');

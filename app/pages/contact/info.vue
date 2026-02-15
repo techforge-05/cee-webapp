@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('contact.info.intro') }}
+            {{ singleField('contact.info.intro', 'text') || $t('contact.info.intro') }}
           </p>
         </div>
       </div>
@@ -43,18 +43,18 @@
               <UIcon name="i-heroicons-phone" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
-              {{ $t('contact.info.phone.title') }}
+              {{ singleField('contact.info.phone', 'title') || $t('contact.info.phone.title') }}
             </h3>
             <a
-              href="https://wa.me/50493268998"
+              :href="`https://wa.me/${(singleMeta('contact.info.phone', 'number') || $t('contact.info.phone.number')).replace(/[^0-9]/g, '')}`"
               target="_blank"
               rel="noopener noreferrer"
               class="text-lg text-green-600 font-semibold hover:text-green-700 transition-colors"
             >
-              {{ $t('contact.info.phone.number') }}
+              {{ singleMeta('contact.info.phone', 'number') || $t('contact.info.phone.number') }}
             </a>
             <p class="text-gray-600 mt-2 text-sm">
-              {{ $t('contact.info.phone.description') }}
+              {{ singleField('contact.info.phone', 'description') || $t('contact.info.phone.description') }}
             </p>
           </div>
 
@@ -68,16 +68,16 @@
               <UIcon name="i-heroicons-envelope" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
-              {{ $t('contact.info.email.title') }}
+              {{ singleField('contact.info.email', 'title') || $t('contact.info.email.title') }}
             </h3>
             <a
-              href="mailto:administracion@ceehonduras.org"
+              :href="`mailto:${singleMeta('contact.info.email', 'address') || $t('contact.info.email.address')}`"
               class="text-sm text-red-600 font-semibold hover:text-red-700 transition-colors"
             >
-              {{ $t('contact.info.email.address') }}
+              {{ singleMeta('contact.info.email', 'address') || $t('contact.info.email.address') }}
             </a>
             <p class="text-gray-600 mt-2 text-sm">
-              {{ $t('contact.info.email.description') }}
+              {{ singleField('contact.info.email', 'description') || $t('contact.info.email.description') }}
             </p>
           </div>
 
@@ -91,16 +91,16 @@
               <UIcon name="i-heroicons-clock" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
-              {{ $t('contact.info.hours.title') }}
+              {{ singleField('contact.info.hours', 'title') || $t('contact.info.hours.title') }}
             </h3>
             <p class="text-lg text-gray-800 font-semibold">
-              {{ $t('contact.info.hours.schedule') }}
+              {{ singleMeta('contact.info.hours', 'schedule') || $t('contact.info.hours.schedule') }}
             </p>
             <p class="text-lg text-blue-600 font-semibold">
-              {{ $t('contact.info.hours.time') }}
+              {{ singleMeta('contact.info.hours', 'time') || $t('contact.info.hours.time') }}
             </p>
             <p class="text-gray-600 mt-2 text-sm">
-              {{ $t('contact.info.hours.description') }}
+              {{ singleField('contact.info.hours', 'description') || $t('contact.info.hours.description') }}
             </p>
           </div>
 
@@ -114,11 +114,11 @@
               <UIcon name="i-heroicons-map-pin" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">
-              {{ $t('contact.info.address.title') }}
+              {{ singleField('contact.info.address', 'title') || $t('contact.info.address.title') }}
             </h3>
-            <p class="text-gray-800">{{ $t('contact.info.address.line1') }}</p>
-            <p class="text-gray-800">{{ $t('contact.info.address.line2') }}</p>
-            <p class="text-gray-800">{{ $t('contact.info.address.line3') }}</p>
+            <p class="text-gray-800">{{ singleMeta('contact.info.address', 'line1') || $t('contact.info.address.line1') }}</p>
+            <p class="text-gray-800">{{ singleMeta('contact.info.address', 'line2') || $t('contact.info.address.line2') }}</p>
+            <p class="text-gray-800">{{ singleMeta('contact.info.address', 'line3') || $t('contact.info.address.line3') }}</p>
           </div>
         </div>
       </div>
@@ -196,6 +196,15 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
+  const { loadContent, singleField, singleMeta } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'contact.info.intro',
+    'contact.info.phone',
+    'contact.info.email',
+    'contact.info.hours',
+    'contact.info.address',
+  ]));
 
   useHead({
     title: 'Contact Information - CEE',

@@ -1134,7 +1134,8 @@
       "hasAccount": "Already have an account?",
       "signUpLink": "Sign up",
       "signInLink": "Sign in",
-      "forgotPasswordLink": "Forgot your password?"
+      "forgotPasswordLink": "Forgot your password?",
+      "backToHome": "Back to home"
     },
     "signup": {
       "title": "Create your account",
@@ -1226,9 +1227,26 @@
         "reInvite": "Re-invite",
         "disable": "Disable",
         "enable": "Enable",
-        "delete": "Delete"
+        "delete": "Delete",
+        "copyLink": "Copy invite link",
+        "cancel": "Cancel invitation"
       },
       "emptyState": "No users found",
+      "cancelConfirm": {
+        "title": "Cancel invitation",
+        "message": "Are you sure you want to cancel this invitation? The invite link will no longer work.",
+        "confirm": "Cancel Invitation",
+        "cancel": "Keep Invitation"
+      },
+      "resendConfirm": {
+        "title": "Resend invitation",
+        "message": "Choose the language for the invitation email."
+      },
+      "invitationCanceled": "Invitation canceled successfully",
+      "invitationResent": "Invitation resent successfully",
+      "failedToResend": "Failed to resend invitation",
+      "failedToCancel": "Failed to cancel invitation",
+      "pendingInvitations": "Pending Invitations",
       "deleteConfirm": {
         "title": "Delete user",
         "message": "Are you sure you want to delete this user? This action cannot be undone.",
@@ -1268,11 +1286,19 @@
       "permissions": "Permissions",
       "calendarAccess": "Calendar access",
       "announcementAccess": "Announcement access",
+      "emailLanguage": "Email language",
       "sendInvite": "Send invitation",
       "sending": "Sending...",
       "success": "Invitation sent successfully",
       "error": "Failed to send invitation",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "close": "Close",
+      "copyLink": "Copy Link",
+      "linkCopied": "Invitation link copied to clipboard",
+      "emailWarning": "Invitation created but email failed to send",
+      "emailWarningDescription": "Copy the link below and share it manually with the user.",
+      "inviteLink": "Invitation Link",
+      "copyAndShare": "Copy and share this link with the invited user"
     },
     "permissions": {
       "title": "Section Permissions",
@@ -1288,6 +1314,52 @@
         "contact": "Contact",
         "admissions": "Admissions",
         "getInvolved": "Get Involved"
+      },
+      "pages": {
+        "home": {
+          "home": "Home Page"
+        },
+        "about": {
+          "mission-vision-values": "Mission, Vision & Values",
+          "statement-of-faith": "Statement of Faith",
+          "philosophy": "Philosophy",
+          "history": "History",
+          "leadership": "Leadership",
+          "town": "Town"
+        },
+        "academics": {
+          "curriculum": "Curriculum",
+          "grades": "Grades",
+          "calendar": "Calendar"
+        },
+        "studentLife": {
+          "sports-clubs": "Sports & Clubs",
+          "service-projects": "Service Projects",
+          "library": "Library",
+          "upcoming-events": "Upcoming Events",
+          "gallery": "Gallery"
+        },
+        "support": {
+          "why-support": "Why Support",
+          "scholarships": "Scholarships",
+          "donate": "Donate",
+          "projects": "Projects"
+        },
+        "contact": {
+          "info": "Contact Info",
+          "directions": "Directions",
+          "form": "Contact Form",
+          "faq": "FAQ"
+        },
+        "admissions": {
+          "who-can-apply": "Who Can Apply",
+          "how-to-apply": "How to Apply",
+          "calendar": "Calendar"
+        },
+        "getInvolved": {
+          "teachers": "Teachers",
+          "volunteer": "Volunteer"
+        }
       },
       "calendarAccess": "Can manage calendar events",
       "announcementAccess": "Can manage announcements"
@@ -1503,7 +1575,9 @@
         "step": "Step",
         "qualification": "Qualification",
         "opportunity": "Opportunity",
-        "rule": "Rule"
+        "rule": "Rule",
+        "imageUrl": "Image",
+        "photo": "Photo"
       },
       "calendarInfo": {
         "title": "Calendar Events",
@@ -1539,6 +1613,9 @@
         },
         "town": {
           "intro": "Introduction",
+          "mountainImage": "Mountain Image",
+          "gallery": "Image Gallery",
+          "galleryItem": "Gallery Image",
           "location": "Location Details",
           "climate": "Climate",
           "activities": "Local Activities"
@@ -1627,6 +1704,11 @@
         "projects": {
           "intro": "Introduction",
           "items": "Projects",
+          "projects": "Projects",
+          "project": "Project",
+          "needs": "Project Needs",
+          "need": "Need",
+          "generateSlug": "Generate Slug",
           "howToHelp": "How to Help"
         }
       },

@@ -75,7 +75,7 @@
                 }}
               </p>
               <p class="text-lg text-gray-800 leading-relaxed">
-                {{ $t('academics.curriculum.programs.kindergarten.details') }}
+                {{ singleField('academics.curriculum.kindergarten', 'details') || $t('academics.curriculum.programs.kindergarten.details') }}
               </p>
             </div>
           </div>

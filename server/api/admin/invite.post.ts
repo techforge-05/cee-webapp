@@ -1,5 +1,6 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 import { createTransport } from 'nodemailer'
+import { getInviteEmailSubject, getInviteEmailHtml } from '../../utils/emailTemplates'
 
 export default defineEventHandler(async (event) => {
   // Verify authenticated user
@@ -23,7 +24,8 @@ export default defineEventHandler(async (event) => {
 
   // Parse body
   const body = await readBody(event)
-  const { email, role, permissions, canCalendar, canAnnouncements } = body
+  const { email, role, permissions, canCalendar, canAnnouncements, locale } = body
+  const emailLocale = locale === 'en' ? 'en' as const : 'es' as const
 
   if (!email) {
     throw createError({ statusCode: 400, message: 'Email is required' })
@@ -72,6 +74,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Send invitation email
+  let emailSent = false
   const config = useRuntimeConfig()
   const gmailUser = config.gmailUser
   const gmailAppPassword = config.gmailAppPassword
@@ -92,30 +95,21 @@ export default defineEventHandler(async (event) => {
       await transporter.sendMail({
         from: `"CEE Admin" <${gmailUser}>`,
         to: email,
-        subject: 'You\'ve been invited to CEE Admin Panel',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2>You've been invited!</h2>
-            <p>You've been invited to join the CEE Admin Panel as a${role === 'super_admin' ? ' Super' : 'n'} Admin.</p>
-            <p>Click the button below to create your account:</p>
-            <div style="margin: 30px 0;">
-              <a href="${inviteUrl}"
-                 style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block;">
-                Accept Invitation
-              </a>
-            </div>
-            <p style="color: #6b7280; font-size: 14px;">This invitation expires in 30 days.</p>
-            <p style="color: #6b7280; font-size: 14px;">If you didn't expect this invitation, you can safely ignore this email.</p>
-          </div>
-        `,
+        subject: getInviteEmailSubject(emailLocale, false),
+        html: getInviteEmailHtml(emailLocale, {
+          inviteUrl,
+          role: role || 'admin',
+          isResend: false,
+        }),
       })
+
+      emailSent = true
     } catch (emailError: any) {
       console.error('Failed to send invitation email:', emailError)
-      // Don't throw - the invitation was created, just email failed
     }
   } else {
     console.warn('Gmail credentials not configured. Invitation created but email not sent.')
   }
 
-  return { success: true, invitation: { id: invitation.id, email: invitation.email, token: invitation.token } }
+  return { success: true, emailSent, invitation: { id: invitation.id, email: invitation.email, token: invitation.token } }
 })

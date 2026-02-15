@@ -23,7 +23,7 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('support.scholarships.intro') }}
+            {{ singleField('support.scholarships.intro', 'text') || $t('support.scholarships.intro') }}
           </p>
         </div>
       </div>
@@ -40,10 +40,10 @@
             />
             <div>
               <h2 class="text-3xl font-bold text-red-900 mb-4">
-                {{ $t('support.scholarships.purpose.title') }}
+                {{ singleField('support.scholarships.purpose', 'title') || $t('support.scholarships.purpose.title') }}
               </h2>
               <p class="text-xl text-gray-800 leading-relaxed">
-                {{ $t('support.scholarships.purpose.description') }}
+                {{ singleField('support.scholarships.purpose', 'description') || $t('support.scholarships.purpose.description') }}
               </p>
             </div>
           </div>
@@ -60,10 +60,10 @@
             class="w-16 h-16 text-teal-600 mx-auto mb-6"
           />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ $t('support.scholarships.impact.title') }}
+            {{ singleField('support.scholarships.impact', 'title') || $t('support.scholarships.impact.title') }}
           </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('support.scholarships.impact.description') }}
+            {{ singleField('support.scholarships.impact', 'description') || $t('support.scholarships.impact.description') }}
           </p>
         </div>
       </div>
@@ -105,6 +105,13 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
+const { loadContent, singleField } = usePublicContent();
+
+onMounted(() => loadContent([
+  'support.scholarships.intro',
+  'support.scholarships.purpose',
+  'support.scholarships.impact',
+]));
 
 useHead({
   title: 'Scholarships Impact - CEE',

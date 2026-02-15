@@ -122,7 +122,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
 
   onMounted(() => loadContent([
     'studentLife.sports.intro',
@@ -143,7 +143,7 @@
       return dbItems.map(item => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        image: null as string | null,
+        image: getMeta(item, 'imageUrl') || null,
       }));
     }
     const items = tm('studentLife.sportsClubs.sports.items') as any[];

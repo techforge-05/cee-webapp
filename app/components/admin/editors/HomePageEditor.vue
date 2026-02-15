@@ -37,39 +37,53 @@
       :page-key="'home.enrollment'"
       @restored="handleSectionRestored('home.enrollment')"
     >
-      <div class="space-y-4">
-        <BilingualTextField
-          v-model="enrollmentTitle"
-          :label="$t('admin.editors.home.enrollmentTitle')"
-          :max-length="100"
-          @update:model-value="trackChanges"
-        />
-        <BilingualTextarea
-          v-model="enrollmentDescription"
-          :label="$t('admin.editors.home.enrollmentDescription')"
-          :rows="3"
-          :max-length="500"
-          @update:model-value="trackChanges"
-        />
-
-        <div class="pt-2">
-          <h4 class="text-sm font-medium text-gray-700 mb-3">{{ $t('admin.editors.home.enrollmentFeatures') }}</h4>
-          <DataListManager
-            v-model="enrollmentFeatures"
-            :max-items="5"
-            :min-items="1"
-            :item-label="$t('admin.editors.home.feature')"
-            @add="addEnrollmentFeature"
+      <div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
+        <!-- Left: Data fields -->
+        <div class="space-y-4">
+          <BilingualTextField
+            v-model="enrollmentTitle"
+            :label="$t('admin.editors.home.enrollmentTitle')"
+            :max-length="100"
             @update:model-value="trackChanges"
-          >
-            <template #default="{ item, index }">
-              <BilingualTextField
-                :model-value="{ es: item.content_es?.text || '', en: item.content_en?.text || '' }"
-                :label="`${$t('admin.editors.home.feature')} ${index + 1}`"
-                @update:model-value="updateEnrollmentFeature(index, $event)"
-              />
-            </template>
-          </DataListManager>
+          />
+          <BilingualTextarea
+            v-model="enrollmentDescription"
+            :label="$t('admin.editors.home.enrollmentDescription')"
+            :rows="3"
+            :max-length="500"
+            @update:model-value="trackChanges"
+          />
+
+          <div class="pt-2">
+            <h4 class="text-sm font-medium text-gray-700 mb-3">{{ $t('admin.editors.home.enrollmentFeatures') }}</h4>
+            <DataListManager
+              v-model="enrollmentFeatures"
+              :max-items="5"
+              :min-items="1"
+              :item-label="$t('admin.editors.home.feature')"
+              @add="addEnrollmentFeature"
+              @update:model-value="trackChanges"
+            >
+              <template #default="{ item, index }">
+                <BilingualTextField
+                  :model-value="{ es: item.content_es?.text || '', en: item.content_en?.text || '' }"
+                  :label="`${$t('admin.editors.home.feature')} ${index + 1}`"
+                  @update:model-value="updateEnrollmentFeature(index, $event)"
+                />
+              </template>
+            </DataListManager>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div>
+          <UFormField :label="$t('admin.components.image.upload')">
+            <ImageUploader
+              v-model="enrollmentImage"
+              folder="cee-assets/pages/home"
+              @update:model-value="trackChanges"
+            />
+          </UFormField>
         </div>
       </div>
     </SectionCard>
@@ -244,6 +258,7 @@ const welcomeDescription = ref<BilingualText>({ es: '', en: '' })
 // --- Enrollment data ---
 const enrollmentTitle = ref<BilingualText>({ es: '', en: '' })
 const enrollmentDescription = ref<BilingualText>({ es: '', en: '' })
+const enrollmentImage = ref('')
 const enrollmentFeatures = ref<PageContentItem[]>([])
 
 // --- Values data ---
@@ -272,6 +287,7 @@ async function loadAllData() {
       const e = enrollData[0]
       enrollmentTitle.value = { es: e.content_es?.title || '', en: e.content_en?.title || '' }
       enrollmentDescription.value = { es: e.content_es?.description || '', en: e.content_en?.description || '' }
+      enrollmentImage.value = e.metadata?.image_url || ''
     }
 
     // Load enrollment features
@@ -311,6 +327,7 @@ function initDirtyStateTracking() {
     enrollment: {
       title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
       description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
+      image: enrollmentImage.value,
       features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
     },
     values: JSON.parse(JSON.stringify(valuesItems.value)),
@@ -446,6 +463,7 @@ async function handleSave() {
       page_key: 'home.enrollment',
       content_es: { title: enrollmentTitle.value.es, description: enrollmentDescription.value.es },
       content_en: { title: enrollmentTitle.value.en, description: enrollmentDescription.value.en },
+      metadata: { image_url: enrollmentImage.value },
       sort_order: 0,
       is_active: true,
     }])
@@ -477,6 +495,7 @@ function handleCancel() {
   welcomeDescription.value = resetData.welcome.description
   enrollmentTitle.value = resetData.enrollment.title
   enrollmentDescription.value = resetData.enrollment.description
+  enrollmentImage.value = resetData.enrollment.image
   enrollmentFeatures.value = resetData.enrollment.features
   valuesItems.value = resetData.values
   activitiesItems.value = resetData.activities

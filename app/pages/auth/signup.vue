@@ -16,27 +16,52 @@
                 :placeholder="$t('auth.login.emailPlaceholder')"
                 required
                 icon="i-heroicons-envelope"
+                class="w-full"
               />
             </UFormField>
 
             <UFormField :label="$t('auth.login.password')" name="password" required>
               <UInput
                 v-model="password"
-                type="password"
+                :type="showPassword ? 'text' : 'password'"
                 :placeholder="$t('auth.login.passwordPlaceholder')"
                 required
                 icon="i-heroicons-lock-closed"
-              />
+                class="w-full"
+              >
+                <template #trailing>
+                  <UButton
+                    :icon="showPassword ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'"
+                    color="neutral"
+                    variant="link"
+                    size="sm"
+                    :aria-label="showPassword ? 'Hide password' : 'Show password'"
+                    @click="showPassword = !showPassword"
+                  />
+                </template>
+              </UInput>
             </UFormField>
 
             <UFormField :label="$t('auth.login.confirmPassword')" name="confirmPassword" required>
               <UInput
                 v-model="confirmPassword"
-                type="password"
+                :type="showConfirmPassword ? 'text' : 'password'"
                 :placeholder="$t('auth.login.passwordPlaceholder')"
                 required
                 icon="i-heroicons-lock-closed"
-              />
+                class="w-full"
+              >
+                <template #trailing>
+                  <UButton
+                    :icon="showConfirmPassword ? 'i-heroicons-eye-slash' : 'i-heroicons-eye'"
+                    color="neutral"
+                    variant="link"
+                    size="sm"
+                    :aria-label="showConfirmPassword ? 'Hide password' : 'Show password'"
+                    @click="showConfirmPassword = !showConfirmPassword"
+                  />
+                </template>
+              </UInput>
             </UFormField>
           </div>
 
@@ -101,14 +126,6 @@
           </div>
         </div>
 
-        <div class="mt-6 text-center">
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            {{ $t('auth.login.hasAccount') }}
-            <NuxtLink :to="localePath('/auth/login')" class="font-medium text-primary-600 hover:text-primary-500">
-              {{ $t('auth.login.signInLink') }}
-            </NuxtLink>
-          </p>
-        </div>
       </UCard>
   </div>
 </template>
@@ -126,6 +143,8 @@ const { t } = useI18n()
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const showPassword = ref(false)
+const showConfirmPassword = ref(false)
 const loading = ref(false)
 const googleLoading = ref(false)
 const error = ref('')
