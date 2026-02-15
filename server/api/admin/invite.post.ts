@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
   // Parse body
   const body = await readBody(event)
-  const { email, role, permissions, canCalendar, canAnnouncements, locale } = body
+  const { email, role, permissions, canCalendar, canAnnouncements, locale, skipEmail } = body
   const emailLocale = locale === 'en' ? 'en' as const : 'es' as const
 
   if (!email) {
@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
   const gmailUser = config.gmailUser
   const gmailAppPassword = config.gmailAppPassword
 
-  if (gmailUser && gmailAppPassword) {
+  if (!skipEmail && gmailUser && gmailAppPassword) {
     try {
       const transporter = createTransport({
         service: 'gmail',

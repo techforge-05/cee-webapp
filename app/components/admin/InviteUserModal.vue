@@ -52,7 +52,14 @@
       <!-- Post-submit: success/warning with copy link -->
       <div v-else class="space-y-5">
         <UAlert
-          v-if="!emailSent"
+          v-if="skippedEmail"
+          color="info"
+          icon="i-heroicons-link"
+          :title="$t('admin.invite.linkGenerated')"
+          :description="$t('admin.invite.linkGeneratedDescription')"
+        />
+        <UAlert
+          v-else-if="!emailSent"
           color="warning"
           icon="i-heroicons-exclamation-triangle"
           :title="$t('admin.invite.emailWarning')"
@@ -92,8 +99,16 @@
           {{ $t('admin.invite.cancel') }}
         </UButton>
         <UButton
+          variant="outline"
+          icon="i-heroicons-link"
           :loading="loading"
-          @click="handleSubmit"
+          @click="handleSubmit(true)"
+        >
+          {{ $t('admin.invite.generateLink') }}
+        </UButton>
+        <UButton
+          :loading="loading"
+          @click="handleSubmit(false)"
         >
           {{ loading ? $t('admin.invite.sending') : $t('admin.invite.sendInvite') }}
         </UButton>
@@ -124,6 +139,7 @@ const error = ref('')
 const invitationCreated = ref(false)
 const inviteToken = ref('')
 const emailSent = ref(true)
+const skippedEmail = ref(false)
 
 const form = reactive({
   email: '',
@@ -200,6 +216,7 @@ function resetForm() {
   invitationCreated.value = false
   inviteToken.value = ''
   emailSent.value = true
+  skippedEmail.value = false
   error.value = ''
 }
 
@@ -219,7 +236,7 @@ watch(isOpen, (newVal) => {
   }
 })
 
-async function handleSubmit() {
+async function handleSubmit(skipEmail = false) {
   if (!form.email) return
 
   loading.value = true
@@ -230,6 +247,7 @@ async function handleSubmit() {
       email: form.email,
       role: form.role,
       locale: form.emailLocale,
+      skipEmail,
     }
 
     if (form.role === 'admin') {
@@ -250,8 +268,14 @@ async function handleSubmit() {
     invitationCreated.value = true
     inviteToken.value = response.invitation.token
     emailSent.value = response.emailSent
+    skippedEmail.value = skipEmail
 
-    if (response.emailSent) {
+    if (skipEmail) {
+      toast.add({
+        title: t('admin.invite.linkGenerated'),
+        color: 'success',
+      })
+    } else if (response.emailSent) {
       toast.add({
         title: t('admin.invite.success'),
         color: 'success',

@@ -19,7 +19,15 @@ onMounted(async () => {
   const { data: { session } } = await supabase.auth.getSession()
 
   if (session) {
-    await navigateTo(localePath('/'))
+    // Check if user is an admin and redirect accordingly
+    const adminStore = useAdminStore()
+    await adminStore.loadProfile(session.user.id)
+
+    if (adminStore.profile && adminStore.profile.status === 'active') {
+      await navigateTo(localePath('/admin'))
+    } else {
+      await navigateTo(localePath('/'))
+    }
   } else {
     await navigateTo(localePath('/auth/login'))
   }

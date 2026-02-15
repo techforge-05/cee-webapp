@@ -85,19 +85,21 @@ export const useAdminStore = defineStore('admin', {
       return sectionPerms.map((p) => p.page!).filter(Boolean)
     },
 
-    async loadProfile() {
+    async loadProfile(overrideUserId?: string) {
       if (this.isProfileLoaded) return
 
       const supabase = useSupabaseClient()
-      const user = useSupabaseUser()
 
-      if (!user.value) {
-        this.isProfileLoaded = true
-        return
+      let userId = overrideUserId
+      if (!userId) {
+        const user = useSupabaseUser()
+        if (!user.value) {
+          this.isProfileLoaded = true
+          return
+        }
+        // On SSR, useSupabaseUser() returns JWT payload with `sub` instead of `id`
+        userId = user.value.id ?? user.value.sub
       }
-
-      // On SSR, useSupabaseUser() returns JWT payload with `sub` instead of `id`
-      const userId = user.value.id ?? user.value.sub
 
       if (!userId) {
         this.isProfileLoaded = true

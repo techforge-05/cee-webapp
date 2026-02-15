@@ -1298,7 +1298,10 @@
       "emailWarning": "Invitation created but email failed to send",
       "emailWarningDescription": "Copy the link below and share it manually with the user.",
       "inviteLink": "Invitation Link",
-      "copyAndShare": "Copy and share this link with the invited user"
+      "copyAndShare": "Copy and share this link with the invited user",
+      "generateLink": "Generate Link",
+      "linkGenerated": "Invitation created",
+      "linkGeneratedDescription": "Copy the link below and share it with the user."
     },
     "permissions": {
       "title": "Section Permissions",

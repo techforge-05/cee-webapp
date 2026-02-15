@@ -1298,7 +1298,10 @@
       "emailWarning": "Invitación creada pero el correo no se pudo enviar",
       "emailWarningDescription": "Copia el enlace a continuación y compártelo manualmente con el usuario.",
       "inviteLink": "Enlace de Invitación",
-      "copyAndShare": "Copia y comparte este enlace con el usuario invitado"
+      "copyAndShare": "Copia y comparte este enlace con el usuario invitado",
+      "generateLink": "Generar Enlace",
+      "linkGenerated": "Invitación creada",
+      "linkGeneratedDescription": "Copia el enlace a continuación y compártelo con el usuario."
     },
     "permissions": {
       "title": "Permisos por Sección",
