@@ -1,24 +1,36 @@
+import imageCompression from 'browser-image-compression'
+
 export const useImageUpload = () => {
   const loading = ref(false)
+  const compressing = ref(false)
   const error = ref<string | null>(null)
+
+  const MAX_SIZE_MB = 10
 
   const upload = async (file: File, folder: string = 'cee-assets/general'): Promise<string> => {
     loading.value = true
     error.value = null
 
     try {
-      // Validate file size (default 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        throw new Error('File size exceeds 10MB limit')
-      }
-
       // Validate file type
       if (!file.type.startsWith('image/')) {
         throw new Error('Only image files are allowed')
       }
 
+      // Compress if file exceeds the upload limit
+      let fileToUpload: File = file
+      if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+        compressing.value = true
+        fileToUpload = await imageCompression(file, {
+          maxSizeMB: MAX_SIZE_MB,
+          maxWidthOrHeight: 4096,
+          useWebWorker: true,
+        })
+        compressing.value = false
+      }
+
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('file', fileToUpload)
       formData.append('folder', folder)
 
       const result = await $fetch('/api/admin/upload', {
@@ -31,9 +43,10 @@ export const useImageUpload = () => {
       error.value = e.data?.message || e.message || 'Upload failed'
       throw e
     } finally {
+      compressing.value = false
       loading.value = false
     }
   }
 
-  return { upload, loading, error }
+  return { upload, loading, compressing, error }
 }

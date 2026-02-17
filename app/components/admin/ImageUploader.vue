@@ -66,12 +66,14 @@
 
     <!-- Loading overlay -->
     <div
-      v-if="uploading"
+      v-if="compressing || uploading"
       class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center"
     >
       <div class="bg-white rounded-lg p-6 flex items-center gap-3 shadow-lg">
         <UIcon name="i-heroicons-arrow-path" class="w-5 h-5 animate-spin text-primary-500" />
-        <span class="text-sm font-medium">{{ $t('admin.components.image.uploading') }}</span>
+        <span class="text-sm font-medium">
+          {{ compressing ? $t('admin.components.image.compressing') : $t('admin.components.image.uploading') }}
+        </span>
       </div>
     </div>
   </div>
@@ -90,7 +92,7 @@ const props = withDefaults(defineProps<{
 
 const modelValue = defineModel<string>({ default: '' })
 
-const { upload, loading: uploading } = useImageUpload()
+const { upload, loading: uploading, compressing } = useImageUpload()
 const toast = useToast()
 const { t } = useI18n()
 
@@ -116,16 +118,6 @@ function handleDrop(event: DragEvent) {
 }
 
 async function processFile(file: File) {
-  // Validate size
-  if (file.size > props.maxSize * 1024 * 1024) {
-    toast.add({
-      title: t('admin.components.image.uploadError'),
-      description: t('admin.components.image.maxSize', { size: props.maxSize }),
-      color: 'error',
-    })
-    return
-  }
-
   // Validate type
   if (!file.type.startsWith('image/')) {
     toast.add({

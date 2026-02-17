@@ -104,90 +104,144 @@ export const useDefaultContent = () => {
   }
 
   /**
-   * Transform i18n defaults to page_content items format
-   * Handles both single items (objects) and list items (arrays)
-   * @param pageKey - The page_key for the items
-   * @param defaults - The default values from i18n
-   * @returns Array of PageContentItem objects ready for database insertion
+   * Convert an array of i18n items to PageContentItem rows
    */
-  function transformDefaultsToItems(
+  function arrayToItems(pageKey: string, esArray: any[], enArray: any[]): PageContentItem[] {
+    return esArray.map((esItem, index) => ({
+      page_key: pageKey,
+      content_es: typeof esItem === 'object' ? esItem : { text: esItem },
+      content_en:
+        typeof enArray?.[index] === 'object'
+          ? enArray[index]
+          : { text: enArray?.[index] },
+      sort_order: index,
+      is_active: true,
+    }))
+  }
+
+  /**
+   * Find the single array property in an object.
+   * Returns the property name if exactly one array exists, null otherwise.
+   */
+  function findSingleArrayKey(obj: Record<string, any>): string | null {
+    const arrayKeys = Object.keys(obj).filter((k) => Array.isArray(obj[k]))
+    return arrayKeys.length === 1 ? arrayKeys[0] : null
+  }
+
+  /**
+   * Process i18n defaults into page_content items.
+   * Handles four patterns:
+   * 1. Plain string → single row with { text: string }
+   * 2. Direct array → multiple rows under pageKey
+   * 3. Object with only scalars → single row under pageKey
+   * 4. Object with scalars + arrays:
+   *    - If single array (items/features/etc): array rows under pageKey,
+   *      scalars as separate main row ONLY for named arrays (e.g. features)
+   *    - Named arrays (not 'items') also stored under pageKey.{property}
+   */
+  function processDefaults(
     pageKey: string,
     defaults: { es: any; en: any }
   ): PageContentItem[] {
-    // Handle list items (arrays)
-    if (Array.isArray(defaults.es)) {
-      return defaults.es.map((esItem, index) => ({
-        page_key: pageKey,
-        content_es: typeof esItem === 'object' ? esItem : { text: esItem },
-        content_en:
-          typeof defaults.en[index] === 'object'
-            ? defaults.en[index]
-            : { text: defaults.en[index] },
-        sort_order: index,
-        is_active: true,
-      }))
-    }
-    // Handle single item (object)
-    else if (typeof defaults.es === 'object' && defaults.es !== null) {
+    const source = defaults.es ?? defaults.en
+
+    // Plain string → single row wrapped in { text }
+    if (typeof source === 'string') {
       return [
         {
           page_key: pageKey,
-          content_es: defaults.es,
-          content_en: defaults.en,
+          content_es: { text: defaults.es },
+          content_en: { text: defaults.en },
           sort_order: 0,
           is_active: true,
         },
       ]
     }
 
+    // Direct array → multiple rows under pageKey
+    if (Array.isArray(source)) {
+      return arrayToItems(pageKey, defaults.es || [], defaults.en || [])
+    }
+
+    // Object → separate scalar fields from array fields
+    if (typeof source === 'object' && source !== null) {
+      const allItems: PageContentItem[] = []
+      const esScalars: Record<string, any> = {}
+      const enScalars: Record<string, any> = {}
+      const arrayKey = findSingleArrayKey(source)
+
+      for (const key of Object.keys(source)) {
+        const esVal = defaults.es?.[key]
+        const enVal = defaults.en?.[key]
+
+        if (Array.isArray(esVal)) {
+          if (key === 'items' || key === arrayKey) {
+            // Primary list content → rows under the SAME pageKey
+            allItems.push(...arrayToItems(pageKey, esVal, enVal || []))
+          } else {
+            // Secondary array → rows under pageKey.{property}
+            allItems.push(
+              ...arrayToItems(`${pageKey}.${key}`, esVal, enVal || [])
+            )
+          }
+        } else {
+          esScalars[key] = esVal
+          enScalars[key] = enVal
+        }
+      }
+
+      // Only create a scalar main row if there are NO list items under the same pageKey.
+      // This avoids polluting list-type sections with a spurious header row.
+      const hasItemsUnderSameKey = allItems.some(
+        (i) => i.page_key === pageKey
+      )
+      if (Object.keys(esScalars).length > 0 && !hasItemsUnderSameKey) {
+        allItems.push({
+          page_key: pageKey,
+          content_es: esScalars,
+          content_en: enScalars,
+          sort_order: 0,
+          is_active: true,
+        })
+      }
+
+      return allItems
+    }
+
     return []
   }
 
   /**
-   * Restore defaults for a section: delete existing DB rows and recreate from i18n
-   * @param pageKey - The page_key to restore defaults for
-   * @returns true if successful, false if no defaults available
-   * @throws Error if database operation fails
+   * Restore defaults for a section: delete existing DB rows and recreate from i18n.
+   * Also deletes and restores child page_keys (e.g., home.enrollment.features).
    */
   async function restoreDefaults(pageKey: string): Promise<boolean> {
     const defaults = getDefaultValues(pageKey)
-    console.log('[useDefaultContent] defaults for', pageKey, defaults)
 
-    // Check if defaults exist
     if (!defaults.es && !defaults.en) {
-      console.warn('[useDefaultContent] No defaults found for', pageKey)
-      return false // No defaults available
+      return false
+    }
+
+    // Process defaults BEFORE deleting — don't wipe data if there's nothing to insert
+    const newItems = processDefaults(pageKey, defaults)
+    if (newItems.length === 0) {
+      return false
     }
 
     try {
-      // Delete existing rows for this page_key
+      // Delete this page_key AND any child page_keys (e.g., home.enrollment + home.enrollment.features)
       const { error: deleteError } = await supabase
         .from('page_content')
         .delete()
-        .eq('page_key', pageKey)
+        .or(`page_key.eq.${pageKey},page_key.like.${pageKey}.%`)
 
-      if (deleteError) {
-        console.error('[useDefaultContent] Delete error:', deleteError)
-        throw deleteError
-      }
+      if (deleteError) throw deleteError
 
-      // Transform i18n data to page_content format
-      const newItems = transformDefaultsToItems(pageKey, defaults)
-      console.log('[useDefaultContent] Items to insert:', JSON.stringify(newItems, null, 2))
+      const { error: insertError } = await supabase
+        .from('page_content')
+        .insert(newItems as any)
 
-      // Insert new rows if there are items
-      if (newItems.length > 0) {
-        const { data: insertData, error: insertError } = await supabase
-          .from('page_content')
-          .insert(newItems as any)
-          .select()
-
-        console.log('[useDefaultContent] Insert result:', { insertData, insertError })
-
-        if (insertError) {
-          throw insertError
-        }
-      }
+      if (insertError) throw insertError
 
       return true
     } catch (error) {

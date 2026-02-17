@@ -1382,6 +1382,7 @@
         "dragDrop": "Drag and drop or click to upload",
         "maxSize": "Max size: {size}MB",
         "uploading": "Uploading...",
+        "compressing": "Compressing image...",
         "remove": "Remove image",
         "altText": "Alt text",
         "altEs": "Alt text (Spanish)",

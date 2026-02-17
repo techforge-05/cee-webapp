@@ -129,18 +129,18 @@
       <div
         class="hidden md:flex relative items-center justify-center overflow-hidden"
       >
+        <img
+          v-if="valuesImageUrl"
+          :src="valuesImageUrl"
+          alt="Values"
+          class="w-full h-full min-h-80 md:min-h-96 lg:min-h-100 object-cover"
+        />
         <div
+          v-else
           class="bg-gray-300 w-full h-full min-h-80 md:min-h-96 lg:min-h-100 flex items-center justify-center"
         >
           <p class="text-gray-400 text-xl md:text-2xl">Values Image</p>
         </div>
-        <!-- Replace with actual image when available:
-        <img
-          src="/images/values.jpg"
-          alt="Values"
-          class="w-full h-full min-h-80 md:min-h-96 lg:min-h-100 object-cover"
-        />
-        -->
       </div>
 
       <!-- Right: Title and Values List with yellow background -->
@@ -312,6 +312,7 @@
       loadContent([
         'home.welcome',
         'home.values',
+        'home.values.image',
         'home.activities',
         'home.enrollment',
         'home.enrollment.features',
@@ -349,6 +350,9 @@
       icon: valueIcons[i],
     }));
   });
+
+  // Values image from DB
+  const valuesImageUrl = computed(() => singleMeta('home.values.image', 'image_url'));
 
   // Enrollment image from DB
   const enrollmentImage = computed(() => singleMeta('home.enrollment', 'image_url'));

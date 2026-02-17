@@ -95,33 +95,47 @@
       :page-key="'home.values'"
       @restored="handleSectionRestored('home.values')"
     >
-      <div class="space-y-4">
-        <DataListManager
-          v-model="valuesItems"
-          :max-items="9"
-          :min-items="3"
-          :item-label="$t('admin.editors.home.value')"
-          @add="addValueItem"
-          @update:model-value="trackChanges"
-        >
-          <template #default="{ item, index }">
-            <div class="space-y-3">
-              <BilingualTextField
-                :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
-                :label="$t('admin.editors.home.valueTitle')"
-                :max-length="50"
-                @update:model-value="updateValueField(index, 'title', $event)"
-              />
-              <BilingualTextarea
-                :model-value="{ es: item.content_es?.description || '', en: item.content_en?.description || '' }"
-                :label="$t('admin.editors.home.valueDescription')"
-                :rows="2"
-                :max-length="200"
-                @update:model-value="updateValueField(index, 'description', $event)"
-              />
-            </div>
-          </template>
-        </DataListManager>
+      <div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
+        <!-- Left: Values list -->
+        <div class="space-y-4">
+          <DataListManager
+            v-model="valuesItems"
+            :max-items="9"
+            :min-items="3"
+            :item-label="$t('admin.editors.home.value')"
+            @add="addValueItem"
+            @update:model-value="trackChanges"
+          >
+            <template #default="{ item, index }">
+              <div class="space-y-3">
+                <BilingualTextField
+                  :model-value="{ es: item.content_es?.title || '', en: item.content_en?.title || '' }"
+                  :label="$t('admin.editors.home.valueTitle')"
+                  :max-length="50"
+                  @update:model-value="updateValueField(index, 'title', $event)"
+                />
+                <BilingualTextarea
+                  :model-value="{ es: item.content_es?.description || '', en: item.content_en?.description || '' }"
+                  :label="$t('admin.editors.home.valueDescription')"
+                  :rows="2"
+                  :max-length="200"
+                  @update:model-value="updateValueField(index, 'description', $event)"
+                />
+              </div>
+            </template>
+          </DataListManager>
+        </div>
+
+        <!-- Right: Image -->
+        <div>
+          <UFormField :label="$t('admin.components.image.upload')">
+            <ImageUploader
+              v-model="valuesImage"
+              folder="cee-assets/pages/home"
+              @update:model-value="trackChanges"
+            />
+          </UFormField>
+        </div>
       </div>
     </SectionCard>
 
@@ -262,6 +276,7 @@ const enrollmentImage = ref('')
 const enrollmentFeatures = ref<PageContentItem[]>([])
 
 // --- Values data ---
+const valuesImage = ref('')
 const valuesItems = ref<PageContentItem[]>([])
 
 // --- Activities data ---
@@ -295,6 +310,12 @@ async function loadAllData() {
     enrollmentFeatures.value = items.value.length > 0
       ? items.value.map(i => ({ ...i }))
       : []
+
+    // Load values image
+    await loadItems('home.values.image')
+    if (items.value.length > 0) {
+      valuesImage.value = items.value[0].metadata?.image_url || ''
+    }
 
     // Load values
     await loadItems('home.values')
@@ -330,7 +351,10 @@ function initDirtyStateTracking() {
       image: enrollmentImage.value,
       features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
     },
-    values: JSON.parse(JSON.stringify(valuesItems.value)),
+    values: {
+      image: valuesImage.value,
+      items: JSON.parse(JSON.stringify(valuesItems.value)),
+    },
     activities: JSON.parse(JSON.stringify(activitiesItems.value)),
   }
   dirtyState.init(allData)
@@ -349,7 +373,10 @@ function trackChanges() {
         description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
         features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
       },
-      values: JSON.parse(JSON.stringify(valuesItems.value)),
+      values: {
+        image: valuesImage.value,
+        items: JSON.parse(JSON.stringify(valuesItems.value)),
+      },
       activities: JSON.parse(JSON.stringify(activitiesItems.value)),
     }
     dirtyState.update(currentData)
@@ -471,6 +498,16 @@ async function handleSave() {
     // Save enrollment features
     await saveAllContent('home.enrollment.features', enrollmentFeatures.value)
 
+    // Save values image
+    await saveAllContent('home.values.image', [{
+      page_key: 'home.values.image',
+      content_es: {},
+      content_en: {},
+      metadata: { image_url: valuesImage.value },
+      sort_order: 0,
+      is_active: true,
+    }])
+
     // Save values
     await saveAllContent('home.values', valuesItems.value)
 
@@ -497,7 +534,8 @@ function handleCancel() {
   enrollmentDescription.value = resetData.enrollment.description
   enrollmentImage.value = resetData.enrollment.image
   enrollmentFeatures.value = resetData.enrollment.features
-  valuesItems.value = resetData.values
+  valuesImage.value = resetData.values.image
+  valuesItems.value = resetData.values.items
   activitiesItems.value = resetData.activities
 
   toast.add({

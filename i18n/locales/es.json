@@ -1382,6 +1382,7 @@
         "dragDrop": "Arrastra y suelta o haz clic para subir",
         "maxSize": "Tamaño máximo: {size}MB",
         "uploading": "Subiendo...",
+        "compressing": "Comprimiendo imagen...",
         "remove": "Eliminar imagen",
         "altText": "Texto alternativo",
         "altEs": "Texto alternativo (Español)",
