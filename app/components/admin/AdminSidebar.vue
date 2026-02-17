@@ -7,14 +7,12 @@
     ]"
   >
     <!-- Logo / Brand -->
-    <div class="flex items-center gap-3 py-3 px-4 border-b border-gray-700 shrink-0">
-      <img
-        src="/images/logo.png"
-        alt="CEE"
-        class="h-12 w-auto"
-      />
-      <div class="flex flex-col leading-tight">
-        <span class="text-sm font-bold text-white">CEE</span>
+    <div
+      class="flex items-center gap-3 py-3 px-4 border-b border-gray-700 shrink-0"
+    >
+      <img src="/images/logo.png" alt="CEE" class="h-18 w-auto fixed" />
+      <div class="flex flex-col leading-tight ml-18">
+        <span class="text-lg font-bold text-white">CEE</span>
         <span class="text-xs text-gray-400">Admin Panel</span>
       </div>
       <!-- Close button (mobile) -->
@@ -81,7 +79,9 @@
       </NuxtLink>
       <NuxtLink
         :to="localePath('/admin/sections/studentLife/gallery')"
-        :class="sidebarItemClass(isActive('/admin/sections/studentLife/gallery'))"
+        :class="
+          sidebarItemClass(isActive('/admin/sections/studentLife/gallery'))
+        "
         @click="adminStore.closeSidebar()"
       >
         <UIcon name="i-heroicons-photo" class="w-5 h-5 shrink-0" />
@@ -90,7 +90,11 @@
 
       <!-- Divider -->
       <div
-        v-if="adminStore.isSuperAdmin || adminStore.hasCalendarAccess || adminStore.hasAnnouncementAccess"
+        v-if="
+          adminStore.isSuperAdmin ||
+          adminStore.hasCalendarAccess ||
+          adminStore.hasAnnouncementAccess
+        "
         class="border-t border-gray-700 my-3"
       />
 
@@ -110,12 +114,18 @@
     <!-- User info at bottom -->
     <div class="border-t border-gray-700 p-4 shrink-0">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-sm font-medium">
+        <div
+          class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-sm font-medium"
+        >
           {{ initials }}
         </div>
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium truncate">{{ adminStore.profile?.full_name || adminStore.profile?.email }}</p>
-          <p class="text-xs text-gray-400 truncate capitalize">{{ adminStore.profile?.role?.replace('_', ' ') }}</p>
+          <p class="text-sm font-medium truncate">
+            {{ adminStore.profile?.full_name || adminStore.profile?.email }}
+          </p>
+          <p class="text-xs text-gray-400 truncate capitalize">
+            {{ adminStore.profile?.role?.replace('_', ' ') }}
+          </p>
         </div>
       </div>
     </div>
@@ -132,66 +142,67 @@
 </template>
 
 <script setup lang="ts">
-import { sectionRegistry } from '~/config/sectionRegistry'
+  import { sectionRegistry } from '~/config/sectionRegistry';
 
-const adminStore = useAdminStore()
-const localePath = useLocalePath()
-const route = useRoute()
-const { t } = useI18n()
+  const adminStore = useAdminStore();
+  const localePath = useLocalePath();
+  const route = useRoute();
+  const { t } = useI18n();
 
-const visibleSections = computed(() => {
-  const allowed = adminStore.allowedSections
-  return sectionRegistry
-    .filter((s) => allowed.includes(s.key))
-    .map((s) => ({
-      ...s,
-      label: t(`nav.${s.key}`, s.label),
-    }))
-})
+  const visibleSections = computed(() => {
+    const allowed = adminStore.allowedSections;
+    return sectionRegistry
+      .filter((s) => allowed.includes(s.key))
+      .map((s) => ({
+        ...s,
+        label: t(`nav.${s.key}`, s.label),
+      }));
+  });
 
-const initials = computed(() => {
-  const name = adminStore.profile?.full_name || adminStore.profile?.email || ''
-  if (!name) return '?'
-  const parts = name.split(/[\s@]/)
-  return parts
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase())
-    .join('')
-})
+  const initials = computed(() => {
+    const name =
+      adminStore.profile?.full_name || adminStore.profile?.email || '';
+    if (!name) return '?';
+    const parts = name.split(/[\s@]/);
+    return parts
+      .slice(0, 2)
+      .map((p) => p[0]?.toUpperCase())
+      .join('');
+  });
 
-const isDashboardActive = computed(() => {
-  const adminPath = localePath('/admin')
-  return route.path === adminPath || route.path === adminPath + '/'
-})
+  const isDashboardActive = computed(() => {
+    const adminPath = localePath('/admin');
+    return route.path === adminPath || route.path === adminPath + '/';
+  });
 
-const isActive = (path: string) => {
-  return route.path.includes(path)
-}
+  const isActive = (path: string) => {
+    return route.path.includes(path);
+  };
 
-// Paths with their own top-level sidebar entries — should not activate parent sections
-const topLevelShortcuts = ['/admin/sections/studentLife/gallery']
+  // Paths with their own top-level sidebar entries — should not activate parent sections
+  const topLevelShortcuts = ['/admin/sections/studentLife/gallery'];
 
-const isSectionActive = (sectionKey: string) => {
-  const sectionPath = `/admin/sections/${sectionKey}`
-  if (!route.path.includes(sectionPath)) return false
-  return !topLevelShortcuts.some(p => route.path.includes(p))
-}
+  const isSectionActive = (sectionKey: string) => {
+    const sectionPath = `/admin/sections/${sectionKey}`;
+    if (!route.path.includes(sectionPath)) return false;
+    return !topLevelShortcuts.some((p) => route.path.includes(p));
+  };
 
-const sidebarItemClass = (active: boolean) => [
-  'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
-  active
-    ? 'bg-teal-700 text-white'
-    : 'text-gray-300 hover:bg-gray-800 hover:text-white',
-]
+  const sidebarItemClass = (active: boolean) => [
+    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+    active
+      ? 'bg-teal-700 text-white'
+      : 'text-gray-300 hover:bg-gray-800 hover:text-white',
+  ];
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 </style>

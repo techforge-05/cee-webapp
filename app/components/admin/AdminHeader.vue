@@ -72,18 +72,26 @@
       <div class="hidden lg:flex items-center gap-3">
         <LanguageSwitcher />
 
-        <div class="flex items-center gap-2 text-sm text-gray-600">
-          <UIcon name="i-heroicons-user-circle" class="w-5 h-5" />
-          <span class="truncate max-w-40">{{ adminStore.profile?.email }}</span>
-        </div>
-
-        <UButton variant="ghost" color="error" size="xs" @click="handleSignOut">
-          <UIcon
-            name="i-heroicons-arrow-right-start-on-rectangle"
-            class="w-4 h-4"
-          />
-          <span class="ml-1">{{ $t('nav.signOut') || 'Sign Out' }}</span>
-        </UButton>
+        <UDropdownMenu
+          :items="desktopAccountItems"
+          :modal="false"
+          :content="{
+            align: 'end',
+            side: 'bottom',
+            sideOffset: 8,
+          }"
+        >
+          <UButton
+            icon="i-heroicons-user-circle"
+            variant="ghost"
+            size="xs"
+            trailing-icon="i-heroicons-chevron-down-20-solid"
+            class="text-gray-600 cursor-pointer text-xs max-w-48"
+            :ui="{ label: 'truncate' }"
+          >
+            <span>{{ adminStore.profile?.email }}</span>
+          </UButton>
+        </UDropdownMenu>
       </div>
     </div>
   </header>
@@ -157,6 +165,16 @@
 
     return [accountGroup, languageGroup, signOutGroup];
   });
+
+  const desktopAccountItems = computed(() => [
+    [
+      {
+        label: t('nav.signOut') || 'Sign Out',
+        icon: 'i-heroicons-arrow-right-on-rectangle',
+        onSelect: () => handleSignOut(),
+      },
+    ],
+  ]);
 
   const breadcrumbs = computed(() => {
     const path = route.path;

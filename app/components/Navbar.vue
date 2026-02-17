@@ -77,19 +77,26 @@
 
           <!-- Auth Buttons -->
           <template v-if="user">
-            <span
-              class="hidden 2xl:inline text-gray-700 text-sm truncate max-w-32"
-              >{{ user.email }}</span
+            <UDropdownMenu
+              :items="accountMenuItems"
+              :modal="false"
+              :content="{
+                align: 'end',
+                side: 'bottom',
+                sideOffset: 8,
+              }"
             >
-            <UButton
-              @click="handleSignOut"
-              variant="outline"
-              size="xs"
-              color="error"
-              class="text-xs"
-            >
-              {{ $t('nav.signOut') }}
-            </UButton>
+              <UButton
+                icon="i-heroicons-user-circle"
+                variant="ghost"
+                size="xs"
+                trailing-icon="i-heroicons-chevron-down-20-solid"
+                class="text-gray-600 cursor-pointer text-xs max-w-48"
+                :ui="{ label: 'truncate' }"
+              >
+                <span class="hidden lg:inline">{{ user.email }}</span>
+              </UButton>
+            </UDropdownMenu>
           </template>
           <template v-else>
             <UButton
@@ -268,7 +275,9 @@
                   name="i-heroicons-heart"
                   class="w-5 h-5 text-yellow-600 shrink-0"
                 />
-                <span>{{ $t('nav.dropdowns.academics.guidanceWellbeing') }}</span>
+                <span>{{
+                  $t('nav.dropdowns.academics.guidanceWellbeing')
+                }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -627,9 +636,23 @@
           </template>
           <template v-else>
             <div class="space-y-2">
-              <span class="block text-gray-700 text-center">{{
-                user.email
-              }}</span>
+              <div class="flex items-center justify-center gap-2 text-gray-700">
+                <UIcon name="i-heroicons-user-circle" class="w-5 h-5" />
+                <span class="truncate">{{ user.email }}</span>
+              </div>
+              <UButton
+                v-if="!isAdminRoute"
+                @click="
+                  navigateTo(localePath('/admin'));
+                  mobileMenuOpen = false;
+                "
+                variant="subtle"
+                block
+                class="text-purple-700"
+              >
+                <UIcon name="i-heroicons-cog-6-tooth" class="w-4 h-4 mr-1" />
+                {{ $t('nav.goToAdmin') }}
+              </UButton>
               <UButton
                 @click="handleSignOut"
                 variant="outline"
@@ -725,6 +748,7 @@
   const supabase = useSupabaseClient();
   const user = useSupabaseUser();
   const localePath = useLocalePath();
+  const route = useRoute();
   const mobileMenuOpen = ref(false);
   const activeDropdown = ref<string | null>(null);
   const mobileAdmissionsOpen = ref(false);
@@ -746,63 +770,209 @@
   ];
 
   const navigationItems = computed(() =>
-    allNavigationItems.filter(item => isVisible(item.key))
+    allNavigationItems.filter((item) => isVisible(item.key)),
   );
 
   const { t, locale } = useI18n();
 
+  const isAdminRoute = computed(() => route.path.includes('/admin'));
+
+  const accountMenuItems = computed(() => {
+    const items: any[][] = [];
+    if (!isAdminRoute.value) {
+      items.push([
+        {
+          label: t('nav.goToAdmin'),
+          icon: 'i-heroicons-cog-6-tooth',
+          onSelect: () => navigateTo(localePath('/admin')),
+        },
+      ]);
+    }
+    items.push([
+      {
+        label: t('nav.signOut'),
+        icon: 'i-heroicons-arrow-right-on-rectangle',
+        onSelect: () => handleSignOut(),
+      },
+    ]);
+    return items;
+  });
+
   // Helper to filter dropdown items by page visibility
-  function filterByVisibility(section: string, items: Array<{ path: string; label: string; slug: string }>) {
-    return items.filter(item => isVisible(section, item.slug));
+  function filterByVisibility(
+    section: string,
+    items: Array<{ path: string; label: string; slug: string }>,
+  ) {
+    return items.filter((item) => isVisible(section, item.slug));
   }
 
   // Dropdown menu items for each section
   const dropdownItems = computed(() => ({
     about: filterByVisibility('about', [
-      { path: '/about/mission-vision-values', label: t('nav.dropdowns.about.missionVisionValues'), slug: 'mission-vision-values' },
-      { path: '/about/statement-of-faith', label: t('nav.dropdowns.about.statementOfFaith'), slug: 'statement-of-faith' },
-      { path: '/about/philosophy', label: t('nav.dropdowns.about.philosophy'), slug: 'philosophy' },
-      { path: '/about/history', label: t('nav.dropdowns.about.history'), slug: 'history' },
-      { path: '/about/town', label: t('nav.dropdowns.about.town'), slug: 'town' },
-      { path: '/about/leadership', label: t('nav.dropdowns.about.leadership'), slug: 'leadership' },
+      {
+        path: '/about/mission-vision-values',
+        label: t('nav.dropdowns.about.missionVisionValues'),
+        slug: 'mission-vision-values',
+      },
+      {
+        path: '/about/statement-of-faith',
+        label: t('nav.dropdowns.about.statementOfFaith'),
+        slug: 'statement-of-faith',
+      },
+      {
+        path: '/about/philosophy',
+        label: t('nav.dropdowns.about.philosophy'),
+        slug: 'philosophy',
+      },
+      {
+        path: '/about/history',
+        label: t('nav.dropdowns.about.history'),
+        slug: 'history',
+      },
+      {
+        path: '/about/town',
+        label: t('nav.dropdowns.about.town'),
+        slug: 'town',
+      },
+      {
+        path: '/about/leadership',
+        label: t('nav.dropdowns.about.leadership'),
+        slug: 'leadership',
+      },
     ]),
     academics: filterByVisibility('academics', [
-      { path: '/academics/curriculum', label: t('nav.dropdowns.academics.curriculum'), slug: 'curriculum' },
-      { path: '/academics/grades', label: t('nav.dropdowns.academics.grades'), slug: 'grades' },
-      { path: '/academics/calendar', label: t('nav.dropdowns.academics.calendar'), slug: 'calendar' },
-      { path: '/academics/guidance-wellbeing', label: t('nav.dropdowns.academics.guidanceWellbeing'), slug: 'guidance-wellbeing' },
+      {
+        path: '/academics/curriculum',
+        label: t('nav.dropdowns.academics.curriculum'),
+        slug: 'curriculum',
+      },
+      {
+        path: '/academics/grades',
+        label: t('nav.dropdowns.academics.grades'),
+        slug: 'grades',
+      },
+      {
+        path: '/academics/calendar',
+        label: t('nav.dropdowns.academics.calendar'),
+        slug: 'calendar',
+      },
+      {
+        path: '/academics/guidance-wellbeing',
+        label: t('nav.dropdowns.academics.guidanceWellbeing'),
+        slug: 'guidance-wellbeing',
+      },
     ]),
     studentLife: filterByVisibility('studentLife', [
-      { path: '/student-life/sports-clubs', label: t('nav.dropdowns.studentLife.sportsClubs'), slug: 'sports-clubs' },
-      { path: '/student-life/service-projects', label: t('nav.dropdowns.studentLife.serviceProjects'), slug: 'service-projects' },
-      { path: '/student-life/library', label: t('nav.dropdowns.studentLife.library'), slug: 'library' },
-      { path: '/student-life/upcoming-events', label: t('nav.dropdowns.studentLife.upcomingEvents'), slug: 'upcoming-events' },
-      { path: '/student-life/gallery', label: t('nav.dropdowns.studentLife.gallery'), slug: 'gallery' },
+      {
+        path: '/student-life/sports-clubs',
+        label: t('nav.dropdowns.studentLife.sportsClubs'),
+        slug: 'sports-clubs',
+      },
+      {
+        path: '/student-life/service-projects',
+        label: t('nav.dropdowns.studentLife.serviceProjects'),
+        slug: 'service-projects',
+      },
+      {
+        path: '/student-life/library',
+        label: t('nav.dropdowns.studentLife.library'),
+        slug: 'library',
+      },
+      {
+        path: '/student-life/upcoming-events',
+        label: t('nav.dropdowns.studentLife.upcomingEvents'),
+        slug: 'upcoming-events',
+      },
+      {
+        path: '/student-life/gallery',
+        label: t('nav.dropdowns.studentLife.gallery'),
+        slug: 'gallery',
+      },
     ]),
     parents: [
-      { path: '/parents/calendar', label: t('nav.dropdowns.parents.calendar'), slug: 'calendar' },
-      { path: '/parents/handbook', label: t('nav.dropdowns.parents.handbook'), slug: 'handbook' },
+      {
+        path: '/parents/calendar',
+        label: t('nav.dropdowns.parents.calendar'),
+        slug: 'calendar',
+      },
+      {
+        path: '/parents/handbook',
+        label: t('nav.dropdowns.parents.handbook'),
+        slug: 'handbook',
+      },
     ],
     support: filterByVisibility('support', [
-      { path: '/support/why-support', label: t('nav.dropdowns.support.whySupport'), slug: 'why-support' },
-      { path: '/support/scholarships', label: t('nav.dropdowns.support.scholarships'), slug: 'scholarships' },
-      { path: '/support/donate', label: t('nav.dropdowns.support.donate'), slug: 'donate' },
-      { path: '/support/projects', label: t('nav.dropdowns.support.projects'), slug: 'projects' },
+      {
+        path: '/support/why-support',
+        label: t('nav.dropdowns.support.whySupport'),
+        slug: 'why-support',
+      },
+      {
+        path: '/support/scholarships',
+        label: t('nav.dropdowns.support.scholarships'),
+        slug: 'scholarships',
+      },
+      {
+        path: '/support/donate',
+        label: t('nav.dropdowns.support.donate'),
+        slug: 'donate',
+      },
+      {
+        path: '/support/projects',
+        label: t('nav.dropdowns.support.projects'),
+        slug: 'projects',
+      },
     ]),
     contact: filterByVisibility('contact', [
-      { path: '/contact/info', label: t('nav.dropdowns.contact.info'), slug: 'info' },
-      { path: '/contact/directions', label: t('nav.dropdowns.contact.directions'), slug: 'directions' },
-      { path: '/contact/form', label: t('nav.dropdowns.contact.form'), slug: 'form' },
-      { path: '/contact/faq', label: t('nav.dropdowns.contact.faq'), slug: 'faq' },
+      {
+        path: '/contact/info',
+        label: t('nav.dropdowns.contact.info'),
+        slug: 'info',
+      },
+      {
+        path: '/contact/directions',
+        label: t('nav.dropdowns.contact.directions'),
+        slug: 'directions',
+      },
+      {
+        path: '/contact/form',
+        label: t('nav.dropdowns.contact.form'),
+        slug: 'form',
+      },
+      {
+        path: '/contact/faq',
+        label: t('nav.dropdowns.contact.faq'),
+        slug: 'faq',
+      },
     ]),
     admissions: filterByVisibility('admissions', [
-      { path: '/admissions/who-can-apply', label: t('nav.dropdowns.admissions.whoCanApply'), slug: 'who-can-apply' },
-      { path: '/admissions/how-to-apply', label: t('nav.dropdowns.admissions.howToApply'), slug: 'how-to-apply' },
-      { path: '/admissions/calendar', label: t('nav.dropdowns.admissions.calendar'), slug: 'calendar' },
+      {
+        path: '/admissions/who-can-apply',
+        label: t('nav.dropdowns.admissions.whoCanApply'),
+        slug: 'who-can-apply',
+      },
+      {
+        path: '/admissions/how-to-apply',
+        label: t('nav.dropdowns.admissions.howToApply'),
+        slug: 'how-to-apply',
+      },
+      {
+        path: '/admissions/calendar',
+        label: t('nav.dropdowns.admissions.calendar'),
+        slug: 'calendar',
+      },
     ]),
     getInvolved: filterByVisibility('getInvolved', [
-      { path: '/get-involved/teachers', label: t('nav.dropdowns.getInvolved.teachers'), slug: 'teachers' },
-      { path: '/get-involved/volunteer', label: t('nav.dropdowns.getInvolved.volunteer'), slug: 'volunteer' },
+      {
+        path: '/get-involved/teachers',
+        label: t('nav.dropdowns.getInvolved.teachers'),
+        slug: 'teachers',
+      },
+      {
+        path: '/get-involved/volunteer',
+        label: t('nav.dropdowns.getInvolved.volunteer'),
+        slug: 'volunteer',
+      },
     ]),
   }));
 
