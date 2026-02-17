@@ -1171,7 +1171,8 @@
     },
     "acceptInvite": {
       "title": "Accept invitation",
-      "description": "You've been invited to join the CEE Admin Panel. Complete your registration below.",
+      "description": "You've been invited to join the {panel}. Complete your registration below.",
+      "panelName": "CEE Admin Panel",
       "fullName": "Full name",
       "fullNamePlaceholder": "Enter your full name",
       "email": "Email address",

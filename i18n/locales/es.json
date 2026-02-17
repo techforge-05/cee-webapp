@@ -1171,7 +1171,8 @@
     },
     "acceptInvite": {
       "title": "Aceptar invitación",
-      "description": "Has sido invitado a unirte al Panel de Administración CEE. Completa tu registro a continuación.",
+      "description": "Has sido invitado a unirte al {panel}. Completa tu registro a continuación.",
+      "panelName": "Panel de Administración CEE",
       "fullName": "Nombre completo",
       "fullNamePlaceholder": "Ingresa tu nombre completo",
       "email": "Correo electrónico",

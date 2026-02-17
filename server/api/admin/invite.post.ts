@@ -64,7 +64,7 @@ export default defineEventHandler(async (event) => {
       permissions: permissions || [],
       can_calendar: canCalendar || false,
       can_announcements: canAnnouncements || false,
-      invited_by: user.id,
+      invited_by: userId,
     })
     .select()
     .single()
