@@ -1,11 +1,12 @@
 import type { PageContentItem } from '~/composables/usePageContent'
+import esMessages from '~~/i18n/locales/es.json'
+import enMessages from '~~/i18n/locales/en.json'
 
 /**
  * Composable for managing default content values from i18n JSON files
  * Maps page_keys to i18n paths and restores defaults to database
  */
 export const useDefaultContent = () => {
-  const { messages } = useI18n()
   const supabase = useSupabaseClient()
 
   // Mapping of abbreviated page_key parts to full i18n paths
@@ -40,6 +41,44 @@ export const useDefaultContent = () => {
   }
 
   /**
+   * Extract raw strings from compiled vue-i18n message AST nodes.
+   * The @nuxtjs/i18n Vite plugin compiles JSON strings into AST objects
+   * with the format { type: 0, body: { static: "actual string" } }.
+   * This function recursively unwraps them back to plain strings.
+   */
+  function extractRawStrings(value: any): any {
+    if (value == null) return value
+
+    // Compiled vue-i18n message node → extract the static string
+    if (typeof value === 'object' && 'type' in value && 'body' in value) {
+      if (typeof value.body?.static === 'string') {
+        return value.body.static
+      }
+      // Fallback: use loc.source if available
+      if (typeof value.loc?.source === 'string') {
+        return value.loc.source
+      }
+    }
+
+    // Array → recursively process each element
+    if (Array.isArray(value)) {
+      return value.map(extractRawStrings)
+    }
+
+    // Plain object → recursively process each value
+    if (typeof value === 'object') {
+      const result: Record<string, any> = {}
+      for (const [k, v] of Object.entries(value)) {
+        result[k] = extractRawStrings(v)
+      }
+      return result
+    }
+
+    // Primitive → return as-is
+    return value
+  }
+
+  /**
    * Read default values from i18n JSON for a given page_key
    * @param pageKey - The page_key to get defaults for
    * @returns Object with Spanish and English default values, or nulls if not found
@@ -53,13 +92,14 @@ export const useDefaultContent = () => {
       return { es: null, en: null }
     }
 
-    // Access nested path in messages object
-    const esData = getNestedValue(messages.value.es, i18nPath)
-    const enData = getNestedValue(messages.value.en, i18nPath)
+    // Access nested path in imported locale files (avoids lazy loading issues)
+    // Then extract raw strings from compiled vue-i18n AST nodes
+    const esRaw = getNestedValue(esMessages, i18nPath)
+    const enRaw = getNestedValue(enMessages, i18nPath)
 
     return {
-      es: esData || null,
-      en: enData || null,
+      es: esRaw ? extractRawStrings(esRaw) : null,
+      en: enRaw ? extractRawStrings(enRaw) : null,
     }
   }
 
@@ -111,9 +151,11 @@ export const useDefaultContent = () => {
    */
   async function restoreDefaults(pageKey: string): Promise<boolean> {
     const defaults = getDefaultValues(pageKey)
+    console.log('[useDefaultContent] defaults for', pageKey, defaults)
 
     // Check if defaults exist
     if (!defaults.es && !defaults.en) {
+      console.warn('[useDefaultContent] No defaults found for', pageKey)
       return false // No defaults available
     }
 
@@ -125,17 +167,22 @@ export const useDefaultContent = () => {
         .eq('page_key', pageKey)
 
       if (deleteError) {
+        console.error('[useDefaultContent] Delete error:', deleteError)
         throw deleteError
       }
 
       // Transform i18n data to page_content format
       const newItems = transformDefaultsToItems(pageKey, defaults)
+      console.log('[useDefaultContent] Items to insert:', JSON.stringify(newItems, null, 2))
 
       // Insert new rows if there are items
       if (newItems.length > 0) {
-        const { error: insertError } = await supabase
+        const { data: insertData, error: insertError } = await supabase
           .from('page_content')
-          .insert(newItems)
+          .insert(newItems as any)
+          .select()
+
+        console.log('[useDefaultContent] Insert result:', { insertData, insertError })
 
         if (insertError) {
           throw insertError

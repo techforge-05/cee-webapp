@@ -47,12 +47,12 @@
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
           >
-            {{ singleField('home.welcome', 'titlePart1') || $t('home.welcome.titlePartOne') }}
+            {{ singleField('home.welcome', 'titlePartOne') || $t('home.welcome.titlePartOne') }}
           </h2>
           <h1
             class="text-5xl md:text-7xl font-black text-white mb-5 uppercase tracking-tight"
           >
-            {{ singleField('home.welcome', 'titlePart2') || $t('home.welcome.titlePartTwo') }}
+            {{ singleField('home.welcome', 'titlePartTwo') || $t('home.welcome.titlePartTwo') }}
           </h1>
           <h3
             class="text-xl md:text-3xl font-black text-white mb-8 tracking-tight"

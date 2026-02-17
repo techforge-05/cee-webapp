@@ -12,6 +12,10 @@ export default defineNuxtConfig({
     },
   ],
 
+  ui: {
+    colorMode: false,
+  },
+
   css: ['~/assets/css/main.css'],
 
   supabase: {
