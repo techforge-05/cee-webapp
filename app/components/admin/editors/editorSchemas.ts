@@ -213,27 +213,6 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
-      pageKey: 'about.town.mountainImage',
-      labelKey: 'admin.editors.about.town.mountainImage',
-      type: 'single',
-      fields: [
-        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
-        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
-      ],
-    },
-    {
-      pageKey: 'about.town.gallery',
-      labelKey: 'admin.editors.about.town.gallery',
-      type: 'list',
-      maxItems: 6,
-      minItems: 1,
-      itemLabelKey: 'admin.editors.about.town.galleryItem',
-      fields: [
-        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
-        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
-      ],
-    },
-    {
       pageKey: 'about.town.location',
       labelKey: 'admin.editors.about.town.location',
       type: 'list',
@@ -249,6 +228,24 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [f.title(), f.description()],
     },
     {
+      pageKey: 'about.town.climateItems',
+      labelKey: 'admin.editors.about.town.climateItems',
+      type: 'list',
+      maxItems: 6,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.generic.item',
+      fields: [f.text()],
+    },
+    {
+      pageKey: 'about.town.mountainImage',
+      labelKey: 'admin.editors.about.town.mountainImage',
+      type: 'single',
+      fields: [
+        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+      ],
+    },
+    {
       pageKey: 'about.town.activities',
       labelKey: 'admin.editors.about.town.activities',
       type: 'list',
@@ -256,6 +253,18 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.activity',
       fields: [f.title(), f.description()],
+    },
+    {
+      pageKey: 'about.town.gallery',
+      labelKey: 'admin.editors.about.town.gallery',
+      type: 'list',
+      maxItems: 6,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.about.town.galleryItem',
+      fields: [
+        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+      ],
     },
   ],
 
@@ -292,7 +301,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 15,
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.subject',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'academics.curriculum.secondary',
@@ -307,7 +316,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 20,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.subject',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'academics.curriculum.secondarySubjects1011',
@@ -316,7 +325,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 20,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.subject',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'academics.curriculum.benefits',

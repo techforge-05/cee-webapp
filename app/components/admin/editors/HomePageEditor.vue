@@ -371,6 +371,7 @@ function trackChanges() {
       enrollment: {
         title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
         description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
+        image: enrollmentImage.value,
         features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
       },
       values: {

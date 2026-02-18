@@ -55,13 +55,12 @@
               class="w-full h-auto object-cover"
               loading="lazy"
             />
-            <img
+            <div
               v-else
-              src="/images/boardOfDirectors.jpg"
-              :alt="$t('about.leadership.board.title')"
-              class="w-full h-auto object-cover"
-              loading="lazy"
-            />
+              class="w-full h-64 md:h-80 bg-gray-200 flex items-center justify-center"
+            >
+              <UIcon name="i-heroicons-user-group" class="w-16 h-16 text-gray-400" />
+            </div>
           </div>
           <!-- Board Member Names -->
           <div v-if="boardMemberNames.length > 0" class="mt-6 text-center">
@@ -231,14 +230,14 @@
     if (dbItems.length > 0) {
       return dbItems.map(item => field(item, 'name')).filter(Boolean);
     }
-    // Fallback: hardcoded names
+    // Fallback: placeholder names
     return [
-      'Sergio Portillo',
-      'Héctor Estrada',
-      'Edith Aguilar',
-      'Iris Martínez',
-      'Enrique Martínez',
-      'Peter Simpson',
+      'Board Member 1',
+      'Board Member 2',
+      'Board Member 3',
+      'Board Member 4',
+      'Board Member 5',
+      'Board Member 6',
     ];
   });
 
@@ -253,19 +252,19 @@
         photoUrl: getMeta(item, 'photoUrl') || '',
       }));
     }
-    // Fallback: hardcoded directors
+    // Fallback: placeholder directors
     return [
       {
-        name: 'Yasmín Guevara',
-        title: locale.value === 'en' ? 'Preschool & Elementary Director' : 'Directora de Preescolar y Primaria',
-        email: 'yasmin@ceehonduras.org',
-        photoUrl: '/images/Osiris.jpg',
+        name: locale.value === 'en' ? 'Director Name' : 'Nombre del Director',
+        title: locale.value === 'en' ? 'Preschool & Elementary Director' : 'Director(a) de Preescolar y Primaria',
+        email: '',
+        photoUrl: '',
       },
       {
-        name: 'Osiris Murillo',
-        title: locale.value === 'en' ? 'High School Director' : 'Director de Secundaria',
-        email: 'osiris@ceehonduras.org',
-        photoUrl: '/images/Yasmin.jpg',
+        name: locale.value === 'en' ? 'Director Name' : 'Nombre del Director',
+        title: locale.value === 'en' ? 'High School Director' : 'Director(a) de Secundaria',
+        email: '',
+        photoUrl: '',
       },
     ];
   });

@@ -15,13 +15,29 @@ export const useDefaultContent = () => {
     sof: 'statementOfFaith',
   }
 
+  // Full page_key → i18n path overrides for nested structures
+  const pageKeyOverrides: Record<string, string> = {
+    'academics.curriculum.kindergarten': 'academics.curriculum.programs.kindergarten',
+    'academics.curriculum.elementary': 'academics.curriculum.programs.elementary',
+    'academics.curriculum.elementarySubjects': 'academics.curriculum.programs.elementary.subjects',
+    'academics.curriculum.secondary': 'academics.curriculum.programs.secondary',
+    'academics.curriculum.secondarySubjects79': 'academics.curriculum.programs.secondary.grades79.subjects',
+    'academics.curriculum.secondarySubjects1011': 'academics.curriculum.programs.secondary.grades1011.subjects',
+  }
+
   /**
-   * Map page_key to i18n path (handles abbreviations)
+   * Map page_key to i18n path (handles abbreviations and full overrides)
    * Example: "about.mvv.intro" → "about.missionVisionValues.intro"
+   * Example: "academics.curriculum.kindergarten" → "academics.curriculum.programs.kindergarten"
    * @param pageKey - The page_key from page_content table
    * @returns The corresponding i18n path, or null if mapping fails
    */
   function pageKeyToI18nPath(pageKey: string): string | null {
+    // Check full-path overrides first
+    if (pageKeyOverrides[pageKey]) {
+      return pageKeyOverrides[pageKey] ?? null
+    }
+
     const parts = pageKey.split('.')
 
     // Replace abbreviated parts with full names
@@ -120,24 +136,16 @@ export const useDefaultContent = () => {
   }
 
   /**
-   * Find the single array property in an object.
-   * Returns the property name if exactly one array exists, null otherwise.
-   */
-  function findSingleArrayKey(obj: Record<string, any>): string | null {
-    const arrayKeys = Object.keys(obj).filter((k) => Array.isArray(obj[k]))
-    return arrayKeys.length === 1 ? arrayKeys[0] : null
-  }
-
-  /**
    * Process i18n defaults into page_content items.
-   * Handles four patterns:
+   * Handles five patterns:
    * 1. Plain string → single row with { text: string }
    * 2. Direct array → multiple rows under pageKey
    * 3. Object with only scalars → single row under pageKey
    * 4. Object with scalars + arrays:
-   *    - If single array (items/features/etc): array rows under pageKey,
-   *      scalars as separate main row ONLY for named arrays (e.g. features)
-   *    - Named arrays (not 'items') also stored under pageKey.{property}
+   *    - 'items' array → primary list content under pageKey
+   *    - Named arrays (e.g. 'subjects', 'features') → stored under pageKey.{property}
+   * 5. Object of objects (2+ child objects) → each child object becomes a list row
+   *    (e.g., timeline periods: late1980s, early1990, etc.)
    */
   function processDefaults(
     pageKey: string,
@@ -163,31 +171,53 @@ export const useDefaultContent = () => {
       return arrayToItems(pageKey, defaults.es || [], defaults.en || [])
     }
 
-    // Object → separate scalar fields from array fields
+    // Object → separate scalar fields from array fields and child objects
     if (typeof source === 'object' && source !== null) {
       const allItems: PageContentItem[] = []
       const esScalars: Record<string, any> = {}
       const enScalars: Record<string, any> = {}
-      const arrayKey = findSingleArrayKey(source)
+      const childObjectKeys: string[] = []
 
       for (const key of Object.keys(source)) {
         const esVal = defaults.es?.[key]
         const enVal = defaults.en?.[key]
 
         if (Array.isArray(esVal)) {
-          if (key === 'items' || key === arrayKey) {
+          if (key === 'items') {
             // Primary list content → rows under the SAME pageKey
             allItems.push(...arrayToItems(pageKey, esVal, enVal || []))
           } else {
-            // Secondary array → rows under pageKey.{property}
+            // Named array → rows under pageKey.{property}
             allItems.push(
               ...arrayToItems(`${pageKey}.${key}`, esVal, enVal || [])
             )
           }
+        } else if (typeof esVal === 'object' && esVal !== null) {
+          // Child object — potential list item (e.g., timeline periods)
+          childObjectKeys.push(key)
         } else {
           esScalars[key] = esVal
           enScalars[key] = enVal
         }
+      }
+
+      // Object of objects → each child object becomes a list row,
+      // but only if they are leaf objects (no nested arrays).
+      // Child objects with arrays are separate sections handled by their own editors.
+      const areLeafObjects = childObjectKeys.every((key) => {
+        const val = defaults.es?.[key] ?? defaults.en?.[key]
+        return !Object.values(val || {}).some((v: any) => Array.isArray(v))
+      })
+      if (childObjectKeys.length >= 2 && areLeafObjects) {
+        childObjectKeys.forEach((key, index) => {
+          allItems.push({
+            page_key: pageKey,
+            content_es: defaults.es?.[key] || {},
+            content_en: defaults.en?.[key] || {},
+            sort_order: index,
+            is_active: true,
+          })
+        })
       }
 
       // Only create a scalar main row if there are NO list items under the same pageKey.

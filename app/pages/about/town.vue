@@ -78,17 +78,9 @@
               {{ singleField('about.town.climate', 'description') || $t('about.town.climate.description') }}
             </p>
             <ul class="space-y-3 text-lg text-gray-800">
-              <li class="flex items-start gap-3">
+              <li v-for="(item, index) in climateItems" :key="index" class="flex items-start gap-3">
                 <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-purple-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.climate.sunnyDays') }}</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-purple-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.climate.coolNights') }}</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <UIcon name="i-heroicons-check-circle" class="w-6 h-6 text-purple-600 shrink-0 mt-1" />
-                <span>{{ $t('about.town.climate.mountains') }}</span>
+                <span>{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -219,13 +211,14 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { t, tm, rt } = useI18n();
+const { tm, rt } = useI18n();
 const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
 
 onMounted(() => loadContent([
   'about.town.intro',
   'about.town.location',
   'about.town.climate',
+  'about.town.climateItems',
   'about.town.activities',
   'about.town.mountainImage',
   'about.town.gallery',
@@ -246,12 +239,17 @@ const locationItems = computed(() => {
   if (dbItems.length > 0) {
     return dbItems.map((item) => field(item, 'text'));
   }
-  return [
-    t('about.town.location.heartOfHonduras'),
-    t('about.town.location.altitude'),
-    t('about.town.location.population'),
-    t('about.town.location.proximity'),
-  ];
+  const items = tm('about.town.location.items') as any[];
+  return items.map(item => typeof item === 'string' ? item : rt(item));
+});
+
+const climateItems = computed(() => {
+  const dbItems = getItems('about.town.climateItems');
+  if (dbItems.length > 0) {
+    return dbItems.map((item) => field(item, 'text'));
+  }
+  const items = tm('about.town.climateItems') as any[];
+  return items.map(item => typeof item === 'string' ? item : rt(item));
 });
 
 const activityIcons = [

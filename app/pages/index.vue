@@ -207,7 +207,7 @@
             {{ $t('home.activities.subtitle') }}
           </p>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <UCard
             v-for="(activity, index) in activities"
             :key="index"
@@ -216,7 +216,7 @@
             <template #header>
               <div
                 v-if="activity.image_url"
-                class="aspect-video overflow-hidden -mx-6 -mt-6 mb-3"
+                class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
               >
                 <img
                   :src="activity.image_url"
@@ -227,7 +227,7 @@
               </div>
               <div
                 v-else
-                class="aspect-video bg-gray-100 -mx-6 -mt-6 mb-3 flex items-center justify-center"
+                class="aspect-4/3 bg-gray-100 -mx-6 -mt-6 mb-3 flex items-center justify-center"
               >
                 <UIcon
                   :name="activityIcons[index] || 'i-heroicons-academic-cap'"

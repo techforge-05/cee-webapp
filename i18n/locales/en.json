@@ -295,18 +295,22 @@
       },
       "location": {
         "title": "Location",
-        "heartOfHonduras": "Located in the heart of Honduras",
-        "altitude": "1200m (4000ft) above sea level",
-        "population": "Approximately 110,000 residents",
-        "proximity": "Two hours from Honduras' main cities"
+        "items": [
+          "Located in the heart of Honduras",
+          "1200m (4000ft) above sea level",
+          "Approximately 110,000 residents",
+          "Two hours from Honduras' main cities"
+        ]
       },
       "climate": {
         "title": "Climate",
-        "description": "Siguatepeque enjoys an excellent climate year-round:",
-        "sunnyDays": "Mostly sunny days",
-        "coolNights": "Cool, comfortable nights",
-        "mountains": "Surrounded by lush, green mountains"
+        "description": "Siguatepeque enjoys an excellent climate year-round:"
       },
+      "climateItems": [
+        "Mostly sunny days",
+        "Cool, comfortable nights",
+        "Surrounded by lush, green mountains"
+      ],
       "activities": {
         "title": "Activities and Entertainment",
         "subtitle": "Siguatepeque offers a vibrant community with diverse activities and entertainment options for families.",
@@ -1583,7 +1587,8 @@
         "opportunity": "Opportunity",
         "rule": "Rule",
         "imageUrl": "Image",
-        "photo": "Photo"
+        "photo": "Photo",
+        "altText": "Alt text"
       },
       "calendarInfo": {
         "title": "Calendar Events",
@@ -1619,11 +1624,12 @@
         },
         "town": {
           "intro": "Introduction",
-          "mountainImage": "Mountain Image",
+          "mountainImage": "Panoramic Image",
           "gallery": "Image Gallery",
           "galleryItem": "Gallery Image",
           "location": "Location Details",
           "climate": "Climate",
+          "climateItems": "Climate Details",
           "activities": "Local Activities"
         }
       },

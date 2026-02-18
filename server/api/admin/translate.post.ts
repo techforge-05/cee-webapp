@@ -1,5 +1,13 @@
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 
+function matchCase(source: string, translated: string): string {
+  if (source === source.toUpperCase()) return translated
+  if (translated === translated.toUpperCase() && translated !== translated.toLowerCase()) {
+    return translated.charAt(0).toUpperCase() + translated.slice(1).toLowerCase()
+  }
+  return translated
+}
+
 export default defineEventHandler(async (event) => {
   // Verify authenticated user
   const user = await serverSupabaseUser(event)
@@ -50,7 +58,7 @@ export default defineEventHandler(async (event) => {
     }
 
     return {
-      translatedText: response.responseData.translatedText,
+      translatedText: matchCase(text, response.responseData.translatedText),
     }
   } catch (e: any) {
     throw createError({

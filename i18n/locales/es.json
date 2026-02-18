@@ -295,18 +295,22 @@
       },
       "location": {
         "title": "Ubicación",
-        "heartOfHonduras": "Ubicada en el corazón de Honduras",
-        "altitude": "1200m (4000 pies) sobre el nivel del mar",
-        "population": "Aproximadamente 110,000 habitantes",
-        "proximity": "A dos horas de las principales ciudades de Honduras"
+        "items": [
+          "Ubicada en el corazón de Honduras",
+          "1200m (4000 pies) sobre el nivel del mar",
+          "Aproximadamente 110,000 habitantes",
+          "A dos horas de las principales ciudades de Honduras"
+        ]
       },
       "climate": {
         "title": "Clima",
-        "description": "Siguatepeque disfruta de un excelente clima durante todo el año:",
-        "sunnyDays": "Días mayormente soleados",
-        "coolNights": "Noches frescas y cómodas",
-        "mountains": "Rodeada de montañas verdes y exuberantes"
+        "description": "Siguatepeque disfruta de un excelente clima durante todo el año:"
       },
+      "climateItems": [
+        "Días mayormente soleados",
+        "Noches frescas y cómodas",
+        "Rodeada de montañas verdes y exuberantes"
+      ],
       "activities": {
         "title": "Actividades y Entretenimiento",
         "subtitle": "Siguatepeque ofrece una comunidad vibrante con diversas actividades y opciones de entretenimiento para familias.",
@@ -1583,7 +1587,8 @@
         "opportunity": "Oportunidad",
         "rule": "Regla",
         "imageUrl": "Imagen",
-        "photo": "Foto"
+        "photo": "Foto",
+        "altText": "Texto alternativo"
       },
       "calendarInfo": {
         "title": "Eventos del Calendario",
@@ -1619,11 +1624,12 @@
         },
         "town": {
           "intro": "Introducción",
-          "mountainImage": "Imagen de Montaña",
+          "mountainImage": "Imagen Panorámica",
           "gallery": "Galería de Imágenes",
           "galleryItem": "Imagen de Galería",
           "location": "Detalles de Ubicación",
           "climate": "Clima",
+          "climateItems": "Detalles del Clima",
           "activities": "Actividades Locales"
         }
       },
