@@ -226,8 +226,8 @@
         title: field(item, 'title'),
         grades: field(item, 'grades') || (item.metadata?.grades || ''),
         description: field(item, 'description'),
-        focus: [],
-        ageRange: '',
+        focus: field(item, 'focus') ? field(item, 'focus').split('\n').filter(Boolean) : [],
+        ageRange: field(item, 'ageRange') || '',
         icon: gradeLevelIcons[index % gradeLevelIcons.length],
         _fromDb: true,
       }));
@@ -241,7 +241,6 @@
   });
 
   const specialProgramIcons = [
-    'i-heroicons-language',
     'i-heroicons-computer-desktop',
     'i-heroicons-heart',
     'i-heroicons-paint-brush',

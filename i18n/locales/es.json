@@ -1649,6 +1649,8 @@
           "levels": "Niveles de Grado",
           "level": "Nivel de Grado",
           "gradeRange": "Rango de Grados",
+          "focusAreas": "Áreas de Enfoque Clave (una por línea)",
+          "ageRange": "Rango de Edad",
           "specialPrograms": "Programas Especiales",
           "approach": "Enfoque Educativo"
         },

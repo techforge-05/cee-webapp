@@ -23,6 +23,7 @@ export const useDefaultContent = () => {
     'academics.curriculum.secondary': 'academics.curriculum.programs.secondary',
     'academics.curriculum.secondarySubjects79': 'academics.curriculum.programs.secondary.grades79.subjects',
     'academics.curriculum.secondarySubjects1011': 'academics.curriculum.programs.secondary.grades1011.subjects',
+    'academics.grades.specialPrograms': 'academics.programs.special.items',
   }
 
   /**
@@ -120,15 +121,32 @@ export const useDefaultContent = () => {
   }
 
   /**
+   * Flatten nested string arrays into newline-separated strings.
+   * e.g. { focus: ["a","b","c"] } → { focus: "a\nb\nc" }
+   * This ensures textarea fields can display array data from i18n defaults.
+   */
+  function flattenStringArrays(obj: Record<string, any>): Record<string, any> {
+    const result: Record<string, any> = {}
+    for (const [k, v] of Object.entries(obj)) {
+      if (Array.isArray(v) && v.every((i) => typeof i === 'string')) {
+        result[k] = v.join('\n')
+      } else {
+        result[k] = v
+      }
+    }
+    return result
+  }
+
+  /**
    * Convert an array of i18n items to PageContentItem rows
    */
   function arrayToItems(pageKey: string, esArray: any[], enArray: any[]): PageContentItem[] {
     return esArray.map((esItem, index) => ({
       page_key: pageKey,
-      content_es: typeof esItem === 'object' ? esItem : { text: esItem },
+      content_es: typeof esItem === 'object' ? flattenStringArrays(esItem) : { text: esItem },
       content_en:
         typeof enArray?.[index] === 'object'
-          ? enArray[index]
+          ? flattenStringArrays(enArray[index])
           : { text: enArray?.[index] },
       sort_order: index,
       is_active: true,

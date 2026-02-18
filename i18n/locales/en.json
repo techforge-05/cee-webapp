@@ -1649,6 +1649,8 @@
           "levels": "Grade Levels",
           "level": "Grade Level",
           "gradeRange": "Grade Range",
+          "focusAreas": "Key Focus Areas (one per line)",
+          "ageRange": "Age Range",
           "specialPrograms": "Special Programs",
           "approach": "Educational Approach"
         },

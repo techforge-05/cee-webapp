@@ -357,6 +357,8 @@ const schemas: Record<string, EditorSection[]> = {
         f.title(),
         { key: 'grades', labelKey: 'admin.editors.academics.grades.gradeRange', type: 'text', maxLength: 50 },
         f.description(),
+        { key: 'focus', labelKey: 'admin.editors.academics.grades.focusAreas', type: 'textarea', rows: 4, maxLength: 500 },
+        { key: 'ageRange', labelKey: 'admin.editors.academics.grades.ageRange', type: 'text', maxLength: 30 },
       ],
     },
     {
