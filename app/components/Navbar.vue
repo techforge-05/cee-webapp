@@ -190,18 +190,6 @@
                 <span>{{ $t('nav.dropdowns.about.history') }}</span>
               </NuxtLink>
               <NuxtLink
-                v-if="isVisible('about', 'town')"
-                :to="localePath('/about/town')"
-                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
-                @click="mobileMenuOpen = false"
-              >
-                <UIcon
-                  name="i-heroicons-map"
-                  class="w-5 h-5 text-pink-600 shrink-0"
-                />
-                <span>{{ $t('nav.dropdowns.about.town') }}</span>
-              </NuxtLink>
-              <NuxtLink
                 v-if="isVisible('about', 'leadership')"
                 :to="localePath('/about/leadership')"
                 class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
@@ -212,6 +200,18 @@
                   class="w-5 h-5 text-pink-600 shrink-0"
                 />
                 <span>{{ $t('nav.dropdowns.about.leadership') }}</span>
+              </NuxtLink>
+              <NuxtLink
+                v-if="isVisible('about', 'town')"
+                :to="localePath('/about/town')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-map"
+                  class="w-5 h-5 text-pink-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.about.town') }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -830,14 +830,14 @@
         slug: 'history',
       },
       {
-        path: '/about/town',
-        label: t('nav.dropdowns.about.town'),
-        slug: 'town',
-      },
-      {
         path: '/about/leadership',
         label: t('nav.dropdowns.about.leadership'),
         slug: 'leadership',
+      },
+      {
+        path: '/about/town',
+        label: t('nav.dropdowns.about.town'),
+        slug: 'town',
       },
     ]),
     academics: filterByVisibility('academics', [

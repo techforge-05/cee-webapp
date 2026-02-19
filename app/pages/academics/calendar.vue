@@ -55,10 +55,10 @@
               <UIcon :name="item.icon" class="w-8 h-8 text-white" />
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-3">
-              {{ $rt(item.title) }}
+              {{ item.title }}
             </h3>
             <p class="text-gray-700">
-              {{ $rt(item.description) }}
+              {{ item.description }}
             </p>
           </div>
         </div>
@@ -132,7 +132,12 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { tm } = useI18n();
+  const { tm, rt } = useI18n();
+  const { loadContent, getItems, field } = usePublicContent();
+
+  onMounted(() => loadContent([
+    'academics.calendar.importantDates',
+  ]));
 
   const importantDateIcons = [
     'i-heroicons-calendar',
@@ -141,10 +146,18 @@
   ];
 
   const importantDates = computed(() => {
+    const dbItems = getItems('academics.calendar.importantDates');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: field(item, 'icon') || importantDateIcons[index % importantDateIcons.length],
+      }));
+    }
     const items = tm('academics.calendar.importantDates.items') as any[];
     return items.map((item: any, index: number) => ({
-      title: item.title,
-      description: item.description,
+      title: typeof item.title === 'string' ? item.title : rt(item.title),
+      description: typeof item.description === 'string' ? item.description : rt(item.description),
       icon: importantDateIcons[index % importantDateIcons.length],
     }));
   });

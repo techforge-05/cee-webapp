@@ -46,7 +46,7 @@ export const sectionRegistry: SectionConfig[] = [
     pages: [
       { slug: 'curriculum', icon: 'i-heroicons-academic-cap', label: 'Curriculum', description: 'Programs and subjects' },
       { slug: 'grades', icon: 'i-heroicons-chart-bar', label: 'Grades', description: 'Grade levels and groupings' },
-      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Academic calendar and dates', to: '/admin/calendar' },
+      { slug: 'calendar', icon: 'i-heroicons-calendar-days', label: 'Calendar', description: 'Academic calendar and dates' },
       { slug: 'guidance-wellbeing', icon: 'i-heroicons-heart', label: 'Guidance & Wellbeing', description: 'Student support services' },
     ],
   },

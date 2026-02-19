@@ -146,7 +146,7 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         content: field(item, 'content'),
-        icon: beliefIcons[index] || 'i-heroicons-star',
+        icon: field(item, 'icon') || beliefIcons[index] || 'i-heroicons-star',
       }));
     }
     const items = tm('about.statementOfFaith.beliefs') as any[];

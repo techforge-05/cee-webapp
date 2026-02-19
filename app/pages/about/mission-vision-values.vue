@@ -179,7 +179,7 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: valueIcons[index] || 'i-heroicons-star-solid',
+        icon: field(item, 'icon') || valueIcons[index] || 'i-heroicons-star-solid',
       }));
     }
     const values = tm('about.missionVisionValues.values.items') as any[];

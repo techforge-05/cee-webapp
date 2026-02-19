@@ -51,7 +51,7 @@
                   ]"
                 >
                   <UIcon
-                    :name="timelineStyles[index % timelineStyles.length].icon"
+                    :name="item.icon || timelineStyles[index % timelineStyles.length].icon"
                     class="w-8 h-8"
                   />
                 </div>
@@ -72,7 +72,7 @@
                     ]"
                   >
                     <UIcon
-                      :name="timelineStyles[index % timelineStyles.length].icon"
+                      :name="item.icon || timelineStyles[index % timelineStyles.length].icon"
                       class="w-6 h-6"
                     />
                   </div>
@@ -132,7 +132,7 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
           <UIcon
-            name="i-heroicons-heart"
+            :name="singleField('about.history.legacy', 'icon') || 'i-heroicons-heart'"
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
           <h2 class="text-3xl font-bold text-gray-900 mb-6">
@@ -209,6 +209,7 @@
       return dbItems.map(item => ({
         title: field(item, 'title'),
         content: field(item, 'content'),
+        icon: field(item, 'icon'),
         _fromDb: true,
         founders: null,
       }));

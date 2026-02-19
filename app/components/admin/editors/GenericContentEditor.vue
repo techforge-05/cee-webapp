@@ -45,6 +45,12 @@
                     @update:model-value="trackChanges"
                   />
                 </UFormField>
+                <IconPicker
+                  v-if="field.type === 'icon' && singleData[section.pageKey]"
+                  :model-value="singleData[section.pageKey][field.key]?.es || ''"
+                  :label="$t(field.labelKey)"
+                  @update:model-value="updateSingleIconField(section.pageKey, field.key, $event)"
+                />
               </template>
             </div>
 
@@ -88,6 +94,12 @@
                   @update:model-value="trackChanges"
                 />
               </UFormField>
+              <IconPicker
+                v-if="field.type === 'icon' && singleData[section.pageKey]"
+                :model-value="singleData[section.pageKey][field.key]?.es || ''"
+                :label="$t(field.labelKey)"
+                @update:model-value="updateSingleIconField(section.pageKey, field.key, $event)"
+              />
             </template>
           </template>
         </template>
@@ -136,6 +148,12 @@
                         @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
                       />
                     </UFormField>
+                    <IconPicker
+                      v-if="field.type === 'icon'"
+                      :model-value="item.content_es?.[field.key] || ''"
+                      :label="$t(field.labelKey)"
+                      @update:model-value="updateListIconField(section.pageKey, index, field.key, $event)"
+                    />
                   </template>
                 </div>
 
@@ -176,6 +194,12 @@
                       @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
                     />
                   </UFormField>
+                  <IconPicker
+                    v-if="field.type === 'icon'"
+                    :model-value="item.content_es?.[field.key] || ''"
+                    :label="$t(field.labelKey)"
+                    @update:model-value="updateListIconField(section.pageKey, index, field.key, $event)"
+                  />
                 </template>
               </div>
             </template>
@@ -238,7 +262,7 @@ function initSections() {
       metaData[section.pageKey] = {}
       sectionImages[section.pageKey] = ''
       section.fields.forEach((field) => {
-        if (field.type === 'text' || field.type === 'textarea') {
+        if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
           singleData[section.pageKey][field.key] = { es: '', en: '' }
         } else if (field.type === 'metadata') {
           if (field.key === 'imageUrl') {
@@ -264,7 +288,7 @@ async function loadAllData() {
         existingIds[section.pageKey] = item?.id
 
         section.fields.forEach((field) => {
-          if (field.type === 'text' || field.type === 'textarea') {
+          if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
             singleData[section.pageKey][field.key] = {
               es: item?.content_es?.[field.key] || '',
               en: item?.content_en?.[field.key] || '',
@@ -347,13 +371,29 @@ function updateListMetadataField(pageKey: string, index: number, fieldKey: strin
   trackChanges()
 }
 
+function updateSingleIconField(pageKey: string, fieldKey: string, val: string) {
+  singleData[pageKey][fieldKey] = { es: val, en: val }
+  trackChanges()
+}
+
+function updateListIconField(pageKey: string, index: number, fieldKey: string, val: string) {
+  const arr = [...listData[pageKey]]
+  arr[index] = {
+    ...arr[index],
+    content_es: { ...arr[index].content_es, [fieldKey]: val },
+    content_en: { ...arr[index].content_en, [fieldKey]: val },
+  }
+  listData[pageKey] = arr
+  trackChanges()
+}
+
 function addListItem(section: EditorSection) {
   const contentEs: Record<string, any> = {}
   const contentEn: Record<string, any> = {}
   const metadata: Record<string, any> = {}
 
   section.fields.forEach((field) => {
-    if (field.type === 'text' || field.type === 'textarea') {
+    if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
       contentEs[field.key] = ''
       contentEn[field.key] = ''
     } else if (field.type === 'metadata') {
@@ -385,7 +425,7 @@ async function handleSave() {
         const metadata: Record<string, any> = {}
 
         section.fields.forEach((field) => {
-          if (field.type === 'text' || field.type === 'textarea') {
+          if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
             contentEs[field.key] = singleData[section.pageKey][field.key].es
             contentEn[field.key] = singleData[section.pageKey][field.key].en
           } else if (field.type === 'metadata') {

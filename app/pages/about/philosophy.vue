@@ -37,7 +37,7 @@
           <div class="bg-blue-50 rounded-lg p-8 md:p-12">
             <div class="flex items-start gap-4 mb-6">
               <UIcon
-                name="i-heroicons-book-open"
+                :name="singleField('about.philosophy.biblical', 'icon') || 'i-heroicons-book-open'"
                 class="w-12 h-12 text-blue-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-blue-900">
@@ -53,7 +53,7 @@
           <div class="bg-purple-50 rounded-lg p-8 md:p-12">
             <div class="flex items-start gap-4 mb-6">
               <UIcon
-                name="i-heroicons-user-group"
+                :name="singleField('about.philosophy.dignity', 'icon') || 'i-heroicons-user-group'"
                 class="w-12 h-12 text-purple-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-purple-900">
@@ -69,7 +69,7 @@
           <div class="bg-indigo-50 rounded-lg p-8 md:p-12">
             <div class="flex items-start gap-4 mb-6">
               <UIcon
-                name="i-heroicons-globe-americas"
+                :name="singleField('about.philosophy.bilingual', 'icon') || 'i-heroicons-globe-americas'"
                 class="w-12 h-12 text-indigo-600 shrink-0"
               />
               <h2 class="text-3xl font-bold text-indigo-900">
@@ -174,7 +174,7 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: principleIcons[index] || 'i-heroicons-star-solid',
+        icon: field(item, 'icon') || principleIcons[index] || 'i-heroicons-star-solid',
       }));
     }
     const items = tm('about.philosophy.principles.items') as any[];

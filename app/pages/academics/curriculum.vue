@@ -324,14 +324,14 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: benefitIcons[index % benefitIcons.length],
+        icon: field(item, 'icon') || benefitIcons[index % benefitIcons.length],
       }));
     }
     const items = tm('academics.curriculum.benefits.items') as any[];
     return items.map((benefit: any, index: number) => ({
       title: typeof benefit.title === 'string' ? benefit.title : rt(benefit.title),
       description: typeof benefit.description === 'string' ? benefit.description : rt(benefit.description),
-      icon: benefitIcons[index % benefitIcons.length],
+      icon: benefitIcons[index],
     }));
   });
 

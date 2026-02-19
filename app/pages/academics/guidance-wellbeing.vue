@@ -42,44 +42,8 @@
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ $t('academics.guidance.services.title') }}
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="bg-white rounded-lg p-8 shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition-shadow"
-          >
-            <div class="flex justify-center mb-6">
-              <div
-                class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center"
-              >
-                <UIcon
-                  :name="serviceIcons[index % serviceIcons.length]"
-                  class="w-8 h-8 text-purple-600"
-                />
-              </div>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 text-center mb-3">
-              {{ $rt(service.title) }}
-            </h3>
-            <p class="text-gray-700 text-center leading-relaxed">
-              {{ $rt(service.description) }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Staff Directory Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+    <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
@@ -113,12 +77,12 @@
                 />
               </div>
             </div>
-            <p class="text-sm text-purple-600 font-medium mb-1">
-              {{ member.title }}
-            </p>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">
+            <h3 class="text-xl font-bold text-gray-900 mb-1">
               {{ member.name }}
             </h3>
+            <p v-if="member.position" class="text-sm text-purple-600 font-medium mb-2">
+              {{ member.position }}
+            </p>
             <a
               v-if="member.email"
               :href="`mailto:${member.email}`"
@@ -126,6 +90,42 @@
             >
               {{ member.email }}
             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ $t('academics.guidance.services.title') }}
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            v-for="(service, index) in services"
+            :key="index"
+            class="bg-white rounded-lg p-8 shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition-shadow"
+          >
+            <div class="flex justify-center mb-6">
+              <div
+                class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center"
+              >
+                <UIcon
+                  :name="service.icon"
+                  class="w-8 h-8 text-purple-600"
+                />
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 text-center mb-3">
+              {{ service.title }}
+            </h3>
+            <p class="text-gray-700 text-center leading-relaxed">
+              {{ service.description }}
+            </p>
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@
   });
 
   const localePath = useLocalePath();
-  const { tm } = useI18n();
+  const { tm, rt } = useI18n();
   const { loadContent, getItems, singleField, field } = usePublicContent();
 
   // Load all content sections
@@ -203,18 +203,34 @@
     ]),
   );
 
+  // Service icons for visual variety
+  const serviceIcons = [
+    'i-heroicons-academic-cap',
+    'i-heroicons-chat-bubble-left-right',
+    'i-heroicons-heart',
+    'i-heroicons-user-group',
+    'i-heroicons-book-open',
+    'i-heroicons-light-bulb',
+  ];
+
   // Services computed property
   const services = computed(() => {
     const dbItems = getItems('academics.guidance.services');
     if (dbItems.length > 0)
-      return dbItems.map((item) => ({
+      return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
+        icon: field(item, 'icon') || serviceIcons[index % serviceIcons.length],
       }));
 
     // Fallback to i18n
     const items = tm('academics.guidance.services.items') as any[];
-    return Array.isArray(items) ? items : [];
+    if (!Array.isArray(items)) return [];
+    return items.map((item: any, index: number) => ({
+      title: typeof item.title === 'string' ? item.title : rt(item.title),
+      description: typeof item.description === 'string' ? item.description : rt(item.description),
+      icon: serviceIcons[index % serviceIcons.length],
+    }));
   });
 
   // Staff directory computed property
@@ -223,10 +239,9 @@
     if (dbItems.length > 0)
       return dbItems.map((item) => ({
         name: field(item, 'name'),
-        title: field(item, 'title'),
         position: field(item, 'position'),
         email: field(item, 'email'),
-        photoUrl: item.metadata?.photoUrl || '',
+        photoUrl: item.metadata?.imageUrl || '',
       }));
     return [];
   });
@@ -240,13 +255,4 @@
     }));
   });
 
-  // Service icons for visual variety
-  const serviceIcons = [
-    'i-heroicons-academic-cap',
-    'i-heroicons-chat-bubble-left-right',
-    'i-heroicons-heart',
-    'i-heroicons-user-group',
-    'i-heroicons-book-open',
-    'i-heroicons-light-bulb',
-  ];
 </script>

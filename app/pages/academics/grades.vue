@@ -228,7 +228,7 @@
         description: field(item, 'description'),
         focus: field(item, 'focus') ? field(item, 'focus').split('\n').filter(Boolean) : [],
         ageRange: field(item, 'ageRange') || '',
-        icon: gradeLevelIcons[index % gradeLevelIcons.length],
+        icon: field(item, 'icon') || gradeLevelIcons[index % gradeLevelIcons.length],
         _fromDb: true,
       }));
     }
@@ -254,7 +254,7 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: specialProgramIcons[index % specialProgramIcons.length],
+        icon: field(item, 'icon') || specialProgramIcons[index % specialProgramIcons.length],
       }));
     }
     const items = tm('academics.programs.special.items') as any[];
@@ -277,7 +277,7 @@
       return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: approachIcons[index % approachIcons.length],
+        icon: field(item, 'icon') || approachIcons[index % approachIcons.length],
       }));
     }
     const items = tm('academics.grades.approach.items') as any[];

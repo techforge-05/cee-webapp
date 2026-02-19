@@ -524,11 +524,35 @@
       },
       "staff": {
         "title": "Nuestro Equipo",
-        "description": "Contamos con orientador, consejera y psicóloga"
+        "description": "Contamos con orientador, consejera y psicóloga",
+        "items": [
+          {
+            "name": "Nombre del Orientador",
+            "position": "Orientador",
+            "email": "orientador{'@'}cee.hn"
+          },
+          {
+            "name": "Nombre de la Consejera",
+            "position": "Consejera",
+            "email": "consejera{'@'}cee.hn"
+          },
+          {
+            "name": "Nombre de la Psicóloga",
+            "position": "Psicóloga",
+            "email": "psicologa{'@'}cee.hn"
+          }
+        ]
       },
       "gallery": {
         "title": "Galería",
         "description": "Momentos de nuestro departamento y actividades"
+      },
+      "images": {
+        "items": [
+          { "alt": "Actividad del departamento de orientación" },
+          { "alt": "Sesión de consejería estudiantil" },
+          { "alt": "Actividad de bienestar estudiantil" }
+        ]
       },
       "contact": {
         "title": "Contáctanos",
@@ -1588,7 +1612,14 @@
         "rule": "Regla",
         "imageUrl": "Imagen",
         "photo": "Foto",
-        "altText": "Texto alternativo"
+        "altText": "Texto alternativo",
+        "icon": "Ícono",
+        "selectIcon": "Seleccionar un ícono...",
+        "period": "Período",
+        "service": "Servicio",
+        "image": "Imagen",
+        "location": "Ubicación",
+        "position": "Cargo"
       },
       "calendarInfo": {
         "title": "Eventos del Calendario",
@@ -1653,6 +1684,9 @@
           "ageRange": "Rango de Edad",
           "specialPrograms": "Programas Especiales",
           "approach": "Enfoque Educativo"
+        },
+        "calendar": {
+          "importantDates": "Períodos Académicos Clave"
         },
         "guidance": {
           "intro": "Introducción",

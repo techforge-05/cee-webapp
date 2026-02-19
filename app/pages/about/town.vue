@@ -266,14 +266,14 @@ const activities = computed(() => {
     return dbItems.map((item, index) => ({
       title: field(item, 'title'),
       description: field(item, 'description'),
-      icon: activityIcons[index % activityIcons.length],
+      icon: field(item, 'icon') || activityIcons[index % activityIcons.length],
     }));
   }
   const items = tm('about.town.activities.items') as any[];
   return items.map((activity: any, index: number) => ({
     title: typeof activity.title === 'string' ? activity.title : rt(activity.title),
     description: typeof activity.description === 'string' ? activity.description : rt(activity.description),
-    icon: activityIcons[index % activityIcons.length],
+    icon: activityIcons[index],
   }));
 });
 

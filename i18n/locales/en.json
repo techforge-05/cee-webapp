@@ -524,11 +524,35 @@
       },
       "staff": {
         "title": "Our Team",
-        "description": "We have a counselor, advisor, and psychologist"
+        "description": "We have a counselor, advisor, and psychologist",
+        "items": [
+          {
+            "name": "Counselor Name",
+            "position": "Counselor",
+            "email": "counselor{'@'}cee.hn"
+          },
+          {
+            "name": "Advisor Name",
+            "position": "Advisor",
+            "email": "advisor{'@'}cee.hn"
+          },
+          {
+            "name": "Psychologist Name",
+            "position": "Psychologist",
+            "email": "psychologist{'@'}cee.hn"
+          }
+        ]
       },
       "gallery": {
         "title": "Gallery",
         "description": "Glimpses of our department and activities"
+      },
+      "images": {
+        "items": [
+          { "alt": "Guidance department activity" },
+          { "alt": "Student counseling session" },
+          { "alt": "Student wellbeing activity" }
+        ]
       },
       "contact": {
         "title": "Contact Us",
@@ -1588,7 +1612,14 @@
         "rule": "Rule",
         "imageUrl": "Image",
         "photo": "Photo",
-        "altText": "Alt text"
+        "altText": "Alt text",
+        "icon": "Icon",
+        "selectIcon": "Select an icon...",
+        "period": "Period",
+        "service": "Service",
+        "image": "Image",
+        "location": "Location",
+        "position": "Position"
       },
       "calendarInfo": {
         "title": "Calendar Events",
@@ -1653,6 +1684,9 @@
           "ageRange": "Age Range",
           "specialPrograms": "Special Programs",
           "approach": "Educational Approach"
+        },
+        "calendar": {
+          "importantDates": "Key Academic Periods"
         },
         "guidance": {
           "intro": "Introduction",

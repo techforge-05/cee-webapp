@@ -1,7 +1,7 @@
 export interface EditorField {
   key: string
   labelKey: string
-  type: 'text' | 'textarea' | 'metadata'
+  type: 'text' | 'textarea' | 'metadata' | 'icon'
   maxLength?: number
   rows?: number
 }
@@ -113,7 +113,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 10,
       minItems: 3,
       itemLabelKey: 'admin.editors.about.mvv.value',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -132,7 +132,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 15,
       minItems: 5,
       itemLabelKey: 'admin.editors.about.sof.belief',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.sof.closing',
@@ -154,19 +154,19 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.philosophy.biblical',
       labelKey: 'admin.editors.about.philosophy.biblical',
       type: 'single',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.philosophy.dignity',
       labelKey: 'admin.editors.about.philosophy.dignity',
       type: 'single',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.philosophy.bilingual',
       labelKey: 'admin.editors.about.philosophy.bilingual',
       type: 'single',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.philosophy.principles',
@@ -175,7 +175,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 5,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.principle',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -194,13 +194,13 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 12,
       minItems: 4,
       itemLabelKey: 'admin.editors.about.history.period',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.history.legacy',
       labelKey: 'admin.editors.about.history.legacy',
       type: 'single',
-      fields: [f.title(), f.content()],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -252,7 +252,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.activity',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'about.town.gallery',
@@ -334,7 +334,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 5,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.benefit',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -359,6 +359,7 @@ const schemas: Record<string, EditorSection[]> = {
         f.description(),
         { key: 'focus', labelKey: 'admin.editors.academics.grades.focusAreas', type: 'textarea', rows: 4, maxLength: 500 },
         { key: 'ageRange', labelKey: 'admin.editors.academics.grades.ageRange', type: 'text', maxLength: 30 },
+        { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' },
       ],
     },
     {
@@ -368,7 +369,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.program',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'academics.grades.approach',
@@ -377,7 +378,19 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 5,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.approach',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+    },
+  ],
+
+  'academics/calendar': [
+    {
+      pageKey: 'academics.calendar.importantDates',
+      labelKey: 'admin.editors.academics.calendar.importantDates',
+      type: 'list',
+      maxItems: 6,
+      minItems: 2,
+      itemLabelKey: 'admin.editors.generic.period',
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -390,15 +403,6 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [f.title(), f.description()],
     },
     {
-      pageKey: 'academics.guidance.services',
-      labelKey: 'admin.editors.academics.guidance.services',
-      type: 'list',
-      maxItems: 5,
-      minItems: 1,
-      itemLabelKey: 'admin.editors.generic.service',
-      fields: [f.title(), f.description()],
-    },
-    {
       pageKey: 'academics.guidance.staff',
       labelKey: 'admin.editors.academics.guidance.staff',
       type: 'list',
@@ -407,11 +411,19 @@ const schemas: Record<string, EditorSection[]> = {
       itemLabelKey: 'admin.editors.academics.guidance.staffMember',
       fields: [
         f.name(),
-        { key: 'title', labelKey: 'admin.editors.generic.title', type: 'text', maxLength: 100 },
         { key: 'position', labelKey: 'admin.editors.generic.position', type: 'text', maxLength: 100 },
         { key: 'email', labelKey: 'admin.editors.generic.email', type: 'text', maxLength: 100 },
-        f.meta('photoUrl', 'admin.editors.generic.photo'),
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
       ],
+    },
+    {
+      pageKey: 'academics.guidance.services',
+      labelKey: 'admin.editors.academics.guidance.services',
+      type: 'list',
+      maxItems: 5,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.generic.service',
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'academics.guidance.images',
@@ -423,16 +435,6 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
         f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
-      ],
-    },
-    {
-      pageKey: 'academics.guidance.contact',
-      labelKey: 'admin.editors.academics.guidance.contact',
-      type: 'single',
-      fields: [
-        { key: 'email', labelKey: 'admin.editors.generic.email', type: 'text', maxLength: 100 },
-        { key: 'hours', labelKey: 'admin.editors.academics.guidance.hours', type: 'textarea', rows: 3, maxLength: 300 },
-        { key: 'location', labelKey: 'admin.editors.generic.location', type: 'text', maxLength: 200 },
       ],
     },
   ],
