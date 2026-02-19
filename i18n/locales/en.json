@@ -1014,7 +1014,8 @@
       },
       "contact": {
         "title": "Contact the Library",
-        "description": "Have questions about our library services or need help finding resources?"
+        "description": "Have questions about our library services or need help finding resources?",
+        "email": "library{'@'}ceehonduras.org"
       },
       "readingCorner": {
         "title": "A Cozy Reading Corner",

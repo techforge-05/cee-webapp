@@ -481,7 +481,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 6,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.benefit',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
     {
       pageKey: 'studentLife.serviceProjects.items',
@@ -490,7 +490,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.project',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
     },
   ],
 
@@ -531,8 +531,8 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 1,
       itemLabelKey: 'admin.editors.generic.schedule',
       fields: [
-        f.meta('day', 'admin.editors.generic.day'),
-        f.meta('hours', 'admin.editors.generic.hours'),
+        { key: 'day', labelKey: 'admin.editors.generic.day', type: 'text', maxLength: 50 },
+        { key: 'hours', labelKey: 'admin.editors.generic.hours', type: 'text', maxLength: 100 },
       ],
     },
     {
@@ -542,7 +542,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 5,
       minItems: 2,
       itemLabelKey: 'admin.editors.academics.grades.level',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.rules',
@@ -578,7 +578,7 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.title(),
         f.description(),
-        f.meta('email', 'admin.editors.generic.email'),
+        { key: 'email', labelKey: 'admin.editors.generic.email', type: 'text', maxLength: 150 },
       ],
     },
   ],

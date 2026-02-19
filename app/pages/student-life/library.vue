@@ -159,12 +159,17 @@
             class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4"
             :class="getLevelBorderColor(index)"
           >
-            <!-- Image placeholder -->
             <div
               class="h-48 flex items-center justify-center"
               :class="getLevelLightBgColor(index)"
             >
-              <UIcon :name="levelIcons[index]" class="w-16 h-16" :class="getLevelIconColor(index)" />
+              <img
+                v-if="level.imageUrl"
+                :src="level.imageUrl"
+                :alt="level.title"
+                class="w-full h-full object-cover"
+              />
+              <UIcon v-else :name="levelIcons[index]" class="w-16 h-16" :class="getLevelIconColor(index)" />
             </div>
             <div class="p-8">
               <h3 class="text-xl font-bold text-gray-900 mb-3">
@@ -311,11 +316,11 @@
             {{ singleField('studentLife.library.contact', 'description') || $t('studentLife.library.contact.description') }}
           </p>
           <a
-            :href="`mailto:${singleMeta('studentLife.library.contact', 'email') || 'library@ceehonduras.org'}`"
+            :href="`mailto:${singleField('studentLife.library.contact', 'email') || 'library@ceehonduras.org'}`"
             class="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-semibold text-lg"
           >
             <UIcon name="i-heroicons-envelope" class="w-5 h-5" />
-            {{ singleMeta('studentLife.library.contact', 'email') || 'library@ceehonduras.org' }}
+            {{ singleField('studentLife.library.contact', 'email') || 'library@ceehonduras.org' }}
           </a>
         </div>
       </div>
@@ -393,8 +398,8 @@
     const dbItems = getItems('studentLife.library.hours');
     if (dbItems.length > 0) {
       return dbItems.map(item => ({
-        day: getMeta(item, 'day'),
-        hours: getMeta(item, 'hours'),
+        day: field(item, 'day') || getMeta(item, 'day'),
+        hours: field(item, 'hours') || getMeta(item, 'hours'),
       }));
     }
     const items = tm('studentLife.library.hours.schedule') as any[];
@@ -411,6 +416,7 @@
       return dbItems.map(item => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
+        imageUrl: item.metadata?.imageUrl || '',
       }));
     }
     const items = tm('studentLife.library.gradeSupport.levels') as any[];

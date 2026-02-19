@@ -1014,7 +1014,8 @@
       },
       "contact": {
         "title": "Contacta la Biblioteca",
-        "description": "¿Tienes preguntas sobre nuestros servicios de biblioteca o necesitas ayuda para encontrar recursos?"
+        "description": "¿Tienes preguntas sobre nuestros servicios de biblioteca o necesitas ayuda para encontrar recursos?",
+        "email": "library{'@'}ceehonduras.org"
       },
       "readingCorner": {
         "title": "Un Acogedor Rincón de Lectura",

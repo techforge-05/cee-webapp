@@ -24,6 +24,16 @@ export const useDefaultContent = () => {
     'academics.curriculum.secondarySubjects79': 'academics.curriculum.programs.secondary.grades79.subjects',
     'academics.curriculum.secondarySubjects1011': 'academics.curriculum.programs.secondary.grades1011.subjects',
     'academics.grades.specialPrograms': 'academics.programs.special.items',
+    'studentLife.sports.intro': 'studentLife.sportsClubs.intro',
+    'studentLife.sports.items': 'studentLife.sportsClubs.sports.items',
+    'studentLife.sports.otherSports': 'studentLife.sportsClubs.sports.otherSports',
+    'studentLife.serviceProjects.benefits': 'studentLife.serviceProjects.whyService.benefits',
+    'studentLife.serviceProjects.items': 'studentLife.serviceProjects.projects.items',
+    'studentLife.library.goals': 'studentLife.library.purpose.goals',
+    'studentLife.library.hours': 'studentLife.library.hours.schedule',
+    'studentLife.library.gradeSupport': 'studentLife.library.gradeSupport.levels',
+    'studentLife.library.rules': 'studentLife.library.borrowing.rules',
+    'studentLife.upcomingEvents.annualEvents': 'studentLife.upcomingEvents.annualEvents.events',
   }
 
   /**

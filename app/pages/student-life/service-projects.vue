@@ -51,7 +51,7 @@
               class="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center"
               :class="getBenefitBgColor(index)"
             >
-              <UIcon :name="benefitIcons[index]" class="w-7 h-7 text-white" />
+              <UIcon :name="benefit.icon" class="w-7 h-7 text-white" />
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">
               {{ benefit.title }}
@@ -86,7 +86,7 @@
                   class="w-14 h-14 rounded-full flex items-center justify-center"
                   :class="getProjectBgColor(index)"
                 >
-                  <UIcon :name="projectIcons[index]" class="w-7 h-7 text-white" />
+                  <UIcon :name="project.icon" class="w-7 h-7 text-white" />
                 </div>
               </div>
               <div>
@@ -167,32 +167,36 @@
   const benefits = computed(() => {
     const dbItems = getItems('studentLife.serviceProjects.benefits');
     if (dbItems.length > 0) {
-      return dbItems.map(item => ({
+      return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
+        icon: field(item, 'icon') || benefitIcons[index % benefitIcons.length],
       }));
     }
     const items = tm('studentLife.serviceProjects.whyService.benefits') as any[];
     if (!Array.isArray(items)) return [];
-    return items.map((b: any) => ({
+    return items.map((b: any, index: number) => ({
       title: typeof b.title === 'string' ? b.title : rt(b.title),
       description: typeof b.description === 'string' ? b.description : rt(b.description),
+      icon: benefitIcons[index % benefitIcons.length],
     }));
   });
 
   const projects = computed(() => {
     const dbItems = getItems('studentLife.serviceProjects.items');
     if (dbItems.length > 0) {
-      return dbItems.map(item => ({
+      return dbItems.map((item, index) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
+        icon: field(item, 'icon') || projectIcons[index % projectIcons.length],
       }));
     }
     const items = tm('studentLife.serviceProjects.projects.items') as any[];
     if (!Array.isArray(items)) return [];
-    return items.map((p: any) => ({
+    return items.map((p: any, index: number) => ({
       title: typeof p.title === 'string' ? p.title : rt(p.title),
       description: typeof p.description === 'string' ? p.description : rt(p.description),
+      icon: projectIcons[index % projectIcons.length],
     }));
   });
 
