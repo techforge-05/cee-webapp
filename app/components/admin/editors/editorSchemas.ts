@@ -5,6 +5,7 @@ export interface EditorField {
   maxLength?: number
   rows?: number
   options?: { value: string; labelKey: string }[]
+  halfWidth?: boolean
 }
 
 export interface EditorSection {
@@ -78,6 +79,11 @@ const f = {
     type: 'textarea',
     rows: 3,
     maxLength: 1000,
+  }),
+  icon: (labelKey = 'admin.editors.generic.icon'): EditorField => ({
+    key: 'icon',
+    labelKey,
+    type: 'icon',
   }),
   meta: (key: string, labelKey: string, maxLength = 200): EditorField => ({
     key,
@@ -670,7 +676,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 6,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.impactArea',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.icon()],
     },
   ],
 
@@ -711,7 +717,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 6,
       minItems: 2,
       itemLabelKey: 'admin.editors.support.donate.method',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.icon()],
     },
     {
       pageKey: 'support.donate.wishLists',
@@ -723,12 +729,13 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.title(),
         f.description(),
-        f.meta('url', 'admin.editors.generic.url'),
+        { key: 'url', labelKey: 'admin.editors.generic.url', type: 'metadata', maxLength: 200, halfWidth: true },
+        f.icon(),
       ],
     },
     {
-      pageKey: 'support.donate.spanishBooks',
-      labelKey: 'admin.editors.support.donate.spanishBooks',
+      pageKey: 'support.donate.donateBooks',
+      labelKey: 'admin.editors.support.donate.donateBooks',
       type: 'single',
       fields: [f.title(), f.description()],
     },
@@ -739,8 +746,17 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.title(),
         f.description(),
-        f.meta('email', 'admin.editors.generic.email'),
-        f.meta('phone', 'admin.editors.generic.phone'),
+      ],
+    },
+    {
+      pageKey: 'support.donate.emails',
+      labelKey: 'admin.editors.support.donate.emails',
+      type: 'list',
+      maxItems: 10,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.generic.email',
+      fields: [
+        f.meta('email', 'admin.editors.generic.emailAddress', 150),
       ],
     },
   ],

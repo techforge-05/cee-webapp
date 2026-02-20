@@ -51,8 +51,8 @@
         </div>
       </section>
 
-      <!-- Project Details -->
-      <section class="py-16">
+      <!-- Project Details (active project) -->
+      <section v-if="!isCompleted" class="py-16">
         <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div class="grid lg:grid-cols-3 gap-12">
             <!-- Main Content -->
@@ -88,7 +88,7 @@
                   <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">
                     {{ $t('support.projectDetails.currentStatus') }}
                   </h3>
-                  <UBadge color="primary" variant="subtle" size="lg">
+                  <UBadge :color="getStatusColor(project.statusCode)" variant="subtle" size="lg">
                     {{ project.status }}
                   </UBadge>
                 </div>
@@ -111,6 +111,44 @@
                   {{ $t('support.projectDetails.donateToProject') }}
                 </UButton>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Completed Project Celebration -->
+      <section v-else class="py-16">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div class="max-w-3xl mx-auto">
+            <!-- Status Badge -->
+            <div class="flex justify-center mb-8">
+              <UBadge color="success" variant="subtle" size="lg">
+                {{ project.status }}
+              </UBadge>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xl text-gray-700 leading-relaxed mb-10 text-center">
+              {{ project.description }}
+            </p>
+
+            <!-- Celebration Card -->
+            <div class="bg-linear-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-8 md:p-12 text-center">
+              <UIcon name="i-heroicons-trophy" class="w-16 h-16 text-green-500 mx-auto mb-6" />
+              <h2 class="text-2xl md:text-3xl font-bold text-green-800 mb-4">
+                {{ $t('support.projectDetails.completed.title') }}
+              </h2>
+              <p class="text-lg text-gray-700 leading-relaxed">
+                {{ project.completionMessage || $t('support.projectDetails.completed.defaultMessage') }}
+              </p>
+            </div>
+
+            <!-- Goal achieved -->
+            <div v-if="project.goal" class="mt-8 text-center">
+              <h3 class="text-sm font-semibold text-gray-500 uppercase mb-2">
+                {{ $t('support.projectDetails.projectGoal') }}
+              </h3>
+              <p class="text-gray-700">{{ project.goal }}</p>
             </div>
           </div>
         </div>
@@ -152,7 +190,7 @@
 <script setup lang="ts">
 const route = useRoute()
 const localePath = useLocalePath()
-const { locale } = useI18n()
+const { t } = useI18n()
 const { loadContent, getItems, field, meta: getMeta } = usePublicContent()
 
 const slug = computed(() => route.params.slug as string)
@@ -166,6 +204,23 @@ const projectIcons = [
   'i-heroicons-wrench-screwdriver',
   'i-heroicons-star',
 ]
+
+const statusColors: Record<string, string> = {
+  in_progress: 'info',
+  planning: 'neutral',
+  fundraising: 'warning',
+  completed: 'success',
+}
+
+const getStatusColor = (code: string) => {
+  return (statusColors[code] || 'neutral') as 'info' | 'neutral' | 'warning' | 'success'
+}
+
+const statusKey = (code: string) => {
+  const key = `support.projects.status.${code}`
+  const translated = t(key)
+  return translated !== key ? translated : code
+}
 
 await loadContent(['support.projects.items'])
 
@@ -186,14 +241,19 @@ const projectIcon = computed(() => {
 
 const project = computed(() => {
   if (!projectItem.value) return null
+  const statusCode = getMeta(projectItem.value, 'status')
   return {
     title: field(projectItem.value, 'title'),
     description: field(projectItem.value, 'description'),
-    status: getMeta(projectItem.value, 'status'),
+    statusCode,
+    status: statusKey(statusCode),
     goal: getMeta(projectItem.value, 'goal'),
     imageUrl: getMeta(projectItem.value, 'imageUrl'),
+    completionMessage: field(projectItem.value, 'completionMessage'),
   }
 })
+
+const isCompleted = computed(() => project.value?.statusCode === 'completed')
 
 // Load needs for this specific project
 const needsKey = computed(() => `support.projects.${slug.value}.needs`)

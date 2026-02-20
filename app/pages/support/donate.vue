@@ -91,7 +91,7 @@
               <div
                 class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center mb-4"
               >
-                <UIcon :name="wishListIcons[index]" class="w-8 h-8 text-white" />
+                <UIcon :name="wishList.icon" class="w-8 h-8 text-white" />
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
                 {{ wishList.title }}
@@ -111,7 +111,7 @@
       </div>
     </section>
 
-    <!-- Spanish Books Section -->
+    <!-- Donate Books Section -->
     <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="bg-red-50 rounded-2xl p-8 md:p-12">
@@ -123,10 +123,10 @@
             </div>
             <div>
               <h2 class="text-2xl font-bold text-red-900 mb-4">
-                {{ singleField('support.donate.spanishBooks', 'title') || $t('support.donate.spanishBooks.title') }}
+                {{ singleField('support.donate.donateBooks', 'title') || $t('support.donate.donateBooks.title') }}
               </h2>
               <p class="text-lg text-gray-800 leading-relaxed">
-                {{ singleField('support.donate.spanishBooks', 'description') || $t('support.donate.spanishBooks.description') }}
+                {{ singleField('support.donate.donateBooks', 'description') || $t('support.donate.donateBooks.description') }}
               </p>
             </div>
           </div>
@@ -149,31 +149,17 @@
             {{ singleField('support.donate.contact', 'description') || $t('support.donate.contact.description') }}
           </p>
           <div class="space-y-4">
-            <div class="flex items-center justify-center gap-3">
+            <div
+              v-for="(email, index) in contactEmails"
+              :key="index"
+              class="flex items-center justify-center gap-3"
+            >
               <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
               <a
-                href="mailto:administracion@ceehonduras.org"
+                :href="`mailto:${email}`"
                 class="text-lg text-gray-800 hover:text-red-600 transition-colors"
               >
-                administracion@ceehonduras.org
-              </a>
-            </div>
-            <div class="flex items-center justify-center gap-3">
-              <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
-              <a
-                href="mailto:english@ceehonduras.org"
-                class="text-lg text-gray-800 hover:text-red-600 transition-colors"
-              >
-                english@ceehonduras.org
-              </a>
-            </div>
-            <div class="flex items-center justify-center gap-3">
-              <UIcon name="i-heroicons-envelope" class="w-6 h-6 text-red-600" />
-              <a
-                href="mailto:library@ceehonduras.org"
-                class="text-lg text-gray-800 hover:text-red-600 transition-colors"
-              >
-                library@ceehonduras.org
+                {{ email }}
               </a>
             </div>
           </div>
@@ -224,8 +210,9 @@ onMounted(() => loadContent([
   'support.donate.intro',
   'support.donate.ways',
   'support.donate.wishLists',
-  'support.donate.spanishBooks',
+  'support.donate.donateBooks',
   'support.donate.contact',
+  'support.donate.emails',
 ]));
 
 const waysIcons = [
@@ -247,7 +234,7 @@ const waysWithIcons = computed(() => {
     return dbItems.map((item, index) => ({
       title: field(item, 'title'),
       description: field(item, 'description'),
-      icon: waysIcons[index] || 'i-heroicons-star',
+      icon: field(item, 'icon') || waysIcons[index] || 'i-heroicons-star',
     }));
   }
   const items = tm('support.donate.ways.items') as any[];
@@ -261,19 +248,29 @@ const waysWithIcons = computed(() => {
 const wishLists = computed(() => {
   const dbItems = getItems('support.donate.wishLists');
   if (dbItems.length > 0) {
-    return dbItems.map(item => ({
+    return dbItems.map((item, index) => ({
       title: field(item, 'title'),
       description: field(item, 'description'),
       url: getMeta(item, 'url'),
+      icon: field(item, 'icon') || wishListIcons[index] || 'i-heroicons-star',
     }));
   }
   const items = tm('support.donate.wishLists.items') as any[];
   if (!Array.isArray(items)) return [];
-  return items.map((w: any) => ({
+  return items.map((w: any, index: number) => ({
     title: typeof w.title === 'string' ? w.title : rt(w.title),
     description: typeof w.description === 'string' ? w.description : rt(w.description),
     url: typeof w.url === 'string' ? w.url : rt(w.url),
+    icon: wishListIcons[index],
   }));
+});
+
+const contactEmails = computed(() => {
+  const dbItems = getItems('support.donate.emails');
+  if (dbItems.length > 0) {
+    return dbItems.map(item => getMeta(item, 'email')).filter(Boolean);
+  }
+  return ['administracion@ceehonduras.org', 'english@ceehonduras.org', 'library@ceehonduras.org'];
 });
 
 useHead({

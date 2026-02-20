@@ -156,7 +156,7 @@ const impactItemsWithIcons = computed(() => {
     return dbItems.map((item, index) => ({
       title: field(item, 'title'),
       description: field(item, 'description'),
-      icon: impactIcons[index] || 'i-heroicons-star',
+      icon: field(item, 'icon') || impactIcons[index] || 'i-heroicons-star',
     }));
   }
   const items = tm('support.whySupport.impact.items') as any[];

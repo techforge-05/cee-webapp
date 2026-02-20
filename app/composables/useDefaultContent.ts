@@ -34,6 +34,7 @@ export const useDefaultContent = () => {
     'studentLife.library.gradeSupport': 'studentLife.library.gradeSupport.levels',
     'studentLife.library.rules': 'studentLife.library.borrowing.rules',
     'studentLife.upcomingEvents.annualEvents': 'studentLife.upcomingEvents.annualEvents.events',
+    'support.projects.howToHelp': 'support.projects.howToHelp.ways',
   }
 
   /**

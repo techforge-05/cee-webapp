@@ -1760,8 +1760,9 @@
           "method": "Método de Donación",
           "wishLists": "Listas de Deseos",
           "wishList": "Lista de Deseos",
-          "spanishBooks": "Libros en Español",
-          "contact": "Contacto"
+          "donateBooks": "Donar Libros",
+          "contact": "Contacto",
+          "emails": "Correos Electrónicos"
         },
         "projects": {
           "intro": "Introducción",
@@ -1771,7 +1772,8 @@
           "needs": "Necesidades del Proyecto",
           "need": "Necesidad",
           "generateSlug": "Generar Slug",
-          "howToHelp": "Cómo Ayudar"
+          "howToHelp": "Cómo Ayudar",
+          "completionMessage": "Mensaje de Celebración"
         }
       },
       "contact": {
@@ -2007,9 +2009,9 @@
           }
         ]
       },
-      "spanishBooks": {
-        "title": "Libros en Español para la Biblioteca",
-        "description": "Nuestra biblioteca siempre necesita libros en español para apoyar la educación bilingüe de nuestros estudiantes. Si desea donar libros en español, contáctenos para coordinar la entrega."
+      "donateBooks": {
+        "title": "Donar Libros para la Biblioteca",
+        "description": "Nuestra biblioteca siempre necesita libros en español para apoyar la educación bilingüe de nuestros estudiantes. Si desea donar libros, contáctenos para coordinar la entrega."
       },
       "contact": {
         "title": "Información de Contacto para Donaciones",
@@ -2027,6 +2029,13 @@
     "projects": {
       "title": "Proyectos",
       "subtitle": "Iniciativas actuales para mejorar nuestra escuela",
+      "noProjects": "Actualmente no tenemos proyectos activos. ¡Vuelve pronto para ver nuevas oportunidades de apoyo!",
+      "status": {
+        "planning": "En Planificación",
+        "in_progress": "En Progreso",
+        "fundraising": "En Recaudación",
+        "completed": "Completado"
+      },
       "intro": "Conozca los proyectos en los que estamos trabajando para mejorar las instalaciones y la experiencia educativa de nuestros estudiantes. Su apoyo puede hacer que estos proyectos se hagan realidad.",
       "current": {
         "title": "Proyectos Actuales",
@@ -2135,7 +2144,11 @@
       "donateToProject": "Donar a Este Proyecto",
       "currentStatus": "Estado Actual",
       "projectGoal": "Objetivo del Proyecto",
-      "whyNeeded": "Por Qué Es Necesario"
+      "whyNeeded": "Por Qué Es Necesario",
+      "completed": {
+        "title": "¡Proyecto Completado!",
+        "defaultMessage": "¡Gracias a la generosidad de nuestros donantes y la comunidad, este proyecto ha sido completado exitosamente! Su apoyo ha marcado una diferencia real en la vida de nuestros estudiantes."
+      }
     }
   },
   "contact": {

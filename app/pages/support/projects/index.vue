@@ -36,7 +36,13 @@
           {{ $t('support.projects.current.title') }}
         </h2>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <!-- Empty state -->
+        <div v-if="projectsWithIcons.length === 0" class="text-center py-12">
+          <UIcon name="i-heroicons-wrench-screwdriver" class="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <p class="text-xl text-gray-500">{{ $t('support.projects.noProjects') }}</p>
+        </div>
+
+        <div v-else class="grid md:grid-cols-2 gap-8">
           <NuxtLink
             v-for="(project, index) in projectsWithIcons"
             :key="index"
@@ -55,7 +61,7 @@
                   {{ project.title }}
                 </h3>
                 <UBadge
-                  :color="getStatusColor(project.status)"
+                  :color="getStatusColor(project.statusCode)"
                   variant="subtle"
                   size="sm"
                 >
@@ -76,7 +82,7 @@
     </section>
 
     <!-- How to Help Section -->
-    <section class="py-16 bg-orange-50">
+    <section v-if="howToHelpWays.length > 0" class="py-16 bg-orange-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">
@@ -139,7 +145,7 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt } = useI18n();
+const { t } = useI18n();
 const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
 
 onMounted(() => loadContent([
@@ -155,49 +161,40 @@ const projectIcons = [
   'i-heroicons-book-open',
 ];
 
+const statusKey = (code: string) => {
+  const key = `support.projects.status.${code}`;
+  const translated = t(key);
+  return translated !== key ? translated : code;
+};
+
 const projectsWithIcons = computed(() => {
   const dbItems = getItems('support.projects.items');
-  if (dbItems.length > 0) {
-    return dbItems.map((item, index) => ({
-      title: field(item, 'title'),
-      description: field(item, 'description'),
-      slug: getMeta(item, 'slug'),
-      status: getMeta(item, 'status'),
-      goal: getMeta(item, 'goal'),
-      imageUrl: getMeta(item, 'imageUrl'),
-      icon: projectIcons[index] || 'i-heroicons-star',
-    }));
-  }
-  const items = tm('support.projects.current.items') as any[];
-  return items.map((item: any, index: number) => ({
-    title: typeof item.title === 'string' ? item.title : rt(item.title),
-    description: typeof item.description === 'string' ? item.description : rt(item.description),
-    slug: typeof item.slug === 'string' ? item.slug : rt(item.slug),
-    status: typeof item.status === 'string' ? item.status : rt(item.status),
-    goal: typeof item.goal === 'string' ? item.goal : rt(item.goal),
-    icon: projectIcons[index],
+  return dbItems.map((item, index) => ({
+    title: field(item, 'title'),
+    description: field(item, 'description'),
+    slug: getMeta(item, 'slug'),
+    statusCode: getMeta(item, 'status'),
+    status: statusKey(getMeta(item, 'status')),
+    goal: getMeta(item, 'goal'),
+    imageUrl: getMeta(item, 'imageUrl'),
+    icon: projectIcons[index] || 'i-heroicons-star',
   }));
 });
 
 const howToHelpWays = computed(() => {
   const dbItems = getItems('support.projects.howToHelp');
-  if (dbItems.length > 0) return dbItems.map(item => field(item, 'text'));
-  const items = tm('support.projects.howToHelp.ways') as any[];
-  return Array.isArray(items) ? items.map((w: any) => typeof w === 'string' ? w : rt(w)) : [];
+  return dbItems.map(item => field(item, 'text'));
 });
 
-const getStatusColor = (status: string) => {
-  const statusLower = status.toLowerCase();
-  if (statusLower.includes('progress') || statusLower.includes('progreso')) {
-    return 'info' as const;
-  }
-  if (statusLower.includes('planning') || statusLower.includes('planificación')) {
-    return 'neutral' as const;
-  }
-  if (statusLower.includes('fundraising') || statusLower.includes('recaudación')) {
-    return 'warning' as const;
-  }
-  return 'neutral' as const;
+const statusColors: Record<string, string> = {
+  in_progress: 'info',
+  planning: 'neutral',
+  fundraising: 'warning',
+  completed: 'success',
+};
+
+const getStatusColor = (code: string) => {
+  return (statusColors[code] || 'neutral') as 'info' | 'neutral' | 'warning' | 'success';
 };
 
 useHead({

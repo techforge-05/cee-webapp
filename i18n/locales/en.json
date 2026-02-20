@@ -1760,8 +1760,9 @@
           "method": "Donation Method",
           "wishLists": "Wish Lists",
           "wishList": "Wish List",
-          "spanishBooks": "Spanish Books",
-          "contact": "Contact"
+          "donateBooks": "Donate Books",
+          "contact": "Contact",
+          "emails": "Email Addresses"
         },
         "projects": {
           "intro": "Introduction",
@@ -1771,7 +1772,8 @@
           "needs": "Project Needs",
           "need": "Need",
           "generateSlug": "Generate Slug",
-          "howToHelp": "How to Help"
+          "howToHelp": "How to Help",
+          "completionMessage": "Celebration Message"
         }
       },
       "contact": {
@@ -2007,9 +2009,9 @@
           }
         ]
       },
-      "spanishBooks": {
-        "title": "Spanish Books for the Library",
-        "description": "Our library always needs Spanish books to support our students' bilingual education. If you would like to donate Spanish books, please contact us to coordinate delivery."
+      "donateBooks": {
+        "title": "Donate Books for the Library",
+        "description": "Our library always needs books to support our students' bilingual education. If you would like to donate books, please contact us to coordinate delivery."
       },
       "contact": {
         "title": "Donation Contact Information",
@@ -2027,6 +2029,13 @@
     "projects": {
       "title": "Projects",
       "subtitle": "Current initiatives to improve our school",
+      "noProjects": "We currently have no active projects. Check back soon for new opportunities to support our school!",
+      "status": {
+        "planning": "In Planning",
+        "in_progress": "In Progress",
+        "fundraising": "Fundraising",
+        "completed": "Completed"
+      },
       "intro": "Learn about the projects we are working on to improve the facilities and educational experience for our students. Your support can help make these projects a reality.",
       "current": {
         "title": "Current Projects",
@@ -2084,6 +2093,10 @@
       "currentStatus": "Current Status",
       "projectGoal": "Project Goal",
       "whyNeeded": "Why This Is Needed",
+      "completed": {
+        "title": "Project Completed!",
+        "defaultMessage": "Thanks to the generosity of our donors and community, this project has been successfully completed! Your support has made a real difference in our students' lives."
+      },
       "multipurposeCenter": {
         "title": "Multipurpose Center",
         "subtitle": "A versatile space for our school community",

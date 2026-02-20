@@ -50,20 +50,40 @@
               @update:model-value="updateProjectField(index, 'description', $event)"
             />
 
-            <!-- Metadata row: Slug, Status, Goal -->
+            <!-- Metadata row: Status, Slug, Goal -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <UFormField :label="$t('admin.editors.generic.status')">
+                <div class="flex items-center gap-2">
+                  <USelect
+                    v-if="!isCustomStatus(index)"
+                    :model-value="item.metadata?.status || ''"
+                    :items="statusOptions"
+                    class="w-full"
+                    @update:model-value="handleStatusChange(index, $event as string)"
+                  />
+                  <template v-else>
+                    <UInput
+                      :model-value="item.metadata?.status || ''"
+                      :placeholder="$t('admin.editors.generic.customValue')"
+                      class="w-full"
+                      @update:model-value="updateProjectMeta(index, 'status', $event)"
+                    />
+                    <UButton
+                      variant="ghost"
+                      color="neutral"
+                      size="xs"
+                      @click="clearCustomStatus(index)"
+                    >
+                      <UIcon name="i-heroicons-x-mark" class="w-4 h-4" />
+                    </UButton>
+                  </template>
+                </div>
+              </UFormField>
               <UFormField :label="$t('admin.editors.generic.slug')">
                 <UInput
                   :model-value="item.metadata?.slug || ''"
                   placeholder="project-name"
                   @update:model-value="updateProjectMeta(index, 'slug', $event)"
-                />
-              </UFormField>
-              <UFormField :label="$t('admin.editors.generic.status')">
-                <UInput
-                  :model-value="item.metadata?.status || ''"
-                  placeholder="In Progress"
-                  @update:model-value="updateProjectMeta(index, 'status', $event)"
                 />
               </UFormField>
               <UFormField :label="$t('admin.editors.generic.goal')">
@@ -73,6 +93,17 @@
                   @update:model-value="updateProjectMeta(index, 'goal', $event)"
                 />
               </UFormField>
+            </div>
+
+            <!-- Completion Message (shown when status is completed) -->
+            <div v-if="item.metadata?.status === 'completed'" class="bg-green-50 border border-green-200 rounded-lg p-4">
+              <BilingualTextarea
+                :model-value="{ es: item.content_es?.completionMessage || '', en: item.content_en?.completionMessage || '' }"
+                :label="$t('admin.editors.support.projects.completionMessage')"
+                :rows="3"
+                :max-length="500"
+                @update:model-value="updateProjectField(index, 'completionMessage', $event)"
+              />
             </div>
 
             <!-- Image upload -->
@@ -180,6 +211,38 @@ const saving = ref(false)
 const openIntro = ref(false)
 const openProjects = ref(false)
 const openHowToHelp = ref(false)
+
+const statusOptions = [
+  { value: '__custom__', label: t('admin.editors.generic.custom') },
+  { value: 'planning', label: t('support.projects.status.planning') },
+  { value: 'in_progress', label: t('support.projects.status.in_progress') },
+  { value: 'fundraising', label: t('support.projects.status.fundraising') },
+  { value: 'completed', label: t('support.projects.status.completed') },
+]
+const statusValues = statusOptions.filter(o => o.value !== '__custom__').map(o => o.value)
+const customStatusIndexes = reactive(new Set<number>())
+
+function isCustomStatus(index: number): boolean {
+  if (customStatusIndexes.has(index)) return true
+  const value = projectItems.value[index]?.metadata?.status
+  if (!value) return false
+  return !statusValues.includes(value)
+}
+
+function handleStatusChange(index: number, value: string) {
+  if (value === '__custom__') {
+    customStatusIndexes.add(index)
+    updateProjectMeta(index, 'status', '')
+  } else {
+    customStatusIndexes.delete(index)
+    updateProjectMeta(index, 'status', value)
+  }
+}
+
+function clearCustomStatus(index: number) {
+  customStatusIndexes.delete(index)
+  updateProjectMeta(index, 'status', '')
+}
 
 // Data refs
 const introItem = ref<PageContentItem>({
