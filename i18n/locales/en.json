@@ -1039,7 +1039,10 @@
     "upcomingEvents": {
       "title": "Upcoming Events",
       "subtitle": "Stay connected with what's happening at CEE",
-      "intro": "Don't miss out on the exciting events happening at our school. From academic showcases to cultural celebrations, there's always something special to look forward to at CEE.",
+      "intro": {
+        "title": "Events at CEE",
+        "description": "Don't miss out on the exciting events happening at our school. From academic showcases to cultural celebrations, there's always something special to look forward to at CEE."
+      },
       "featured": {
         "title": "Featured Event",
         "noEvent": "No upcoming events at this time",
@@ -1061,56 +1064,47 @@
           {
             "title": "Sports Days",
             "description": "Days of athletic competitions, team spirit, and healthy fun for all grade levels.",
-            "timing": "Every April",
-            "image_url": ""
+            "timing": "april"
           },
           {
             "title": "Science Week",
             "description": "Students showcase their scientific discoveries, experiments, and research projects.",
-            "timing": "Every March",
-            "image_url": ""
+            "timing": "march"
           },
           {
             "title": "Christmas Fair",
             "description": "A festive celebration with performances, crafts, food, and holiday cheer for the whole family.",
-            "timing": "Every December",
-            "image_url": ""
+            "timing": "december"
           },
           {
             "title": "Talent Show",
             "description": "Students display their unique talents in music, dance, drama, and other performing arts.",
-            "timing": "Every May",
-            "image_url": ""
+            "timing": "may"
           },
           {
             "title": "Graduation Ceremony",
             "description": "Celebrating the achievements of our graduating students as they move on to the next chapter.",
-            "timing": "Every June",
-            "image_url": ""
+            "timing": "june"
           },
           {
             "title": "Cultural Days",
             "description": "Celebrating Honduran heritage and the rich diversity of our school community.",
-            "timing": "Every September",
-            "image_url": ""
+            "timing": "september"
           },
           {
             "title": "Language Week",
             "description": "A celebration of bilingual education with activities, presentations, and competitions in both English and Spanish.",
-            "timing": "Every October",
-            "image_url": ""
+            "timing": "october"
           },
           {
             "title": "Family Day",
             "description": "A special day dedicated to celebrating families with games, activities, and quality time together on campus.",
-            "timing": "Every August",
-            "image_url": ""
+            "timing": "august"
           },
           {
             "title": "Easter Celebration",
             "description": "Commemorating the resurrection of Christ with worship, activities, and reflection on the true meaning of Easter.",
-            "timing": "Every Spring",
-            "image_url": ""
+            "timing": "march"
           }
         ]
       },
@@ -1616,11 +1610,27 @@
         "altText": "Alt text",
         "icon": "Icon",
         "selectIcon": "Select an icon...",
+        "custom": "Custom",
+        "customValue": "Custom value...",
         "period": "Period",
         "service": "Service",
         "image": "Image",
         "location": "Location",
-        "position": "Position"
+        "position": "Position",
+        "months": {
+          "january": "January",
+          "february": "February",
+          "march": "March",
+          "april": "April",
+          "may": "May",
+          "june": "June",
+          "july": "July",
+          "august": "August",
+          "september": "September",
+          "october": "October",
+          "november": "November",
+          "december": "December"
+        }
       },
       "calendarInfo": {
         "title": "Calendar Events",
@@ -1726,6 +1736,9 @@
         },
         "upcomingEvents": {
           "intro": "Introduction",
+          "calendarEvents": "Calendar Events",
+          "calendarEventsDescription": "This page automatically displays calendar events. Manage events from the Calendar page.",
+          "goToCalendar": "Go to Calendar",
           "stayInformed": "Stay Informed",
           "annualEvents": "Annual Events"
         }

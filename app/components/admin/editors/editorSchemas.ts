@@ -1,20 +1,26 @@
 export interface EditorField {
   key: string
   labelKey: string
-  type: 'text' | 'textarea' | 'metadata' | 'icon'
+  type: 'text' | 'textarea' | 'metadata' | 'icon' | 'select'
   maxLength?: number
   rows?: number
+  options?: { value: string; labelKey: string }[]
 }
 
 export interface EditorSection {
   pageKey: string
   labelKey: string
-  type: 'single' | 'list'
+  type: 'single' | 'list' | 'info'
   defaultOpen?: boolean
   fields: EditorField[]
   maxItems?: number
   minItems?: number
   itemLabelKey?: string
+  /** For type 'info': icon name, description i18n key, link path, link label i18n key */
+  infoIcon?: string
+  infoDescriptionKey?: string
+  infoLinkTo?: string
+  infoLinkLabelKey?: string
 }
 
 // --- Field shorthand helpers ---
@@ -592,6 +598,16 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [f.title(), f.description()],
     },
     {
+      pageKey: 'studentLife.upcomingEvents.calendarEvents',
+      labelKey: 'admin.editors.studentLife.upcomingEvents.calendarEvents',
+      type: 'info',
+      fields: [],
+      infoIcon: 'i-heroicons-calendar-days',
+      infoDescriptionKey: 'admin.editors.studentLife.upcomingEvents.calendarEventsDescription',
+      infoLinkTo: '/admin/calendar',
+      infoLinkLabelKey: 'admin.editors.studentLife.upcomingEvents.goToCalendar',
+    },
+    {
       pageKey: 'studentLife.upcomingEvents.stayInformed',
       labelKey: 'admin.editors.studentLife.upcomingEvents.stayInformed',
       type: 'single',
@@ -607,7 +623,26 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.title(),
         f.description(),
-        f.meta('timing', 'admin.editors.generic.timing'),
+        {
+          key: 'timing',
+          labelKey: 'admin.editors.generic.timing',
+          type: 'select',
+          options: [
+            { value: 'january', labelKey: 'admin.editors.generic.months.january' },
+            { value: 'february', labelKey: 'admin.editors.generic.months.february' },
+            { value: 'march', labelKey: 'admin.editors.generic.months.march' },
+            { value: 'april', labelKey: 'admin.editors.generic.months.april' },
+            { value: 'may', labelKey: 'admin.editors.generic.months.may' },
+            { value: 'june', labelKey: 'admin.editors.generic.months.june' },
+            { value: 'july', labelKey: 'admin.editors.generic.months.july' },
+            { value: 'august', labelKey: 'admin.editors.generic.months.august' },
+            { value: 'september', labelKey: 'admin.editors.generic.months.september' },
+            { value: 'october', labelKey: 'admin.editors.generic.months.october' },
+            { value: 'november', labelKey: 'admin.editors.generic.months.november' },
+            { value: 'december', labelKey: 'admin.editors.generic.months.december' },
+          ],
+        },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
       ],
     },
   ],

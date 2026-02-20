@@ -22,8 +22,11 @@
             name="i-heroicons-calendar-days"
             class="w-16 h-16 text-indigo-600 mx-auto mb-6"
           />
+          <h2 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">
+            {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
+          </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro') }}
+            {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro.description') }}
           </p>
         </div>
       </div>
@@ -153,13 +156,13 @@
             <div
               v-for="(event, index) in carouselEvents"
               :key="index"
-              class="flex-shrink-0 w-72 md:w-80"
+              class="flex-shrink-0 w-80 md:w-96"
             >
               <div
                 class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full"
               >
                 <!-- Event Image -->
-                <div class="relative h-44 bg-gray-200">
+                <div class="relative h-56 bg-gray-200">
                   <img
                     v-if="event.image_url"
                     :src="event.image_url"
@@ -270,7 +273,7 @@
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <!-- Event Image -->
-            <div class="relative h-48 bg-gray-200">
+            <div class="relative h-64 bg-gray-200">
               <img
                 v-if="event.image_url"
                 :src="event.image_url"
@@ -343,7 +346,7 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
-  const { locale, tm, rt: $rt } = useI18n();
+  const { locale, t, tm, rt: $rt } = useI18n();
   const { events: calendarEvents, loadEvents } = useCalendarAdmin();
   const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
 
@@ -387,29 +390,41 @@
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
   );
 
+  // Format month key (e.g. "april") to localized name (e.g. "Abril")
+  const monthKeyToName = (key: string) => {
+    const monthKey = `admin.editors.generic.months.${key}`;
+    const translated = t(monthKey);
+    return translated !== monthKey ? translated : key;
+  };
+
   // Annual events: prefer DB, fall back to i18n
   const annualEventsFromDb = computed(() => {
     const items = getItems('studentLife.upcomingEvents.annualEvents');
     if (items.length === 0) return null;
-    return items.map(item => ({
-      title: field(item, 'title'),
-      description: field(item, 'description'),
-      timing: getMeta(item, 'timing'),
-      image_url: null as string | null,
-    }));
+    return items.map(item => {
+      const timingKey = getMeta(item, 'timing') || field(item, 'timing');
+      return {
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        timing: timingKey ? monthKeyToName(timingKey) : '',
+        image_url: item.metadata?.imageUrl || null,
+      };
+    });
   });
 
   const annualEvents = computed(() => {
     if (annualEventsFromDb.value) return annualEventsFromDb.value;
     const items = tm('studentLife.upcomingEvents.annualEvents.events') as any[];
     if (!Array.isArray(items)) return [];
-    // Resolve i18n message objects to plain strings
-    return items.map(item => ({
-      title: typeof item.title === 'string' ? item.title : $rt(item.title),
-      description: typeof item.description === 'string' ? item.description : $rt(item.description),
-      timing: typeof item.timing === 'string' ? item.timing : $rt(item.timing),
-      image_url: null as string | null,
-    }));
+    return items.map(item => {
+      const rawTiming = typeof item.timing === 'string' ? item.timing : $rt(item.timing);
+      return {
+        title: typeof item.title === 'string' ? item.title : $rt(item.title),
+        description: typeof item.description === 'string' ? item.description : $rt(item.description),
+        timing: monthKeyToName(rawTiming),
+        image_url: null as string | null,
+      };
+    });
   });
 
   // Color helper for annual events

@@ -1,17 +1,38 @@
 <template>
   <div class="space-y-6 pb-24">
     <!-- Sections -->
-    <SectionCard
-      v-for="section in schema"
-      :key="section.pageKey"
-      v-model="openSections[section.pageKey]"
-      :title="$t(section.labelKey)"
-      :page-key="section.pageKey"
-      @restored="handleSectionRestored(section.pageKey)"
-    >
-      <div class="space-y-4">
-        <!-- Single item section -->
-        <template v-if="section.type === 'single'">
+    <template v-for="section in schema" :key="section.pageKey">
+      <!-- Info card section (non-editable, just a link) -->
+      <UCard v-if="section.type === 'info'" class="text-center">
+        <div class="py-6 flex flex-col items-center gap-3">
+          <UIcon v-if="section.infoIcon" :name="section.infoIcon" class="w-10 h-10 text-gray-400" />
+          <h3 class="text-lg font-semibold text-gray-900">{{ $t(section.labelKey) }}</h3>
+          <p v-if="section.infoDescriptionKey" class="text-sm text-gray-500 max-w-md">
+            {{ $t(section.infoDescriptionKey) }}
+          </p>
+          <UButton
+            v-if="section.infoLinkTo && section.infoLinkLabelKey"
+            :to="section.infoLinkTo"
+            color="success"
+            trailing-icon="i-heroicons-arrow-right"
+            class="mt-1"
+          >
+            {{ $t(section.infoLinkLabelKey) }}
+          </UButton>
+        </div>
+      </UCard>
+
+      <!-- Editable sections -->
+      <SectionCard
+        v-else
+        v-model="openSections[section.pageKey]"
+        :title="$t(section.labelKey)"
+        :page-key="section.pageKey"
+        @restored="handleSectionRestored(section.pageKey)"
+      >
+        <div class="space-y-4">
+          <!-- Single item section -->
+          <template v-if="section.type === 'single'">
           <!-- Check if section has imageUrl field -->
           <div
             v-if="hasImageField(section)"
@@ -148,6 +169,36 @@
                         @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
                       />
                     </UFormField>
+                    <UFormField
+                      v-if="field.type === 'select' && field.options"
+                      :label="$t(field.labelKey)"
+                    >
+                      <div class="flex items-center gap-2">
+                        <USelect
+                          v-if="!isSelectCustom(section.pageKey, index, field)"
+                          :model-value="item.metadata?.[field.key] || ''"
+                          :items="[{ value: '__custom__', label: $t('admin.editors.generic.custom') }, ...field.options.map(o => ({ value: o.value, label: $t(o.labelKey) }))]"
+                          class="min-w-48"
+                          @update:model-value="handleSelectChange(section.pageKey, index, field, $event as string)"
+                        />
+                        <template v-else>
+                          <UInput
+                            :model-value="item.metadata?.[field.key] || ''"
+                            :placeholder="$t('admin.editors.generic.customValue')"
+                            class="min-w-48"
+                            @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
+                          />
+                          <UButton
+                            variant="ghost"
+                            color="neutral"
+                            size="xs"
+                            @click="clearCustomSelect(section.pageKey, index, field.key)"
+                          >
+                            <UIcon name="i-heroicons-x-mark" class="w-4 h-4" />
+                          </UButton>
+                        </template>
+                      </div>
+                    </UFormField>
                     <IconPicker
                       v-if="field.type === 'icon'"
                       :model-value="item.content_es?.[field.key] || ''"
@@ -194,6 +245,36 @@
                       @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
                     />
                   </UFormField>
+                  <UFormField
+                    v-if="field.type === 'select' && field.options"
+                    :label="$t(field.labelKey)"
+                  >
+                    <div class="flex items-center gap-2">
+                      <USelect
+                        v-if="!isSelectCustom(section.pageKey, index, field)"
+                        :model-value="item.metadata?.[field.key] || ''"
+                        :items="[{ value: '__custom__', label: $t('admin.editors.generic.custom') }, ...field.options.map(o => ({ value: o.value, label: $t(o.labelKey) }))]"
+                        class="min-w-48"
+                        @update:model-value="handleSelectChange(section.pageKey, index, field, $event as string)"
+                      />
+                      <template v-else>
+                        <UInput
+                          :model-value="item.metadata?.[field.key] || ''"
+                          :placeholder="$t('admin.editors.generic.customValue')"
+                          class="min-w-48"
+                          @update:model-value="updateListMetadataField(section.pageKey, index, field.key, $event as string)"
+                        />
+                        <UButton
+                          variant="ghost"
+                          color="neutral"
+                          size="xs"
+                          @click="clearCustomSelect(section.pageKey, index, field.key)"
+                        >
+                          <UIcon name="i-heroicons-x-mark" class="w-4 h-4" />
+                        </UButton>
+                      </template>
+                    </div>
+                  </UFormField>
                   <IconPicker
                     v-if="field.type === 'icon'"
                     :model-value="item.content_es?.[field.key] || ''"
@@ -205,8 +286,9 @@
             </template>
           </DataListManager>
         </template>
-      </div>
-    </SectionCard>
+        </div>
+      </SectionCard>
+    </template>
 
     <!-- Floating Action Buttons -->
     <FloatingActionButtons
@@ -222,7 +304,7 @@
 <script setup lang="ts">
 import type { BilingualText } from '../BilingualTextField.vue'
 import type { PageContentItem } from '~/composables/usePageContent'
-import type { EditorSection } from './editorSchemas'
+import type { EditorField, EditorSection } from './editorSchemas'
 
 const props = defineProps<{
   schema: EditorSection[]
@@ -256,6 +338,7 @@ function toggleSection(key: string) {
 
 function initSections() {
   props.schema.forEach((section) => {
+    if (section.type === 'info') return
     openSections[section.pageKey] = section.defaultOpen ?? false
     if (section.type === 'single') {
       singleData[section.pageKey] = {}
@@ -264,7 +347,7 @@ function initSections() {
       section.fields.forEach((field) => {
         if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
           singleData[section.pageKey][field.key] = { es: '', en: '' }
-        } else if (field.type === 'metadata') {
+        } else if (field.type === 'metadata' || field.type === 'select') {
           if (field.key === 'imageUrl') {
             sectionImages[section.pageKey] = ''
           } else {
@@ -281,6 +364,7 @@ function initSections() {
 async function loadAllData() {
   try {
     for (const section of props.schema) {
+      if (section.type === 'info') continue
       await loadItems(section.pageKey)
 
       if (section.type === 'single') {
@@ -293,7 +377,7 @@ async function loadAllData() {
               es: item?.content_es?.[field.key] || '',
               en: item?.content_en?.[field.key] || '',
             }
-          } else if (field.type === 'metadata') {
+          } else if (field.type === 'metadata' || field.type === 'select') {
             if (field.key === 'imageUrl') {
               sectionImages[section.pageKey] = item?.metadata?.[field.key] || ''
             } else {
@@ -302,8 +386,22 @@ async function loadAllData() {
           }
         })
       } else {
+        // Load list items and migrate any metadata/select fields from content to metadata
+        // (processDefaults puts all JSON keys into content_es/content_en, but metadata/select fields need to be in metadata)
+        const metaFields = section.fields.filter(f => f.type === 'metadata' || f.type === 'select')
         listData[section.pageKey] =
-          items.value.length > 0 ? items.value.map((i) => ({ ...i })) : []
+          items.value.length > 0
+            ? items.value.map((i) => {
+                if (metaFields.length === 0) return { ...i }
+                const migrated = { ...(i.metadata || {}) }
+                metaFields.forEach(f => {
+                  if (!migrated[f.key] && i.content_es?.[f.key]) {
+                    migrated[f.key] = i.content_es[f.key]
+                  }
+                })
+                return { ...i, metadata: migrated }
+              })
+            : []
       }
     }
 
@@ -371,6 +469,31 @@ function updateListMetadataField(pageKey: string, index: number, fieldKey: strin
   trackChanges()
 }
 
+// Custom select mode tracking
+const customSelectKeys = reactive(new Set<string>())
+
+function isSelectCustom(pageKey: string, index: number, field: EditorField): boolean {
+  if (customSelectKeys.has(`${pageKey}.${index}.${field.key}`)) return true
+  const value = listData[pageKey]?.[index]?.metadata?.[field.key]
+  if (!value) return false
+  return !field.options?.some(o => o.value === value)
+}
+
+function handleSelectChange(pageKey: string, index: number, field: EditorField, value: string) {
+  if (value === '__custom__') {
+    customSelectKeys.add(`${pageKey}.${index}.${field.key}`)
+    updateListMetadataField(pageKey, index, field.key, '')
+  } else {
+    customSelectKeys.delete(`${pageKey}.${index}.${field.key}`)
+    updateListMetadataField(pageKey, index, field.key, value)
+  }
+}
+
+function clearCustomSelect(pageKey: string, index: number, fieldKey: string) {
+  customSelectKeys.delete(`${pageKey}.${index}.${fieldKey}`)
+  updateListMetadataField(pageKey, index, fieldKey, '')
+}
+
 function updateSingleIconField(pageKey: string, fieldKey: string, val: string) {
   singleData[pageKey][fieldKey] = { es: val, en: val }
   trackChanges()
@@ -396,7 +519,7 @@ function addListItem(section: EditorSection) {
     if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
       contentEs[field.key] = ''
       contentEn[field.key] = ''
-    } else if (field.type === 'metadata') {
+    } else if (field.type === 'metadata' || field.type === 'select') {
       metadata[field.key] = ''
     }
   })
@@ -419,6 +542,7 @@ async function handleSave() {
   saving.value = true
   try {
     for (const section of props.schema) {
+      if (section.type === 'info') continue
       if (section.type === 'single') {
         const contentEs: Record<string, any> = {}
         const contentEn: Record<string, any> = {}
@@ -428,7 +552,7 @@ async function handleSave() {
           if (field.type === 'text' || field.type === 'textarea' || field.type === 'icon') {
             contentEs[field.key] = singleData[section.pageKey][field.key].es
             contentEn[field.key] = singleData[section.pageKey][field.key].en
-          } else if (field.type === 'metadata') {
+          } else if (field.type === 'metadata' || field.type === 'select') {
             if (field.key === 'imageUrl') {
               metadata[field.key] = sectionImages[section.pageKey]
             } else {

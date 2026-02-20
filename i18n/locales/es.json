@@ -1039,7 +1039,10 @@
     "upcomingEvents": {
       "title": "Próximos Eventos",
       "subtitle": "Mantente conectado con lo que sucede en CEE",
-      "intro": "No te pierdas los emocionantes eventos que suceden en nuestra escuela. Desde exhibiciones académicas hasta celebraciones culturales, siempre hay algo especial que esperar en CEE.",
+      "intro": {
+        "title": "Eventos en CEE",
+        "description": "No te pierdas los emocionantes eventos que suceden en nuestra escuela. Desde exhibiciones académicas hasta celebraciones culturales, siempre hay algo especial que esperar en CEE."
+      },
       "featured": {
         "title": "Evento Destacado",
         "noEvent": "No hay eventos próximos en este momento",
@@ -1061,56 +1064,47 @@
           {
             "title": "Días Deportivos",
             "description": "Días de competencias atléticas, espíritu de equipo y diversión saludable para todos los niveles.",
-            "timing": "Cada Abril",
-            "image_url": ""
+            "timing": "april"
           },
           {
             "title": "Semana de Ciencias",
             "description": "Los estudiantes exhiben sus descubrimientos científicos, experimentos y proyectos de investigación.",
-            "timing": "Cada Marzo",
-            "image_url": ""
+            "timing": "march"
           },
           {
             "title": "Feria Navideña",
             "description": "Una celebración festiva con presentaciones, manualidades, comida y alegría navideña para toda la familia.",
-            "timing": "Cada Diciembre",
-            "image_url": ""
+            "timing": "december"
           },
           {
             "title": "Show de Talentos",
             "description": "Los estudiantes muestran sus talentos únicos en música, danza, drama y otras artes escénicas.",
-            "timing": "Cada Mayo",
-            "image_url": ""
+            "timing": "may"
           },
           {
             "title": "Ceremonia de Graduación",
             "description": "Celebrando los logros de nuestros estudiantes graduados mientras avanzan al siguiente capítulo.",
-            "timing": "Cada Junio",
-            "image_url": ""
+            "timing": "june"
           },
           {
             "title": "Días Culturales",
             "description": "Celebrando la herencia hondureña y la rica diversidad de nuestra comunidad escolar.",
-            "timing": "Cada Septiembre",
-            "image_url": ""
+            "timing": "september"
           },
           {
             "title": "Semana del Idioma",
             "description": "Una celebración de la educación bilingüe con actividades, presentaciones y competencias en inglés y español.",
-            "timing": "Cada Octubre",
-            "image_url": ""
+            "timing": "october"
           },
           {
             "title": "Día de la Familia",
             "description": "Un día especial dedicado a celebrar a las familias con juegos, actividades y tiempo de calidad juntos en el campus.",
-            "timing": "Cada Agosto",
-            "image_url": ""
+            "timing": "august"
           },
           {
             "title": "Celebración de Semana Santa",
             "description": "Conmemorando la resurrección de Cristo con adoración, actividades y reflexión sobre el verdadero significado de la Pascua.",
-            "timing": "Cada Primavera",
-            "image_url": ""
+            "timing": "march"
           }
         ]
       },
@@ -1616,11 +1610,27 @@
         "altText": "Texto alternativo",
         "icon": "Ícono",
         "selectIcon": "Seleccionar un ícono...",
+        "custom": "Personalizado",
+        "customValue": "Valor personalizado...",
         "period": "Período",
         "service": "Servicio",
         "image": "Imagen",
         "location": "Ubicación",
-        "position": "Cargo"
+        "position": "Cargo",
+        "months": {
+          "january": "Enero",
+          "february": "Febrero",
+          "march": "Marzo",
+          "april": "Abril",
+          "may": "Mayo",
+          "june": "Junio",
+          "july": "Julio",
+          "august": "Agosto",
+          "september": "Septiembre",
+          "october": "Octubre",
+          "november": "Noviembre",
+          "december": "Diciembre"
+        }
       },
       "calendarInfo": {
         "title": "Eventos del Calendario",
@@ -1726,6 +1736,9 @@
         },
         "upcomingEvents": {
           "intro": "Introducción",
+          "calendarEvents": "Eventos del Calendario",
+          "calendarEventsDescription": "Esta página muestra automáticamente los eventos del calendario. Administre los eventos desde la página de Calendario.",
+          "goToCalendar": "Ir al Calendario",
           "stayInformed": "Manténgase Informado",
           "annualEvents": "Eventos Anuales"
         }

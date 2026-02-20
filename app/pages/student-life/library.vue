@@ -58,14 +58,14 @@
             </ul>
           </div>
           <div class="bg-amber-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.purpose', 'imageUrl')" class="rounded-lg h-64 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.purpose', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.purpose', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
               <UIcon name="i-heroicons-book-open" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -78,14 +78,14 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="bg-amber-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.readingCorner', 'imageUrl')" class="rounded-lg h-64 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.readingCorner', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.readingCorner', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
               <UIcon name="i-heroicons-book-open" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -232,14 +232,14 @@
             </p>
           </div>
           <div class="bg-blue-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')" class="rounded-lg h-64 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
               <UIcon name="i-heroicons-language" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -252,14 +252,14 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="bg-green-50 rounded-2xl p-8 order-2 lg:order-1">
-            <div v-if="singleMeta('studentLife.library.studySpace', 'imageUrl')" class="rounded-lg h-64 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.studySpace', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.studySpace', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
               <UIcon name="i-heroicons-users" class="w-16 h-16 text-gray-400" />
             </div>
           </div>

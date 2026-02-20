@@ -84,12 +84,23 @@
 
     <!-- Add/Edit Modal -->
     <UModal v-model:open="showModal">
-      <template #content>
-        <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+      <template #header>
+        <div class="flex items-center justify-between w-full">
           <h3 class="text-lg font-semibold">
             {{ editingEvent?.id ? $t('admin.editors.calendar.editEvent') : $t('admin.editors.calendar.addEvent') }}
           </h3>
+          <UButton
+            icon="i-heroicons-x-mark"
+            variant="ghost"
+            color="neutral"
+            size="sm"
+            @click="showModal = false"
+          />
+        </div>
+      </template>
 
+      <template #body>
+        <div class="space-y-4">
           <!-- Title -->
           <BilingualTextField
             v-model="editFormTitle"
@@ -152,16 +163,17 @@
               folder="cee-assets/events"
             />
           </div>
+        </div>
+      </template>
 
-          <!-- Actions -->
-          <div class="flex justify-end gap-2 pt-2">
-            <UButton variant="ghost" @click="showModal = false">
-              {{ $t('admin.components.confirm.cancel') }}
-            </UButton>
-            <UButton :loading="savingEvent" @click="handleSave">
-              {{ $t('admin.editors.save') }}
-            </UButton>
-          </div>
+      <template #footer>
+        <div class="flex w-full justify-end gap-2">
+          <UButton variant="ghost" @click="showModal = false">
+            {{ $t('admin.components.confirm.cancel') }}
+          </UButton>
+          <UButton :loading="savingEvent" @click="handleSave">
+            {{ $t('admin.editors.save') }}
+          </UButton>
         </div>
       </template>
     </UModal>
