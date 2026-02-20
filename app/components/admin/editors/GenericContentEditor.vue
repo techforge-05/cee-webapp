@@ -82,6 +82,7 @@
                     <UInput
                       v-model="metaData[section.pageKey][field.key]"
                       :maxlength="field.maxLength"
+                      :placeholder="field.placeholder"
                       @update:model-value="trackChanges"
                     />
                   </UFormField>
@@ -133,10 +134,12 @@
                 <UFormField
                   v-if="field.type === 'metadata' && metaData[section.pageKey]"
                   :label="$t(field.labelKey)"
+                  class="w-full md:w-[50%]"
                 >
                   <UInput
                     v-model="metaData[section.pageKey][field.key]"
-                    :maxlength="field.maxLength"
+                    :placeholder="field.placeholder"
+                    class="w-full"
                     @update:model-value="trackChanges"
                   />
                 </UFormField>
@@ -561,8 +564,9 @@
                 sectionImages[section.pageKey] =
                   item?.metadata?.[field.key] || '';
               } else {
+                // Fall back to content_es when processDefaults stored metadata fields there
                 metaData[section.pageKey][field.key] =
-                  item?.metadata?.[field.key] || '';
+                  item?.metadata?.[field.key] || item?.content_es?.[field.key] || '';
               }
             }
           });

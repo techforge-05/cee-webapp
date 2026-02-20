@@ -6,6 +6,7 @@ export interface EditorField {
   rows?: number
   options?: { value: string; labelKey: string }[]
   halfWidth?: boolean
+  placeholder?: string
 }
 
 export interface EditorSection {
@@ -85,11 +86,12 @@ const f = {
     labelKey,
     type: 'icon',
   }),
-  meta: (key: string, labelKey: string, maxLength = 200): EditorField => ({
+  meta: (key: string, labelKey: string, maxLength = 200, placeholder?: string): EditorField => ({
     key,
     labelKey,
     type: 'metadata',
     maxLength,
+    ...(placeholder && { placeholder }),
   }),
 }
 
@@ -780,7 +782,7 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.title(),
         f.description(),
-        f.meta('number', 'admin.editors.generic.number'),
+        f.meta('number', 'admin.editors.generic.number', 200, '+504 XXXX-XXXX'),
       ],
     },
     {
@@ -884,7 +886,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.option',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 150 }],
     },
     {
       pageKey: 'contact.form.success',

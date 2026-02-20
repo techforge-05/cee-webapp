@@ -192,7 +192,7 @@
               type="submit"
               size="lg"
               color="primary"
-              class="w-full bg-red-600 hover:bg-red-700"
+              class="w-full justify-center bg-red-600 hover:bg-red-700"
               :loading="isSubmitting"
               :disabled="isSubmitting"
             >
@@ -392,14 +392,10 @@
     formStatus.value = 'idle';
 
     try {
-      // Simulate form submission (replace with actual API call)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // In a real implementation, you would send the data to your backend
-      // const response = await $fetch('/api/contact', {
-      //   method: 'POST',
-      //   body: formData,
-      // });
+      await $fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
 
       formStatus.value = 'success';
     } catch (error) {

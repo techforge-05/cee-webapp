@@ -35,6 +35,8 @@ export const useDefaultContent = () => {
     'studentLife.library.rules': 'studentLife.library.borrowing.rules',
     'studentLife.upcomingEvents.annualEvents': 'studentLife.upcomingEvents.annualEvents.events',
     'support.projects.howToHelp': 'support.projects.howToHelp.ways',
+    'contact.form.subjectOptions': 'contact.form.fields.subject.options',
+    'contact.faq': 'contact.faq.questions',
   }
 
   /**
@@ -271,6 +273,42 @@ export const useDefaultContent = () => {
   }
 
   /**
+   * Custom processors for page_keys with non-standard i18n structures.
+   * These handle cases where fields need to be split between content and metadata.
+   */
+  const customProcessors: Record<
+    string,
+    (pageKey: string, defaults: { es: any; en: any }) => PageContentItem[]
+  > = {
+    'contact.faq': (pk, defaults) => {
+      const esArr = defaults.es || []
+      const enArr = defaults.en || []
+      return esArr.map((esItem: any, i: number) => {
+        const enItem = enArr[i] || {}
+        return {
+          page_key: pk,
+          content_es: {
+            question: esItem.question || '',
+            answer: esItem.answer || '',
+            linkText: esItem.link?.text || '',
+          },
+          content_en: {
+            question: enItem.question || '',
+            answer: enItem.answer || '',
+            linkText: enItem.link?.text || '',
+          },
+          metadata: {
+            category: esItem.category || 'general',
+            linkPath: esItem.link?.path || '',
+          },
+          sort_order: i,
+          is_active: true,
+        }
+      })
+    },
+  }
+
+  /**
    * Restore defaults for a section: delete existing DB rows and recreate from i18n.
    * Also deletes and restores child page_keys (e.g., home.enrollment.features).
    */
@@ -281,8 +319,10 @@ export const useDefaultContent = () => {
       return false
     }
 
-    // Process defaults BEFORE deleting — don't wipe data if there's nothing to insert
-    const newItems = processDefaults(pageKey, defaults)
+    // Use custom processor if available, otherwise generic
+    const newItems = customProcessors[pageKey]
+      ? customProcessors[pageKey](pageKey, defaults)
+      : processDefaults(pageKey, defaults)
     if (newItems.length === 0) {
       return false
     }

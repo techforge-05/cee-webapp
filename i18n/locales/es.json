@@ -1488,7 +1488,8 @@
         "answer": "Respuesta",
         "category": "Categoría",
         "linkText": "Texto del Enlace",
-        "linkPath": "Ruta del Enlace"
+        "linkPath": "Ruta del Enlace",
+        "linkPathHint": "Ej: /contact/form — es la parte final de la URL de cualquier página"
       },
       "leadership": {
         "board": "Junta Directiva",

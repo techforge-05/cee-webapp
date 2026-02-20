@@ -37,6 +37,7 @@
                 <USelect
                   :model-value="item.metadata?.category || 'general'"
                   :items="categorySelectOptions"
+                  class="w-52"
                   @update:model-value="updateCategory(index, $event)"
                 />
               </UFormField>
@@ -74,7 +75,7 @@
                     />
                   </div>
                 </UFormField>
-                <UFormField :label="$t('admin.editors.faq.linkPath')">
+                <UFormField :label="$t('admin.editors.faq.linkPath')" :hint="$t('admin.editors.faq.linkPathHint')">
                   <UInput
                     :model-value="item.metadata?.linkPath || ''"
                     placeholder="/contact/form"
@@ -118,20 +119,20 @@ const openFaq = ref(false)
 const filterCategory = ref('all')
 const allItems = ref<PageContentItem[]>([])
 
-const categoryOptions = [
-  { value: 'all', label: 'All' },
-  { value: 'admissions', label: 'Admissions' },
-  { value: 'academics', label: 'Academics' },
-  { value: 'financialAid', label: 'Financial Aid' },
-  { value: 'general', label: 'General' },
-]
+const categoryOptions = computed(() => [
+  { value: 'all', label: t('contact.faq.categories.all') },
+  { value: 'admissions', label: t('contact.faq.categories.admissions') },
+  { value: 'academics', label: t('contact.faq.categories.academics') },
+  { value: 'financialAid', label: t('contact.faq.categories.financialAid') },
+  { value: 'general', label: t('contact.faq.categories.general') },
+])
 
-const categorySelectOptions = [
-  { value: 'admissions', label: 'Admissions' },
-  { value: 'academics', label: 'Academics' },
-  { value: 'financialAid', label: 'Financial Aid' },
-  { value: 'general', label: 'General' },
-]
+const categorySelectOptions = computed(() => [
+  { value: 'admissions', label: t('contact.faq.categories.admissions') },
+  { value: 'academics', label: t('contact.faq.categories.academics') },
+  { value: 'financialAid', label: t('contact.faq.categories.financialAid') },
+  { value: 'general', label: t('contact.faq.categories.general') },
+])
 
 // Filtered view of items
 const filteredItems = computed({

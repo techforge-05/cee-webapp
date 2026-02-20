@@ -1,4 +1,4 @@
-type EmailLocale = 'en' | 'es'
+export type EmailLocale = 'en' | 'es'
 
 interface InviteEmailData {
   inviteUrl: string
@@ -66,4 +66,62 @@ export function getInviteEmailHtml(locale: EmailLocale, data: InviteEmailData): 
       <p style="color: #6b7280; font-size: 14px;">${t.footer}</p>
     </div>
   `
+}
+
+// --- Contact Form Email ---
+
+interface ContactFormData {
+  name: string
+  email: string
+  phone?: string
+  subject: string
+  message: string
+}
+
+export function getContactEmailSubject(data: ContactFormData): string {
+  return `[CEE Website] ${data.subject} — from ${data.name}`
+}
+
+export function getContactEmailHtml(data: ContactFormData): string {
+  const phoneRow = data.phone
+    ? `<tr><td style="padding:8px 12px;font-weight:bold;color:#374151;">Phone:</td><td style="padding:8px 12px;color:#4b5563;">${escapeHtml(data.phone)}</td></tr>`
+    : ''
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+      <div style="background-color: #0d9488; color: white; padding: 20px 24px;">
+        <h2 style="margin: 0; font-size: 20px;">New Contact Form Submission</h2>
+      </div>
+      <div style="padding: 24px;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">Name:</td>
+            <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.name)}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">Email:</td>
+            <td style="padding: 8px 12px;"><a href="mailto:${escapeHtml(data.email)}" style="color: #0d9488;">${escapeHtml(data.email)}</a></td>
+          </tr>
+          ${phoneRow}
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">Subject:</td>
+            <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.subject)}</td>
+          </tr>
+        </table>
+        <div style="background-color: #f9fafb; border-radius: 8px; padding: 16px;">
+          <h3 style="margin: 0 0 8px 0; font-size: 14px; color: #374151;">Message:</h3>
+          <p style="margin: 0; color: #4b5563; white-space: pre-wrap; line-height: 1.6;">${escapeHtml(data.message)}</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 12px; color: #9ca3af;">You can reply directly to this email to respond to ${escapeHtml(data.name)}.</p>
+      </div>
+    </div>
+  `
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
 }

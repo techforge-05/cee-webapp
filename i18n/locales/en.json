@@ -1488,7 +1488,8 @@
         "answer": "Answer",
         "category": "Category",
         "linkText": "Link Text",
-        "linkPath": "Link Path"
+        "linkPath": "Link Path",
+        "linkPathHint": "E.g. /contact/form — the path at the end of any page's URL"
       },
       "leadership": {
         "board": "Board of Directors",
