@@ -64,6 +64,11 @@ export default defineNuxtConfig({
     todopagoMerchantId: process.env.TODOPAGO_MERCHANT_ID || '',
     todopagoTerminalId: process.env.TODOPAGO_TERMINAL_ID || '',
     todopagoBaseUrl: process.env.TODOPAGO_BASE_URL || 'https://test-apitm-todopago.azurewebsites.net',
+    paypalClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
+    paypalMode: process.env.PAYPAL_MODE || 'sandbox',
+    public: {
+      paypalClientId: process.env.NUXT_PUBLIC_PAYPAL_CLIENT_ID || '',
+    },
   },
 
   i18n: {

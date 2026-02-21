@@ -62,6 +62,7 @@ export default defineEventHandler(async (event) => {
       donor_email: donorEmail || '',
       donor_phone: donorPhone || null,
       purpose: purpose || 'general',
+      payment_method: 'card',
       status: 'pending',
     })
 

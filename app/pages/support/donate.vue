@@ -142,9 +142,10 @@
             </div>
           </button>
 
-          <!-- PayPal (Coming Soon) -->
-          <div
-            class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 opacity-75 cursor-not-allowed relative"
+          <!-- PayPal -->
+          <button
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 text-left cursor-pointer"
+            @click="showPayPalModal = true"
           >
             <div class="flex flex-col items-center text-center">
               <div
@@ -155,21 +156,25 @@
               <h3 class="text-xl font-bold text-gray-900 mb-2">
                 {{ $t('support.donate.payment.methodPaypal.title') }}
               </h3>
-              <p class="text-gray-600 mb-3">
+              <p class="text-gray-600">
                 {{ $t('support.donate.payment.methodPaypal.description') }}
               </p>
-              <UBadge color="neutral" variant="subtle">
-                {{ $t('support.donate.payment.methodPaypal.comingSoon') }}
-              </UBadge>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- Donation Modal -->
+    <!-- Donation Modal (Card) -->
     <DonationModal
       v-model="showDonationModal"
+      :purpose="purposeLabel"
+      :purpose-value="purposeValueForApi"
+    />
+
+    <!-- PayPal Donation Modal -->
+    <PayPalDonationModal
+      v-model="showPayPalModal"
       :purpose="purposeLabel"
       :purpose-value="purposeValueForApi"
     />
@@ -326,6 +331,7 @@ const cardPaymentEnabled = computed(() => singleMeta('support.donate.settings', 
 const selectedPurpose = ref('general');
 const customPurposeText = ref('');
 const showDonationModal = ref(false);
+const showPayPalModal = ref(false);
 
 onMounted(async () => {
   await loadContent([

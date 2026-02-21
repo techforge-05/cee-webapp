@@ -2151,7 +2151,17 @@
         "methodPaypal": {
           "title": "PayPal",
           "description": "Pague con su cuenta de PayPal.",
-          "comingSoon": "Próximamente"
+          "modalTitle": "Donar con PayPal",
+          "instructions": "Seleccione un monto, complete su información y haga clic en el botón de PayPal para continuar. Será redirigido a PayPal para completar el pago.",
+          "loadingSdk": "Cargando PayPal...",
+          "recording": "Registrando su donación...",
+          "success": {
+            "title": "¡Donación Exitosa!",
+            "message": "Su donación a través de PayPal ha sido procesada exitosamente. Gracias por su generosidad."
+          },
+          "error": {
+            "recordFailed": "La donación fue procesada por PayPal, pero no pudimos registrarla. Por favor contacte a administracion{'@'}ceehonduras.org."
+          }
         },
         "donatingFor": "Donando para: {purpose}"
       }

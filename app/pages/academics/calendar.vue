@@ -197,6 +197,7 @@
       }));
     }
     const items = tm('academics.calendar.importantDates.items') as any[];
+    if (!Array.isArray(items)) return [];
     return items.map((item: any, index: number) => ({
       title: typeof item.title === 'string' ? item.title : rt(item.title),
       description: typeof item.description === 'string' ? item.description : rt(item.description),
