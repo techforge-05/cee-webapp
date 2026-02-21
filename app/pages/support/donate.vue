@@ -120,9 +120,10 @@
         </div>
 
         <!-- Payment Method Cards -->
-        <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div class="grid gap-6 max-w-2xl mx-auto" :class="cardPaymentEnabled ? 'md:grid-cols-2' : 'md:grid-cols-1 max-w-md'">
           <!-- Credit/Debit Card -->
           <button
+            v-if="cardPaymentEnabled"
             class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 text-left cursor-pointer"
             @click="showDonationModal = true"
           >
@@ -316,7 +317,10 @@
 const route = useRoute();
 const localePath = useLocalePath();
 const { t, tm, rt } = useI18n();
-const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+
+// Payment settings
+const cardPaymentEnabled = computed(() => singleMeta('support.donate.settings', 'cardPaymentEnabled') !== 'false');
 
 // Purpose state
 const selectedPurpose = ref('general');
@@ -325,6 +329,7 @@ const showDonationModal = ref(false);
 
 onMounted(async () => {
   await loadContent([
+    'support.donate.settings',
     'support.donate.intro',
     'support.donate.ways',
     'support.donate.wishLists',

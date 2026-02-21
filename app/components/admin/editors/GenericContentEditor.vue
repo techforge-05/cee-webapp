@@ -117,6 +117,15 @@
                       updateSingleIconField(section.pageKey, field.key, $event)
                     "
                   />
+                  <UFormField
+                    v-if="field.type === 'toggle' && metaData[section.pageKey]"
+                    :label="$t(field.labelKey)"
+                  >
+                    <USwitch
+                      :model-value="metaData[section.pageKey][field.key] !== 'false'"
+                      @update:model-value="metaData[section.pageKey][field.key] = $event ? 'true' : 'false'; trackChanges()"
+                    />
+                  </UFormField>
                 </template>
               </div>
 
@@ -196,6 +205,15 @@
                     updateSingleIconField(section.pageKey, field.key, $event)
                   "
                 />
+                <UFormField
+                  v-if="field.type === 'toggle' && metaData[section.pageKey]"
+                  :label="$t(field.labelKey)"
+                >
+                  <USwitch
+                    :model-value="metaData[section.pageKey][field.key] !== 'false'"
+                    @update:model-value="metaData[section.pageKey][field.key] = $event ? 'true' : 'false'; trackChanges()"
+                  />
+                </UFormField>
               </template>
             </template>
           </template>
@@ -568,7 +586,7 @@
             field.type === 'icon'
           ) {
             singleData[section.pageKey][field.key] = { es: '', en: '' };
-          } else if (field.type === 'metadata' || field.type === 'select') {
+          } else if (field.type === 'metadata' || field.type === 'select' || field.type === 'toggle') {
             if (field.key === 'imageUrl') {
               sectionImages[section.pageKey] = '';
             } else {
@@ -602,7 +620,7 @@
                 es: item?.content_es?.[field.key] || '',
                 en: item?.content_en?.[field.key] || '',
               };
-            } else if (field.type === 'metadata' || field.type === 'select') {
+            } else if (field.type === 'metadata' || field.type === 'select' || field.type === 'toggle') {
               if (field.key === 'imageUrl') {
                 sectionImages[section.pageKey] =
                   item?.metadata?.[field.key] || '';
@@ -783,7 +801,7 @@
       ) {
         contentEs[field.key] = '';
         contentEn[field.key] = '';
-      } else if (field.type === 'metadata' || field.type === 'select') {
+      } else if (field.type === 'metadata' || field.type === 'select' || field.type === 'toggle') {
         metadata[field.key] = '';
       }
     });
@@ -820,7 +838,7 @@
             ) {
               contentEs[field.key] = singleData[section.pageKey][field.key].es;
               contentEn[field.key] = singleData[section.pageKey][field.key].en;
-            } else if (field.type === 'metadata' || field.type === 'select') {
+            } else if (field.type === 'metadata' || field.type === 'select' || field.type === 'toggle') {
               if (field.key === 'imageUrl') {
                 metadata[field.key] = sectionImages[section.pageKey];
               } else {

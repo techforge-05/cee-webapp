@@ -1778,6 +1778,8 @@
           "impact": "Impact"
         },
         "donate": {
+          "settings": "Payment Settings",
+          "cardPaymentEnabled": "Enable credit/debit card payment",
           "intro": "Introduction",
           "ways": "Ways to Donate",
           "method": "Donation Method",

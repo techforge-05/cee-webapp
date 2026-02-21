@@ -1,7 +1,7 @@
 export interface EditorField {
   key: string
   labelKey: string
-  type: 'text' | 'textarea' | 'metadata' | 'icon' | 'select'
+  type: 'text' | 'textarea' | 'metadata' | 'icon' | 'select' | 'toggle'
   maxLength?: number
   rows?: number
   options?: { value: string; labelKey: string }[]
@@ -705,6 +705,15 @@ const schemas: Record<string, EditorSection[]> = {
   ],
 
   'support/donate': [
+    {
+      pageKey: 'support.donate.settings',
+      labelKey: 'admin.editors.support.donate.settings',
+      type: 'single',
+      defaultOpen: true,
+      fields: [
+        { key: 'cardPaymentEnabled', labelKey: 'admin.editors.support.donate.cardPaymentEnabled', type: 'toggle' },
+      ],
+    },
     {
       pageKey: 'support.donate.intro',
       labelKey: 'admin.editors.support.donate.intro',

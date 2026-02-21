@@ -1778,6 +1778,8 @@
           "impact": "Impacto"
         },
         "donate": {
+          "settings": "Configuración de Pagos",
+          "cardPaymentEnabled": "Habilitar pago con tarjeta de crédito/débito",
           "intro": "Introducción",
           "ways": "Formas de Donar",
           "method": "Método de Donación",
