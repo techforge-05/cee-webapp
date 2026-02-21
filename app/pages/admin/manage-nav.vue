@@ -27,6 +27,17 @@
               </h3>
             </div>
             <div class="flex items-center gap-2">
+              <!-- Dropdown image button (skip home — no dropdown) -->
+              <UButton
+                v-if="section.key !== 'home'"
+                :icon="dropdownImages[section.key] ? 'i-heroicons-photo' : 'i-heroicons-plus'"
+                size="xs"
+                variant="ghost"
+                color="neutral"
+                @click="openImageModal(section.key)"
+              >
+                {{ dropdownImages[section.key] ? $t('admin.manageNav.editImage') : $t('admin.manageNav.addImage') }}
+              </UButton>
               <!-- Edit / Save / Cancel buttons -->
               <template v-if="editingSections[section.key]">
                 <UButton
@@ -101,6 +112,43 @@
         </div>
       </UCard>
     </div>
+
+    <!-- Dropdown Image Modal -->
+    <UModal v-model:open="imageModalOpen">
+      <template #header>
+        {{ $t('admin.manageNav.dropdownImage') }} — {{ $t(`nav.${imageModalSection}`, imageModalSection) }}
+      </template>
+      <template #body>
+        <ImageUploader v-model="imageModalUrl" folder="cee-assets/nav-dropdowns" />
+      </template>
+      <template #footer>
+        <div class="flex justify-between w-full">
+          <UButton
+            v-if="dropdownImages[imageModalSection]"
+            color="error"
+            variant="ghost"
+            icon="i-heroicons-trash"
+            :loading="imageSaving"
+            @click="removeDropdownImage"
+          >
+            {{ $t('admin.manageNav.removeImage') }}
+          </UButton>
+          <div class="flex gap-2 ml-auto">
+            <UButton variant="ghost" @click="imageModalOpen = false">
+              {{ $t('admin.manageNav.cancel') }}
+            </UButton>
+            <UButton
+              color="primary"
+              :disabled="!imageModalUrl"
+              :loading="imageSaving"
+              @click="saveDropdownImage"
+            >
+              {{ $t('admin.manageNav.save') }}
+            </UButton>
+          </div>
+        </div>
+      </template>
+    </UModal>
   </div>
 </template>
 
@@ -116,6 +164,8 @@ const adminStore = useAdminStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const toast = useToast()
+const supabase = useSupabaseClient()
+const contentStore = useContentStore()
 const { isVisible, loadVisibility, toggleVisibility } = useNavVisibility()
 
 const loading = ref(true)
@@ -132,6 +182,13 @@ const draftPageToggles = reactive<Record<string, boolean>>({})
 const editingSections = reactive<Record<string, boolean>>({})
 const savingSections = reactive<Record<string, boolean>>({})
 
+// Dropdown image state
+const dropdownImages = reactive<Record<string, string>>({})
+const imageModalOpen = ref(false)
+const imageModalSection = ref('')
+const imageModalUrl = ref('')
+const imageSaving = ref(false)
+
 onMounted(async () => {
   if (!adminStore.isSuperAdmin) {
     navigateTo(localePath('/admin'))
@@ -140,6 +197,18 @@ onMounted(async () => {
 
   await loadVisibility()
   initializeToggles()
+
+  // Load existing dropdown images
+  const { data: mediaRows } = await supabase
+    .from('media')
+    .select('key, url')
+    .eq('category', 'nav_dropdowns')
+
+  mediaRows?.forEach((row: { key: string; url: string }) => {
+    const sectionKey = row.key.replace('nav.dropdown.', '')
+    dropdownImages[sectionKey] = row.url
+  })
+
   loading.value = false
 })
 
@@ -205,6 +274,45 @@ async function saveSection(section: typeof sectionRegistry[number]) {
     toast.add({ title: t('admin.manageNav.toggleError'), color: 'error' })
   } finally {
     savingSections[section.key] = false
+  }
+}
+
+// Dropdown image management
+function openImageModal(sectionKey: string) {
+  imageModalSection.value = sectionKey
+  imageModalUrl.value = dropdownImages[sectionKey] || ''
+  imageModalOpen.value = true
+}
+
+async function saveDropdownImage() {
+  imageSaving.value = true
+  try {
+    const key = `nav.dropdown.${imageModalSection.value}`
+    await contentStore.updateMedia(key, imageModalUrl.value, '', '', 'nav_dropdowns')
+    dropdownImages[imageModalSection.value] = imageModalUrl.value
+    imageModalOpen.value = false
+    toast.add({ title: t('admin.manageNav.imageSaved'), color: 'success' })
+  } catch {
+    toast.add({ title: t('admin.manageNav.imageError'), color: 'error' })
+  } finally {
+    imageSaving.value = false
+  }
+}
+
+async function removeDropdownImage() {
+  imageSaving.value = true
+  try {
+    const key = `nav.dropdown.${imageModalSection.value}`
+    await supabase.from('media').delete().eq('key', key)
+    delete dropdownImages[imageModalSection.value]
+    // Also remove from content store local state
+    delete contentStore.media[key]
+    imageModalOpen.value = false
+    toast.add({ title: t('admin.manageNav.imageRemoved'), color: 'success' })
+  } catch {
+    toast.add({ title: t('admin.manageNav.imageError'), color: 'error' })
+  } finally {
+    imageSaving.value = false
   }
 }
 

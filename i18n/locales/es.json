@@ -1445,7 +1445,14 @@
       "toggleError": "Error al actualizar la navegación",
       "edit": "Editar",
       "save": "Guardar",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "addImage": "Agregar imagen",
+      "editImage": "Editar imagen",
+      "dropdownImage": "Imagen del menú",
+      "removeImage": "Eliminar imagen",
+      "imageSaved": "Imagen guardada",
+      "imageRemoved": "Imagen eliminada",
+      "imageError": "Error al guardar imagen"
     },
     "editors": {
       "manageContent": "Administrar contenido de esta página.",

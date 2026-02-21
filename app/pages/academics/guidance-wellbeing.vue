@@ -173,7 +173,7 @@
             :to="localePath('/contact/info')"
             size="lg"
             variant="solid"
-            class="bg-white text-purple-600 hover:bg-gray-100"
+            class="bg-white text-purple-600 hover:bg-gray-100 justify-center"
             icon="i-heroicons-envelope"
           >
             {{ $t('academics.guidance.cta.contactButton') }}

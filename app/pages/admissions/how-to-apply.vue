@@ -86,7 +86,7 @@
             <UButton
               :to="localePath('/admissions/calendar')"
               variant="outline"
-              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50 justify-center"
             >
               <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
               {{ $t('admissions.howToApply.dates.viewCalendar') }}
@@ -101,7 +101,7 @@
             <UButton
               :to="localePath('/contact/info')"
               variant="outline"
-              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50 justify-center"
             >
               <UIcon name="i-heroicons-phone" class="w-5 h-5 mr-2" />
               {{ $t('admissions.howToApply.dates.contactLink') }}
@@ -125,7 +125,7 @@
             :to="localePath('/contact/info')"
             size="lg"
             variant="solid"
-            class="bg-white text-emerald-700 hover:bg-gray-100"
+            class="bg-white text-emerald-700 hover:bg-gray-100 justify-center"
           >
             {{ $t('admissions.howToApply.cta.contact') }}
           </UButton>
@@ -133,7 +133,7 @@
             :to="localePath('/admissions/who-can-apply')"
             size="lg"
             variant="outline"
-            class="border-2 border-white text-white hover:bg-white hover:text-emerald-700"
+            class="border-2 border-white text-white hover:bg-white hover:text-emerald-700 justify-center"
           >
             {{ $t('admissions.howToApply.cta.requirements') }}
           </UButton>

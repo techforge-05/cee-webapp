@@ -151,7 +151,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="solid"
-              class="bg-blue-600 text-white hover:bg-blue-700"
+              class="bg-blue-600 text-white hover:bg-blue-700 justify-center"
             >
               {{ $t('about.leadership.contact.button') }}
             </UButton>
@@ -177,7 +177,7 @@
               :to="localePath('/admissions')"
               size="lg"
               variant="solid"
-              class="bg-white text-green-700 hover:bg-gray-100"
+              class="bg-white text-green-700 hover:bg-gray-100 justify-center"
             >
               {{ $t('about.leadership.cta.learnMore') }}
             </UButton>
@@ -185,7 +185,7 @@
               :to="localePath('/about/mission-vision-values')"
               size="lg"
               variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-green-700"
+              class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
             >
               {{ $t('about.leadership.cta.ourMission') }}
             </UButton>

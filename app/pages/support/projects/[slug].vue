@@ -168,7 +168,7 @@
               :to="localePath('/support/donate')"
               size="lg"
               variant="solid"
-              class="bg-white text-teal-700 hover:bg-gray-100"
+              class="bg-white text-teal-700 hover:bg-gray-100 justify-center"
             >
               {{ $t('support.projects.cta.donate') }}
             </UButton>
@@ -176,7 +176,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-teal-600"
+              class="border-2 border-white text-white hover:bg-white hover:text-teal-600 justify-center"
             >
               {{ $t('support.projects.cta.contactUs') }}
             </UButton>

@@ -133,7 +133,7 @@
             :to="localePath('/admissions')"
             size="lg"
             variant="solid"
-            class="bg-white text-green-700 hover:bg-gray-100"
+            class="bg-white text-green-700 hover:bg-gray-100 justify-center"
           >
             {{ $t('about.missionVisionValues.cta.learnMore') }}
           </UButton>
@@ -141,7 +141,7 @@
             :to="localePath('/contact/info')"
             size="lg"
             variant="outline"
-            class="border-2 border-white text-white hover:bg-white hover:text-green-600"
+            class="border-2 border-white text-white hover:bg-white hover:text-green-600 justify-center"
           >
             {{ $t('about.missionVisionValues.cta.contactUs') }}
           </UButton>

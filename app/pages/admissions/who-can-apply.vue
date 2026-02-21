@@ -80,7 +80,7 @@
           :to="localePath('/admissions/how-to-apply')"
           size="lg"
           color="primary"
-          class="bg-emerald-600 hover:bg-emerald-700"
+          class="bg-emerald-600 hover:bg-emerald-700 justify-center"
         >
           {{ $t('admissions.whoCanApply.cta.button') }}
         </UButton>

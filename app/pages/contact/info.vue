@@ -139,7 +139,7 @@
               :to="localePath('/contact/form')"
               size="lg"
               color="primary"
-              class="bg-red-600 hover:bg-red-700"
+              class="bg-red-600 hover:bg-red-700 justify-center"
             >
               <UIcon name="i-heroicons-pencil-square" class="w-5 h-5 mr-2" />
               {{ $t('contact.info.cta.contactForm') }}
@@ -148,7 +148,7 @@
               :to="localePath('/contact/directions')"
               size="lg"
               variant="outline"
-              class="border-2 border-red-600 text-red-600 hover:bg-red-50"
+              class="border-2 border-red-600 text-red-600 hover:bg-red-50 justify-center"
             >
               <UIcon name="i-heroicons-map" class="w-5 h-5 mr-2" />
               {{ $t('contact.info.cta.directions') }}
@@ -174,7 +174,7 @@
             :to="localePath('/contact/faq')"
             size="lg"
             variant="solid"
-            class="bg-white text-teal-700 hover:bg-gray-100"
+            class="bg-white text-teal-700 hover:bg-gray-100 justify-center"
           >
             {{ $t('nav.dropdowns.contact.faq') }}
           </UButton>
@@ -183,7 +183,7 @@
             target="_blank"
             size="lg"
             variant="outline"
-            class="border-2 border-white text-white hover:bg-white hover:text-teal-600"
+            class="border-2 border-white text-white hover:bg-white hover:text-teal-600 justify-center"
           >
             <UIcon name="i-heroicons-phone" class="w-5 h-5 mr-2" />
             {{ $t('contact.faq.stillHaveQuestions.callUs') }}

@@ -245,7 +245,7 @@
           <UButton
             :to="localePath('/academics/calendar')"
             size="lg"
-            class="bg-indigo-600 hover:bg-indigo-700"
+            class="bg-indigo-600 hover:bg-indigo-700 justify-center"
           >
             <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
             {{ $t('studentLife.upcomingEvents.carousel.viewCalendar') }}
@@ -325,7 +325,7 @@
               :to="localePath('/admissions')"
               size="lg"
               variant="solid"
-              class="bg-white text-indigo-700 hover:bg-gray-100"
+              class="bg-white text-indigo-700 hover:bg-gray-100 justify-center"
             >
               {{ $t('studentLife.upcomingEvents.cta.learnMore') }}
             </UButton>
@@ -333,7 +333,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-indigo-700"
+              class="border-2 border-white text-white hover:bg-white hover:text-indigo-700 justify-center"
             >
               {{ $t('studentLife.upcomingEvents.cta.contactUs') }}
             </UButton>

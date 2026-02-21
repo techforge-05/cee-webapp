@@ -714,17 +714,18 @@
           <div
             class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10"
           >
-            <div
-              class="bg-gray-200 flex justify-center items-center w-full h-full"
-            >
-              <p class="text-gray-400 text-xl">Image</p>
-              <!-- Replace with actual image:
             <img
-              :src="`/images/${activeDropdown}.jpg`"
+              v-if="dropdownImageUrl"
+              :src="dropdownImageUrl"
               :alt="$t(`nav.${activeDropdown}`)"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover rounded-lg"
             />
-            --></div>
+            <div
+              v-else
+              class="bg-gray-200 flex justify-center items-center w-full h-full rounded-lg"
+            >
+              <UIcon name="i-heroicons-photo" class="w-16 h-16 text-gray-300" />
+            </div>
           </div>
         </div>
       </div>
@@ -757,7 +758,11 @@
   let switchTimeout: NodeJS.Timeout | null = null;
 
   const { isVisible, loadVisibility } = useNavVisibility();
-  onMounted(() => loadVisibility());
+  const { getMediaUrl, loadDynamicContent } = useDynamicContent();
+  onMounted(() => {
+    loadVisibility();
+    loadDynamicContent();
+  });
 
   // Navigation items
   const allNavigationItems = [
@@ -774,6 +779,11 @@
   );
 
   const { t, locale } = useI18n();
+
+  const dropdownImageUrl = computed(() => {
+    if (!activeDropdown.value) return null
+    return getMediaUrl(`nav.dropdown.${activeDropdown.value}`)
+  })
 
   const isAdminRoute = computed(() => route.path.includes('/admin'));
 

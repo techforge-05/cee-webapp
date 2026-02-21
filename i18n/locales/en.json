@@ -1445,7 +1445,14 @@
       "toggleError": "Failed to update navigation",
       "edit": "Edit",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "addImage": "Add image",
+      "editImage": "Edit image",
+      "dropdownImage": "Dropdown Image",
+      "removeImage": "Remove image",
+      "imageSaved": "Image saved",
+      "imageRemoved": "Image removed",
+      "imageError": "Failed to save image"
     },
     "editors": {
       "manageContent": "Manage content for this page.",

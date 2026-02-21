@@ -256,7 +256,7 @@
               :to="localePath('/admissions')"
               size="lg"
               variant="solid"
-              class="bg-white text-blue-700 hover:bg-gray-100"
+              class="bg-white text-blue-700 hover:bg-gray-100 justify-center"
             >
               {{ $t('academics.curriculum.cta.learnMore') }}
             </UButton>
@@ -264,7 +264,7 @@
               :to="localePath('/contact/info')"
               size="lg"
               variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-blue-700"
+              class="border-2 border-white text-white hover:bg-white hover:text-blue-700 justify-center"
             >
               {{ $t('academics.curriculum.cta.contactUs') }}
             </UButton>
