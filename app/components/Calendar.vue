@@ -328,6 +328,7 @@
     'no_school',
     'parent_meeting',
     'admissions',
+    'inscription',
   ];
 
   // Calendar state
@@ -355,6 +356,11 @@
       value: 'admissions',
       color: 'success',
       icon: 'i-heroicons-document-text',
+    },
+    {
+      value: 'inscription',
+      color: 'warning',
+      icon: 'i-heroicons-clipboard-document-list',
     },
   ];
 
@@ -556,6 +562,7 @@
       no_school: 'bg-orange-100 text-orange-800 border border-orange-200',
       parent_meeting: 'bg-green-100 text-green-800 border border-green-200',
       admissions: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
+      inscription: 'bg-purple-100 text-purple-800 border border-purple-200',
     };
     return classes[type] || 'bg-gray-100 text-gray-800';
   }
@@ -568,6 +575,7 @@
       no_school: 'bg-orange-500',
       parent_meeting: 'bg-green-500',
       admissions: 'bg-emerald-500',
+      inscription: 'bg-purple-500',
     };
     return classes[type] || 'bg-gray-500';
   }
@@ -580,6 +588,7 @@
       no_school: 'i-heroicons-x-circle',
       parent_meeting: 'i-heroicons-user-group',
       admissions: 'i-heroicons-document-text',
+      inscription: 'i-heroicons-clipboard-document-list',
     };
     return icons[type] || 'i-heroicons-calendar';
   }
@@ -592,6 +601,7 @@
       no_school: 'text-orange-600',
       parent_meeting: 'text-green-600',
       admissions: 'text-emerald-600',
+      inscription: 'text-purple-600',
     };
     return colors[type] || 'text-gray-600';
   }
@@ -604,6 +614,7 @@
       no_school: 'orange',
       parent_meeting: 'green',
       admissions: 'emerald',
+      inscription: 'purple',
     };
     return colors[type] || 'gray';
   }

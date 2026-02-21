@@ -813,7 +813,8 @@
         "event": "Event",
         "no_school": "No School",
         "parent_meeting": "Parent Meeting",
-        "admissions": "Admissions"
+        "admissions": "Admissions",
+        "inscription": "Enrollment"
       },
       "importantDates": {
         "title": "Key Academic Periods",

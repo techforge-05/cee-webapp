@@ -27,6 +27,7 @@ export const EVENT_TYPES = [
   { value: 'no_school', label: 'No School' },
   { value: 'parent_meeting', label: 'Parent Meeting' },
   { value: 'admissions', label: 'Admissions' },
+  { value: 'inscription', label: 'Inscription' },
 ]
 
 export const useCalendarAdmin = () => {

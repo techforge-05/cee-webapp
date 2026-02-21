@@ -813,7 +813,8 @@
         "event": "Evento",
         "no_school": "Sin Clases",
         "parent_meeting": "Reunión de Padres",
-        "admissions": "Admisiones"
+        "admissions": "Admisiones",
+        "inscription": "Matrículas"
       },
       "importantDates": {
         "title": "Períodos Académicos Clave",

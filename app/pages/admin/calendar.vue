@@ -290,6 +290,7 @@ function getTypeColor(type: string): BadgeColor {
     no_school: 'error',
     parent_meeting: 'info',
     admissions: 'secondary',
+    inscription: 'warning',
   }
   return colors[type] || 'neutral' as BadgeColor
 }
