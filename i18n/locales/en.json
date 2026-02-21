@@ -1811,6 +1811,14 @@
           "intro": "Introduction",
           "steps": "Application Steps",
           "dates": "Important Dates"
+        },
+        "calendar": {
+          "intro": "Introduction",
+          "calendarEvents": "Calendar Events",
+          "calendarEventsDescription": "Admissions events are managed in the Calendar. Add, edit, or remove admissions dates from there.",
+          "goToCalendar": "Go to Calendar",
+          "settings": "Admissions Calendar Settings",
+          "defaultMonth": "Default Month"
         }
       },
       "getInvolved": {
@@ -2539,6 +2547,9 @@
       "subtitle": "Important admissions dates and deadlines",
       "intro": "Stay informed about all important admissions dates, application deadlines, and enrollment periods. Plan ahead to ensure you don't miss any important dates in the admissions process.",
       "noEventsNote": "Don't see any upcoming admissions events? Contact us directly for the most current information about application deadlines and enrollment periods.",
+      "settings": {
+        "defaultMonth": "7"
+      },
       "cta": {
         "title": "Ready to Start Your Application?",
         "description": "Learn about our step-by-step admissions process and requirements.",

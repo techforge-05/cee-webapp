@@ -152,7 +152,28 @@
 
           <!-- Color -->
           <UFormField :label="$t('admin.editors.calendar.color')">
-            <UInput v-model="editForm.color" type="color" class="h-10 w-20" />
+            <UPopover>
+              <button
+                type="button"
+                class="flex items-center gap-2 px-3 py-1.5 border border-gray-300 rounded-md hover:border-gray-400 transition-colors"
+              >
+                <span class="w-6 h-6 rounded-full border border-gray-200" :style="{ backgroundColor: editForm.color }" />
+                <span class="text-sm text-gray-600">{{ editForm.color }}</span>
+              </button>
+              <template #content>
+                <div class="grid grid-cols-4 gap-2 p-3">
+                  <button
+                    v-for="c in colorOptions"
+                    :key="c"
+                    type="button"
+                    class="w-8 h-8 rounded-full border-2 transition-all"
+                    :class="editForm.color === c ? 'border-gray-900 scale-110 ring-2 ring-offset-2 ring-gray-400' : 'border-gray-200 hover:border-gray-400'"
+                    :style="{ backgroundColor: c }"
+                    @click="editForm.color = c"
+                  />
+                </div>
+              </template>
+            </UPopover>
           </UFormField>
 
           <!-- Image -->
@@ -212,6 +233,21 @@ const editingEvent = ref<CalendarEvent | null>(null)
 const deletingEventRef = ref<CalendarEvent | null>(null)
 
 const eventTypeOptions = EVENT_TYPES
+
+const colorOptions = [
+  '#3b82f6', // blue
+  '#06b6d4', // cyan
+  '#10b981', // emerald
+  '#22c55e', // green
+  '#eab308', // yellow
+  '#f97316', // orange
+  '#ef4444', // red
+  '#ec4899', // pink
+  '#a855f7', // purple
+  '#6366f1', // indigo
+  '#8b5cf6', // violet
+  '#64748b', // slate
+]
 
 const typeFilterOptions = computed(() => [
   { value: 'all', label: t('admin.editors.calendar.allTypes') },

@@ -311,6 +311,7 @@
   const props = defineProps<{
     defaultEventTypes?: string[];
     hideEventTypeFilter?: boolean;
+    initialDate?: Date;
   }>();
 
   const { locale } = useI18n();
@@ -330,7 +331,7 @@
   ];
 
   // Calendar state
-  const currentDate = ref(new Date());
+  const currentDate = ref(props.initialDate || new Date());
   const viewMode = ref<'month' | 'list'>('month');
   const selectedEventTypes = ref<string[]>(
     props.defaultEventTypes || allEventTypes

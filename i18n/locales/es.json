@@ -1811,6 +1811,14 @@
           "intro": "Introducción",
           "steps": "Pasos de Aplicación",
           "dates": "Fechas Importantes"
+        },
+        "calendar": {
+          "intro": "Introducción",
+          "calendarEvents": "Eventos del Calendario",
+          "calendarEventsDescription": "Los eventos de admisiones se gestionan en el Calendario. Agrega, edita o elimina fechas de admisiones desde allí.",
+          "goToCalendar": "Ir al Calendario",
+          "settings": "Configuración del Calendario de Admisiones",
+          "defaultMonth": "Mes Predeterminado"
         }
       },
       "getInvolved": {
@@ -2539,6 +2547,9 @@
       "subtitle": "Fechas y plazos importantes de admisiones",
       "intro": "Mantente informado sobre todas las fechas importantes de admisiones, plazos de solicitud y períodos de inscripción. Planifica con anticipación para no perderte ninguna fecha importante del proceso de admisión.",
       "noEventsNote": "¿No ves eventos de admisiones próximos? Contáctanos directamente para obtener la información más actualizada sobre plazos de solicitud y períodos de inscripción.",
+      "settings": {
+        "defaultMonth": "7"
+      },
       "cta": {
         "title": "¿Listo para Iniciar tu Solicitud?",
         "description": "Conoce nuestro proceso de admisión paso a paso y los requisitos.",

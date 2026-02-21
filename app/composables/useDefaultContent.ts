@@ -37,6 +37,7 @@ export const useDefaultContent = () => {
     'support.projects.howToHelp': 'support.projects.howToHelp.ways',
     'contact.form.subjectOptions': 'contact.form.fields.subject.options',
     'contact.faq': 'contact.faq.questions',
+    'getInvolved.volunteer.opportunities': 'getInvolved.volunteer.opportunities.items',
   }
 
   /**

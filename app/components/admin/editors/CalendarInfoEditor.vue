@@ -1,5 +1,13 @@
 <template>
   <div class="space-y-8">
+    <!-- Schema-driven editor (intro, settings, etc.) -->
+    <GenericContentEditor
+      v-if="schema"
+      :schema="schema"
+      :section-key="sectionKey"
+      :page-slug="pageSlug"
+    />
+
     <!-- Calendar Manager Link -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
       <UIcon name="i-heroicons-calendar-days" class="w-12 h-12 text-blue-400 mx-auto mb-3" />
@@ -13,14 +21,6 @@
         {{ $t('admin.editors.calendarInfo.goToCalendar') }}
       </UButton>
     </div>
-
-    <!-- Key Academic Periods Editor -->
-    <GenericContentEditor
-      v-if="schema"
-      :schema="schema"
-      :section-key="sectionKey"
-      :page-slug="pageSlug"
-    />
   </div>
 </template>
 

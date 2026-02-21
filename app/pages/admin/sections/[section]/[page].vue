@@ -63,7 +63,6 @@ const editorMap: Record<string, ReturnType<typeof defineAsyncComponent>> = {
   'about/leadership': defineAsyncComponent(() => import('~/components/admin/editors/LeadershipEditor.vue')),
   'studentLife/gallery': defineAsyncComponent(() => import('~/components/admin/editors/GalleryEditor.vue')),
   'academics/calendar': defineAsyncComponent(() => import('~/components/admin/editors/CalendarInfoEditor.vue')),
-  'admissions/calendar': defineAsyncComponent(() => import('~/components/admin/editors/CalendarInfoEditor.vue')),
   'support/projects': defineAsyncComponent(() => import('~/components/admin/editors/ProjectsEditor.vue')),
 }
 

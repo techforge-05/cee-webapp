@@ -86,6 +86,27 @@
                       @update:model-value="trackChanges"
                     />
                   </UFormField>
+                  <UFormField
+                    v-if="
+                      field.type === 'select' &&
+                      field.options &&
+                      metaData[section.pageKey]
+                    "
+                    :label="$t(field.labelKey)"
+                  >
+                    <USelect
+                      :model-value="metaData[section.pageKey][field.key] || ''"
+                      :items="field.options.map((o) => ({
+                        value: o.value,
+                        label: $t(o.labelKey),
+                      }))"
+                      class="min-w-48"
+                      @update:model-value="
+                        metaData[section.pageKey][field.key] = $event as string;
+                        trackChanges();
+                      "
+                    />
+                  </UFormField>
                   <IconPicker
                     v-if="field.type === 'icon' && singleData[section.pageKey]"
                     :model-value="
@@ -141,6 +162,28 @@
                     :placeholder="field.placeholder"
                     class="w-full"
                     @update:model-value="trackChanges"
+                  />
+                </UFormField>
+                <UFormField
+                  v-if="
+                    field.type === 'select' &&
+                    field.options &&
+                    metaData[section.pageKey]
+                  "
+                  :label="$t(field.labelKey)"
+                  class="w-full md:w-[50%]"
+                >
+                  <USelect
+                    :model-value="metaData[section.pageKey][field.key] || ''"
+                    :items="field.options.map((o) => ({
+                      value: o.value,
+                      label: $t(o.labelKey),
+                    }))"
+                    class="min-w-48"
+                    @update:model-value="
+                      metaData[section.pageKey][field.key] = $event as string;
+                      trackChanges();
+                    "
                   />
                 </UFormField>
                 <IconPicker

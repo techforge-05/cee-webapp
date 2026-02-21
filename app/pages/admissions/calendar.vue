@@ -23,7 +23,7 @@
             class="w-16 h-16 text-emerald-600 mx-auto mb-6"
           />
           <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('admissions.calendar.intro') }}
+            {{ singleField('admissions.calendar.intro', 'text') || $t('admissions.calendar.intro') }}
           </p>
         </div>
       </div>
@@ -33,8 +33,10 @@
     <section class="py-12">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <Calendar
+          v-if="settingsLoaded"
           :default-event-types="['admissions']"
           :hide-event-type-filter="true"
+          :initial-date="admissionsInitialDate"
         />
       </div>
     </section>
@@ -90,6 +92,28 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
+const { loadContent, singleMeta, singleField } = usePublicContent();
+const settingsLoaded = ref(false);
+
+onMounted(async () => {
+  await loadContent(['admissions.calendar.intro', 'admissions.calendar.settings']);
+  settingsLoaded.value = true;
+});
+
+const admissionsInitialDate = computed(() => {
+  // Check metadata first, then fall back to content_es (for after "Use default" restores)
+  const raw = singleMeta('admissions.calendar.settings', 'defaultMonth')
+    || singleField('admissions.calendar.settings', 'defaultMonth');
+  const configuredMonth = parseInt(raw) || 7;
+  const now = new Date();
+  const currentMonth = now.getMonth() + 1; // 1-indexed
+  const currentYear = now.getFullYear();
+
+  // If current month is before configured month, show it this year
+  // If current month is >= configured month, show it next year
+  const targetYear = currentMonth < configuredMonth ? currentYear : currentYear + 1;
+  return new Date(targetYear, configuredMonth - 1, 1); // month is 0-indexed in Date
+});
 
 useHead({
   title: 'Admissions Calendar - CEE',

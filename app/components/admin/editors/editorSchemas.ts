@@ -957,6 +957,53 @@ const schemas: Record<string, EditorSection[]> = {
     },
   ],
 
+  'admissions/calendar': [
+    {
+      pageKey: 'admissions.calendar.intro',
+      labelKey: 'admin.editors.admissions.calendar.intro',
+      type: 'single',
+      defaultOpen: false,
+      fields: [f.text()],
+    },
+    {
+      pageKey: 'admissions.calendar.calendarEvents',
+      labelKey: 'admin.editors.admissions.calendar.calendarEvents',
+      type: 'info',
+      fields: [],
+      infoIcon: 'i-heroicons-calendar-days',
+      infoDescriptionKey: 'admin.editors.admissions.calendar.calendarEventsDescription',
+      infoLinkTo: '/admin/calendar',
+      infoLinkLabelKey: 'admin.editors.admissions.calendar.goToCalendar',
+    },
+    {
+      pageKey: 'admissions.calendar.settings',
+      labelKey: 'admin.editors.admissions.calendar.settings',
+      type: 'single',
+      defaultOpen: true,
+      fields: [
+        {
+          key: 'defaultMonth',
+          labelKey: 'admin.editors.admissions.calendar.defaultMonth',
+          type: 'select',
+          options: [
+            { value: '1', labelKey: 'admin.editors.generic.months.january' },
+            { value: '2', labelKey: 'admin.editors.generic.months.february' },
+            { value: '3', labelKey: 'admin.editors.generic.months.march' },
+            { value: '4', labelKey: 'admin.editors.generic.months.april' },
+            { value: '5', labelKey: 'admin.editors.generic.months.may' },
+            { value: '6', labelKey: 'admin.editors.generic.months.june' },
+            { value: '7', labelKey: 'admin.editors.generic.months.july' },
+            { value: '8', labelKey: 'admin.editors.generic.months.august' },
+            { value: '9', labelKey: 'admin.editors.generic.months.september' },
+            { value: '10', labelKey: 'admin.editors.generic.months.october' },
+            { value: '11', labelKey: 'admin.editors.generic.months.november' },
+            { value: '12', labelKey: 'admin.editors.generic.months.december' },
+          ],
+        },
+      ],
+    },
+  ],
+
   // ==================== GET INVOLVED ====================
 
   'getInvolved/teachers': [
@@ -980,7 +1027,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 10,
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.qualification',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'getInvolved.teachers.benefits',
@@ -989,7 +1036,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 10,
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.benefit',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'getInvolved.teachers.applicationForms',
@@ -1034,7 +1081,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 10,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.opportunity',
-      fields: [f.title(), f.description()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
     {
       pageKey: 'getInvolved.volunteer.howTo',
