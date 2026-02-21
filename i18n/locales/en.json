@@ -842,8 +842,22 @@
       },
       "download": {
         "title": "Download Calendar",
-        "description": "Get a printable version of the full academic calendar to keep at home or share with family.",
-        "pdf": "Download PDF"
+        "description": "Get a printable version of the academic calendar to keep at home or share with family.",
+        "pdf": "Download PDF",
+        "modalTitle": "Download Calendar PDF",
+        "eventTypeLabel": "Select event type",
+        "allEvents": "All Events",
+        "downloadButton": "Download",
+        "cancel": "Cancel",
+        "schoolYear": "School Year",
+        "generatedOn": "Generated on",
+        "showing": "Showing",
+        "noEvents": "No upcoming events found for this period.",
+        "disclaimer": "Note: Dates are subject to change. Additional events may be added throughout the school year. Please check our website regularly for the most up-to-date information.",
+        "pdfTitle": "Academic Calendar",
+        "dateColumn": "Date",
+        "eventColumn": "Event",
+        "typeColumn": "Type"
       },
       "cta": {
         "title": "Ready to Join CEE?",

@@ -842,8 +842,22 @@
       },
       "download": {
         "title": "Descargar Calendario",
-        "description": "Obtén una versión imprimible del calendario académico completo para tener en casa o compartir con la familia.",
-        "pdf": "Descargar PDF"
+        "description": "Obtén una versión imprimible del calendario académico para tener en casa o compartir con la familia.",
+        "pdf": "Descargar PDF",
+        "modalTitle": "Descargar Calendario PDF",
+        "eventTypeLabel": "Seleccionar tipo de evento",
+        "allEvents": "Todos los Eventos",
+        "downloadButton": "Descargar",
+        "cancel": "Cancelar",
+        "schoolYear": "Año Escolar",
+        "generatedOn": "Generado el",
+        "showing": "Mostrando",
+        "noEvents": "No se encontraron eventos próximos para este período.",
+        "disclaimer": "Nota: Las fechas están sujetas a cambios. Se podrían agregar eventos adicionales durante el año escolar. Por favor, consulte nuestro sitio web regularmente para obtener la información más actualizada.",
+        "pdfTitle": "Calendario Académico",
+        "dateColumn": "Fecha",
+        "eventColumn": "Evento",
+        "typeColumn": "Tipo"
       },
       "cta": {
         "title": "¿Listo para Unirte a CEE?",
