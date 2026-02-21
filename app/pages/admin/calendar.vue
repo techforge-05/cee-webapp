@@ -142,7 +142,7 @@
 
           <!-- Event type -->
           <UFormField :label="$t('admin.editors.calendar.eventType')">
-            <USelect v-model="editForm.event_type" :items="eventTypeOptions" />
+            <USelect v-model="editForm.event_type" :items="eventTypeOptions" class="min-w-44" />
           </UFormField>
 
           <!-- Location -->

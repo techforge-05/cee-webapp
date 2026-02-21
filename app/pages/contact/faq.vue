@@ -124,7 +124,7 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <UButton
-              :to="localePath('/contact/form')"
+              :to="localePath('/contact/info')"
               size="lg"
               color="primary"
               class="bg-red-600 hover:bg-red-700"

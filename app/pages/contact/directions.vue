@@ -220,7 +220,7 @@
             {{ $t('nav.dropdowns.about.town') }}
           </UButton>
           <UButton
-            :to="localePath('/contact/form')"
+            :to="localePath('/contact/info')"
             size="lg"
             variant="outline"
             class="border-2 border-white text-white hover:bg-white hover:text-teal-600"

@@ -48,7 +48,7 @@
       </div>
     </section>
 
-    <!-- Important Dates Section -->
+    <!-- Admission Dates Section -->
     <section class="py-12 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
@@ -57,11 +57,56 @@
             class="w-12 h-12 text-emerald-600 mx-auto mb-4"
           />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
-            {{ singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title') }}
+            {{ admissionsEvents.length > 0
+              ? $t('admissions.howToApply.dates.upcomingTitle')
+              : (singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title'))
+            }}
           </h2>
-          <p class="text-lg text-gray-700">
-            {{ singleField('admissions.howToApply.dates', 'description') || $t('admissions.howToApply.dates.description') }}
-          </p>
+
+          <!-- When there are upcoming admissions events -->
+          <div v-if="admissionsEvents.length > 0">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 mb-6">
+              <div
+                v-for="event in admissionsEvents"
+                :key="event.id"
+                class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 text-left"
+              >
+                <div class="flex items-start gap-4">
+                  <div class="bg-emerald-100 text-emerald-700 rounded-lg px-3 py-2 text-center shrink-0">
+                    <div class="text-xl font-bold leading-none">{{ formatDay(event.start_date) }}</div>
+                    <div class="text-xs uppercase mt-1">{{ formatMonth(event.start_date) }}</div>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900">{{ event.title }}</h3>
+                    <p v-if="event.description" class="text-sm text-gray-600 mt-1">{{ event.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <UButton
+              :to="localePath('/admissions/calendar')"
+              variant="outline"
+              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+            >
+              <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
+              {{ $t('admissions.howToApply.dates.viewCalendar') }}
+            </UButton>
+          </div>
+
+          <!-- Default: no upcoming events -->
+          <div v-else>
+            <p class="text-lg text-gray-700 mb-4">
+              {{ singleField('admissions.howToApply.dates', 'description') || $t('admissions.howToApply.dates.description') }}
+            </p>
+            <UButton
+              :to="localePath('/contact/info')"
+              variant="outline"
+              class="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+            >
+              <UIcon name="i-heroicons-phone" class="w-5 h-5 mr-2" />
+              {{ $t('admissions.howToApply.dates.contactLink') }}
+            </UButton>
+          </div>
         </div>
       </div>
     </section>
@@ -77,7 +122,7 @@
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <UButton
-            :to="localePath('/contact/form')"
+            :to="localePath('/contact/info')"
             size="lg"
             variant="solid"
             class="bg-white text-emerald-700 hover:bg-gray-100"
@@ -100,14 +145,45 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { tm, rt } = useI18n();
+const { locale, tm, rt } = useI18n();
 const { loadContent, getItems, field, singleField } = usePublicContent();
+const { events: calendarEvents, loadEvents } = useCalendarAdmin();
 
-onMounted(() => loadContent([
-  'admissions.howToApply.intro',
-  'admissions.howToApply.dates',
-  'admissions.howToApply.steps',
-]));
+onMounted(() => {
+  loadContent([
+    'admissions.howToApply.intro',
+    'admissions.howToApply.dates',
+    'admissions.howToApply.steps',
+  ]);
+  loadEvents();
+});
+
+const admissionsEvents = computed(() => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return calendarEvents.value
+    .filter(e => e.event_type === 'admissions' && new Date(e.start_date) >= today)
+    .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+    .map(e => ({
+      ...e,
+      title: locale.value === 'en' ? e.title_en : e.title_es,
+      description: locale.value === 'en' ? (e.description_en || '') : (e.description_es || ''),
+    }));
+});
+
+const formatDay = (dateStr: string) => {
+  if (!dateStr) return '--';
+  return new Date(dateStr).getDate();
+};
+
+const formatMonth = (dateStr: string) => {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  const months = locale.value === 'es'
+    ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+    : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months[date.getMonth()];
+};
 
 const steps = computed(() => {
   const dbItems = getItems('admissions.howToApply.steps');

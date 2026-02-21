@@ -2521,12 +2521,15 @@
         }
       ],
       "dates": {
-        "title": "Important Dates",
-        "description": "Check our Admissions Calendar for application deadlines and enrollment periods."
+        "title": "Admission Dates",
+        "description": "We normally have admissions in the month of July. Please contact the Administration office in advance, as spaces are limited.",
+        "contactLink": "Contact Administration",
+        "viewCalendar": "View Full Calendar",
+        "upcomingTitle": "Upcoming Admission Dates"
       },
       "cta": {
-        "title": "Have Questions?",
-        "description": "Our admissions team is here to help you through the process.",
+        "title": "Would You Like to Start the Process?",
+        "description": "Our admissions team is here to help you through it.",
         "contact": "Contact Us",
         "requirements": "View Requirements"
       }

@@ -7,6 +7,7 @@
       </div>
       <UButton
         icon="i-heroicons-plus"
+        class="whitespace-nowrap"
         @click="showInviteModal = true"
       >
         {{ $t('admin.users.inviteUser') }}
@@ -104,6 +105,7 @@
         <div class="px-6 py-3 bg-gray-50">
           <h3 class="text-sm font-medium text-gray-700">{{ $t('admin.users.pendingInvitations') }}</h3>
         </div>
+        <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
           <tbody class="bg-white divide-y divide-gray-200">
             <tr
@@ -170,6 +172,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
 

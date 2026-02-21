@@ -919,7 +919,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 15,
       minItems: 1,
       itemLabelKey: 'admin.editors.academics.grades.level',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 150 }],
     },
     {
       pageKey: 'admissions.whoCanApply.requirements',
@@ -928,7 +928,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 10,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.requirement',
-      fields: [f.text()],
+      fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
     },
   ],
 

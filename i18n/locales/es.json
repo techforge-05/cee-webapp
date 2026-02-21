@@ -2521,12 +2521,15 @@
         }
       ],
       "dates": {
-        "title": "Fechas Importantes",
-        "description": "Consulta nuestro Calendario de Admisiones para conocer los plazos de solicitud y períodos de inscripción."
+        "title": "Fechas de Admisión",
+        "description": "Normalmente tenemos admisiones en el mes de julio. Por favor comuníquese con la oficina de Administración con anticipación, ya que los espacios son limitados.",
+        "contactLink": "Contactar Administración",
+        "viewCalendar": "Ver Calendario Completo",
+        "upcomingTitle": "Próximas Fechas de Admisión"
       },
       "cta": {
-        "title": "¿Tienes Preguntas?",
-        "description": "Nuestro equipo de admisiones está aquí para ayudarte en el proceso.",
+        "title": "¿Te Gustaría Iniciar el Proceso?",
+        "description": "Nuestro equipo de admisiones está aquí para ayudarte.",
         "contact": "Contáctanos",
         "requirements": "Ver Requisitos"
       }
