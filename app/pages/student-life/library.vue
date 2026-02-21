@@ -152,11 +152,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <div
             v-for="(level, index) in levels"
             :key="index"
-            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4"
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4 w-full md:w-[calc(33.333%-1.334rem)]"
             :class="getLevelBorderColor(index)"
           >
             <div

@@ -92,11 +92,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
           <div
             v-for="(director, index) in directorsList"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 w-full md:w-[calc(50%-1rem)]"
           >
             <div class="flex flex-col items-center text-center">
               <img

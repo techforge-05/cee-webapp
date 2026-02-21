@@ -54,11 +54,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8" v-if="staff.length > 0">
+        <div class="flex flex-wrap justify-center gap-8" v-if="staff.length > 0">
           <div
             v-for="(member, index) in staff"
             :key="index"
-            class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+            class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <div class="mb-4 flex justify-center">
               <div
@@ -104,11 +104,11 @@
           </h2>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <div
             v-for="(service, index) in services"
             :key="index"
-            class="bg-white rounded-lg p-8 shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition-shadow"
+            class="bg-white rounded-lg p-8 shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition-shadow w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <div class="flex justify-center mb-6">
               <div
@@ -143,11 +143,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <div
             v-for="(image, index) in images"
             :key="index"
-            class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+            class="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow w-full md:w-[calc(33.333%-1rem)]"
           >
             <img
               :src="image.url"

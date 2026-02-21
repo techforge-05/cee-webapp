@@ -42,12 +42,12 @@
           <p class="text-xl text-gray-500">{{ $t('support.projects.noProjects') }}</p>
         </div>
 
-        <div v-else class="grid md:grid-cols-2 gap-8">
+        <div v-else class="flex flex-wrap justify-center gap-8">
           <NuxtLink
             v-for="(project, index) in projectsWithIcons"
             :key="index"
             :to="localePath(`/support/projects/${project.slug}`)"
-            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block group"
+            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block group w-full md:w-[calc(50%-1rem)]"
           >
             <div v-if="project.imageUrl" class="h-48 overflow-hidden">
               <img :src="project.imageUrl" :alt="project.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />

@@ -207,11 +207,11 @@
             {{ $t('home.activities.subtitle') }}
           </p>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <UCard
             v-for="(activity, index) in activities"
             :key="index"
-            class="overflow-hidden"
+            class="overflow-hidden w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <template #header>
               <div
@@ -257,11 +257,11 @@
             {{ $t('home.news.subtitle') }}
           </p>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <UCard
             v-for="(newsItem, index) in newsItems"
             :key="index"
-            class="overflow-hidden"
+            class="overflow-hidden w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <template #header>
               <div

@@ -44,11 +44,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <div
             v-for="(sport, index) in sports"
             :key="index"
-            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500"
+            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
           >
             <div class="h-48 bg-gray-200 flex items-center justify-center">
               <img

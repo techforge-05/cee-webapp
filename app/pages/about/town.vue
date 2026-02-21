@@ -117,11 +117,11 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <div
             v-for="(activity, index) in activities"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]"
           >
             <div
               class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
@@ -146,12 +146,12 @@
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('about.town.gallery.title') }}
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="flex flex-wrap justify-center gap-6">
           <template v-if="galleryImages.length > 0">
             <div
               v-for="(img, index) in galleryImages"
               :key="index"
-              class="h-64 rounded-lg overflow-hidden"
+              class="h-64 rounded-lg overflow-hidden w-full md:w-[calc(33.333%-1rem)]"
             >
               <img
                 :src="img.url"
@@ -161,13 +161,13 @@
             </div>
           </template>
           <template v-else>
-            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center w-full md:w-[calc(33.333%-1rem)]">
               <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
             </div>
-            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center w-full md:w-[calc(33.333%-1rem)]">
               <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
             </div>
-            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+            <div class="bg-gray-300 h-64 rounded-lg flex items-center justify-center w-full md:w-[calc(33.333%-1rem)]">
               <UIcon name="i-heroicons-photo" class="w-12 h-12 text-gray-400" />
             </div>
           </template>
