@@ -36,11 +36,11 @@
           {{ $t('support.donate.ways.title') }}
         </h2>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <div
             v-for="(item, index) in waysWithIcons"
             :key="index"
-            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-gray-100 w-full md:w-[calc(50%-1rem)]"
           >
             <div class="flex items-start gap-4">
               <div
@@ -189,14 +189,14 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <a
             v-for="(wishList, index) in wishLists"
             :key="index"
             :href="wishList.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <div class="flex flex-col items-center text-center">
               <div

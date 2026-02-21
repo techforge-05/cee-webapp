@@ -90,11 +90,11 @@
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('about.philosophy.principles.title') }}
         </h2>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="flex flex-wrap justify-center gap-8">
           <div
             v-for="(principle, index) in principles"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300"
+            class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <div
               class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"

@@ -65,11 +65,11 @@
 
           <!-- When there are upcoming admissions events -->
           <div v-if="admissionsEvents.length > 0">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 mb-6">
+            <div class="flex flex-wrap justify-center gap-4 mt-8 mb-6">
               <div
                 v-for="event in admissionsEvents"
                 :key="event.id"
-                class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 text-left"
+                class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 text-left w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
               >
                 <div class="flex items-start gap-4">
                   <div class="bg-emerald-100 text-emerald-700 rounded-lg px-3 py-2 text-center shrink-0">

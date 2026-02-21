@@ -160,7 +160,7 @@
             :class="getLevelBorderColor(index)"
           >
             <div
-              class="h-48 flex items-center justify-center"
+              class="h-64 flex items-center justify-center"
               :class="getLevelLightBgColor(index)"
             >
               <img
