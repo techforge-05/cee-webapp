@@ -103,7 +103,7 @@
                 </div>
 
                 <UButton
-                  :to="localePath('/support/donate')"
+                  :to="`${localePath('/support/donate')}?purpose=${slug}#donate-online`"
                   size="lg"
                   color="primary"
                   class="w-full bg-red-600 hover:bg-red-700"

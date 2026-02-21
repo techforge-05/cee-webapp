@@ -2055,6 +2055,102 @@
         "description": "Cada donación marca una diferencia en la vida de nuestros estudiantes.",
         "viewProjects": "Ver Proyectos Actuales",
         "contactUs": "Contáctenos"
+      },
+      "payment": {
+        "sectionTitle": "Métodos de Donación",
+        "sectionDescription": "Elija un propósito y método de pago para su donación.",
+        "modalTitle": "Realizar una Donación",
+        "amount": {
+          "title": "Monto de la Donación",
+          "custom": "Monto Personalizado",
+          "customPlaceholder": "Ingrese el monto",
+          "currency": "Moneda"
+        },
+        "donor": {
+          "title": "Su Información",
+          "firstName": "Nombre",
+          "lastName": "Apellido",
+          "email": "Correo Electrónico",
+          "phone": "Número de Teléfono (Opcional)"
+        },
+        "card": {
+          "title": "Información de la Tarjeta",
+          "number": "Número de Tarjeta",
+          "holderName": "Nombre en la Tarjeta",
+          "expMonth": "Mes",
+          "expYear": "Año",
+          "cvc": "CVC",
+          "expiry": "Fecha de Vencimiento"
+        },
+        "security": {
+          "title": "Pago Seguro",
+          "description": "Su información de pago se transmite de forma segura. No almacenamos los datos de su tarjeta."
+        },
+        "submit": "Donar {amount}",
+        "close": "Cerrar",
+        "processing": {
+          "title": "Procesando Su Donación",
+          "doNotClose": "Por favor no cierre esta ventana.",
+          "initializing": "Iniciando pago seguro...",
+          "verifying": "Verificando su dispositivo...",
+          "authorizing": "Autorizando pago...",
+          "bankVerification": "Esperando verificación del banco...",
+          "processingPayment": "Procesando su donación..."
+        },
+        "challenge": {
+          "title": "Verificación Bancaria Requerida",
+          "description": "Su banco requiere verificación adicional. Complete la verificación a continuación."
+        },
+        "success": {
+          "title": "¡Gracias por Su Donación!",
+          "message": "Su donación de {amount} ha sido procesada exitosamente.",
+          "orderNumber": "Número de Referencia",
+          "emailConfirmation": "Se ha enviado una confirmación a su correo electrónico.",
+          "newDonation": "Realizar Otra Donación"
+        },
+        "error": {
+          "title": "No se Pudo Procesar el Pago",
+          "tryAgain": "Intentar de Nuevo",
+          "generic": "Ocurrió un error inesperado. Por favor intente de nuevo.",
+          "cardDeclined": "Su tarjeta fue rechazada. Por favor intente con otra tarjeta.",
+          "timeout": "La solicitud expiró. Por favor intente de nuevo."
+        },
+        "validation": {
+          "amountRequired": "Por favor seleccione o ingrese un monto de donación.",
+          "amountMin": "La donación mínima es $1.",
+          "firstNameRequired": "El nombre es obligatorio.",
+          "lastNameRequired": "El apellido es obligatorio.",
+          "emailRequired": "El correo electrónico es obligatorio.",
+          "emailInvalid": "Por favor ingrese un correo electrónico válido.",
+          "cardNumberRequired": "El número de tarjeta es obligatorio.",
+          "cardNumberInvalid": "Por favor ingrese un número de tarjeta válido.",
+          "cardHolderRequired": "El nombre en la tarjeta es obligatorio.",
+          "cardExpiryRequired": "La fecha de vencimiento es obligatoria.",
+          "cardExpired": "Esta tarjeta está vencida.",
+          "cvcRequired": "El CVC es obligatorio.",
+          "cvcInvalid": "Por favor ingrese un CVC válido (3-4 dígitos)."
+        },
+        "purpose": {
+          "label": "Propósito de la Donación",
+          "custom": "Propósito Personalizado...",
+          "customPlaceholder": "Describa el propósito de su donación",
+          "general": "General / Cualquier Propósito",
+          "scholarships": "Becas Estudiantiles",
+          "descriptionGeneral": "Su donación se utilizará donde más se necesite.",
+          "descriptionScholarships": "Su donación financiará becas para estudiantes necesitados.",
+          "descriptionProject": "Su donación apoyará el proyecto \"{name}\".",
+          "descriptionCustom": "Su donación será designada para el propósito que usted especifique."
+        },
+        "methodCard": {
+          "title": "Tarjeta de Crédito o Débito",
+          "description": "Pague de forma segura con Visa, Mastercard u otras tarjetas."
+        },
+        "methodPaypal": {
+          "title": "PayPal",
+          "description": "Pague con su cuenta de PayPal.",
+          "comingSoon": "Próximamente"
+        },
+        "donatingFor": "Donando para: {purpose}"
       }
     },
     "projects": {

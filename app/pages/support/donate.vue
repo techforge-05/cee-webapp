@@ -62,6 +62,117 @@
       </div>
     </section>
 
+    <!-- Donation Methods Section -->
+    <section id="donate-online" class="py-16 bg-teal-50">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <div class="text-center mb-10">
+          <UIcon
+            name="i-heroicons-heart"
+            class="w-16 h-16 text-teal-600 mx-auto mb-6"
+          />
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ $t('support.donate.payment.sectionTitle') }}
+          </h2>
+          <p class="text-xl text-gray-700">
+            {{ $t('support.donate.payment.sectionDescription') }}
+          </p>
+        </div>
+
+        <!-- Purpose Dropdown -->
+        <div class="max-w-xl mx-auto mb-8">
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            {{ $t('support.donate.payment.purpose.label') }}
+          </label>
+
+          <!-- Custom text mode -->
+          <div v-if="selectedPurpose === 'custom'" class="flex gap-2">
+            <UInput
+              v-model="customPurposeText"
+              :placeholder="$t('support.donate.payment.purpose.customPlaceholder')"
+              size="lg"
+              class="flex-1"
+            />
+            <UButton
+              variant="ghost"
+              icon="i-heroicons-x-mark"
+              size="lg"
+              @click="clearCustomPurpose"
+            />
+          </div>
+
+          <!-- Dropdown mode -->
+          <USelect
+            v-else
+            v-model="selectedPurpose"
+            :items="purposeOptions"
+            size="lg"
+            class="w-full"
+          />
+
+          <!-- Purpose description -->
+          <p
+            v-if="purposeDescription"
+            class="mt-3 text-sm text-teal-700 bg-teal-100 rounded-lg px-4 py-3"
+          >
+            <UIcon name="i-heroicons-information-circle" class="w-4 h-4 inline mr-1 -mt-0.5" />
+            {{ purposeDescription }}
+          </p>
+        </div>
+
+        <!-- Payment Method Cards -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <!-- Credit/Debit Card -->
+          <button
+            class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 text-left cursor-pointer"
+            @click="showDonationModal = true"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mb-4"
+              >
+                <UIcon name="i-heroicons-credit-card" class="w-8 h-8 text-white" />
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                {{ $t('support.donate.payment.methodCard.title') }}
+              </h3>
+              <p class="text-gray-600">
+                {{ $t('support.donate.payment.methodCard.description') }}
+              </p>
+            </div>
+          </button>
+
+          <!-- PayPal (Coming Soon) -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 opacity-75 cursor-not-allowed relative"
+          >
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center mb-4"
+              >
+                <UIcon name="i-heroicons-currency-dollar" class="w-8 h-8 text-white" />
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                {{ $t('support.donate.payment.methodPaypal.title') }}
+              </h3>
+              <p class="text-gray-600 mb-3">
+                {{ $t('support.donate.payment.methodPaypal.description') }}
+              </p>
+              <UBadge color="neutral" variant="subtle">
+                {{ $t('support.donate.payment.methodPaypal.comingSoon') }}
+              </UBadge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation Modal -->
+    <DonationModal
+      v-model="showDonationModal"
+      :purpose="purposeLabel"
+      :purpose-value="purposeValueForApi"
+    />
+
     <!-- Amazon Wish Lists Section -->
     <section class="py-16 bg-orange-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -202,18 +313,108 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
 const localePath = useLocalePath();
-const { tm, rt } = useI18n();
+const { t, tm, rt } = useI18n();
 const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
 
-onMounted(() => loadContent([
-  'support.donate.intro',
-  'support.donate.ways',
-  'support.donate.wishLists',
-  'support.donate.donateBooks',
-  'support.donate.contact',
-  'support.donate.emails',
-]));
+// Purpose state
+const selectedPurpose = ref('general');
+const customPurposeText = ref('');
+const showDonationModal = ref(false);
+
+onMounted(async () => {
+  await loadContent([
+    'support.donate.intro',
+    'support.donate.ways',
+    'support.donate.wishLists',
+    'support.donate.donateBooks',
+    'support.donate.contact',
+    'support.donate.emails',
+    'support.projects.items',
+  ]);
+
+  // Prepopulate purpose from query param (e.g., ?purpose=water-cistern)
+  const purposeQuery = route.query.purpose as string | undefined;
+  if (purposeQuery) {
+    const projectSlugs = projectItems.value.map(p => p.slug);
+    if (projectSlugs.includes(purposeQuery)) {
+      selectedPurpose.value = purposeQuery;
+    }
+  }
+});
+
+// Load projects for purpose dropdown
+const projectItems = computed(() => {
+  const items = getItems('support.projects.items');
+  return items
+    .filter(item => getMeta(item, 'status') !== 'completed')
+    .map(item => ({
+      title: field(item, 'title'),
+      slug: getMeta(item, 'slug'),
+    }))
+    .filter(p => p.slug && p.title);
+});
+
+// Build purpose options for USelect
+const purposeOptions = computed(() => {
+  const options = [
+    { label: t('support.donate.payment.purpose.custom'), value: 'custom' },
+    { label: t('support.donate.payment.purpose.general'), value: 'general' },
+    { label: t('support.donate.payment.purpose.scholarships'), value: 'scholarships' },
+  ];
+
+  for (const project of projectItems.value) {
+    options.push({ label: project.title, value: project.slug });
+  }
+
+  return options;
+});
+
+// Purpose description text
+const purposeDescription = computed(() => {
+  const val = selectedPurpose.value;
+  if (val === 'custom') {
+    return customPurposeText.value
+      ? t('support.donate.payment.purpose.descriptionCustom')
+      : '';
+  }
+  if (val === 'general') {
+    return t('support.donate.payment.purpose.descriptionGeneral');
+  }
+  if (val === 'scholarships') {
+    return t('support.donate.payment.purpose.descriptionScholarships');
+  }
+  // It's a project slug
+  const project = projectItems.value.find(p => p.slug === val);
+  if (project) {
+    return t('support.donate.payment.purpose.descriptionProject', { name: project.title });
+  }
+  return '';
+});
+
+// The display label for the purpose (shown in modal)
+const purposeLabel = computed(() => {
+  const val = selectedPurpose.value;
+  if (val === 'custom') {
+    return customPurposeText.value || '';
+  }
+  const option = purposeOptions.value.find(o => o.value === val);
+  return option?.label || '';
+});
+
+// The value to send to the API
+const purposeValueForApi = computed(() => {
+  if (selectedPurpose.value === 'custom') {
+    return customPurposeText.value || 'general';
+  }
+  return selectedPurpose.value;
+});
+
+function clearCustomPurpose() {
+  selectedPurpose.value = 'general';
+  customPurposeText.value = '';
+}
 
 const waysIcons = [
   'i-heroicons-currency-dollar',

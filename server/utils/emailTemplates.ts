@@ -118,6 +118,83 @@ export function getContactEmailHtml(data: ContactFormData): string {
   `
 }
 
+// --- Donation Confirmation Email ---
+
+interface DonationConfirmationData {
+  donorName: string
+  amount: string
+  orderNumber: string
+  transactionId: string
+  purpose?: string
+}
+
+export function getDonationConfirmationSubject(locale: EmailLocale): string {
+  return locale === 'en'
+    ? 'Thank you for your donation to CEE!'
+    : '¡Gracias por su donación a CEE!'
+}
+
+export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationConfirmationData): string {
+  const content = {
+    en: {
+      greeting: 'Thank You for Your Donation!',
+      message: `Dear ${escapeHtml(data.donorName)}, thank you for your generous donation to Centro Educativo Evangélico.`,
+      details: 'Donation Details',
+      amountLabel: 'Amount',
+      purposeLabel: 'Purpose',
+      referenceLabel: 'Reference Number',
+      transactionLabel: 'Transaction ID',
+      footer: 'Your support makes a difference in our students\' lives. If you have any questions, please contact us at english@ceehonduras.org.',
+      disclaimer: 'This is an automated confirmation. Please keep this email for your records.',
+    },
+    es: {
+      greeting: '¡Gracias por Su Donación!',
+      message: `Estimado/a ${escapeHtml(data.donorName)}, gracias por su generosa donación al Centro Educativo Evangélico.`,
+      details: 'Detalles de la Donación',
+      amountLabel: 'Monto',
+      purposeLabel: 'Propósito',
+      referenceLabel: 'Número de Referencia',
+      transactionLabel: 'ID de Transacción',
+      footer: 'Su apoyo marca una diferencia en la vida de nuestros estudiantes. Si tiene alguna pregunta, contáctenos en english@ceehonduras.org.',
+      disclaimer: 'Esta es una confirmación automática. Por favor conserve este correo para sus registros.',
+    },
+  }
+
+  const t = content[locale]
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+      <div style="background-color: #0d9488; color: white; padding: 20px 24px;">
+        <h2 style="margin: 0; font-size: 20px;">${t.greeting}</h2>
+      </div>
+      <div style="padding: 24px;">
+        <p style="color: #374151; line-height: 1.6; margin-bottom: 20px;">${t.message}</p>
+        <h3 style="color: #374151; font-size: 16px; margin-bottom: 12px;">${t.details}</h3>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.amountLabel}:</td>
+            <td style="padding: 8px 12px; color: #0d9488; font-weight: bold; font-size: 18px;">${escapeHtml(data.amount)}</td>
+          </tr>
+          ${data.purpose && data.purpose !== 'general' ? `<tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.purposeLabel}:</td>
+            <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.purpose)}</td>
+          </tr>` : ''}
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.referenceLabel}:</td>
+            <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.orderNumber)}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #f3f4f6;">
+            <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.transactionLabel}:</td>
+            <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.transactionId)}</td>
+          </tr>
+        </table>
+        <p style="color: #4b5563; line-height: 1.6;">${t.footer}</p>
+        <p style="margin-top: 20px; font-size: 12px; color: #9ca3af;">${t.disclaimer}</p>
+      </div>
+    </div>
+  `
+}
+
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, '&amp;')

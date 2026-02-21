@@ -59,6 +59,11 @@ export default defineNuxtConfig({
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '',
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET || '',
+    todopagoUsername: process.env.TODOPAGO_USERNAME || '',
+    todopagoPassword: process.env.TODOPAGO_PASSWORD || '',
+    todopagoMerchantId: process.env.TODOPAGO_MERCHANT_ID || '',
+    todopagoTerminalId: process.env.TODOPAGO_TERMINAL_ID || '',
+    todopagoBaseUrl: process.env.TODOPAGO_BASE_URL || 'https://test-apitm-todopago.azurewebsites.net',
   },
 
   i18n: {

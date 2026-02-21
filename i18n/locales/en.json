@@ -2055,6 +2055,102 @@
         "description": "Every donation makes a difference in our students' lives.",
         "viewProjects": "View Current Projects",
         "contactUs": "Contact Us"
+      },
+      "payment": {
+        "sectionTitle": "Donation Methods",
+        "sectionDescription": "Choose a purpose and payment method for your donation.",
+        "modalTitle": "Make a Donation",
+        "amount": {
+          "title": "Donation Amount",
+          "custom": "Custom Amount",
+          "customPlaceholder": "Enter amount",
+          "currency": "Currency"
+        },
+        "donor": {
+          "title": "Your Information",
+          "firstName": "First Name",
+          "lastName": "Last Name",
+          "email": "Email Address",
+          "phone": "Phone Number (Optional)"
+        },
+        "card": {
+          "title": "Card Information",
+          "number": "Card Number",
+          "holderName": "Name on Card",
+          "expMonth": "Month",
+          "expYear": "Year",
+          "cvc": "CVC",
+          "expiry": "Expiration Date"
+        },
+        "security": {
+          "title": "Secure Payment",
+          "description": "Your payment information is securely transmitted. We do not store your card details."
+        },
+        "submit": "Donate {amount}",
+        "close": "Close",
+        "processing": {
+          "title": "Processing Your Donation",
+          "doNotClose": "Please do not close this window.",
+          "initializing": "Initializing secure payment...",
+          "verifying": "Verifying your device...",
+          "authorizing": "Authorizing payment...",
+          "bankVerification": "Waiting for bank verification...",
+          "processingPayment": "Processing your donation..."
+        },
+        "challenge": {
+          "title": "Bank Verification Required",
+          "description": "Your bank requires additional verification. Please complete the verification below."
+        },
+        "success": {
+          "title": "Thank You for Your Donation!",
+          "message": "Your donation of {amount} has been processed successfully.",
+          "orderNumber": "Reference Number",
+          "emailConfirmation": "A confirmation has been sent to your email.",
+          "newDonation": "Make Another Donation"
+        },
+        "error": {
+          "title": "Payment Could Not Be Processed",
+          "tryAgain": "Try Again",
+          "generic": "An unexpected error occurred. Please try again.",
+          "cardDeclined": "Your card was declined. Please try a different card.",
+          "timeout": "The request timed out. Please try again."
+        },
+        "validation": {
+          "amountRequired": "Please select or enter a donation amount.",
+          "amountMin": "Minimum donation is $1.",
+          "firstNameRequired": "First name is required.",
+          "lastNameRequired": "Last name is required.",
+          "emailRequired": "Email address is required.",
+          "emailInvalid": "Please enter a valid email address.",
+          "cardNumberRequired": "Card number is required.",
+          "cardNumberInvalid": "Please enter a valid card number.",
+          "cardHolderRequired": "Name on card is required.",
+          "cardExpiryRequired": "Expiration date is required.",
+          "cardExpired": "This card has expired.",
+          "cvcRequired": "CVC is required.",
+          "cvcInvalid": "Please enter a valid CVC (3-4 digits)."
+        },
+        "purpose": {
+          "label": "Donation Purpose",
+          "custom": "Custom Purpose...",
+          "customPlaceholder": "Describe the purpose of your donation",
+          "general": "General / Any Purpose",
+          "scholarships": "Student Scholarships",
+          "descriptionGeneral": "Your donation will be used where it is needed most.",
+          "descriptionScholarships": "Your donation will fund scholarships for students in need.",
+          "descriptionProject": "Your donation will support the \"{name}\" project.",
+          "descriptionCustom": "Your donation will be designated for your specified purpose."
+        },
+        "methodCard": {
+          "title": "Credit or Debit Card",
+          "description": "Pay securely with Visa, Mastercard, or other major cards."
+        },
+        "methodPaypal": {
+          "title": "PayPal",
+          "description": "Pay with your PayPal account.",
+          "comingSoon": "Coming Soon"
+        },
+        "donatingFor": "Donating for: {purpose}"
       }
     },
     "projects": {
