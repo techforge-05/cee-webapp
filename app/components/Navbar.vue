@@ -538,8 +538,8 @@
           <div v-if="isVisible('admissions')" class="w-[70%]">
             <UButton
               @click="mobileAdmissionsOpen = !mobileAdmissionsOpen"
-              class="rounded-full font-semibold w-full justify-center text-green-700"
-              variant="subtle"
+              class="rounded-full font-semibold w-full justify-center bg-linear-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 shadow-sm"
+              variant="solid"
             >
               {{ $t('nav.admissions') }}
               <UIcon
@@ -585,8 +585,8 @@
           <div v-if="isVisible('getInvolved')" class="w-[70%]">
             <UButton
               @click="mobileGetInvolvedOpen = !mobileGetInvolvedOpen"
-              color="warning"
-              class="rounded-full font-semibold w-full justify-center"
+              variant="solid"
+              class="rounded-full font-semibold w-full justify-center bg-linear-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 shadow-sm"
             >
               {{ $t('nav.getInvolved') }}
               <UIcon
@@ -635,33 +635,14 @@
             </UButton>
           </template>
           <template v-else>
-            <div class="space-y-2">
-              <div class="flex items-center justify-center gap-2 text-gray-700">
-                <UIcon name="i-heroicons-user-circle" class="w-5 h-5" />
-                <span class="truncate">{{ user.email }}</span>
-              </div>
-              <UButton
-                v-if="!isAdminRoute"
-                @click="
-                  navigateTo(localePath('/admin'));
-                  mobileMenuOpen = false;
-                "
-                variant="subtle"
-                block
-                class="text-purple-700"
-              >
-                <UIcon name="i-heroicons-cog-6-tooth" class="w-4 h-4 mr-1" />
-                {{ $t('nav.goToAdmin') }}
-              </UButton>
-              <UButton
-                @click="handleSignOut"
-                variant="outline"
-                block
-                class="text-white bg-red-500/60"
-              >
-                {{ $t('nav.signOut') }}
-              </UButton>
-            </div>
+            <UButton
+              @click="handleSignOut"
+              variant="outline"
+              block
+              class="text-white bg-red-500/60 w-full"
+            >
+              {{ $t('nav.signOut') }}
+            </UButton>
           </template>
         </div>
       </div>
@@ -759,9 +740,18 @@
 
   const { isVisible, loadVisibility } = useNavVisibility();
   const { getMediaUrl, loadDynamicContent } = useDynamicContent();
+  const isMobile = ref(false);
+  function updateIsMobile() {
+    isMobile.value = window.innerWidth < 1024;
+  }
   onMounted(() => {
     loadVisibility();
     loadDynamicContent();
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+  });
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateIsMobile);
   });
 
   // Navigation items
@@ -789,6 +779,16 @@
 
   const accountMenuItems = computed(() => {
     const items: any[][] = [];
+    // On mobile, show email in dropdown (it's hidden in the trigger button)
+    if (isMobile.value && user.value?.email) {
+      items.push([
+        {
+          label: user.value.email,
+          icon: 'i-heroicons-user-circle',
+          disabled: true,
+        },
+      ]);
+    }
     if (!isAdminRoute.value) {
       items.push([
         {
@@ -798,13 +798,16 @@
         },
       ]);
     }
-    items.push([
-      {
-        label: t('nav.signOut'),
-        icon: 'i-heroicons-arrow-right-on-rectangle',
-        onSelect: () => handleSignOut(),
-      },
-    ]);
+    // On mobile, Sign Out is in the hamburger menu — don't duplicate here
+    if (!isMobile.value) {
+      items.push([
+        {
+          label: t('nav.signOut'),
+          icon: 'i-heroicons-arrow-right-on-rectangle',
+          onSelect: () => handleSignOut(),
+        },
+      ]);
+    }
     return items;
   });
 
@@ -1056,8 +1059,9 @@
   };
 
   const handleSignOut = async () => {
+    mobileMenuOpen.value = false;
     await supabase.auth.signOut();
-    await navigateTo(localePath('/auth/login'));
+    await navigateTo(localePath('/'));
   };
 </script>
 
