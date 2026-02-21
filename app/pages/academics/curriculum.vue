@@ -253,7 +253,7 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <UButton
-              :to="localePath('/admissions')"
+              :to="localePath('/admissions/who-can-apply')"
               size="lg"
               variant="solid"
               class="bg-white text-blue-700 hover:bg-gray-100 justify-center"
