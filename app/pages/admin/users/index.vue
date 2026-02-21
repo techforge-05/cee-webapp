@@ -410,6 +410,24 @@ async function confirmDelete() {
   actionLoading.value = true
 
   try {
+    // Guard: prevent deleting the last super_admin
+    if (selectedUser.value.role === 'super_admin') {
+      const { count } = await supabase
+        .from('user_profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('role', 'super_admin')
+
+      if (count !== null && count <= 1) {
+        toast.add({
+          title: t('admin.users.cannotDeleteLastSuperAdmin'),
+          color: 'error',
+        })
+        actionLoading.value = false
+        showDeleteModal.value = false
+        return
+      }
+    }
+
     // Delete permissions first, then profile
     await supabase
       .from('user_permissions')

@@ -1272,6 +1272,7 @@
       "failedToResend": "Error al reenviar invitación",
       "failedToCancel": "Error al cancelar invitación",
       "pendingInvitations": "Invitaciones Pendientes",
+      "cannotDeleteLastSuperAdmin": "No se puede eliminar el último super administrador. Debe haber al menos uno.",
       "deleteConfirm": {
         "title": "Eliminar usuario",
         "message": "¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.",
