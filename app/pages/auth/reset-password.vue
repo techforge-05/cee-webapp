@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-md w-full space-y-8">
+  <div class="space-y-8">
     <div>
       <h2 class="text-center text-2xl font-bold text-gray-900">
         {{ $t('auth.resetPassword.title') }}

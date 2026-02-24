@@ -3,6 +3,17 @@
     <div class="absolute top-4 right-4">
       <LanguageSwitcher />
     </div>
-    <slot />
+    <div class="w-full max-w-md">
+      <div class="flex justify-center mb-6">
+        <NuxtLink :to="localePath('/')">
+          <img src="/images/logo.png" alt="CEE Logo" class="h-36 w-auto" />
+        </NuxtLink>
+      </div>
+      <slot />
+    </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const localePath = useLocalePath()
+</script>

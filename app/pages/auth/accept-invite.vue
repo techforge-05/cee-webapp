@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-md w-full space-y-8">
+  <div class="space-y-8">
     <!-- Loading state -->
     <div v-if="validating" class="text-center">
       <UIcon
@@ -55,9 +55,6 @@
 
     <!-- Registration form -->
     <div v-else-if="invitation">
-      <div class="flex justify-center">
-        <img src="/images/logo.png" alt="CEE Logo" class="h-40 w-auto" />
-      </div>
       <h2
         class="text-center text-2xl font-bold text-gray-900 mb-2 dark:text-white"
       >
