@@ -129,9 +129,9 @@
           >
             <div class="flex flex-col items-center text-center">
               <div
-                class="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mb-4"
+                class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4 overflow-hidden"
               >
-                <UIcon name="i-heroicons-credit-card" class="w-8 h-8 text-white" />
+                <img src="/images/bancoOccidente.png" alt="Banco de Occidente" class="w-11 h-11 object-contain" />
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
                 {{ $t('support.donate.payment.methodCard.title') }}

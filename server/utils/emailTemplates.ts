@@ -4,6 +4,7 @@ interface InviteEmailData {
   inviteUrl: string
   role: 'super_admin' | 'admin'
   isResend: boolean
+  baseUrl?: string
 }
 
 export function getInviteEmailSubject(locale: EmailLocale, isResend: boolean): string {
@@ -50,9 +51,13 @@ export function getInviteEmailHtml(locale: EmailLocale, data: InviteEmailData): 
   }
 
   const t = content[locale]
+  const logoHtml = data.baseUrl
+    ? `<div style="text-align: center; margin-bottom: 20px;"><img src="${data.baseUrl}/images/logo.png" alt="CEE Logo" style="height: 80px; width: auto;" /></div>`
+    : ''
 
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      ${logoHtml}
       <h2>${t.greeting}</h2>
       <p>${t.message}</p>
       <p>${t.cta}</p>
@@ -126,6 +131,7 @@ interface DonationConfirmationData {
   orderNumber: string
   transactionId: string
   purpose?: string
+  baseUrl?: string
 }
 
 export function getDonationConfirmationSubject(locale: EmailLocale): string {
@@ -138,7 +144,7 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
   const content = {
     en: {
       greeting: 'Thank You for Your Donation!',
-      message: `Dear ${escapeHtml(data.donorName)}, thank you for your generous donation to Centro Educativo Evangélico.`,
+      message: `Dear ${escapeHtml(data.donorName)}, thank you for your generous donation to Comunidad Educativa Evangélica.`,
       details: 'Donation Details',
       amountLabel: 'Amount',
       purposeLabel: 'Purpose',
@@ -149,7 +155,7 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
     },
     es: {
       greeting: '¡Gracias por Su Donación!',
-      message: `Estimado/a ${escapeHtml(data.donorName)}, gracias por su generosa donación al Centro Educativo Evangélico.`,
+      message: `Estimado/a ${escapeHtml(data.donorName)}, gracias por su generosa donación a la Comunidad Educativa Evangélica.`,
       details: 'Detalles de la Donación',
       amountLabel: 'Monto',
       purposeLabel: 'Propósito',
@@ -162,8 +168,13 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
 
   const t = content[locale]
 
+  const logoHtml = data.baseUrl
+    ? `<div style="text-align: center; padding: 20px 24px 0;"><img src="${data.baseUrl}/images/logo.png" alt="CEE Logo" style="height: 80px; width: auto;" /></div>`
+    : ''
+
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+      ${logoHtml}
       <div style="background-color: #0d9488; color: white; padding: 20px 24px;">
         <h2 style="margin: 0; font-size: 20px;">${t.greeting}</h2>
       </div>

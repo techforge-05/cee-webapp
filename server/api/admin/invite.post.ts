@@ -100,6 +100,7 @@ export default defineEventHandler(async (event) => {
           inviteUrl,
           role: role || 'admin',
           isResend: false,
+          baseUrl,
         }),
       })
 

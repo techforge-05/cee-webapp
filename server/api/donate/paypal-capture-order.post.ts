@@ -85,6 +85,7 @@ export default defineEventHandler(async (event) => {
       })
 
       const currencySymbol = currency === 'USD' ? '$' : 'L'
+      const baseUrl = getRequestURL(event).origin
       await transporter.sendMail({
         from: `"CEE Honduras" <${config.gmailUser}>`,
         to: donorEmail,
@@ -95,6 +96,7 @@ export default defineEventHandler(async (event) => {
           orderNumber,
           transactionId: capture.id,
           purpose: purpose || undefined,
+          baseUrl,
         }),
       })
     } catch (emailErr) {

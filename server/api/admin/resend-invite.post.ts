@@ -91,6 +91,7 @@ export default defineEventHandler(async (event) => {
           inviteUrl,
           role: oldInvite.role,
           isResend: true,
+          baseUrl,
         }),
       })
 

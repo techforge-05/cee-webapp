@@ -240,12 +240,14 @@
         </div>
 
         <!-- Security Notice -->
-        <UAlert
-          :title="$t('support.donate.payment.security.title')"
-          :description="$t('support.donate.payment.security.description')"
-          icon="i-heroicons-lock-closed"
-          color="info"
-        />
+        <div class="flex items-center gap-4 bg-blue-50 border border-blue-200 rounded-lg px-4 py-3">
+          <UIcon name="i-heroicons-lock-closed" class="w-6 h-6 text-blue-600 shrink-0" />
+          <div class="flex-1">
+            <p class="font-semibold text-blue-900 text-sm">{{ $t('support.donate.payment.security.title') }}</p>
+            <p class="text-blue-700 text-xs">{{ $t('support.donate.payment.security.description') }}</p>
+          </div>
+          <img src="/images/bancoOccidente.png" alt="Banco de Occidente" class="h-10 w-auto shrink-0" />
+        </div>
       </div>
 
       <!-- PROCESSING STATE -->

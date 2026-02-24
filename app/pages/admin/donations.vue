@@ -59,7 +59,7 @@
       class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 flex flex-wrap items-center gap-4"
     >
       <span class="text-sm text-gray-500">
-        {{ donations.length }} {{ donations.length === 1 ? $t('admin.editors.donations.totals.count', { count: 1 }).split('|')[0].trim() : $t('admin.editors.donations.totals.count', { count: donations.length }).split('|')[1]?.trim() || $t('admin.editors.donations.totals.count', { count: donations.length }) }}
+        {{ $t('admin.editors.donations.totals.count', { count: donations.length }, donations.length) }}
       </span>
       <div class="flex items-center gap-4 ml-auto">
         <span
