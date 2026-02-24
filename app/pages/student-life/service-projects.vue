@@ -142,7 +142,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField } = usePublicContent();
+  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'studentLife.serviceProjects.intro',

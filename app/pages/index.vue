@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-white">
+  <div v-if="pageLoading" class="min-h-screen flex items-center justify-center">
+    <div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" />
+  </div>
+  <div v-else class="bg-white">
     <!-- Section 1: Hero Video (Full viewport) -->
     <section
       class="relative min-h-[500px] h-screen max-h-[800px] lg:max-h-none bg-linear-to-br from-blue-600 to-blue-800"
@@ -301,8 +304,9 @@
 
   const { locale, tm, rt } = useI18n();
   const localePath = useLocalePath();
-  const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
-  const { announcements, loadAnnouncements } = useAnnouncements();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
+  const { announcements, loading: announcementsLoading, loadAnnouncements } = useAnnouncements();
+  const pageLoading = computed(() => contentLoading.value || announcementsLoading.value);
 
   // Load DB content
   onMounted(() =>

@@ -14,23 +14,29 @@ export function usePublicContent() {
 
   // Global cache keyed by pageKey
   const cache = useState<Record<string, PublicContentItem[]>>('publicContent', () => ({}))
+  const loading = useState<boolean>('publicContentLoading', () => false)
 
   async function loadContent(pageKeys: string[]): Promise<void> {
     const toFetch = pageKeys.filter(k => !(k in cache.value))
     if (toFetch.length === 0) return
 
-    const { data } = await supabase
-      .from('page_content')
-      .select('*')
-      .in('page_key', toFetch)
-      .eq('is_active', true)
-      .order('sort_order', { ascending: true })
+    loading.value = true
+    try {
+      const { data } = await supabase
+        .from('page_content')
+        .select('*')
+        .in('page_key', toFetch)
+        .eq('is_active', true)
+        .order('sort_order', { ascending: true })
 
-    if (data) {
-      for (const key of toFetch) {
-        cache.value[key] = (data as PublicContentItem[])
-          .filter(item => item.page_key === key)
+      if (data) {
+        for (const key of toFetch) {
+          cache.value[key] = (data as PublicContentItem[])
+            .filter(item => item.page_key === key)
+        }
       }
+    } finally {
+      loading.value = false
     }
   }
 
@@ -65,5 +71,5 @@ export function usePublicContent() {
     return item ? meta(item, metaKey) : ''
   }
 
-  return { loadContent, getItems, getSingle, field, meta, singleField, singleMeta, cache }
+  return { loadContent, getItems, getSingle, field, meta, singleField, singleMeta, cache, loading }
 }

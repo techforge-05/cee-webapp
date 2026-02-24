@@ -1,5 +1,6 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div v-if="contentLoading" class="min-h-screen flex items-center justify-center"><div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" /></div>
+  <div v-else class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
       class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
@@ -122,7 +123,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'studentLife.sports.intro',
