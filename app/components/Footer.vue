@@ -31,10 +31,10 @@
             <li class="flex items-center gap-2">
               <UIcon name="i-heroicons-envelope" class="w-5 h-5 shrink-0" />
               <a
-                href="mailto:contact@ceehonduras.org"
+                href="mailto:administracion@ceehonduras.org"
                 class="hover:text-white transition-colors"
               >
-                contact@ceehonduras.org
+                administracion@ceehonduras.org
               </a>
             </li>
           </ul>
@@ -48,7 +48,7 @@
           <ul class="space-y-2">
             <li>
               <NuxtLink
-                :to="localePath('/about/mission')"
+                :to="localePath('/about/mission-vision-values')"
                 class="text-gray-400 hover:text-white transition-colors"
               >
                 {{ $t('nav.about') }}
@@ -64,7 +64,7 @@
             </li>
             <li>
               <NuxtLink
-                :to="localePath('/admissions')"
+                :to="localePath('/admissions/who-can-apply')"
                 class="text-gray-400 hover:text-white transition-colors"
               >
                 {{ $t('nav.admissions') }}

@@ -98,6 +98,7 @@
             </ul>
             <div class="text-center md:text-left">
               <UButton
+                :to="localePath('/academics/grades')"
                 size="lg"
                 class="text-lg md:text-xl px-6 md:px-8 py-3 md:py-4"
               >
@@ -287,11 +288,7 @@
             </p>
           </UCard>
         </div>
-        <div class="text-center mt-12">
-          <UButton variant="outline" size="lg">
-            {{ $t('home.news.viewAll') }}
-          </UButton>
-        </div>
+
       </div>
     </section>
   </div>
@@ -303,6 +300,7 @@
   });
 
   const { locale, tm, rt } = useI18n();
+  const localePath = useLocalePath();
   const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
   const { announcements, loadAnnouncements } = useAnnouncements();
 
