@@ -23,7 +23,8 @@
       "manageNav": "Manage Nav",
       "calendar": "Calendar",
       "announcements": "Announcements",
-      "gallery": "Gallery"
+      "gallery": "Gallery",
+      "donations": "Donations"
     },
     "dropdowns": {
       "about": {
@@ -1581,6 +1582,51 @@
         "deleteTitle": "Delete Announcement",
         "deleteMessage": "Are you sure you want to delete this announcement? This action cannot be undone.",
         "requiredFields": "Title and display date are required"
+      },
+      "donations": {
+        "title": "Donations",
+        "subtitle": "View and export donation reports.",
+        "noDonations": "No donations found",
+        "filters": {
+          "purpose": "Purpose",
+          "allPurposes": "All",
+          "dateFrom": "From",
+          "dateTo": "To",
+          "donorName": "Search donor..."
+        },
+        "table": {
+          "donorName": "Donor",
+          "email": "Email",
+          "amount": "Amount",
+          "purpose": "Purpose",
+          "paymentMethod": "Method",
+          "date": "Date"
+        },
+        "totals": {
+          "label": "Total",
+          "count": "{count} donation | {count} donations"
+        },
+        "purposes": {
+          "general": "General",
+          "scholarships": "Scholarships"
+        },
+        "paymentMethods": {
+          "card": "Card",
+          "paypal": "PayPal"
+        },
+        "download": {
+          "button": "Download Report",
+          "title": "Download Donations Report",
+          "dateFrom": "From",
+          "dateTo": "To",
+          "preview": "Preview",
+          "downloadPdf": "Download PDF",
+          "cancel": "Cancel",
+          "pdfTitle": "Donations Report",
+          "period": "Period",
+          "generatedOn": "Generated on",
+          "noData": "No donations found in this date range"
+        }
       },
       "generic": {
         "title": "Title",

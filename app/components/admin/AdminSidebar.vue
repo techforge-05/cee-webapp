@@ -109,6 +109,19 @@
         <UIcon :name="section.icon" class="w-5 h-5 shrink-0" />
         <span>{{ section.label }}</span>
       </NuxtLink>
+
+      <!-- Donations (super admin only) -->
+      <template v-if="adminStore.isSuperAdmin">
+        <div class="border-t border-gray-700 my-3" />
+        <NuxtLink
+          :to="localePath('/admin/donations')"
+          :class="sidebarItemClass(isActive('/admin/donations'))"
+          @click="adminStore.closeSidebar()"
+        >
+          <UIcon name="i-heroicons-banknotes" class="w-5 h-5 shrink-0" />
+          <span>{{ $t('nav.admin.donations') || 'Donations' }}</span>
+        </NuxtLink>
+      </template>
     </nav>
 
     <!-- User info at bottom -->

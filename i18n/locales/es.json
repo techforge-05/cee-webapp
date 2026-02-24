@@ -23,7 +23,8 @@
       "manageNav": "Gestionar Nav",
       "calendar": "Calendario",
       "announcements": "Anuncios",
-      "gallery": "Galería"
+      "gallery": "Galería",
+      "donations": "Donaciones"
     },
     "dropdowns": {
       "about": {
@@ -1581,6 +1582,51 @@
         "deleteTitle": "Eliminar Anuncio",
         "deleteMessage": "¿Está seguro de que desea eliminar este anuncio? Esta acción no se puede deshacer.",
         "requiredFields": "El título y la fecha de publicación son obligatorios"
+      },
+      "donations": {
+        "title": "Donaciones",
+        "subtitle": "Ver y exportar informes de donaciones.",
+        "noDonations": "No se encontraron donaciones",
+        "filters": {
+          "purpose": "Propósito",
+          "allPurposes": "Todos",
+          "dateFrom": "Desde",
+          "dateTo": "Hasta",
+          "donorName": "Buscar donante..."
+        },
+        "table": {
+          "donorName": "Donante",
+          "email": "Correo",
+          "amount": "Monto",
+          "purpose": "Propósito",
+          "paymentMethod": "Método",
+          "date": "Fecha"
+        },
+        "totals": {
+          "label": "Total",
+          "count": "{count} donación | {count} donaciones"
+        },
+        "purposes": {
+          "general": "General",
+          "scholarships": "Becas"
+        },
+        "paymentMethods": {
+          "card": "Tarjeta",
+          "paypal": "PayPal"
+        },
+        "download": {
+          "button": "Descargar Informe",
+          "title": "Descargar Informe de Donaciones",
+          "dateFrom": "Desde",
+          "dateTo": "Hasta",
+          "preview": "Vista Previa",
+          "downloadPdf": "Descargar PDF",
+          "cancel": "Cancelar",
+          "pdfTitle": "Informe de Donaciones",
+          "period": "Período",
+          "generatedOn": "Generado el",
+          "noData": "No se encontraron donaciones en este rango"
+        }
       },
       "generic": {
         "title": "Título",
