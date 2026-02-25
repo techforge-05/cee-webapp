@@ -81,7 +81,11 @@
             <ImageUploader
               v-model="enrollmentImage"
               folder="cee-assets/pages/home"
+              :focal-x="enrollmentFocalX"
+              :focal-y="enrollmentFocalY"
               @update:model-value="trackChanges"
+              @update:focal-x="enrollmentFocalX = $event; trackChanges()"
+              @update:focal-y="enrollmentFocalY = $event; trackChanges()"
             />
           </UFormField>
         </div>
@@ -132,7 +136,11 @@
             <ImageUploader
               v-model="valuesImage"
               folder="cee-assets/pages/home"
+              :focal-x="valuesImageFocalX"
+              :focal-y="valuesImageFocalY"
               @update:model-value="trackChanges"
+              @update:focal-x="valuesImageFocalX = $event; trackChanges()"
+              @update:focal-y="valuesImageFocalY = $event; trackChanges()"
             />
           </UFormField>
         </div>
@@ -181,7 +189,11 @@
                   <ImageUploader
                     :model-value="item.metadata?.image_url || ''"
                     :folder="`cee-assets/pages/home`"
+                    :focal-x="Number(item.metadata?.focalX) || 50"
+                    :focal-y="Number(item.metadata?.focalY) || 50"
                     @update:model-value="updateActivityImageUrl(index, $event)"
+                    @update:focal-x="updateActivityMeta(index, 'focalX', String($event))"
+                    @update:focal-y="updateActivityMeta(index, 'focalY', String($event))"
                   />
                 </UFormField>
                 <div class="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -273,10 +285,14 @@ const welcomeDescription = ref<BilingualText>({ es: '', en: '' })
 const enrollmentTitle = ref<BilingualText>({ es: '', en: '' })
 const enrollmentDescription = ref<BilingualText>({ es: '', en: '' })
 const enrollmentImage = ref('')
+const enrollmentFocalX = ref(50)
+const enrollmentFocalY = ref(50)
 const enrollmentFeatures = ref<PageContentItem[]>([])
 
 // --- Values data ---
 const valuesImage = ref('')
+const valuesImageFocalX = ref(50)
+const valuesImageFocalY = ref(50)
 const valuesItems = ref<PageContentItem[]>([])
 
 // --- Activities data ---
@@ -303,6 +319,8 @@ async function loadAllData() {
       enrollmentTitle.value = { es: e.content_es?.title || '', en: e.content_en?.title || '' }
       enrollmentDescription.value = { es: e.content_es?.description || '', en: e.content_en?.description || '' }
       enrollmentImage.value = e.metadata?.image_url || ''
+      enrollmentFocalX.value = Number(e.metadata?.focalX) || 50
+      enrollmentFocalY.value = Number(e.metadata?.focalY) || 50
     }
 
     // Load enrollment features
@@ -315,6 +333,8 @@ async function loadAllData() {
     await loadItems('home.values.image')
     if (items.value.length > 0) {
       valuesImage.value = items.value[0].metadata?.image_url || ''
+      valuesImageFocalX.value = Number(items.value[0].metadata?.focalX) || 50
+      valuesImageFocalY.value = Number(items.value[0].metadata?.focalY) || 50
     }
 
     // Load values
@@ -349,10 +369,14 @@ function initDirtyStateTracking() {
       title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
       description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
       image: enrollmentImage.value,
+      focalX: enrollmentFocalX.value,
+      focalY: enrollmentFocalY.value,
       features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
     },
     values: {
       image: valuesImage.value,
+      focalX: valuesImageFocalX.value,
+      focalY: valuesImageFocalY.value,
       items: JSON.parse(JSON.stringify(valuesItems.value)),
     },
     activities: JSON.parse(JSON.stringify(activitiesItems.value)),
@@ -372,10 +396,14 @@ function trackChanges() {
         title: JSON.parse(JSON.stringify(enrollmentTitle.value)),
         description: JSON.parse(JSON.stringify(enrollmentDescription.value)),
         image: enrollmentImage.value,
+        focalX: enrollmentFocalX.value,
+        focalY: enrollmentFocalY.value,
         features: JSON.parse(JSON.stringify(enrollmentFeatures.value)),
       },
       values: {
         image: valuesImage.value,
+        focalX: valuesImageFocalX.value,
+        focalY: valuesImageFocalY.value,
         items: JSON.parse(JSON.stringify(valuesItems.value)),
       },
       activities: JSON.parse(JSON.stringify(activitiesItems.value)),
@@ -471,6 +499,19 @@ function updateActivityImageAlt(index: number, field: string, val: string) {
   trackChanges()
 }
 
+function updateActivityMeta(index: number, field: string, val: string) {
+  const arr = [...activitiesItems.value]
+  arr[index] = {
+    ...arr[index],
+    metadata: {
+      ...arr[index].metadata,
+      [field]: val,
+    },
+  }
+  activitiesItems.value = arr
+  trackChanges()
+}
+
 // --- Save all ---
 async function handleSave() {
   saving.value = true
@@ -491,7 +532,7 @@ async function handleSave() {
       page_key: 'home.enrollment',
       content_es: { title: enrollmentTitle.value.es, description: enrollmentDescription.value.es },
       content_en: { title: enrollmentTitle.value.en, description: enrollmentDescription.value.en },
-      metadata: { image_url: enrollmentImage.value },
+      metadata: { image_url: enrollmentImage.value, focalX: String(enrollmentFocalX.value), focalY: String(enrollmentFocalY.value) },
       sort_order: 0,
       is_active: true,
     }])
@@ -504,7 +545,7 @@ async function handleSave() {
       page_key: 'home.values.image',
       content_es: {},
       content_en: {},
-      metadata: { image_url: valuesImage.value },
+      metadata: { image_url: valuesImage.value, focalX: String(valuesImageFocalX.value), focalY: String(valuesImageFocalY.value) },
       sort_order: 0,
       is_active: true,
     }])
@@ -534,8 +575,12 @@ function handleCancel() {
   enrollmentTitle.value = resetData.enrollment.title
   enrollmentDescription.value = resetData.enrollment.description
   enrollmentImage.value = resetData.enrollment.image
+  enrollmentFocalX.value = resetData.enrollment.focalX
+  enrollmentFocalY.value = resetData.enrollment.focalY
   enrollmentFeatures.value = resetData.enrollment.features
   valuesImage.value = resetData.values.image
+  valuesImageFocalX.value = resetData.values.focalX
+  valuesImageFocalY.value = resetData.values.focalY
   valuesItems.value = resetData.values.items
   activitiesItems.value = resetData.activities
 

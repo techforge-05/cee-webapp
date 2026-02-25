@@ -17,17 +17,23 @@
     <!-- Introduction -->
     <section class="py-12 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-calendar-days"
-            class="w-16 h-16 text-indigo-600 mx-auto mb-6"
-          />
-          <h2 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">
-            {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
-          </h2>
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro.description') }}
-          </p>
+        <div :class="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'text-center'">
+            <UIcon
+              name="i-heroicons-calendar-days"
+              class="w-16 h-16 text-indigo-600 mb-6"
+              :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'mx-auto'"
+            />
+            <h2 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">
+              {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
+            </h2>
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro.description') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('studentLife.upcomingEvents.intro', 'focalX') || 50}% ${singleMeta('studentLife.upcomingEvents.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -279,6 +285,7 @@
                 :src="event.image_url"
                 :alt="event.title"
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${event.focalX ?? 50}% ${event.focalY ?? 50}%` }"
                 loading="lazy"
               />
               <div
@@ -348,7 +355,7 @@
   const localePath = useLocalePath();
   const { locale, t, tm, rt: $rt } = useI18n();
   const { events: calendarEvents, loadEvents } = useCalendarAdmin();
-  const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
 
   const carouselRef = ref<HTMLElement | null>(null);
   const canScrollLeft = ref(false);
@@ -408,6 +415,8 @@
         description: field(item, 'description'),
         timing: timingKey ? monthKeyToName(timingKey) : '',
         image_url: item.metadata?.imageUrl || null,
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       };
     });
   });

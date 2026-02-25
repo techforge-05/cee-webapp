@@ -17,27 +17,32 @@
     <!-- Introduction Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex items-center gap-4 mb-8">
-            <div
-              class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shrink-0"
-            >
-              <UIcon
-                name="i-heroicons-building-library"
-                class="w-8 h-8 text-red-600"
-              />
+        <div :class="singleMeta('support.whySupport.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto'">
+          <div>
+            <div class="flex items-center gap-4 mb-8">
+              <div
+                class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shrink-0"
+              >
+                <UIcon
+                  name="i-heroicons-building-library"
+                  class="w-8 h-8 text-red-600"
+                />
+              </div>
+              <h2 class="text-3xl font-bold text-gray-900">
+                {{ singleField('support.whySupport.intro', 'title') || $t('support.whySupport.intro.title') }}
+              </h2>
             </div>
-            <h2 class="text-3xl font-bold text-gray-900">
-              {{ singleField('support.whySupport.intro', 'title') || $t('support.whySupport.intro.title') }}
-            </h2>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                {{ singleField('support.whySupport.intro', 'paragraph1') || $t('support.whySupport.intro.paragraph1') }}
+              </p>
+              <p class="text-lg text-gray-700 leading-relaxed">
+                {{ singleField('support.whySupport.intro', 'paragraph2') || $t('support.whySupport.intro.paragraph2') }}
+              </p>
+            </div>
           </div>
-          <div class="prose prose-lg max-w-none">
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              {{ singleField('support.whySupport.intro', 'paragraph1') || $t('support.whySupport.intro.paragraph1') }}
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed">
-              {{ singleField('support.whySupport.intro', 'paragraph2') || $t('support.whySupport.intro.paragraph2') }}
-            </p>
+          <div v-if="singleMeta('support.whySupport.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('support.whySupport.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('support.whySupport.intro', 'focalX') || 50}% ${singleMeta('support.whySupport.intro', 'focalY') || 50}%` }" alt="" />
           </div>
         </div>
       </div>
@@ -47,6 +52,9 @@
     <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="bg-orange-50 rounded-2xl p-8 md:p-12">
+          <div v-if="singleMeta('support.whySupport.nonprofit', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+            <img :src="singleMeta('support.whySupport.nonprofit', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('support.whySupport.nonprofit', 'focalX') || 50}% ${singleMeta('support.whySupport.nonprofit', 'focalY') || 50}%` }" alt="" />
+          </div>
           <div class="flex items-start gap-4 mb-4">
             <UIcon
               name="i-heroicons-heart"
@@ -135,7 +143,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { tm, rt } = useI18n();
-const { loadContent, getItems, field, singleField } = usePublicContent();
+const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
 
 onMounted(() => loadContent([
   'support.whySupport.intro',

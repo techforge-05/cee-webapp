@@ -18,14 +18,20 @@
     <!-- Introduction -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-academic-cap"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
-          </p>
+        <div :class="singleMeta('academics.grades.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <UIcon
+              name="i-heroicons-academic-cap"
+              class="w-16 h-16 text-purple-600 mb-6"
+              :class="singleMeta('academics.grades.intro', 'imageUrl') ? '' : 'mx-auto'"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('academics.grades.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('academics.grades.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.grades.intro', 'focalX') || 50}% ${singleMeta('academics.grades.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -204,7 +210,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'academics.grades.intro',

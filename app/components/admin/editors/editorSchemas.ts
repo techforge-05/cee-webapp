@@ -112,13 +112,13 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.mvv.mission',
       labelKey: 'admin.editors.about.mvv.mission',
       type: 'single',
-      fields: [f.title(), f.statement()],
+      fields: [f.title(), f.statement(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.mvv.vision',
       labelKey: 'admin.editors.about.mvv.vision',
       type: 'single',
-      fields: [f.title(), f.statement()],
+      fields: [f.title(), f.statement(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.mvv.values',
@@ -137,7 +137,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.sof.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.sof.beliefs',
@@ -162,25 +162,25 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.philosophy.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.philosophy.biblical',
       labelKey: 'admin.editors.about.philosophy.biblical',
       type: 'single',
-      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }, f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.philosophy.dignity',
       labelKey: 'admin.editors.about.philosophy.dignity',
       type: 'single',
-      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }, f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.philosophy.bilingual',
       labelKey: 'admin.editors.about.philosophy.bilingual',
       type: 'single',
-      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }, f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.philosophy.principles',
@@ -199,7 +199,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.history.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.history.timeline',
@@ -214,7 +214,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'about.history.legacy',
       labelKey: 'admin.editors.about.history.legacy',
       type: 'single',
-      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }, f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
   ],
 
@@ -290,7 +290,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.curriculum.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.paragraph1(), f.paragraph2()],
+      fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.curriculum.kindergarten',
@@ -300,13 +300,14 @@ const schemas: Record<string, EditorSection[]> = {
         f.name(),
         f.description(),
         { key: 'details', labelKey: 'admin.editors.generic.details', type: 'textarea', rows: 3, maxLength: 500 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
       ],
     },
     {
       pageKey: 'academics.curriculum.elementary',
       labelKey: 'admin.editors.academics.curriculum.elementary',
       type: 'single',
-      fields: [f.name(), f.description()],
+      fields: [f.name(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.curriculum.elementarySubjects',
@@ -321,7 +322,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'academics.curriculum.secondary',
       labelKey: 'admin.editors.academics.curriculum.secondary',
       type: 'single',
-      fields: [f.name(), f.description()],
+      fields: [f.name(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.curriculum.secondarySubjects79',
@@ -358,7 +359,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.grades.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.grades.levels',
@@ -414,7 +415,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.guidance.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.guidance.staff',
@@ -461,7 +462,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.sports.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.sports.items',
@@ -486,7 +487,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.serviceProjects.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.serviceProjects.benefits',
@@ -603,7 +604,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.upcomingEvents.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.upcomingEvents.calendarEvents',
@@ -663,13 +664,13 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.whySupport.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.title(), f.paragraph1(), f.paragraph2()],
+      fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'support.whySupport.nonprofit',
       labelKey: 'admin.editors.support.whySupport.nonprofit',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'support.whySupport.impact',
@@ -688,19 +689,19 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.scholarships.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'support.scholarships.purpose',
       labelKey: 'admin.editors.support.scholarships.purpose',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'support.scholarships.impact',
       labelKey: 'admin.editors.support.scholarships.impact',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
   ],
 
@@ -719,7 +720,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.donate.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'support.donate.ways',
@@ -782,7 +783,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.contact.info.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'contact.info.phone',
@@ -834,7 +835,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.contact.directions.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'contact.directions.address',
@@ -886,7 +887,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.contact.form.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'contact.form.subjectOptions',
@@ -919,7 +920,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.admissions.whoCanApply.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'admissions.whoCanApply.grades',
@@ -947,7 +948,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.admissions.howToApply.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'admissions.howToApply.steps',
@@ -962,7 +963,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'admissions.howToApply.dates',
       labelKey: 'admin.editors.admissions.howToApply.dates',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
   ],
 
@@ -972,7 +973,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.admissions.calendar.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'admissions.calendar.calendarEvents',
@@ -1021,13 +1022,13 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.getInvolved.teachers.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'getInvolved.teachers.requirements',
       labelKey: 'admin.editors.getInvolved.teachers.requirements',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'getInvolved.teachers.qualifications',
@@ -1075,13 +1076,13 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.getInvolved.volunteer.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'getInvolved.volunteer.shortTerm',
       labelKey: 'admin.editors.getInvolved.volunteer.shortTerm',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'getInvolved.volunteer.opportunities',
@@ -1096,7 +1097,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'getInvolved.volunteer.howTo',
       labelKey: 'admin.editors.getInvolved.volunteer.howTo',
       type: 'single',
-      fields: [f.title(), f.description()],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'getInvolved.volunteer.contact',

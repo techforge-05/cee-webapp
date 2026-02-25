@@ -59,6 +59,7 @@
               :src="photo.url"
               :alt="photo.alt_text_es || photo.title_es"
               class="w-full h-40 object-cover"
+              :style="{ objectPosition: `${photo.focal_x ?? 50}% ${photo.focal_y ?? 50}%` }"
             />
             <div
               v-else
@@ -121,6 +122,10 @@
           <ImageUploader
             v-model="editForm.url"
             folder="cee-assets/gallery"
+            :focal-x="editForm.focal_x"
+            :focal-y="editForm.focal_y"
+            @update:focal-x="editForm.focal_x = $event"
+            @update:focal-y="editForm.focal_y = $event"
           />
 
           <!-- Title -->
@@ -235,6 +240,8 @@ const editForm = reactive({
   alt_en: '',
   year: currentYear,
   category: 'events',
+  focal_x: 50,
+  focal_y: 50,
 })
 
 const editFormTitle = computed<BilingualText>({
@@ -268,6 +275,8 @@ function openAddModal() {
   editForm.alt_en = ''
   editForm.year = currentYear
   editForm.category = 'events'
+  editForm.focal_x = 50
+  editForm.focal_y = 50
   showModal.value = true
 }
 
@@ -280,6 +289,8 @@ function editPhoto(photo: GalleryPhoto) {
   editForm.alt_en = photo.alt_text_en || ''
   editForm.year = photo.year
   editForm.category = photo.category
+  editForm.focal_x = photo.focal_x ?? 50
+  editForm.focal_y = photo.focal_y ?? 50
   showModal.value = true
 }
 
@@ -306,6 +317,8 @@ async function handleSavePhoto() {
       alt_text_es: editForm.alt_es,
       alt_text_en: editForm.alt_en,
       sort_order: editingPhoto.value?.sort_order ?? photos.value.length,
+      focal_x: editForm.focal_x,
+      focal_y: editForm.focal_y,
     }
 
     await savePhoto(photo)

@@ -115,6 +115,7 @@
               :src="enrollmentImage"
               alt=""
               class="rounded-lg shadow-2xl w-full h-64 md:h-80 lg:h-96 xl:h-112.5 object-cover"
+              :style="{ objectPosition: `${singleMeta('home.enrollment', 'focalX') || 50}% ${singleMeta('home.enrollment', 'focalY') || 50}%` }"
             />
             <div
               v-else
@@ -138,6 +139,7 @@
           :src="valuesImageUrl"
           alt="Values"
           class="w-full h-full min-h-80 md:min-h-96 lg:min-h-100 object-cover"
+          :style="{ objectPosition: `${singleMeta('home.values.image', 'focalX') || 50}% ${singleMeta('home.values.image', 'focalY') || 50}%` }"
         />
         <div
           v-else
@@ -226,6 +228,7 @@
                   :src="activity.image_url"
                   :alt="activity.image_alt || activity.title"
                   class="w-full h-full object-cover"
+                  :style="{ objectPosition: `${activity.focalX}% ${activity.focalY}%` }"
                   loading="lazy"
                 />
               </div>
@@ -392,6 +395,8 @@
         description: field(item, 'description'),
         image_url: item.metadata?.image_url || '',
         image_alt: item.metadata?.[`image_alt_${locale.value}`] || '',
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     }
     const items = tm('home.activities.items') as any[];

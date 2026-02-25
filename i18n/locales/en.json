@@ -1428,7 +1428,8 @@
         "altEs": "Alt text (Spanish)",
         "altEn": "Alt text (English)",
         "title": "Title",
-        "uploadError": "Upload failed"
+        "uploadError": "Upload failed",
+        "focalPointHint": "Drag the dot or click to set focal point"
       },
       "dataList": {
         "addItem": "Add {item}",

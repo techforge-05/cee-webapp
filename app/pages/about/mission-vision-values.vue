@@ -35,6 +35,7 @@
               :src="singleMeta('about.mvv.intro', 'imageUrl')"
               alt=""
               class="w-full h-full object-cover"
+              :style="{ objectPosition: `${singleMeta('about.mvv.intro', 'focalX') || 50}% ${singleMeta('about.mvv.intro', 'focalY') || 50}%` }"
             />
           </div>
           <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
@@ -48,6 +49,9 @@
     <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="bg-blue-50 rounded-lg p-8 md:p-12">
+          <div v-if="singleMeta('about.mvv.mission', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+            <img :src="singleMeta('about.mvv.mission', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.mission', 'focalX') || 50}% ${singleMeta('about.mvv.mission', 'focalY') || 50}%` }" alt="" />
+          </div>
           <div class="flex items-start gap-4 mb-4">
             <UIcon
               name="i-heroicons-flag"
@@ -68,6 +72,9 @@
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="bg-purple-50 rounded-lg p-8 md:p-12">
+          <div v-if="singleMeta('about.mvv.vision', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+            <img :src="singleMeta('about.mvv.vision', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.vision', 'focalX') || 50}% ${singleMeta('about.mvv.vision', 'focalY') || 50}%` }" alt="" />
+          </div>
           <div class="flex items-start gap-4 mb-4">
             <UIcon
               name="i-heroicons-eye"

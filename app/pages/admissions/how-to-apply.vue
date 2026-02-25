@@ -18,9 +18,16 @@
     <section class="py-12 lg:py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
-          <p class="text-xl text-gray-700 leading-relaxed mb-10 text-center">
-            {{ singleField('admissions.howToApply.intro', 'text') || $t('admissions.howToApply.intro') }}
-          </p>
+          <div :class="singleMeta('admissions.howToApply.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'mb-10 text-center'">
+            <div>
+              <p class="text-xl text-gray-700 leading-relaxed">
+                {{ singleField('admissions.howToApply.intro', 'text') || $t('admissions.howToApply.intro') }}
+              </p>
+            </div>
+            <div v-if="singleMeta('admissions.howToApply.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+              <img :src="singleMeta('admissions.howToApply.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('admissions.howToApply.intro', 'focalX') || 50}% ${singleMeta('admissions.howToApply.intro', 'focalY') || 50}%` }" alt="" />
+            </div>
+          </div>
 
           <!-- Steps -->
           <div class="space-y-6">
@@ -62,6 +69,9 @@
               : (singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title'))
             }}
           </h2>
+          <div v-if="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+            <img :src="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('admissions.howToApply.dates', 'focalX') || 50}% ${singleMeta('admissions.howToApply.dates', 'focalY') || 50}%` }" alt="" />
+          </div>
 
           <!-- When there are upcoming admissions events -->
           <div v-if="admissionsEvents.length > 0">
@@ -146,7 +156,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { locale, tm, rt } = useI18n();
-const { loadContent, getItems, field, singleField } = usePublicContent();
+const { loadContent, getItems, field, singleField, singleMeta } = usePublicContent();
 const { events: calendarEvents, loadEvents } = useCalendarAdmin();
 
 onMounted(() => {

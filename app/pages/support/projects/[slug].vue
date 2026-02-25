@@ -40,6 +40,7 @@
               :src="project.imageUrl"
               :alt="project.title"
               class="w-full h-full object-cover"
+              :style="{ objectPosition: `${project.focalX}% ${project.focalY}%` }"
             />
           </div>
           <div v-else class="bg-gradient-to-br from-red-100 to-orange-100 rounded-2xl h-64 md:h-96 flex items-center justify-center">
@@ -249,6 +250,8 @@ const project = computed(() => {
     status: statusKey(statusCode),
     goal: getMeta(projectItem.value, 'goal'),
     imageUrl: getMeta(projectItem.value, 'imageUrl'),
+    focalX: projectItem.value.metadata?.focalX ?? 50,
+    focalY: projectItem.value.metadata?.focalY ?? 50,
     completionMessage: field(projectItem.value, 'completionMessage'),
   }
 })

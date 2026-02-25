@@ -17,14 +17,19 @@
     <!-- Introduction -->
     <section class="py-12 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-document-text"
-            class="w-16 h-16 text-emerald-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('admissions.calendar.intro', 'text') || $t('admissions.calendar.intro') }}
-          </p>
+        <div :class="singleMeta('admissions.calendar.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <UIcon
+              name="i-heroicons-document-text"
+              class="w-16 h-16 text-emerald-600 mx-auto mb-6"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('admissions.calendar.intro', 'text') || $t('admissions.calendar.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('admissions.calendar.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('admissions.calendar.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('admissions.calendar.intro', 'focalX') || 50}% ${singleMeta('admissions.calendar.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>

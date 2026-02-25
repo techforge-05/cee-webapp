@@ -8,6 +8,8 @@ export interface GalleryPhoto {
   alt_text_es?: string
   alt_text_en?: string
   sort_order: number
+  focal_x?: number
+  focal_y?: number
   created_by?: string
   created_at?: string
   updated_at?: string
@@ -78,6 +80,8 @@ export const useGallery = () => {
           alt_text_es: photo.alt_text_es || '',
           alt_text_en: photo.alt_text_en || '',
           sort_order: photo.sort_order,
+          focal_x: photo.focal_x ?? 50,
+          focal_y: photo.focal_y ?? 50,
           updated_at: new Date().toISOString(),
         })
         .eq('id', photo.id)
@@ -99,6 +103,8 @@ export const useGallery = () => {
           alt_text_es: photo.alt_text_es || '',
           alt_text_en: photo.alt_text_en || '',
           sort_order: photo.sort_order,
+          focal_x: photo.focal_x ?? 50,
+          focal_y: photo.focal_y ?? 50,
           created_by: user.value?.id,
         })
         .select()

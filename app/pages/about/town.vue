@@ -34,6 +34,7 @@
               :src="singleMeta('about.town.intro', 'imageUrl')"
               alt=""
               class="w-full h-full object-cover"
+              :style="{ objectPosition: `${singleMeta('about.town.intro', 'focalX') || 50}% ${singleMeta('about.town.intro', 'focalY') || 50}%` }"
             />
           </div>
           <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
@@ -97,6 +98,7 @@
             :src="singleMeta('about.town.mountainImage', 'imageUrl')"
             :alt="singleField('about.town.mountainImage', 'alt') || ''"
             class="w-full h-full object-cover"
+            :style="{ objectPosition: `${singleMeta('about.town.mountainImage', 'focalX') || 50}% ${singleMeta('about.town.mountainImage', 'focalY') || 50}%` }"
           />
         </div>
         <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
@@ -158,6 +160,7 @@
                 :src="img.url"
                 :alt="img.alt"
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${img.focalX}% ${img.focalY}%` }"
               />
             </div>
           </template>
@@ -232,6 +235,8 @@ const galleryImages = computed(() => {
     .map(item => ({
       url: getMeta(item, 'imageUrl'),
       alt: field(item, 'alt') || '',
+      focalX: item.metadata?.focalX ?? 50,
+      focalY: item.metadata?.focalY ?? 50,
     }));
 });
 

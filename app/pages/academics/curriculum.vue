@@ -18,23 +18,28 @@
     <!-- Introduction -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex items-start gap-6 mb-8">
-            <UIcon
-              name="i-heroicons-academic-cap"
-              class="w-16 h-16 text-purple-600 shrink-0"
-            />
-            <div>
-              <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
-              </h2>
-              <p class="text-xl text-gray-700 leading-relaxed mb-4">
-                {{ singleField('academics.curriculum.intro', 'paragraph1') || $t('academics.curriculum.intro.paragraph1') }}
-              </p>
-              <p class="text-xl text-gray-700 leading-relaxed">
-                {{ singleField('academics.curriculum.intro', 'paragraph2') || $t('academics.curriculum.intro.paragraph2') }}
-              </p>
+        <div :class="singleMeta('academics.curriculum.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <div class="flex items-start gap-6 mb-8">
+              <UIcon
+                name="i-heroicons-academic-cap"
+                class="w-16 h-16 text-purple-600 shrink-0"
+              />
+              <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                  {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
+                </h2>
+                <p class="text-xl text-gray-700 leading-relaxed mb-4">
+                  {{ singleField('academics.curriculum.intro', 'paragraph1') || $t('academics.curriculum.intro.paragraph1') }}
+                </p>
+                <p class="text-xl text-gray-700 leading-relaxed">
+                  {{ singleField('academics.curriculum.intro', 'paragraph2') || $t('academics.curriculum.intro.paragraph2') }}
+                </p>
+              </div>
             </div>
+          </div>
+          <div v-if="singleMeta('academics.curriculum.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('academics.curriculum.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.curriculum.intro', 'focalX') || 50}% ${singleMeta('academics.curriculum.intro', 'focalY') || 50}%` }" alt="" />
           </div>
         </div>
       </div>
@@ -68,6 +73,9 @@
                   {{ singleField('academics.curriculum.kindergarten', 'name') || $t('academics.curriculum.programs.kindergarten.name') }}
                 </p>
               </div>
+            </div>
+            <div v-if="singleMeta('academics.curriculum.kindergarten', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('academics.curriculum.kindergarten', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.kindergarten', 'focalX') || 50}% ${singleMeta('academics.curriculum.kindergarten', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -104,6 +112,9 @@
                   {{ singleField('academics.curriculum.elementary', 'name') || $t('academics.curriculum.programs.elementary.name') }}
                 </p>
               </div>
+            </div>
+            <div v-if="singleMeta('academics.curriculum.elementary', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('academics.curriculum.elementary', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.elementary', 'focalX') || 50}% ${singleMeta('academics.curriculum.elementary', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -154,6 +165,9 @@
                   {{ singleField('academics.curriculum.secondary', 'name') || $t('academics.curriculum.programs.secondary.name') }}
                 </p>
               </div>
+            </div>
+            <div v-if="singleMeta('academics.curriculum.secondary', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('academics.curriculum.secondary', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.secondary', 'focalX') || 50}% ${singleMeta('academics.curriculum.secondary', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-6">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -279,7 +293,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'academics.curriculum.intro',

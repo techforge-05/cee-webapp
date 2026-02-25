@@ -54,6 +54,7 @@
               :src="boardPhotoUrl"
               :alt="boardPhotoAlt"
               class="w-full h-auto object-cover"
+              :style="{ objectPosition: `${boardPhotoFocalX}% ${boardPhotoFocalY}%` }"
               loading="lazy"
             />
             <div
@@ -105,6 +106,7 @@
                 :src="director.photoUrl"
                 :alt="director.name"
                 class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full object-cover mb-4"
+                :style="{ objectPosition: `${director.focalX}% ${director.focalY}%` }"
                 loading="lazy"
               />
               <div
@@ -209,13 +211,17 @@
   ]));
 
   // Board photo: DB-first, fallback to static image handled in template
-  const boardPhotoUrl = computed(() => {
+  const boardPhotoItem = computed(() => {
     const dbItems = getItems('about.leadership.boardPhoto');
-    if (dbItems.length > 0) {
-      return field(dbItems[0], 'url') || '';
-    }
-    return '';
+    return dbItems.length > 0 ? dbItems[0] : null;
   });
+
+  const boardPhotoUrl = computed(() => {
+    return boardPhotoItem.value ? field(boardPhotoItem.value, 'url') || '' : '';
+  });
+
+  const boardPhotoFocalX = computed(() => boardPhotoItem.value?.metadata?.focalX ?? 50);
+  const boardPhotoFocalY = computed(() => boardPhotoItem.value?.metadata?.focalY ?? 50);
 
   const boardPhotoAlt = computed(() => {
     const dbItems = getItems('about.leadership.boardPhoto');
@@ -251,6 +257,8 @@
         title: field(item, 'title'),
         email: getMeta(item, 'email') || '',
         photoUrl: getMeta(item, 'photoUrl') || '',
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     }
     // Fallback: placeholder directors

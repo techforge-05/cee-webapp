@@ -135,7 +135,11 @@
                   <ImageUploader
                     v-model="sectionImages[section.pageKey]"
                     :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                    :focal-x="sectionFocalPoints[section.pageKey]?.x ?? 50"
+                    :focal-y="sectionFocalPoints[section.pageKey]?.y ?? 50"
                     @update:model-value="trackChanges"
+                    @update:focal-x="sectionFocalPoints[section.pageKey].x = $event; trackChanges()"
+                    @update:focal-y="sectionFocalPoints[section.pageKey].y = $event; trackChanges()"
                   />
                 </UFormField>
               </div>
@@ -375,6 +379,8 @@
                       <ImageUploader
                         :model-value="item.metadata?.imageUrl || ''"
                         :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                        :focal-x="Number(item.metadata?.focalX) || 50"
+                        :focal-y="Number(item.metadata?.focalY) || 50"
                         @update:model-value="
                           updateListMetadataField(
                             section.pageKey,
@@ -383,6 +389,8 @@
                             $event,
                           )
                         "
+                        @update:focal-x="updateListMetadataField(section.pageKey, index, 'focalX', String($event))"
+                        @update:focal-y="updateListMetadataField(section.pageKey, index, 'focalY', String($event))"
                       />
                     </UFormField>
                   </div>
@@ -558,6 +566,7 @@
   const metaData = reactive<Record<string, Record<string, string>>>({});
   const listData = reactive<Record<string, PageContentItem[]>>({});
   const sectionImages = reactive<Record<string, string>>({});
+  const sectionFocalPoints = reactive<Record<string, { x: number; y: number }>>({});
   const existingIds = reactive<Record<string, string | undefined>>({});
 
   // Helper to check if section has imageUrl field
@@ -579,6 +588,7 @@
         singleData[section.pageKey] = {};
         metaData[section.pageKey] = {};
         sectionImages[section.pageKey] = '';
+        sectionFocalPoints[section.pageKey] = { x: 50, y: 50 };
         section.fields.forEach((field) => {
           if (
             field.type === 'text' ||
@@ -624,6 +634,10 @@
               if (field.key === 'imageUrl') {
                 sectionImages[section.pageKey] =
                   item?.metadata?.[field.key] || '';
+                sectionFocalPoints[section.pageKey] = {
+                  x: Number(item?.metadata?.focalX) || 50,
+                  y: Number(item?.metadata?.focalY) || 50,
+                };
               } else {
                 // Fall back to content_es when processDefaults stored metadata fields there
                 metaData[section.pageKey][field.key] =
@@ -672,6 +686,7 @@
       meta: JSON.parse(JSON.stringify(metaData)),
       list: JSON.parse(JSON.stringify(listData)),
       images: JSON.parse(JSON.stringify(sectionImages)),
+      focalPoints: JSON.parse(JSON.stringify(sectionFocalPoints)),
     };
     dirtyState.init(allData);
   }
@@ -683,6 +698,7 @@
         meta: JSON.parse(JSON.stringify(metaData)),
         list: JSON.parse(JSON.stringify(listData)),
         images: JSON.parse(JSON.stringify(sectionImages)),
+        focalPoints: JSON.parse(JSON.stringify(sectionFocalPoints)),
       };
       dirtyState.update(currentData);
     });
@@ -841,6 +857,8 @@
             } else if (field.type === 'metadata' || field.type === 'select' || field.type === 'toggle') {
               if (field.key === 'imageUrl') {
                 metadata[field.key] = sectionImages[section.pageKey];
+                metadata.focalX = String(sectionFocalPoints[section.pageKey]?.x ?? 50);
+                metadata.focalY = String(sectionFocalPoints[section.pageKey]?.y ?? 50);
               } else {
                 metadata[field.key] = metaData[section.pageKey][field.key];
               }
@@ -888,6 +906,7 @@
     Object.assign(metaData, resetData.meta);
     Object.assign(listData, resetData.list);
     Object.assign(sectionImages, resetData.images);
+    Object.assign(sectionFocalPoints, resetData.focalPoints);
 
     toast.add({
       title: t('admin.messages.changesDiscarded'),

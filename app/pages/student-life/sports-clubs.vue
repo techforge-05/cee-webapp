@@ -18,17 +18,23 @@
     <!-- Introduction -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-trophy"
-            class="w-16 h-16 text-green-600 mx-auto mb-6"
-          />
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
-          </h2>
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('studentLife.sports.intro', 'description') || $t('studentLife.sportsClubs.intro.description') }}
-          </p>
+        <div :class="singleMeta('studentLife.sports.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'text-center'">
+            <UIcon
+              name="i-heroicons-trophy"
+              class="w-16 h-16 text-green-600 mb-6"
+              :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'mx-auto'"
+            />
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+              {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
+            </h2>
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('studentLife.sports.intro', 'description') || $t('studentLife.sportsClubs.intro.description') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('studentLife.sports.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('studentLife.sports.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('studentLife.sports.intro', 'focalX') || 50}% ${singleMeta('studentLife.sports.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -57,6 +63,7 @@
                 :src="sport.image"
                 :alt="sport.title"
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${sport.focalX}% ${sport.focalY}%` }"
                 loading="lazy"
               />
               <div v-else class="text-center text-gray-400">
@@ -123,7 +130,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, meta: getMeta, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'studentLife.sports.intro',
@@ -145,6 +152,8 @@
         title: field(item, 'title'),
         description: field(item, 'description'),
         image: getMeta(item, 'imageUrl') || null,
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     }
     const items = tm('studentLife.sportsClubs.sports.items') as any[];

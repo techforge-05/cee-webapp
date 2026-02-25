@@ -17,14 +17,20 @@
     <!-- Introduction Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-gift"
-            class="w-16 h-16 text-red-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
-          </p>
+        <div :class="singleMeta('support.donate.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <UIcon
+              name="i-heroicons-gift"
+              class="w-16 h-16 text-red-600 mb-6"
+              :class="{ 'mx-auto': !singleMeta('support.donate.intro', 'imageUrl') }"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('support.donate.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('support.donate.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('support.donate.intro', 'focalX') || 50}% ${singleMeta('support.donate.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>

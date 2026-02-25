@@ -19,14 +19,19 @@
     <section class="py-12 lg:py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-10">
-            <UIcon
-              name="i-heroicons-academic-cap"
-              class="w-16 h-16 text-amber-500 mx-auto mb-4"
-            />
-            <p class="text-xl text-gray-700 leading-relaxed">
-              {{ singleField('getInvolved.teachers.intro', 'text') || $t('getInvolved.teachers.intro') }}
-            </p>
+          <div :class="singleMeta('getInvolved.teachers.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'text-center mb-10'">
+            <div>
+              <UIcon
+                name="i-heroicons-academic-cap"
+                class="w-16 h-16 text-amber-500 mx-auto mb-4"
+              />
+              <p class="text-xl text-gray-700 leading-relaxed">
+                {{ singleField('getInvolved.teachers.intro', 'text') || $t('getInvolved.teachers.intro') }}
+              </p>
+            </div>
+            <div v-if="singleMeta('getInvolved.teachers.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+              <img :src="singleMeta('getInvolved.teachers.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('getInvolved.teachers.intro', 'focalX') || 50}% ${singleMeta('getInvolved.teachers.intro', 'focalY') || 50}%` }" alt="" />
+            </div>
           </div>
 
           <!-- Requirements Box -->
@@ -34,6 +39,9 @@
             <h2 class="text-2xl font-bold text-amber-800 mb-4">
               {{ singleField('getInvolved.teachers.requirements', 'title') || $t('getInvolved.teachers.requirements.title') }}
             </h2>
+            <div v-if="singleMeta('getInvolved.teachers.requirements', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('getInvolved.teachers.requirements', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('getInvolved.teachers.requirements', 'focalX') || 50}% ${singleMeta('getInvolved.teachers.requirements', 'focalY') || 50}%` }" alt="" />
+            </div>
             <p class="text-gray-700 leading-relaxed">
               {{ singleField('getInvolved.teachers.requirements', 'description') || $t('getInvolved.teachers.requirements.description') }}
             </p>

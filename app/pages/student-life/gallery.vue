@@ -122,6 +122,7 @@
                 :src="photo.url"
                 :alt="photo.title"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                :style="{ objectPosition: `${photo.focal_x ?? 50}% ${photo.focal_y ?? 50}%` }"
                 loading="lazy"
               />
               <div

@@ -100,7 +100,11 @@
                   <ImageUploader
                     :model-value="item.metadata?.photoUrl || ''"
                     folder="cee-assets/directors"
+                    :focal-x="Number(item.metadata?.focalX) || 50"
+                    :focal-y="Number(item.metadata?.focalY) || 50"
                     @update:model-value="updateDirectorMeta(index, 'photoUrl', $event)"
+                    @update:focal-x="updateDirectorMeta(index, 'focalX', String($event))"
+                    @update:focal-y="updateDirectorMeta(index, 'focalY', String($event))"
                   />
                 </UFormField>
               </div>
@@ -157,6 +161,8 @@ async function loadAllData() {
         url: boardPhotoItem.content_es?.url || '',
         alt_es: boardPhotoItem.content_es?.alt || '',
         alt_en: boardPhotoItem.content_en?.alt || '',
+        focalX: Number(boardPhotoItem.metadata?.focalX) || 50,
+        focalY: Number(boardPhotoItem.metadata?.focalY) || 50,
       }
     }
 
@@ -265,6 +271,7 @@ async function handleSave() {
       page_key: 'about.leadership.boardPhoto',
       content_es: { url: boardPhoto.value.url, alt: boardPhoto.value.alt_es },
       content_en: { url: boardPhoto.value.url, alt: boardPhoto.value.alt_en },
+      metadata: { focalX: String(boardPhoto.value.focalX ?? 50), focalY: String(boardPhoto.value.focalY ?? 50) },
       sort_order: 0,
       is_active: true,
     }

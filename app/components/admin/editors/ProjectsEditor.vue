@@ -111,7 +111,11 @@
               <ImageUploader
                 :model-value="item.metadata?.imageUrl || ''"
                 folder="cee-assets/projects"
+                :focal-x="Number(item.metadata?.focalX) || 50"
+                :focal-y="Number(item.metadata?.focalY) || 50"
                 @update:model-value="updateProjectMeta(index, 'imageUrl', $event)"
+                @update:focal-x="updateProjectMeta(index, 'focalX', String($event))"
+                @update:focal-y="updateProjectMeta(index, 'focalY', String($event))"
               />
             </UFormField>
 

@@ -19,18 +19,26 @@
     <section class="py-12 lg:py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-10">
-            <UIcon
-              name="i-heroicons-heart"
-              class="w-16 h-16 text-amber-500 mx-auto mb-4"
-            />
-            <p class="text-xl text-gray-700 leading-relaxed">
-              {{ singleField('getInvolved.volunteer.intro', 'text') || $t('getInvolved.volunteer.intro') }}
-            </p>
+          <div :class="singleMeta('getInvolved.volunteer.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'text-center mb-10'">
+            <div>
+              <UIcon
+                name="i-heroicons-heart"
+                class="w-16 h-16 text-amber-500 mx-auto mb-4"
+              />
+              <p class="text-xl text-gray-700 leading-relaxed">
+                {{ singleField('getInvolved.volunteer.intro', 'text') || $t('getInvolved.volunteer.intro') }}
+              </p>
+            </div>
+            <div v-if="singleMeta('getInvolved.volunteer.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+              <img :src="singleMeta('getInvolved.volunteer.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('getInvolved.volunteer.intro', 'focalX') || 50}% ${singleMeta('getInvolved.volunteer.intro', 'focalY') || 50}%` }" alt="" />
+            </div>
           </div>
 
           <!-- Short-term Opportunities -->
           <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-8 mb-8 border border-amber-200">
+            <div v-if="singleMeta('getInvolved.volunteer.shortTerm', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('getInvolved.volunteer.shortTerm', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('getInvolved.volunteer.shortTerm', 'focalX') || 50}% ${singleMeta('getInvolved.volunteer.shortTerm', 'focalY') || 50}%` }" alt="" />
+            </div>
             <div class="flex items-start gap-4">
               <UIcon
                 name="i-heroicons-clock"
@@ -72,6 +80,9 @@
             <h2 class="text-2xl font-bold text-gray-800 mb-4">
               {{ singleField('getInvolved.volunteer.howTo', 'title') || $t('getInvolved.volunteer.howTo.title') }}
             </h2>
+            <div v-if="singleMeta('getInvolved.volunteer.howTo', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('getInvolved.volunteer.howTo', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('getInvolved.volunteer.howTo', 'focalX') || 50}% ${singleMeta('getInvolved.volunteer.howTo', 'focalY') || 50}%` }" alt="" />
+            </div>
             <p class="text-gray-700">
               {{ singleField('getInvolved.volunteer.howTo', 'description') || $t('getInvolved.volunteer.howTo.description') }}
             </p>

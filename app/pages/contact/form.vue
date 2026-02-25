@@ -18,14 +18,19 @@
     <!-- Introduction Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-pencil-square"
-            class="w-16 h-16 text-red-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('contact.form.intro', 'text') || $t('contact.form.intro') }}
-          </p>
+        <div :class="singleMeta('contact.form.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <UIcon
+              name="i-heroicons-pencil-square"
+              class="w-16 h-16 text-red-600 mx-auto mb-6"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('contact.form.intro', 'text') || $t('contact.form.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('contact.form.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('contact.form.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('contact.form.intro', 'focalX') || 50}% ${singleMeta('contact.form.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -300,7 +305,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { t, tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'contact.form.intro',

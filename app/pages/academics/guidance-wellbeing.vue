@@ -18,26 +18,31 @@
     <!-- Introduction Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex items-start gap-6 mb-8">
-            <UIcon
-              name="i-heroicons-heart"
-              class="w-16 h-16 text-green-600 shrink-0"
-            />
-            <div>
-              <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                {{
-                  singleField('academics.guidance.intro', 'title') ||
-                  $t('academics.guidance.intro.title')
-                }}
-              </h2>
-              <p class="text-xl text-gray-700 leading-relaxed">
-                {{
-                  singleField('academics.guidance.intro', 'description') ||
-                  $t('academics.guidance.intro.description')
-                }}
-              </p>
+        <div :class="singleMeta('academics.guidance.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div>
+            <div class="flex items-start gap-6 mb-8">
+              <UIcon
+                name="i-heroicons-heart"
+                class="w-16 h-16 text-green-600 shrink-0"
+              />
+              <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                  {{
+                    singleField('academics.guidance.intro', 'title') ||
+                    $t('academics.guidance.intro.title')
+                  }}
+                </h2>
+                <p class="text-xl text-gray-700 leading-relaxed">
+                  {{
+                    singleField('academics.guidance.intro', 'description') ||
+                    $t('academics.guidance.intro.description')
+                  }}
+                </p>
+              </div>
             </div>
+          </div>
+          <div v-if="singleMeta('academics.guidance.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('academics.guidance.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.guidance.intro', 'focalX') || 50}% ${singleMeta('academics.guidance.intro', 'focalY') || 50}%` }" alt="" />
           </div>
         </div>
       </div>
@@ -70,6 +75,7 @@
                   :src="member.photoUrl"
                   :alt="member.name"
                   class="w-full h-full object-cover"
+                  :style="{ objectPosition: `${member.focalX}% ${member.focalY}%` }"
                 />
                 <UIcon
                   v-else
@@ -154,6 +160,7 @@
               :src="image.url"
               :alt="image.alt"
               class="w-full h-64 object-cover"
+              :style="{ objectPosition: `${image.focalX}% ${image.focalY}%` }"
             />
           </div>
         </div>
@@ -192,7 +199,7 @@
 
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, singleField, field, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, singleField, singleMeta, field, loading: contentLoading } = usePublicContent();
 
   // Load all content sections
   onMounted(() =>
@@ -243,6 +250,8 @@
         position: field(item, 'position'),
         email: field(item, 'email'),
         photoUrl: item.metadata?.imageUrl || '',
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     return [];
   });
@@ -253,6 +262,8 @@
     return dbItems.map((item) => ({
       url: item.metadata?.imageUrl || '',
       alt: field(item, 'alt'),
+      focalX: item.metadata?.focalX ?? 50,
+      focalY: item.metadata?.focalY ?? 50,
     }));
   });
 

@@ -1428,7 +1428,8 @@
         "altEs": "Texto alternativo (Español)",
         "altEn": "Texto alternativo (Inglés)",
         "title": "Título",
-        "uploadError": "Error al subir"
+        "uploadError": "Error al subir",
+        "focalPointHint": "Arrastra el punto o haz clic para ajustar el punto focal"
       },
       "dataList": {
         "addItem": "Agregar {item}",

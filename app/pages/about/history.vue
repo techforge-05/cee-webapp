@@ -18,14 +18,20 @@
     <!-- Introduction -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-clock"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('about.history.intro', 'text') || $t('about.history.intro') }}
-          </p>
+        <div :class="singleMeta('about.history.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div :class="!singleMeta('about.history.intro', 'imageUrl') && 'text-center'">
+            <UIcon
+              name="i-heroicons-clock"
+              class="w-16 h-16 text-purple-600 mb-6"
+              :class="!singleMeta('about.history.intro', 'imageUrl') && 'mx-auto'"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('about.history.intro', 'text') || $t('about.history.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('about.history.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('about.history.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('about.history.intro', 'focalX') || 50}% ${singleMeta('about.history.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -142,6 +148,9 @@
           <p class="text-xl text-gray-700 leading-relaxed">
             {{ singleField('about.history.legacy', 'content') || $t('about.history.legacy.content') }}
           </p>
+          <div v-if="singleMeta('about.history.legacy', 'imageUrl')" class="mt-8 rounded-lg overflow-hidden max-w-2xl mx-auto">
+            <img :src="singleMeta('about.history.legacy', 'imageUrl')" class="w-full h-64 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('about.history.legacy', 'focalX') || 50}% ${singleMeta('about.history.legacy', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -185,7 +194,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { t, tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'about.history.intro',

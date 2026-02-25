@@ -18,14 +18,20 @@
     <!-- Introduction -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-light-bulb"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('about.philosophy.intro', 'text') || $t('about.philosophy.intro') }}
-          </p>
+        <div :class="singleMeta('about.philosophy.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
+          <div :class="!singleMeta('about.philosophy.intro', 'imageUrl') && 'text-center'">
+            <UIcon
+              name="i-heroicons-light-bulb"
+              class="w-16 h-16 text-purple-600 mb-6"
+              :class="!singleMeta('about.philosophy.intro', 'imageUrl') && 'mx-auto'"
+            />
+            <p class="text-xl text-gray-700 leading-relaxed">
+              {{ singleField('about.philosophy.intro', 'text') || $t('about.philosophy.intro') }}
+            </p>
+          </div>
+          <div v-if="singleMeta('about.philosophy.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+            <img :src="singleMeta('about.philosophy.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('about.philosophy.intro', 'focalX') || 50}% ${singleMeta('about.philosophy.intro', 'focalY') || 50}%` }" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -36,6 +42,9 @@
         <div class="space-y-12">
           <!-- Biblical Foundation -->
           <div class="bg-blue-50 rounded-lg p-8 md:p-12">
+            <div v-if="singleMeta('about.philosophy.biblical', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('about.philosophy.biblical', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.biblical', 'focalX') || 50}% ${singleMeta('about.philosophy.biblical', 'focalY') || 50}%` }" alt="" />
+            </div>
             <div class="flex items-start gap-4 mb-6">
               <UIcon
                 :name="singleField('about.philosophy.biblical', 'icon') || 'i-heroicons-book-open'"
@@ -52,6 +61,9 @@
 
           <!-- Human Dignity -->
           <div class="bg-purple-50 rounded-lg p-8 md:p-12">
+            <div v-if="singleMeta('about.philosophy.dignity', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('about.philosophy.dignity', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.dignity', 'focalX') || 50}% ${singleMeta('about.philosophy.dignity', 'focalY') || 50}%` }" alt="" />
+            </div>
             <div class="flex items-start gap-4 mb-6">
               <UIcon
                 :name="singleField('about.philosophy.dignity', 'icon') || 'i-heroicons-user-group'"
@@ -68,6 +80,9 @@
 
           <!-- Bilingual Education -->
           <div class="bg-indigo-50 rounded-lg p-8 md:p-12">
+            <div v-if="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
+              <img :src="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.bilingual', 'focalX') || 50}% ${singleMeta('about.philosophy.bilingual', 'focalY') || 50}%` }" alt="" />
+            </div>
             <div class="flex items-start gap-4 mb-6">
               <UIcon
                 :name="singleField('about.philosophy.bilingual', 'icon') || 'i-heroicons-globe-americas'"
@@ -153,7 +168,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'about.philosophy.intro',

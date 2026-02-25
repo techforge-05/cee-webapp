@@ -63,6 +63,7 @@
                 :src="singleMeta('studentLife.library.purpose', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${singleMeta('studentLife.library.purpose', 'focalX') || 50}% ${singleMeta('studentLife.library.purpose', 'focalY') || 50}%` }"
               />
             </div>
             <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
@@ -83,6 +84,7 @@
                 :src="singleMeta('studentLife.library.readingCorner', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${singleMeta('studentLife.library.readingCorner', 'focalX') || 50}% ${singleMeta('studentLife.library.readingCorner', 'focalY') || 50}%` }"
               />
             </div>
             <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
@@ -168,6 +170,7 @@
                 :src="level.imageUrl"
                 :alt="level.title"
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${level.focalX}% ${level.focalY}%` }"
               />
               <UIcon v-else :name="levelIcons[index]" class="w-16 h-16" :class="getLevelIconColor(index)" />
             </div>
@@ -237,6 +240,7 @@
                 :src="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${singleMeta('studentLife.library.bilingualCollection', 'focalX') || 50}% ${singleMeta('studentLife.library.bilingualCollection', 'focalY') || 50}%` }"
               />
             </div>
             <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
@@ -257,6 +261,7 @@
                 :src="singleMeta('studentLife.library.studySpace', 'imageUrl')"
                 alt=""
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${singleMeta('studentLife.library.studySpace', 'focalX') || 50}% ${singleMeta('studentLife.library.studySpace', 'focalY') || 50}%` }"
               />
             </div>
             <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
@@ -417,6 +422,8 @@
         title: field(item, 'title'),
         description: field(item, 'description'),
         imageUrl: item.metadata?.imageUrl || '',
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     }
     const items = tm('studentLife.library.gradeSupport.levels') as any[];

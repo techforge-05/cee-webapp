@@ -3,7 +3,11 @@
     <ImageUploader
       :model-value="model.url"
       :folder="folder"
+      :focal-x="model.focalX ?? 50"
+      :focal-y="model.focalY ?? 50"
       @update:model-value="onUrlChange"
+      @update:focal-x="onFocalXChange"
+      @update:focal-y="onFocalYChange"
     />
 
     <BilingualTextField
@@ -29,6 +33,8 @@ export interface ImageData {
   alt_en: string
   title_es?: string
   title_en?: string
+  focalX?: number
+  focalY?: number
 }
 
 withDefaults(defineProps<{
@@ -51,6 +57,14 @@ const model = defineModel<ImageData>({
 
 function onUrlChange(url: string) {
   model.value = { ...model.value, url }
+}
+
+function onFocalXChange(x: number) {
+  model.value = { ...model.value, focalX: x }
+}
+
+function onFocalYChange(y: number) {
+  model.value = { ...model.value, focalY: y }
 }
 
 const altTextModel = computed<BilingualText>({

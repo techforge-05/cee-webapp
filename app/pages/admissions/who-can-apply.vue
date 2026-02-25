@@ -19,10 +19,17 @@
     <section class="py-12 lg:py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto">
+          <div :class="singleMeta('admissions.whoCanApply.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8' : 'max-w-4xl mx-auto text-center mb-8'">
+            <div>
+              <p class="text-xl text-gray-700 leading-relaxed">
+                {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
+              </p>
+            </div>
+            <div v-if="singleMeta('admissions.whoCanApply.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
+              <img :src="singleMeta('admissions.whoCanApply.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.intro', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.intro', 'focalY') || 50}%` }" alt="" />
+            </div>
+          </div>
           <div class="prose prose-lg max-w-none">
-            <p class="text-xl text-gray-700 leading-relaxed mb-8">
-              {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
-            </p>
 
             <!-- Grades Section -->
             <div class="bg-emerald-50 rounded-xl p-8 mb-8">
@@ -93,7 +100,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { tm, rt } = useI18n();
-const { loadContent, getItems, field, singleField, loading: contentLoading } = usePublicContent();
+const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
 onMounted(() => loadContent([
   'admissions.whoCanApply.intro',
