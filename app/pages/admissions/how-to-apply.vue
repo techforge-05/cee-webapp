@@ -20,7 +20,7 @@
         <div class="max-w-4xl mx-auto">
           <div :class="singleMeta('admissions.howToApply.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'mb-10 text-center'">
             <div>
-              <p class="text-xl text-gray-700 leading-relaxed">
+              <p class="text-2xl md:text-3xl font-semibold text-emerald-800 leading-snug">
                 {{ singleField('admissions.howToApply.intro', 'text') || $t('admissions.howToApply.intro') }}
               </p>
             </div>

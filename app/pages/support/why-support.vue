@@ -21,6 +21,7 @@
           <div>
             <div class="flex items-center gap-4 mb-8">
               <div
+                v-if="!singleMeta('support.whySupport.intro', 'imageUrl')"
                 class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shrink-0"
               >
                 <UIcon

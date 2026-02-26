@@ -22,10 +22,11 @@
           <div :class="singleMeta('getInvolved.teachers.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'text-center mb-10'">
             <div>
               <UIcon
+                v-if="!singleMeta('getInvolved.teachers.intro', 'imageUrl')"
                 name="i-heroicons-academic-cap"
                 class="w-16 h-16 text-amber-500 mx-auto mb-4"
               />
-              <p class="text-xl text-gray-700 leading-relaxed">
+              <p class="text-2xl md:text-3xl font-semibold text-purple-800 leading-snug">
                 {{ singleField('getInvolved.teachers.intro', 'text') || $t('getInvolved.teachers.intro') }}
               </p>
             </div>

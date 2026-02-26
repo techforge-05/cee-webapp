@@ -20,11 +20,12 @@
         <div :class="singleMeta('studentLife.serviceProjects.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div :class="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl') && 'text-center'">
             <UIcon
+              v-if="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl')"
               name="i-heroicons-heart"
               class="w-16 h-16 text-rose-600 mb-6"
               :class="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl') && 'mx-auto'"
             />
-            <p class="text-xl text-gray-700 leading-relaxed">
+            <p class="text-2xl md:text-3xl font-semibold text-rose-800 leading-snug">
               {{ singleField('studentLife.serviceProjects.intro', 'text') || $t('studentLife.serviceProjects.intro') }}
             </p>
           </div>

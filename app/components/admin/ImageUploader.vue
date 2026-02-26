@@ -130,7 +130,7 @@ const emit = defineEmits<{
 
 const modelValue = defineModel<string>({ default: '' })
 
-const { upload, loading: uploading, compressing } = useImageUpload()
+const { upload, deleteImage, loading: uploading, compressing } = useImageUpload()
 const toast = useToast()
 const { t } = useI18n()
 
@@ -170,12 +170,16 @@ async function processFile(file: File) {
     return
   }
 
+  const oldUrl = modelValue.value
+
   try {
     const url = await upload(file, props.folder)
     modelValue.value = url
     // Reset focal point to center on new image
     emit('update:focalX', 50)
     emit('update:focalY', 50)
+    // Fire-and-forget: delete the old image from Cloudinary
+    if (oldUrl) deleteImage(oldUrl)
   } catch {
     toast.add({
       title: t('admin.components.image.uploadError'),
@@ -185,9 +189,12 @@ async function processFile(file: File) {
 }
 
 function removeImage() {
+  const oldUrl = modelValue.value
   modelValue.value = ''
   emit('update:focalX', 50)
   emit('update:focalY', 50)
+  // Fire-and-forget: delete the image from Cloudinary
+  if (oldUrl) deleteImage(oldUrl)
 }
 
 function handleFocalPointClick(event: MouseEvent) {

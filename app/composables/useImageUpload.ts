@@ -48,5 +48,17 @@ export const useImageUpload = () => {
     }
   }
 
-  return { upload, loading, compressing, error }
+  const deleteImage = async (url: string): Promise<void> => {
+    if (!url) return
+    try {
+      await $fetch('/api/admin/delete-image', {
+        method: 'POST',
+        body: { url },
+      })
+    } catch (e) {
+      console.warn('[ImageUpload] Failed to delete old image:', e)
+    }
+  }
+
+  return { upload, deleteImage, loading, compressing, error }
 }

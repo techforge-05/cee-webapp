@@ -1517,6 +1517,7 @@
         "linkPathHint": "E.g. /contact/form — the path at the end of any page's URL"
       },
       "leadership": {
+        "intro": "Introduction",
         "board": "Board of Directors",
         "boardPhoto": "Board Group Photo",
         "boardMember": "Board Member",

@@ -20,11 +20,12 @@
         <div :class="singleMeta('support.donate.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div>
             <UIcon
+              v-if="!singleMeta('support.donate.intro', 'imageUrl')"
               name="i-heroicons-gift"
               class="w-16 h-16 text-red-600 mb-6"
               :class="{ 'mx-auto': !singleMeta('support.donate.intro', 'imageUrl') }"
             />
-            <p class="text-xl text-gray-700 leading-relaxed">
+            <p class="text-2xl md:text-3xl font-semibold text-emerald-800 leading-snug">
               {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
             </p>
           </div>

@@ -45,7 +45,7 @@
       <!-- Dark overlay for better text readability -->
       <div class="absolute inset-0 bg-green-400/30"></div>
 
-      <div class="max-w-4xl mx-auto md:ml-[15%] md:mr-0 px-4 relative z-10">
+      <div class="px-6 sm:px-10 lg:px-16 md:ml-[15%] md:mr-0 relative z-10">
         <div class="text-center md:text-left">
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
@@ -73,7 +73,7 @@
 
     <!-- Section 3: Offered Grades and Programs -->
     <section class="py-10 md:py-16 lg:py-28">
-      <div class="max-w-7xl mx-auto px-2 md:px-6">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
           <div>
             <h2
@@ -204,7 +204,7 @@
 
     <!-- Section 5: School Activities -->
     <section class="py-10 md:py-14 lg:py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold text-gray-900 mb-4">
             {{ $t('home.activities.title') }}
@@ -255,9 +255,9 @@
 
     <!-- Section 6: News -->
     <section class="py-5 md:py-20">
-      <div class="max-w-7xl mx-auto px-4">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          <h2 class="text-4xl lg:text-6xl font-bold text-teal-700 mb-4">
             {{ $t('home.news.title') }}
           </h2>
           <p class="text-xl text-gray-600">
@@ -273,7 +273,7 @@
             <template #header>
               <div
                 v-if="newsItem.image_url"
-                class="aspect-video overflow-hidden -mx-6 -mt-6 mb-3"
+                class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
               >
                 <img
                   :src="newsItem.image_url"

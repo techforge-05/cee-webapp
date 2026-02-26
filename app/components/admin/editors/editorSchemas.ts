@@ -208,7 +208,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 12,
       minItems: 4,
       itemLabelKey: 'admin.editors.about.history.period',
-      fields: [f.title(), f.content(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.content(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'about.history.legacy',

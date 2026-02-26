@@ -90,6 +90,7 @@ withDefaults(defineProps<{
 })
 
 const model = defineModel<ImageData[]>({ default: () => [] })
+const { deleteImage } = useImageUpload()
 
 function addItem() {
   model.value = [
@@ -99,7 +100,10 @@ function addItem() {
 }
 
 function removeItem(index: number) {
+  const removedItem = model.value[index]
   model.value = model.value.filter((_, i) => i !== index)
+  // Fire-and-forget: delete from Cloudinary
+  if (removedItem?.url) deleteImage(removedItem.url)
 }
 
 function moveUp(index: number) {

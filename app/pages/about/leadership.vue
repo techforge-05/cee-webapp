@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('about.leadership.title') }}
         </h1>
@@ -15,29 +15,29 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('about.leadership.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('about.leadership.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('about.leadership.intro', 'focalX') || 50}% ${singleMeta('about.leadership.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-user-group"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ $t('about.leadership.intro') }}
-          </p>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-amber-800 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('about.leadership.intro', 'text') || $t('about.leadership.intro') }}
+        </p>
       </div>
     </section>
 
     <!-- Board of Directors Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <UIcon
-            name="i-heroicons-briefcase"
-            class="w-16 h-16 text-blue-600 mx-auto mb-6"
-          />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('about.leadership.board.title') }}
           </h2>
@@ -80,12 +80,8 @@
 
     <!-- School Directors Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <UIcon
-            name="i-heroicons-academic-cap"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('about.leadership.directors.title') }}
           </h2>
@@ -137,7 +133,7 @@
 
     <!-- Contact Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="bg-blue-50 rounded-lg p-8 md:p-12 max-w-4xl mx-auto">
           <div class="text-center">
             <UIcon
@@ -167,32 +163,30 @@
     <section
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
-            {{ $t('about.leadership.cta.title') }}
-          </h2>
-          <p class="text-xl mb-8">
-            {{ $t('about.leadership.cta.description') }}
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <UButton
-              :to="localePath('/admissions/who-can-apply')"
-              size="lg"
-              variant="solid"
-              class="bg-white text-green-700 hover:bg-gray-100 justify-center"
-            >
-              {{ $t('about.leadership.cta.learnMore') }}
-            </UButton>
-            <UButton
-              :to="localePath('/about/mission-vision-values')"
-              size="lg"
-              variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
-            >
-              {{ $t('about.leadership.cta.ourMission') }}
-            </UButton>
-          </div>
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          {{ $t('about.leadership.cta.title') }}
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          {{ $t('about.leadership.cta.description') }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <UButton
+            :to="localePath('/admissions/who-can-apply')"
+            size="lg"
+            variant="solid"
+            class="bg-white text-green-700 hover:bg-gray-100 justify-center"
+          >
+            {{ $t('about.leadership.cta.learnMore') }}
+          </UButton>
+          <UButton
+            :to="localePath('/about/mission-vision-values')"
+            size="lg"
+            variant="outline"
+            class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
+          >
+            {{ $t('about.leadership.cta.ourMission') }}
+          </UButton>
         </div>
       </div>
     </section>
@@ -202,9 +196,10 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { locale } = useI18n();
-  const { loadContent, getItems, field, meta: getMeta, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
+    'about.leadership.intro',
     'about.leadership.boardPhoto',
     'about.leadership.board',
     'about.leadership.directors',

@@ -21,6 +21,7 @@
         <div :class="singleMeta('studentLife.sports.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'text-center'">
             <UIcon
+              v-if="!singleMeta('studentLife.sports.intro', 'imageUrl')"
               name="i-heroicons-trophy"
               class="w-16 h-16 text-green-600 mb-6"
               :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'mx-auto'"

@@ -22,6 +22,7 @@
           <div>
             <div class="flex items-start gap-6 mb-8">
               <UIcon
+                v-if="!singleMeta('academics.curriculum.intro', 'imageUrl')"
                 name="i-heroicons-academic-cap"
                 class="w-16 h-16 text-purple-600 shrink-0"
               />

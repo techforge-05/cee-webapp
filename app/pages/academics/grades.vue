@@ -21,11 +21,12 @@
         <div :class="singleMeta('academics.grades.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div>
             <UIcon
+              v-if="!singleMeta('academics.grades.intro', 'imageUrl')"
               name="i-heroicons-academic-cap"
               class="w-16 h-16 text-purple-600 mb-6"
               :class="singleMeta('academics.grades.intro', 'imageUrl') ? '' : 'mx-auto'"
             />
-            <p class="text-xl text-gray-700 leading-relaxed">
+            <p class="text-2xl md:text-3xl font-semibold text-blue-800 leading-snug">
               {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
             </p>
           </div>

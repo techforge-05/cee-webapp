@@ -1,5 +1,31 @@
 <template>
   <div class="space-y-6 pb-24">
+    <!-- Intro Section -->
+    <SectionCard
+      v-model="openIntro"
+      :title="$t('admin.editors.leadership.intro')"
+      :page-key="'about.leadership.intro'"
+      @restored="handleSectionRestored('about.leadership.intro')"
+    >
+      <div class="space-y-4">
+        <BilingualTextarea
+          :model-value="{ es: introItem.content_es?.text || '', en: introItem.content_en?.text || '' }"
+          :label="$t('admin.editors.generic.text')"
+          :rows="3"
+          @update:model-value="introItem = { ...introItem, content_es: { ...introItem.content_es, text: $event.es }, content_en: { ...introItem.content_en, text: $event.en } }; trackChanges()"
+        />
+        <ImageUploader
+          :model-value="introItem.metadata?.imageUrl || ''"
+          folder="cee-assets/about/leadership"
+          :focal-x="Number(introItem.metadata?.focalX) || 50"
+          :focal-y="Number(introItem.metadata?.focalY) || 50"
+          @update:model-value="introItem = { ...introItem, metadata: { ...introItem.metadata, imageUrl: $event } }; trackChanges()"
+          @update:focal-x="introItem = { ...introItem, metadata: { ...introItem.metadata, focalX: String($event) } }; trackChanges()"
+          @update:focal-y="introItem = { ...introItem, metadata: { ...introItem.metadata, focalY: String($event) } }; trackChanges()"
+        />
+      </div>
+    </SectionCard>
+
     <!-- Board of Directors Section -->
     <SectionCard
       v-model="openBoard"
@@ -141,18 +167,35 @@ const { t } = useI18n()
 const dirtyState = useDirtyState()
 
 const saving = ref(false)
+const openIntro = ref(false)
 const openBoard = ref(false)
 const openDirectors = ref(false)
 
+const introItem = ref<PageContentItem>({
+  page_key: 'about.leadership.intro',
+  content_es: { text: '' },
+  content_en: { text: '' },
+  sort_order: 0,
+  is_active: true,
+  metadata: {},
+})
 const boardPhoto = ref<ImageData>({ url: '', alt_es: '', alt_en: '' })
 const boardMembers = ref<PageContentItem[]>([])
 const directors = ref<PageContentItem[]>([])
 
-// Track original board photo item for updates
+// Track original items for updates
+let introOriginalItem: PageContentItem | null = null
 let boardPhotoItem: PageContentItem | null = null
 
 async function loadAllData() {
   try {
+    // Load intro
+    await loadItems('about.leadership.intro')
+    if (items.value.length > 0) {
+      introOriginalItem = items.value[0]
+      introItem.value = { ...introOriginalItem }
+    }
+
     // Load board photo
     await loadItems('about.leadership.boardPhoto')
     if (items.value.length > 0) {
@@ -183,6 +226,7 @@ async function loadAllData() {
 
 function initDirtyStateTracking() {
   const allData = {
+    introItem: JSON.parse(JSON.stringify(introItem.value)),
     boardPhoto: JSON.parse(JSON.stringify(boardPhoto.value)),
     boardMembers: JSON.parse(JSON.stringify(boardMembers.value)),
     directors: JSON.parse(JSON.stringify(directors.value)),
@@ -193,6 +237,7 @@ function initDirtyStateTracking() {
 function trackChanges() {
   nextTick(() => {
     const currentData = {
+      introItem: JSON.parse(JSON.stringify(introItem.value)),
       boardPhoto: JSON.parse(JSON.stringify(boardPhoto.value)),
       boardMembers: JSON.parse(JSON.stringify(boardMembers.value)),
       directors: JSON.parse(JSON.stringify(directors.value)),
@@ -265,6 +310,11 @@ function updateDirectorMeta(index: number, field: string, val: string) {
 async function handleSave() {
   saving.value = true
   try {
+    // Save intro
+    const savedIntro = await saveItem(introItem.value)
+    introOriginalItem = savedIntro
+    introItem.value = { ...savedIntro }
+
     // Save board photo as a single page_content item
     const photoData: PageContentItem = {
       ...(boardPhotoItem || { page_key: 'about.leadership.boardPhoto', sort_order: 0, is_active: true }),
@@ -297,6 +347,7 @@ function handleCancel() {
   const resetData = dirtyState.reset()
 
   // Restore all data from reset
+  introItem.value = resetData.introItem
   boardPhoto.value = resetData.boardPhoto
   boardMembers.value = resetData.boardMembers
   directors.value = resetData.directors

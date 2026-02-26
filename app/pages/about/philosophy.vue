@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('about.philosophy.title') }}
         </h1>
@@ -15,86 +15,106 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('about.philosophy.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('about.philosophy.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('about.philosophy.intro', 'focalX') || 50}% ${singleMeta('about.philosophy.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('about.philosophy.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div :class="!singleMeta('about.philosophy.intro', 'imageUrl') && 'text-center'">
-            <UIcon
-              name="i-heroicons-light-bulb"
-              class="w-16 h-16 text-purple-600 mb-6"
-              :class="!singleMeta('about.philosophy.intro', 'imageUrl') && 'mx-auto'"
-            />
-            <p class="text-xl text-gray-700 leading-relaxed">
-              {{ singleField('about.philosophy.intro', 'text') || $t('about.philosophy.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('about.philosophy.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('about.philosophy.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('about.philosophy.intro', 'focalX') || 50}% ${singleMeta('about.philosophy.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <div>
+          <UIcon
+            v-if="!singleMeta('about.philosophy.intro', 'imageUrl')"
+            name="i-heroicons-light-bulb"
+            class="w-16 h-16 text-purple-600 mb-6"
+          />
+          <p class="text-xl md:text-2xl text-amber-800 leading-relaxed lg:max-w-[50%]">
+            {{ singleField('about.philosophy.intro', 'text') || $t('about.philosophy.intro') }}
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Philosophy Sections -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section class="py-8 sm:py-16">
+      <div class="px-2 sm:px-10 lg:px-16">
         <div class="space-y-12">
           <!-- Biblical Foundation -->
-          <div class="bg-blue-50 rounded-lg p-8 md:p-12">
-            <div v-if="singleMeta('about.philosophy.biblical', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('about.philosophy.biblical', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.biblical', 'focalX') || 50}% ${singleMeta('about.philosophy.biblical', 'focalY') || 50}%` }" alt="" />
+          <div class="bg-blue-50 rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12">
+            <div :class="singleMeta('about.philosophy.biblical', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+              <div class="px-4 py-6 sm:px-0 sm:py-0">
+                <div class="flex items-start gap-4 mb-6">
+                  <UIcon
+                    v-if="!singleMeta('about.philosophy.biblical', 'imageUrl')"
+                    :name="singleField('about.philosophy.biblical', 'icon') || 'i-heroicons-book-open'"
+                    class="w-12 h-12 text-blue-600 shrink-0"
+                  />
+                  <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-900">
+                    {{ singleField('about.philosophy.biblical', 'title') || $t('about.philosophy.biblical.title') }}
+                  </h2>
+                </div>
+                <p class="text-xl text-gray-800 leading-relaxed">
+                  {{ singleField('about.philosophy.biblical', 'content') || $t('about.philosophy.biblical.content') }}
+                </p>
+              </div>
+              <div v-if="singleMeta('about.philosophy.biblical', 'imageUrl')" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+                <img :src="singleMeta('about.philosophy.biblical', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.biblical', 'focalX') || 50}% ${singleMeta('about.philosophy.biblical', 'focalY') || 50}%` }" alt="" />
+              </div>
             </div>
-            <div class="flex items-start gap-4 mb-6">
-              <UIcon
-                :name="singleField('about.philosophy.biblical', 'icon') || 'i-heroicons-book-open'"
-                class="w-12 h-12 text-blue-600 shrink-0"
-              />
-              <h2 class="text-3xl font-bold text-blue-900">
-                {{ singleField('about.philosophy.biblical', 'title') || $t('about.philosophy.biblical.title') }}
-              </h2>
-            </div>
-            <p class="text-xl text-gray-800 leading-relaxed">
-              {{ singleField('about.philosophy.biblical', 'content') || $t('about.philosophy.biblical.content') }}
-            </p>
           </div>
 
           <!-- Human Dignity -->
-          <div class="bg-purple-50 rounded-lg p-8 md:p-12">
-            <div v-if="singleMeta('about.philosophy.dignity', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('about.philosophy.dignity', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.dignity', 'focalX') || 50}% ${singleMeta('about.philosophy.dignity', 'focalY') || 50}%` }" alt="" />
+          <div class="bg-purple-50 rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12">
+            <div :class="singleMeta('about.philosophy.dignity', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+              <div v-if="singleMeta('about.philosophy.dignity', 'imageUrl')" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112 order-1 lg:order-0">
+                <img :src="singleMeta('about.philosophy.dignity', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.dignity', 'focalX') || 50}% ${singleMeta('about.philosophy.dignity', 'focalY') || 50}%` }" alt="" />
+              </div>
+              <div class="px-4 py-6 sm:px-0 sm:py-0">
+                <div class="flex items-start gap-4 mb-6">
+                  <UIcon
+                    v-if="!singleMeta('about.philosophy.dignity', 'imageUrl')"
+                    :name="singleField('about.philosophy.dignity', 'icon') || 'i-heroicons-user-group'"
+                    class="w-12 h-12 text-purple-600 shrink-0"
+                  />
+                  <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-purple-900">
+                    {{ singleField('about.philosophy.dignity', 'title') || $t('about.philosophy.dignity.title') }}
+                  </h2>
+                </div>
+                <p class="text-xl text-gray-800 leading-relaxed">
+                  {{ singleField('about.philosophy.dignity', 'content') || $t('about.philosophy.dignity.content') }}
+                </p>
+              </div>
             </div>
-            <div class="flex items-start gap-4 mb-6">
-              <UIcon
-                :name="singleField('about.philosophy.dignity', 'icon') || 'i-heroicons-user-group'"
-                class="w-12 h-12 text-purple-600 shrink-0"
-              />
-              <h2 class="text-3xl font-bold text-purple-900">
-                {{ singleField('about.philosophy.dignity', 'title') || $t('about.philosophy.dignity.title') }}
-              </h2>
-            </div>
-            <p class="text-xl text-gray-800 leading-relaxed">
-              {{ singleField('about.philosophy.dignity', 'content') || $t('about.philosophy.dignity.content') }}
-            </p>
           </div>
 
           <!-- Bilingual Education -->
-          <div class="bg-indigo-50 rounded-lg p-8 md:p-12">
-            <div v-if="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.bilingual', 'focalX') || 50}% ${singleMeta('about.philosophy.bilingual', 'focalY') || 50}%` }" alt="" />
+          <div class="bg-indigo-50 rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12">
+            <div :class="singleMeta('about.philosophy.bilingual', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+              <div class="px-4 py-6 sm:px-0 sm:py-0">
+                <div class="flex items-start gap-4 mb-6">
+                  <UIcon
+                    v-if="!singleMeta('about.philosophy.bilingual', 'imageUrl')"
+                    :name="singleField('about.philosophy.bilingual', 'icon') || 'i-heroicons-globe-americas'"
+                    class="w-12 h-12 text-indigo-600 shrink-0"
+                  />
+                  <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-indigo-900">
+                    {{ singleField('about.philosophy.bilingual', 'title') || $t('about.philosophy.bilingual.title') }}
+                  </h2>
+                </div>
+                <p class="text-xl text-gray-800 leading-relaxed">
+                  {{ singleField('about.philosophy.bilingual', 'content') || $t('about.philosophy.bilingual.content') }}
+                </p>
+              </div>
+              <div v-if="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+                <img :src="singleMeta('about.philosophy.bilingual', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('about.philosophy.bilingual', 'focalX') || 50}% ${singleMeta('about.philosophy.bilingual', 'focalY') || 50}%` }" alt="" />
+              </div>
             </div>
-            <div class="flex items-start gap-4 mb-6">
-              <UIcon
-                :name="singleField('about.philosophy.bilingual', 'icon') || 'i-heroicons-globe-americas'"
-                class="w-12 h-12 text-indigo-600 shrink-0"
-              />
-              <h2 class="text-3xl font-bold text-indigo-900">
-                {{ singleField('about.philosophy.bilingual', 'title') || $t('about.philosophy.bilingual.title') }}
-              </h2>
-            </div>
-            <p class="text-xl text-gray-800 leading-relaxed">
-              {{ singleField('about.philosophy.bilingual', 'content') || $t('about.philosophy.bilingual.content') }}
-            </p>
           </div>
         </div>
       </div>
@@ -102,7 +122,7 @@
 
     <!-- Key Principles -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('about.philosophy.principles.title') }}
         </h2>
@@ -131,34 +151,32 @@
 
     <!-- Call to Action -->
     <section
-      class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
+      class="py-16 bg-linear-to-r from-green-600 to-teal-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
-            {{ $t('about.philosophy.cta.title') }}
-          </h2>
-          <p class="text-xl mb-8">
-            {{ $t('about.philosophy.cta.description') }}
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <UButton
-              :to="localePath('/admissions/who-can-apply')"
-              size="lg"
-              variant="solid"
-              class="bg-white text-green-700 hover:bg-gray-100 justify-center"
-            >
-              {{ $t('about.philosophy.cta.learnMore') }}
-            </UButton>
-            <UButton
-              :to="localePath('/contact/info')"
-              size="lg"
-              variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
-            >
-              {{ $t('about.philosophy.cta.contactUs') }}
-            </UButton>
-          </div>
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          {{ $t('about.philosophy.cta.title') }}
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          {{ $t('about.philosophy.cta.description') }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <UButton
+            :to="localePath('/admissions/who-can-apply')"
+            size="lg"
+            variant="solid"
+            class="bg-white text-green-700 hover:bg-gray-100 justify-center"
+          >
+            {{ $t('about.philosophy.cta.learnMore') }}
+          </UButton>
+          <UButton
+            :to="localePath('/contact/info')"
+            size="lg"
+            variant="outline"
+            class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
+          >
+            {{ $t('about.philosophy.cta.contactUs') }}
+          </UButton>
         </div>
       </div>
     </section>

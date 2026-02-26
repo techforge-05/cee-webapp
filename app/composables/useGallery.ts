@@ -116,6 +116,9 @@ export const useGallery = () => {
   }
 
   const deletePhoto = async (id: string) => {
+    const photo = photos.value.find(p => p.id === id)
+    const imageUrl = photo?.url
+
     const { error: deleteError } = await supabase
       .from('gallery_photos')
       .delete()
@@ -123,6 +126,14 @@ export const useGallery = () => {
 
     if (deleteError) throw deleteError
     photos.value = photos.value.filter(p => p.id !== id)
+
+    // Fire-and-forget: delete from Cloudinary
+    if (imageUrl) {
+      $fetch('/api/admin/delete-image', {
+        method: 'POST',
+        body: { url: imageUrl },
+      }).catch(() => {})
+    }
   }
 
   return { photos, loading, error, totalCount, currentPage, perPage, hasMore, loadPhotos, loadMore, savePhoto, deletePhoto }

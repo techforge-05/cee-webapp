@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('about.missionVisionValues.title') }}
         </h1>
@@ -15,85 +15,90 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('about.mvv.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('about.mvv.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('about.mvv.intro', 'focalX') || 50}% ${singleMeta('about.mvv.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}
-            </h2>
-            <p class="text-lg text-gray-700 mb-4">
-              {{ singleField('about.mvv.intro', 'paragraph1') || $t('about.missionVisionValues.intro.paragraph1') }}
-            </p>
-            <p class="text-lg text-gray-700">
-              {{ singleField('about.mvv.intro', 'paragraph2') || $t('about.missionVisionValues.intro.paragraph2') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('about.mvv.intro', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
-            <img
-              :src="singleMeta('about.mvv.intro', 'imageUrl')"
-              alt=""
-              class="w-full h-full object-cover"
-              :style="{ objectPosition: `${singleMeta('about.mvv.intro', 'focalX') || 50}% ${singleMeta('about.mvv.intro', 'focalY') || 50}%` }"
-            />
-          </div>
-          <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
-            <UIcon name="i-heroicons-photo" class="w-16 h-16 text-gray-400" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          {{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}
+        </h2>
+        <p class="text-lg text-gray-700 mb-4">
+          {{ singleField('about.mvv.intro', 'paragraph1') || $t('about.missionVisionValues.intro.paragraph1') }}
+        </p>
+        <p class="text-lg text-gray-700">
+          {{ singleField('about.mvv.intro', 'paragraph2') || $t('about.missionVisionValues.intro.paragraph2') }}
+        </p>
       </div>
     </section>
 
     <!-- Mission Section -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="bg-blue-50 rounded-lg p-8 md:p-12">
-          <div v-if="singleMeta('about.mvv.mission', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-            <img :src="singleMeta('about.mvv.mission', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.mission', 'focalX') || 50}% ${singleMeta('about.mvv.mission', 'focalY') || 50}%` }" alt="" />
+    <section class="py-8 sm:py-16">
+      <div class="px-2 sm:px-10 lg:px-16">
+        <div class="bg-blue-50 rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12">
+          <div :class="singleMeta('about.mvv.mission', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+            <div class="px-4 py-6 sm:px-0 sm:py-0">
+              <div class="flex items-start gap-4 mb-4">
+                <UIcon
+                  v-if="!singleMeta('about.mvv.mission', 'imageUrl')"
+                  name="i-heroicons-flag"
+                  class="w-12 h-12 text-blue-600 shrink-0"
+                />
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-900">
+                  {{ singleField('about.mvv.mission', 'title') || $t('about.missionVisionValues.mission.title') }}
+                </h2>
+              </div>
+              <p class="text-xl text-gray-800 leading-relaxed">
+                {{ singleField('about.mvv.mission', 'statement') || $t('about.missionVisionValues.mission.statement') }}
+              </p>
+            </div>
+            <div v-if="singleMeta('about.mvv.mission', 'imageUrl')" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+              <img :src="singleMeta('about.mvv.mission', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.mission', 'focalX') || 50}% ${singleMeta('about.mvv.mission', 'focalY') || 50}%` }" alt="" />
+            </div>
           </div>
-          <div class="flex items-start gap-4 mb-4">
-            <UIcon
-              name="i-heroicons-flag"
-              class="w-12 h-12 text-blue-600 shrink-0"
-            />
-            <h2 class="text-3xl font-bold text-blue-900">
-              {{ singleField('about.mvv.mission', 'title') || $t('about.missionVisionValues.mission.title') }}
-            </h2>
-          </div>
-          <p class="text-xl text-gray-800 leading-relaxed">
-            {{ singleField('about.mvv.mission', 'statement') || $t('about.missionVisionValues.mission.statement') }}
-          </p>
         </div>
       </div>
     </section>
 
     <!-- Vision Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="bg-purple-50 rounded-lg p-8 md:p-12">
-          <div v-if="singleMeta('about.mvv.vision', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-            <img :src="singleMeta('about.mvv.vision', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.vision', 'focalX') || 50}% ${singleMeta('about.mvv.vision', 'focalY') || 50}%` }" alt="" />
+      <div class="px-2 sm:px-10 lg:px-16">
+        <div class="bg-purple-50 rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12">
+          <div :class="singleMeta('about.mvv.vision', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+            <div v-if="singleMeta('about.mvv.vision', 'imageUrl')" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112 order-1 lg:order-0">
+              <img :src="singleMeta('about.mvv.vision', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('about.mvv.vision', 'focalX') || 50}% ${singleMeta('about.mvv.vision', 'focalY') || 50}%` }" alt="" />
+            </div>
+            <div class="px-4 py-6 sm:px-0 sm:py-0">
+              <div class="flex items-start gap-4 mb-4">
+                <UIcon
+                  v-if="!singleMeta('about.mvv.vision', 'imageUrl')"
+                  name="i-heroicons-eye"
+                  class="w-12 h-12 text-purple-600 shrink-0"
+                />
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-purple-900">
+                  {{ singleField('about.mvv.vision', 'title') || $t('about.missionVisionValues.vision.title') }}
+                </h2>
+              </div>
+              <p class="text-xl text-gray-800 leading-relaxed">
+                {{ singleField('about.mvv.vision', 'statement') || $t('about.missionVisionValues.vision.statement') }}
+              </p>
+            </div>
           </div>
-          <div class="flex items-start gap-4 mb-4">
-            <UIcon
-              name="i-heroicons-eye"
-              class="w-12 h-12 text-purple-600 shrink-0"
-            />
-            <h2 class="text-3xl font-bold text-purple-900">
-              {{ singleField('about.mvv.vision', 'title') || $t('about.missionVisionValues.vision.title') }}
-            </h2>
-          </div>
-          <p class="text-xl text-gray-800 leading-relaxed">
-            {{ singleField('about.mvv.vision', 'statement') || $t('about.missionVisionValues.vision.statement') }}
-          </p>
         </div>
       </div>
     </section>
 
     <!-- Core Values Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">
           {{ $t('about.missionVisionValues.values.title') }}
         </h2>
@@ -129,7 +134,7 @@
     <section
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
           {{ $t('about.missionVisionValues.cta.title') }}
         </h2>

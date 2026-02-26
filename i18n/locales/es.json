@@ -1517,6 +1517,7 @@
         "linkPathHint": "Ej: /contact/form — es la parte final de la URL de cualquier página"
       },
       "leadership": {
+        "intro": "Introducción",
         "board": "Junta Directiva",
         "boardPhoto": "Foto Grupal de la Junta",
         "boardMember": "Miembro de la Junta",

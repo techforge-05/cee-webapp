@@ -18,7 +18,7 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <UIcon name="i-heroicons-map-pin" class="w-12 h-12 text-purple-600 mb-6" />
+            <UIcon v-if="!singleMeta('about.town.intro', 'imageUrl')" name="i-heroicons-map-pin" class="w-12 h-12 text-purple-600 mb-6" />
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
               {{ singleField('about.town.intro', 'title') || $t('about.town.intro.title') }}
             </h2>

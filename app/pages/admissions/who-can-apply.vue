@@ -21,7 +21,7 @@
         <div class="max-w-4xl mx-auto">
           <div :class="singleMeta('admissions.whoCanApply.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8' : 'max-w-4xl mx-auto text-center mb-8'">
             <div>
-              <p class="text-xl text-gray-700 leading-relaxed">
+              <p class="text-2xl md:text-3xl font-semibold text-teal-800 leading-snug">
                 {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
               </p>
             </div>

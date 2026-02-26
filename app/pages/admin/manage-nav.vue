@@ -167,6 +167,7 @@ const toast = useToast()
 const supabase = useSupabaseClient()
 const contentStore = useContentStore()
 const { isVisible, loadVisibility, toggleVisibility } = useNavVisibility()
+const { deleteImage } = useImageUpload()
 
 const loading = ref(true)
 
@@ -303,12 +304,15 @@ async function removeDropdownImage() {
   imageSaving.value = true
   try {
     const key = `nav.dropdown.${imageModalSection.value}`
+    const oldUrl = dropdownImages[imageModalSection.value]
     await supabase.from('media').delete().eq('key', key)
     delete dropdownImages[imageModalSection.value]
     // Also remove from content store local state
     delete contentStore.media[key]
     imageModalOpen.value = false
     toast.add({ title: t('admin.manageNav.imageRemoved'), color: 'success' })
+    // Fire-and-forget: delete from Cloudinary
+    if (oldUrl) deleteImage(oldUrl)
   } catch {
     toast.add({ title: t('admin.manageNav.imageError'), color: 'error' })
   } finally {

@@ -22,10 +22,11 @@
           <div :class="singleMeta('getInvolved.volunteer.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10' : 'text-center mb-10'">
             <div>
               <UIcon
+                v-if="!singleMeta('getInvolved.volunteer.intro', 'imageUrl')"
                 name="i-heroicons-heart"
                 class="w-16 h-16 text-amber-500 mx-auto mb-4"
               />
-              <p class="text-xl text-gray-700 leading-relaxed">
+              <p class="text-2xl md:text-3xl font-semibold text-rose-800 leading-snug">
                 {{ singleField('getInvolved.volunteer.intro', 'text') || $t('getInvolved.volunteer.intro') }}
               </p>
             </div>

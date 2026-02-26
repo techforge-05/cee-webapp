@@ -20,6 +20,7 @@
         <div :class="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'text-center'">
             <UIcon
+              v-if="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')"
               name="i-heroicons-calendar-days"
               class="w-16 h-16 text-indigo-600 mb-6"
               :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'mx-auto'"

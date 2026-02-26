@@ -22,7 +22,7 @@
             name="i-heroicons-wrench-screwdriver"
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
-          <p class="text-xl text-gray-700 leading-relaxed">
+          <p class="text-2xl md:text-3xl font-semibold text-cyan-800 leading-snug">
             {{ singleField('support.projects.intro', 'text') || $t('support.projects.intro') }}
           </p>
         </div>

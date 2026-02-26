@@ -22,6 +22,7 @@
           <div>
             <div class="flex items-start gap-6 mb-8">
               <UIcon
+                v-if="!singleMeta('academics.guidance.intro', 'imageUrl')"
                 name="i-heroicons-heart"
                 class="w-16 h-16 text-green-600 shrink-0"
               />
