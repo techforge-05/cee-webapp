@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('academics.grades.title') }}
         </h1>
@@ -15,31 +15,28 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('academics.grades.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('academics.grades.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('academics.grades.intro', 'focalX') || 50}% ${singleMeta('academics.grades.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('academics.grades.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <UIcon
-              v-if="!singleMeta('academics.grades.intro', 'imageUrl')"
-              name="i-heroicons-academic-cap"
-              class="w-16 h-16 text-purple-600 mb-6"
-              :class="singleMeta('academics.grades.intro', 'imageUrl') ? '' : 'mx-auto'"
-            />
-            <p class="text-2xl md:text-3xl font-semibold text-blue-800 leading-snug">
-              {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('academics.grades.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('academics.grades.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.grades.intro', 'focalX') || 50}% ${singleMeta('academics.grades.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-blue-800 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('academics.grades.intro', 'text') || $t('academics.grades.intro') }}
+        </p>
       </div>
     </section>
 
     <!-- Grade Levels Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="space-y-8">
           <div
             v-for="(level, index) in gradeLevels"
@@ -51,7 +48,7 @@
               :class="getGradeLevelBg(index)"
             >
               <div class="flex items-start gap-6">
-                <div class="shrink-0">
+                <div class="shrink-0 hidden md:block">
                   <div
                     class="w-16 h-16 rounded-full flex items-center justify-center"
                     :class="getGradeLevelIconBg(index)"
@@ -89,7 +86,7 @@
                     class="w-6 h-6 shrink-0 mt-1"
                     :class="getGradeLevelIconColor(index)"
                   />
-                  <span class="text-gray-700">{{ typeof focus === 'string' ? focus : rt(focus) }}</span>
+                  <span class="text-gray-700 text-lg">{{ typeof focus === 'string' ? focus : rt(focus) }}</span>
                 </div>
               </div>
 
@@ -115,7 +112,7 @@
 
     <!-- Special Programs Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('academics.programs.special.title') }}
         </h2>
@@ -145,7 +142,7 @@
 
     <!-- Educational Approach Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('academics.grades.approach.title') }}
         </h2>
@@ -176,7 +173,7 @@
     <section
       class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('academics.grades.cta.title') }}

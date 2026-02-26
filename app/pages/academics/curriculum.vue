@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('academics.curriculum.title') }}
         </h1>
@@ -15,40 +15,34 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('academics.curriculum.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('academics.curriculum.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('academics.curriculum.intro', 'focalX') || 50}% ${singleMeta('academics.curriculum.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('academics.curriculum.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <div class="flex items-start gap-6 mb-8">
-              <UIcon
-                v-if="!singleMeta('academics.curriculum.intro', 'imageUrl')"
-                name="i-heroicons-academic-cap"
-                class="w-16 h-16 text-purple-600 shrink-0"
-              />
-              <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                  {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
-                </h2>
-                <p class="text-xl text-gray-700 leading-relaxed mb-4">
-                  {{ singleField('academics.curriculum.intro', 'paragraph1') || $t('academics.curriculum.intro.paragraph1') }}
-                </p>
-                <p class="text-xl text-gray-700 leading-relaxed">
-                  {{ singleField('academics.curriculum.intro', 'paragraph2') || $t('academics.curriculum.intro.paragraph2') }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div v-if="singleMeta('academics.curriculum.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('academics.curriculum.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.curriculum.intro', 'focalX') || 50}% ${singleMeta('academics.curriculum.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
+          {{ singleField('academics.curriculum.intro', 'paragraph1') || $t('academics.curriculum.intro.paragraph1') }}
+        </p>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('academics.curriculum.intro', 'paragraph2') || $t('academics.curriculum.intro.paragraph2') }}
+        </p>
       </div>
     </section>
 
     <!-- Programs Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-2 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('academics.curriculum.programs.title') }}
         </h2>
@@ -59,7 +53,7 @@
             class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-8 md:p-12 border-l-4 border-pink-500"
           >
             <div class="flex items-start gap-6 mb-6">
-              <div class="shrink-0">
+              <div class="shrink-0 hidden md:block">
                 <div
                   class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center"
                 >
@@ -67,7 +61,7 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-2">
                   {{ $t('academics.curriculum.programs.kindergarten.title') }}
                 </h3>
                 <p class="text-lg text-pink-700 font-semibold mb-4">
@@ -76,7 +70,7 @@
               </div>
             </div>
             <div v-if="singleMeta('academics.curriculum.kindergarten', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('academics.curriculum.kindergarten', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.kindergarten', 'focalX') || 50}% ${singleMeta('academics.curriculum.kindergarten', 'focalY') || 50}%` }" alt="" />
+              <img :src="singleMeta('academics.curriculum.kindergarten', 'imageUrl')" class="w-full h-96 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.kindergarten', 'focalX') || 50}% ${singleMeta('academics.curriculum.kindergarten', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -95,7 +89,7 @@
             class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8 md:p-12 border-l-4 border-blue-500"
           >
             <div class="flex items-start gap-6 mb-6">
-              <div class="shrink-0">
+              <div class="shrink-0 hidden md:block">
                 <div
                   class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center"
                 >
@@ -106,7 +100,7 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-2">
                   {{ $t('academics.curriculum.programs.elementary.title') }}
                 </h3>
                 <p class="text-lg text-blue-700 font-semibold mb-4">
@@ -115,7 +109,7 @@
               </div>
             </div>
             <div v-if="singleMeta('academics.curriculum.elementary', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('academics.curriculum.elementary', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.elementary', 'focalX') || 50}% ${singleMeta('academics.curriculum.elementary', 'focalY') || 50}%` }" alt="" />
+              <img :src="singleMeta('academics.curriculum.elementary', 'imageUrl')" class="w-full h-96 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.elementary', 'focalX') || 50}% ${singleMeta('academics.curriculum.elementary', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-4">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -139,7 +133,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-blue-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ subject }}</span>
+                    <span class="text-gray-700 text-lg">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -151,7 +145,7 @@
             class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg p-8 md:p-12 border-l-4 border-purple-500"
           >
             <div class="flex items-start gap-6 mb-6">
-              <div class="shrink-0">
+              <div class="shrink-0 hidden md:block">
                 <div
                   class="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center"
                 >
@@ -159,7 +153,7 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                <h3 class="text-2xl md:text-4xl font-bold text-gray-900 mb-2">
                   {{ $t('academics.curriculum.programs.secondary.title') }}
                 </h3>
                 <p class="text-lg text-purple-700 font-semibold mb-4">
@@ -168,7 +162,7 @@
               </div>
             </div>
             <div v-if="singleMeta('academics.curriculum.secondary', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-              <img :src="singleMeta('academics.curriculum.secondary', 'imageUrl')" class="w-full h-48 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.secondary', 'focalX') || 50}% ${singleMeta('academics.curriculum.secondary', 'focalY') || 50}%` }" alt="" />
+              <img :src="singleMeta('academics.curriculum.secondary', 'imageUrl')" class="w-full h-96 object-cover" :style="{ objectPosition: `${singleMeta('academics.curriculum.secondary', 'focalX') || 50}% ${singleMeta('academics.curriculum.secondary', 'focalY') || 50}%` }" alt="" />
             </div>
             <div class="space-y-6">
               <p class="text-lg text-gray-800 leading-relaxed">
@@ -192,7 +186,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-purple-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ subject }}</span>
+                    <span class="text-gray-700 text-lg">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -216,7 +210,7 @@
                       name="i-heroicons-check-circle"
                       class="w-5 h-5 text-purple-600 shrink-0"
                     />
-                    <span class="text-gray-700">{{ subject }}</span>
+                    <span class="text-gray-700 text-lg">{{ subject }}</span>
                   </li>
                 </ul>
               </div>
@@ -228,7 +222,7 @@
 
     <!-- Benefits Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('academics.curriculum.benefits.title') }}
         </h2>
@@ -259,7 +253,7 @@
     <section
       class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('academics.curriculum.cta.title') }}

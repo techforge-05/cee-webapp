@@ -31,10 +31,10 @@
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
           {{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}
         </h2>
-        <p class="text-lg text-gray-700 mb-4">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
           {{ singleField('about.mvv.intro', 'paragraph1') || $t('about.missionVisionValues.intro.paragraph1') }}
         </p>
-        <p class="text-lg text-gray-700">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
           {{ singleField('about.mvv.intro', 'paragraph2') || $t('about.missionVisionValues.intro.paragraph2') }}
         </p>
       </div>

@@ -3,7 +3,7 @@
   <div v-else class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('about.town.title') }}
         </h1>
@@ -13,40 +13,34 @@
       </div>
     </section>
 
-    <!-- Introduction with Image -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <UIcon v-if="!singleMeta('about.town.intro', 'imageUrl')" name="i-heroicons-map-pin" class="w-12 h-12 text-purple-600 mb-6" />
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
-              {{ singleField('about.town.intro', 'title') || $t('about.town.intro.title') }}
-            </h2>
-            <p class="text-lg text-gray-700 mb-4">
-              {{ singleField('about.town.intro', 'paragraph1') || $t('about.town.intro.paragraph1') }}
-            </p>
-            <p class="text-lg text-gray-700">
-              {{ singleField('about.town.intro', 'paragraph2') || $t('about.town.intro.paragraph2') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('about.town.intro', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
-            <img
-              :src="singleMeta('about.town.intro', 'imageUrl')"
-              alt=""
-              class="w-full h-full object-cover"
-              :style="{ objectPosition: `${singleMeta('about.town.intro', 'focalX') || 50}% ${singleMeta('about.town.intro', 'focalY') || 50}%` }"
-            />
-          </div>
-          <div v-else class="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
-            <UIcon name="i-heroicons-map-pin" class="w-16 h-16 text-gray-400" />
-          </div>
-        </div>
+    <!-- Hero Image -->
+    <div v-if="singleMeta('about.town.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('about.town.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('about.town.intro', 'focalX') || 50}% ${singleMeta('about.town.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
+    <!-- Introduction -->
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          {{ singleField('about.town.intro', 'title') || $t('about.town.intro.title') }}
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
+          {{ singleField('about.town.intro', 'paragraph1') || $t('about.town.intro.paragraph1') }}
+        </p>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('about.town.intro', 'paragraph2') || $t('about.town.intro.paragraph2') }}
+        </p>
       </div>
     </section>
 
     <!-- Location & Climate -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-2 sm:px-10 lg:px-16">
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Location Card -->
           <div class="bg-blue-50 rounded-lg p-8">
@@ -92,7 +86,7 @@
 
     <!-- Mountain Image Section -->
     <section class="py-8">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-2 sm:px-10 lg:px-16">
         <div v-if="singleMeta('about.town.mountainImage', 'imageUrl')" class="h-96 rounded-lg overflow-hidden">
           <img
             :src="singleMeta('about.town.mountainImage', 'imageUrl')"
@@ -109,9 +103,8 @@
 
     <!-- Activities Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-2 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <UIcon name="i-heroicons-sparkles" class="w-16 h-16 text-purple-600 mx-auto mb-6" />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('about.town.activities.title') }}
           </h2>
@@ -145,7 +138,7 @@
 
     <!-- Gallery Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-2 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
           {{ $t('about.town.gallery.title') }}
         </h2>
@@ -181,32 +174,30 @@
 
     <!-- Call to Action -->
     <section class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
-            {{ $t('about.town.cta.title') }}
-          </h2>
-          <p class="text-xl mb-8">
-            {{ $t('about.town.cta.description') }}
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <UButton
-              :to="localePath('/admissions/who-can-apply')"
-              size="lg"
-              variant="solid"
-              class="bg-white text-green-700 hover:bg-gray-100 justify-center"
-            >
-              {{ $t('about.town.cta.learnMore') }}
-            </UButton>
-            <UButton
-              :to="localePath('/contact/info')"
-              size="lg"
-              variant="outline"
-              class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
-            >
-              {{ $t('about.town.cta.contactUs') }}
-            </UButton>
-          </div>
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          {{ $t('about.town.cta.title') }}
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          {{ $t('about.town.cta.description') }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <UButton
+            :to="localePath('/admissions/who-can-apply')"
+            size="lg"
+            variant="solid"
+            class="bg-white text-green-700 hover:bg-gray-100 justify-center"
+          >
+            {{ $t('about.town.cta.learnMore') }}
+          </UButton>
+          <UButton
+            :to="localePath('/contact/info')"
+            size="lg"
+            variant="outline"
+            class="border-2 border-white text-white hover:bg-white hover:text-green-700 justify-center"
+          >
+            {{ $t('about.town.cta.contactUs') }}
+          </UButton>
         </div>
       </div>
     </section>

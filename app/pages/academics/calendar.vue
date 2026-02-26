@@ -15,21 +15,6 @@
       </div>
     </section>
 
-    <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-calendar-days"
-            class="w-16 h-16 text-purple-600 mx-auto mb-6"
-          />
-          <p class="text-2xl md:text-3xl font-semibold text-purple-800 leading-snug">
-            {{ $t('academics.calendar.intro') }}
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- Calendar Component -->
     <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">

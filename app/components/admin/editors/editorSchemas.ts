@@ -479,6 +479,18 @@ const schemas: Record<string, EditorSection[]> = {
       type: 'single',
       fields: [f.text()],
     },
+    {
+      pageKey: 'studentLife.sports.gallery',
+      labelKey: 'admin.editors.studentLife.sports.gallery',
+      type: 'list',
+      maxItems: 6,
+      minItems: 1,
+      itemLabelKey: 'admin.editors.studentLife.sports.galleryItem',
+      fields: [
+        { key: 'alt', labelKey: 'admin.editors.generic.altText', type: 'text', maxLength: 200 },
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+      ],
+    },
   ],
 
   'studentLife/service-projects': [

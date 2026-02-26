@@ -909,6 +909,9 @@
         "description": "Encourage your child to explore their interests and develop new skills through our sports programs.",
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
+      },
+      "gallery": {
+        "title": "Sports Gallery"
       }
     },
     "serviceProjects": {
@@ -1786,7 +1789,9 @@
           "intro": "Introduction",
           "items": "Sports & Clubs",
           "sport": "Sport / Club",
-          "otherSports": "Other Sports"
+          "otherSports": "Other Sports",
+          "gallery": "Sports Gallery",
+          "galleryItem": "Image"
         },
         "serviceProjects": {
           "intro": "Introduction",

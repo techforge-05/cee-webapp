@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-green-600 to-teal-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('studentLife.sportsClubs.title') }}
         </h1>
@@ -15,34 +15,31 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('studentLife.sports.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('studentLife.sports.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('studentLife.sports.intro', 'focalX') || 50}% ${singleMeta('studentLife.sports.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('studentLife.sports.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'text-center'">
-            <UIcon
-              v-if="!singleMeta('studentLife.sports.intro', 'imageUrl')"
-              name="i-heroicons-trophy"
-              class="w-16 h-16 text-green-600 mb-6"
-              :class="!singleMeta('studentLife.sports.intro', 'imageUrl') && 'mx-auto'"
-            />
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-              {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
-            </h2>
-            <p class="text-xl text-gray-700 leading-relaxed">
-              {{ singleField('studentLife.sports.intro', 'description') || $t('studentLife.sportsClubs.intro.description') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('studentLife.sports.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('studentLife.sports.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('studentLife.sports.intro', 'focalX') || 50}% ${singleMeta('studentLife.sports.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('studentLife.sports.intro', 'description') || $t('studentLife.sportsClubs.intro.description') }}
+        </p>
       </div>
     </section>
 
     <!-- Sports Programs Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.sportsClubs.sports.title') }}
@@ -51,43 +48,88 @@
             {{ $t('studentLife.sportsClubs.sports.description') }}
           </p>
         </div>
+      </div>
 
-        <div class="flex flex-wrap justify-center gap-6">
-          <div
-            v-for="(sport, index) in sports"
-            :key="index"
-            class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
-          >
-            <div class="h-48 bg-gray-200 flex items-center justify-center">
-              <img
-                v-if="sport.image"
-                :src="sport.image"
-                :alt="sport.title"
-                class="w-full h-full object-cover"
-                :style="{ objectPosition: `${sport.focalX}% ${sport.focalY}%` }"
-                loading="lazy"
-              />
-              <div v-else class="text-center text-gray-400">
-                <UIcon :name="sportIcons[index]" class="w-12 h-12 mb-2" />
-                <p class="text-sm">{{ sport.title }}</p>
+      <div class="space-y-12">
+        <div
+          v-for="(sport, index) in sports"
+          :key="index"
+        >
+          <div class="px-2 sm:px-10 lg:px-16">
+            <div
+              :class="[
+                'rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12',
+                getSportBg(index),
+              ]"
+            >
+              <div :class="sport.image ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+                <!-- Image on left for odd index -->
+                <div v-if="sport.image && index % 2 === 1" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112 order-1 lg:order-0">
+                  <img
+                    :src="sport.image"
+                    :alt="sport.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${sport.focalX}% ${sport.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Text content -->
+                <div class="px-4 py-6 sm:px-0 sm:py-0">
+                  <h3 :class="['text-2xl md:text-4xl font-bold mb-4', getSportTextColor(index)]">
+                    {{ sport.title }}
+                  </h3>
+                  <p class="text-lg text-gray-800 leading-relaxed">
+                    {{ sport.description }}
+                  </p>
+                </div>
+                <!-- Image on right for even index -->
+                <div v-if="sport.image && index % 2 === 0" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+                  <img
+                    :src="sport.image"
+                    :alt="sport.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${sport.focalX}% ${sport.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Placeholder when no image -->
+                <div v-if="!sport.image" class="hidden" />
               </div>
-            </div>
-            <div class="p-6 text-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-3">
-                {{ sport.title }}
-              </h3>
-              <p class="text-gray-700">
-                {{ sport.description }}
-              </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Other Sports -->
-        <div class="mt-12 bg-green-50 rounded-lg p-8 text-center">
+      <!-- Other Sports -->
+      <div class="px-6 sm:px-10 lg:px-16 mt-12">
+        <div class="bg-green-50 rounded-lg p-8 text-center">
           <p class="text-lg text-gray-700 leading-relaxed">
             {{ singleField('studentLife.sports.otherSports', 'text') || $t('studentLife.sportsClubs.sports.otherSports') }}
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section v-if="galleryImages.length > 0" class="py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+          {{ $t('studentLife.sportsClubs.gallery.title') }}
+        </h2>
+        <div class="flex flex-wrap justify-center gap-6">
+          <div
+            v-for="(img, index) in galleryImages"
+            :key="index"
+            class="h-80 md:h-96 rounded-lg overflow-hidden w-full md:w-[calc(33.333%-1rem)]"
+          >
+            <img
+              :src="img.url"
+              :alt="img.alt"
+              class="w-full h-full object-cover"
+              :style="{ objectPosition: `${img.focalX}% ${img.focalY}%` }"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -96,7 +138,7 @@
     <section
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('studentLife.sportsClubs.cta.title') }}
@@ -137,6 +179,7 @@
     'studentLife.sports.intro',
     'studentLife.sports.otherSports',
     'studentLife.sports.items',
+    'studentLife.sports.gallery',
   ]));
 
   const sportIcons = [
@@ -165,6 +208,28 @@
       image: s.image ? (typeof s.image === 'string' ? s.image : rt(s.image)) : null,
     }));
   });
+
+  const galleryImages = computed(() => {
+    const dbItems = getItems('studentLife.sports.gallery');
+    return dbItems
+      .filter(item => getMeta(item, 'imageUrl'))
+      .map(item => ({
+        url: getMeta(item, 'imageUrl'),
+        alt: field(item, 'alt') || '',
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
+      }));
+  });
+
+  const sportStyles = [
+    { bg: 'bg-green-50', text: 'text-green-900' },
+    { bg: 'bg-blue-50', text: 'text-blue-900' },
+    { bg: 'bg-purple-50', text: 'text-purple-900' },
+    { bg: 'bg-teal-50', text: 'text-teal-900' },
+  ];
+
+  const getSportBg = (index: number) => sportStyles[index % sportStyles.length]!.bg;
+  const getSportTextColor = (index: number) => sportStyles[index % sportStyles.length]!.text;
 
   useHead({
     title: 'Sports - CEE',

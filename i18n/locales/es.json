@@ -909,6 +909,9 @@
         "description": "Anima a tu hijo a explorar sus intereses y desarrollar nuevas habilidades a través de nuestros programas deportivos.",
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
+      },
+      "gallery": {
+        "title": "Galería de Deportes"
       }
     },
     "serviceProjects": {
@@ -1786,7 +1789,9 @@
           "intro": "Introducción",
           "items": "Deportes y Clubes",
           "sport": "Deporte / Club",
-          "otherSports": "Otros Deportes"
+          "otherSports": "Otros Deportes",
+          "gallery": "Galería de Deportes",
+          "galleryItem": "Imagen"
         },
         "serviceProjects": {
           "intro": "Introducción",

@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('academics.guidance.title') }}
         </h1>
@@ -15,43 +15,37 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('academics.guidance.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('academics.guidance.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('academics.guidance.intro', 'focalX') || 50}% ${singleMeta('academics.guidance.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('academics.guidance.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <div class="flex items-start gap-6 mb-8">
-              <UIcon
-                v-if="!singleMeta('academics.guidance.intro', 'imageUrl')"
-                name="i-heroicons-heart"
-                class="w-16 h-16 text-green-600 shrink-0"
-              />
-              <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                  {{
-                    singleField('academics.guidance.intro', 'title') ||
-                    $t('academics.guidance.intro.title')
-                  }}
-                </h2>
-                <p class="text-xl text-gray-700 leading-relaxed">
-                  {{
-                    singleField('academics.guidance.intro', 'description') ||
-                    $t('academics.guidance.intro.description')
-                  }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div v-if="singleMeta('academics.guidance.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('academics.guidance.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('academics.guidance.intro', 'focalX') || 50}% ${singleMeta('academics.guidance.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          {{
+            singleField('academics.guidance.intro', 'title') ||
+            $t('academics.guidance.intro.title')
+          }}
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{
+            singleField('academics.guidance.intro', 'description') ||
+            $t('academics.guidance.intro.description')
+          }}
+        </p>
       </div>
     </section>
 
     <!-- Staff Directory Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('academics.guidance.staff.title') }}
@@ -69,7 +63,7 @@
           >
             <div class="mb-4 flex justify-center">
               <div
-                class="w-32 h-32 rounded-full overflow-hidden bg-purple-100 flex items-center justify-center"
+                class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden bg-purple-100 flex items-center justify-center"
               >
                 <img
                   v-if="member.photoUrl"
@@ -105,7 +99,7 @@
 
     <!-- Services Section -->
     <section class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('academics.guidance.services.title') }}
@@ -141,7 +135,7 @@
 
     <!-- Gallery Section -->
     <section class="py-16" v-if="images.length > 0">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('academics.guidance.gallery.title') }}
@@ -160,7 +154,7 @@
             <img
               :src="image.url"
               :alt="image.alt"
-              class="w-full h-64 object-cover"
+              class="w-full h-80 md:h-96 object-cover"
               :style="{ objectPosition: `${image.focalX}% ${image.focalY}%` }"
             />
           </div>
@@ -170,7 +164,7 @@
 
     <!-- CTA Section -->
     <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('academics.guidance.cta.title') }}
