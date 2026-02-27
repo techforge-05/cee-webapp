@@ -1,10 +1,11 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div v-if="contentLoading" class="min-h-screen flex items-center justify-center"><div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" /></div>
+  <div v-else class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
       class="relative bg-gradient-to-r from-amber-600 to-orange-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('studentLife.library.title') }}
         </h1>
@@ -14,27 +15,31 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('studentLife.library.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('studentLife.library.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('studentLife.library.intro', 'focalX') || 50}% ${singleMeta('studentLife.library.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-book-open"
-            class="w-16 h-16 text-amber-600 mx-auto mb-4"
-          />
-          <h2 class="text-2xl md:text-3xl font-bold text-amber-700 mb-6">
-            Beulah B. Burgess Library
-          </h2>
-          <p class="text-xl text-gray-700 leading-relaxed">
-            {{ singleField('studentLife.library.intro', 'text') || $t('studentLife.library.intro') }}
-          </p>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-amber-700 mb-4">
+          Beulah B. Burgess Library
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('studentLife.library.intro', 'text') || $t('studentLife.library.intro') }}
+        </p>
       </div>
     </section>
 
     <!-- Purpose of the Library -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
@@ -58,7 +63,7 @@
             </ul>
           </div>
           <div class="bg-amber-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.purpose', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.purpose', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.purpose', 'imageUrl')"
                 alt=""
@@ -66,7 +71,7 @@
                 :style="{ objectPosition: `${singleMeta('studentLife.library.purpose', 'focalX') || 50}% ${singleMeta('studentLife.library.purpose', 'focalY') || 50}%` }"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
               <UIcon name="i-heroicons-book-open" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -76,10 +81,10 @@
 
     <!-- Reading Corner Image Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="bg-amber-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.readingCorner', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.readingCorner', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.readingCorner', 'imageUrl')"
                 alt=""
@@ -87,7 +92,7 @@
                 :style="{ objectPosition: `${singleMeta('studentLife.library.readingCorner', 'focalX') || 50}% ${singleMeta('studentLife.library.readingCorner', 'focalY') || 50}%` }"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
               <UIcon name="i-heroicons-book-open" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -105,7 +110,7 @@
 
     <!-- Library Hours -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.library.hours.title') }}
@@ -123,14 +128,6 @@
               class="flex items-center justify-between p-6 border-b last:border-b-0"
             >
               <div class="flex items-center gap-4">
-                <div
-                  class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center"
-                >
-                  <UIcon
-                    name="i-heroicons-clock"
-                    class="w-5 h-5 text-amber-600"
-                  />
-                </div>
                 <span class="font-semibold text-gray-900">{{
                   schedule.day
                 }}</span>
@@ -144,7 +141,7 @@
 
     <!-- Grade-Level Reading Support -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.library.gradeSupport.title') }}
@@ -189,7 +186,7 @@
 
     <!-- Borrowing Rules -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">
@@ -224,7 +221,7 @@
 
     <!-- Bilingual Collection Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl font-bold text-gray-900 mb-6">
@@ -235,7 +232,7 @@
             </p>
           </div>
           <div class="bg-blue-50 rounded-2xl p-8">
-            <div v-if="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.bilingualCollection', 'imageUrl')"
                 alt=""
@@ -243,7 +240,7 @@
                 :style="{ objectPosition: `${singleMeta('studentLife.library.bilingualCollection', 'focalX') || 50}% ${singleMeta('studentLife.library.bilingualCollection', 'focalY') || 50}%` }"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
               <UIcon name="i-heroicons-language" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -253,10 +250,10 @@
 
     <!-- Study Space Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="bg-green-50 rounded-2xl p-8 order-2 lg:order-1">
-            <div v-if="singleMeta('studentLife.library.studySpace', 'imageUrl')" class="rounded-lg h-80 overflow-hidden">
+            <div v-if="singleMeta('studentLife.library.studySpace', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.studySpace', 'imageUrl')"
                 alt=""
@@ -264,7 +261,7 @@
                 :style="{ objectPosition: `${singleMeta('studentLife.library.studySpace', 'focalX') || 50}% ${singleMeta('studentLife.library.studySpace', 'focalY') || 50}%` }"
               />
             </div>
-            <div v-else class="bg-gray-200 rounded-lg h-80 flex items-center justify-center">
+            <div v-else class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
               <UIcon name="i-heroicons-users" class="w-16 h-16 text-gray-400" />
             </div>
           </div>
@@ -282,12 +279,8 @@
 
     <!-- Support the Library -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-2xl mx-auto text-center bg-green-50 rounded-2xl p-10">
-          <UIcon
-            name="i-heroicons-gift"
-            class="w-16 h-16 text-green-600 mx-auto mb-4"
-          />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
             {{ singleField('studentLife.library.donate', 'title') || $t('studentLife.library.donate.title') }}
           </h2>
@@ -308,12 +301,8 @@
 
     <!-- Contact the Library -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-2xl mx-auto text-center bg-amber-50 rounded-2xl p-10">
-          <UIcon
-            name="i-heroicons-envelope"
-            class="w-16 h-16 text-amber-600 mx-auto mb-4"
-          />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
             {{ singleField('studentLife.library.contact', 'title') || $t('studentLife.library.contact.title') }}
           </h2>
@@ -335,7 +324,7 @@
     <section
       class="py-16 bg-gradient-to-r from-amber-600 to-orange-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('studentLife.library.cta.title') }}
@@ -370,7 +359,7 @@
 <script setup lang="ts">
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+  const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
     'studentLife.library.intro',

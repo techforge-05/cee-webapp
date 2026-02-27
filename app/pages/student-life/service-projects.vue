@@ -1,10 +1,11 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div v-if="contentLoading" class="min-h-screen flex items-center justify-center"><div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" /></div>
+  <div v-else class="min-h-screen bg-white">
     <!-- Hero Section -->
     <section
       class="relative bg-gradient-to-r from-rose-600 to-pink-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('studentLife.serviceProjects.title') }}
         </h1>
@@ -14,31 +15,89 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('studentLife.serviceProjects.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('studentLife.serviceProjects.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('studentLife.serviceProjects.intro', 'focalX') || 50}% ${singleMeta('studentLife.serviceProjects.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('studentLife.serviceProjects.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div :class="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl') && 'text-center'">
-            <UIcon
-              v-if="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl')"
-              name="i-heroicons-heart"
-              class="w-16 h-16 text-rose-600 mb-6"
-              :class="!singleMeta('studentLife.serviceProjects.intro', 'imageUrl') && 'mx-auto'"
-            />
-            <p class="text-2xl md:text-3xl font-semibold text-rose-800 leading-snug">
-              {{ singleField('studentLife.serviceProjects.intro', 'text') || $t('studentLife.serviceProjects.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('studentLife.serviceProjects.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('studentLife.serviceProjects.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('studentLife.serviceProjects.intro', 'focalX') || 50}% ${singleMeta('studentLife.serviceProjects.intro', 'focalY') || 50}%` }" alt="" />
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('studentLife.serviceProjects.intro', 'text') || $t('studentLife.serviceProjects.intro') }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Our Service Initiatives -->
+    <section class="py-16">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {{ $t('studentLife.serviceProjects.projects.title') }}
+          </h2>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        <div
+          v-for="(project, index) in projects"
+          :key="index"
+        >
+          <div class="px-2 sm:px-10 lg:px-16">
+            <div
+              :class="[
+                'rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12',
+                getProjectBg(index),
+              ]"
+            >
+              <div :class="project.image ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+                <!-- Image on left for odd index -->
+                <div v-if="project.image && index % 2 === 1" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112 order-1 lg:order-0">
+                  <img
+                    :src="project.image"
+                    :alt="project.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${project.focalX}% ${project.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Text content -->
+                <div class="px-4 py-6 sm:px-0 sm:py-0">
+                  <h3 :class="['text-2xl md:text-5xl font-bold mb-4', getProjectTextColor(index)]">
+                    {{ project.title }}
+                  </h3>
+                  <p class="text-lg text-gray-800 leading-relaxed">
+                    {{ project.description }}
+                  </p>
+                </div>
+                <!-- Image on right for even index -->
+                <div v-if="project.image && index % 2 === 0" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+                  <img
+                    :src="project.image"
+                    :alt="project.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${project.focalX}% ${project.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Placeholder when no image -->
+                <div v-if="!project.image" class="hidden" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Why Service Matters Section -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section class="py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.serviceProjects.whyService.title') }}
@@ -52,14 +111,9 @@
           <div
             v-for="(benefit, index) in benefits"
             :key="index"
-            class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow duration-300 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
+            class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border-l-4 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
+            :class="getBenefitBorderColor(index)"
           >
-            <div
-              class="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center"
-              :class="getBenefitBgColor(index)"
-            >
-              <UIcon :name="benefit.icon" class="w-7 h-7 text-white" />
-            </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">
               {{ benefit.title }}
             </h3>
@@ -71,50 +125,11 @@
       </div>
     </section>
 
-    <!-- Our Service Initiatives -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
-            {{ $t('studentLife.serviceProjects.projects.title') }}
-          </h2>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-8">
-          <div
-            v-for="(project, index) in projects"
-            :key="index"
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-l-4 w-full md:w-[calc(50%-1rem)]"
-            :class="getProjectBorderColor(index)"
-          >
-            <div class="flex items-start gap-6">
-              <div class="shrink-0">
-                <div
-                  class="w-14 h-14 rounded-full flex items-center justify-center"
-                  :class="getProjectBgColor(index)"
-                >
-                  <UIcon :name="project.icon" class="w-7 h-7 text-white" />
-                </div>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">
-                  {{ project.title }}
-                </h3>
-                <p class="text-gray-700 leading-relaxed">
-                  {{ project.description }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Call to Action -->
     <section
       class="py-16 bg-gradient-to-r from-rose-600 to-pink-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('studentLife.serviceProjects.cta.title') }}
@@ -157,67 +172,55 @@
     'studentLife.serviceProjects.items',
   ]));
 
-  const benefitIcons = [
-    'i-heroicons-heart',
-    'i-heroicons-star',
-    'i-heroicons-user-group',
-    'i-heroicons-sparkles',
-  ];
-
-  const projectIcons = [
-    'i-heroicons-home',
-    'i-heroicons-globe-americas',
-    'i-heroicons-shopping-bag',
-    'i-heroicons-academic-cap',
-  ];
-
   const benefits = computed(() => {
     const dbItems = getItems('studentLife.serviceProjects.benefits');
     if (dbItems.length > 0) {
-      return dbItems.map((item, index) => ({
+      return dbItems.map((item) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: field(item, 'icon') || benefitIcons[index % benefitIcons.length],
       }));
     }
     const items = tm('studentLife.serviceProjects.whyService.benefits') as any[];
     if (!Array.isArray(items)) return [];
-    return items.map((b: any, index: number) => ({
+    return items.map((b: any) => ({
       title: typeof b.title === 'string' ? b.title : rt(b.title),
       description: typeof b.description === 'string' ? b.description : rt(b.description),
-      icon: benefitIcons[index % benefitIcons.length],
     }));
   });
 
   const projects = computed(() => {
     const dbItems = getItems('studentLife.serviceProjects.items');
     if (dbItems.length > 0) {
-      return dbItems.map((item, index) => ({
+      return dbItems.map(item => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: field(item, 'icon') || projectIcons[index % projectIcons.length],
+        image: item.metadata?.imageUrl || null,
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
     }
     const items = tm('studentLife.serviceProjects.projects.items') as any[];
     if (!Array.isArray(items)) return [];
-    return items.map((p: any, index: number) => ({
+    return items.map((p: any) => ({
       title: typeof p.title === 'string' ? p.title : rt(p.title),
       description: typeof p.description === 'string' ? p.description : rt(p.description),
-      icon: projectIcons[index % projectIcons.length],
+      image: p.image ? (typeof p.image === 'string' ? p.image : rt(p.image)) : null,
+      focalX: 50,
+      focalY: 50,
     }));
   });
 
-  const getBenefitBgColor = (index: number) => {
-    const colors = ['bg-rose-500', 'bg-pink-500', 'bg-red-500', 'bg-orange-500'];
-    return colors[index % colors.length];
-  };
+  const projectStyles = [
+    { bg: 'bg-rose-50', text: 'text-rose-900' },
+    { bg: 'bg-teal-50', text: 'text-teal-900' },
+    { bg: 'bg-amber-50', text: 'text-amber-900' },
+    { bg: 'bg-blue-50', text: 'text-blue-900' },
+  ];
 
-  const getProjectBgColor = (index: number) => {
-    const colors = ['bg-rose-500', 'bg-teal-500', 'bg-amber-500', 'bg-blue-500'];
-    return colors[index % colors.length];
-  };
+  const getProjectBg = (index: number) => projectStyles[index % projectStyles.length]!.bg;
+  const getProjectTextColor = (index: number) => projectStyles[index % projectStyles.length]!.text;
 
-  const getProjectBorderColor = (index: number) => {
+  const getBenefitBorderColor = (index: number) => {
     const colors = ['border-rose-500', 'border-teal-500', 'border-amber-500', 'border-blue-500'];
     return colors[index % colors.length];
   };

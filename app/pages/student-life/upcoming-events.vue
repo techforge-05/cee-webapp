@@ -4,7 +4,7 @@
     <section
       class="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('studentLife.upcomingEvents.title') }}
         </h1>
@@ -14,34 +14,31 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('studentLife.upcomingEvents.intro', 'focalX') || 50}% ${singleMeta('studentLife.upcomingEvents.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-12 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'text-center'">
-            <UIcon
-              v-if="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')"
-              name="i-heroicons-calendar-days"
-              class="w-16 h-16 text-indigo-600 mb-6"
-              :class="!singleMeta('studentLife.upcomingEvents.intro', 'imageUrl') && 'mx-auto'"
-            />
-            <h2 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">
-              {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
-            </h2>
-            <p class="text-xl text-gray-700 leading-relaxed">
-              {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro.description') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('studentLife.upcomingEvents.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('studentLife.upcomingEvents.intro', 'focalX') || 50}% ${singleMeta('studentLife.upcomingEvents.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl font-bold text-indigo-700 mb-4">
+          {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('studentLife.upcomingEvents.intro', 'description') || $t('studentLife.upcomingEvents.intro.description') }}
+        </p>
       </div>
     </section>
 
     <!-- Featured Event Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">
           {{ $t('studentLife.upcomingEvents.featured.title') }}
         </h2>
@@ -128,7 +125,7 @@
 
     <!-- Events Carousel Section -->
     <section v-if="carouselEvents.length >= 2" class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="flex items-center justify-between mb-10">
           <h2 class="text-3xl font-bold text-gray-900">
             {{ $t('studentLife.upcomingEvents.carousel.title') }}
@@ -237,12 +234,8 @@
 
     <!-- Stay Informed -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl mx-auto text-center bg-indigo-50 rounded-2xl p-10">
-          <UIcon
-            name="i-heroicons-bell-alert"
-            class="w-16 h-16 text-indigo-600 mx-auto mb-4"
-          />
           <h2 class="text-2xl font-bold text-gray-900 mb-4">
             {{ singleField('studentLife.upcomingEvents.stayInformed', 'title') || $t('studentLife.upcomingEvents.stayInformed.title') }}
           </h2>
@@ -263,7 +256,7 @@
 
     <!-- Annual Events -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.upcomingEvents.annualEvents.title') }}
@@ -320,7 +313,7 @@
     <section
       class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t('studentLife.upcomingEvents.cta.title') }}

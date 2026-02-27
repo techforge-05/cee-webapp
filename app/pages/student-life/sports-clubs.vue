@@ -41,7 +41,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.sportsClubs.sports.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -75,7 +75,7 @@
                 </div>
                 <!-- Text content -->
                 <div class="px-4 py-6 sm:px-0 sm:py-0">
-                  <h3 :class="['text-2xl md:text-4xl font-bold mb-4', getSportTextColor(index)]">
+                  <h3 :class="['text-2xl md:text-5xl font-bold mb-4', getSportTextColor(index)]">
                     {{ sport.title }}
                   </h3>
                   <p class="text-lg text-gray-800 leading-relaxed">
@@ -102,8 +102,8 @@
 
       <!-- Other Sports -->
       <div class="px-6 sm:px-10 lg:px-16 mt-12">
-        <div class="bg-green-50 rounded-lg p-8 text-center">
-          <p class="text-lg text-gray-700 leading-relaxed">
+        <div class="bg-gradient-to-r from-green-100 to-teal-100 rounded-lg p-8 md:p-12 text-center">
+          <p class="text-xl md:text-2xl text-green-900 leading-relaxed font-medium">
             {{ singleField('studentLife.sports.otherSports', 'text') || $t('studentLife.sportsClubs.sports.otherSports') }}
           </p>
         </div>

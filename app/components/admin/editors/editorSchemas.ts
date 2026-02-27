@@ -517,7 +517,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 8,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.project',
-      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
   ],
 
@@ -527,7 +527,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.library.intro',
       type: 'single',
       defaultOpen: false,
-      fields: [f.text()],
+      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'studentLife.library.purpose',

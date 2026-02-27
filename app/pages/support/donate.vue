@@ -4,7 +4,7 @@
     <section
       class="relative bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('support.donate.title') }}
         </h1>
@@ -14,31 +14,28 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('support.donate.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('support.donate.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('support.donate.intro', 'focalX') || 50}% ${singleMeta('support.donate.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('support.donate.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <UIcon
-              v-if="!singleMeta('support.donate.intro', 'imageUrl')"
-              name="i-heroicons-gift"
-              class="w-16 h-16 text-red-600 mb-6"
-              :class="{ 'mx-auto': !singleMeta('support.donate.intro', 'imageUrl') }"
-            />
-            <p class="text-2xl md:text-3xl font-semibold text-emerald-800 leading-snug">
-              {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('support.donate.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('support.donate.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('support.donate.intro', 'focalX') || 50}% ${singleMeta('support.donate.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
+        </p>
       </div>
     </section>
 
     <!-- Ways to Donate Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
           {{ $t('support.donate.ways.title') }}
         </h2>
@@ -71,12 +68,8 @@
 
     <!-- Donation Methods Section -->
     <section id="donate-online" class="py-16 bg-teal-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="px-6 sm:px-10 lg:px-16 max-w-4xl mx-auto">
         <div class="text-center mb-10">
-          <UIcon
-            name="i-heroicons-heart"
-            class="w-16 h-16 text-teal-600 mx-auto mb-6"
-          />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('support.donate.payment.sectionTitle') }}
           </h2>
@@ -190,12 +183,8 @@
 
     <!-- Amazon Wish Lists Section -->
     <section class="py-16 bg-orange-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <UIcon
-            name="i-heroicons-shopping-cart"
-            class="w-16 h-16 text-orange-600 mx-auto mb-6"
-          />
           <h2 class="text-3xl font-bold text-gray-900 mb-4">
             {{ $t('support.donate.wishLists.title') }}
           </h2>
@@ -239,30 +228,21 @@
 
     <!-- Donate Books Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="bg-red-50 rounded-2xl p-8 md:p-12">
-          <div class="flex flex-col md:flex-row items-start gap-6">
-            <div
-              class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shrink-0"
-            >
-              <UIcon name="i-heroicons-book-open" class="w-8 h-8 text-red-600" />
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-red-900 mb-4">
-                {{ singleField('support.donate.donateBooks', 'title') || $t('support.donate.donateBooks.title') }}
-              </h2>
-              <p class="text-lg text-gray-800 leading-relaxed">
-                {{ singleField('support.donate.donateBooks', 'description') || $t('support.donate.donateBooks.description') }}
-              </p>
-            </div>
-          </div>
+          <h2 class="text-2xl font-bold text-red-900 mb-4">
+            {{ singleField('support.donate.donateBooks', 'title') || $t('support.donate.donateBooks.title') }}
+          </h2>
+          <p class="text-lg text-gray-800 leading-relaxed">
+            {{ singleField('support.donate.donateBooks', 'description') || $t('support.donate.donateBooks.description') }}
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Contact Information Section -->
     <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-2xl mx-auto text-center">
           <UIcon
             name="i-heroicons-envelope"
@@ -297,7 +277,7 @@
     <section
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
           {{ $t('support.donate.cta.title') }}
         </h2>

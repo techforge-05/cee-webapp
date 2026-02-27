@@ -18,10 +18,6 @@
     <section class="py-12 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-photo"
-            class="w-16 h-16 text-teal-600 mx-auto mb-6"
-          />
           <p class="text-2xl md:text-3xl font-semibold text-teal-800 leading-snug">
             {{ $t('studentLife.gallery.intro') }}
           </p>
