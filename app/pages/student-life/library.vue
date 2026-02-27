@@ -41,7 +41,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div class="order-2 lg:order-1">
             <h2 class="text-3xl lg:text-4xl font-bold text-teal-800 mb-6">
               {{ singleField('studentLife.library.purpose', 'title') || $t('studentLife.library.purpose.title') }}
             </h2>
@@ -62,7 +62,7 @@
               </li>
             </ul>
           </div>
-          <div class="bg-amber-50 rounded-2xl p-8">
+          <div class="bg-amber-50 rounded-2xl p-8 order-1 lg:order-2">
             <div v-if="singleMeta('studentLife.library.purpose', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
               <img
                 :src="singleMeta('studentLife.library.purpose', 'imageUrl')"
