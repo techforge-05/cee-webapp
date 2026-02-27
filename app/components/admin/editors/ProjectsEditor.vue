@@ -14,6 +14,17 @@
         :max-length="1000"
         @update:model-value="updateIntroField('text', $event)"
       />
+      <UFormField :label="$t('admin.editors.generic.imageUrl')" class="mt-4">
+        <ImageUploader
+          :model-value="introItem.metadata?.imageUrl || ''"
+          folder="cee-assets/projects"
+          :focal-x="Number(introItem.metadata?.focalX) || 50"
+          :focal-y="Number(introItem.metadata?.focalY) || 50"
+          @update:model-value="updateIntroMeta('imageUrl', $event)"
+          @update:focal-x="updateIntroMeta('focalX', String($event))"
+          @update:focal-y="updateIntroMeta('focalY', String($event))"
+        />
+      </UFormField>
     </SectionCard>
 
     <!-- Projects Section -->
@@ -332,6 +343,14 @@ function updateIntroField(field: string, val: BilingualText) {
     ...introItem.value,
     content_es: { ...introItem.value.content_es, [field]: val.es },
     content_en: { ...introItem.value.content_en, [field]: val.en },
+  }
+  trackChanges()
+}
+
+function updateIntroMeta(field: string, val: string) {
+  introItem.value = {
+    ...introItem.value,
+    metadata: { ...introItem.value.metadata, [field]: val },
   }
   trackChanges()
 }

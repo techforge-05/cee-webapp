@@ -5,7 +5,7 @@
     <section
       class="relative bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-16 lg:py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('admissions.whoCanApply.title') }}
         </h1>
@@ -15,28 +15,37 @@
       </div>
     </section>
 
-    <!-- Content Section -->
-    <section class="py-12 lg:py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto">
-          <div :class="singleMeta('admissions.whoCanApply.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8' : 'max-w-4xl mx-auto text-center mb-8'">
-            <div>
-              <p class="text-2xl md:text-3xl font-semibold text-teal-800 leading-snug">
-                {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
-              </p>
-            </div>
-            <div v-if="singleMeta('admissions.whoCanApply.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-              <img :src="singleMeta('admissions.whoCanApply.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.intro', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.intro', 'focalY') || 50}%` }" alt="" />
-            </div>
-          </div>
-          <div class="prose prose-lg max-w-none">
+    <!-- Hero Image -->
+    <div v-if="singleMeta('admissions.whoCanApply.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('admissions.whoCanApply.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.intro', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.intro', 'focalY') || 50}%` }"
+      />
+    </div>
 
-            <!-- Grades Section -->
-            <div class="bg-emerald-50 rounded-xl p-8 mb-8">
-              <h2 class="text-2xl font-bold text-emerald-800 mb-4">
+    <!-- Introduction Section -->
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('admissions.whoCanApply.intro', 'text') || $t('admissions.whoCanApply.intro') }}
+        </p>
+      </div>
+    </section>
+
+    <!-- Grades & Requirements Section -->
+    <section class="py-16">
+      <div class="px-6 sm:px-10 lg:px-16 space-y-12">
+
+        <!-- Grades Section -->
+        <div class="bg-emerald-50 rounded-2xl p-8 md:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 class="text-2xl md:text-4xl font-bold text-emerald-800 mb-6">
                 {{ $t('admissions.whoCanApply.grades.title') }}
               </h2>
-              <ul class="space-y-3">
+              <ul class="space-y-4">
                 <li
                   v-for="(grade, index) in grades"
                   :key="index"
@@ -46,17 +55,27 @@
                     name="i-heroicons-check-circle"
                     class="w-6 h-6 text-emerald-600 shrink-0"
                   />
-                  <span class="text-gray-700">{{ grade }}</span>
+                  <span class="text-lg text-gray-700">{{ grade }}</span>
                 </li>
               </ul>
             </div>
+            <div v-if="singleMeta('admissions.whoCanApply.gradesImage', 'imageUrl')" class="rounded-lg overflow-hidden h-80 md:h-96">
+              <img :src="singleMeta('admissions.whoCanApply.gradesImage', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.gradesImage', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.gradesImage', 'focalY') || 50}%` }" alt="" />
+            </div>
+          </div>
+        </div>
 
-            <!-- Requirements Section -->
-            <div class="bg-gray-50 rounded-xl p-8">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">
+        <!-- Requirements Section -->
+        <div class="bg-gray-100 rounded-2xl p-8 md:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div v-if="singleMeta('admissions.whoCanApply.requirementsImage', 'imageUrl')" class="rounded-lg overflow-hidden h-80 md:h-96 order-1 lg:order-0">
+              <img :src="singleMeta('admissions.whoCanApply.requirementsImage', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.requirementsImage', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.requirementsImage', 'focalY') || 50}%` }" alt="" />
+            </div>
+            <div>
+              <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-6">
                 {{ $t('admissions.whoCanApply.requirements.title') }}
               </h2>
-              <ul class="space-y-3">
+              <ul class="space-y-4">
                 <li
                   v-for="(req, index) in requirements"
                   :key="index"
@@ -66,7 +85,7 @@
                     name="i-heroicons-document-check"
                     class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"
                   />
-                  <span class="text-gray-700">{{ req }}</span>
+                  <span class="text-lg text-gray-700">{{ req }}</span>
                 </li>
               </ul>
             </div>
@@ -77,7 +96,7 @@
 
     <!-- CTA Section -->
     <section class="py-12 bg-emerald-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+      <div class="px-6 sm:px-10 lg:px-16 text-center">
         <h2 class="text-2xl font-bold text-gray-900 mb-4">
           {{ $t('admissions.whoCanApply.cta.title') }}
         </h2>
@@ -105,7 +124,9 @@ const { loadContent, getItems, field, singleField, singleMeta, loading: contentL
 onMounted(() => loadContent([
   'admissions.whoCanApply.intro',
   'admissions.whoCanApply.grades',
+  'admissions.whoCanApply.gradesImage',
   'admissions.whoCanApply.requirements',
+  'admissions.whoCanApply.requirementsImage',
 ]));
 
 const grades = computed(() => {

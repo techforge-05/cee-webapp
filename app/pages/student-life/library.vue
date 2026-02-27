@@ -28,7 +28,7 @@
     <!-- Introduction -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-amber-700 mb-4">
+        <h2 class="text-3xl lg:text-4xl font-bold text-amber-700 mb-4">
           Beulah B. Burgess Library
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
@@ -42,10 +42,10 @@
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            <h2 class="text-3xl lg:text-4xl font-bold text-teal-800 mb-6">
               {{ singleField('studentLife.library.purpose', 'title') || $t('studentLife.library.purpose.title') }}
             </h2>
-            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed mb-6">
               {{ singleField('studentLife.library.purpose', 'description') || $t('studentLife.library.purpose.description') }}
             </p>
             <ul class="space-y-3">
@@ -97,10 +97,10 @@
             </div>
           </div>
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            <h2 class="text-3xl lg:text-4xl font-bold text-orange-800 mb-6">
               {{ singleField('studentLife.library.readingCorner', 'title') || $t('studentLife.library.readingCorner.title') }}
             </h2>
-            <p class="text-lg text-gray-700 leading-relaxed">
+            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
               {{ singleField('studentLife.library.readingCorner', 'description') || $t('studentLife.library.readingCorner.description') }}
             </p>
           </div>
@@ -112,7 +112,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.library.hours.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -143,7 +143,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             {{ $t('studentLife.library.gradeSupport.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -189,7 +189,7 @@
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {{ $t('studentLife.library.borrowing.title') }}
             </h2>
             <p class="text-lg text-gray-600">
@@ -224,10 +224,10 @@
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            <h2 class="text-3xl lg:text-4xl font-bold text-blue-800 mb-6">
               {{ singleField('studentLife.library.bilingualCollection', 'title') || $t('studentLife.library.bilingualCollection.title') }}
             </h2>
-            <p class="text-lg text-gray-700 leading-relaxed">
+            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
               {{ singleField('studentLife.library.bilingualCollection', 'description') || $t('studentLife.library.bilingualCollection.description') }}
             </p>
           </div>
@@ -266,10 +266,10 @@
             </div>
           </div>
           <div class="order-1 lg:order-2">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            <h2 class="text-3xl lg:text-4xl font-bold text-green-800 mb-6">
               {{ singleField('studentLife.library.studySpace', 'title') || $t('studentLife.library.studySpace.title') }}
             </h2>
-            <p class="text-lg text-gray-700 leading-relaxed">
+            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
               {{ singleField('studentLife.library.studySpace', 'description') || $t('studentLife.library.studySpace.description') }}
             </p>
           </div>
@@ -281,7 +281,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-2xl mx-auto text-center bg-green-50 rounded-2xl p-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
             {{ singleField('studentLife.library.donate', 'title') || $t('studentLife.library.donate.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
@@ -303,7 +303,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-2xl mx-auto text-center bg-amber-50 rounded-2xl p-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
             {{ singleField('studentLife.library.contact', 'title') || $t('studentLife.library.contact.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
@@ -326,7 +326,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             {{ $t('studentLife.library.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

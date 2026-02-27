@@ -23,6 +23,8 @@ export interface EditorSection {
   infoDescriptionKey?: string
   infoLinkTo?: string
   infoLinkLabelKey?: string
+  /** For list sections: a separate page_key to store a section-level image */
+  sectionImageKey?: string
 }
 
 // --- Field shorthand helpers ---
@@ -942,6 +944,7 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 1,
       itemLabelKey: 'admin.editors.academics.grades.level',
       fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 150 }],
+      sectionImageKey: 'admissions.whoCanApply.gradesImage',
     },
     {
       pageKey: 'admissions.whoCanApply.requirements',
@@ -951,6 +954,7 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.requirement',
       fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
+      sectionImageKey: 'admissions.whoCanApply.requirementsImage',
     },
   ],
 
@@ -1050,6 +1054,7 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.qualification',
       fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
+      sectionImageKey: 'getInvolved.teachers.qualificationsImage',
     },
     {
       pageKey: 'getInvolved.teachers.benefits',
@@ -1059,6 +1064,7 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 3,
       itemLabelKey: 'admin.editors.generic.benefit',
       fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
+      sectionImageKey: 'getInvolved.teachers.benefitsImage',
     },
     {
       pageKey: 'getInvolved.teachers.applicationForms',
@@ -1104,6 +1110,7 @@ const schemas: Record<string, EditorSection[]> = {
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.opportunity',
       fields: [{ key: 'text', labelKey: 'admin.editors.generic.text', type: 'text', maxLength: 200 }],
+      sectionImageKey: 'getInvolved.volunteer.opportunitiesImage',
     },
     {
       pageKey: 'getInvolved.volunteer.howTo',

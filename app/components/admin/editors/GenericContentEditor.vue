@@ -224,6 +224,22 @@
 
           <!-- List section -->
           <template v-else>
+            <!-- Section-level image for list sections -->
+            <div v-if="section.sectionImageKey" class="flex justify-end mb-4">
+              <div class="w-full max-w-sm">
+                <UFormField :label="$t('admin.components.image.upload')">
+                  <ImageUploader
+                    v-model="sectionImages[section.sectionImageKey]"
+                    :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                    :focal-x="sectionFocalPoints[section.sectionImageKey]?.x ?? 50"
+                    :focal-y="sectionFocalPoints[section.sectionImageKey]?.y ?? 50"
+                    @update:model-value="trackChanges"
+                    @update:focal-x="sectionFocalPoints[section.sectionImageKey].x = $event; trackChanges()"
+                    @update:focal-y="sectionFocalPoints[section.sectionImageKey].y = $event; trackChanges()"
+                  />
+                </UFormField>
+              </div>
+            </div>
             <DataListManager
               v-model="listData[section.pageKey]"
               :max-items="section.maxItems"
@@ -606,6 +622,11 @@
         });
       } else {
         listData[section.pageKey] = [];
+        // Init section-level image for list sections
+        if (section.sectionImageKey) {
+          sectionImages[section.sectionImageKey] = '';
+          sectionFocalPoints[section.sectionImageKey] = { x: 50, y: 50 };
+        }
       }
     });
   }
@@ -664,6 +685,18 @@
                   return { ...i, metadata: migrated };
                 })
               : [];
+
+          // Load section-level image for list sections
+          if (section.sectionImageKey) {
+            await loadItems(section.sectionImageKey);
+            const imgItem = items.value[0];
+            existingIds[section.sectionImageKey] = imgItem?.id;
+            sectionImages[section.sectionImageKey] = imgItem?.metadata?.imageUrl || '';
+            sectionFocalPoints[section.sectionImageKey] = {
+              x: Number(imgItem?.metadata?.focalX) || 50,
+              y: Number(imgItem?.metadata?.focalY) || 50,
+            };
+          }
         }
       }
 
@@ -882,6 +915,30 @@
           }
         } else {
           await saveAllContent(section.pageKey, listData[section.pageKey]);
+
+          // Save section-level image for list sections
+          if (section.sectionImageKey) {
+            const imgKey = section.sectionImageKey;
+            const existingId = existingIds[imgKey];
+            const imgResults = await saveAllContent(imgKey, [
+              {
+                ...(existingId ? { id: existingId } : {}),
+                page_key: imgKey,
+                content_es: {},
+                content_en: {},
+                metadata: {
+                  imageUrl: sectionImages[imgKey] || '',
+                  focalX: String(sectionFocalPoints[imgKey]?.x ?? 50),
+                  focalY: String(sectionFocalPoints[imgKey]?.y ?? 50),
+                },
+                sort_order: 0,
+                is_active: true,
+              },
+            ]);
+            if (imgResults && imgResults[0]?.id) {
+              existingIds[imgKey] = imgResults[0].id;
+            }
+          }
         }
       }
 

@@ -7,7 +7,7 @@
           ref="imageEl"
           :src="modelValue"
           alt="Preview"
-          class="w-full max-h-64 object-cover"
+          class="w-full max-h-80 object-cover"
           :style="{ objectPosition: `${focalX}% ${focalY}%` }"
         />
         <!-- Focal point dot (draggable) -->

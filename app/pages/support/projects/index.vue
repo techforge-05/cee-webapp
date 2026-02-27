@@ -4,7 +4,7 @@
     <section
       class="relative bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('support.projects.title') }}
         </h1>
@@ -14,18 +14,22 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('support.projects.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('support.projects.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('support.projects.intro', 'focalX') || 50}% ${singleMeta('support.projects.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-wrench-screwdriver"
-            class="w-16 h-16 text-red-600 mx-auto mb-6"
-          />
-          <p class="text-2xl md:text-3xl font-semibold text-cyan-800 leading-snug">
-            {{ singleField('support.projects.intro', 'text') || $t('support.projects.intro') }}
-          </p>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('support.projects.intro', 'text') || $t('support.projects.intro') }}
+        </p>
       </div>
     </section>
 
@@ -102,7 +106,7 @@
                 name="i-heroicons-check-circle"
                 class="w-6 h-6 text-green-600 shrink-0 mt-0.5"
               />
-              <span class="text-gray-700">{{ way }}</span>
+              <span class="text-lg text-gray-700">{{ way }}</span>
             </div>
           </div>
         </div>
@@ -146,7 +150,7 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const { t } = useI18n();
-const { loadContent, getItems, field, meta: getMeta, singleField } = usePublicContent();
+const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
 
 onMounted(() => loadContent([
   'support.projects.intro',

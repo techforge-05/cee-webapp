@@ -114,10 +114,10 @@
             class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border-l-4 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
             :class="getBenefitBorderColor(index)"
           >
-            <h3 class="text-lg font-bold text-gray-900 mb-2">
+            <h3 class="text-lg md:text-2xl font-bold text-gray-900 mb-2">
               {{ benefit.title }}
             </h3>
-            <p class="text-gray-600 text-sm">
+            <p class="text-gray-600 text-sm md:text-lg">
               {{ benefit.description }}
             </p>
           </div>

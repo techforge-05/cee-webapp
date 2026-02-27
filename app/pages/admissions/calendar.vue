@@ -4,7 +4,7 @@
     <section
       class="relative bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-16 lg:py-20"
     >
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="px-6 sm:px-10 lg:px-16">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('admissions.calendar.title') }}
         </h1>
@@ -14,24 +14,22 @@
       </div>
     </section>
 
+    <!-- Hero Image -->
+    <div v-if="singleMeta('admissions.calendar.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+      <img
+        :src="singleMeta('admissions.calendar.intro', 'imageUrl')"
+        alt=""
+        class="w-full h-full object-cover"
+        :style="{ objectPosition: `${singleMeta('admissions.calendar.intro', 'focalX') || 50}% ${singleMeta('admissions.calendar.intro', 'focalY') || 50}%` }"
+      />
+    </div>
+
     <!-- Introduction -->
-    <section class="py-12 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('admissions.calendar.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <UIcon
-              v-if="!singleMeta('admissions.calendar.intro', 'imageUrl')"
-              name="i-heroicons-document-text"
-              class="w-16 h-16 text-emerald-600 mx-auto mb-6"
-            />
-            <p class="text-2xl md:text-3xl font-semibold text-emerald-800 leading-snug">
-              {{ singleField('admissions.calendar.intro', 'text') || $t('admissions.calendar.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('admissions.calendar.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('admissions.calendar.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('admissions.calendar.intro', 'focalX') || 50}% ${singleMeta('admissions.calendar.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
+    <section class="py-8 sm:py-16 bg-gray-50">
+      <div class="px-6 sm:px-10 lg:px-16">
+        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
+          {{ singleField('admissions.calendar.intro', 'text') || $t('admissions.calendar.intro') }}
+        </p>
       </div>
     </section>
 
@@ -52,11 +50,7 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-2xl mx-auto">
           <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
-            <UIcon
-              name="i-heroicons-information-circle"
-              class="w-10 h-10 text-emerald-600 mx-auto mb-3"
-            />
-            <p class="text-gray-700">
+            <p class="text-lg text-gray-700">
               {{ $t('admissions.calendar.noEventsNote') }}
             </p>
           </div>

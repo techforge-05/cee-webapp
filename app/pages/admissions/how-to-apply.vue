@@ -69,10 +69,6 @@
               : (singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title'))
             }}
           </h2>
-          <div v-if="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="rounded-lg overflow-hidden mb-6">
-            <img :src="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('admissions.howToApply.dates', 'focalX') || 50}% ${singleMeta('admissions.howToApply.dates', 'focalY') || 50}%` }" alt="" />
-          </div>
-
           <!-- When there are upcoming admissions events -->
           <div v-if="admissionsEvents.length > 0">
             <div class="flex flex-wrap justify-center gap-4 mt-8 mb-6">
@@ -116,6 +112,10 @@
               <UIcon name="i-heroicons-phone" class="w-5 h-5 mr-2" />
               {{ $t('admissions.howToApply.dates.contactLink') }}
             </UButton>
+          </div>
+
+          <div v-if="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="rounded-lg overflow-hidden mt-6">
+            <img :src="singleMeta('admissions.howToApply.dates', 'imageUrl')" class="w-full h-64 object-cover" :style="{ objectPosition: `${singleMeta('admissions.howToApply.dates', 'focalX') || 50}% ${singleMeta('admissions.howToApply.dates', 'focalY') || 50}%` }" alt="" />
           </div>
         </div>
       </div>

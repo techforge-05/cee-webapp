@@ -19,10 +19,6 @@
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
-          <UIcon
-            name="i-heroicons-question-mark-circle"
-            class="w-16 h-16 text-red-600 mx-auto mb-6"
-          />
           <p class="text-2xl md:text-3xl font-semibold text-red-800 leading-snug">
             {{ $t('contact.faq.intro') }}
           </p>
@@ -52,7 +48,7 @@
 
     <!-- FAQ Accordion Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         <div class="space-y-4">
           <div
             v-for="(faq, index) in filteredQuestions"
@@ -67,22 +63,22 @@
                 <UBadge
                   :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
                   variant="subtle"
-                  size="sm"
+                  size="md"
                 >
                   {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
                 </UBadge>
-                <span class="font-semibold text-gray-900">
+                <span class="text-lg font-semibold text-gray-900">
                   {{ faq._fromDb ? faq.question : $rt(faq.question) }}
                 </span>
               </div>
               <UIcon
                 :name="openQuestions.includes(index) ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                class="w-5 h-5 text-gray-500 shrink-0"
+                class="w-6 h-6 text-gray-500 shrink-0"
               />
             </button>
             <div
               v-show="openQuestions.includes(index)"
-              class="px-6 pb-5 text-gray-700 border-t border-gray-100 pt-4"
+              class="px-6 pb-5 text-lg text-gray-700 border-t border-gray-100 pt-4"
             >
               {{ faq._fromDb ? faq.answer : $rt(faq.answer) }}
               <NuxtLink

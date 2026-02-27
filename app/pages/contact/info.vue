@@ -20,11 +20,6 @@
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div :class="singleMeta('contact.info.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
           <div>
-            <UIcon
-              v-if="!singleMeta('contact.info.intro', 'imageUrl')"
-              name="i-heroicons-chat-bubble-left-right"
-              class="w-16 h-16 text-red-600 mx-auto mb-6"
-            />
             <p class="text-2xl md:text-3xl font-semibold text-teal-800 leading-snug">
               {{ singleField('contact.info.intro', 'text') || $t('contact.info.intro') }}
             </p>
