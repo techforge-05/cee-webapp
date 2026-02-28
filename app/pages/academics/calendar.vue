@@ -124,7 +124,7 @@
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             {{ $t('academics.calendar.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

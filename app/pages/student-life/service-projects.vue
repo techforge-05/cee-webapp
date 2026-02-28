@@ -131,7 +131,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             {{ $t('studentLife.serviceProjects.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

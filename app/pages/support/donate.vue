@@ -278,7 +278,7 @@
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
           {{ $t('support.donate.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

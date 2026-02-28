@@ -274,7 +274,7 @@
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
           {{ $t('contact.faq.stillHaveQuestions.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

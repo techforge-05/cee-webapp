@@ -135,7 +135,7 @@
       class="py-16 bg-linear-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-4">
           {{ $t('about.history.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

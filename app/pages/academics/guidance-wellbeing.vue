@@ -166,7 +166,7 @@
     <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
             {{ $t('academics.guidance.cta.title') }}
           </h2>
           <p class="text-xl text-blue-100 mb-8">
