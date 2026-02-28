@@ -1,5 +1,5 @@
+import { createHash } from 'crypto'
 import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
-import { v2 as cloudinary } from 'cloudinary'
 
 export default defineEventHandler(async (event) => {
   // Verify authenticated user
@@ -30,22 +30,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 500, message: 'Cloudinary not configured' })
   }
 
-  cloudinary.config({
-    cloud_name: config.cloudinaryCloudName,
-    api_key: config.cloudinaryApiKey,
-    api_secret: config.cloudinaryApiSecret,
-  })
-
   const timestamp = Math.round(Date.now() / 1000)
-  const params = {
-    timestamp,
-    folder,
-    transformation: 'q_auto,f_auto',
-    eager: 'q_auto:good,f_auto,w_2000,c_limit',
-    eager_async: 'false',
-  }
 
-  const signature = cloudinary.utils.api_sign_request(params, config.cloudinaryApiSecret)
+  // Sign only folder + timestamp (Cloudinary requires all signed params to match)
+  const toSign = `folder=${folder}&timestamp=${timestamp}${config.cloudinaryApiSecret}`
+  const signature = createHash('sha1').update(toSign).digest('hex')
 
   return {
     signature,
