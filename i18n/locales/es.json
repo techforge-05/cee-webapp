@@ -2487,7 +2487,8 @@
     },
     "faq": {
       "title": "Preguntas Frecuentes",
-      "subtitle": "Encuentre respuestas a preguntas comunes",
+      "sideTitle": "PREGUNTAS FRECUENTES",
+      "subtitle": "Encuentre respuestas a preguntas frecuentes",
       "intro": "Aquí encontrará respuestas a las preguntas que escuchamos con más frecuencia. Si no encuentra lo que busca, no dude en contactarnos.",
       "categories": {
         "all": "Todas las Preguntas",

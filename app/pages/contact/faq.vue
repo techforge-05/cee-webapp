@@ -15,96 +15,102 @@
       </div>
     </section>
 
-    <!-- Introduction Section -->
+    <!-- FAQ Content Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <p class="text-2xl md:text-3xl font-semibold text-red-800 leading-snug">
-            {{ $t('contact.faq.intro') }}
-          </p>
-        </div>
-      </div>
-    </section>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
 
-    <!-- Category Filter -->
-    <section class="py-8 bg-white border-b border-gray-200">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="flex flex-wrap justify-center gap-3">
-          <UButton
-            v-for="category in categories"
-            :key="category.value"
-            :variant="selectedCategory === category.value ? 'solid' : 'outline'"
-            :class="selectedCategory === category.value
-              ? 'bg-red-600 hover:bg-red-700'
-              : 'border-gray-300 text-gray-700 hover:bg-gray-50'"
-            size="md"
-            @click="selectedCategory = category.value"
-          >
-            {{ category.label }}
-          </UButton>
-        </div>
-      </div>
-    </section>
+          <!-- Left Column - Decorative Title -->
+          <div class="lg:col-span-4 lg:sticky lg:top-24 lg:self-start">
+            <h2
+              class="font-extrabold text-purple-700 leading-none uppercase"
+              :class="locale === 'es' ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-6xl md:text-7xl lg:text-8xl'"
+            >
+              {{ $t('contact.faq.sideTitle') }}
+            </h2>
+          </div>
 
-    <!-- FAQ Accordion Section -->
-    <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-        <div class="space-y-4">
-          <div
-            v-for="(faq, index) in filteredQuestions"
-            :key="index"
-            class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
-          >
-            <button
-              class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors"
-              @click="toggleQuestion(index)"
-            >
-              <div class="flex items-center gap-3">
-                <UBadge
-                  :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
-                  variant="subtle"
-                  size="md"
-                >
-                  {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
-                </UBadge>
-                <span class="text-lg font-semibold text-gray-900">
-                  {{ faq._fromDb ? faq.question : $rt(faq.question) }}
-                </span>
-              </div>
-              <UIcon
-                :name="openQuestions.includes(index) ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                class="w-6 h-6 text-gray-500 shrink-0"
-              />
-            </button>
-            <div
-              v-show="openQuestions.includes(index)"
-              class="px-6 pb-5 text-lg text-gray-700 border-t border-gray-100 pt-4"
-            >
-              {{ faq._fromDb ? faq.answer : $rt(faq.answer) }}
-              <NuxtLink
-                v-if="faq._fromDb ? faq.linkPath : faq.link"
-                :to="localePath(faq._fromDb ? faq.linkPath : $rt(faq.link.path))"
-                class="inline-flex items-center gap-1 text-teal-600 hover:text-teal-800 font-medium ml-1"
+          <!-- Right Column - Filters + Accordion -->
+          <div class="lg:col-span-8">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+              {{ $t('contact.faq.subtitle') }}
+            </h3>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-3 mb-8">
+              <UButton
+                v-for="category in categories"
+                :key="category.value"
+                :variant="selectedCategory === category.value ? 'solid' : 'outline'"
+                :class="selectedCategory === category.value
+                  ? 'bg-purple-600 hover:bg-purple-700'
+                  : 'border-gray-300 text-gray-700 hover:bg-gray-50'"
+                size="md"
+                @click="selectedCategory = category.value"
               >
-                {{ faq._fromDb ? faq.linkText : $rt(faq.link.text) }}
-                <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
-              </NuxtLink>
+                {{ category.label }}
+              </UButton>
+            </div>
+
+            <!-- Accordion Items -->
+            <div class="space-y-4">
+              <div
+                v-for="(faq, index) in filteredQuestions"
+                :key="index"
+                class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
+              >
+                <button
+                  class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors"
+                  @click="toggleQuestion(index)"
+                >
+                  <div class="flex items-center gap-3">
+                    <UBadge
+                      :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
+                      variant="subtle"
+                      size="md"
+                    >
+                      {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
+                    </UBadge>
+                    <span class="text-lg font-semibold text-gray-900">
+                      {{ faq._fromDb ? faq.question : $rt(faq.question) }}
+                    </span>
+                  </div>
+                  <UIcon
+                    :name="openQuestions.includes(index) ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                    class="w-6 h-6 text-gray-500 shrink-0"
+                  />
+                </button>
+                <div
+                  v-show="openQuestions.includes(index)"
+                  class="px-6 pb-5 text-lg text-gray-700 border-t border-gray-100 pt-4"
+                >
+                  {{ faq._fromDb ? faq.answer : $rt(faq.answer) }}
+                  <NuxtLink
+                    v-if="faq._fromDb ? faq.linkPath : faq.link"
+                    :to="localePath(faq._fromDb ? faq.linkPath : $rt(faq.link.path))"
+                    class="inline-flex items-center gap-1 text-teal-600 hover:text-teal-800 font-medium ml-1"
+                  >
+                    {{ faq._fromDb ? faq.linkText : $rt(faq.link.text) }}
+                    <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4" />
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div
+              v-if="filteredQuestions.length === 0"
+              class="text-center py-12"
+            >
+              <UIcon
+                name="i-heroicons-magnifying-glass"
+                class="w-16 h-16 text-gray-400 mx-auto mb-4"
+              />
+              <p class="text-gray-600 text-lg">
+                No questions found in this category.
+              </p>
             </div>
           </div>
-        </div>
-
-        <!-- No Results Message -->
-        <div
-          v-if="filteredQuestions.length === 0"
-          class="text-center py-12"
-        >
-          <UIcon
-            name="i-heroicons-magnifying-glass"
-            class="w-16 h-16 text-gray-400 mx-auto mb-4"
-          />
-          <p class="text-gray-600 text-lg">
-            No questions found in this category.
-          </p>
         </div>
       </div>
     </section>
@@ -180,7 +186,7 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath();
-const { t, tm, rt: $rt } = useI18n();
+const { t, tm, rt: $rt, locale } = useI18n();
 const { loadContent, getItems, field, meta: getMeta, loading: contentLoading } = usePublicContent();
 
 onMounted(() => loadContent(['contact.faq']));
