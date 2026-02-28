@@ -17,7 +17,7 @@ export const useImageUpload = () => {
         throw new Error('Only image files are allowed')
       }
 
-      // Compress if file exceeds the upload limit
+      // Compress if file exceeds limit
       let fileToUpload: File = file
       if (file.size > MAX_SIZE_MB * 1024 * 1024) {
         compressing.value = true
@@ -29,16 +29,32 @@ export const useImageUpload = () => {
         compressing.value = false
       }
 
-      const formData = new FormData()
-      formData.append('file', fileToUpload)
-      formData.append('folder', folder)
-
-      const result = await $fetch('/api/admin/upload', {
+      // Get signed upload params from server (tiny JSON request)
+      const { signature, timestamp, apiKey, cloudName } = await $fetch('/api/admin/upload-signature', {
         method: 'POST',
-        body: formData,
+        body: { folder },
       })
 
-      return result.url
+      // Upload directly to Cloudinary from the browser (bypasses Vercel body limit)
+      const formData = new FormData()
+      formData.append('file', fileToUpload)
+      formData.append('api_key', apiKey)
+      formData.append('timestamp', String(timestamp))
+      formData.append('signature', signature)
+      formData.append('folder', folder)
+      formData.append('transformation', 'q_auto,f_auto')
+      formData.append('eager', 'q_auto:good,f_auto,w_2000,c_limit')
+      formData.append('eager_async', 'false')
+
+      const result = await $fetch<{ secure_url: string; public_id: string }>(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        },
+      )
+
+      return result.secure_url
     } catch (e: any) {
       error.value = e.data?.message || e.message || 'Upload failed'
       throw e

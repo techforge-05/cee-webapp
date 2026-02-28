@@ -80,6 +80,7 @@ export default defineNuxtConfig({
     paypalMode: process.env.PAYPAL_MODE || 'sandbox',
     public: {
       paypalClientId: process.env.NUXT_PUBLIC_PAYPAL_CLIENT_ID || '',
+      cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
     },
   },
 
