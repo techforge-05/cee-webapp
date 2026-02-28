@@ -36,6 +36,8 @@ export default defineEventHandler(async (event) => {
     purpose,
     idTransaccionTodoMovil,
     locale,
+    originalAmountUSD,
+    exchangeRate: exRate,
   } = body
 
   // Validate required fields
@@ -73,6 +75,29 @@ export default defineEventHandler(async (event) => {
   try {
     const { token } = await getTodopagoToken(tpConfig)
 
+    const payBody = {
+      user: tpConfig.payUser || tpConfig.username,
+      password: tpConfig.payPassword || tpConfig.password,
+      accountNumber: cardNumber.replace(/\s/g, ''),
+      amount: parseFloat(Number(amount).toFixed(2)),
+      taxes: 0,
+      cardHolderName: cardHolderName || donorName || 'N/A',
+      comment: `Donation to CEE - ${orderNumber} - Purpose: ${purpose || 'general'}`,
+      customerName: donorName || 'Donor',
+      cvc: String(cvc),
+      expirationMonth: String(cardExpMonth),
+      expirationYear: String(cardExpYear).slice(-2),
+      externalReference: orderNumber,
+      customerEmail: donorEmail || 'noreply@cee.edu.hn',
+      terminalNbr: tpConfig.terminalId,
+      currency: currency === 'USD' ? 'USD' : 'HNL',
+      tdsVer: authFields.tdsVer,
+      cavvResp: authFields.cavvResp,
+      cavvUcaf: authFields.cavvUcaf,
+      directoryServerTranId: authFields.directoryServerTranId,
+      ...(idTransaccionTodoMovil ? { idTransaccion: idTransaccionTodoMovil } : {}),
+    }
+
     const payResponse = await $fetch<DirectPaymentResponse>(
       `${tpConfig.baseUrl}/api/v1/Todopago/GestorPagos/DirectPayment`,
       {
@@ -83,28 +108,7 @@ export default defineEventHandler(async (event) => {
           'X-Tenant': 'HNTP',
           'X-Content': 'json',
         },
-        body: {
-          user: tpConfig.username,
-          password: tpConfig.password,
-          accountNumber: cardNumber.replace(/\s/g, ''),
-          amount: parseFloat(amount.toFixed(2)),
-          taxes: 0,
-          cardHolderName: cardHolderName || donorName,
-          comment: `Donation to CEE - ${orderNumber} - Purpose: ${purpose || 'general'}`,
-          customerName: donorName || 'Donor',
-          cvc,
-          expirationMonth: cardExpMonth,
-          expirationYear: cardExpYear,
-          externalReference: orderNumber,
-          customerEmail: donorEmail || '',
-          terminalNbr: tpConfig.terminalId,
-          currency: currency === 'USD' ? 'USD' : 'HNL',
-          tdsVer: authFields.tdsVer,
-          cavvResp: authFields.cavvResp,
-          cavvUcaf: authFields.cavvUcaf,
-          directoryServerTranId: authFields.directoryServerTranId,
-          idTransaccion: idTransaccionTodoMovil || null,
-        },
+        body: payBody,
       },
     )
 
@@ -146,7 +150,6 @@ export default defineEventHandler(async (event) => {
           },
         })
 
-        const currencySymbol = currency === 'USD' ? '$' : 'L'
         const baseUrl = getRequestURL(event).origin
         await transporter.sendMail({
           from: `"CEE Honduras" <${config.gmailUser}>`,
@@ -154,11 +157,15 @@ export default defineEventHandler(async (event) => {
           subject: getDonationConfirmationSubject(emailLocale),
           html: getDonationConfirmationHtml(emailLocale, {
             donorName: donorName || 'Donor',
-            amount: `${currencySymbol}${amount.toFixed(2)} ${currency}`,
+            amount: `L${Number(amount).toFixed(2)} HNL`,
             orderNumber,
             transactionId: String(payResponse.data?.transaccionID || ''),
             purpose: purpose || undefined,
             baseUrl,
+            ...(originalAmountUSD && exRate ? {
+              originalAmountUSD: Number(originalAmountUSD),
+              exchangeRate: Number(exRate),
+            } : {}),
           }),
         })
       } catch (emailErr) {
@@ -184,7 +191,7 @@ export default defineEventHandler(async (event) => {
       .eq('order_number', orderNumber)
       .eq('status', 'pending')
 
-    console.error('Donation payment error:', e)
+    console.error('Donation payment error:', e.message, 'status:', e.statusCode || e.status, 'response:', JSON.stringify(e.data || e.response?._data))
     throw createError({
       statusCode: e.statusCode || 502,
       message: e.message || 'Payment processing failed',

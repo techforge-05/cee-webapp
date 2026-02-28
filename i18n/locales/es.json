@@ -2120,7 +2120,9 @@
           "title": "Monto de la Donación",
           "custom": "Monto Personalizado",
           "customPlaceholder": "Ingrese el monto",
-          "currency": "Moneda"
+          "currency": "Moneda",
+          "conversionNote": "Sus {usd} se convertirán a {hnl} (Lempiras hondureños).",
+          "loadingRate": "Cargando tipo de cambio..."
         },
         "donor": {
           "title": "Su Información",

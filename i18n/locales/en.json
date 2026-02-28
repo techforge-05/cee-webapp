@@ -2120,7 +2120,9 @@
           "title": "Donation Amount",
           "custom": "Custom Amount",
           "customPlaceholder": "Enter amount",
-          "currency": "Currency"
+          "currency": "Currency",
+          "conversionNote": "Your {usd} will be converted to {hnl} (Honduran Lempiras).",
+          "loadingRate": "Loading exchange rate..."
         },
         "donor": {
           "title": "Your Information",

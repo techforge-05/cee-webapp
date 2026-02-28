@@ -80,6 +80,12 @@
             <p v-if="formErrors.amount" class="mt-1 text-sm text-red-600">
               {{ formErrors.amount }}
             </p>
+            <p v-if="currency === 'USD' && amountInHNL" class="mt-2 text-sm text-amber-700">
+              {{ $t('support.donate.payment.amount.conversionNote', { usd: `$${amount.toFixed(2)}`, hnl: `L${amountInHNL.toFixed(2)}` }) }}
+            </p>
+            <p v-else-if="currency === 'USD' && exchangeRateLoading" class="mt-2 text-sm text-gray-400">
+              {{ $t('support.donate.payment.amount.loadingRate') }}
+            </p>
           </div>
         </div>
 
@@ -371,6 +377,10 @@ const {
   formattedAmount,
   monthOptions,
   yearOptions,
+  exchangeRate,
+  exchangeRateLoading,
+  amountInHNL,
+  fetchExchangeRate,
   submitDonation,
   resetForm,
   setPresetAmount,
@@ -403,9 +413,11 @@ function handleNewDonation() {
   resetForm()
 }
 
-// Reset form when modal closes
+// Fetch exchange rate when modal opens, reset form when it closes
 watch(isOpen, (open) => {
-  if (!open) {
+  if (open) {
+    fetchExchangeRate()
+  } else {
     resetForm()
   }
 })

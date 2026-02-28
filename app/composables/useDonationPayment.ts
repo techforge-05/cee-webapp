@@ -23,6 +23,28 @@ export const useDonationPayment = () => {
   const amount = ref(0)
   const currency = ref<'USD' | 'HNL'>('USD')
   const customAmount = ref('')
+
+  // Exchange rate (USD → HNL)
+  const exchangeRate = ref<number | null>(null)
+  const exchangeRateLoading = ref(false)
+
+  async function fetchExchangeRate() {
+    if (exchangeRate.value !== null) return // already fetched
+    exchangeRateLoading.value = true
+    try {
+      const data = await $fetch<{ rates: Record<string, number> }>('https://open.er-api.com/v6/latest/USD')
+      exchangeRate.value = data.rates?.HNL ?? null
+    } catch {
+      exchangeRate.value = null
+    } finally {
+      exchangeRateLoading.value = false
+    }
+  }
+
+  const amountInHNL = computed(() => {
+    if (currency.value !== 'USD' || !amount.value || !exchangeRate.value) return null
+    return Math.round(amount.value * exchangeRate.value * 100) / 100
+  })
   const donor = ref<DonorInfo>({ firstName: '', lastName: '', email: '', phone: '' })
   const card = ref<CardInfo>({ number: '', expMonth: '', expYear: '', holderName: '', cvc: '' })
 
@@ -239,10 +261,16 @@ export const useDonationPayment = () => {
 
     try {
       // Step 1: Initialize session
+      // TodoPago always processes in HNL — convert USD amounts
+      const payAmount = currency.value === 'USD' && amountInHNL.value
+        ? amountInHNL.value
+        : amount.value
+      const payCurrency = 'HNL'
+
       statusMessage.value = t('support.donate.payment.processing.initializing')
       const initResult = await $fetch('/api/donate/init', {
         method: 'POST',
-        body: { amount: amount.value, currency: currency.value },
+        body: { amount: payAmount, currency: payCurrency },
       })
 
       orderNumber.value = initResult.orderNumber
@@ -272,8 +300,8 @@ export const useDonationPayment = () => {
           billingLastName: donor.value.lastName,
           email: donor.value.email,
           mobilePhone: donor.value.phone.replace(/[^0-9]/g, '') || undefined,
-          amount: amount.value,
-          currency: currency.value,
+          amount: payAmount,
+          currency: payCurrency,
           ddcSessionId,
           ipAddress: sessionData.value.publicIp,
           ...browserData,
@@ -322,8 +350,8 @@ export const useDonationPayment = () => {
           cardExpYear: card.value.expYear,
           cardHolderName: card.value.holderName,
           cvc: card.value.cvc,
-          amount: amount.value,
-          currency: currency.value,
+          amount: payAmount,
+          currency: payCurrency,
           authFields,
           donorName: `${donor.value.firstName} ${donor.value.lastName}`.trim(),
           donorEmail: donor.value.email,
@@ -331,6 +359,11 @@ export const useDonationPayment = () => {
           purpose: purpose.value || 'general',
           idTransaccionTodoMovil: sessionData.value.idTransaccionTodoMovil,
           locale: locale.value,
+          // Original USD info for email receipt
+          ...(currency.value === 'USD' && exchangeRate.value ? {
+            originalAmountUSD: amount.value,
+            exchangeRate: exchangeRate.value,
+          } : {}),
         },
       })
 
@@ -426,6 +459,10 @@ export const useDonationPayment = () => {
     formattedAmount,
     monthOptions,
     yearOptions,
+    exchangeRate,
+    exchangeRateLoading,
+    amountInHNL,
+    fetchExchangeRate,
     submitDonation,
     reset,
     resetForm,

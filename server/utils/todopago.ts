@@ -4,6 +4,8 @@ export interface TodopagoConfig {
   password: string
   merchantId: string
   terminalId: string
+  payUser: string
+  payPassword: string
 }
 
 // Token cache with TTL
@@ -15,7 +17,6 @@ export async function getTodopagoToken(config: TodopagoConfig): Promise<{ token:
   }
 
   const loginUrl = `${config.baseUrl}/3DS/api/v1/Auth/Security/Login`
-  console.log('[TodoPago] Login attempt:', loginUrl, 'user:', config.username)
 
   try {
     const response = await $fetch<{
@@ -32,16 +33,17 @@ export async function getTodopagoToken(config: TodopagoConfig): Promise<{ token:
       },
     })
 
-    console.log('[TodoPago] Login response:', JSON.stringify(response))
-
     if (!response.token) {
       throw new Error('TodoMovil login failed: no token returned')
     }
 
-    // Cache for 50 minutes (tokens typically valid ~60 min)
+    // Use actual expiration from response, with 1-minute buffer
+    const expiresAt = response.expiration
+      ? new Date(response.expiration).getTime() - 60 * 1000
+      : Date.now() + 8 * 60 * 1000 // fallback: 8 minutes
     cachedToken = {
       token: response.token,
-      expiresAt: Date.now() + 50 * 60 * 1000,
+      expiresAt,
     }
 
     return { token: response.token }
@@ -69,15 +71,33 @@ export async function todopagoFetch<T = any>(
   body: Record<string, any>,
   extraHeaders?: Record<string, string>,
 ): Promise<T> {
-  return $fetch<T>(`${config.baseUrl}${path}`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      ...extraHeaders,
-    },
-    body,
-  })
+  try {
+    return await $fetch<T>(`${config.baseUrl}${path}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        ...extraHeaders,
+      },
+      body,
+    })
+  } catch (e: any) {
+    // If 401, clear cached token and retry with a fresh one
+    if (e.statusCode === 401 || e.status === 401) {
+      clearTokenCache()
+      const { token: freshToken } = await getTodopagoToken(config)
+      return $fetch<T>(`${config.baseUrl}${path}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${freshToken}`,
+          'Content-Type': 'application/json',
+          ...extraHeaders,
+        },
+        body,
+      })
+    }
+    throw e
+  }
 }
 
 /** Convert float amount to integer (100.00 → 10000) for 3DS APIs */
@@ -105,5 +125,7 @@ export function getTodopagoConfig(runtimeConfig: any): TodopagoConfig {
     password: runtimeConfig.todopagoPassword,
     merchantId: runtimeConfig.todopagoMerchantId,
     terminalId: runtimeConfig.todopagoTerminalId,
+    payUser: runtimeConfig.todopagoPayUser,
+    payPassword: runtimeConfig.todopagoPayPassword,
   }
 }

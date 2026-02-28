@@ -132,6 +132,8 @@ interface DonationConfirmationData {
   transactionId: string
   purpose?: string
   baseUrl?: string
+  originalAmountUSD?: number
+  exchangeRate?: number
 }
 
 export function getDonationConfirmationSubject(locale: EmailLocale): string {
@@ -150,6 +152,8 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
       purposeLabel: 'Purpose',
       referenceLabel: 'Reference Number',
       transactionLabel: 'Transaction ID',
+      conversionNote: 'Converted from',
+      atRate: 'at a rate of',
       footer: 'Your support makes a difference in our students\' lives. If you have any questions, please contact us at english@ceehonduras.org.',
       disclaimer: 'This is an automated confirmation. Please keep this email for your records.',
     },
@@ -161,6 +165,8 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
       purposeLabel: 'Propósito',
       referenceLabel: 'Número de Referencia',
       transactionLabel: 'ID de Transacción',
+      conversionNote: 'Convertido de',
+      atRate: 'a una tasa de',
       footer: 'Su apoyo marca una diferencia en la vida de nuestros estudiantes. Si tiene alguna pregunta, contáctenos en english@ceehonduras.org.',
       disclaimer: 'Esta es una confirmación automática. Por favor conserve este correo para sus registros.',
     },
@@ -186,6 +192,9 @@ export function getDonationConfirmationHtml(locale: EmailLocale, data: DonationC
             <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.amountLabel}:</td>
             <td style="padding: 8px 12px; color: #0d9488; font-weight: bold; font-size: 18px;">${escapeHtml(data.amount)}</td>
           </tr>
+          ${data.originalAmountUSD && data.exchangeRate ? `<tr style="border-bottom: 1px solid #f3f4f6;">
+            <td colspan="2" style="padding: 8px 12px; color: #6b7280; font-size: 13px;">${t.conversionNote} $${data.originalAmountUSD.toFixed(2)} USD ${t.atRate} 1 USD = L${data.exchangeRate.toFixed(2)} HNL</td>
+          </tr>` : ''}
           ${data.purpose && data.purpose !== 'general' ? `<tr style="border-bottom: 1px solid #f3f4f6;">
             <td style="padding: 8px 12px; font-weight: bold; color: #374151;">${t.purposeLabel}:</td>
             <td style="padding: 8px 12px; color: #4b5563;">${escapeHtml(data.purpose)}</td>
