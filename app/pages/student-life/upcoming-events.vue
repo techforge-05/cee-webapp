@@ -126,18 +126,10 @@
     <!-- Events Carousel Section -->
     <section v-if="carouselEvents.length >= 2" class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <div class="flex items-center justify-between mb-10">
+        <div class="text-center mb-10">
           <h2 class="text-3xl font-bold text-gray-900">
             {{ $t('studentLife.upcomingEvents.carousel.title') }}
           </h2>
-          <UButton
-            :to="localePath('/academics/calendar')"
-            variant="outline"
-            class="hidden md:flex"
-          >
-            <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
-            {{ $t('studentLife.upcomingEvents.carousel.viewCalendar') }}
-          </UButton>
         </div>
 
         <!-- Carousel Container -->
@@ -154,7 +146,7 @@
           <!-- Events Grid/Carousel -->
           <div
             ref="carouselRef"
-            class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+            class="flex justify-center gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
             @scroll="updateScrollButtons"
           >
             <div
@@ -219,8 +211,8 @@
           </button>
         </div>
 
-        <!-- Mobile: View Calendar Button -->
-        <div class="mt-8 text-center md:hidden">
+        <!-- View Calendar Button -->
+        <div class="mt-8 text-center">
           <UButton
             :to="localePath('/academics/calendar')"
             variant="outline"
