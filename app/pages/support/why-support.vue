@@ -27,7 +27,7 @@
     <!-- Introduction Section -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-4">
           {{ singleField('support.whySupport.intro', 'title') || $t('support.whySupport.intro.title') }}
         </h2>
         <div class="lg:max-w-[50%]">
@@ -47,7 +47,7 @@
         <div class="bg-orange-50 rounded-2xl p-8 md:p-12">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-3xl font-bold text-orange-900 mb-4">
+              <h2 class="text-3xl lg:text-5xl font-bold text-orange-900 mb-4">
                 {{ singleField('support.whySupport.nonprofit', 'title') || $t('support.whySupport.nonprofit.title') }}
               </h2>
               <p class="text-xl text-gray-800 leading-relaxed">
@@ -65,7 +65,7 @@
     <!-- Impact Section -->
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-center text-purple-800 mb-12">
           {{ $t('support.whySupport.impact.title') }}
         </h2>
 
@@ -92,7 +92,7 @@
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
           {{ $t('support.whySupport.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

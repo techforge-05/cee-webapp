@@ -38,7 +38,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-indigo-800 mb-4">
             {{ $t('studentLife.serviceProjects.projects.title') }}
           </h2>
         </div>
@@ -99,7 +99,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-emerald-800 mb-4">
             {{ $t('studentLife.serviceProjects.whyService.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -131,7 +131,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('studentLife.serviceProjects.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

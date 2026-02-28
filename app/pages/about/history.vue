@@ -42,7 +42,7 @@
     <!-- Timeline Section -->
     <section class="pt-8 pb-0 sm:pt-16 md:py-16">
       <div class="px-2 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12 px-4 sm:px-0">
+        <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 text-center mb-12 px-4 sm:px-0">
           {{ $t('about.history.timeline.title') }}
         </h2>
         <div class="space-y-12">
@@ -117,7 +117,7 @@
             :name="singleField('about.history.legacy', 'icon') || 'i-heroicons-heart'"
             class="w-16 h-16 text-purple-600 mx-auto mb-6"
           />
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 mb-6">
             {{ singleField('about.history.legacy', 'title') || $t('about.history.legacy.title') }}
           </h2>
           <p class="text-xl text-gray-700 leading-relaxed">
@@ -135,7 +135,7 @@
       class="py-16 bg-linear-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl font-bold mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">
           {{ $t('about.history.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

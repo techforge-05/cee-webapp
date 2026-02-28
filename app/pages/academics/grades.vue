@@ -113,7 +113,7 @@
     <!-- Special Programs Section -->
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-indigo-800 text-center mb-12">
           {{ $t('academics.programs.special.title') }}
         </h2>
 
@@ -143,7 +143,7 @@
     <!-- Educational Approach Section -->
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-emerald-800 text-center mb-12">
           {{ $t('academics.grades.approach.title') }}
         </h2>
         <div class="grid md:grid-cols-3 gap-8">
@@ -175,7 +175,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('academics.grades.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

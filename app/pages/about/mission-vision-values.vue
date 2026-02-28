@@ -28,7 +28,7 @@
     <!-- Introduction Section -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-teal-800 mb-6">
           {{ singleField('about.mvv.intro', 'title') || $t('about.missionVisionValues.intro.title') }}
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
@@ -99,7 +99,7 @@
     <!-- Core Values Section -->
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">
+        <h2 class="text-4xl lg:text-5xl font-bold text-center text-indigo-800 mb-4">
           {{ $t('about.missionVisionValues.values.title') }}
         </h2>
         <p class="text-xl text-center text-gray-600 mb-12">
@@ -135,7 +135,7 @@
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
           {{ $t('about.missionVisionValues.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

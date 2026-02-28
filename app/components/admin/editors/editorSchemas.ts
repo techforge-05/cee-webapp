@@ -25,6 +25,8 @@ export interface EditorSection {
   infoLinkLabelKey?: string
   /** For list sections: a separate page_key to store a section-level image */
   sectionImageKey?: string
+  /** Render image at full width (stacked below text) instead of 60/40 grid */
+  fullWidthImage?: boolean
 }
 
 // --- Field shorthand helpers ---
@@ -108,6 +110,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.mvv.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -139,6 +142,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.sof.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -164,6 +168,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.philosophy.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -201,6 +206,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.history.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -226,6 +232,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.about.town.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -292,6 +299,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.curriculum.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -361,6 +369,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.grades.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -417,6 +426,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.academics.guidance.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -464,6 +474,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.sports.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -501,6 +512,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.serviceProjects.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -529,6 +541,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.library.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -618,6 +631,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.studentLife.upcomingEvents.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -678,6 +692,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.whySupport.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -703,6 +718,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.scholarships.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -734,6 +750,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.support.donate.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -934,6 +951,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.admissions.whoCanApply.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -989,6 +1007,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.admissions.calendar.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -1038,6 +1057,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.getInvolved.teachers.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
@@ -1094,6 +1114,7 @@ const schemas: Record<string, EditorSection[]> = {
       labelKey: 'admin.editors.getInvolved.volunteer.intro',
       type: 'single',
       defaultOpen: false,
+      fullWidthImage: true,
       fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {

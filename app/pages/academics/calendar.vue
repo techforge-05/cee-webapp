@@ -25,7 +25,7 @@
     <!-- Important Dates Section -->
     <section class="py-16 bg-gray-50">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-indigo-800 text-center mb-12">
           {{ $t('academics.calendar.importantDates.title') }}
         </h2>
         <div class="flex flex-wrap justify-center gap-8">
@@ -60,7 +60,7 @@
               name="i-heroicons-arrow-down-tray"
               class="w-12 h-12 text-blue-600 mx-auto mb-6"
             />
-            <h2 class="text-3xl font-bold text-blue-900 mb-4">
+            <h2 class="text-3xl lg:text-5xl font-bold text-blue-900 mb-4">
               {{ $t('academics.calendar.download.title') }}
             </h2>
             <p class="text-xl text-gray-800 mb-6">
@@ -124,7 +124,7 @@
     >
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('academics.calendar.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

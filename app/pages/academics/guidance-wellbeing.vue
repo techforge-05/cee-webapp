@@ -28,7 +28,7 @@
     <!-- Introduction Section -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-4">
           {{
             singleField('academics.guidance.intro', 'title') ||
             $t('academics.guidance.intro.title')
@@ -47,7 +47,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 mb-4">
             {{ $t('academics.guidance.staff.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -101,7 +101,7 @@
     <section class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 mb-4">
             {{ $t('academics.guidance.services.title') }}
           </h2>
         </div>
@@ -137,7 +137,7 @@
     <section class="py-16" v-if="images.length > 0">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-rose-800 mb-4">
             {{ $t('academics.guidance.gallery.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -166,7 +166,7 @@
     <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('academics.guidance.cta.title') }}
           </h2>
           <p class="text-xl text-blue-100 mb-8">

@@ -27,7 +27,7 @@
     <!-- Introduction -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-indigo-700 mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold text-indigo-700 mb-4">
           {{ singleField('studentLife.upcomingEvents.intro', 'title') || $t('studentLife.upcomingEvents.intro.title') }}
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
@@ -39,7 +39,7 @@
     <!-- Featured Event Section -->
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">
+        <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 text-center mb-10">
           {{ $t('studentLife.upcomingEvents.featured.title') }}
         </h2>
 
@@ -127,7 +127,7 @@
     <section v-if="carouselEvents.length >= 2" class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-900">
+          <h2 class="text-3xl lg:text-5xl font-bold text-teal-800">
             {{ $t('studentLife.upcomingEvents.carousel.title') }}
           </h2>
         </div>
@@ -228,7 +228,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-3xl mx-auto text-center bg-indigo-50 rounded-2xl p-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          <h2 class="text-2xl lg:text-4xl font-bold text-rose-800 mb-4">
             {{ singleField('studentLife.upcomingEvents.stayInformed', 'title') || $t('studentLife.upcomingEvents.stayInformed.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-6">
@@ -250,7 +250,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-4">
             {{ $t('studentLife.upcomingEvents.annualEvents.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -307,7 +307,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('studentLife.upcomingEvents.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

@@ -42,7 +42,7 @@
         <div class="bg-emerald-50 rounded-2xl p-8 md:p-12">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-emerald-800 mb-6">
+              <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-emerald-800 mb-6">
                 {{ $t('admissions.whoCanApply.grades.title') }}
               </h2>
               <ul class="space-y-4">
@@ -72,7 +72,7 @@
               <img :src="singleMeta('admissions.whoCanApply.requirementsImage', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('admissions.whoCanApply.requirementsImage', 'focalX') || 50}% ${singleMeta('admissions.whoCanApply.requirementsImage', 'focalY') || 50}%` }" alt="" />
             </div>
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-6">
+              <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-800 mb-6">
                 {{ $t('admissions.whoCanApply.requirements.title') }}
               </h2>
               <ul class="space-y-4">
@@ -97,7 +97,7 @@
     <!-- CTA Section -->
     <section class="py-12 bg-emerald-50">
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+        <h2 class="text-2xl lg:text-4xl font-bold text-indigo-800 mb-4">
           {{ $t('admissions.whoCanApply.cta.title') }}
         </h2>
         <p class="text-lg text-gray-700 mb-6">

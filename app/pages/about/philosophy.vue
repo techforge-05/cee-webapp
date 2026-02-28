@@ -123,7 +123,7 @@
     <!-- Key Principles -->
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 text-center mb-12">
           {{ $t('about.philosophy.principles.title') }}
         </h2>
         <div class="flex flex-wrap justify-center gap-8">
@@ -154,7 +154,7 @@
       class="py-16 bg-linear-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
           {{ $t('about.philosophy.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

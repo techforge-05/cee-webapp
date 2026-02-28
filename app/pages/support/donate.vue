@@ -36,7 +36,7 @@
     <!-- Ways to Donate Section -->
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-center text-blue-800 mb-12">
           {{ $t('support.donate.ways.title') }}
         </h2>
 
@@ -70,7 +70,7 @@
     <section id="donate-online" class="py-16 bg-teal-50">
       <div class="px-6 sm:px-10 lg:px-16 max-w-4xl mx-auto">
         <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 mb-4">
             {{ $t('support.donate.payment.sectionTitle') }}
           </h2>
           <p class="text-xl text-gray-700">
@@ -185,7 +185,7 @@
     <section class="py-16 bg-orange-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 mb-4">
             {{ $t('support.donate.wishLists.title') }}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -230,7 +230,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="bg-red-50 rounded-2xl p-8 md:p-12">
-          <h2 class="text-2xl font-bold text-red-900 mb-4">
+          <h2 class="text-2xl lg:text-4xl font-bold text-red-900 mb-4">
             {{ singleField('support.donate.donateBooks', 'title') || $t('support.donate.donateBooks.title') }}
           </h2>
           <p class="text-lg text-gray-800 leading-relaxed">
@@ -248,7 +248,7 @@
             name="i-heroicons-envelope"
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-indigo-800 mb-4">
             {{ singleField('support.donate.contact', 'title') || $t('support.donate.contact.title') }}
           </h2>
           <p class="text-lg text-gray-700 mb-8">
@@ -278,7 +278,7 @@
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
           {{ $t('support.donate.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

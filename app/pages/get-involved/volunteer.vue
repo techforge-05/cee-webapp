@@ -86,7 +86,7 @@
         <div class="bg-gray-100 rounded-2xl p-8 md:p-12">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-6">
+              <h2 class="text-2xl md:text-4xl font-bold text-emerald-800 mb-6">
                 {{ singleField('getInvolved.volunteer.howTo', 'title') || $t('getInvolved.volunteer.howTo.title') }}
               </h2>
               <p class="text-lg text-gray-700 leading-relaxed">
@@ -104,7 +104,7 @@
     <!-- Contact Section -->
     <section class="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-2xl font-bold mb-4">
+        <h2 class="text-2xl lg:text-4xl font-bold mb-4">
           {{ singleField('getInvolved.volunteer.contact', 'title') || $t('getInvolved.volunteer.contact.title') }}
         </h2>
         <p class="text-lg text-blue-100 mb-6">

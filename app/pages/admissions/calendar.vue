@@ -61,7 +61,7 @@
     <!-- Call to Action -->
     <section class="py-12 bg-emerald-600 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-        <h2 class="text-2xl font-bold mb-4">
+        <h2 class="text-2xl lg:text-4xl font-bold mb-4">
           {{ $t('admissions.calendar.cta.title') }}
         </h2>
         <p class="text-lg text-emerald-100 mb-6">

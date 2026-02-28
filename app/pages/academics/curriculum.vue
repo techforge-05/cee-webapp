@@ -28,7 +28,7 @@
     <!-- Introduction -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-6">
           {{ singleField('academics.curriculum.intro', 'title') || $t('academics.curriculum.intro.title') }}
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
@@ -43,7 +43,7 @@
     <!-- Programs Section -->
     <section class="py-16">
       <div class="px-2 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 text-center mb-12">
           {{ $t('academics.curriculum.programs.title') }}
         </h2>
 
@@ -223,7 +223,7 @@
     <!-- Benefits Section -->
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 text-center mb-12">
           {{ $t('academics.curriculum.benefits.title') }}
         </h2>
         <div class="flex flex-wrap justify-center gap-8">
@@ -255,7 +255,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('academics.curriculum.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

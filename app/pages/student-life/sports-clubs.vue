@@ -28,7 +28,7 @@
     <!-- Introduction -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-4">
           {{ singleField('studentLife.sports.intro', 'title') || $t('studentLife.sportsClubs.intro.title') }}
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
@@ -41,7 +41,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-800 mb-4">
             {{ $t('studentLife.sportsClubs.sports.title') }}
           </h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -113,7 +113,7 @@
     <!-- Gallery Section -->
     <section v-if="galleryImages.length > 0" class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 text-center mb-12">
           {{ $t('studentLife.sportsClubs.gallery.title') }}
         </h2>
         <div class="flex flex-wrap justify-center gap-6">
@@ -140,7 +140,7 @@
     >
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold mb-4">
             {{ $t('studentLife.sportsClubs.cta.title') }}
           </h2>
           <p class="text-xl mb-8">

@@ -43,28 +43,19 @@
           <!-- Single item section -->
           <template v-if="section.type === 'single'">
             <!-- Check if section has imageUrl field -->
-            <div
-              v-if="hasImageField(section)"
-              class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6"
-            >
-              <!-- Left: Data fields (60%) -->
-              <div class="space-y-4">
+            <template v-if="hasImageField(section)">
+              <!-- Full-width image layout (stacked: fields on top, image below) -->
+              <div v-if="section.fullWidthImage" class="space-y-4">
                 <template v-for="field in section.fields" :key="field.key">
                   <BilingualTextField
-                    v-if="
-                      field.type === 'text' &&
-                      field.key !== 'imageUrl' &&
-                      singleData[section.pageKey]
-                    "
+                    v-if="field.type === 'text' && field.key !== 'imageUrl' && singleData[section.pageKey]"
                     v-model="singleData[section.pageKey][field.key]"
                     :label="$t(field.labelKey)"
                     :max-length="field.maxLength"
                     @update:model-value="trackChanges"
                   />
                   <BilingualTextarea
-                    v-if="
-                      field.type === 'textarea' && singleData[section.pageKey]
-                    "
+                    v-if="field.type === 'textarea' && singleData[section.pageKey]"
                     v-model="singleData[section.pageKey][field.key]"
                     :label="$t(field.labelKey)"
                     :max-length="field.maxLength"
@@ -72,11 +63,7 @@
                     @update:model-value="trackChanges"
                   />
                   <UFormField
-                    v-if="
-                      field.type === 'metadata' &&
-                      field.key !== 'imageUrl' &&
-                      metaData[section.pageKey]
-                    "
+                    v-if="field.type === 'metadata' && field.key !== 'imageUrl' && metaData[section.pageKey]"
                     :label="$t(field.labelKey)"
                   >
                     <UInput
@@ -86,64 +73,118 @@
                       @update:model-value="trackChanges"
                     />
                   </UFormField>
-                  <UFormField
-                    v-if="
-                      field.type === 'select' &&
-                      field.options &&
-                      metaData[section.pageKey]
-                    "
-                    :label="$t(field.labelKey)"
-                  >
-                    <USelect
-                      :model-value="metaData[section.pageKey][field.key] || ''"
-                      :items="field.options.map((o) => ({
-                        value: o.value,
-                        label: $t(o.labelKey),
-                      }))"
-                      class="min-w-48"
-                      @update:model-value="
-                        metaData[section.pageKey][field.key] = $event as string;
-                        trackChanges();
-                      "
-                    />
-                  </UFormField>
-                  <IconPicker
-                    v-if="field.type === 'icon' && singleData[section.pageKey]"
-                    :model-value="
-                      singleData[section.pageKey][field.key]?.es || ''
-                    "
-                    :label="$t(field.labelKey)"
-                    @update:model-value="
-                      updateSingleIconField(section.pageKey, field.key, $event)
-                    "
-                  />
-                  <UFormField
-                    v-if="field.type === 'toggle' && metaData[section.pageKey]"
-                    :label="$t(field.labelKey)"
-                  >
-                    <USwitch
-                      :model-value="metaData[section.pageKey][field.key] !== 'false'"
-                      @update:model-value="metaData[section.pageKey][field.key] = $event ? 'true' : 'false'; trackChanges()"
-                    />
-                  </UFormField>
                 </template>
+                <ImageUploader
+                  v-model="sectionImages[section.pageKey]"
+                  :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                  :focal-x="sectionFocalPoints[section.pageKey]?.x ?? 50"
+                  :focal-y="sectionFocalPoints[section.pageKey]?.y ?? 50"
+                  @update:model-value="trackChanges"
+                  @update:focal-x="sectionFocalPoints[section.pageKey].x = $event; trackChanges()"
+                  @update:focal-y="sectionFocalPoints[section.pageKey].y = $event; trackChanges()"
+                />
               </div>
 
-              <!-- Right: Image (40%) -->
-              <div>
-                <UFormField :label="$t('admin.components.image.upload')">
-                  <ImageUploader
-                    v-model="sectionImages[section.pageKey]"
-                    :folder="`cee-assets/${sectionKey}/${pageSlug}`"
-                    :focal-x="sectionFocalPoints[section.pageKey]?.x ?? 50"
-                    :focal-y="sectionFocalPoints[section.pageKey]?.y ?? 50"
-                    @update:model-value="trackChanges"
-                    @update:focal-x="sectionFocalPoints[section.pageKey].x = $event; trackChanges()"
-                    @update:focal-y="sectionFocalPoints[section.pageKey].y = $event; trackChanges()"
-                  />
-                </UFormField>
+              <!-- Side-by-side layout (60/40 grid) -->
+              <div v-else class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
+                <!-- Left: Data fields (60%) -->
+                <div class="space-y-4">
+                  <template v-for="field in section.fields" :key="field.key">
+                    <BilingualTextField
+                      v-if="
+                        field.type === 'text' &&
+                        field.key !== 'imageUrl' &&
+                        singleData[section.pageKey]
+                      "
+                      v-model="singleData[section.pageKey][field.key]"
+                      :label="$t(field.labelKey)"
+                      :max-length="field.maxLength"
+                      @update:model-value="trackChanges"
+                    />
+                    <BilingualTextarea
+                      v-if="
+                        field.type === 'textarea' && singleData[section.pageKey]
+                      "
+                      v-model="singleData[section.pageKey][field.key]"
+                      :label="$t(field.labelKey)"
+                      :max-length="field.maxLength"
+                      :rows="field.rows || 3"
+                      @update:model-value="trackChanges"
+                    />
+                    <UFormField
+                      v-if="
+                        field.type === 'metadata' &&
+                        field.key !== 'imageUrl' &&
+                        metaData[section.pageKey]
+                      "
+                      :label="$t(field.labelKey)"
+                    >
+                      <UInput
+                        v-model="metaData[section.pageKey][field.key]"
+                        :maxlength="field.maxLength"
+                        :placeholder="field.placeholder"
+                        @update:model-value="trackChanges"
+                      />
+                    </UFormField>
+                    <UFormField
+                      v-if="
+                        field.type === 'select' &&
+                        field.options &&
+                        metaData[section.pageKey]
+                      "
+                      :label="$t(field.labelKey)"
+                    >
+                      <USelect
+                        :model-value="metaData[section.pageKey][field.key] || ''"
+                        :items="field.options.map((o) => ({
+                          value: o.value,
+                          label: $t(o.labelKey),
+                        }))"
+                        class="min-w-48"
+                        @update:model-value="
+                          metaData[section.pageKey][field.key] = $event as string;
+                          trackChanges();
+                        "
+                      />
+                    </UFormField>
+                    <IconPicker
+                      v-if="field.type === 'icon' && singleData[section.pageKey]"
+                      :model-value="
+                        singleData[section.pageKey][field.key]?.es || ''
+                      "
+                      :label="$t(field.labelKey)"
+                      @update:model-value="
+                        updateSingleIconField(section.pageKey, field.key, $event)
+                      "
+                    />
+                    <UFormField
+                      v-if="field.type === 'toggle' && metaData[section.pageKey]"
+                      :label="$t(field.labelKey)"
+                    >
+                      <USwitch
+                        :model-value="metaData[section.pageKey][field.key] !== 'false'"
+                        @update:model-value="metaData[section.pageKey][field.key] = $event ? 'true' : 'false'; trackChanges()"
+                      />
+                    </UFormField>
+                  </template>
+                </div>
+
+                <!-- Right: Image (40%) -->
+                <div>
+                  <UFormField :label="$t('admin.components.image.upload')">
+                    <ImageUploader
+                      v-model="sectionImages[section.pageKey]"
+                      :folder="`cee-assets/${sectionKey}/${pageSlug}`"
+                      :focal-x="sectionFocalPoints[section.pageKey]?.x ?? 50"
+                      :focal-y="sectionFocalPoints[section.pageKey]?.y ?? 50"
+                      @update:model-value="trackChanges"
+                      @update:focal-x="sectionFocalPoints[section.pageKey].x = $event; trackChanges()"
+                      @update:focal-y="sectionFocalPoints[section.pageKey].y = $event; trackChanges()"
+                    />
+                  </UFormField>
+                </div>
               </div>
-            </div>
+            </template>
 
             <!-- Standard single item layout (no image) -->
             <template v-else>

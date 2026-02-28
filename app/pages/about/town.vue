@@ -26,7 +26,7 @@
     <!-- Introduction -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+        <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 mb-6">
           {{ singleField('about.town.intro', 'title') || $t('about.town.intro.title') }}
         </h2>
         <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%] mb-4">
@@ -46,7 +46,7 @@
           <div class="bg-blue-50 rounded-lg p-8">
             <div class="flex items-start gap-4 mb-4">
               <UIcon name="i-heroicons-map" class="w-12 h-12 text-blue-600 shrink-0" />
-              <h2 class="text-3xl font-bold text-blue-900">
+              <h2 class="text-3xl lg:text-5xl font-bold text-blue-900">
                 {{ $t('about.town.location.title') }}
               </h2>
             </div>
@@ -66,7 +66,7 @@
           <div class="bg-purple-50 rounded-lg p-8">
             <div class="flex items-start gap-4 mb-4">
               <UIcon name="i-heroicons-sun" class="w-12 h-12 text-purple-600 shrink-0" />
-              <h2 class="text-3xl font-bold text-purple-900">
+              <h2 class="text-3xl lg:text-5xl font-bold text-purple-900">
                 {{ singleField('about.town.climate', 'title') || $t('about.town.climate.title') }}
               </h2>
             </div>
@@ -105,7 +105,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-2 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-emerald-800 mb-4">
             {{ $t('about.town.activities.title') }}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -139,7 +139,7 @@
     <!-- Gallery Section -->
     <section class="py-16">
       <div class="px-2 sm:px-10 lg:px-16">
-        <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        <h2 class="text-3xl lg:text-5xl font-bold text-rose-800 text-center mb-12">
           {{ $t('about.town.gallery.title') }}
         </h2>
         <div class="flex flex-wrap justify-center gap-6">
@@ -175,7 +175,7 @@
     <!-- Call to Action -->
     <section class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white">
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl font-bold mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">
           {{ $t('about.town.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

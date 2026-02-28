@@ -38,7 +38,7 @@
     <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-indigo-800 mb-4">
             {{ $t('about.leadership.board.title') }}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -82,7 +82,7 @@
     <section class="py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          <h2 class="text-3xl lg:text-5xl font-bold text-purple-800 mb-4">
             {{ $t('about.leadership.directors.title') }}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -140,7 +140,7 @@
               name="i-heroicons-envelope"
               class="w-12 h-12 text-blue-600 mx-auto mb-6"
             />
-            <h2 class="text-3xl font-bold text-blue-900 mb-4">
+            <h2 class="text-3xl lg:text-5xl font-bold text-blue-900 mb-4">
               {{ $t('about.leadership.contact.title') }}
             </h2>
             <p class="text-xl text-gray-800 mb-6">
@@ -164,7 +164,7 @@
       class="py-16 bg-gradient-to-r from-green-600 to-teal-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl font-bold mb-4">
+        <h2 class="text-3xl lg:text-5xl font-bold mb-4">
           {{ $t('about.leadership.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">

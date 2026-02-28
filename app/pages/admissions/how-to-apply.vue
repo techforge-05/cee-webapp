@@ -63,7 +63,7 @@
             name="i-heroicons-calendar-days"
             class="w-12 h-12 text-emerald-600 mx-auto mb-4"
           />
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          <h2 class="text-2xl lg:text-4xl font-bold text-blue-800 mb-4">
             {{ admissionsEvents.length > 0
               ? $t('admissions.howToApply.dates.upcomingTitle')
               : (singleField('admissions.howToApply.dates', 'title') || $t('admissions.howToApply.dates.title'))
@@ -124,7 +124,7 @@
     <!-- CTA Section -->
     <section class="py-12 bg-emerald-600 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-        <h2 class="text-2xl font-bold mb-4">
+        <h2 class="text-2xl lg:text-4xl font-bold mb-4">
           {{ $t('admissions.howToApply.cta.title') }}
         </h2>
         <p class="text-lg text-emerald-100 mb-6">

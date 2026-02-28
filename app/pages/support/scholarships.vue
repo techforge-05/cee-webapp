@@ -39,7 +39,7 @@
         <div class="bg-red-50 rounded-2xl p-8 md:p-12">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-3xl font-bold text-red-900 mb-4">
+              <h2 class="text-3xl lg:text-5xl font-bold text-red-900 mb-4">
                 {{ singleField('support.scholarships.purpose', 'title') || $t('support.scholarships.purpose.title') }}
               </h2>
               <p class="text-xl text-gray-800 leading-relaxed">
@@ -62,7 +62,7 @@
             <img :src="singleMeta('support.scholarships.impact', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('support.scholarships.impact', 'focalX') || 50}% ${singleMeta('support.scholarships.impact', 'focalY') || 50}%` }" alt="" />
           </div>
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-4">
               {{ singleField('support.scholarships.impact', 'title') || $t('support.scholarships.impact.title') }}
             </h2>
             <p class="text-xl text-gray-700 leading-relaxed">
@@ -78,7 +78,7 @@
       class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
     >
       <div class="px-6 sm:px-10 lg:px-16 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
           {{ $t('support.scholarships.cta.title') }}
         </h2>
         <p class="text-xl mb-8 max-w-3xl mx-auto">
