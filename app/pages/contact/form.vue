@@ -2,7 +2,7 @@
   <div v-if="contentLoading" class="min-h-screen flex items-center justify-center"><div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" /></div>
   <div v-else class="min-h-screen bg-gradient-to-r from-teal-600 to-cyan-600">
     <!-- Hero Section -->
-    <section class="text-white py-20">
+    <section class="text-white py-10 md:py-20">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('contact.form.title') }}

@@ -329,17 +329,47 @@ export const useDefaultContent = () => {
     }
 
     try {
-      // Delete this page_key AND any child page_keys (e.g., home.enrollment + home.enrollment.features)
-      const { error: deleteError } = await supabase
+      // Fetch existing rows to preserve image records
+      const { data: existingRows } = await supabase
         .from('page_content')
-        .delete()
+        .select('id, page_key, metadata')
         .or(`page_key.eq.${pageKey},page_key.like.${pageKey}.%`)
 
-      if (deleteError) throw deleteError
+      // Separate image-only rows (page_key ending in .image) from content rows
+      const imageOnlyRows = (existingRows || []).filter((row) => row.page_key.endsWith('.image'))
+      const contentRowIds = (existingRows || [])
+        .filter((row) => !row.page_key.endsWith('.image'))
+        .map((row) => row.id)
+
+      // Only delete content rows, keep image rows untouched
+      if (contentRowIds.length > 0) {
+        const { error: deleteError } = await supabase
+          .from('page_content')
+          .delete()
+          .in('id', contentRowIds)
+        if (deleteError) throw deleteError
+      }
+
+      // For new items being inserted, preserve image metadata from old rows with same page_key
+      const existingMetaByKey = new Map(
+        (existingRows || []).map((row) => [row.page_key, row.metadata]),
+      )
+      const itemsToInsert = newItems.map((item) => {
+        const oldMeta = existingMetaByKey.get(item.page_key) as Record<string, any> | null
+        if (oldMeta && (oldMeta.imageUrl || oldMeta.image_url)) {
+          // Merge old image metadata into new item
+          const imageMeta: Record<string, any> = {}
+          for (const key of ['imageUrl', 'image_url', 'focalX', 'focalY', 'alt_text_es', 'alt_text_en']) {
+            if (oldMeta[key] !== undefined) imageMeta[key] = oldMeta[key]
+          }
+          return { ...item, metadata: { ...(item.metadata || {}), ...imageMeta } }
+        }
+        return item
+      })
 
       const { error: insertError } = await supabase
         .from('page_content')
-        .insert(newItems as any)
+        .insert(itemsToInsert as any)
 
       if (insertError) throw insertError
 
