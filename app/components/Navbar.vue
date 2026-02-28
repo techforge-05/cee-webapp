@@ -693,13 +693,13 @@
 
           <!-- Right: Image (3 columns) -->
           <div
-            class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10"
+            class="col-span-4 flex items-center justify-center p-4 lg:p-6 xl:p-10 overflow-hidden"
           >
             <img
               v-if="dropdownImageUrl"
               :src="dropdownImageUrl"
               :alt="$t(`nav.${activeDropdown}`)"
-              class="w-full h-full object-cover rounded-lg"
+              class="w-full max-h-full object-cover rounded-lg"
             />
             <div
               v-else
