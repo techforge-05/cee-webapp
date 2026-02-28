@@ -1,10 +1,8 @@
 <template>
   <div v-if="contentLoading" class="min-h-screen flex items-center justify-center"><div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" /></div>
-  <div v-else class="min-h-screen bg-white">
+  <div v-else class="min-h-screen bg-gradient-to-r from-teal-600 to-cyan-600">
     <!-- Hero Section -->
-    <section
-      class="relative bg-gradient-to-r from-teal-600 to-cyan-600 text-white py-20"
-    >
+    <section class="text-white py-20">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
           {{ $t('contact.form.title') }}
@@ -15,238 +13,230 @@
       </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div :class="singleMeta('contact.form.intro', 'imageUrl') ? 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-center' : 'max-w-4xl mx-auto text-center'">
-          <div>
-            <p class="text-2xl md:text-3xl font-semibold text-cyan-800 leading-snug">
-              {{ singleField('contact.form.intro', 'text') || $t('contact.form.intro') }}
-            </p>
-          </div>
-          <div v-if="singleMeta('contact.form.intro', 'imageUrl')" class="rounded-lg overflow-hidden">
-            <img :src="singleMeta('contact.form.intro', 'imageUrl')" class="w-full h-80 object-cover rounded-lg" :style="{ objectPosition: `${singleMeta('contact.form.intro', 'focalX') || 50}% ${singleMeta('contact.form.intro', 'focalY') || 50}%` }" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Contact Form Section -->
     <section class="py-16">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-2xl mx-auto">
-          <!-- Success Message -->
-          <div
-            v-if="formStatus === 'success'"
-            class="bg-green-50 border border-green-200 rounded-xl p-6 mb-8"
-          >
-            <div class="flex items-center gap-3">
-              <UIcon
-                name="i-heroicons-check-circle"
-                class="w-8 h-8 text-green-600"
-              />
-              <div>
-                <h3 class="text-lg font-bold text-green-800">
-                  {{ singleField('contact.form.success', 'title') || $t('contact.form.success.title') }}
-                </h3>
-                <p class="text-green-700">
-                  {{ singleField('contact.form.success', 'description') || $t('contact.form.success.description') }}
+      <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-10 lg:p-14">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+          <!-- Left Side - Text & Contact Info -->
+          <div class="text-white lg:sticky lg:top-24">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+              {{ singleField('contact.form.message', 'line1') || $t('contact.form.introLine1') }} <span class="text-amber-300">{{ singleField('contact.form.message', 'highlight') || $t('contact.form.introHighlight') }}</span> {{ singleField('contact.form.message', 'line2') || $t('contact.form.introLine2') }}
+            </h2>
+          </div>
+
+          <!-- Right Side - Form -->
+          <div>
+            <!-- Success Message -->
+            <div
+              v-if="formStatus === 'success'"
+              class="bg-green-50 border border-green-200 rounded-xl p-6 mb-8"
+            >
+              <div class="flex items-center gap-3">
+                <UIcon
+                  name="i-heroicons-check-circle"
+                  class="w-8 h-8 text-green-600"
+                />
+                <div>
+                  <h3 class="text-lg font-bold text-green-800">
+                    {{ singleField('contact.form.success', 'title') || $t('contact.form.success.title') }}
+                  </h3>
+                  <p class="text-green-700">
+                    {{ singleField('contact.form.success', 'description') || $t('contact.form.success.description') }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Message -->
+            <div
+              v-if="formStatus === 'error'"
+              class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8"
+            >
+              <div class="flex items-center gap-3">
+                <UIcon
+                  name="i-heroicons-exclamation-circle"
+                  class="w-8 h-8 text-red-600"
+                />
+                <div>
+                  <h3 class="text-lg font-bold text-red-800">
+                    {{ singleField('contact.form.error', 'title') || $t('contact.form.error.title') }}
+                  </h3>
+                  <p class="text-red-700">
+                    {{ singleField('contact.form.error', 'description') || $t('contact.form.error.description') }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form
+              v-if="formStatus !== 'success'"
+              @submit.prevent="handleSubmit"
+              class="bg-white rounded-2xl shadow-lg p-6 sm:p-8"
+            >
+              <!-- Name Field -->
+              <div class="mb-5">
+                <label
+                  for="name"
+                  class="block text-base font-semibold text-gray-700 mb-2"
+                >
+                  {{ $t('contact.form.fields.name.label') }} *
+                </label>
+                <UInput
+                  id="name"
+                  v-model="formData.name"
+                  type="text"
+                  :placeholder="$t('contact.form.fields.name.placeholder')"
+                  size="lg"
+                  class="w-full"
+                  :color="errors.name ? 'error' : 'primary'"
+                />
+                <p v-if="errors.name" class="mt-1 text-sm text-red-600">
+                  {{ errors.name }}
                 </p>
               </div>
-            </div>
-          </div>
 
-          <!-- Error Message -->
-          <div
-            v-if="formStatus === 'error'"
-            class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8"
-          >
-            <div class="flex items-center gap-3">
-              <UIcon
-                name="i-heroicons-exclamation-circle"
-                class="w-8 h-8 text-red-600"
-              />
-              <div>
-                <h3 class="text-lg font-bold text-red-800">
-                  {{ singleField('contact.form.error', 'title') || $t('contact.form.error.title') }}
-                </h3>
-                <p class="text-red-700">
-                  {{ singleField('contact.form.error', 'description') || $t('contact.form.error.description') }}
+              <!-- Email Field -->
+              <div class="mb-5">
+                <label
+                  for="email"
+                  class="block text-base font-semibold text-gray-700 mb-2"
+                >
+                  {{ $t('contact.form.fields.email.label') }} *
+                </label>
+                <UInput
+                  id="email"
+                  v-model="formData.email"
+                  type="email"
+                  :placeholder="$t('contact.form.fields.email.placeholder')"
+                  size="lg"
+                  class="w-full"
+                  :color="errors.email ? 'error' : 'primary'"
+                />
+                <p v-if="errors.email" class="mt-1 text-sm text-red-600">
+                  {{ errors.email }}
                 </p>
               </div>
-            </div>
-          </div>
 
-          <!-- Contact Form -->
-          <form
-            v-if="formStatus !== 'success'"
-            @submit.prevent="handleSubmit"
-            class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100"
-          >
-            <div class="flex justify-center mb-6">
-              <div class="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
-                <UIcon name="i-heroicons-pencil-square" class="w-8 h-8 text-white" />
+              <!-- Phone Field (Optional) -->
+              <div class="mb-5">
+                <label
+                  for="phone"
+                  class="block text-base font-semibold text-gray-700 mb-2"
+                >
+                  {{ $t('contact.form.fields.phone.label') }}
+                </label>
+                <UInput
+                  id="phone"
+                  v-model="formData.phone"
+                  type="tel"
+                  :placeholder="$t('contact.form.fields.phone.placeholder')"
+                  size="lg"
+                  class="w-full"
+                />
               </div>
-            </div>
-            <!-- Name Field -->
-            <div class="mb-6">
-              <label
-                for="name"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-              >
-                {{ $t('contact.form.fields.name.label') }} *
-              </label>
-              <UInput
-                id="name"
-                v-model="formData.name"
-                type="text"
-                :placeholder="$t('contact.form.fields.name.placeholder')"
+
+              <!-- Subject Field -->
+              <div class="mb-5">
+                <label
+                  for="subject"
+                  class="block text-base font-semibold text-gray-700 mb-2"
+                >
+                  {{ $t('contact.form.fields.subject.label') }} *
+                </label>
+                <USelect
+                  id="subject"
+                  v-model="formData.subject"
+                  :items="subjectOptions"
+                  :placeholder="$t('contact.form.fields.subject.placeholder')"
+                  size="lg"
+                  class="w-full"
+                  :color="errors.subject ? 'error' : 'primary'"
+                />
+                <p v-if="errors.subject" class="mt-1 text-sm text-red-600">
+                  {{ errors.subject }}
+                </p>
+              </div>
+
+              <!-- Message Field -->
+              <div class="mb-6">
+                <label
+                  for="message"
+                  class="block text-base font-semibold text-gray-700 mb-2"
+                >
+                  {{ $t('contact.form.fields.message.label') }} *
+                </label>
+                <UTextarea
+                  id="message"
+                  v-model="formData.message"
+                  :placeholder="$t('contact.form.fields.message.placeholder')"
+                  :rows="5"
+                  size="lg"
+                  class="w-full"
+                  :color="errors.message ? 'error' : 'primary'"
+                />
+                <p v-if="errors.message" class="mt-1 text-sm text-red-600">
+                  {{ errors.message }}
+                </p>
+              </div>
+
+              <!-- Submit Button -->
+              <UButton
+                type="submit"
                 size="lg"
-                class="w-full"
-                :color="errors.name ? 'error' : 'primary'"
-              />
-              <p v-if="errors.name" class="mt-1 text-sm text-red-600">
-                {{ errors.name }}
-              </p>
-            </div>
-
-            <!-- Email Field -->
-            <div class="mb-6">
-              <label
-                for="email"
-                class="block text-sm font-semibold text-gray-700 mb-2"
+                color="primary"
+                class="w-full justify-center bg-teal-700 hover:bg-teal-800"
+                :loading="isSubmitting"
+                :disabled="isSubmitting"
               >
-                {{ $t('contact.form.fields.email.label') }} *
-              </label>
-              <UInput
-                id="email"
-                v-model="formData.email"
-                type="email"
-                :placeholder="$t('contact.form.fields.email.placeholder')"
-                size="lg"
-                class="w-full"
-                :color="errors.email ? 'error' : 'primary'"
-              />
-              <p v-if="errors.email" class="mt-1 text-sm text-red-600">
-                {{ errors.email }}
-              </p>
-            </div>
+                <UIcon
+                  v-if="!isSubmitting"
+                  name="i-heroicons-paper-airplane"
+                  class="w-5 h-5 mr-2"
+                />
+                {{
+                  isSubmitting
+                    ? $t('contact.form.sending')
+                    : $t('contact.form.submit')
+                }}
+              </UButton>
+            </form>
 
-            <!-- Phone Field (Optional) -->
-            <div class="mb-6">
-              <label
-                for="phone"
-                class="block text-sm font-semibold text-gray-700 mb-2"
+            <!-- Reset Button (after success) -->
+            <div v-if="formStatus === 'success'" class="text-center mt-6">
+              <UButton
+                @click="resetForm"
+                size="lg"
+                variant="outline"
+                class="border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                {{ $t('contact.form.fields.phone.label') }}
-              </label>
-              <UInput
-                id="phone"
-                v-model="formData.phone"
-                type="tel"
-                :placeholder="$t('contact.form.fields.phone.placeholder')"
-                size="lg"
-                class="w-full"
-              />
+                {{ $t('contact.form.title') }}
+              </UButton>
             </div>
-
-            <!-- Subject Field -->
-            <div class="mb-6">
-              <label
-                for="subject"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-              >
-                {{ $t('contact.form.fields.subject.label') }} *
-              </label>
-              <USelect
-                id="subject"
-                v-model="formData.subject"
-                :items="subjectOptions"
-                :placeholder="$t('contact.form.fields.subject.placeholder')"
-                size="lg"
-                class="w-full"
-                :color="errors.subject ? 'error' : 'primary'"
-              />
-              <p v-if="errors.subject" class="mt-1 text-sm text-red-600">
-                {{ errors.subject }}
-              </p>
-            </div>
-
-            <!-- Message Field -->
-            <div class="mb-8">
-              <label
-                for="message"
-                class="block text-sm font-semibold text-gray-700 mb-2"
-              >
-                {{ $t('contact.form.fields.message.label') }} *
-              </label>
-              <UTextarea
-                id="message"
-                v-model="formData.message"
-                :placeholder="$t('contact.form.fields.message.placeholder')"
-                :rows="6"
-                size="lg"
-                class="w-full"
-                :color="errors.message ? 'error' : 'primary'"
-              />
-              <p v-if="errors.message" class="mt-1 text-sm text-red-600">
-                {{ errors.message }}
-              </p>
-            </div>
-
-            <!-- Submit Button -->
-            <UButton
-              type="submit"
-              size="lg"
-              color="primary"
-              class="w-full justify-center bg-red-600 hover:bg-red-700"
-              :loading="isSubmitting"
-              :disabled="isSubmitting"
-            >
-              <UIcon
-                v-if="!isSubmitting"
-                name="i-heroicons-paper-airplane"
-                class="w-5 h-5 mr-2"
-              />
-              {{
-                isSubmitting
-                  ? $t('contact.form.sending')
-                  : $t('contact.form.submit')
-              }}
-            </UButton>
-          </form>
-
-          <!-- Reset Button (after success) -->
-          <div v-if="formStatus === 'success'" class="text-center">
-            <UButton
-              @click="resetForm"
-              size="lg"
-              variant="outline"
-              class="border-2 border-red-600 text-red-600 hover:bg-red-50"
-            >
-              {{ $t('contact.form.title') }}
-            </UButton>
           </div>
+        </div>
         </div>
       </div>
     </section>
 
     <!-- Alternative Contact Section -->
-    <section class="py-16 bg-orange-50">
+    <section class="py-16">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 mb-4">
+        <div class="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-sm rounded-2xl p-10">
+          <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
             {{ $t('contact.form.cta.title') }}
           </h2>
-          <p class="text-xl text-gray-700 mb-8">
+          <p class="text-xl text-teal-100 mb-8">
             {{ $t('contact.form.cta.description') }}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <UButton
               :to="localePath('/contact/info')"
               size="lg"
-              color="primary"
-              class="bg-red-600 hover:bg-red-700 justify-center"
+              variant="solid"
+              class="bg-white text-teal-700 hover:bg-gray-100 justify-center"
             >
               <UIcon
                 name="i-heroicons-information-circle"
@@ -259,7 +249,7 @@
               target="_blank"
               size="lg"
               variant="outline"
-              class="border-2 border-red-600 text-red-600 hover:bg-red-50 justify-center"
+              class="border-2 border-white text-white hover:bg-white hover:text-teal-600 justify-center"
             >
               <UIcon name="i-heroicons-phone" class="w-5 h-5 mr-2" />
               {{ $t('contact.form.cta.callUs') }}
@@ -270,14 +260,12 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section
-      class="py-16 bg-gradient-to-r from-teal-600 to-cyan-600 text-white"
-    >
+    <section class="py-16 bg-teal-700/40 text-white">
       <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
         <h2 class="text-3xl md:text-4xl lg:text-4xl font-bold mb-6">
           {{ $t('contact.faq.stillHaveQuestions.title') }}
         </h2>
-        <p class="text-xl mb-8 max-w-3xl mx-auto">
+        <p class="text-xl mb-8 max-w-3xl mx-auto text-teal-100">
           {{ $t('contact.faq.stillHaveQuestions.description') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -309,7 +297,7 @@
   const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
 
   onMounted(() => loadContent([
-    'contact.form.intro',
+    'contact.form.message',
     'contact.form.subjectOptions',
     'contact.form.success',
     'contact.form.error',

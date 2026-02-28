@@ -914,11 +914,15 @@ const schemas: Record<string, EditorSection[]> = {
 
   'contact/form': [
     {
-      pageKey: 'contact.form.intro',
-      labelKey: 'admin.editors.contact.form.intro',
+      pageKey: 'contact.form.message',
+      labelKey: 'admin.editors.contact.form.message',
       type: 'single',
-      defaultOpen: false,
-      fields: [f.text(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
+      defaultOpen: true,
+      fields: [
+        { key: 'line1', labelKey: 'admin.editors.contact.form.line1', type: 'text', maxLength: 100 },
+        { key: 'highlight', labelKey: 'admin.editors.contact.form.highlight', type: 'text', maxLength: 50 },
+        { key: 'line2', labelKey: 'admin.editors.contact.form.line2', type: 'text', maxLength: 100 },
+      ],
     },
     {
       pageKey: 'contact.form.subjectOptions',

@@ -1873,7 +1873,10 @@
           "mapCoords": "Map Coordinates"
         },
         "form": {
-          "intro": "Introduction",
+          "message": "Left Side Message",
+          "line1": "Text before highlight",
+          "highlight": "Highlighted words",
+          "line2": "Text after highlight",
           "subjectOptions": "Subject Options",
           "success": "Success Message",
           "error": "Error Message"
@@ -2419,6 +2422,14 @@
       "title": "Contact Form",
       "subtitle": "Send us a message",
       "intro": "Fill out the form below and we'll get back to you as soon as possible.",
+      "introLine1": "Fill out the form and we'll",
+      "introHighlight": "get back",
+      "introLine2": "to you as soon as possible.",
+      "message": {
+        "line1": "Fill out the form and we'll",
+        "highlight": "get back",
+        "line2": "to you as soon as possible."
+      },
       "fields": {
         "name": {
           "label": "Full Name",
