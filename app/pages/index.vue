@@ -129,75 +129,52 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section class="grid md:grid-cols-2">
+    <section class="grid md:grid-cols-12 items-center bg-gray-50">
       <!-- Left: Full Image -->
       <div
-        class="hidden md:flex relative items-center justify-center overflow-hidden"
+        class="hidden md:flex md:col-span-7 relative items-center justify-center overflow-hidden p-6 lg:p-10"
       >
         <img
           v-if="valuesImageUrl"
           :src="valuesImageUrl"
           alt="Values"
-          class="w-full h-full min-h-80 md:min-h-96 lg:min-h-100 object-cover"
+          class="w-full h-full object-cover rounded-2xl"
           :style="{ objectPosition: `${singleMeta('home.values.image', 'focalX') || 50}% ${singleMeta('home.values.image', 'focalY') || 50}%` }"
         />
         <div
           v-else
-          class="bg-gray-300 w-full h-full min-h-80 md:min-h-96 lg:min-h-100 flex items-center justify-center"
+          class="bg-gray-300 w-full h-full min-h-80 flex items-center justify-center"
         >
           <p class="text-gray-400 text-xl md:text-2xl">Values Image</p>
         </div>
       </div>
 
-      <!-- Right: Title and Values List with yellow background -->
-      <!-- background-size: cover; -->
-      <div
-        class="flex items-center"
-        style="
-          background-image: url('/images/main-yellow.png');
-          background-position: center;
-          background-repeat: no-repeat;
-        "
-      >
-        <div
-          class="bg-yellow-600/30 w-full h-full py-10 md:py-14 lg:py-20 px-8"
-        >
-          <div class="w-full flex flex-col items-center">
-            <div class="mb-12">
-              <h2
-                class="text-4xl md:text-5xl font-bold text-purple-900 mb-4 text-center"
-              >
-                {{ $t('home.values.title') }}
-              </h2>
-              <p class="text-xl text-gray-700 font-semibold text-center">
-                {{ $t('home.values.subtitle') }}
+      <!-- Right: Colorful Value Cards -->
+      <div class="md:col-span-5 bg-gray-50 py-10 md:py-14 lg:py-20 px-6 sm:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
+            {{ $t('home.values.title') }}
+          </h2>
+          <p class="text-xl text-gray-700 font-semibold">
+            {{ $t('home.values.subtitle') }}
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+          <template v-for="(value, index) in valuesWithIcons" :key="index">
+            <div
+              :class="[
+                cardColors[index % cardColors.length],
+                'rounded-2xl p-5 shadow-lg text-white',
+                index % 2 === 1 ? 'sm:mt-8' : '',
+              ]"
+            >
+              <UIcon :name="value.icon" class="w-8 h-8 mb-2 text-white/90" />
+              <h3 class="text-lg font-bold mb-1">{{ value.title }}</h3>
+              <p class="text-sm text-white/90 leading-snug">
+                {{ value.description }}
               </p>
             </div>
-            <ul class="space-y-6">
-              <li
-                v-for="(value, index) in valuesWithIcons"
-                :key="index"
-                class="flex flex-col items-center md:flex-row md:items-start gap-1 md:gap-4"
-              >
-                <div class="flex gap-2 items-center">
-                  <UIcon
-                    :name="value.icon"
-                    class="w-8 h-8 text-fuchsia-800 shrink-0 mt-1"
-                  />
-                  <h3
-                    class="flex items-center text-xl md:text-2xl font-bold text-fuchsia-900 shadow-lg rounded-md px-2"
-                  >
-                    {{ value.title }}
-                  </h3>
-                </div>
-                <p
-                  class="text-lg text-gray-700 text-center md:text-left md:pt-2 font-semibold"
-                >
-                  {{ value.description }}
-                </p>
-              </li>
-            </ul>
-          </div>
+          </template>
         </div>
       </div>
     </section>
@@ -326,26 +303,39 @@
     ]),
   );
 
+  // Color gradients for value cards
+  const cardColors = [
+    'bg-gradient-to-br from-rose-500 to-pink-600',
+    'bg-gradient-to-br from-blue-500 to-indigo-600',
+    'bg-gradient-to-br from-amber-400 to-yellow-500',
+    'bg-gradient-to-br from-emerald-500 to-green-600',
+    'bg-gradient-to-br from-purple-500 to-violet-600',
+    'bg-gradient-to-br from-orange-500 to-amber-600',
+    'bg-gradient-to-br from-teal-500 to-cyan-600',
+  ];
+
   // Icon mapping for each value
   const valueIcons = [
-    'i-heroicons-heart-solid',
-    'i-heroicons-shield-check-solid',
-    'i-heroicons-light-bulb-solid',
-    'i-heroicons-hand-raised-solid',
-    'i-heroicons-hand-thumb-up-solid',
-    'i-heroicons-star-solid',
-    'i-heroicons-clipboard-document-check-solid',
+    'i-heroicons-heart-solid',           // Passion for God
+    'i-heroicons-shield-check-solid',    // Integrity
+    'i-heroicons-sparkles-solid',        // Creativity
+    'i-heroicons-users-solid',           // Respect
+    'i-heroicons-hand-raised-solid',     // Service
+    'i-heroicons-trophy-solid',          // Excellence
+    'i-heroicons-check-badge-solid',     // Responsibility
   ];
 
   // Values: prefer DB, fall back to i18n
   const valuesWithIcons = computed(() => {
     const dbItems = getItems('home.values');
     if (dbItems.length > 0) {
-      return dbItems.map((item, index) => ({
-        title: field(item, 'title'),
-        description: field(item, 'description'),
-        icon: valueIcons[index] || 'i-heroicons-star-solid',
-      }));
+      return dbItems
+        .filter((item) => field(item, 'title') && field(item, 'description'))
+        .map((item, index) => ({
+          title: field(item, 'title'),
+          description: field(item, 'description'),
+          icon: valueIcons[index] || 'i-heroicons-star-solid',
+        }));
     }
     const values = tm('home.values.items') as any[];
     return values.map((v: any, i: number) => ({
