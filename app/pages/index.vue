@@ -1,6 +1,8 @@
 <template>
   <div v-if="pageLoading" class="min-h-screen flex items-center justify-center">
-    <div class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full" />
+    <div
+      class="animate-spin w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full"
+    />
   </div>
   <div v-else class="bg-white">
     <!-- Section 1: Hero Video (Full viewport) -->
@@ -39,7 +41,7 @@
         background-image: url('/images/main-bg.jpg');
         background-position: center;
         background-repeat: repeat;
-        background-size: cover;
+        background-size: 70%;
       "
     >
       <!-- Dark overlay for better text readability -->
@@ -50,12 +52,18 @@
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
           >
-            {{ singleField('home.welcome', 'titlePartOne') || $t('home.welcome.titlePartOne') }}
+            {{
+              singleField('home.welcome', 'titlePartOne') ||
+              $t('home.welcome.titlePartOne')
+            }}
           </h2>
           <h1
             class="text-5xl md:text-7xl font-black text-white mb-5 uppercase tracking-tight"
           >
-            {{ singleField('home.welcome', 'titlePartTwo') || $t('home.welcome.titlePartTwo') }}
+            {{
+              singleField('home.welcome', 'titlePartTwo') ||
+              $t('home.welcome.titlePartTwo')
+            }}
           </h1>
           <h3
             class="text-xl md:text-3xl font-black text-white mb-8 tracking-tight"
@@ -65,7 +73,10 @@
           <p
             class="text-xl md:text-xl font-bold text-white leading-relaxed max-w-3xl mx-auto md:mx-0"
           >
-            {{ singleField('home.welcome', 'description') || $t('home.welcome.description') }}
+            {{
+              singleField('home.welcome', 'description') ||
+              $t('home.welcome.description')
+            }}
           </p>
         </div>
       </div>
@@ -79,22 +90,28 @@
             <h2
               class="text-center md:text-left text-4xl md:text-5xl lg:text-6xl font-bold text-teal-600 mb-5 md:mb-6"
             >
-              {{ singleField('home.enrollment', 'title') || $t('home.enrollment.title') }}
+              {{
+                singleField('home.enrollment', 'title') ||
+                $t('home.enrollment.title')
+              }}
             </h2>
             <p
               class="text-center md:text-left text-xl md:text-2xl text-gray-600 mb-6 md:mb-8 leading-relaxed"
             >
-              {{ singleField('home.enrollment', 'description') || $t('home.enrollment.description') }}
+              {{
+                singleField('home.enrollment', 'description') ||
+                $t('home.enrollment.description')
+              }}
             </p>
             <ul class="space-y-4 md:space-y-5 mb-8 md:mb-10">
               <li
                 v-for="(feature, index) in enrollmentFeatures"
                 :key="index"
-                class="flex items-center text-gray-700 text-lg md:text-xl"
+                class="flex items-center text-teal-600 text-lg md:text-xl uppercase font-semibold"
               >
                 <UIcon
                   name="i-heroicons-check-circle-20-solid"
-                  class="w-7 h-7 md:w-8 md:h-8 text-green-500 mr-3 md:mr-4 flex-shrink-0"
+                  class="w-7 h-7 md:w-8 md:h-8 text-teal-600 mr-3 md:mr-4 flex-shrink-0"
                 />
                 {{ feature }}
               </li>
@@ -115,7 +132,9 @@
               :src="enrollmentImage"
               alt=""
               class="rounded-lg shadow-2xl w-full h-64 md:h-80 lg:h-96 xl:h-112.5 object-cover"
-              :style="{ objectPosition: `${singleMeta('home.enrollment', 'focalX') || 50}% ${singleMeta('home.enrollment', 'focalY') || 50}%` }"
+              :style="{
+                objectPosition: `${singleMeta('home.enrollment', 'focalX') || 50}% ${singleMeta('home.enrollment', 'focalY') || 50}%`,
+              }"
             />
             <div
               v-else
@@ -129,17 +148,19 @@
     </section>
 
     <!-- Section 4: Values and Principles -->
-    <section class="grid md:grid-cols-12 items-center bg-gray-50">
+    <section class="grid md:grid-cols-2 items-stretch">
       <!-- Left: Full Image -->
       <div
-        class="hidden md:flex md:col-span-7 relative items-center justify-center overflow-hidden p-6 lg:p-10"
+        class="hidden md:flex relative items-center justify-center overflow-hidden"
       >
         <img
           v-if="valuesImageUrl"
           :src="valuesImageUrl"
           alt="Values"
-          class="w-full h-full object-cover rounded-2xl"
-          :style="{ objectPosition: `${singleMeta('home.values.image', 'focalX') || 50}% ${singleMeta('home.values.image', 'focalY') || 50}%` }"
+          class="w-full h-full object-cover"
+          :style="{
+            objectPosition: `${singleMeta('home.values.image', 'focalX') || 50}% ${singleMeta('home.values.image', 'focalY') || 50}%`,
+          }"
         />
         <div
           v-else
@@ -149,32 +170,36 @@
         </div>
       </div>
 
-      <!-- Right: Colorful Value Cards -->
-      <div class="md:col-span-5 bg-gray-50 py-10 md:py-14 lg:py-20 px-6 sm:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
+      <!-- Right: Values -->
+      <div
+        class="py-10 md:py-14 lg:py-20 px-8 sm:px-10 lg:px-14 flex flex-col justify-center"
+      >
+        <div>
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-amber-700 mb-3"
+          >
             {{ $t('home.values.title') }}
           </h2>
-          <p class="text-xl text-gray-700 font-semibold">
+          <p class="text-lg text-black mb-6">
             {{ $t('home.values.subtitle') }}
           </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-          <template v-for="(value, index) in valuesWithIcons" :key="index">
+          <div class="h-1 bg-amber-700 mb-8" />
+          <div class="grid grid-cols-2 gap-x-8 gap-y-5">
             <div
-              :class="[
-                cardColors[index % cardColors.length],
-                'rounded-2xl p-5 shadow-lg text-white',
-                index % 2 === 1 ? 'sm:mt-8' : '',
-              ]"
+              v-for="(value, index) in valuesWithIcons"
+              :key="index"
+              class="flex items-center gap-3"
             >
-              <UIcon :name="value.icon" class="w-8 h-8 mb-2 text-white/90" />
-              <h3 class="text-lg font-bold mb-1">{{ value.title }}</h3>
-              <p class="text-sm text-white/90 leading-snug">
-                {{ value.description }}
-              </p>
+              <UIcon
+                :name="value.icon"
+                class="w-7 h-7 text-amber-700 shrink-0"
+              />
+              <span
+                class="text-amber-700 font-bold text-base lg:text-lg uppercase"
+                >{{ value.title }}</span
+              >
             </div>
-          </template>
+          </div>
         </div>
       </div>
     </section>
@@ -183,7 +208,9 @@
     <section class="py-10 md:py-14 lg:py-20 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-700 mb-4"
+          >
             {{ $t('home.activities.title') }}
           </h2>
           <p class="text-xl text-gray-600">
@@ -205,7 +232,9 @@
                   :src="activity.image_url"
                   :alt="activity.image_alt || activity.title"
                   class="w-full h-full object-cover"
-                  :style="{ objectPosition: `${activity.focalX}% ${activity.focalY}%` }"
+                  :style="{
+                    objectPosition: `${activity.focalX}% ${activity.focalY}%`,
+                  }"
                   loading="lazy"
                 />
               </div>
@@ -271,7 +300,6 @@
             </p>
           </UCard>
         </div>
-
       </div>
     </section>
   </div>
@@ -284,9 +312,22 @@
 
   const { locale, tm, rt } = useI18n();
   const localePath = useLocalePath();
-  const { loadContent, getItems, field, singleField, singleMeta, loading: contentLoading } = usePublicContent();
-  const { announcements, loading: announcementsLoading, loadAnnouncements } = useAnnouncements();
-  const pageLoading = computed(() => contentLoading.value || announcementsLoading.value);
+  const {
+    loadContent,
+    getItems,
+    field,
+    singleField,
+    singleMeta,
+    loading: contentLoading,
+  } = usePublicContent();
+  const {
+    announcements,
+    loading: announcementsLoading,
+    loadAnnouncements,
+  } = useAnnouncements();
+  const pageLoading = computed(
+    () => contentLoading.value || announcementsLoading.value,
+  );
 
   // Load DB content
   onMounted(() =>
@@ -303,26 +344,15 @@
     ]),
   );
 
-  // Color gradients for value cards
-  const cardColors = [
-    'bg-gradient-to-br from-rose-500 to-pink-600',
-    'bg-gradient-to-br from-blue-500 to-indigo-600',
-    'bg-gradient-to-br from-amber-400 to-yellow-500',
-    'bg-gradient-to-br from-emerald-500 to-green-600',
-    'bg-gradient-to-br from-purple-500 to-violet-600',
-    'bg-gradient-to-br from-orange-500 to-amber-600',
-    'bg-gradient-to-br from-teal-500 to-cyan-600',
-  ];
-
   // Icon mapping for each value
   const valueIcons = [
-    'i-heroicons-heart-solid',           // Passion for God
-    'i-heroicons-shield-check-solid',    // Integrity
-    'i-heroicons-sparkles-solid',        // Creativity
-    'i-heroicons-users-solid',           // Respect
-    'i-heroicons-hand-raised-solid',     // Service
-    'i-heroicons-trophy-solid',          // Excellence
-    'i-heroicons-check-badge-solid',     // Responsibility
+    'i-heroicons-heart-solid', // Passion for God
+    'i-heroicons-shield-check-solid', // Integrity
+    'i-heroicons-sparkles-solid', // Creativity
+    'i-heroicons-users-solid', // Respect
+    'i-heroicons-hand-raised-solid', // Service
+    'i-heroicons-trophy-solid', // Excellence
+    'i-heroicons-check-badge-solid', // Responsibility
   ];
 
   // Values: prefer DB, fall back to i18n
@@ -334,7 +364,10 @@
         .map((item, index) => ({
           title: field(item, 'title'),
           description: field(item, 'description'),
-          icon: valueIcons[index] || 'i-heroicons-star-solid',
+          icon:
+            field(item, 'icon') ||
+            valueIcons[index] ||
+            'i-heroicons-star-solid',
         }));
     }
     const values = tm('home.values.items') as any[];
@@ -347,10 +380,14 @@
   });
 
   // Values image from DB
-  const valuesImageUrl = computed(() => singleMeta('home.values.image', 'image_url'));
+  const valuesImageUrl = computed(() =>
+    singleMeta('home.values.image', 'image_url'),
+  );
 
   // Enrollment image from DB
-  const enrollmentImage = computed(() => singleMeta('home.enrollment', 'image_url'));
+  const enrollmentImage = computed(() =>
+    singleMeta('home.enrollment', 'image_url'),
+  );
 
   // Enrollment features: prefer DB, fall back to i18n
   const enrollmentFeatures = computed(() => {

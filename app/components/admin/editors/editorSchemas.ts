@@ -522,7 +522,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 6,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.benefit',
-      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.description()],
     },
     {
       pageKey: 'studentLife.serviceProjects.items',
@@ -708,7 +708,7 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 6,
       minItems: 2,
       itemLabelKey: 'admin.editors.generic.impactArea',
-      fields: [f.title(), f.description(), f.icon()],
+      fields: [f.title(), f.description()],
     },
   ],
 

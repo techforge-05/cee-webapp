@@ -125,6 +125,11 @@
                   :max-length="200"
                   @update:model-value="updateValueField(index, 'description', $event)"
                 />
+                <IconPicker
+                  :model-value="item.content_es?.icon || ''"
+                  :label="$t('admin.editors.generic.icon')"
+                  @update:model-value="updateValueIcon(index, $event)"
+                />
               </div>
             </template>
           </DataListManager>
@@ -456,6 +461,17 @@ function updateValueField(index: number, field: string, val: BilingualText) {
     ...arr[index],
     content_es: { ...arr[index].content_es, [field]: val.es },
     content_en: { ...arr[index].content_en, [field]: val.en },
+  }
+  valuesItems.value = arr
+  trackChanges()
+}
+
+function updateValueIcon(index: number, icon: string) {
+  const arr = [...valuesItems.value]
+  arr[index] = {
+    ...arr[index],
+    content_es: { ...arr[index].content_es, icon },
+    content_en: { ...arr[index].content_en, icon },
   }
   valuesItems.value = arr
   trackChanges()
