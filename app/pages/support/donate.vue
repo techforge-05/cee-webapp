@@ -15,28 +15,40 @@
     </section>
 
     <!-- Hero Image -->
-    <div v-if="singleMeta('support.donate.intro', 'imageUrl')" class="w-full h-72 md:h-96 lg:h-112 overflow-hidden">
+    <div
+      v-if="singleMeta('support.donate.intro', 'imageUrl')"
+      class="w-full h-72 md:h-96 lg:h-112 overflow-hidden"
+    >
       <img
         :src="singleMeta('support.donate.intro', 'imageUrl')"
         alt=""
         class="w-full h-full object-cover"
-        :style="{ objectPosition: `${singleMeta('support.donate.intro', 'focalX') || 50}% ${singleMeta('support.donate.intro', 'focalY') || 50}%` }"
+        :style="{
+          objectPosition: `${singleMeta('support.donate.intro', 'focalX') || 50}% ${singleMeta('support.donate.intro', 'focalY') || 50}%`,
+        }"
       />
     </div>
 
     <!-- Introduction Section -->
     <section class="py-8 sm:py-16 bg-gray-50">
       <div class="px-6 sm:px-10 lg:px-16">
-        <p class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]">
-          {{ singleField('support.donate.intro', 'text') || $t('support.donate.intro') }}
+        <p
+          class="text-xl md:text-2xl text-gray-700 leading-relaxed lg:max-w-[50%]"
+        >
+          {{
+            singleField('support.donate.intro', 'text') ||
+            $t('support.donate.intro')
+          }}
         </p>
       </div>
     </section>
 
     <!-- Ways to Donate Section -->
-    <section class="py-16">
+    <section class="py-16 md:px-30">
       <div class="px-6 sm:px-10 lg:px-16">
-        <h2 class="text-3xl lg:text-5xl font-bold text-center text-blue-800 mb-12">
+        <h2
+          class="text-3xl lg:text-5xl font-bold text-center text-blue-800 mb-12"
+        >
           {{ $t('support.donate.ways.title') }}
         </h2>
 
@@ -79,8 +91,8 @@
         </div>
 
         <!-- Purpose Dropdown -->
-        <div class="max-w-xl mx-auto mb-8">
-          <label class="block text-sm font-semibold text-gray-700 mb-2">
+        <div class="max-w-4xl mx-auto mb-8">
+          <label class="block text-md font-semibold text-gray-700 mb-2">
             {{ $t('support.donate.payment.purpose.label') }}
           </label>
 
@@ -88,7 +100,9 @@
           <div v-if="selectedPurpose === 'custom'" class="flex gap-2">
             <UInput
               v-model="customPurposeText"
-              :placeholder="$t('support.donate.payment.purpose.customPlaceholder')"
+              :placeholder="
+                $t('support.donate.payment.purpose.customPlaceholder')
+              "
               size="lg"
               class="flex-1"
             />
@@ -112,15 +126,23 @@
           <!-- Purpose description -->
           <p
             v-if="purposeDescription"
-            class="mt-3 text-sm text-teal-700 bg-teal-100 rounded-lg px-4 py-3"
+            class="mt-3 text-md font-bold text-teal-700 bg-teal-100 rounded-lg px-4 py-3"
           >
-            <UIcon name="i-heroicons-information-circle" class="w-4 h-4 inline mr-1 -mt-0.5" />
+            <UIcon
+              name="i-heroicons-information-circle"
+              class="w-4 h-4 inline mr-1 -mt-0.5"
+            />
             {{ purposeDescription }}
           </p>
         </div>
 
         <!-- Payment Method Cards -->
-        <div class="grid gap-6 max-w-2xl mx-auto" :class="cardPaymentEnabled ? 'md:grid-cols-2' : 'md:grid-cols-1 max-w-md'">
+        <div
+          class="grid gap-6 max-w-4xl mx-auto"
+          :class="
+            cardPaymentEnabled ? 'md:grid-cols-2' : 'md:grid-cols-1 max-w-md'
+          "
+        >
           <!-- Credit/Debit Card -->
           <button
             v-if="cardPaymentEnabled"
@@ -131,7 +153,11 @@
               <div
                 class="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center mb-4 overflow-hidden"
               >
-                <img src="/images/bancoOccidente.png" alt="Banco de Occidente" class="w-11 h-11 object-contain" />
+                <img
+                  src="/images/bancoOccidente.png"
+                  alt="Banco de Occidente"
+                  class="w-11 h-11 object-contain"
+                />
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
                 {{ $t('support.donate.payment.methodCard.title') }}
@@ -151,8 +177,17 @@
               <div
                 class="w-16 h-16 rounded-full bg-gradient-to-br from-[#003087] to-[#009cde] flex items-center justify-center mb-4"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20" class="w-8 h-8">
-                  <path fill="#ffffff" d="M7.914 10.677h1.659c3.604 0 5.649-1.623 6.3-4.96q.032-.164.056-.322c.036-.226.054-.429.062-.624c.006-.134.01-.213.009-.287a2.6 2.6 0 0 0-.216-1.039c-.129-.296-.324-.587-.613-.918C14.318 1.557 12.832 1 11.057 1H5.404a.81.81 0 0 0-.799.683l-1.02 6.571l-1.269 8.185a.486.486 0 0 0 .48.561h2.772l.849-5.043a1.51 1.51 0 0 1 1.497-1.28m9.103-4.587c-.792 3.771-3.357 5.772-7.445 5.772H7.914a.33.33 0 0 0-.328.282L6.481 19h2.907a.71.71 0 0 0 .699-.597l.029-.15l.555-3.514l.036-.194a.71.71 0 0 1 .699-.597h.44c2.85 0 5.081-1.158 5.733-4.506c.268-1.38.132-2.534-.562-3.352"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 20 20"
+                  class="w-8 h-8"
+                >
+                  <path
+                    fill="#ffffff"
+                    d="M7.914 10.677h1.659c3.604 0 5.649-1.623 6.3-4.96q.032-.164.056-.322c.036-.226.054-.429.062-.624c.006-.134.01-.213.009-.287a2.6 2.6 0 0 0-.216-1.039c-.129-.296-.324-.587-.613-.918C14.318 1.557 12.832 1 11.057 1H5.404a.81.81 0 0 0-.799.683l-1.02 6.571l-1.269 8.185a.486.486 0 0 0 .48.561h2.772l.849-5.043a1.51 1.51 0 0 1 1.497-1.28m9.103-4.587c-.792 3.771-3.357 5.772-7.445 5.772H7.914a.33.33 0 0 0-.328.282L6.481 19h2.907a.71.71 0 0 0 .699-.597l.029-.15l.555-3.514l.036-.194a.71.71 0 0 1 .699-.597h.44c2.85 0 5.081-1.158 5.733-4.506c.268-1.38.132-2.534-.562-3.352"
+                  />
                 </svg>
               </div>
               <h3 class="text-xl font-bold text-gray-900 mb-2">
@@ -217,7 +252,10 @@
               <span
                 class="inline-flex items-center gap-2 text-orange-600 font-semibold"
               >
-                <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-5 h-5" />
+                <UIcon
+                  name="i-heroicons-arrow-top-right-on-square"
+                  class="w-5 h-5"
+                />
                 Amazon
               </span>
             </div>
@@ -231,10 +269,16 @@
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="bg-red-50 rounded-2xl p-8 md:p-12">
           <h2 class="text-2xl lg:text-4xl font-bold text-red-900 mb-4">
-            {{ singleField('support.donate.donateBooks', 'title') || $t('support.donate.donateBooks.title') }}
+            {{
+              singleField('support.donate.donateBooks', 'title') ||
+              $t('support.donate.donateBooks.title')
+            }}
           </h2>
           <p class="text-lg text-gray-800 leading-relaxed">
-            {{ singleField('support.donate.donateBooks', 'description') || $t('support.donate.donateBooks.description') }}
+            {{
+              singleField('support.donate.donateBooks', 'description') ||
+              $t('support.donate.donateBooks.description')
+            }}
           </p>
         </div>
       </div>
@@ -249,10 +293,16 @@
             class="w-16 h-16 text-red-600 mx-auto mb-6"
           />
           <h2 class="text-3xl lg:text-5xl font-bold text-indigo-800 mb-4">
-            {{ singleField('support.donate.contact', 'title') || $t('support.donate.contact.title') }}
+            {{
+              singleField('support.donate.contact', 'title') ||
+              $t('support.donate.contact.title')
+            }}
           </h2>
           <p class="text-lg text-gray-700 mb-8">
-            {{ singleField('support.donate.contact', 'description') || $t('support.donate.contact.description') }}
+            {{
+              singleField('support.donate.contact', 'description') ||
+              $t('support.donate.contact.description')
+            }}
           </p>
           <div class="space-y-4">
             <div
@@ -308,180 +358,203 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute();
-const localePath = useLocalePath();
-const { t, tm, rt } = useI18n();
-const { loadContent, getItems, field, meta: getMeta, singleField, singleMeta } = usePublicContent();
+  const route = useRoute();
+  const localePath = useLocalePath();
+  const { t, tm, rt } = useI18n();
+  const {
+    loadContent,
+    getItems,
+    field,
+    meta: getMeta,
+    singleField,
+    singleMeta,
+  } = usePublicContent();
 
-// Payment settings
-const cardPaymentEnabled = computed(() => singleMeta('support.donate.settings', 'cardPaymentEnabled') !== 'false');
+  // Payment settings
+  const cardPaymentEnabled = computed(
+    () =>
+      singleMeta('support.donate.settings', 'cardPaymentEnabled') !== 'false',
+  );
 
-// Purpose state
-const selectedPurpose = ref('general');
-const customPurposeText = ref('');
-const showDonationModal = ref(false);
-const showPayPalModal = ref(false);
+  // Purpose state
+  const selectedPurpose = ref('general');
+  const customPurposeText = ref('');
+  const showDonationModal = ref(false);
+  const showPayPalModal = ref(false);
 
-onMounted(async () => {
-  await loadContent([
-    'support.donate.settings',
-    'support.donate.intro',
-    'support.donate.ways',
-    'support.donate.wishLists',
-    'support.donate.donateBooks',
-    'support.donate.contact',
-    'support.donate.emails',
-    'support.projects.items',
-  ]);
+  onMounted(async () => {
+    await loadContent([
+      'support.donate.settings',
+      'support.donate.intro',
+      'support.donate.ways',
+      'support.donate.wishLists',
+      'support.donate.donateBooks',
+      'support.donate.contact',
+      'support.donate.emails',
+      'support.projects.items',
+    ]);
 
-  // Prepopulate purpose from query param (e.g., ?purpose=water-cistern)
-  const purposeQuery = route.query.purpose as string | undefined;
-  if (purposeQuery) {
-    const projectSlugs = projectItems.value.map(p => p.slug);
-    if (projectSlugs.includes(purposeQuery)) {
-      selectedPurpose.value = purposeQuery;
+    // Prepopulate purpose from query param (e.g., ?purpose=water-cistern)
+    const purposeQuery = route.query.purpose as string | undefined;
+    if (purposeQuery) {
+      const projectSlugs = projectItems.value.map((p) => p.slug);
+      if (projectSlugs.includes(purposeQuery)) {
+        selectedPurpose.value = purposeQuery;
+      }
     }
+  });
+
+  // Load projects for purpose dropdown
+  const projectItems = computed(() => {
+    const items = getItems('support.projects.items');
+    return items
+      .filter((item) => getMeta(item, 'status') !== 'completed')
+      .map((item) => ({
+        title: field(item, 'title'),
+        slug: getMeta(item, 'slug'),
+      }))
+      .filter((p) => p.slug && p.title);
+  });
+
+  // Build purpose options for USelect
+  const purposeOptions = computed(() => {
+    const options = [
+      { label: t('support.donate.payment.purpose.custom'), value: 'custom' },
+      { label: t('support.donate.payment.purpose.general'), value: 'general' },
+      {
+        label: t('support.donate.payment.purpose.scholarships'),
+        value: 'scholarships',
+      },
+    ];
+
+    for (const project of projectItems.value) {
+      options.push({ label: project.title, value: project.slug });
+    }
+
+    return options;
+  });
+
+  // Purpose description text
+  const purposeDescription = computed(() => {
+    const val = selectedPurpose.value;
+    if (val === 'custom') {
+      return customPurposeText.value
+        ? t('support.donate.payment.purpose.descriptionCustom')
+        : '';
+    }
+    if (val === 'general') {
+      return t('support.donate.payment.purpose.descriptionGeneral');
+    }
+    if (val === 'scholarships') {
+      return t('support.donate.payment.purpose.descriptionScholarships');
+    }
+    // It's a project slug
+    const project = projectItems.value.find((p) => p.slug === val);
+    if (project) {
+      return t('support.donate.payment.purpose.descriptionProject', {
+        name: project.title,
+      });
+    }
+    return '';
+  });
+
+  // The display label for the purpose (shown in modal)
+  const purposeLabel = computed(() => {
+    const val = selectedPurpose.value;
+    if (val === 'custom') {
+      return customPurposeText.value || '';
+    }
+    const option = purposeOptions.value.find((o) => o.value === val);
+    return option?.label || '';
+  });
+
+  // The value to send to the API
+  const purposeValueForApi = computed(() => {
+    if (selectedPurpose.value === 'custom') {
+      return customPurposeText.value || 'general';
+    }
+    return selectedPurpose.value;
+  });
+
+  function clearCustomPurpose() {
+    selectedPurpose.value = 'general';
+    customPurposeText.value = '';
   }
-});
 
-// Load projects for purpose dropdown
-const projectItems = computed(() => {
-  const items = getItems('support.projects.items');
-  return items
-    .filter(item => getMeta(item, 'status') !== 'completed')
-    .map(item => ({
-      title: field(item, 'title'),
-      slug: getMeta(item, 'slug'),
-    }))
-    .filter(p => p.slug && p.title);
-});
-
-// Build purpose options for USelect
-const purposeOptions = computed(() => {
-  const options = [
-    { label: t('support.donate.payment.purpose.custom'), value: 'custom' },
-    { label: t('support.donate.payment.purpose.general'), value: 'general' },
-    { label: t('support.donate.payment.purpose.scholarships'), value: 'scholarships' },
+  const waysIcons = [
+    'i-heroicons-currency-dollar',
+    'i-heroicons-cube',
+    'i-heroicons-user-plus',
+    'i-heroicons-wrench-screwdriver',
   ];
 
-  for (const project of projectItems.value) {
-    options.push({ label: project.title, value: project.slug });
-  }
+  const wishListIcons = [
+    'i-heroicons-book-open',
+    'i-heroicons-academic-cap',
+    'i-heroicons-building-library',
+  ];
 
-  return options;
-});
-
-// Purpose description text
-const purposeDescription = computed(() => {
-  const val = selectedPurpose.value;
-  if (val === 'custom') {
-    return customPurposeText.value
-      ? t('support.donate.payment.purpose.descriptionCustom')
-      : '';
-  }
-  if (val === 'general') {
-    return t('support.donate.payment.purpose.descriptionGeneral');
-  }
-  if (val === 'scholarships') {
-    return t('support.donate.payment.purpose.descriptionScholarships');
-  }
-  // It's a project slug
-  const project = projectItems.value.find(p => p.slug === val);
-  if (project) {
-    return t('support.donate.payment.purpose.descriptionProject', { name: project.title });
-  }
-  return '';
-});
-
-// The display label for the purpose (shown in modal)
-const purposeLabel = computed(() => {
-  const val = selectedPurpose.value;
-  if (val === 'custom') {
-    return customPurposeText.value || '';
-  }
-  const option = purposeOptions.value.find(o => o.value === val);
-  return option?.label || '';
-});
-
-// The value to send to the API
-const purposeValueForApi = computed(() => {
-  if (selectedPurpose.value === 'custom') {
-    return customPurposeText.value || 'general';
-  }
-  return selectedPurpose.value;
-});
-
-function clearCustomPurpose() {
-  selectedPurpose.value = 'general';
-  customPurposeText.value = '';
-}
-
-const waysIcons = [
-  'i-heroicons-currency-dollar',
-  'i-heroicons-cube',
-  'i-heroicons-user-plus',
-  'i-heroicons-wrench-screwdriver',
-];
-
-const wishListIcons = [
-  'i-heroicons-book-open',
-  'i-heroicons-academic-cap',
-  'i-heroicons-building-library',
-];
-
-const waysWithIcons = computed(() => {
-  const dbItems = getItems('support.donate.ways');
-  if (dbItems.length > 0) {
-    return dbItems.map((item, index) => ({
-      title: field(item, 'title'),
-      description: field(item, 'description'),
-      icon: field(item, 'icon') || waysIcons[index] || 'i-heroicons-star',
+  const waysWithIcons = computed(() => {
+    const dbItems = getItems('support.donate.ways');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        icon: field(item, 'icon') || waysIcons[index] || 'i-heroicons-star',
+      }));
+    }
+    const items = tm('support.donate.ways.items') as any[];
+    return items.map((item: any, index: number) => ({
+      title: typeof item.title === 'string' ? item.title : rt(item.title),
+      description:
+        typeof item.description === 'string'
+          ? item.description
+          : rt(item.description),
+      icon: waysIcons[index],
     }));
-  }
-  const items = tm('support.donate.ways.items') as any[];
-  return items.map((item: any, index: number) => ({
-    title: typeof item.title === 'string' ? item.title : rt(item.title),
-    description: typeof item.description === 'string' ? item.description : rt(item.description),
-    icon: waysIcons[index],
-  }));
-});
+  });
 
-const wishLists = computed(() => {
-  const dbItems = getItems('support.donate.wishLists');
-  if (dbItems.length > 0) {
-    return dbItems.map((item, index) => ({
-      title: field(item, 'title'),
-      description: field(item, 'description'),
-      url: getMeta(item, 'url'),
-      icon: field(item, 'icon') || wishListIcons[index] || 'i-heroicons-star',
+  const wishLists = computed(() => {
+    const dbItems = getItems('support.donate.wishLists');
+    if (dbItems.length > 0) {
+      return dbItems.map((item, index) => ({
+        title: field(item, 'title'),
+        description: field(item, 'description'),
+        url: getMeta(item, 'url'),
+        icon: field(item, 'icon') || wishListIcons[index] || 'i-heroicons-star',
+      }));
+    }
+    const items = tm('support.donate.wishLists.items') as any[];
+    if (!Array.isArray(items)) return [];
+    return items.map((w: any, index: number) => ({
+      title: typeof w.title === 'string' ? w.title : rt(w.title),
+      description:
+        typeof w.description === 'string' ? w.description : rt(w.description),
+      url: typeof w.url === 'string' ? w.url : rt(w.url),
+      icon: wishListIcons[index],
     }));
-  }
-  const items = tm('support.donate.wishLists.items') as any[];
-  if (!Array.isArray(items)) return [];
-  return items.map((w: any, index: number) => ({
-    title: typeof w.title === 'string' ? w.title : rt(w.title),
-    description: typeof w.description === 'string' ? w.description : rt(w.description),
-    url: typeof w.url === 'string' ? w.url : rt(w.url),
-    icon: wishListIcons[index],
-  }));
-});
+  });
 
-const contactEmails = computed(() => {
-  const dbItems = getItems('support.donate.emails');
-  if (dbItems.length > 0) {
-    return dbItems.map(item => getMeta(item, 'email')).filter(Boolean);
-  }
-  return ['administracion@ceehonduras.org', 'english@ceehonduras.org', 'library@ceehonduras.org'];
-});
+  const contactEmails = computed(() => {
+    const dbItems = getItems('support.donate.emails');
+    if (dbItems.length > 0) {
+      return dbItems.map((item) => getMeta(item, 'email')).filter(Boolean);
+    }
+    return [
+      'administracion@ceehonduras.org',
+      'english@ceehonduras.org',
+      'library@ceehonduras.org',
+    ];
+  });
 
-useHead({
-  title: 'Donate - CEE',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Support CEE through donations. Learn about different ways to give, including Amazon wish lists, monetary donations, and in-kind contributions.',
-    },
-  ],
-});
+  useHead({
+    title: 'Donate - CEE',
+    meta: [
+      {
+        name: 'description',
+        content:
+          'Support CEE through donations. Learn about different ways to give, including Amazon wish lists, monetary donations, and in-kind contributions.',
+      },
+    ],
+  });
 </script>
