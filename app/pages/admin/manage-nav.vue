@@ -119,7 +119,7 @@
         {{ $t('admin.manageNav.dropdownImage') }} — {{ $t(`nav.${imageModalSection}`, imageModalSection) }}
       </template>
       <template #body>
-        <ImageUploader v-model="imageModalUrl" folder="cee-assets/nav-dropdowns" />
+        <ImageUploader v-model="imageModalUrl" folder="cee-assets/nav-dropdowns" :show-focal-point="false" />
       </template>
       <template #footer>
         <div class="flex justify-between w-full">

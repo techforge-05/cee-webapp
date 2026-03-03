@@ -1060,8 +1060,8 @@
 
   const handleSignOut = async () => {
     mobileMenuOpen.value = false;
-    await supabase.auth.signOut();
-    await navigateTo(localePath('/'));
+    await supabase.auth.signOut({ scope: 'global' });
+    window.location.href = localePath('/');
   };
 </script>
 

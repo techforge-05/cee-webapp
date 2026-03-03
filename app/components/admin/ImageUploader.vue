@@ -2,7 +2,12 @@
   <div>
     <!-- Preview when image exists -->
     <div v-if="modelValue" class="relative group">
-      <div ref="containerEl" class="relative cursor-crosshair overflow-hidden rounded-lg border border-gray-200" @click="handleFocalPointClick">
+      <div
+        ref="containerEl"
+        class="relative overflow-hidden rounded-lg border border-gray-200"
+        :class="showFocalPoint ? 'cursor-crosshair' : ''"
+        @click="showFocalPoint ? handleFocalPointClick($event) : undefined"
+      >
         <img
           ref="imageEl"
           :src="modelValue"
@@ -12,6 +17,7 @@
         />
         <!-- Focal point dot (draggable) -->
         <div
+          v-if="showFocalPoint"
           :class="[
             'absolute w-5 h-5 -ml-2.5 -mt-2.5 rounded-full border-2 border-white bg-primary-500/70 shadow-md z-10',
             isDraggingDot ? 'cursor-grabbing scale-125' : 'cursor-grab',
@@ -23,16 +29,18 @@
         />
         <!-- Crosshair lines -->
         <div
+          v-if="showFocalPoint"
           class="absolute h-px w-full bg-white/40 pointer-events-none"
           :style="{ top: `${focalY}%` }"
         />
         <div
+          v-if="showFocalPoint"
           class="absolute w-px h-full bg-white/40 pointer-events-none top-0"
           :style="{ left: `${focalX}%` }"
         />
       </div>
       <!-- Hint -->
-      <p class="text-xs text-gray-400 mt-1 text-center">
+      <p v-if="showFocalPoint" class="text-xs text-gray-400 mt-1 text-center">
         {{ $t('admin.components.image.focalPointHint') }}
       </p>
       <!-- Action buttons -->
@@ -115,12 +123,14 @@ const props = withDefaults(defineProps<{
   accept?: string
   focalX?: number
   focalY?: number
+  showFocalPoint?: boolean
 }>(), {
   folder: 'cee-assets/general',
   maxSize: 10,
   accept: 'image/*',
   focalX: 50,
   focalY: 50,
+  showFocalPoint: true,
 })
 
 const emit = defineEmits<{
