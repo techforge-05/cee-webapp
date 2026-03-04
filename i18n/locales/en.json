@@ -1833,7 +1833,7 @@
           "intro": "Introduction",
           "sections": "Sections",
           "section": "Section",
-          "videoUrl": "Video URL (YouTube or Vimeo embed URL)"
+          "videoUrl": "Video URL (YouTube, Vimeo, Loom, or Google Drive link)"
         }
       },
       "support": {

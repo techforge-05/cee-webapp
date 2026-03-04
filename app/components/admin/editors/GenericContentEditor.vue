@@ -334,8 +334,10 @@
                           field.type === 'metadata' && field.key !== 'imageUrl'
                         "
                         :label="$t(field.labelKey)"
+                        class="w-full"
                       >
                         <UInput
+                          class="w-full"
                           :model-value="item.metadata?.[field.key] || ''"
                           :maxlength="field.maxLength"
                           @update:model-value="

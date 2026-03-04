@@ -158,11 +158,11 @@ const sectionBgs = ['bg-blue-50', 'bg-purple-50', 'bg-teal-50', 'bg-green-50', '
 const sectionTextColors = ['text-blue-900', 'text-purple-900', 'text-teal-900', 'text-green-900', 'text-orange-900']
 
 function getSectionBg(index: number): string {
-  return sectionBgs[index % sectionBgs.length]
+  return sectionBgs[index % sectionBgs.length]!
 }
 
 function getSectionTextColor(index: number): string {
-  return sectionTextColors[index % sectionTextColors.length]
+  return sectionTextColors[index % sectionTextColors.length]!
 }
 
 function getEmbedUrl(url: string): string {
@@ -173,6 +173,12 @@ function getEmbedUrl(url: string): string {
   // Vimeo: convert vimeo.com/ID to embed URL
   const vimeoMatch = url.match(/vimeo\.com\/(\d+)/)
   if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`
+  // Loom: convert loom.com/share/ID to embed URL
+  const loomMatch = url.match(/loom\.com\/share\/([\w]+)/)
+  if (loomMatch) return `https://www.loom.com/embed/${loomMatch[1]}`
+  // Google Drive: convert /view to /preview
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/)
+  if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`
   // Already an embed URL or other
   return url
 }
