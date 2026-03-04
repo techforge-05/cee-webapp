@@ -60,24 +60,26 @@
                 class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden"
               >
                 <button
-                  class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors"
+                  class="w-full px-6 py-5 text-left flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors"
                   @click="toggleQuestion(index)"
                 >
-                  <div class="flex items-center gap-3">
-                    <UBadge
-                      :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
-                      variant="subtle"
-                      size="md"
-                    >
-                      {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
-                    </UBadge>
+                  <div class="flex flex-col gap-2 flex-1 min-w-0">
                     <span class="text-lg font-semibold text-gray-900">
                       {{ faq._fromDb ? faq.question : $rt(faq.question) }}
                     </span>
+                    <div class="flex justify-start">
+                      <UBadge
+                        :color="getCategoryColor(faq._fromDb ? faq.category : $rt(faq.category))"
+                        variant="subtle"
+                        size="md"
+                      >
+                        {{ getCategoryLabel(faq._fromDb ? faq.category : $rt(faq.category)) }}
+                      </UBadge>
+                    </div>
                   </div>
                   <UIcon
                     :name="openQuestions.includes(index) ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                    class="w-6 h-6 text-gray-500 shrink-0"
+                    class="w-6 h-6 text-gray-500 shrink-0 mt-1"
                   />
                 </button>
                 <div
