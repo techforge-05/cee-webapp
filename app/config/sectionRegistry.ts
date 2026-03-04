@@ -61,6 +61,7 @@ export const sectionRegistry: SectionConfig[] = [
       { slug: 'library', icon: 'i-heroicons-book-open', label: 'Library', description: 'Rules, hours, reading levels' },
       { slug: 'upcoming-events', icon: 'i-heroicons-calendar', label: 'Upcoming Events', description: 'Annual events' },
       { slug: 'gallery', icon: 'i-heroicons-photo', label: 'Gallery', description: 'Photo gallery management' },
+      { slug: 'alumni', icon: 'i-heroicons-user-group', label: 'Alumni', description: 'Alumni stories and sections' },
     ],
   },
   {

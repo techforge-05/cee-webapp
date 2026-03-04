@@ -359,6 +359,18 @@
                 />
                 <span>{{ $t('nav.dropdowns.studentLife.gallery') }}</span>
               </NuxtLink>
+              <NuxtLink
+                v-if="isVisible('studentLife', 'alumni')"
+                :to="localePath('/student-life/alumni')"
+                class="flex items-center gap-3 text-gray-700 hover:text-gray-900 py-1"
+                @click="mobileMenuOpen = false"
+              >
+                <UIcon
+                  name="i-heroicons-user-group"
+                  class="w-5 h-5 text-green-600 shrink-0"
+                />
+                <span>{{ $t('nav.dropdowns.studentLife.alumni') }}</span>
+              </NuxtLink>
             </div>
           </div>
 
@@ -900,6 +912,11 @@
         path: '/student-life/gallery',
         label: t('nav.dropdowns.studentLife.gallery'),
         slug: 'gallery',
+      },
+      {
+        path: '/student-life/alumni',
+        label: t('nav.dropdowns.studentLife.alumni'),
+        slug: 'alumni',
       },
     ]),
     parents: [

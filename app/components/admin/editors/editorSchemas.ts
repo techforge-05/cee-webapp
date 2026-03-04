@@ -684,6 +684,31 @@ const schemas: Record<string, EditorSection[]> = {
     },
   ],
 
+  'studentLife/alumni': [
+    {
+      pageKey: 'studentLife.alumni.intro',
+      labelKey: 'admin.editors.studentLife.alumni.intro',
+      type: 'single',
+      defaultOpen: false,
+      fullWidthImage: true,
+      fields: [f.title(), f.paragraph1(), f.paragraph2(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
+    },
+    {
+      pageKey: 'studentLife.alumni.sections',
+      labelKey: 'admin.editors.studentLife.alumni.sections',
+      type: 'list',
+      maxItems: 10,
+      minItems: 0,
+      itemLabelKey: 'admin.editors.studentLife.alumni.section',
+      fields: [
+        f.title(),
+        f.content(),
+        f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
+        f.meta('videoUrl', 'admin.editors.studentLife.alumni.videoUrl'),
+      ],
+    },
+  ],
+
   // ==================== SUPPORT ====================
 
   'support/why-support': [

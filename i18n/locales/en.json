@@ -46,7 +46,8 @@
         "serviceProjects": "Service Projects",
         "library": "Library",
         "upcomingEvents": "Upcoming Events",
-        "gallery": "Pictures Gallery"
+        "gallery": "Pictures Gallery",
+        "alumni": "Alumni"
       },
       "parents": {
         "resources": "Resources",
@@ -1158,6 +1159,15 @@
         "learnMore": "Learn About Admissions",
         "contactUs": "Contact Us"
       }
+    },
+    "alumni": {
+      "title": "Alumni",
+      "subtitle": "Our graduates, their stories",
+      "cta": {
+        "title": "Always Part of the CEE Family",
+        "description": "Your journey at CEE helped shape who you are. We'd love to stay connected and celebrate what you've become.",
+        "contactUs": "Contact Us"
+      }
     }
   },
   "auth": {
@@ -1818,6 +1828,12 @@
           "goToCalendar": "Go to Calendar",
           "stayInformed": "Stay Informed",
           "annualEvents": "Annual Events"
+        },
+        "alumni": {
+          "intro": "Introduction",
+          "sections": "Sections",
+          "section": "Section",
+          "videoUrl": "Video URL (YouTube or Vimeo embed URL)"
         }
       },
       "support": {

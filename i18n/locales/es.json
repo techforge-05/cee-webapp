@@ -46,7 +46,8 @@
         "serviceProjects": "Proyectos de Servicio",
         "library": "Biblioteca",
         "upcomingEvents": "Próximos Eventos",
-        "gallery": "Galería de Fotos"
+        "gallery": "Galería de Fotos",
+        "alumni": "Exalumnos"
       },
       "parents": {
         "resources": "Recursos",
@@ -1158,6 +1159,15 @@
         "learnMore": "Conoce Sobre Admisiones",
         "contactUs": "Contáctanos"
       }
+    },
+    "alumni": {
+      "title": "Exalumnos",
+      "subtitle": "Nuestros egresados, sus historias",
+      "cta": {
+        "title": "Siempre Parte de la Familia CEE",
+        "description": "Tu paso por CEE ayudó a forjar quién eres. Nos encantaría mantenernos en contacto y celebrar en quién te has convertido.",
+        "contactUs": "Contáctanos"
+      }
     }
   },
   "auth": {
@@ -1818,6 +1828,12 @@
           "goToCalendar": "Ir al Calendario",
           "stayInformed": "Manténgase Informado",
           "annualEvents": "Eventos Anuales"
+        },
+        "alumni": {
+          "intro": "Introducción",
+          "sections": "Secciones",
+          "section": "Sección",
+          "videoUrl": "URL de Video (URL de inserción de YouTube o Vimeo)"
         }
       },
       "support": {
