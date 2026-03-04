@@ -1819,7 +1819,8 @@
           "bilingualCollection": "Bilingual Collection",
           "studySpace": "Study Space",
           "donate": "Donate Books",
-          "contact": "Contact"
+          "contact": "Contact",
+          "namedAfter": "Named After"
         },
         "upcomingEvents": {
           "intro": "Introduction",

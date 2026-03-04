@@ -623,6 +623,12 @@ const schemas: Record<string, EditorSection[]> = {
         { key: 'email', labelKey: 'admin.editors.generic.email', type: 'text', maxLength: 150 },
       ],
     },
+    {
+      pageKey: 'studentLife.library.namedAfter',
+      labelKey: 'admin.editors.studentLife.library.namedAfter',
+      type: 'single',
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
+    },
   ],
 
   'studentLife/upcoming-events': [

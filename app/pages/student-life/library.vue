@@ -320,6 +320,40 @@
       </div>
     </section>
 
+    <!-- Named After Section -->
+    <section
+      v-if="singleField('studentLife.library.namedAfter', 'title') || singleField('studentLife.library.namedAfter', 'description')"
+      class="py-16"
+    >
+      <div class="px-6 sm:px-10 lg:px-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Text on left -->
+          <div>
+            <h2 class="text-3xl lg:text-5xl font-bold text-amber-800 mb-6">
+              {{ singleField('studentLife.library.namedAfter', 'title') }}
+            </h2>
+            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed whitespace-pre-line">
+              {{ singleField('studentLife.library.namedAfter', 'description') }}
+            </p>
+          </div>
+          <!-- Image on right -->
+          <div class="bg-amber-50 rounded-2xl p-8">
+            <div v-if="singleMeta('studentLife.library.namedAfter', 'imageUrl')" class="rounded-lg h-96 overflow-hidden">
+              <img
+                :src="singleMeta('studentLife.library.namedAfter', 'imageUrl')"
+                alt=""
+                class="w-full h-full object-cover"
+                :style="{ objectPosition: `${singleMeta('studentLife.library.namedAfter', 'focalX') || 50}% ${singleMeta('studentLife.library.namedAfter', 'focalY') || 50}%` }"
+              />
+            </div>
+            <div v-else class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+              <UIcon name="i-heroicons-user" class="w-16 h-16 text-gray-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Call to Action -->
     <section
       class="py-16 bg-gradient-to-r from-amber-600 to-orange-600 text-white"
@@ -373,6 +407,7 @@
     'studentLife.library.studySpace',
     'studentLife.library.donate',
     'studentLife.library.contact',
+    'studentLife.library.namedAfter',
   ]));
 
   const levelIcons = [
