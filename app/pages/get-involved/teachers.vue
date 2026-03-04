@@ -42,7 +42,7 @@
         <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12 border border-amber-200">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-amber-800 mb-6">
+              <h2 class="text-3xl lg:text-5xl font-bold text-amber-800 mb-6">
                 {{ singleField('getInvolved.teachers.requirements', 'title') || $t('getInvolved.teachers.requirements.title') }}
               </h2>
               <p class="text-lg text-gray-700 leading-relaxed">
@@ -62,7 +62,7 @@
               <img :src="singleMeta('getInvolved.teachers.qualificationsImage', 'imageUrl')" class="w-full h-full object-cover" :style="{ objectPosition: `${singleMeta('getInvolved.teachers.qualificationsImage', 'focalX') || 50}% ${singleMeta('getInvolved.teachers.qualificationsImage', 'focalY') || 50}%` }" alt="" />
             </div>
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-blue-800 mb-6">
+              <h2 class="text-3xl lg:text-5xl font-bold text-blue-800 mb-6">
                 {{ $t('getInvolved.teachers.qualifications.title') }}
               </h2>
               <ul class="space-y-4">
@@ -86,7 +86,7 @@
         <div class="bg-gray-100 rounded-2xl p-8 md:p-12">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-2xl md:text-4xl font-bold text-emerald-800 mb-6">
+              <h2 class="text-3xl lg:text-5xl font-bold text-emerald-800 mb-6">
                 {{ $t('getInvolved.teachers.benefits.title') }}
               </h2>
               <ul class="space-y-4">
@@ -111,7 +111,7 @@
 
         <!-- Application Forms -->
         <div class="bg-white rounded-xl p-8 shadow-lg">
-            <h2 class="text-2xl lg:text-4xl font-bold text-amber-800 mb-6 text-center">
+            <h2 class="text-3xl lg:text-5xl font-bold text-amber-800 mb-6 text-center">
               {{ singleField('getInvolved.teachers.applicationForms', 'title') || $t('getInvolved.teachers.applicationForms.title') }}
             </h2>
             <div class="grid md:grid-cols-2 gap-6">
