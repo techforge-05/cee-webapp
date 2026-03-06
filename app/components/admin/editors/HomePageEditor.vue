@@ -1,5 +1,107 @@
 <template>
   <div class="space-y-6 pb-24">
+    <!-- Hero Section -->
+    <SectionCard
+      v-model="openSections.hero"
+      :title="$t('admin.editors.home.hero')"
+      :page-key="'home.hero'"
+      @restored="handleSectionRestored('home.hero')"
+    >
+      <div class="space-y-5">
+        <!-- Priority note -->
+        <div class="flex items-start gap-3 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+          <UIcon name="i-heroicons-information-circle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <p class="text-sm text-amber-700">{{ $t('admin.editors.home.heroVideoPriority') }}</p>
+        </div>
+
+        <!-- Video URL -->
+        <UFormField :label="$t('admin.editors.home.heroVideoUrl')" :hint="$t('admin.editors.home.heroVideoUrlHint')">
+          <UInput
+            v-model="heroVideoUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+            class="w-full"
+            @update:model-value="trackChanges"
+          />
+        </UFormField>
+
+        <!-- Carousel Interval -->
+        <UFormField :label="$t('admin.editors.home.heroCarouselInterval')" :hint="$t('admin.editors.home.heroCarouselIntervalHint')">
+          <UInput
+            v-model.number="heroCarouselInterval"
+            type="number"
+            :min="3"
+            :max="30"
+            class="w-32"
+            @update:model-value="trackChanges"
+          />
+        </UFormField>
+
+        <!-- Carousel Images -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-medium text-gray-700">{{ $t('admin.editors.home.heroImages') }}</h4>
+            <UButton
+              variant="outline"
+              size="sm"
+              icon="i-heroicons-plus"
+              :disabled="heroImages.length >= 8"
+              @click="addHeroImage"
+            >
+              {{ $t('admin.components.carousel.addImage') }}
+            </UButton>
+          </div>
+
+          <div v-if="heroImages.length === 0" class="text-sm text-gray-400 text-center py-6 border border-dashed rounded-lg">
+            {{ $t('admin.components.carousel.noImages') }}
+          </div>
+
+          <div class="space-y-4">
+            <div
+              v-for="(item, index) in heroImages"
+              :key="index"
+              class="relative border border-gray-200 rounded-lg p-4"
+            >
+              <div class="flex items-start justify-between mb-3">
+                <span class="text-sm font-medium text-gray-600">{{ $t('admin.editors.home.heroImage') }} {{ index + 1 }}</span>
+                <div class="flex gap-1">
+                  <UButton
+                    variant="ghost"
+                    size="xs"
+                    icon="i-heroicons-arrow-up"
+                    :disabled="index === 0"
+                    @click="moveHeroImageUp(index)"
+                  />
+                  <UButton
+                    variant="ghost"
+                    size="xs"
+                    icon="i-heroicons-arrow-down"
+                    :disabled="index === heroImages.length - 1"
+                    @click="moveHeroImageDown(index)"
+                  />
+                  <UButton
+                    variant="ghost"
+                    color="error"
+                    size="xs"
+                    icon="i-heroicons-trash"
+                    @click="removeHeroImage(index)"
+                  />
+                </div>
+              </div>
+              <ImageUploader
+                :model-value="item.metadata?.image_url || ''"
+                folder="cee-assets/pages/home/hero"
+                :focal-x="Number(item.metadata?.focalX) || 50"
+                :focal-y="Number(item.metadata?.focalY) || 50"
+                @update:model-value="updateHeroImageUrl(index, $event)"
+                @update:focal-x="updateHeroImageMeta(index, 'focalX', String($event))"
+                @update:focal-y="updateHeroImageMeta(index, 'focalY', String($event))"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </SectionCard>
+
     <!-- Welcome Section -->
     <SectionCard
       v-model="openSections.welcome"
@@ -274,12 +376,18 @@ const loaded = ref(false)
 const localePath = useLocalePath()
 
 const openSections = reactive({
+  hero: false,
   welcome: false,
   enrollment: false,
   values: false,
   activities: false,
   news: false,
 })
+
+// --- Hero data ---
+const heroVideoUrl = ref('')
+const heroCarouselInterval = ref(5)
+const heroImages = ref<PageContentItem[]>([])
 
 // --- Welcome data ---
 const welcomeTitle1 = ref<BilingualText>({ es: '', en: '' })
@@ -306,6 +414,17 @@ const activitiesItems = ref<PageContentItem[]>([])
 // --- Load all data ---
 async function loadAllData() {
   try {
+    // Load hero (video URL + carousel interval)
+    await loadItems('home.hero')
+    if (items.value.length > 0) {
+      heroVideoUrl.value = items.value[0].metadata?.videoUrl || ''
+      heroCarouselInterval.value = Number(items.value[0].metadata?.carouselInterval) || 5
+    }
+
+    // Load hero images
+    await loadItems('home.hero.images')
+    heroImages.value = items.value.length > 0 ? items.value.map(i => ({ ...i })) : []
+
     // Load welcome text (single item per key)
     await loadItems('home.welcome')
     const welcomeData = items.value
@@ -365,6 +484,11 @@ async function loadAllData() {
 
 function initDirtyStateTracking() {
   const allData = {
+    hero: {
+      videoUrl: heroVideoUrl.value,
+      carouselInterval: heroCarouselInterval.value,
+      images: JSON.parse(JSON.stringify(heroImages.value)),
+    },
     welcome: {
       title1: JSON.parse(JSON.stringify(welcomeTitle1.value)),
       title2: JSON.parse(JSON.stringify(welcomeTitle2.value)),
@@ -392,6 +516,11 @@ function initDirtyStateTracking() {
 function trackChanges() {
   nextTick(() => {
     const currentData = {
+      hero: {
+        videoUrl: heroVideoUrl.value,
+        carouselInterval: heroCarouselInterval.value,
+        images: JSON.parse(JSON.stringify(heroImages.value)),
+      },
       welcome: {
         title1: JSON.parse(JSON.stringify(welcomeTitle1.value)),
         title2: JSON.parse(JSON.stringify(welcomeTitle2.value)),
@@ -415,6 +544,54 @@ function trackChanges() {
     }
     dirtyState.update(currentData)
   })
+}
+
+// --- Hero functions ---
+function addHeroImage() {
+  heroImages.value = [
+    ...heroImages.value,
+    { page_key: 'home.hero.images', content_es: {}, content_en: {}, sort_order: heroImages.value.length, is_active: true, metadata: { image_url: '' } },
+  ]
+  trackChanges()
+}
+
+function removeHeroImage(index: number) {
+  heroImages.value = heroImages.value.filter((_, i) => i !== index)
+  trackChanges()
+}
+
+function updateHeroImageUrl(index: number, url: string) {
+  const arr = [...heroImages.value]
+  const item = arr[index]
+  if (!item) return
+  arr[index] = { ...item, metadata: { ...item.metadata, image_url: url } }
+  heroImages.value = arr
+  trackChanges()
+}
+
+function updateHeroImageMeta(index: number, key: string, val: string) {
+  const arr = [...heroImages.value]
+  const item = arr[index]
+  if (!item) return
+  arr[index] = { ...item, metadata: { ...item.metadata, [key]: val } }
+  heroImages.value = arr
+  trackChanges()
+}
+
+function moveHeroImageUp(index: number) {
+  if (index === 0) return
+  const arr = [...heroImages.value]
+  ;[arr[index - 1], arr[index]] = [arr[index]!, arr[index - 1]!]
+  heroImages.value = arr
+  trackChanges()
+}
+
+function moveHeroImageDown(index: number) {
+  if (index === heroImages.value.length - 1) return
+  const arr = [...heroImages.value]
+  ;[arr[index], arr[index + 1]] = [arr[index + 1]!, arr[index]!]
+  heroImages.value = arr
+  trackChanges()
 }
 
 // --- Add functions ---
@@ -532,6 +709,19 @@ function updateActivityMeta(index: number, field: string, val: string) {
 async function handleSave() {
   saving.value = true
   try {
+    // Save hero (video URL)
+    await saveAllContent('home.hero', [{
+      page_key: 'home.hero',
+      content_es: {},
+      content_en: {},
+      metadata: { videoUrl: heroVideoUrl.value, carouselInterval: String(heroCarouselInterval.value) },
+      sort_order: 0,
+      is_active: true,
+    }])
+
+    // Save hero images
+    await saveAllContent('home.hero.images', heroImages.value)
+
     // Save welcome (single item)
     await saveAllContent('home.welcome', [{
       ...(items.value.find(i => i.page_key === 'home.welcome') || { page_key: 'home.welcome', sort_order: 0, is_active: true }),
@@ -585,6 +775,9 @@ function handleCancel() {
   const resetData = dirtyState.reset()
 
   // Restore all data from reset
+  heroVideoUrl.value = resetData.hero.videoUrl
+  heroCarouselInterval.value = resetData.hero.carouselInterval
+  heroImages.value = resetData.hero.images
   welcomeTitle1.value = resetData.welcome.title1
   welcomeTitle2.value = resetData.welcome.title2
   welcomeDescription.value = resetData.welcome.description

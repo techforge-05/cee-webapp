@@ -5,27 +5,40 @@
     />
   </div>
   <div v-else class="bg-white">
-    <!-- Section 1: Hero Video (Full viewport) -->
+    <!-- Section 1: Hero (Video or Image Carousel) -->
     <section
-      class="relative min-h-[500px] h-screen max-h-[800px] lg:max-h-none bg-linear-to-br from-blue-600 to-blue-800"
+      class="relative min-h-[500px] h-screen max-h-[800px] lg:max-h-none bg-gray-400"
     >
-      <!-- Video will go here when available -->
-      <!-- <video
-        class="absolute inset-0 w-full h-full object-cover"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video> -->
+      <!-- Video embed (takes priority if set) -->
+      <iframe
+        v-if="heroEmbedUrl"
+        :src="heroEmbedUrl"
+        class="absolute inset-0 w-full h-full"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+      />
+
+      <!-- Image carousel (fade, no arrows) -->
+      <div v-else-if="heroCarouselItems.length > 0" class="absolute inset-0">
+        <img
+          v-for="(item, i) in heroCarouselItems"
+          :key="i"
+          :src="item.url"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          :class="currentSlide === i ? 'opacity-100' : 'opacity-0'"
+          :style="{ objectPosition: `${item.focalX}% ${item.focalY}%` }"
+        />
+      </div>
+
+      <!-- Overlay with title text -->
       <div
-        class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"
+        class="absolute inset-0 flex items-center justify-center"
+        :class="heroEmbedUrl ? '' : 'bg-black/30'"
       >
-        <div class="text-center text-white px-4">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4">
-            {{ $t('app.name') }}
-          </h1>
+        <div v-if="!heroEmbedUrl" class="text-center text-white px-4">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4">CEE</h1>
           <p class="text-xl md:text-2xl">
             {{ $t('home.welcome.subtitle') }}
           </p>
@@ -333,6 +346,8 @@
   onMounted(() =>
     Promise.all([
       loadContent([
+        'home.hero',
+        'home.hero.images',
         'home.welcome',
         'home.values',
         'home.values.image',
@@ -343,6 +358,63 @@
       loadAnnouncements(),
     ]),
   );
+
+  // --- Hero ---
+  function getEmbedUrl(url: string): string {
+    if (!url) return ''
+    // YouTube
+    const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
+    if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}`
+    // Vimeo
+    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/)
+    if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&loop=1&muted=1`
+    // Loom
+    const loomMatch = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/)
+    if (loomMatch) return `https://www.loom.com/embed/${loomMatch[1]}`
+    // Google Drive
+    const driveMatch = url.match(/\/file\/d\/([^/]+)\//)
+    if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`
+    return url
+  }
+
+  const heroEmbedUrl = computed(() => {
+    const url = singleMeta('home.hero', 'videoUrl') || ''
+    return getEmbedUrl(url)
+  })
+
+  const heroCarouselItems = computed(() =>
+    getItems('home.hero.images')
+      .filter((item) => item.metadata?.image_url)
+      .map((item) => ({
+        url: item.metadata!.image_url as string,
+        focalX: Number(item.metadata?.focalX) || 50,
+        focalY: Number(item.metadata?.focalY) || 50,
+      })),
+  )
+
+  const heroCarouselIntervalMs = computed(() => {
+    const secs = Number(singleMeta('home.hero', 'carouselInterval')) || 5
+    return Math.max(3, secs) * 1000
+  })
+
+  // Carousel auto-rotation
+  const currentSlide = ref(0)
+  let carouselInterval: ReturnType<typeof setInterval> | null = null
+
+  watchEffect(() => {
+    const imgs = heroCarouselItems.value
+    const ms = heroCarouselIntervalMs.value
+    if (carouselInterval) clearInterval(carouselInterval)
+    if (imgs.length > 1) {
+      carouselInterval = setInterval(() => {
+        currentSlide.value = (currentSlide.value + 1) % imgs.length
+      }, ms)
+    }
+  })
+
+  onUnmounted(() => {
+    if (carouselInterval) clearInterval(carouselInterval)
+  })
 
   // Icon mapping for each value
   const valueIcons = [
