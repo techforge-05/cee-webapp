@@ -263,15 +263,15 @@
       </div>
     </section>
 
-    <!-- Section 6: News -->
-    <section class="py-5 md:py-20">
+    <!-- Section 6: News / Upcoming Events (hidden if neither exists) -->
+    <section v-if="newsItems.length > 0" class="py-5 md:py-20">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-6xl font-bold text-teal-700 mb-4">
-            {{ $t('home.news.title') }}
+            {{ newsIsEvents ? $t('studentLife.upcomingEvents.title') : $t('home.news.title') }}
           </h2>
           <p class="text-xl text-gray-600">
-            {{ $t('home.news.subtitle') }}
+            {{ newsIsEvents ? $t('studentLife.upcomingEvents.subtitle') : $t('home.news.subtitle') }}
           </p>
         </div>
         <div class="flex flex-wrap justify-center gap-8">
@@ -281,8 +281,39 @@
             class="overflow-hidden w-full md:w-[calc(33.333%-1.334rem)]"
           >
             <template #header>
+              <!-- When showing events: always render image area (with fallback) -->
               <div
-                v-if="newsItem.image_url"
+                v-if="newsIsEvents"
+                class="relative aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
+              >
+                <img
+                  v-if="newsItem.image_url"
+                  :src="newsItem.image_url"
+                  :alt="newsItem.image_alt || newsItem.title"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div
+                  v-else
+                  class="w-full h-full flex items-center justify-center"
+                  :class="getEventBgColor(index)"
+                >
+                  <img
+                    src="/images/logo.png"
+                    alt="CEE Logo"
+                    class="h-16 w-auto opacity-30"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Date Badge -->
+                <div class="absolute top-3 left-3 bg-white text-gray-900 px-3 py-1.5 rounded-lg shadow-md">
+                  <div class="text-lg font-bold leading-none">{{ formatDay(newsItem.date) }}</div>
+                  <div class="text-xs uppercase text-gray-500 mt-0.5">{{ formatMonth(newsItem.date) }}</div>
+                </div>
+              </div>
+              <!-- When showing announcements: only show image if one exists -->
+              <div
+                v-else-if="newsItem.image_url"
                 class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
               >
                 <img
@@ -329,11 +360,17 @@
     loading: announcementsLoading,
     loadAnnouncements,
   } = useAnnouncements();
+  const {
+    events: calendarEvents,
+    loading: eventsLoading,
+    loadEvents,
+  } = useCalendarAdmin();
   const heroMediaLoading = ref(true);
   const pageLoading = computed(
     () =>
       contentLoading.value ||
       announcementsLoading.value ||
+      eventsLoading.value ||
       heroMediaLoading.value,
   );
 
@@ -353,6 +390,7 @@
         'home.enrollment.features',
       ]),
       loadAnnouncements(),
+      loadEvents(),
     ]);
 
     if (heroEmbedUrl.value) {
@@ -540,10 +578,12 @@
       : [];
   });
 
-  // News: prefer announcements, fall back to i18n
+  // News: prefer announcements → upcoming events → hide section
+  const newsIsEvents = ref(false);
   const newsItems = computed(() => {
     const active = announcements.value.filter((a) => a.is_active).slice(0, 3);
     if (active.length > 0) {
+      newsIsEvents.value = false;
       return active.map((a) => ({
         title: locale.value === 'en' ? a.title_en : a.title_es,
         date: a.display_date,
@@ -556,17 +596,28 @@
           locale.value === 'en' ? a.image_alt_en || '' : a.image_alt_es || '',
       }));
     }
-    // Fallback to i18n when no announcements exist yet
-    const items = tm('home.news.items') as any[];
-    return Array.isArray(items)
-      ? items.map((n: any) => ({
-          title: typeof n.title === 'string' ? n.title : rt(n.title),
-          date: typeof n.date === 'string' ? n.date : rt(n.date),
-          excerpt: typeof n.excerpt === 'string' ? n.excerpt : rt(n.excerpt),
-          image_url: '',
-          image_alt: '',
-        }))
-      : [];
+    // Fall back to the 3 closest upcoming calendar events
+    const today = new Date().toISOString().split('T')[0]!;
+    const upcoming = calendarEvents.value
+      .filter((e) => e.start_date >= today)
+      .sort((a, b) => a.start_date.localeCompare(b.start_date))
+      .slice(0, 3);
+    if (upcoming.length > 0) {
+      newsIsEvents.value = true;
+      return upcoming.map((e) => ({
+        title: locale.value === 'en' ? e.title_en : e.title_es,
+        date: e.start_date,
+        excerpt:
+          locale.value === 'en'
+            ? e.description_en || ''
+            : e.description_es || '',
+        image_url: e.image_url || '',
+        image_alt:
+          locale.value === 'en' ? e.image_alt_en || '' : e.image_alt_es || '',
+      }));
+    }
+    newsIsEvents.value = false;
+    return [];
   });
 
   // Format date for display
@@ -585,5 +636,29 @@
     } catch {
       return dateStr;
     }
+  };
+
+  const formatDay = (dateStr: string) => {
+    if (!dateStr) return '--';
+    return new Date(dateStr).getDate();
+  };
+
+  const formatMonth = (dateStr: string) => {
+    if (!dateStr) return '';
+    const months = locale.value === 'es'
+      ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+      : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[new Date(dateStr).getMonth()] ?? '';
+  };
+
+  const getEventBgColor = (index: number) => {
+    const colors = [
+      'bg-gradient-to-br from-blue-100 to-indigo-100',
+      'bg-gradient-to-br from-green-100 to-teal-100',
+      'bg-gradient-to-br from-purple-100 to-pink-100',
+      'bg-gradient-to-br from-orange-100 to-amber-100',
+      'bg-gradient-to-br from-cyan-100 to-blue-100',
+    ];
+    return colors[index % colors.length];
   };
 </script>
