@@ -37,11 +37,9 @@
         class="absolute inset-0 flex items-center justify-center"
         :class="heroEmbedUrl ? '' : 'bg-black/30'"
       >
-        <div v-if="!heroEmbedUrl" class="text-center text-white px-4">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4">CEE</h1>
-          <p class="text-xl md:text-2xl">
-            {{ $t('home.welcome.subtitle') }}
-          </p>
+        <div v-if="!heroEmbedUrl && (heroTitle || heroSubtitle)" class="text-center text-white px-4">
+          <h1 v-if="heroTitle" class="text-5xl md:text-6xl font-bold mb-4">{{ heroTitle }}</h1>
+          <p v-if="heroSubtitle" class="text-xl md:text-2xl">{{ heroSubtitle }}</p>
         </div>
       </div>
     </section>
@@ -408,6 +406,9 @@
     const url = singleMeta('home.hero', 'videoUrl') || '';
     return getEmbedUrl(url);
   });
+
+  const heroTitle = computed(() => singleField('home.hero', 'title'));
+  const heroSubtitle = computed(() => singleField('home.hero', 'subtitle'));
 
   const heroCarouselItems = computed(() =>
     getItems('home.hero.images')

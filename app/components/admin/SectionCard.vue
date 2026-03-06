@@ -45,7 +45,7 @@
 
     <!-- Content (v-show preserves form state) -->
     <div v-show="isOpen">
-      <div v-if="pageKey" class="flex justify-start mb-3">
+      <div v-if="pageKey && showDefault" class="flex justify-start mb-3">
         <UseDefaultButton
           :page-key="pageKey"
           @restored="$emit('restored')"
@@ -62,9 +62,11 @@ const props = withDefaults(
     title: string
     pageKey?: string
     modelValue?: boolean
+    showDefault?: boolean
   }>(),
   {
     modelValue: false,
+    showDefault: true,
   }
 )
 

@@ -335,10 +335,11 @@ export const useDefaultContent = () => {
         .select('id, page_key, metadata')
         .or(`page_key.eq.${pageKey},page_key.like.${pageKey}.%`)
 
-      // Separate image-only rows (page_key ending in .image) from content rows
-      const imageOnlyRows = (existingRows || []).filter((row) => row.page_key.endsWith('.image'))
+      // Separate image-only rows (page_key ending in .image or .images) from content rows
+      const isImageKey = (key: string) => key.endsWith('.image') || key.endsWith('.images')
+      const imageOnlyRows = (existingRows || []).filter((row) => isImageKey(row.page_key))
       const contentRowIds = (existingRows || [])
-        .filter((row) => !row.page_key.endsWith('.image'))
+        .filter((row) => !isImageKey(row.page_key))
         .map((row) => row.id)
 
       // Only delete content rows, keep image rows untouched

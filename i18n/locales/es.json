@@ -1496,6 +1496,10 @@
       "deleteError": "Error al eliminar",
       "home": {
         "hero": "Sección Hero",
+        "heroTitle": "Título",
+        "heroTitleHint": "Dejar vacío para ocultar el título",
+        "heroSubtitle": "Subtítulo",
+        "heroSubtitleHint": "Dejar vacío para ocultar el subtítulo",
         "heroVideoUrl": "URL de Video",
         "heroVideoUrlHint": "Ingrese una URL de YouTube, Vimeo, Loom o Google Drive. Si se establece, tiene prioridad sobre las imágenes.",
         "heroImages": "Imágenes del Carrusel",

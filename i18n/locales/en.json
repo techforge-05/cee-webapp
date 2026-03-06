@@ -1496,6 +1496,10 @@
       "deleteError": "Failed to delete",
       "home": {
         "hero": "Hero Section",
+        "heroTitle": "Title",
+        "heroTitleHint": "Leave empty to hide the title",
+        "heroSubtitle": "Subtitle",
+        "heroSubtitleHint": "Leave empty to hide the subtitle",
         "heroVideoUrl": "Video URL",
         "heroVideoUrlHint": "Enter a YouTube, Vimeo, Loom, or Google Drive URL. If set, takes priority over images.",
         "heroImages": "Carousel Images",

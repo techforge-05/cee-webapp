@@ -5,7 +5,7 @@
       v-model="openSections.hero"
       :title="$t('admin.editors.home.hero')"
       :page-key="'home.hero'"
-      @restored="handleSectionRestored('home.hero')"
+      :show-default="false"
     >
       <div class="space-y-5">
         <!-- Priority note -->
@@ -13,6 +13,23 @@
           <UIcon name="i-heroicons-information-circle" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
           <p class="text-sm text-amber-700">{{ $t('admin.editors.home.heroVideoPriority') }}</p>
         </div>
+
+        <!-- Title & Subtitle -->
+        <BilingualTextField
+          v-model="heroTitle"
+          :label="$t('admin.editors.home.heroTitle')"
+          :hint="$t('admin.editors.home.heroTitleHint')"
+          :max-length="80"
+          @update:model-value="trackChanges"
+        />
+        <BilingualTextarea
+          v-model="heroSubtitle"
+          :label="$t('admin.editors.home.heroSubtitle')"
+          :hint="$t('admin.editors.home.heroSubtitleHint')"
+          :rows="2"
+          :max-length="200"
+          @update:model-value="trackChanges"
+        />
 
         <!-- Video URL -->
         <UFormField :label="$t('admin.editors.home.heroVideoUrl')" :hint="$t('admin.editors.home.heroVideoUrlHint')">
@@ -385,6 +402,8 @@ const openSections = reactive({
 })
 
 // --- Hero data ---
+const heroTitle = ref<BilingualText>({ es: '', en: '' })
+const heroSubtitle = ref<BilingualText>({ es: '', en: '' })
 const heroVideoUrl = ref('')
 const heroCarouselInterval = ref(5)
 const heroImages = ref<PageContentItem[]>([])
@@ -414,11 +433,19 @@ const activitiesItems = ref<PageContentItem[]>([])
 // --- Load all data ---
 async function loadAllData() {
   try {
-    // Load hero (video URL + carousel interval)
+    // Load hero (title, subtitle, video URL, carousel interval)
     await loadItems('home.hero')
     if (items.value.length > 0) {
-      heroVideoUrl.value = items.value[0].metadata?.videoUrl || ''
-      heroCarouselInterval.value = Number(items.value[0].metadata?.carouselInterval) || 5
+      const h = items.value[0]
+      heroTitle.value = { es: h.content_es?.title || '', en: h.content_en?.title || '' }
+      heroSubtitle.value = { es: h.content_es?.subtitle || '', en: h.content_en?.subtitle || '' }
+      heroVideoUrl.value = h.metadata?.videoUrl || ''
+      heroCarouselInterval.value = Number(h.metadata?.carouselInterval) || 5
+    } else {
+      heroTitle.value = { es: '', en: '' }
+      heroSubtitle.value = { es: '', en: '' }
+      heroVideoUrl.value = ''
+      heroCarouselInterval.value = 5
     }
 
     // Load hero images
@@ -517,6 +544,8 @@ function trackChanges() {
   nextTick(() => {
     const currentData = {
       hero: {
+        title: JSON.parse(JSON.stringify(heroTitle.value)),
+        subtitle: JSON.parse(JSON.stringify(heroSubtitle.value)),
         videoUrl: heroVideoUrl.value,
         carouselInterval: heroCarouselInterval.value,
         images: JSON.parse(JSON.stringify(heroImages.value)),
@@ -712,8 +741,8 @@ async function handleSave() {
     // Save hero (video URL)
     await saveAllContent('home.hero', [{
       page_key: 'home.hero',
-      content_es: {},
-      content_en: {},
+      content_es: { title: heroTitle.value.es, subtitle: heroSubtitle.value.es },
+      content_en: { title: heroTitle.value.en, subtitle: heroSubtitle.value.en },
       metadata: { videoUrl: heroVideoUrl.value, carouselInterval: String(heroCarouselInterval.value) },
       sort_order: 0,
       is_active: true,
@@ -775,6 +804,8 @@ function handleCancel() {
   const resetData = dirtyState.reset()
 
   // Restore all data from reset
+  heroTitle.value = resetData.hero.title
+  heroSubtitle.value = resetData.hero.subtitle
   heroVideoUrl.value = resetData.hero.videoUrl
   heroCarouselInterval.value = resetData.hero.carouselInterval
   heroImages.value = resetData.hero.images
