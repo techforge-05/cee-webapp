@@ -47,15 +47,8 @@
     </section>
 
     <!-- Section 2: Welcome -->
-    <!-- background-size: cover; -->
     <section
-      class="relative py-10 md:py-20 overflow-hidden"
-      style="
-        background-image: url('/images/main-bg.jpg');
-        background-position: center;
-        background-repeat: repeat;
-        background-size: 70%;
-      "
+      class="relative py-10 md:py-20 overflow-hidden bg-[url('/images/main-bg.jpg')] bg-center bg-repeat bg-size-[100%] md:bg-size-[50%]"
     >
       <!-- Dark overlay for better text readability -->
       <div class="absolute inset-0 bg-green-400/30"></div>
@@ -340,7 +333,10 @@
   } = useAnnouncements();
   const heroMediaLoading = ref(true);
   const pageLoading = computed(
-    () => contentLoading.value || announcementsLoading.value || heroMediaLoading.value,
+    () =>
+      contentLoading.value ||
+      announcementsLoading.value ||
+      heroMediaLoading.value,
   );
 
   // Load DB content, then wait for hero media to be ready
@@ -363,14 +359,19 @@
 
     if (heroEmbedUrl.value) {
       // Video embed: give the iframe a 2s grace period to start loading
-      setTimeout(() => { heroMediaLoading.value = false; }, 2000);
+      setTimeout(() => {
+        heroMediaLoading.value = false;
+      }, 2000);
     } else if (heroCarouselItems.value.length > 0) {
       // Images: preload the first carousel image (5s safety timeout)
       const firstUrl = heroCarouselItems.value[0]!.url;
       await new Promise<void>((resolve) => {
         const timeout = setTimeout(resolve, 5000);
         const img = new Image();
-        img.onload = img.onerror = () => { clearTimeout(timeout); resolve(); };
+        img.onload = img.onerror = () => {
+          clearTimeout(timeout);
+          resolve();
+        };
         img.src = firstUrl;
       });
       heroMediaLoading.value = false;
@@ -382,26 +383,31 @@
 
   // --- Hero ---
   function getEmbedUrl(url: string): string {
-    if (!url) return ''
+    if (!url) return '';
     // YouTube
-    const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)
-    if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}`
+    const ytMatch = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/,
+    );
+    if (ytMatch)
+      return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=1&loop=1&playlist=${ytMatch[1]}`;
     // Vimeo
-    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/)
-    if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&loop=1&muted=1`
+    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+    if (vimeoMatch)
+      return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1&loop=1&muted=1`;
     // Loom
-    const loomMatch = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/)
-    if (loomMatch) return `https://www.loom.com/embed/${loomMatch[1]}`
+    const loomMatch = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
+    if (loomMatch) return `https://www.loom.com/embed/${loomMatch[1]}`;
     // Google Drive
-    const driveMatch = url.match(/\/file\/d\/([^/]+)\//)
-    if (driveMatch) return `https://drive.google.com/file/d/${driveMatch[1]}/preview`
-    return url
+    const driveMatch = url.match(/\/file\/d\/([^/]+)\//);
+    if (driveMatch)
+      return `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+    return url;
   }
 
   const heroEmbedUrl = computed(() => {
-    const url = singleMeta('home.hero', 'videoUrl') || ''
-    return getEmbedUrl(url)
-  })
+    const url = singleMeta('home.hero', 'videoUrl') || '';
+    return getEmbedUrl(url);
+  });
 
   const heroCarouselItems = computed(() =>
     getItems('home.hero.images')
@@ -411,31 +417,31 @@
         focalX: Number(item.metadata?.focalX) || 50,
         focalY: Number(item.metadata?.focalY) || 50,
       })),
-  )
+  );
 
   const heroCarouselIntervalMs = computed(() => {
-    const secs = Number(singleMeta('home.hero', 'carouselInterval')) || 5
-    return Math.max(3, secs) * 1000
-  })
+    const secs = Number(singleMeta('home.hero', 'carouselInterval')) || 5;
+    return Math.max(3, secs) * 1000;
+  });
 
   // Carousel auto-rotation
-  const currentSlide = ref(0)
-  let carouselInterval: ReturnType<typeof setInterval> | null = null
+  const currentSlide = ref(0);
+  let carouselInterval: ReturnType<typeof setInterval> | null = null;
 
   watchEffect(() => {
-    const imgs = heroCarouselItems.value
-    const ms = heroCarouselIntervalMs.value
-    if (carouselInterval) clearInterval(carouselInterval)
+    const imgs = heroCarouselItems.value;
+    const ms = heroCarouselIntervalMs.value;
+    if (carouselInterval) clearInterval(carouselInterval);
     if (imgs.length > 1) {
       carouselInterval = setInterval(() => {
-        currentSlide.value = (currentSlide.value + 1) % imgs.length
-      }, ms)
+        currentSlide.value = (currentSlide.value + 1) % imgs.length;
+      }, ms);
     }
-  })
+  });
 
   onUnmounted(() => {
-    if (carouselInterval) clearInterval(carouselInterval)
-  })
+    if (carouselInterval) clearInterval(carouselInterval);
+  });
 
   // Icon mapping for each value
   const valueIcons = [
