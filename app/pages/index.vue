@@ -338,13 +338,16 @@
     loading: announcementsLoading,
     loadAnnouncements,
   } = useAnnouncements();
+  const heroMediaLoading = ref(true);
   const pageLoading = computed(
-    () => contentLoading.value || announcementsLoading.value,
+    () => contentLoading.value || announcementsLoading.value || heroMediaLoading.value,
   );
 
-  // Load DB content
-  onMounted(() =>
-    Promise.all([
+  // Load DB content, then wait for hero media to be ready
+  onMounted(async () => {
+    heroMediaLoading.value = true;
+
+    await Promise.all([
       loadContent([
         'home.hero',
         'home.hero.images',
@@ -356,8 +359,26 @@
         'home.enrollment.features',
       ]),
       loadAnnouncements(),
-    ]),
-  );
+    ]);
+
+    if (heroEmbedUrl.value) {
+      // Video embed: give the iframe a 2s grace period to start loading
+      setTimeout(() => { heroMediaLoading.value = false; }, 2000);
+    } else if (heroCarouselItems.value.length > 0) {
+      // Images: preload the first carousel image (5s safety timeout)
+      const firstUrl = heroCarouselItems.value[0]!.url;
+      await new Promise<void>((resolve) => {
+        const timeout = setTimeout(resolve, 5000);
+        const img = new Image();
+        img.onload = img.onerror = () => { clearTimeout(timeout); resolve(); };
+        img.src = firstUrl;
+      });
+      heroMediaLoading.value = false;
+    } else {
+      // No hero media configured
+      heroMediaLoading.value = false;
+    }
+  });
 
   // --- Hero ---
   function getEmbedUrl(url: string): string {
