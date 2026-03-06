@@ -40,15 +40,42 @@
               class="w-16 h-16 rounded-lg object-cover shrink-0"
             />
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2 mb-1">
+              <div class="flex items-center gap-2 mb-1 flex-wrap">
                 <UBadge
-                  :color="ann.is_active ? 'success' : 'neutral'"
+                  :color="ann.is_active && !isExpired(ann.expires_at) ? 'success' : 'neutral'"
                   size="sm"
                   variant="subtle"
                 >
-                  {{ ann.is_active ? $t('admin.editors.announcements.active') : $t('admin.editors.announcements.inactive') }}
+                  {{ ann.is_active && !isExpired(ann.expires_at) ? $t('admin.editors.announcements.active') : $t('admin.editors.announcements.inactive') }}
                 </UBadge>
                 <span class="text-sm text-gray-500">{{ formatDate(ann.display_date) }}</span>
+                <UBadge
+                  v-if="ann.expires_at && isExpired(ann.expires_at)"
+                  size="sm"
+                  color="error"
+                  variant="subtle"
+                  icon="i-heroicons-clock"
+                >
+                  {{ $t('admin.editors.announcements.expired') }}
+                </UBadge>
+                <UBadge
+                  v-else-if="ann.expires_at"
+                  size="sm"
+                  color="warning"
+                  variant="subtle"
+                  icon="i-heroicons-clock"
+                >
+                  {{ $t('admin.editors.announcements.expiresAt') }}: {{ formatDate(ann.expires_at) }}
+                </UBadge>
+                <UBadge
+                  v-if="ann.event_id"
+                  size="sm"
+                  color="info"
+                  variant="subtle"
+                  icon="i-heroicons-link"
+                >
+                  {{ getLinkedEventLabel(ann.event_id) }}
+                </UBadge>
               </div>
               <h3 class="font-semibold text-gray-900 truncate">{{ ann.title_es }}</h3>
               <p v-if="ann.title_en" class="text-sm text-gray-500 truncate">{{ ann.title_en }}</p>
@@ -97,6 +124,7 @@
             :label="$t('admin.editors.announcements.announcementTitle')"
             :max-length="100"
             required
+            stacked
           />
 
           <BilingualTextarea
@@ -106,24 +134,38 @@
             :max-length="500"
           />
 
+          <UFormField
+            :label="$t('admin.editors.announcements.linkedEventOptional')"
+            :help="$t('admin.editors.announcements.linkedEventHint')"
+            class="w-full"
+          >
+            <div class="w-full">
+              <USelect
+                v-model="editForm.event_id"
+                :items="eventOptions"
+                class="w-full"
+              />
+            </div>
+          </UFormField>
+
           <UFormField :label="$t('admin.editors.announcements.displayDate')" required>
             <UInput v-model="editForm.display_date" type="date" />
           </UFormField>
 
+          <UFormField
+            :label="$t('admin.editors.announcements.expiresAtOptional')"
+            :help="$t('admin.editors.announcements.expiresAtHint')"
+          >
+            <UInput v-model="editForm.expires_at" type="date" />
+          </UFormField>
+
           <div>
             <h4 class="text-sm font-medium text-gray-700 mb-2">{{ $t('admin.editors.announcements.image') }}</h4>
-            <ImageManager
-              v-model="editFormImage"
+            <ImageUploader
+              v-model="editForm.image_url"
               folder="cee-assets/announcements"
             />
           </div>
-
-          <UFormField :label="$t('admin.editors.announcements.linkedEvent')">
-            <USelect
-              v-model="editForm.event_id"
-              :items="eventOptions"
-            />
-          </UFormField>
 
           <UCheckbox v-model="editForm.is_active" :label="$t('admin.editors.announcements.isActive')" />
         </div>
@@ -155,7 +197,6 @@
 
 <script setup lang="ts">
 import type { BilingualText } from '~/components/admin/BilingualTextField.vue'
-import type { ImageData } from '~/components/admin/ImageManager.vue'
 import type { Announcement } from '~/composables/useAnnouncements'
 
 definePageMeta({
@@ -167,6 +208,7 @@ const { announcements, loading, loadAnnouncements, saveAnnouncement, deleteAnnou
 const { events: calendarEvents, loadEvents } = useCalendarAdmin()
 const toast = useToast()
 const { t } = useI18n()
+const { deleteImage } = useImageUpload()
 
 const showModal = ref(false)
 const showDeleteConfirm = ref(false)
@@ -174,6 +216,13 @@ const savingAnn = ref(false)
 const deletingAnn = ref(false)
 const editingAnn = ref<Announcement | null>(null)
 const deletingAnnRef = ref<Announcement | null>(null)
+const _originalImageUrl = ref('')
+
+watch(showModal, (open) => {
+  if (!open && editForm.image_url && editForm.image_url !== _originalImageUrl.value) {
+    deleteImage(editForm.image_url)
+  }
+})
 
 const editForm = reactive({
   title_es: '',
@@ -181,6 +230,7 @@ const editForm = reactive({
   description_es: '',
   description_en: '',
   display_date: '',
+  expires_at: '',
   image_url: '',
   image_alt_es: '',
   image_alt_en: '',
@@ -198,18 +248,6 @@ const editFormDescription = computed<BilingualText>({
   set: (val) => { editForm.description_es = val.es; editForm.description_en = val.en },
 })
 
-const editFormImage = computed<ImageData>({
-  get: () => ({
-    url: editForm.image_url,
-    alt_es: editForm.image_alt_es,
-    alt_en: editForm.image_alt_en,
-  }),
-  set: (val) => {
-    editForm.image_url = val.url
-    editForm.image_alt_es = val.alt_es
-    editForm.image_alt_en = val.alt_en
-  },
-})
 
 const eventOptions = computed(() => {
   const opts = [{ value: 'none', label: t('admin.editors.announcements.noLinkedEvent') }]
@@ -219,6 +257,27 @@ const eventOptions = computed(() => {
     }
   }
   return opts
+})
+
+function getLinkedEventLabel(eventId: string) {
+  const event = calendarEvents.value.find(e => e.id === eventId)
+  return event ? event.title_es : t('admin.editors.announcements.linkedEventBadge')
+}
+
+function isExpired(expiresAt: string | undefined) {
+  if (!expiresAt) return false
+  const today = new Date().toISOString().split('T')[0]!
+  return expiresAt < today
+}
+
+// When an event is selected, auto-fill the display date from the event's start_date
+watch(() => editForm.event_id, (newId) => {
+  if (newId && newId !== 'none') {
+    const event = calendarEvents.value.find(e => e.id === newId)
+    if (event) {
+      editForm.display_date = event.start_date
+    }
+  }
 })
 
 function formatDate(dateStr: string) {
@@ -231,10 +290,12 @@ function formatDate(dateStr: string) {
 
 function openAddModal() {
   editingAnn.value = null
+  _originalImageUrl.value = ''
   Object.assign(editForm, {
     title_es: '', title_en: '',
     description_es: '', description_en: '',
     display_date: new Date().toISOString().split('T')[0],
+    expires_at: '',
     image_url: '', image_alt_es: '', image_alt_en: '',
     event_id: 'none',
     is_active: true,
@@ -244,12 +305,14 @@ function openAddModal() {
 
 function editAnnouncement(ann: Announcement) {
   editingAnn.value = ann
+  _originalImageUrl.value = ann.image_url || ''
   Object.assign(editForm, {
     title_es: ann.title_es,
     title_en: ann.title_en,
     description_es: ann.description_es || '',
     description_en: ann.description_en || '',
     display_date: ann.display_date,
+    expires_at: ann.expires_at || '',
     image_url: ann.image_url || '',
     image_alt_es: ann.image_alt_es || '',
     image_alt_en: ann.image_alt_en || '',
@@ -290,11 +353,13 @@ async function handleSave() {
       image_url: editForm.image_url || undefined,
       image_alt_es: editForm.image_alt_es || undefined,
       image_alt_en: editForm.image_alt_en || undefined,
+      expires_at: editForm.expires_at || undefined,
       event_id: editForm.event_id !== 'none' ? editForm.event_id : undefined,
       is_active: editForm.is_active,
     }
 
     await saveAnnouncement(annData)
+    _originalImageUrl.value = editForm.image_url
     showModal.value = false
     await loadAnnouncements()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })

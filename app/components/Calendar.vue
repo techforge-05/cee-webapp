@@ -503,10 +503,8 @@
         if (!selectedEventTypes.value.includes(event.event_type)) return false;
 
         // Show events from today onwards
-        const eventDate = new Date(event.start_date);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        return eventDate >= today;
+        const todayStr = new Date().toLocaleDateString('en-CA');
+        return event.start_date >= todayStr;
       })
       .slice(0, 50); // Limit to 50 upcoming events
   });
@@ -620,18 +618,18 @@
   }
 
   function formatDay(dateStr: string): string {
-    return new Date(dateStr).getDate().toString();
+    return new Date(dateStr + 'T00:00:00').getDate().toString();
   }
 
   function formatMonth(dateStr: string): string {
-    const date = new Date(dateStr);
+    const date = new Date(dateStr + 'T00:00:00');
     return date.toLocaleDateString(locale.value === 'es' ? 'es-HN' : 'en-US', {
       month: 'short',
     });
   }
 
   function formatDateRange(startStr: string, endStr: string | null): string {
-    const start = new Date(startStr);
+    const start = new Date(startStr + 'T00:00:00');
     const localeStr = locale.value === 'es' ? 'es-HN' : 'en-US';
 
     if (!endStr || startStr === endStr) {
@@ -643,7 +641,7 @@
       });
     }
 
-    const end = new Date(endStr);
+    const end = new Date(endStr + 'T00:00:00');
     return `${start.toLocaleDateString(localeStr, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(localeStr, { month: 'short', day: 'numeric', year: 'numeric' })}`;
   }
 </script>

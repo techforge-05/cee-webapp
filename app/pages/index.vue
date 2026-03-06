@@ -279,6 +279,7 @@
             v-for="(newsItem, index) in newsItems"
             :key="index"
             class="overflow-hidden w-full md:w-[calc(33.333%-1.334rem)]"
+            :ui="((!newsIsEvents && !newsItem.image_url) || !newsItem.excerpt) ? { body: 'hidden' } : {}"
           >
             <template #header>
               <!-- When showing events: always render image area (with fallback) -->
@@ -311,26 +312,45 @@
                   <div class="text-xs uppercase text-gray-500 mt-0.5">{{ formatMonth(newsItem.date) }}</div>
                 </div>
               </div>
-              <!-- When showing announcements: only show image if one exists -->
+              <!-- When showing announcements: always show image area with placeholder -->
               <div
-                v-else-if="newsItem.image_url"
+                v-else
                 class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
               >
                 <img
+                  v-if="newsItem.image_url"
                   :src="newsItem.image_url"
                   :alt="newsItem.image_alt || newsItem.title"
                   class="w-full h-full object-cover"
                   loading="lazy"
                 />
+                <div
+                  v-else
+                  class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-3 p-6 overflow-hidden text-center"
+                >
+                  <!-- Decorative circles -->
+                  <div class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/10" />
+                  <div class="absolute bottom-4 right-2 w-20 h-20 rounded-full bg-white/5" />
+                  <!-- Title -->
+                  <p class="relative z-10 text-white font-bold text-xl sm:text-2xl lg:text-3xl leading-snug">
+                    {{ newsItem.title }}
+                  </p>
+                  <!-- Description -->
+                  <p v-if="newsItem.excerpt" class="relative z-10 text-white/90 text-sm sm:text-base leading-relaxed">
+                    {{ newsItem.excerpt }}
+                  </p>
+                  <!-- Megaphone icon -->
+                  <UIcon name="i-heroicons-megaphone" class="relative z-10 w-14 h-14 sm:w-16 sm:h-16 text-white/80 mt-1" />
+                </div>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900">
+              <h3 v-if="newsIsEvents || newsItem.image_url" class="text-xl font-semibold text-gray-900">
                 {{ newsItem.title }}
               </h3>
-              <p class="text-sm text-gray-500 mt-1">
+              <p :class="(newsIsEvents || newsItem.image_url) ? 'text-sm text-gray-500 mt-1' : 'text-xl font-semibold text-gray-700 px-6 py-4'">
                 {{ formatDate(newsItem.date) }}
               </p>
             </template>
-            <p class="text-gray-600">
+            <p v-if="(newsIsEvents || newsItem.image_url) && newsItem.excerpt" class="text-gray-600">
               {{ newsItem.excerpt }}
             </p>
           </UCard>
@@ -581,7 +601,10 @@
   // News: prefer announcements → upcoming events → hide section
   const newsIsEvents = ref(false);
   const newsItems = computed(() => {
-    const active = announcements.value.filter((a) => a.is_active).slice(0, 3);
+    const todayStr = new Date().toISOString().split('T')[0]!;
+    const active = announcements.value
+      .filter((a) => a.is_active && (!a.expires_at || a.expires_at >= todayStr))
+      .slice(0, 3);
     if (active.length > 0) {
       newsIsEvents.value = false;
       return active.map((a) => ({
@@ -624,7 +647,7 @@
   const formatDate = (dateStr: string) => {
     if (!dateStr) return '';
     try {
-      const date = new Date(dateStr);
+      const date = new Date(dateStr + 'T00:00:00');
       return date.toLocaleDateString(
         locale.value === 'es' ? 'es-HN' : 'en-US',
         {
@@ -640,7 +663,7 @@
 
   const formatDay = (dateStr: string) => {
     if (!dateStr) return '--';
-    return new Date(dateStr).getDate();
+    return new Date(dateStr + 'T00:00:00').getDate();
   };
 
   const formatMonth = (dateStr: string) => {
@@ -648,7 +671,7 @@
     const months = locale.value === 'es'
       ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
       : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return months[new Date(dateStr).getMonth()] ?? '';
+    return months[new Date(dateStr + 'T00:00:00').getMonth()] ?? '';
   };
 
   const getEventBgColor = (index: number) => {

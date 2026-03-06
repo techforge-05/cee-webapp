@@ -223,6 +223,7 @@ definePageMeta({
 const { events, loading, loadEvents, saveEvent, deleteEvent } = useCalendarAdmin()
 const toast = useToast()
 const { t } = useI18n()
+const { deleteImage } = useImageUpload()
 
 const filterType = ref('all')
 const showModal = ref(false)
@@ -231,6 +232,13 @@ const savingEvent = ref(false)
 const deletingEvent = ref(false)
 const editingEvent = ref<CalendarEvent | null>(null)
 const deletingEventRef = ref<CalendarEvent | null>(null)
+const _originalImageUrl = ref('')
+
+watch(showModal, (open) => {
+  if (!open && editForm.image_url && editForm.image_url !== _originalImageUrl.value) {
+    deleteImage(editForm.image_url)
+  }
+})
 
 const eventTypeOptions = EVENT_TYPES
 
@@ -305,6 +313,7 @@ function formatDate(dateStr: string) {
 
 function openAddModal() {
   editingEvent.value = null
+  _originalImageUrl.value = ''
   Object.assign(editForm, {
     title_es: '', title_en: '',
     description_es: '', description_en: '',
@@ -322,6 +331,7 @@ function openAddModal() {
 
 function editEvent(event: CalendarEvent) {
   editingEvent.value = event
+  _originalImageUrl.value = event.image_url || ''
   Object.assign(editForm, {
     title_es: event.title_es,
     title_en: event.title_en,
@@ -371,6 +381,7 @@ async function handleSave() {
     }
 
     await saveEvent(eventData)
+    _originalImageUrl.value = editForm.image_url
     showModal.value = false
     await refreshEvents()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })

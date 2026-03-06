@@ -199,11 +199,19 @@ defineProps<{
 const { photos, loading, loadPhotos, savePhoto, deletePhoto } = useGallery()
 const toast = useToast()
 const { t } = useI18n()
+const { deleteImage } = useImageUpload()
 
 const filterYear = ref('all')
 const filterCategory = ref('all')
 const showModal = ref(false)
 const showDeleteConfirm = ref(false)
+const _originalImageUrl = ref('')
+
+watch(showModal, (open) => {
+  if (!open && editForm.url && editForm.url !== _originalImageUrl.value) {
+    deleteImage(editForm.url)
+  }
+})
 const savingPhoto = ref(false)
 const deleting = ref(false)
 const editingPhoto = ref<GalleryPhoto | null>(null)
@@ -268,6 +276,7 @@ function getCategoryColor(category: string) {
 
 function openAddModal() {
   editingPhoto.value = null
+  _originalImageUrl.value = ''
   editForm.url = ''
   editForm.title_es = ''
   editForm.title_en = ''
@@ -282,6 +291,7 @@ function openAddModal() {
 
 function editPhoto(photo: GalleryPhoto) {
   editingPhoto.value = photo
+  _originalImageUrl.value = photo.url
   editForm.url = photo.url
   editForm.title_es = photo.title_es
   editForm.title_en = photo.title_en
@@ -322,6 +332,7 @@ async function handleSavePhoto() {
     }
 
     await savePhoto(photo)
+    _originalImageUrl.value = editForm.url
     showModal.value = false
     await refreshPhotos()
     toast.add({ title: t('admin.editors.saveSuccess'), color: 'success' })

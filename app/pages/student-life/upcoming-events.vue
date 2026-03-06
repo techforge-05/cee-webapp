@@ -379,8 +379,8 @@
         description: locale.value === 'en' ? (e.description_en || '') : (e.description_es || ''),
         date: e.start_date,
       }))
-      .filter(e => new Date(e.date) >= new Date())
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .filter(e => e.date >= new Date().toLocaleDateString('en-CA'))
+      .sort((a, b) => a.date.localeCompare(b.date))
   );
 
   // Format month key (e.g. "april") to localized name (e.g. "Abril")
@@ -450,13 +450,13 @@
   // Format date helpers
   const formatDay = (dateStr: string) => {
     if (!dateStr) return '--';
-    const date = new Date(dateStr);
+    const date = new Date(dateStr + 'T00:00:00');
     return date.getDate();
   };
 
   const formatMonth = (dateStr: string) => {
     if (!dateStr) return '';
-    const date = new Date(dateStr);
+    const date = new Date(dateStr + 'T00:00:00');
     const months = locale.value === 'es'
       ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
       : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -465,7 +465,7 @@
 
   const formatFullDate = (dateStr: string) => {
     if (!dateStr) return '';
-    const date = new Date(dateStr);
+    const date = new Date(dateStr + 'T00:00:00');
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       year: 'numeric',

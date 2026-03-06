@@ -189,6 +189,13 @@ const imageModalOpen = ref(false)
 const imageModalSection = ref('')
 const imageModalUrl = ref('')
 const imageSaving = ref(false)
+const _originalImageUrl = ref('')
+
+watch(imageModalOpen, (open) => {
+  if (!open && imageModalUrl.value && imageModalUrl.value !== _originalImageUrl.value) {
+    deleteImage(imageModalUrl.value)
+  }
+})
 
 onMounted(async () => {
   if (!adminStore.isSuperAdmin) {
@@ -282,6 +289,7 @@ async function saveSection(section: typeof sectionRegistry[number]) {
 function openImageModal(sectionKey: string) {
   imageModalSection.value = sectionKey
   imageModalUrl.value = dropdownImages[sectionKey] || ''
+  _originalImageUrl.value = imageModalUrl.value
   imageModalOpen.value = true
 }
 
@@ -291,6 +299,7 @@ async function saveDropdownImage() {
     const key = `nav.dropdown.${imageModalSection.value}`
     await contentStore.updateMedia(key, imageModalUrl.value, '', '', 'nav_dropdowns')
     dropdownImages[imageModalSection.value] = imageModalUrl.value
+    _originalImageUrl.value = imageModalUrl.value
     imageModalOpen.value = false
     toast.add({ title: t('admin.manageNav.imageSaved'), color: 'success' })
   } catch {

@@ -4,7 +4,7 @@
       {{ label }}
       <span v-if="required" class="text-red-500">*</span>
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div :class="stacked ? 'grid grid-cols-1 gap-3' : 'grid grid-cols-1 md:grid-cols-2 gap-4'">
       <!-- Spanish -->
       <UFormField :label="$t('admin.components.bilingual.spanish')">
         <div class="flex gap-2">
@@ -64,6 +64,7 @@ const props = defineProps<{
   required?: boolean
   maxLength?: number
   disabled?: boolean
+  stacked?: boolean
   modelValue?: BilingualText
 }>()
 

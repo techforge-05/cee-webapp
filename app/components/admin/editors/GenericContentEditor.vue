@@ -614,6 +614,18 @@
   const toast = useToast();
   const { t } = useI18n();
   const dirtyState = useDirtyState();
+  const { deleteImage } = useImageUpload();
+
+  function collectUrls(obj: unknown, acc = new Set<string>()): Set<string> {
+    if (typeof obj === 'string' && obj.startsWith('https://res.cloudinary.com')) {
+      acc.add(obj)
+    } else if (Array.isArray(obj)) {
+      for (const item of obj) collectUrls(item, acc)
+    } else if (obj && typeof obj === 'object') {
+      for (const val of Object.values(obj as object)) collectUrls(val, acc)
+    }
+    return acc
+  }
 
   const saving = ref(false);
   const loaded = ref(false);
@@ -1000,6 +1012,13 @@
 
   function handleCancel() {
     const resetData = dirtyState.reset();
+
+    // Delete images uploaded during this session that won't be saved
+    const currentUrls = collectUrls([{ ...sectionImages }, { ...listData }])
+    const originalUrls = collectUrls(resetData)
+    for (const url of currentUrls) {
+      if (!originalUrls.has(url)) deleteImage(url)
+    }
 
     // Restore all data from reset
     Object.assign(singleData, resetData.single);

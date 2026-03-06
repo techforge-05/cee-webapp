@@ -169,11 +169,10 @@ onMounted(() => {
 });
 
 const admissionsEvents = computed(() => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const todayStr = new Date().toLocaleDateString('en-CA');
   return calendarEvents.value
-    .filter(e => e.event_type === 'admissions' && new Date(e.start_date) >= today)
-    .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+    .filter(e => e.event_type === 'admissions' && e.start_date >= todayStr)
+    .sort((a, b) => a.start_date.localeCompare(b.start_date))
     .map(e => ({
       ...e,
       title: locale.value === 'en' ? e.title_en : e.title_es,
@@ -183,12 +182,12 @@ const admissionsEvents = computed(() => {
 
 const formatDay = (dateStr: string) => {
   if (!dateStr) return '--';
-  return new Date(dateStr).getDate();
+  return new Date(dateStr + 'T00:00:00').getDate();
 };
 
 const formatMonth = (dateStr: string) => {
   if (!dateStr) return '';
-  const date = new Date(dateStr);
+  const date = new Date(dateStr + 'T00:00:00');
   const months = locale.value === 'es'
     ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
     : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

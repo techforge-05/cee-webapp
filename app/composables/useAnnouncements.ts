@@ -8,6 +8,7 @@ export interface Announcement {
   image_alt_es?: string
   image_alt_en?: string
   display_date: string
+  expires_at?: string
   event_id?: string
   is_active: boolean
   created_by?: string
@@ -54,6 +55,7 @@ export const useAnnouncements = () => {
           image_alt_es: announcement.image_alt_es || null,
           image_alt_en: announcement.image_alt_en || null,
           display_date: announcement.display_date,
+          expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
           is_active: announcement.is_active,
           updated_at: new Date().toISOString(),
@@ -77,6 +79,7 @@ export const useAnnouncements = () => {
           image_alt_es: announcement.image_alt_es || null,
           image_alt_en: announcement.image_alt_en || null,
           display_date: announcement.display_date,
+          expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
           is_active: announcement.is_active,
           created_by: user.value?.id,
