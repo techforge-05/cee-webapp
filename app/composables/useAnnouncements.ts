@@ -10,6 +10,7 @@ export interface Announcement {
   display_date: string
   expires_at?: string
   event_id?: string
+  is_featured?: boolean
   is_active: boolean
   created_by?: string
   created_at?: string
@@ -30,7 +31,8 @@ export const useAnnouncements = () => {
       const { data, error: fetchError } = await supabase
         .from('announcements')
         .select('*')
-        .order('display_date', { ascending: false })
+        .order('is_featured', { ascending: false })
+        .order('display_date', { ascending: true })
         .limit(50)
 
       if (fetchError) throw fetchError
@@ -57,6 +59,7 @@ export const useAnnouncements = () => {
           display_date: announcement.display_date,
           expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
+          is_featured: announcement.is_featured ?? false,
           is_active: announcement.is_active,
           updated_at: new Date().toISOString(),
         })
@@ -81,6 +84,7 @@ export const useAnnouncements = () => {
           display_date: announcement.display_date,
           expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
+          is_featured: announcement.is_featured ?? false,
           is_active: announcement.is_active,
           created_by: user.value?.id,
         })

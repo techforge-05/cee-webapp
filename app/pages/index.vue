@@ -274,87 +274,139 @@
             {{ newsIsEvents ? $t('studentLife.upcomingEvents.subtitle') : $t('home.news.subtitle') }}
           </p>
         </div>
-        <div class="flex flex-wrap justify-center gap-8">
-          <UCard
-            v-for="(newsItem, index) in newsItems"
-            :key="index"
-            class="overflow-hidden w-full md:w-[calc(33.333%-1.334rem)]"
-            :ui="((!newsIsEvents && !newsItem.image_url) || !newsItem.excerpt) ? { body: 'hidden' } : {}"
-          >
-            <template #header>
-              <!-- When showing events: always render image area (with fallback) -->
-              <div
-                v-if="newsIsEvents"
-                class="relative aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
-              >
+
+        <!-- ANNOUNCEMENTS layout: featured + up to 3 smaller -->
+        <template v-if="!newsIsEvents">
+          <!-- Featured announcement -->
+          <div class="max-w-4xl mx-auto mb-10">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <!-- Image or teal placeholder -->
+              <div class="relative h-64 sm:h-80 md:h-96">
                 <img
-                  v-if="newsItem.image_url"
-                  :src="newsItem.image_url"
-                  :alt="newsItem.image_alt || newsItem.title"
+                  v-if="newsItems[0]!.image_url"
+                  :src="newsItems[0]!.image_url"
+                  :alt="newsItems[0]!.image_alt || newsItems[0]!.title"
                   class="w-full h-full object-cover"
                   loading="lazy"
                 />
                 <div
                   v-else
-                  class="w-full h-full flex items-center justify-center"
-                  :class="getEventBgColor(index)"
+                  class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-4 p-8 sm:p-12 overflow-hidden text-center"
                 >
+                  <div class="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-white/10" />
+                  <div class="absolute bottom-6 right-4 w-32 h-32 rounded-full bg-white/5" />
+                  <p class="relative z-10 text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-snug">
+                    {{ newsItems[0]!.title }}
+                  </p>
+                  <p v-if="newsItems[0]!.excerpt" class="relative z-10 text-white/90 text-base sm:text-lg leading-relaxed max-w-xl">
+                    {{ newsItems[0]!.excerpt }}
+                  </p>
+                  <UIcon name="i-heroicons-megaphone" class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 text-white/80 mt-2" />
+                </div>
+              </div>
+              <!-- White info area (only when image exists) -->
+              <div v-if="newsItems[0]!.image_url" class="p-6 md:p-8">
+                <div class="flex items-center gap-2 text-teal-600 mb-3">
+                  <UIcon name="i-heroicons-calendar" class="w-5 h-5" />
+                  <span class="font-medium">{{ formatDate(newsItems[0]!.date) }}</span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">{{ newsItems[0]!.title }}</h3>
+                <p v-if="newsItems[0]!.excerpt" class="text-lg text-gray-600 leading-relaxed">{{ newsItems[0]!.excerpt }}</p>
+              </div>
+              <!-- Date only (no image) -->
+              <div v-else class="px-6 py-4">
+                <p class="text-xl font-semibold text-gray-700">{{ formatDate(newsItems[0]!.date) }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- More announcements (up to 3) -->
+          <div v-if="newsItems.length > 1" class="flex flex-wrap justify-center gap-8">
+            <UCard
+              v-for="(newsItem, index) in newsItems.slice(1)"
+              :key="index"
+              class="overflow-hidden w-full sm:w-72 md:w-80"
+              :ui="(!newsItem.image_url || !newsItem.excerpt) ? { body: 'hidden' } : {}"
+            >
+              <template #header>
+                <div class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3">
                   <img
-                    src="/images/logo.png"
-                    alt="CEE Logo"
-                    class="h-16 w-auto opacity-30"
+                    v-if="newsItem.image_url"
+                    :src="newsItem.image_url"
+                    :alt="newsItem.image_alt || newsItem.title"
+                    class="w-full h-full object-cover"
                     loading="lazy"
                   />
+                  <div
+                    v-else
+                    class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-3 p-6 overflow-hidden text-center"
+                  >
+                    <div class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/10" />
+                    <div class="absolute bottom-4 right-2 w-20 h-20 rounded-full bg-white/5" />
+                    <p class="relative z-10 text-white font-bold text-xl sm:text-2xl leading-snug">{{ newsItem.title }}</p>
+                    <p v-if="newsItem.excerpt" class="relative z-10 text-white/90 text-sm sm:text-base leading-relaxed">{{ newsItem.excerpt }}</p>
+                    <UIcon name="i-heroicons-megaphone" class="relative z-10 w-14 h-14 text-white/80 mt-1" />
+                  </div>
                 </div>
-                <!-- Date Badge -->
-                <div class="absolute top-3 left-3 bg-white text-gray-900 px-3 py-1.5 rounded-lg shadow-md">
-                  <div class="text-lg font-bold leading-none">{{ formatDay(newsItem.date) }}</div>
-                  <div class="text-xs uppercase text-gray-500 mt-0.5">{{ formatMonth(newsItem.date) }}</div>
+                <h3 v-if="newsItem.image_url" class="text-xl font-semibold text-gray-900">{{ newsItem.title }}</h3>
+                <p :class="newsItem.image_url ? 'text-sm text-gray-500 mt-1' : 'text-xl font-semibold text-gray-700 px-6 py-4'">
+                  {{ formatDate(newsItem.date) }}
+                </p>
+              </template>
+              <p v-if="newsItem.image_url && newsItem.excerpt" class="text-gray-600">{{ newsItem.excerpt }}</p>
+            </UCard>
+          </div>
+        </template>
+
+        <!-- EVENTS fallback layout (unchanged) + Go to Upcoming Events button -->
+        <template v-else>
+          <div class="flex flex-wrap justify-center gap-8">
+            <UCard
+              v-for="(newsItem, index) in newsItems"
+              :key="index"
+              class="overflow-hidden w-full md:w-[calc(33.333%-1.334rem)]"
+              :ui="!newsItem.excerpt ? { body: 'hidden' } : {}"
+            >
+              <template #header>
+                <div class="relative aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3">
+                  <img
+                    v-if="newsItem.image_url"
+                    :src="newsItem.image_url"
+                    :alt="newsItem.image_alt || newsItem.title"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    v-else
+                    class="w-full h-full flex items-center justify-center"
+                    :class="getEventBgColor(index)"
+                  >
+                    <img src="/images/logo.png" alt="CEE Logo" class="h-16 w-auto opacity-30" loading="lazy" />
+                  </div>
+                  <div class="absolute top-3 left-3 bg-white text-gray-900 px-3 py-1.5 rounded-lg shadow-md">
+                    <div class="text-lg font-bold leading-none">{{ formatDay(newsItem.date) }}</div>
+                    <div class="text-xs uppercase text-gray-500 mt-0.5">{{ formatMonth(newsItem.date) }}</div>
+                  </div>
                 </div>
-              </div>
-              <!-- When showing announcements: always show image area with placeholder -->
-              <div
-                v-else
-                class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
-              >
-                <img
-                  v-if="newsItem.image_url"
-                  :src="newsItem.image_url"
-                  :alt="newsItem.image_alt || newsItem.title"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div
-                  v-else
-                  class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-3 p-6 overflow-hidden text-center"
-                >
-                  <!-- Decorative circles -->
-                  <div class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/10" />
-                  <div class="absolute bottom-4 right-2 w-20 h-20 rounded-full bg-white/5" />
-                  <!-- Title -->
-                  <p class="relative z-10 text-white font-bold text-xl sm:text-2xl lg:text-3xl leading-snug">
-                    {{ newsItem.title }}
-                  </p>
-                  <!-- Description -->
-                  <p v-if="newsItem.excerpt" class="relative z-10 text-white/90 text-sm sm:text-base leading-relaxed">
-                    {{ newsItem.excerpt }}
-                  </p>
-                  <!-- Megaphone icon -->
-                  <UIcon name="i-heroicons-megaphone" class="relative z-10 w-14 h-14 sm:w-16 sm:h-16 text-white/80 mt-1" />
-                </div>
-              </div>
-              <h3 v-if="newsIsEvents || newsItem.image_url" class="text-xl font-semibold text-gray-900">
-                {{ newsItem.title }}
-              </h3>
-              <p :class="(newsIsEvents || newsItem.image_url) ? 'text-sm text-gray-500 mt-1' : 'text-xl font-semibold text-gray-700 px-6 py-4'">
-                {{ formatDate(newsItem.date) }}
-              </p>
-            </template>
-            <p v-if="(newsIsEvents || newsItem.image_url) && newsItem.excerpt" class="text-gray-600">
-              {{ newsItem.excerpt }}
-            </p>
-          </UCard>
-        </div>
+                <h3 class="text-xl font-semibold text-gray-900">{{ newsItem.title }}</h3>
+                <p class="text-sm text-gray-500 mt-1">{{ formatDate(newsItem.date) }}</p>
+              </template>
+              <p v-if="newsItem.excerpt" class="text-gray-600">{{ newsItem.excerpt }}</p>
+            </UCard>
+          </div>
+          <!-- Go to Upcoming Events -->
+          <div class="text-center mt-12">
+            <UButton
+              :to="localePath('/student-life/upcoming-events')"
+              size="lg"
+              variant="outline"
+              color="neutral"
+              trailing-icon="i-heroicons-arrow-right"
+            >
+              {{ $t('home.news.goToUpcomingEvents') }}
+            </UButton>
+          </div>
+        </template>
       </div>
     </section>
   </div>
@@ -604,7 +656,7 @@
     const todayStr = new Date().toISOString().split('T')[0]!;
     const active = announcements.value
       .filter((a) => a.is_active && (!a.expires_at || a.expires_at >= todayStr))
-      .slice(0, 3);
+      .slice(0, 4);
     if (active.length > 0) {
       newsIsEvents.value = false;
       return active.map((a) => ({

@@ -1608,6 +1608,8 @@
         "linkedEventHint": "Selecting an event will automatically update the display date.",
         "linkedEventBadge": "Linked to event",
         "noLinkedEvent": "None (standalone)",
+        "isFeatured": "Mark as important (featured)",
+        "isFeaturedHint": "This announcement will appear in the featured spot, even if another is scheduled for the same day.",
         "isActive": "Active",
         "active": "Active",
         "inactive": "Inactive",
@@ -1615,7 +1617,7 @@
         "deactivate": "Deactivate",
         "deleteTitle": "Delete Announcement",
         "deleteMessage": "Are you sure you want to delete this announcement? This action cannot be undone.",
-        "requiredFields": "Title and display date are required"
+        "requiredFields": "Title, display date, and expiration date are required"
       },
       "donations": {
         "title": "Donations",
@@ -2682,6 +2684,7 @@
       "title": "News and Announcements",
       "subtitle": "Stay informed about what's happening at our school",
       "viewAll": "View all news",
+      "goToUpcomingEvents": "Go to Upcoming Events",
       "items": [
         {
           "title": "New School Year Begins",

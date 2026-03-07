@@ -153,8 +153,9 @@
           </UFormField>
 
           <UFormField
-            :label="$t('admin.editors.announcements.expiresAtOptional')"
+            :label="$t('admin.editors.announcements.expiresAt')"
             :help="$t('admin.editors.announcements.expiresAtHint')"
+            required
           >
             <UInput v-model="editForm.expires_at" type="date" />
           </UFormField>
@@ -167,6 +168,11 @@
             />
           </div>
 
+          <UCheckbox
+            v-model="editForm.is_featured"
+            :label="$t('admin.editors.announcements.isFeatured')"
+            :help="$t('admin.editors.announcements.isFeaturedHint')"
+          />
           <UCheckbox v-model="editForm.is_active" :label="$t('admin.editors.announcements.isActive')" />
         </div>
       </template>
@@ -235,6 +241,7 @@ const editForm = reactive({
   image_alt_es: '',
   image_alt_en: '',
   event_id: 'none',
+  is_featured: false,
   is_active: true,
 })
 
@@ -298,6 +305,7 @@ function openAddModal() {
     expires_at: '',
     image_url: '', image_alt_es: '', image_alt_en: '',
     event_id: 'none',
+    is_featured: false,
     is_active: true,
   })
   showModal.value = true
@@ -317,6 +325,7 @@ function editAnnouncement(ann: Announcement) {
     image_alt_es: ann.image_alt_es || '',
     image_alt_en: ann.image_alt_en || '',
     event_id: ann.event_id || 'none',
+    is_featured: ann.is_featured ?? false,
     is_active: ann.is_active,
   })
   showModal.value = true
@@ -336,7 +345,7 @@ async function handleToggle(ann: Announcement) {
 }
 
 async function handleSave() {
-  if (!editForm.display_date || !editForm.title_es) {
+  if (!editForm.display_date || !editForm.title_es || !editForm.expires_at) {
     toast.add({ title: t('admin.editors.announcements.requiredFields'), color: 'warning' })
     return
   }
@@ -355,6 +364,7 @@ async function handleSave() {
       image_alt_en: editForm.image_alt_en || undefined,
       expires_at: editForm.expires_at || undefined,
       event_id: editForm.event_id !== 'none' ? editForm.event_id : undefined,
+      is_featured: editForm.is_featured,
       is_active: editForm.is_active,
     }
 

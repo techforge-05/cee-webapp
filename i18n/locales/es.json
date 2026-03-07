@@ -1608,6 +1608,8 @@
         "linkedEventHint": "Al seleccionar un evento se actualizará automáticamente la fecha de publicación.",
         "linkedEventBadge": "Vinculado a evento",
         "noLinkedEvent": "Ninguno (independiente)",
+        "isFeatured": "Marcar como importante (destacado)",
+        "isFeaturedHint": "Este anuncio aparecerá en el espacio destacado, incluso si hay otro programado para el mismo día.",
         "isActive": "Activo",
         "active": "Activo",
         "inactive": "Inactivo",
@@ -1615,7 +1617,7 @@
         "deactivate": "Desactivar",
         "deleteTitle": "Eliminar Anuncio",
         "deleteMessage": "¿Está seguro de que desea eliminar este anuncio? Esta acción no se puede deshacer.",
-        "requiredFields": "El título y la fecha de publicación son obligatorios"
+        "requiredFields": "El título, la fecha de publicación y la fecha de expiración son obligatorios"
       },
       "donations": {
         "title": "Donaciones",
@@ -2682,6 +2684,7 @@
       "title": "Noticias y Anuncios",
       "subtitle": "Mantente informado sobre lo que sucede en nuestra escuela",
       "viewAll": "Ver todas las noticias",
+      "goToUpcomingEvents": "Ver Próximos Eventos",
       "items": [
         {
           "title": "Inicio del Nuevo Año Escolar",
