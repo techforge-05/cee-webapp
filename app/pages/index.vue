@@ -35,11 +35,18 @@
       <!-- Overlay with title text -->
       <div
         class="absolute inset-0 flex items-center justify-center"
-        :class="heroEmbedUrl ? '' : 'bg-black/30'"
+        :class="heroEmbedUrl ? '' : 'bg-black/10'"
       >
-        <div v-if="!heroEmbedUrl && (heroTitle || heroSubtitle)" class="text-center text-white px-4">
-          <h1 v-if="heroTitle" class="text-5xl md:text-6xl font-bold mb-4">{{ heroTitle }}</h1>
-          <p v-if="heroSubtitle" class="text-xl md:text-2xl">{{ heroSubtitle }}</p>
+        <div
+          v-if="!heroEmbedUrl && (heroTitle || heroSubtitle)"
+          class="text-center text-white px-4"
+        >
+          <h1 v-if="heroTitle" class="text-5xl md:text-6xl font-bold mb-4">
+            {{ heroTitle }}
+          </h1>
+          <p v-if="heroSubtitle" class="text-xl md:text-2xl">
+            {{ heroSubtitle }}
+          </p>
         </div>
       </div>
     </section>
@@ -268,10 +275,18 @@
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-6xl font-bold text-teal-700 mb-4">
-            {{ newsIsEvents ? $t('studentLife.upcomingEvents.title') : $t('home.news.title') }}
+            {{
+              newsIsEvents
+                ? $t('studentLife.upcomingEvents.title')
+                : $t('home.news.title')
+            }}
           </h2>
           <p class="text-xl text-gray-600">
-            {{ newsIsEvents ? $t('studentLife.upcomingEvents.subtitle') : $t('home.news.subtitle') }}
+            {{
+              newsIsEvents
+                ? $t('studentLife.upcomingEvents.subtitle')
+                : $t('home.news.subtitle')
+            }}
           </p>
         </div>
 
@@ -293,40 +308,70 @@
                   v-else
                   class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-4 p-8 sm:p-12 overflow-hidden text-center"
                 >
-                  <div class="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-white/10" />
-                  <div class="absolute bottom-6 right-4 w-32 h-32 rounded-full bg-white/5" />
-                  <p class="relative z-10 text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-snug">
+                  <div
+                    class="absolute -top-12 -right-12 w-56 h-56 rounded-full bg-white/10"
+                  />
+                  <div
+                    class="absolute bottom-6 right-4 w-32 h-32 rounded-full bg-white/5"
+                  />
+                  <p
+                    class="relative z-10 text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-snug"
+                  >
                     {{ newsItems[0]!.title }}
                   </p>
-                  <p v-if="newsItems[0]!.excerpt" class="relative z-10 text-white/90 text-base sm:text-lg leading-relaxed max-w-xl">
+                  <p
+                    v-if="newsItems[0]!.excerpt"
+                    class="relative z-10 text-white/90 text-base sm:text-lg leading-relaxed max-w-xl"
+                  >
                     {{ newsItems[0]!.excerpt }}
                   </p>
-                  <UIcon name="i-heroicons-megaphone" class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 text-white/80 mt-2" />
+                  <UIcon
+                    name="i-heroicons-megaphone"
+                    class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 text-white/80 mt-2"
+                  />
                 </div>
               </div>
               <!-- White info area (only when image exists) -->
               <div v-if="newsItems[0]!.image_url" class="p-6 md:p-8">
                 <div class="flex items-center gap-2 text-teal-600 mb-3">
                   <UIcon name="i-heroicons-calendar" class="w-5 h-5" />
-                  <span class="font-medium">{{ formatDate(newsItems[0]!.date) }}</span>
+                  <span class="font-medium">{{
+                    formatDate(newsItems[0]!.date)
+                  }}</span>
                 </div>
-                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">{{ newsItems[0]!.title }}</h3>
-                <p v-if="newsItems[0]!.excerpt" class="text-lg text-gray-600 leading-relaxed">{{ newsItems[0]!.excerpt }}</p>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  {{ newsItems[0]!.title }}
+                </h3>
+                <p
+                  v-if="newsItems[0]!.excerpt"
+                  class="text-lg text-gray-600 leading-relaxed"
+                >
+                  {{ newsItems[0]!.excerpt }}
+                </p>
               </div>
               <!-- Date only (no image) -->
               <div v-else class="px-6 py-4">
-                <p class="text-xl font-semibold text-gray-700">{{ formatDate(newsItems[0]!.date) }}</p>
+                <p class="text-xl font-semibold text-gray-700">
+                  {{ formatDate(newsItems[0]!.date) }}
+                </p>
               </div>
             </div>
           </div>
 
           <!-- More announcements (up to 3) -->
-          <div v-if="newsItems.length > 1" class="flex flex-wrap justify-center gap-8">
+          <div
+            v-if="newsItems.length > 1"
+            class="flex flex-wrap justify-center gap-8"
+          >
             <UCard
               v-for="(newsItem, index) in newsItems.slice(1)"
               :key="index"
               class="overflow-hidden w-full sm:w-72 md:w-80"
-              :ui="(!newsItem.image_url || !newsItem.excerpt) ? { body: 'hidden' } : {}"
+              :ui="
+                !newsItem.image_url || !newsItem.excerpt
+                  ? { body: 'hidden' }
+                  : {}
+              "
             >
               <template #header>
                 <div class="aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3">
@@ -341,19 +386,51 @@
                     v-else
                     class="relative w-full h-full bg-linear-to-br from-teal-400 to-teal-600 flex flex-col items-center justify-center gap-3 p-6 overflow-hidden text-center"
                   >
-                    <div class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/10" />
-                    <div class="absolute bottom-4 right-2 w-20 h-20 rounded-full bg-white/5" />
-                    <p class="relative z-10 text-white font-bold text-xl sm:text-2xl leading-snug">{{ newsItem.title }}</p>
-                    <p v-if="newsItem.excerpt" class="relative z-10 text-white/90 text-sm sm:text-base leading-relaxed">{{ newsItem.excerpt }}</p>
-                    <UIcon name="i-heroicons-megaphone" class="relative z-10 w-14 h-14 text-white/80 mt-1" />
+                    <div
+                      class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-white/10"
+                    />
+                    <div
+                      class="absolute bottom-4 right-2 w-20 h-20 rounded-full bg-white/5"
+                    />
+                    <p
+                      class="relative z-10 text-white font-bold text-xl sm:text-2xl leading-snug"
+                    >
+                      {{ newsItem.title }}
+                    </p>
+                    <p
+                      v-if="newsItem.excerpt"
+                      class="relative z-10 text-white/90 text-sm sm:text-base leading-relaxed"
+                    >
+                      {{ newsItem.excerpt }}
+                    </p>
+                    <UIcon
+                      name="i-heroicons-megaphone"
+                      class="relative z-10 w-14 h-14 text-white/80 mt-1"
+                    />
                   </div>
                 </div>
-                <h3 v-if="newsItem.image_url" class="text-xl font-semibold text-gray-900">{{ newsItem.title }}</h3>
-                <p :class="newsItem.image_url ? 'text-sm text-gray-500 mt-1' : 'text-xl font-semibold text-gray-700 px-6 py-4'">
+                <h3
+                  v-if="newsItem.image_url"
+                  class="text-xl font-semibold text-gray-900"
+                >
+                  {{ newsItem.title }}
+                </h3>
+                <p
+                  :class="
+                    newsItem.image_url
+                      ? 'text-sm text-gray-500 mt-1'
+                      : 'text-xl font-semibold text-gray-700 px-6 py-4'
+                  "
+                >
                   {{ formatDate(newsItem.date) }}
                 </p>
               </template>
-              <p v-if="newsItem.image_url && newsItem.excerpt" class="text-gray-600">{{ newsItem.excerpt }}</p>
+              <p
+                v-if="newsItem.image_url && newsItem.excerpt"
+                class="text-gray-600"
+              >
+                {{ newsItem.excerpt }}
+              </p>
             </UCard>
           </div>
         </template>
@@ -368,7 +445,9 @@
               :ui="!newsItem.excerpt ? { body: 'hidden' } : {}"
             >
               <template #header>
-                <div class="relative aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3">
+                <div
+                  class="relative aspect-4/3 overflow-hidden -mx-6 -mt-6 mb-3"
+                >
                   <img
                     v-if="newsItem.image_url"
                     :src="newsItem.image_url"
@@ -381,17 +460,34 @@
                     class="w-full h-full flex items-center justify-center"
                     :class="getEventBgColor(index)"
                   >
-                    <img src="/images/logo.png" alt="CEE Logo" class="h-16 w-auto opacity-30" loading="lazy" />
+                    <img
+                      src="/images/logo.png"
+                      alt="CEE Logo"
+                      class="h-16 w-auto opacity-30"
+                      loading="lazy"
+                    />
                   </div>
-                  <div class="absolute top-3 left-3 bg-white text-gray-900 px-3 py-1.5 rounded-lg shadow-md">
-                    <div class="text-lg font-bold leading-none">{{ formatDay(newsItem.date) }}</div>
-                    <div class="text-xs uppercase text-gray-500 mt-0.5">{{ formatMonth(newsItem.date) }}</div>
+                  <div
+                    class="absolute top-3 left-3 bg-white text-gray-900 px-3 py-1.5 rounded-lg shadow-md"
+                  >
+                    <div class="text-lg font-bold leading-none">
+                      {{ formatDay(newsItem.date) }}
+                    </div>
+                    <div class="text-xs uppercase text-gray-500 mt-0.5">
+                      {{ formatMonth(newsItem.date) }}
+                    </div>
                   </div>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900">{{ newsItem.title }}</h3>
-                <p class="text-sm text-gray-500 mt-1">{{ formatDate(newsItem.date) }}</p>
+                <h3 class="text-xl font-semibold text-gray-900">
+                  {{ newsItem.title }}
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">
+                  {{ formatDate(newsItem.date) }}
+                </p>
               </template>
-              <p v-if="newsItem.excerpt" class="text-gray-600">{{ newsItem.excerpt }}</p>
+              <p v-if="newsItem.excerpt" class="text-gray-600">
+                {{ newsItem.excerpt }}
+              </p>
             </UCard>
           </div>
           <!-- Go to Upcoming Events -->
@@ -720,9 +816,36 @@
 
   const formatMonth = (dateStr: string) => {
     if (!dateStr) return '';
-    const months = locale.value === 'es'
-      ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-      : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const months =
+      locale.value === 'es'
+        ? [
+            'Ene',
+            'Feb',
+            'Mar',
+            'Abr',
+            'May',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dic',
+          ]
+        : [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ];
     return months[new Date(dateStr + 'T00:00:00').getMonth()] ?? '';
   };
 
