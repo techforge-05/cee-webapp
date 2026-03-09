@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "CEE WebApp",
-    "welcome": "Welcome to CEE WebApp"
+    "name": "CEE",
+    "welcome": "Welcome to CEE"
   },
   "nav": {
     "signIn": "Sign In",

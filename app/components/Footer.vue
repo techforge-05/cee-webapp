@@ -14,27 +14,25 @@
                   name="i-heroicons-map-pin"
                   class="w-5 h-7 shrink-0 align-middle"
                 />
-                <span class="ml-1"
-                  >B. El Carmen, Siguatepeque, Comayagua, Honduras</span
-                >
+                <span class="ml-1">{{ addressText }}</span>
               </div>
             </li>
             <li class="flex items-center gap-2">
               <UIcon name="i-heroicons-phone" class="w-5 h-5 shrink-0" />
               <a
-                href="tel:+50493268998"
+                :href="`tel:${phoneTel}`"
                 class="hover:text-white transition-colors"
               >
-                +504 9326-8998
+                {{ phoneDisplay }}
               </a>
             </li>
             <li class="flex items-center gap-2">
               <UIcon name="i-heroicons-envelope" class="w-5 h-5 shrink-0" />
               <a
-                href="mailto:administracion@ceehonduras.org"
+                :href="`mailto:${emailAddress}`"
                 class="hover:text-white transition-colors"
               >
-                administracion@ceehonduras.org
+                {{ emailAddress }}
               </a>
             </li>
           </ul>
@@ -152,4 +150,29 @@
 
 <script setup lang="ts">
   const localePath = useLocalePath();
+  const { loadContent, singleMeta } = usePublicContent();
+
+  await loadContent(['contact.info.phone', 'contact.info.email', 'contact.info.address']);
+
+  const phoneDisplay = computed(() => {
+    const n = singleMeta('contact.info.phone', 'number');
+    return n || '+504 9326-8998';
+  });
+
+  const phoneTel = computed(() =>
+    phoneDisplay.value.replace(/[^\d+]/g, ''),
+  );
+
+  const emailAddress = computed(() => {
+    const e = singleMeta('contact.info.email', 'address');
+    return e || 'administracion@ceehonduras.org';
+  });
+
+  const addressText = computed(() => {
+    const line1 = singleMeta('contact.info.address', 'line1');
+    const line2 = singleMeta('contact.info.address', 'line2');
+    const line3 = singleMeta('contact.info.address', 'line3');
+    const parts = [line1, line2, line3].filter(Boolean);
+    return parts.length ? parts.join(', ') : 'B. El Carmen, Siguatepeque, Comayagua, Honduras';
+  });
 </script>
