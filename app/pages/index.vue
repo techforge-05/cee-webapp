@@ -56,7 +56,7 @@
       class="relative py-10 md:py-20 overflow-hidden bg-[url('/images/main-g.png')] bg-center bg-repeat bg-size-[100%] md:bg-size-[50%]"
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-green-500/30 backdrop-blur-[2px]"></div>
+      <div class="absolute inset-0 bg-green-400/30 backdrop-blur-[1.7px]"></div>
 
       <div class="px-6 sm:px-10 lg:px-16 md:ml-[15%] md:mr-0 relative z-10">
         <div class="text-center md:text-left">

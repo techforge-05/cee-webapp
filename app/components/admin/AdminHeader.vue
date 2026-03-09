@@ -157,6 +157,11 @@
 
     const signOutGroup = [
       {
+        label: 'View Site',
+        icon: 'i-heroicons-arrow-top-right-on-square',
+        onClick: () => window.open(localePath('/'), '_blank'),
+      },
+      {
         label: t('nav.signOut') || 'Sign Out',
         icon: 'i-heroicons-arrow-right-start-on-rectangle',
         onClick: handleSignOut,
@@ -168,6 +173,11 @@
 
   const desktopAccountItems = computed(() => [
     [
+      {
+        label: 'View Site',
+        icon: 'i-heroicons-arrow-top-right-on-square',
+        onSelect: () => window.open(localePath('/'), '_blank'),
+      },
       {
         label: t('nav.signOut') || 'Sign Out',
         icon: 'i-heroicons-arrow-right-on-rectangle',
