@@ -165,6 +165,10 @@
             <ImageUploader
               v-model="editForm.image_url"
               folder="cee-assets/announcements"
+              :focal-x="editForm.focal_x"
+              :focal-y="editForm.focal_y"
+              @update:focal-x="editForm.focal_x = $event"
+              @update:focal-y="editForm.focal_y = $event"
             />
           </div>
 
@@ -240,6 +244,8 @@ const editForm = reactive({
   image_url: '',
   image_alt_es: '',
   image_alt_en: '',
+  focal_x: 50,
+  focal_y: 50,
   event_id: 'none',
   is_featured: false,
   is_active: true,
@@ -304,6 +310,7 @@ function openAddModal() {
     display_date: new Date().toISOString().split('T')[0],
     expires_at: '',
     image_url: '', image_alt_es: '', image_alt_en: '',
+    focal_x: 50, focal_y: 50,
     event_id: 'none',
     is_featured: false,
     is_active: true,
@@ -324,6 +331,8 @@ function editAnnouncement(ann: Announcement) {
     image_url: ann.image_url || '',
     image_alt_es: ann.image_alt_es || '',
     image_alt_en: ann.image_alt_en || '',
+    focal_x: ann.focal_x ?? 50,
+    focal_y: ann.focal_y ?? 50,
     event_id: ann.event_id || 'none',
     is_featured: ann.is_featured ?? false,
     is_active: ann.is_active,
@@ -362,6 +371,8 @@ async function handleSave() {
       image_url: editForm.image_url || undefined,
       image_alt_es: editForm.image_alt_es || undefined,
       image_alt_en: editForm.image_alt_en || undefined,
+      focal_x: editForm.focal_x,
+      focal_y: editForm.focal_y,
       expires_at: editForm.expires_at || undefined,
       event_id: editForm.event_id !== 'none' ? editForm.event_id : undefined,
       is_featured: editForm.is_featured,

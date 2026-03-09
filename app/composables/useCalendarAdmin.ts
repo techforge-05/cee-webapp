@@ -15,6 +15,8 @@ export interface CalendarEvent {
   image_url?: string
   image_alt_es?: string
   image_alt_en?: string
+  focal_x?: number
+  focal_y?: number
   created_by?: string
   created_at?: string
   updated_at?: string
@@ -84,6 +86,8 @@ export const useCalendarAdmin = () => {
           image_url: event.image_url || null,
           image_alt_es: event.image_alt_es || null,
           image_alt_en: event.image_alt_en || null,
+          focal_x: event.focal_x ?? 50,
+          focal_y: event.focal_y ?? 50,
           updated_at: new Date().toISOString(),
         })
         .eq('id', event.id)
@@ -112,6 +116,8 @@ export const useCalendarAdmin = () => {
           image_url: event.image_url || null,
           image_alt_es: event.image_alt_es || null,
           image_alt_en: event.image_alt_en || null,
+          focal_x: event.focal_x ?? 50,
+          focal_y: event.focal_y ?? 50,
           created_by: user.value?.id,
         })
         .select()

@@ -56,6 +56,7 @@
                 :src="featuredEvent.image_url"
                 :alt="featuredEvent.title"
                 class="w-full h-full object-cover"
+                :style="{ objectPosition: `${featuredEvent.focal_x ?? 50}% ${featuredEvent.focal_y ?? 50}%` }"
                 loading="lazy"
               />
               <div
@@ -164,6 +165,7 @@
                     :src="event.image_url"
                     :alt="event.title"
                     class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${event.focal_x ?? 50}% ${event.focal_y ?? 50}%` }"
                     loading="lazy"
                   />
                   <div

@@ -182,6 +182,10 @@
             <ImageUploader
               v-model="editForm.image_url"
               folder="cee-assets/events"
+              :focal-x="editForm.focal_x"
+              :focal-y="editForm.focal_y"
+              @update:focal-x="editForm.focal_x = $event"
+              @update:focal-y="editForm.focal_y = $event"
             />
           </div>
         </div>
@@ -276,6 +280,8 @@ const editForm = reactive({
   end_time: '',
   color: '#3b82f6',
   image_url: '',
+  focal_x: 50,
+  focal_y: 50,
 })
 
 const editFormTitle = computed<BilingualText>({
@@ -325,6 +331,8 @@ function openAddModal() {
     start_time: '', end_time: '',
     color: '#3b82f6',
     image_url: '',
+    focal_x: 50,
+    focal_y: 50,
   })
   showModal.value = true
 }
@@ -346,6 +354,8 @@ function editEvent(event: CalendarEvent) {
     end_time: event.end_time || '',
     color: event.color || '#3b82f6',
     image_url: event.image_url || '',
+    focal_x: event.focal_x ?? 50,
+    focal_y: event.focal_y ?? 50,
   })
   showModal.value = true
 }
@@ -378,6 +388,8 @@ async function handleSave() {
       end_time: editForm.all_day ? undefined : editForm.end_time,
       color: editForm.color,
       image_url: editForm.image_url,
+      focal_x: editForm.focal_x,
+      focal_y: editForm.focal_y,
     }
 
     await saveEvent(eventData)

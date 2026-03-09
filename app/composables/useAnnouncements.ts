@@ -7,6 +7,8 @@ export interface Announcement {
   image_url?: string
   image_alt_es?: string
   image_alt_en?: string
+  focal_x?: number
+  focal_y?: number
   display_date: string
   expires_at?: string
   event_id?: string
@@ -56,6 +58,8 @@ export const useAnnouncements = () => {
           image_url: announcement.image_url || null,
           image_alt_es: announcement.image_alt_es || null,
           image_alt_en: announcement.image_alt_en || null,
+          focal_x: announcement.focal_x ?? 50,
+          focal_y: announcement.focal_y ?? 50,
           display_date: announcement.display_date,
           expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
@@ -81,6 +85,8 @@ export const useAnnouncements = () => {
           image_url: announcement.image_url || null,
           image_alt_es: announcement.image_alt_es || null,
           image_alt_en: announcement.image_alt_en || null,
+          focal_x: announcement.focal_x ?? 50,
+          focal_y: announcement.focal_y ?? 50,
           display_date: announcement.display_date,
           expires_at: announcement.expires_at || null,
           event_id: announcement.event_id || null,
