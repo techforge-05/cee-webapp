@@ -122,10 +122,7 @@
           <ImageUploader
             v-model="editForm.url"
             folder="cee-assets/gallery"
-            :focal-x="editForm.focal_x"
-            :focal-y="editForm.focal_y"
-            @update:focal-x="editForm.focal_x = $event"
-            @update:focal-y="editForm.focal_y = $event"
+            :show-focal-point="false"
           />
 
           <!-- Title -->
