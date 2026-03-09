@@ -1,7 +1,7 @@
 export interface EditorField {
   key: string
   labelKey: string
-  type: 'text' | 'textarea' | 'metadata' | 'icon' | 'select' | 'toggle'
+  type: 'text' | 'textarea' | 'single-text' | 'metadata' | 'icon' | 'select' | 'toggle'
   maxLength?: number
   rows?: number
   options?: { value: string; labelKey: string }[]
@@ -439,7 +439,7 @@ const schemas: Record<string, EditorSection[]> = {
       fields: [
         f.name(),
         { key: 'position', labelKey: 'admin.editors.generic.position', type: 'text', maxLength: 100 },
-        { key: 'email', labelKey: 'admin.editors.generic.email', type: 'text', maxLength: 100 },
+        { key: 'email', labelKey: 'admin.editors.generic.email', type: 'single-text', maxLength: 100 },
         f.meta('imageUrl', 'admin.editors.generic.imageUrl'),
       ],
     },

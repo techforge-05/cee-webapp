@@ -330,6 +330,18 @@
                         "
                       />
                       <UFormField
+                        v-if="field.type === 'single-text'"
+                        :label="$t(field.labelKey)"
+                        class="w-full"
+                      >
+                        <UInput
+                          class="w-full"
+                          :model-value="item.content_es?.[field.key] || ''"
+                          :maxlength="field.maxLength"
+                          @update:model-value="updateListSingleTextField(section.pageKey, index, field.key, String($event))"
+                        />
+                      </UFormField>
+                      <UFormField
                         v-if="
                           field.type === 'metadata' && field.key !== 'imageUrl'
                         "
@@ -487,6 +499,18 @@
                         )
                       "
                     />
+                    <UFormField
+                      v-if="field.type === 'single-text'"
+                      :label="$t(field.labelKey)"
+                      class="w-full md:w-[50%]"
+                    >
+                      <UInput
+                        class="w-full"
+                        :model-value="item.content_es?.[field.key] || ''"
+                        :maxlength="field.maxLength"
+                        @update:model-value="updateListSingleTextField(section.pageKey, index, field.key, String($event))"
+                      />
+                    </UFormField>
                     <UFormField
                       v-if="field.type === 'metadata'"
                       :label="$t(field.labelKey)"
@@ -892,6 +916,22 @@
     trackChanges();
   }
 
+  function updateListSingleTextField(
+    pageKey: string,
+    index: number,
+    fieldKey: string,
+    val: string,
+  ) {
+    const arr = [...listData[pageKey]];
+    arr[index] = {
+      ...arr[index],
+      content_es: { ...arr[index].content_es, [fieldKey]: val },
+      content_en: { ...arr[index].content_en, [fieldKey]: val },
+    };
+    listData[pageKey] = arr;
+    trackChanges();
+  }
+
   function addListItem(section: EditorSection) {
     const contentEs: Record<string, any> = {};
     const contentEn: Record<string, any> = {};
@@ -901,7 +941,8 @@
       if (
         field.type === 'text' ||
         field.type === 'textarea' ||
-        field.type === 'icon'
+        field.type === 'icon' ||
+        field.type === 'single-text'
       ) {
         contentEs[field.key] = '';
         contentEn[field.key] = '';
