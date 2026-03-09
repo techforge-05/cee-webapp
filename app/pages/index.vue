@@ -56,7 +56,7 @@
       class="relative py-10 md:py-20 overflow-hidden bg-[url('/images/main-g.png')] bg-center bg-repeat bg-size-[100%] md:bg-size-[50%]"
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-green-500/30"></div>
+      <div class="absolute inset-0 bg-green-500/30 backdrop-blur-[2px]"></div>
 
       <div class="px-6 sm:px-10 lg:px-16 md:ml-[15%] md:mr-0 relative z-10">
         <div class="text-center md:text-left">
@@ -302,7 +302,9 @@
                   :src="newsItems[0]!.image_url"
                   :alt="newsItems[0]!.image_alt || newsItems[0]!.title"
                   class="w-full h-full object-cover"
-                  :style="{ objectPosition: `${newsItems[0]!.focal_x ?? 50}% ${newsItems[0]!.focal_y ?? 50}%` }"
+                  :style="{
+                    objectPosition: `${newsItems[0]!.focal_x ?? 50}% ${newsItems[0]!.focal_y ?? 50}%`,
+                  }"
                   loading="lazy"
                 />
                 <div
@@ -381,7 +383,9 @@
                     :src="newsItem.image_url"
                     :alt="newsItem.image_alt || newsItem.title"
                     class="w-full h-full object-cover"
-                    :style="{ objectPosition: `${newsItem.focal_x}% ${newsItem.focal_y}%` }"
+                    :style="{
+                      objectPosition: `${newsItem.focal_x}% ${newsItem.focal_y}%`,
+                    }"
                     loading="lazy"
                   />
                   <div
@@ -455,7 +459,9 @@
                     :src="newsItem.image_url"
                     :alt="newsItem.image_alt || newsItem.title"
                     class="w-full h-full object-cover"
-                    :style="{ objectPosition: `${newsItem.focal_x}% ${newsItem.focal_y}%` }"
+                    :style="{
+                      objectPosition: `${newsItem.focal_x}% ${newsItem.focal_y}%`,
+                    }"
                     loading="lazy"
                   />
                   <div
