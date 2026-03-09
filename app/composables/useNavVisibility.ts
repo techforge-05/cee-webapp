@@ -34,17 +34,12 @@ export function useNavVisibility() {
   }
 
   async function toggleVisibility(section: string, page: string | null, isVisibleVal: boolean) {
-    const { error } = page
-      ? await client
-          .from('nav_visibility')
-          .update({ is_visible: isVisibleVal, updated_at: new Date().toISOString() })
-          .eq('section', section)
-          .eq('page', page)
-      : await client
-          .from('nav_visibility')
-          .update({ is_visible: isVisibleVal, updated_at: new Date().toISOString() })
-          .eq('section', section)
-          .is('page', null)
+    const { error } = await client
+      .from('nav_visibility')
+      .upsert(
+        { section, page, is_visible: isVisibleVal, updated_at: new Date().toISOString() },
+        { onConflict: 'section,page' },
+      )
 
     if (!error) {
       visibility.value[getKey(section, page)] = isVisibleVal

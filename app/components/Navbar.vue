@@ -94,7 +94,7 @@
                 class="text-gray-600 cursor-pointer text-xs max-w-48"
                 :ui="{ label: 'truncate' }"
               >
-                <span class="hidden lg:inline">{{ user.email }}</span>
+                <span class="hidden lg:inline">{{ displayName }}</span>
               </UButton>
             </UDropdownMenu>
           </template>
@@ -782,6 +782,13 @@
 
   const { t, locale } = useI18n();
 
+  const displayName = computed(() => {
+    if (!user.value) return '';
+    const meta = user.value.user_metadata;
+    const firstName = meta?.first_name || meta?.full_name?.split(' ')[0];
+    return firstName || user.value.email?.split('@')[0] || '';
+  });
+
   const dropdownImageUrl = computed(() => {
     if (!activeDropdown.value) return null
     return getMediaUrl(`nav.dropdown.${activeDropdown.value}`)
@@ -791,8 +798,7 @@
 
   const accountMenuItems = computed(() => {
     const items: any[][] = [];
-    // On mobile, show email in dropdown (it's hidden in the trigger button)
-    if (isMobile.value && user.value?.email) {
+    if (user.value?.email) {
       items.push([
         {
           label: user.value.email,
