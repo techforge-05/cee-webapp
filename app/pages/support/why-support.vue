@@ -153,7 +153,7 @@ const getImpactBorderColor = (index: number) => {
 };
 
 useHead({
-  title: 'Why Support Our School - CEE',
+  title: 'Why Support Our Institute - CEE',
   meta: [
     {
       name: 'description',

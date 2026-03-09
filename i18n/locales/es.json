@@ -12,7 +12,7 @@
     "academics": "Académicos",
     "studentLife": "Vida Estudiantil",
     "parents": "Padres",
-    "support": "Apoya Nuestra Escuela",
+    "support": "Apoya Nuestro Instituto",
     "contact": "Contacto",
     "admissions": "Admisiones",
     "getInvolved": "Involúcrate",
@@ -31,7 +31,7 @@
         "missionVisionValues": "Misión, Visión y Valores",
         "statementOfFaith": "Declaración de Fe",
         "philosophy": "Nuestra Filosofía",
-        "history": "Historia de la Escuela",
+        "history": "Historia del Instituto",
         "town": "Nuestra Ciudad",
         "leadership": "Liderazgo y Junta Directiva"
       },
@@ -56,7 +56,7 @@
         "involvement": "Involúcrate"
       },
       "support": {
-        "whySupport": "Por Qué Apoyar Nuestra Escuela",
+        "whySupport": "Por Qué Apoyar Nuestro Instituto",
         "scholarships": "Impacto de Becas",
         "donate": "Donar",
         "projects": "Proyectos",
@@ -238,7 +238,7 @@
       }
     },
     "history": {
-      "title": "Historia de la Escuela",
+      "title": "Historia del Instituto",
       "subtitle": "Nuestro viaje de un sueño a la realidad",
       "intro": "Desde sus comienzos en 1990, CEE ha crecido hasta convertirse en un pilar de la educación cristiana bilingüe en Siguatepeque.",
       "timeline": {
@@ -1994,7 +1994,7 @@
   },
   "support": {
     "whySupport": {
-      "title": "Por Qué Apoyar Nuestra Escuela",
+      "title": "Por Qué Apoyar Nuestro Instituto",
       "subtitle": "Una escuela sin fines de lucro comprometida con la educación cristiana",
       "intro": {
         "title": "Nuestra Realidad Financiera",
