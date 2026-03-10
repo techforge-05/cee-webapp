@@ -12,7 +12,7 @@
     "academics": "Academics",
     "studentLife": "Student Life",
     "parents": "Parents",
-    "support": "Support Our Institute",
+    "support": "Support Our School",
     "contact": "Contact",
     "admissions": "Admissions",
     "getInvolved": "Get Involved",
@@ -31,7 +31,7 @@
         "missionVisionValues": "Mission, Vision & Values",
         "statementOfFaith": "Statement of Faith",
         "philosophy": "Our Philosophy",
-        "history": "History of the Institute",
+        "history": "History of the School",
         "town": "Our Town",
         "leadership": "Leadership & Board"
       },
@@ -56,7 +56,7 @@
         "involvement": "Get Involved"
       },
       "support": {
-        "whySupport": "Why Support Our Institute",
+        "whySupport": "Why Support Our School",
         "scholarships": "Scholarships Impact",
         "donate": "Donate",
         "projects": "Projects",
@@ -238,7 +238,7 @@
       }
     },
     "history": {
-      "title": "History of the Institute",
+      "title": "History of the School",
       "subtitle": "Our journey from a dream to reality",
       "intro": "From its beginnings in 1990, CEE has grown to become a cornerstone of Christian bilingual education in Siguatepeque.",
       "timeline": {
@@ -1994,7 +1994,7 @@
   },
   "support": {
     "whySupport": {
-      "title": "Why Support Our Institute",
+      "title": "Why Support Our School",
       "subtitle": "A nonprofit school committed to Christian education",
       "intro": {
         "title": "Our Financial Reality",

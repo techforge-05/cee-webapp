@@ -230,7 +230,7 @@
 
   // Set page metadata
   useHead({
-    title: 'History of the Institute - CEE',
+    title: 'History of the School - CEE',
     meta: [
       {
         name: 'description',

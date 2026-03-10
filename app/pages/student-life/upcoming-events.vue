@@ -147,13 +147,13 @@
           <!-- Events Grid/Carousel -->
           <div
             ref="carouselRef"
-            class="flex justify-center gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+            class="flex gap-6 overflow-x-auto pb-4 scrollbar-hide scroll-smooth snap-x snap-mandatory px-2"
             @scroll="updateScrollButtons"
           >
             <div
               v-for="(event, index) in carouselEvents"
               :key="index"
-              class="flex-shrink-0 w-80 md:w-96"
+              class="flex-shrink-0 snap-start w-[min(320px,80vw)] sm:w-80 md:w-[340px] lg:w-96"
             >
               <div
                 class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full"
@@ -420,6 +420,8 @@
         description: typeof item.description === 'string' ? item.description : $rt(item.description),
         timing: monthKeyToName(rawTiming),
         image_url: null as string | null,
+        focalX: 50,
+        focalY: 50,
       };
     });
   });
