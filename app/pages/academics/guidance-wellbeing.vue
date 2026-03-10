@@ -98,36 +98,51 @@
     </section>
 
     <!-- Services Section -->
-    <section class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+    <section class="py-16">
       <div class="px-6 sm:px-10 lg:px-16">
         <div class="text-center mb-12">
           <h2 class="text-3xl lg:text-5xl font-bold text-teal-800 mb-4">
             {{ $t('academics.guidance.services.title') }}
           </h2>
         </div>
+      </div>
 
-        <div class="flex flex-wrap justify-center gap-8">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="bg-white rounded-lg p-8 shadow-lg border-t-4 border-purple-500 hover:shadow-xl transition-shadow w-full md:w-[calc(33.333%-1.334rem)]"
-          >
-            <div class="flex justify-center mb-6">
-              <div
-                class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center"
-              >
-                <UIcon
-                  :name="service.icon"
-                  class="w-8 h-8 text-purple-600"
-                />
+      <div class="space-y-12">
+        <div v-for="(service, index) in services" :key="index">
+          <div class="px-2 sm:px-10 lg:px-16">
+            <div :class="['rounded-none sm:rounded-lg p-0 sm:p-8 md:p-12', getServiceBg(index)]">
+              <div :class="service.image ? 'grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-8 items-center' : ''">
+                <!-- Image on left for odd index -->
+                <div v-if="service.image && index % 2 === 1" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112 order-1 lg:order-0">
+                  <img
+                    :src="service.image"
+                    :alt="service.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${service.focalX}% ${service.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- Text content -->
+                <div class="px-4 py-6 sm:px-0 sm:py-0">
+                  <h3 :class="['text-2xl md:text-5xl font-bold mb-4', getServiceTextColor(index)]">
+                    {{ service.title }}
+                  </h3>
+                  <p class="text-lg text-gray-800 leading-relaxed">
+                    {{ service.description }}
+                  </p>
+                </div>
+                <!-- Image on right for even index -->
+                <div v-if="service.image && index % 2 === 0" class="rounded-none sm:rounded-lg overflow-hidden h-96 lg:h-112">
+                  <img
+                    :src="service.image"
+                    :alt="service.title"
+                    class="w-full h-full object-cover"
+                    :style="{ objectPosition: `${service.focalX}% ${service.focalY}%` }"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 text-center mb-3">
-              {{ service.title }}
-            </h3>
-            <p class="text-gray-700 text-center leading-relaxed">
-              {{ service.description }}
-            </p>
           </div>
         </div>
       </div>
@@ -194,7 +209,7 @@
 
   const localePath = useLocalePath();
   const { tm, rt } = useI18n();
-  const { loadContent, getItems, singleField, singleMeta, field, loading: contentLoading } = usePublicContent();
+  const { loadContent, getItems, singleField, singleMeta, field, meta: getMeta, loading: contentLoading } = usePublicContent();
 
   // Load all content sections
   onMounted(() =>
@@ -206,33 +221,27 @@
     ]),
   );
 
-  // Service icons for visual variety
-  const serviceIcons = [
-    'i-heroicons-academic-cap',
-    'i-heroicons-chat-bubble-left-right',
-    'i-heroicons-heart',
-    'i-heroicons-user-group',
-    'i-heroicons-book-open',
-    'i-heroicons-light-bulb',
-  ];
-
   // Services computed property
   const services = computed(() => {
     const dbItems = getItems('academics.guidance.services');
     if (dbItems.length > 0)
-      return dbItems.map((item, index) => ({
+      return dbItems.map((item) => ({
         title: field(item, 'title'),
         description: field(item, 'description'),
-        icon: field(item, 'icon') || serviceIcons[index % serviceIcons.length],
+        image: getMeta(item, 'imageUrl') || null,
+        focalX: item.metadata?.focalX ?? 50,
+        focalY: item.metadata?.focalY ?? 50,
       }));
 
     // Fallback to i18n
     const items = tm('academics.guidance.services.items') as any[];
     if (!Array.isArray(items)) return [];
-    return items.map((item: any, index: number) => ({
+    return items.map((item: any) => ({
       title: typeof item.title === 'string' ? item.title : rt(item.title),
       description: typeof item.description === 'string' ? item.description : rt(item.description),
-      icon: serviceIcons[index % serviceIcons.length],
+      image: null,
+      focalX: 50,
+      focalY: 50,
     }));
   });
 
@@ -250,6 +259,15 @@
       }));
     return [];
   });
+
+  const serviceStyles = [
+    { bg: 'bg-blue-50', text: 'text-blue-900' },
+    { bg: 'bg-purple-50', text: 'text-purple-900' },
+    { bg: 'bg-teal-50', text: 'text-teal-900' },
+    { bg: 'bg-indigo-50', text: 'text-indigo-900' },
+  ];
+  const getServiceBg = (i: number) => serviceStyles[i % serviceStyles.length]!.bg;
+  const getServiceTextColor = (i: number) => serviceStyles[i % serviceStyles.length]!.text;
 
   // Gallery images computed property
   const images = computed(() => {

@@ -450,13 +450,13 @@ const schemas: Record<string, EditorSection[]> = {
       maxItems: 5,
       minItems: 1,
       itemLabelKey: 'admin.editors.generic.service',
-      fields: [f.title(), f.description(), { key: 'icon', labelKey: 'admin.editors.generic.icon', type: 'icon' }],
+      fields: [f.title(), f.description(), f.meta('imageUrl', 'admin.editors.generic.imageUrl')],
     },
     {
       pageKey: 'academics.guidance.images',
       labelKey: 'admin.editors.academics.guidance.images',
       type: 'list',
-      maxItems: 6,
+      maxItems: 9,
       minItems: 0,
       itemLabelKey: 'admin.editors.generic.image',
       fields: [
@@ -496,7 +496,7 @@ const schemas: Record<string, EditorSection[]> = {
       pageKey: 'studentLife.sports.gallery',
       labelKey: 'admin.editors.studentLife.sports.gallery',
       type: 'list',
-      maxItems: 6,
+      maxItems: 9,
       minItems: 1,
       itemLabelKey: 'admin.editors.studentLife.sports.galleryItem',
       fields: [

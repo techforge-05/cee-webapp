@@ -53,12 +53,14 @@
 
     <!-- Section 2: Welcome -->
     <section
-      class="relative py-10 md:py-20 overflow-hidden bg-[url('/images/main-g.png')] bg-center bg-repeat bg-size-[100%] md:bg-size-[50%]"
+      class="relative py-10 md:py-20 overflow-hidden bg-[url('/images/main-g.png')] bg-center bg-repeat bg-size-[100%] md:bg-size-[20%]"
     >
       <!-- Dark overlay for better text readability -->
-      <div class="absolute inset-0 bg-green-400/30 backdrop-blur-[1.7px]"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-green-600/60 to-black/50"
+      ></div>
 
-      <div class="px-6 sm:px-10 lg:px-16 md:ml-[15%] md:mr-0 relative z-10">
+      <div class="px-6 sm:px-10 lg:px-16 relative z-10 md:ml-[7%] md:mr-0">
         <div class="text-center md:text-left">
           <h2
             class="text-2xl md:text-5xl font-black text-white mb-1 uppercase tracking-tight"
