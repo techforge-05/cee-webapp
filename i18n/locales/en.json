@@ -2259,7 +2259,17 @@
             "recordFailed": "The donation was processed by PayPal, but we could not record it. Please contact administracion{'@'}ceehonduras.org."
           }
         },
-        "donatingFor": "Donating for: {purpose}"
+        "donatingFor": "Donating for: {purpose}",
+        "reviewButton": "Review Donation",
+        "preview": {
+          "title": "Donation Summary",
+          "amountLabel": "Amount",
+          "donorSection": "Your Details",
+          "cardSection": "Payment Card",
+          "cardExpiry": "Expires",
+          "back": "Back",
+          "confirm": "Confirm & Donate"
+        }
       }
     },
     "projects": {
