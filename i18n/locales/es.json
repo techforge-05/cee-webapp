@@ -2259,7 +2259,17 @@
             "recordFailed": "La donación fue procesada por PayPal, pero no pudimos registrarla. Por favor contacte a administracion{'@'}ceehonduras.org."
           }
         },
-        "donatingFor": "Donando para: {purpose}"
+        "donatingFor": "Donando para: {purpose}",
+        "reviewButton": "Revisar Donación",
+        "preview": {
+          "title": "Resumen de Donación",
+          "amountLabel": "Monto",
+          "donorSection": "Sus Datos",
+          "cardSection": "Tarjeta de Pago",
+          "cardExpiry": "Vencimiento",
+          "back": "Volver",
+          "confirm": "Confirmar y Donar"
+        }
       }
     },
     "projects": {

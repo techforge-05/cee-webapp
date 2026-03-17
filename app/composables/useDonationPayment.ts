@@ -1,4 +1,4 @@
-export type PaymentStep = 'form' | 'processing' | 'ddc' | 'authorizing' | 'challenge' | 'paying' | 'success' | 'error'
+export type PaymentStep = 'form' | 'preview' | 'processing' | 'ddc' | 'authorizing' | 'challenge' | 'paying' | 'success' | 'error'
 
 export interface DonorInfo {
   firstName: string
@@ -251,6 +251,11 @@ export const useDonationPayment = () => {
     })
   }
 
+  function goToPreview(): void {
+    if (!validateForm()) return
+    step.value = 'preview'
+  }
+
   // Main payment flow
   async function submitDonation(): Promise<void> {
     if (!validateForm()) return
@@ -463,6 +468,7 @@ export const useDonationPayment = () => {
     exchangeRateLoading,
     amountInHNL,
     fetchExchangeRate,
+    goToPreview,
     submitDonation,
     reset,
     resetForm,
