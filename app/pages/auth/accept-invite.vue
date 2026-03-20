@@ -297,6 +297,7 @@
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
+          // Use hardcoded path — localePath() can return empty in this context
           redirectTo: `${window.location.origin}/auth/callback`,
           queryParams: { prompt: 'select_account' },
         },
