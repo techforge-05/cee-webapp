@@ -87,6 +87,13 @@ export default defineNuxtConfig({
     },
   },
 
+  nitro: {
+    externals: {
+      // Bundle @supabase/supabase-js inline to avoid ESM resolution failures on Vercel
+      inline: ['@supabase/supabase-js'],
+    },
+  },
+
   i18n: {
     defaultLocale: 'es',
     langDir: 'locales',
