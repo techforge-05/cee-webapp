@@ -29,56 +29,21 @@ onMounted(async () => {
     localStorage.removeItem('pendingInviteToken')
 
     try {
-      // Look up the invitation
-      const { data: invite } = await supabase
-        .from('invitations')
-        .select('*')
-        .eq('token', pendingToken)
-        .is('accepted_at', null)
-        .single()
+      await $fetch('/api/complete-invite', {
+        method: 'POST',
+        body: {
+          token: pendingToken,
+          userId: session.user.id,
+          email: session.user.email,
+          fullName: session.user.user_metadata?.full_name || session.user.user_metadata?.name || '',
+        },
+      })
 
-      if (invite && new Date(invite.expires_at) >= new Date()) {
-        // Create user_profiles record
-        await supabase
-          .from('user_profiles')
-          .insert({
-            id: session.user.id,
-            email: invite.email,
-            full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || '',
-            role: invite.role,
-            status: 'active',
-            invited_by: invite.invited_by,
-            invited_at: invite.created_at,
-          })
-
-        // Create user_permissions from invitation
-        const permissions = invite.permissions || []
-        if (permissions.length > 0) {
-          const permRows = permissions.map((p: any) => ({
-            user_id: session.user.id,
-            section: p.section,
-            page: p.page || null,
-            can_calendar: invite.can_calendar || false,
-            can_announcements: invite.can_announcements || false,
-          }))
-
-          await supabase
-            .from('user_permissions')
-            .insert(permRows)
-        }
-
-        // Mark invitation as accepted
-        await supabase
-          .from('invitations')
-          .update({ accepted_at: new Date().toISOString() })
-          .eq('id', invite.id)
-
-        // Load admin profile and redirect to admin
-        const adminStore = useAdminStore()
-        await adminStore.loadProfile(session.user.id)
-        await navigateTo(localePath('/admin'))
-        return
-      }
+      // Load admin profile and redirect to admin
+      const adminStore = useAdminStore()
+      await adminStore.loadProfile(session.user.id)
+      await navigateTo(localePath('/admin'))
+      return
     } catch (e) {
       console.error('Failed to complete invitation acceptance:', e)
     }

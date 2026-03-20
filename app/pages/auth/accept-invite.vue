@@ -266,67 +266,18 @@
     submitting.value = true;
 
     try {
-      // 1. Create the auth user via Supabase signup
-      const { data: authData, error: signupError } = await supabase.auth.signUp(
-        {
-          email: invitation.value.email,
+      await $fetch('/api/accept-invite', {
+        method: 'POST',
+        body: {
+          token,
           password: form.password,
-          options: {
-            data: {
-              full_name: form.fullName,
-            },
-          },
+          fullName: form.fullName,
         },
-      );
-
-      if (signupError) throw signupError;
-      if (!authData.user) throw new Error('Failed to create user');
-
-      // 2. Create user_profiles record
-      const { error: profileError } = await supabase
-        .from('user_profiles')
-        .insert({
-          id: authData.user.id,
-          email: invitation.value.email,
-          full_name: form.fullName,
-          role: invitation.value.role,
-          status: 'active',
-          invited_by: invitation.value.invited_by,
-          invited_at: invitation.value.created_at,
-        });
-
-      if (profileError) throw profileError;
-
-      // 3. Create user_permissions from invitation
-      const permissions = invitation.value.permissions || [];
-      if (permissions.length > 0) {
-        const permRows = permissions.map((p: any) => ({
-          user_id: authData.user!.id,
-          section: p.section,
-          page: p.page || null,
-          can_calendar: invitation.value.can_calendar || false,
-          can_announcements: invitation.value.can_announcements || false,
-        }));
-
-        const { error: permError } = await supabase
-          .from('user_permissions')
-          .insert(permRows);
-
-        if (permError) throw permError;
-      }
-
-      // 4. Mark invitation as accepted
-      await supabase
-        .from('invitations')
-        .update({ accepted_at: new Date().toISOString() })
-        .eq('id', invitation.value.id);
-
-      // 5. Sign out (so user can log in fresh)
-      await supabase.auth.signOut();
+      });
 
       success.value = true;
     } catch (e: any) {
-      error.value = e.message || t('auth.errors.acceptInviteError');
+      error.value = e.data?.message || e.message || t('auth.errors.acceptInviteError');
     } finally {
       submitting.value = false;
     }
