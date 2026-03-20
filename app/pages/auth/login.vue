@@ -172,13 +172,11 @@ definePageMeta({
       // Check if user is an admin and redirect accordingly
       const userId = signInData.user?.id;
       if (userId) {
-        const { data: profile } = await supabase
-          .from('user_profiles')
-          .select('role, status')
-          .eq('id', userId)
-          .single();
+        const adminStore = useAdminStore();
+        adminStore.isProfileLoaded = false; // force fresh load after login
+        await adminStore.loadProfile(userId);
 
-        if (profile && profile.status === 'active') {
+        if (adminStore.profile && adminStore.profile.status === 'active') {
           await navigateTo(localePath('/admin'));
           return;
         }
