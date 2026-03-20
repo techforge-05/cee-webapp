@@ -428,18 +428,11 @@ async function confirmDelete() {
       }
     }
 
-    // Delete permissions first, then profile
-    await supabase
-      .from('user_permissions')
-      .delete()
-      .eq('user_id', selectedUser.value.id)
-
-    const { error } = await supabase
-      .from('user_profiles')
-      .delete()
-      .eq('id', selectedUser.value.id)
-
-    if (error) throw error
+    // Delete permissions, profile, and auth user via server route (requires service role)
+    await $fetch('/api/admin/delete-user', {
+      method: 'POST',
+      body: { userId: selectedUser.value.id },
+    })
 
     toast.add({ title: 'User deleted', color: 'success' })
     showDeleteModal.value = false
