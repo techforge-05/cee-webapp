@@ -48,7 +48,8 @@ onMounted(async () => {
       console.error('Failed to complete invitation acceptance:', e)
       // Sign out so the user doesn't appear logged in without a profile
       await supabase.auth.signOut()
-      await navigateTo(localePath(`/auth/accept-invite?token=${pendingToken}`))
+      // Use object form so localePath doesn't corrupt the query string
+      await navigateTo({ path: localePath('/auth/accept-invite'), query: { token: pendingToken } })
       return
     }
   }
@@ -60,9 +61,9 @@ onMounted(async () => {
   if (adminStore.profile && adminStore.profile.status === 'active') {
     await navigateTo(localePath('/admin'))
   } else {
-    // No profile means this user is not a registered admin — sign them out
+    // No profile — sign out and go to home (avoids race condition with login page's onMounted)
     await supabase.auth.signOut()
-    await navigateTo(localePath('/auth/login'))
+    await navigateTo(localePath('/'))
   }
 })
 </script>

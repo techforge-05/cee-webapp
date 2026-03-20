@@ -152,7 +152,8 @@ definePageMeta({
       if (adminStore.profile && adminStore.profile.status === 'active') {
         navigateTo(localePath('/admin'));
       } else {
-        navigateTo(localePath('/'));
+        // Logged in but no active admin profile — sign out to clear any phantom session
+        await supabase.auth.signOut();
       }
     }
   });
