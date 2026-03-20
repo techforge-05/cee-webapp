@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { serverSupabaseServiceRole } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -8,18 +8,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Missing required fields' })
   }
 
-  const config = useRuntimeConfig()
-  const supabaseUrl = process.env.SUPABASE_URL!
-  const serviceKey = config.supabaseServiceKey
-
-  if (!serviceKey) {
-    throw createError({ statusCode: 500, message: 'Server configuration error' })
-  }
-
-  // Use service role client to bypass RLS and email confirmation
-  const adminSupabase = createClient(supabaseUrl, serviceKey, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const adminSupabase = serverSupabaseServiceRole(event) as any
 
   // 1. Validate the invitation token
   const { data: invitation, error: inviteError } = await adminSupabase

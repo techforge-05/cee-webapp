@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
+import { serverSupabaseServiceRole } from '#supabase/server'
 
 // Called after Google OAuth to complete an invitation (create profile + permissions)
 // The user is already authenticated; we use the service role key to bypass RLS.
@@ -10,17 +10,8 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Missing required fields' })
   }
 
-  const config = useRuntimeConfig()
-  const supabaseUrl = process.env.SUPABASE_URL!
-  const serviceKey = config.supabaseServiceKey
-
-  if (!serviceKey) {
-    throw createError({ statusCode: 500, message: 'Server configuration error' })
-  }
-
-  const adminSupabase = createClient(supabaseUrl, serviceKey, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const adminSupabase = serverSupabaseServiceRole(event) as any
 
   // 1. Validate the invitation token
   const { data: invitation, error: inviteError } = await adminSupabase
