@@ -30,7 +30,8 @@ onMounted(async () => {
 
     try {
       // 1. Look up the invitation client-side (user is authenticated so RLS read works)
-      const { data: invitation, error: inviteError } = await supabase
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data: invitation, error: inviteError } = await (supabase as any)
         .from('invitations')
         .select('*')
         .eq('token', pendingToken)
@@ -109,7 +110,7 @@ onMounted(async () => {
   } else {
     // No profile — delete the uninvited auth user, then sign out and go to home
     try {
-      await $fetch('/api/delete-unauthorized-user', { method: 'POST' })
+      await $fetch('/api/delete-unauthorized-user', { method: 'POST', body: { userId: session.user.id } })
     } catch (e) {
       console.error('Failed to delete unauthorized user:', e)
     }
