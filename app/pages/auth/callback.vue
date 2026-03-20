@@ -29,17 +29,62 @@ onMounted(async () => {
     localStorage.removeItem('pendingInviteToken')
 
     try {
-      await $fetch('/api/complete-invite', {
-        method: 'POST',
-        body: {
-          token: pendingToken,
-          userId: session.user.id,
-          email: session.user.email,
-          fullName: session.user.user_metadata?.full_name || session.user.user_metadata?.name || '',
-        },
-      })
+      // 1. Look up the invitation client-side (user is authenticated so RLS read works)
+      const { data: invitation, error: inviteError } = await supabase
+        .from('invitations')
+        .select('*')
+        .eq('token', pendingToken)
+        .is('accepted_at', null)
+        .single()
 
-      // Clear cached store state so the newly created profile is fetched fresh
+      if (inviteError || !invitation) {
+        throw new Error('Invalid or expired invitation')
+      }
+
+      if (new Date(invitation.expires_at) < new Date()) {
+        throw new Error('Invitation has expired')
+      }
+
+      const fullName = session.user.user_metadata?.full_name || session.user.user_metadata?.name || ''
+
+      // 2. Upsert user_profiles client-side — RLS allows: id = auth.uid()
+      const { error: profileError } = await supabase
+        .from('user_profiles')
+        .upsert({
+          id: session.user.id,
+          email: invitation.email,
+          full_name: fullName,
+          role: invitation.role,
+          status: 'active',
+          invited_by: invitation.invited_by,
+          invited_at: invitation.created_at,
+        })
+
+      if (profileError) {
+        throw new Error(profileError.message)
+      }
+
+      // 3. Grant permissions via server (requires service role — RLS blocks client insert)
+      const permissions = invitation.permissions || []
+      if (permissions.length > 0) {
+        await $fetch('/api/grant-permissions', {
+          method: 'POST',
+          body: {
+            userId: session.user.id,
+            permissions,
+            canCalendar: invitation.can_calendar || false,
+            canAnnouncements: invitation.can_announcements || false,
+          },
+        })
+      }
+
+      // 4. Mark invitation accepted client-side — RLS UPDATE allows: email = auth.jwt()->>'email'
+      await supabase
+        .from('invitations')
+        .update({ accepted_at: new Date().toISOString() })
+        .eq('id', invitation.id)
+
+      // 5. Load the newly created profile and navigate to admin
       const adminStore = useAdminStore()
       adminStore.clearProfile()
       await adminStore.loadProfile(session.user.id)
