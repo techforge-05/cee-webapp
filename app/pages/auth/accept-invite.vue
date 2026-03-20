@@ -288,6 +288,9 @@
       googleLoading.value = true;
       error.value = '';
 
+      // Sign out any existing session so Google always shows the account picker
+      await supabase.auth.signOut();
+
       // Save the invitation token so the callback page can complete the acceptance
       localStorage.setItem('pendingInviteToken', token);
 
@@ -295,6 +298,7 @@
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}${localePath('/auth/callback')}`,
+          queryParams: { prompt: 'select_account' },
         },
       });
 
