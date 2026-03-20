@@ -107,7 +107,12 @@ onMounted(async () => {
   if (adminStore.profile && adminStore.profile.status === 'active') {
     await navigateTo(localePath('/admin'))
   } else {
-    // No profile — sign out and go to home (avoids race condition with login page's onMounted)
+    // No profile — delete the uninvited auth user, then sign out and go to home
+    try {
+      await $fetch('/api/delete-unauthorized-user', { method: 'POST' })
+    } catch (e) {
+      console.error('Failed to delete unauthorized user:', e)
+    }
     await supabase.auth.signOut()
     await navigateTo(localePath('/'))
   }
