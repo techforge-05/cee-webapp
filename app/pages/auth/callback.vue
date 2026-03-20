@@ -39,8 +39,9 @@ onMounted(async () => {
         },
       })
 
-      // Load admin profile and redirect to admin
+      // Clear cached store state so the newly created profile is fetched fresh
       const adminStore = useAdminStore()
+      adminStore.clearProfile()
       await adminStore.loadProfile(session.user.id)
       await navigateTo(localePath('/admin'))
       return
