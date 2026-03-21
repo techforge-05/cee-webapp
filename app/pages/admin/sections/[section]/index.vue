@@ -2,7 +2,7 @@
   <div>
     <div class="mb-8">
       <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ sectionLabel }}</h1>
-      <p class="text-gray-500">Manage pages in this section.</p>
+      <p class="text-gray-500">{{ $t('admin.permissions.sectionIndex.managePages') }}</p>
     </div>
 
     <!-- Pages Grid -->
@@ -11,10 +11,10 @@
         v-for="page in visiblePages"
         :key="page.slug"
         :icon="page.icon"
-        :label="page.label"
+        :label="t(`admin.permissions.pages.${sectionKey}.${page.slug}`, page.label)"
         :to="localePath(page.to || `/admin/sections/${sectionKey}/${page.slug}`)"
         :bg-color="sectionConfig?.bgColor || 'bg-gray-600'"
-        :description="page.description"
+        :description="page.description ? t(`admin.permissions.pageDescriptions.${sectionKey}.${page.slug}`, page.description) : undefined"
       />
     </div>
 
@@ -24,7 +24,7 @@
       class="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center"
     >
       <UIcon name="i-heroicons-folder-open" class="w-12 h-12 text-gray-300 mx-auto mb-3" />
-      <p class="text-gray-500">No pages available in this section.</p>
+      <p class="text-gray-500">{{ $t('admin.permissions.sectionIndex.noPages') }}</p>
     </div>
   </div>
 </template>
