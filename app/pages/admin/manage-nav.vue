@@ -99,8 +99,8 @@
               <div class="flex items-center gap-3">
                 <UIcon :name="page.icon" class="w-5 h-5 text-gray-500" />
                 <div>
-                  <span class="text-sm font-medium text-gray-700">{{ page.label }}</span>
-                  <p v-if="page.description" class="text-xs text-gray-400">{{ page.description }}</p>
+                  <span class="text-sm font-medium text-gray-700">{{ $t(`nav.dropdowns.${section.key}.${slugToCamelCase(page.slug)}`, page.label) }}</span>
+                  <p v-if="page.description" class="text-xs text-gray-400">{{ $t(`admin.manageNav.pageDescriptions.${section.key}.${slugToCamelCase(page.slug)}`, page.description) }}</p>
                 </div>
               </div>
               <USwitch
@@ -154,6 +154,10 @@
 
 <script setup lang="ts">
 import { sectionRegistry } from '~/config/sectionRegistry'
+
+function slugToCamelCase(slug: string): string {
+  return slug.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+}
 
 definePageMeta({
   layout: 'admin',
