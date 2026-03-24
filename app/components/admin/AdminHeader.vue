@@ -191,9 +191,9 @@
     const crumbs: Array<{ label: string; to?: string }> = [];
 
     if (path.includes('/admin/users')) {
-      crumbs.push({ label: 'Users', to: localePath('/admin/users') });
+      crumbs.push({ label: t('nav.admin.users', 'Users'), to: localePath('/admin/users') });
       if (route.params.id) {
-        crumbs.push({ label: 'User Details' });
+        crumbs.push({ label: t('admin.users.userDetails', 'User Details') });
       }
     } else if (path.includes('/admin/manage-nav')) {
       crumbs.push({ label: t('admin.manageNav.title', 'Manage Nav') });
@@ -202,14 +202,15 @@
         label: t('nav.academics', 'Academics'),
         to: localePath('/admin/sections/academics'),
       });
-      crumbs.push({ label: 'Calendar' });
+      crumbs.push({ label: t('nav.admin.calendar', 'Calendar') });
     } else if (path.includes('/admin/announcements')) {
-      crumbs.push({ label: 'Announcements' });
+      crumbs.push({ label: t('nav.admin.announcements', 'Announcements') });
     } else if (path.includes('/admin/sections/')) {
       const section = route.params.section as string;
       const page = route.params.page as string;
-      const fallbackLabel = getSectionConfig(section)?.label || section;
-      const sectionLabel = t(`nav.${section}`, fallbackLabel);
+      const sectionConfig = getSectionConfig(section);
+      const sectionFallback = sectionConfig?.label || section;
+      const sectionLabel = t(`admin.permissions.sections.${section}`, t(`nav.${section}`, sectionFallback));
 
       crumbs.push({
         label: sectionLabel,
@@ -217,19 +218,14 @@
       });
 
       if (page) {
-        crumbs.push({ label: formatPageName(page) });
+        const pageConfig = sectionConfig?.pages.find((p) => p.slug === page);
+        const pageFallback = pageConfig?.label || page.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        crumbs.push({ label: t(`admin.permissions.pages.${section}.${page}`, pageFallback) });
       }
     }
 
     return crumbs;
   });
-
-  const formatPageName = (page: string) => {
-    return page
-      .split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  };
 
   const handleSignOut = async () => {
     adminStore.clearProfile();
