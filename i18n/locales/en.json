@@ -1388,14 +1388,16 @@
         "academics": {
           "curriculum": "Curriculum",
           "grades": "Grades",
-          "calendar": "Calendar"
+          "calendar": "Calendar",
+          "guidance-wellbeing": "Guidance & Wellbeing"
         },
         "studentLife": {
           "sports-clubs": "Sports & Clubs",
           "service-projects": "Service Projects",
           "library": "Library",
           "upcoming-events": "Upcoming Events",
-          "gallery": "Gallery"
+          "gallery": "Gallery",
+          "alumni": "Alumni"
         },
         "support": {
           "why-support": "Why Support",
@@ -1418,6 +1420,58 @@
           "teachers": "Teachers",
           "volunteer": "Volunteer"
         }
+      },
+      "pageDescriptions": {
+        "home": {
+          "home": "Hero, welcome, values, activities, news"
+        },
+        "about": {
+          "mission-vision-values": "Core values and mission statement",
+          "statement-of-faith": "Religious beliefs and principles",
+          "philosophy": "Educational philosophy",
+          "history": "Timeline and founders",
+          "leadership": "Board and directors",
+          "town": "Siguatepeque information"
+        },
+        "academics": {
+          "curriculum": "Programs and subjects",
+          "grades": "Grade levels and groupings",
+          "calendar": "Academic calendar and dates",
+          "guidance-wellbeing": "Student support services"
+        },
+        "studentLife": {
+          "sports-clubs": "Athletic programs",
+          "service-projects": "Community service initiatives",
+          "library": "Rules, hours, reading levels",
+          "upcoming-events": "Annual events",
+          "gallery": "Photo gallery management",
+          "alumni": "Alumni stories and sections"
+        },
+        "support": {
+          "why-support": "Impact areas",
+          "scholarships": "Scholarship info",
+          "donate": "Donation methods and wish lists",
+          "projects": "Current projects"
+        },
+        "contact": {
+          "info": "Phone, email, hours",
+          "directions": "Maps and directions",
+          "form": "Form settings",
+          "faq": "Questions and answers"
+        },
+        "admissions": {
+          "who-can-apply": "Eligibility and requirements",
+          "how-to-apply": "Application steps",
+          "calendar": "Admissions dates"
+        },
+        "getInvolved": {
+          "teachers": "Requirements and benefits",
+          "volunteer": "Volunteer opportunities"
+        }
+      },
+      "sectionIndex": {
+        "managePages": "Manage pages in this section.",
+        "noPages": "No pages available in this section."
       },
       "calendarAccess": "Can manage calendar events",
       "announcementAccess": "Can manage announcements"
@@ -1990,6 +2044,20 @@
     "validation": {
       "minItemsReached": "Minimum items reached",
       "cannotDeleteMinItems": "Cannot delete. At least {min} items are required."
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "subtitle": "Manage your website content, users, and settings.",
+      "websiteSections": "Website Sections",
+      "adminSubtitle": "Manage the sections assigned to you.",
+      "welcome": "Welcome, {name}",
+      "dashboardTitle": "Dashboard",
+      "stats": {
+        "users": "Users",
+        "events": "Events",
+        "announcements": "Announcements",
+        "galleryPhotos": "Gallery Photos"
+      }
     }
   },
   "support": {

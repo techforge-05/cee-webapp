@@ -1388,14 +1388,16 @@
         "academics": {
           "curriculum": "Plan de Estudios",
           "grades": "Grados",
-          "calendar": "Calendario"
+          "calendar": "Calendario",
+          "guidance-wellbeing": "Orientación y Bienestar"
         },
         "studentLife": {
           "sports-clubs": "Deportes y Clubes",
           "service-projects": "Proyectos de Servicio",
           "library": "Biblioteca",
           "upcoming-events": "Próximos Eventos",
-          "gallery": "Galería"
+          "gallery": "Galería",
+          "alumni": "Exalumnos"
         },
         "support": {
           "why-support": "Por Qué Apoyar",
@@ -1418,6 +1420,58 @@
           "teachers": "Maestros",
           "volunteer": "Voluntariado"
         }
+      },
+      "pageDescriptions": {
+        "home": {
+          "home": "Héroe, bienvenida, valores, actividades, noticias"
+        },
+        "about": {
+          "mission-vision-values": "Valores fundamentales y declaración de misión",
+          "statement-of-faith": "Creencias religiosas y principios",
+          "philosophy": "Filosofía educativa",
+          "history": "Línea de tiempo y fundadores",
+          "leadership": "Junta directiva y directores",
+          "town": "Información sobre Siguatepeque"
+        },
+        "academics": {
+          "curriculum": "Programas y materias",
+          "grades": "Niveles de grado y agrupaciones",
+          "calendar": "Calendario académico y fechas",
+          "guidance-wellbeing": "Servicios de apoyo estudiantil"
+        },
+        "studentLife": {
+          "sports-clubs": "Programas atléticos",
+          "service-projects": "Iniciativas de servicio comunitario",
+          "library": "Reglas, horarios, niveles de lectura",
+          "upcoming-events": "Eventos anuales",
+          "gallery": "Gestión de galería de fotos",
+          "alumni": "Historias y secciones de exalumnos"
+        },
+        "support": {
+          "why-support": "Áreas de impacto",
+          "scholarships": "Información de becas",
+          "donate": "Métodos de donación y listas de deseos",
+          "projects": "Proyectos actuales"
+        },
+        "contact": {
+          "info": "Teléfono, correo, horarios",
+          "directions": "Mapas y direcciones",
+          "form": "Configuración del formulario",
+          "faq": "Preguntas y respuestas"
+        },
+        "admissions": {
+          "who-can-apply": "Elegibilidad y requisitos",
+          "how-to-apply": "Pasos del proceso de admisión",
+          "calendar": "Fechas de admisiones"
+        },
+        "getInvolved": {
+          "teachers": "Requisitos y beneficios",
+          "volunteer": "Oportunidades de voluntariado"
+        }
+      },
+      "sectionIndex": {
+        "managePages": "Gestionar páginas en esta sección.",
+        "noPages": "No hay páginas disponibles en esta sección."
       },
       "calendarAccess": "Puede gestionar eventos del calendario",
       "announcementAccess": "Puede gestionar anuncios"
@@ -1990,6 +2044,20 @@
     "validation": {
       "minItemsReached": "Mínimo de elementos alcanzado",
       "cannotDeleteMinItems": "No se puede eliminar. Se requieren al menos {min} elementos."
+    },
+    "dashboard": {
+      "title": "Panel de Administración",
+      "subtitle": "Gestiona el contenido, usuarios y configuración de tu sitio web.",
+      "websiteSections": "Secciones del Sitio Web",
+      "adminSubtitle": "Gestiona las secciones asignadas a ti.",
+      "welcome": "Bienvenido/a, {name}",
+      "dashboardTitle": "Panel",
+      "stats": {
+        "users": "Usuarios",
+        "events": "Eventos",
+        "announcements": "Anuncios",
+        "galleryPhotos": "Fotos de Galería"
+      }
     }
   },
   "support": {

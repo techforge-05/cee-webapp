@@ -19,6 +19,7 @@
         <USelect
           v-model="filterType"
           :items="typeFilterOptions"
+          class="w-52"
         />
       </UFormField>
     </div>
@@ -44,7 +45,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-1">
               <UBadge :color="getTypeColor(event.event_type)" size="sm" variant="subtle">
-                {{ event.event_type }}
+                {{ $t(`academics.calendar.eventTypes.${event.event_type}`) }}
               </UBadge>
               <span class="text-sm text-gray-500">
                 {{ formatDate(event.start_date) }}
@@ -244,7 +245,9 @@ watch(showModal, (open) => {
   }
 })
 
-const eventTypeOptions = EVENT_TYPES
+const eventTypeOptions = computed(() =>
+  EVENT_TYPES.map(type => ({ value: type.value, label: t(`academics.calendar.eventTypes.${type.value}`) }))
+)
 
 const colorOptions = [
   '#3b82f6', // blue
@@ -263,7 +266,7 @@ const colorOptions = [
 
 const typeFilterOptions = computed(() => [
   { value: 'all', label: t('admin.editors.calendar.allTypes') },
-  ...EVENT_TYPES,
+  ...EVENT_TYPES.map(type => ({ value: type.value, label: t(`academics.calendar.eventTypes.${type.value}`) })),
 ])
 
 const editForm = reactive({

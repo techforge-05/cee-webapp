@@ -3,8 +3,8 @@
     <!-- Super Admin: Users overview + Section cards -->
     <template v-if="adminStore.isSuperAdmin">
       <div class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900 mb-1">Admin Dashboard</h1>
-        <p class="text-gray-500">Manage your website content, users, and settings.</p>
+        <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ $t('admin.dashboard.title') }}</h1>
+        <p class="text-gray-500">{{ $t('admin.dashboard.subtitle') }}</p>
       </div>
 
       <!-- Quick Stats -->
@@ -16,7 +16,7 @@
             </div>
             <div>
               <p class="text-2xl font-bold text-gray-900">{{ userCount }}</p>
-              <p class="text-xs text-gray-500">Users</p>
+              <p class="text-xs text-gray-500">{{ $t('admin.dashboard.stats.users') }}</p>
             </div>
           </div>
         </NuxtLink>
@@ -27,7 +27,7 @@
             </div>
             <div>
               <p class="text-2xl font-bold text-gray-900">{{ eventCount }}</p>
-              <p class="text-xs text-gray-500">Events</p>
+              <p class="text-xs text-gray-500">{{ $t('admin.dashboard.stats.events') }}</p>
             </div>
           </div>
         </NuxtLink>
@@ -38,7 +38,7 @@
             </div>
             <div>
               <p class="text-2xl font-bold text-gray-900">{{ announcementCount }}</p>
-              <p class="text-xs text-gray-500">Announcements</p>
+              <p class="text-xs text-gray-500">{{ $t('admin.dashboard.stats.announcements') }}</p>
             </div>
           </div>
         </NuxtLink>
@@ -49,7 +49,7 @@
             </div>
             <div>
               <p class="text-2xl font-bold text-gray-900">{{ photoCount }}</p>
-              <p class="text-xs text-gray-500">Gallery Photos</p>
+              <p class="text-xs text-gray-500">{{ $t('admin.dashboard.stats.galleryPhotos') }}</p>
             </div>
           </div>
         </NuxtLink>
@@ -57,7 +57,7 @@
 
       <!-- Sections Grid -->
       <div>
-        <h2 class="text-lg font-semibold text-gray-900 mb-4">Website Sections</h2>
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">{{ $t('admin.dashboard.websiteSections') }}</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <AdminSectionCard
             v-for="section in sections"
@@ -76,9 +76,9 @@
     <template v-else>
       <div class="mb-8">
         <h1 class="text-2xl font-bold text-gray-900 mb-1">
-          {{ adminStore.profile?.full_name ? `Welcome, ${adminStore.profile.full_name}` : 'Dashboard' }}
+          {{ adminStore.profile?.full_name ? t('admin.dashboard.welcome', { name: adminStore.profile.full_name }) : t('admin.dashboard.dashboardTitle') }}
         </h1>
-        <p class="text-gray-500">Manage the sections assigned to you.</p>
+        <p class="text-gray-500">{{ $t('admin.dashboard.adminSubtitle') }}</p>
       </div>
 
       <!-- If only one section, show that section's pages directly -->
@@ -89,7 +89,7 @@
             v-for="page in adminSections[0].pages"
             :key="page.slug"
             :icon="page.icon"
-            :label="page.label"
+            :label="t(`admin.permissions.pages.${adminSections[0].key}.${page.slug}`, page.label)"
             :to="localePath(page.to || `/admin/sections/${adminSections[0].key}/${page.slug}`)"
             :bg-color="adminSections[0].bgColor"
           />
