@@ -136,6 +136,7 @@ const sectionData = [
       { slug: 'library', icon: 'i-heroicons-book-open' },
       { slug: 'upcoming-events', icon: 'i-heroicons-calendar' },
       { slug: 'gallery', icon: 'i-heroicons-photo' },
+      { slug: 'alumni', icon: 'i-heroicons-user-group' },
     ],
   },
   {
