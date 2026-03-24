@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import { getEditorSchema } from '~/components/admin/editors/editorSchemas'
 import GenericContentEditor from '~/components/admin/editors/GenericContentEditor.vue'
+import { getSectionConfig } from '~/config/sectionRegistry'
 
 definePageMeta({
   layout: 'admin',
@@ -45,15 +46,16 @@ definePageMeta({
 })
 
 const route = useRoute()
+const { t } = useI18n()
 
 const sectionKey = computed(() => route.params.section as string)
 const pageSlug = computed(() => route.params.page as string)
 
 const pageLabel = computed(() => {
-  return (pageSlug.value || '')
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const config = getSectionConfig(sectionKey.value)
+  const page = config?.pages.find((p) => p.slug === pageSlug.value)
+  const fallback = page?.label || (pageSlug.value || '').split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  return t(`admin.permissions.pages.${sectionKey.value}.${pageSlug.value}`, fallback)
 })
 
 // Map of section/page to specific editor components

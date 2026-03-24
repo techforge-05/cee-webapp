@@ -46,9 +46,10 @@ const sectionKey = computed(() => route.params.section as string)
 
 const sectionConfig = computed(() => getSectionConfig(sectionKey.value))
 
-const sectionLabel = computed(() =>
-  t(`nav.${sectionKey.value}`, sectionKey.value),
-)
+const sectionLabel = computed(() => {
+  const fallback = sectionConfig.value?.label || sectionKey.value
+  return t(`admin.permissions.sections.${sectionKey.value}`, t(`nav.${sectionKey.value}`, fallback))
+})
 
 const visiblePages = computed(() => {
   const config = sectionConfig.value

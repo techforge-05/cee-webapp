@@ -1256,6 +1256,7 @@
   "admin": {
     "users": {
       "title": "Users",
+      "userDetails": "User Details",
       "description": "Manage admin users and their permissions.",
       "inviteUser": "Invite User",
       "searchPlaceholder": "Search by name or email...",
