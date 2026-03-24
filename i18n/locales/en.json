@@ -76,6 +76,9 @@
       "getInvolved": {
         "teachers": "Teach at CEE",
         "volunteer": "Volunteer Opportunities"
+      },
+      "home": {
+        "home": "Home Page"
       }
     }
   },
@@ -551,9 +554,15 @@
       },
       "images": {
         "items": [
-          { "alt": "Guidance department activity" },
-          { "alt": "Student counseling session" },
-          { "alt": "Student wellbeing activity" }
+          {
+            "alt": "Guidance department activity"
+          },
+          {
+            "alt": "Student counseling session"
+          },
+          {
+            "alt": "Student wellbeing activity"
+          }
         ]
       },
       "contact": {
@@ -1537,7 +1546,55 @@
       "removeImage": "Remove image",
       "imageSaved": "Image saved",
       "imageRemoved": "Image removed",
-      "imageError": "Failed to save image"
+      "imageError": "Failed to save image",
+      "pageDescriptions": {
+        "home": {
+          "home": "Hero, welcome, values, activities, news"
+        },
+        "about": {
+          "missionVisionValues": "Core values and mission statement",
+          "statementOfFaith": "Religious beliefs and principles",
+          "philosophy": "Educational philosophy",
+          "history": "Timeline and founders",
+          "leadership": "Board and directors",
+          "town": "Siguatepeque information"
+        },
+        "academics": {
+          "curriculum": "Programs and subjects",
+          "grades": "Grade levels and groupings",
+          "calendar": "Academic calendar and dates",
+          "guidanceWellbeing": "Student support services"
+        },
+        "studentLife": {
+          "sportsClubs": "Athletic programs",
+          "serviceProjects": "Community service initiatives",
+          "library": "Rules, hours, reading levels",
+          "upcomingEvents": "Annual events",
+          "gallery": "Photo gallery management",
+          "alumni": "Alumni stories and sections"
+        },
+        "support": {
+          "whySupport": "Impact areas",
+          "scholarships": "Scholarship info",
+          "donate": "Donation methods and wish lists",
+          "projects": "Current projects"
+        },
+        "contact": {
+          "info": "Phone, email, hours",
+          "directions": "Maps and directions",
+          "form": "Form settings",
+          "faq": "Questions and answers"
+        },
+        "admissions": {
+          "whoCanApply": "Eligibility and requirements",
+          "howToApply": "Application steps",
+          "calendar": "Admissions dates"
+        },
+        "getInvolved": {
+          "teachers": "Requirements and benefits",
+          "volunteer": "Volunteer opportunities"
+        }
+      }
     },
     "editors": {
       "manageContent": "Manage content for this page.",

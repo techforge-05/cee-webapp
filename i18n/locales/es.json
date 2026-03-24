@@ -76,6 +76,9 @@
       "getInvolved": {
         "teachers": "Únete a nuestro equipo",
         "volunteer": "Oportunidades de Voluntariado"
+      },
+      "home": {
+        "home": "Página de Inicio"
       }
     }
   },
@@ -551,9 +554,15 @@
       },
       "images": {
         "items": [
-          { "alt": "Actividad del departamento de orientación" },
-          { "alt": "Sesión de consejería estudiantil" },
-          { "alt": "Actividad de bienestar estudiantil" }
+          {
+            "alt": "Actividad del departamento de orientación"
+          },
+          {
+            "alt": "Sesión de consejería estudiantil"
+          },
+          {
+            "alt": "Actividad de bienestar estudiantil"
+          }
         ]
       },
       "contact": {
@@ -1387,7 +1396,7 @@
           "town": "Ciudad"
         },
         "academics": {
-          "curriculum": "Plan de Estudios",
+          "curriculum": "Currículo",
           "grades": "Grados",
           "calendar": "Calendario",
           "guidance-wellbeing": "Orientación y Bienestar"
@@ -1537,7 +1546,55 @@
       "removeImage": "Eliminar imagen",
       "imageSaved": "Imagen guardada",
       "imageRemoved": "Imagen eliminada",
-      "imageError": "Error al guardar imagen"
+      "imageError": "Error al guardar imagen",
+      "pageDescriptions": {
+        "home": {
+          "home": "Héroe, bienvenida, valores, actividades, noticias"
+        },
+        "about": {
+          "missionVisionValues": "Valores fundamentales y declaración de misión",
+          "statementOfFaith": "Creencias religiosas y principios",
+          "philosophy": "Filosofía educativa",
+          "history": "Línea de tiempo y fundadores",
+          "leadership": "Junta directiva y directores",
+          "town": "Información sobre Siguatepeque"
+        },
+        "academics": {
+          "curriculum": "Programas y materias",
+          "grades": "Niveles y agrupaciones de grado",
+          "calendar": "Calendario académico y fechas",
+          "guidanceWellbeing": "Servicios de apoyo estudiantil"
+        },
+        "studentLife": {
+          "sportsClubs": "Programas atléticos",
+          "serviceProjects": "Iniciativas de servicio comunitario",
+          "library": "Reglas, horarios, niveles de lectura",
+          "upcomingEvents": "Eventos anuales",
+          "gallery": "Gestión de galería de fotos",
+          "alumni": "Historias y secciones de exalumnos"
+        },
+        "support": {
+          "whySupport": "Áreas de impacto",
+          "scholarships": "Información sobre becas",
+          "donate": "Métodos de donación y listas de deseos",
+          "projects": "Proyectos actuales"
+        },
+        "contact": {
+          "info": "Teléfono, correo, horarios",
+          "directions": "Mapas y direcciones",
+          "form": "Configuración del formulario",
+          "faq": "Preguntas y respuestas"
+        },
+        "admissions": {
+          "whoCanApply": "Elegibilidad y requisitos",
+          "howToApply": "Pasos de solicitud",
+          "calendar": "Fechas de admisión"
+        },
+        "getInvolved": {
+          "teachers": "Requisitos y beneficios",
+          "volunteer": "Oportunidades de voluntariado"
+        }
+      }
     },
     "editors": {
       "manageContent": "Administrar contenido de esta página.",
